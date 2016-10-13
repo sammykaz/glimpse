@@ -1,0 +1,20 @@
+Problem:
+
+Deployment fails when running Droid Application
+
+Solution:
+
+1. Search Regedit in your computer
+2. Navigate to HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Android
+
+The path originally was C:\Users[User]\AppData\Local\Android\android-sdk
+
+3. Change to the Path that is set in Xamarin Visual Studio. Go to Tools -> Options -> Xamarin, Click on Change for Android SDK , Copy Path
+
+Path should look like something like this: 
+C:\Users[User]\AppData\Local\Xamarin\Universal\AndroidSDK
+
+Paste it in
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Android, and changing the SDK path to my Xamarin Mono Android SDK folder.
+
+Run now and it should deploy properly.
