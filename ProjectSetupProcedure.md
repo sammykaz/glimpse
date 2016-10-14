@@ -1,3 +1,7 @@
+You must have:
+-Windows 8 or later installed
+-.NET Framework 4.5+ installed
+
 Please proceed in order of steps, it is important to start from step 1, because Android SDK relies on JDK
 and will give you different tools for your JDK version. 
 
