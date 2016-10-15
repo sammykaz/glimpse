@@ -1,7 +1,7 @@
 ﻿
 namespace Glimpse.Core.Model
 {
-    public class City: BaseModel
+    public class City
     {
         public int CityId { get; set; }
 

@@ -48,8 +48,7 @@ namespace Glimpse.Droid.Activities
 
             _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int)GravityFlags.Start);
-            _drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout,
-                                Resource.String.drawer_open, Resource.String.drawer_close);
+            _drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout, Resource.String.drawer_open, Resource.String.drawer_close);
             _drawerToggle.DrawerClosed += _drawerToggle_DrawerClosed;
             _drawerToggle.DrawerOpened += _drawerToggle_DrawerOpened;
 
@@ -58,8 +57,9 @@ namespace Glimpse.Droid.Activities
             _drawerToggle.DrawerIndicatorEnabled = true;
             _drawerLayout.SetDrawerListener(_drawerToggle);
 
-            ViewModel.ShowMenu();
-            ViewModel.ShowSearchJourneys();
+            ViewModel.ShowVendorSignUp();
+            //ViewModel.ShowMenu();
+           // ViewModel.ShowSearchJourneys();
         }
 
         private void _drawerToggle_DrawerOpened(object sender, ActionBarDrawerEventArgs e)

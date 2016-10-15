@@ -220,6 +220,7 @@
     <Compile Include="Views\SearchJourneyFragment.cs" />
     <Compile Include="Views\SearchResultsFragment.cs" />
     <Compile Include="Views\SettingsFragment.cs" />
+    <Compile Include="Views\VendorSignUpFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GettingStarted.Xamarin" />
@@ -319,6 +320,7 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\arrow_right.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\arrow_up.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\splash.png" />
+    <AndroidResource Include="Resources\layout\VendorSignUpView.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -372,7 +374,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\item_journey_search_result.axml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\edit_text_style.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ButtonSignUpStyle.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -2,7 +2,7 @@
 
 namespace Glimpse.Core.Model
 {
-    public class Journey: BaseModel
+    public class Journey
     {
         public int JourneyId { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Glimpse.Core.Model
 {
-    public class User: BaseModel
+    public class User
     {
         public int UserId { get; set; }
 
