@@ -34,8 +34,6 @@ namespace MyTrains.Droid.Views
         public override void OnStart()
         {
             base.OnStart();
-
-          
         }
 
     }

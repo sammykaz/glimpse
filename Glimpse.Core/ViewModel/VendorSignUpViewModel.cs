@@ -1,5 +1,7 @@
 ﻿using MvvmCross.Plugins.Messenger;
 using Glimpse.Core.ViewModel;
+using MvvmCross.Core.ViewModels;
+using Glimpse.Core.Model;
 
 namespace MyTrains.Core.ViewModel
 {
@@ -9,6 +11,7 @@ namespace MyTrains.Core.ViewModel
         {
             
         }
+
 
         private string _firstName;
         public string FirstName
@@ -22,6 +25,55 @@ namespace MyTrains.Core.ViewModel
             }
         }
 
+
+        private string _company;
+        public string Company
+        {
+            get { return _company; }
+            set
+            {
+                _company = value;
+                RaisePropertyChanged(() => Company);
+
+            }
+        }
+
+
+        private string _email;
+        public string Email
+        {
+            get { return _email; }
+            set
+            {
+                _email = value;
+                RaisePropertyChanged(() => Email);
+
+            }
+        }
+
+
+        private string _password;
+        public string Password
+        {
+            get { return _password; }
+            set
+            {
+                _password = value;
+                RaisePropertyChanged(() => Password);
+            }
+        }
+
+        public MvxCommand SignUpCommand
+        {
+            get
+            {
+                return new MvxCommand(async () =>
+                {
+                    var user = new VendorAccount(_firstName, _company, _email, _password);
+                    int x = 0;
+                });
+            }
+        }
 
 
     }

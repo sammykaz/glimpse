@@ -2168,6 +2168,9 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0600a6
 			public const int SearchButton = 2131099814;
 			
+			// aapt resource value: 0x7f0600b1
+			public const int SignUpButton = 2131099825;
+			
 			// aapt resource value: 0x7f0600a0
 			public const int ToCitiesSpinner = 2131099808;
 			
@@ -2242,9 +2245,6 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f06002d
 			public const int bottom = 2131099693;
-			
-			// aapt resource value: 0x7f0600b0
-			public const int btnDialogEmail = 2131099824;
 			
 			// aapt resource value: 0x7f0600a2
 			public const int buttonLeft = 2131099810;
@@ -2622,13 +2622,16 @@ namespace Glimpse.Droid
 			public const int touch_outside = 2131099756;
 			
 			// aapt resource value: 0x7f0600ae
-			public const int txtEmail = 2131099822;
+			public const int txtCompany = 2131099822;
+			
+			// aapt resource value: 0x7f0600af
+			public const int txtEmail = 2131099823;
 			
 			// aapt resource value: 0x7f0600ad
 			public const int txtFirstName = 2131099821;
 			
-			// aapt resource value: 0x7f0600af
-			public const int txtPassword = 2131099823;
+			// aapt resource value: 0x7f0600b0
+			public const int txtPassword = 2131099824;
 			
 			// aapt resource value: 0x7f060009
 			public const int up = 2131099657;
