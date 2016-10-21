@@ -5,8 +5,8 @@ namespace Glimpse.Core.Contracts.Repository
 {
     public interface IUserRepository
     {
-        Task<User> SearchUser(string userName);
+        Task<User2> SearchUser(string userName);
 
-        Task<User> Login(string userName, string password);
+        Task<User2> Login(string userName, string password);
     }
 }

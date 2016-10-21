@@ -9,19 +9,19 @@ namespace Glimpse.Core.Repositories
     public class UserRepository : BaseRepository, IUserRepository
     {
 
-        private static readonly List<User> AllKnownUsers = new List<User>
+        private static readonly List<User2> AllKnownUsers = new List<User2>
         {
-            new User { UserName = "gillcleeren", Password="123456", UserId = 1}, //extremely secure, don't try this at home
-            new User { UserName = "johnsmith", Password="789456", UserId = 2},
-            new User { UserName = "annawhite", Password="100000", UserId = 3}
+            new User2 { UserName = "gillcleeren", Password="123456", UserId = 1}, //extremely secure, don't try this at home
+            new User2 { UserName = "johnsmith", Password="789456", UserId = 2},
+            new User2 { UserName = "annawhite", Password="100000", UserId = 3}
         };
 
-        public async Task<User> SearchUser(string userName)
+        public async Task<User2> SearchUser(string userName)
         {
             return await Task.FromResult(AllKnownUsers.FirstOrDefault(u => u.UserName == userName));
         }
 
-        public async Task<User> Login(string userName, string password)
+        public async Task<User2> Login(string userName, string password)
         {
             return await Task.FromResult(AllKnownUsers.FirstOrDefault(u => u.UserName == userName && u.Password == password));
         }
