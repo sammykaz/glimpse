@@ -3,8 +3,12 @@ using Glimpse.Core.Model;
 
 namespace Glimpse.Core.Contracts.Repository
 {
-    public interface IVendorRepository : IUserRepository
+    public interface IVendorRepository
     {
-        Task CreateUser(string userName, string password, string email, string company);
+        Task<User> SearchUser(string userName);
+
+        Task<User> Login(string userName, string password);
+
+        Task SignUp(string userName, string password, string email, string company);
     }
 }

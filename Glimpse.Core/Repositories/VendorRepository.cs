@@ -7,7 +7,7 @@ using System;
 
 namespace Glimpse.Core.Repositories
 {
-    public class UserRepository : BaseRepository, IUserRepository
+    public class VendorRepository : BaseRepository, IVendorRepository
     {
 
         public async Task<User> SearchUser(string userName)
@@ -20,7 +20,7 @@ namespace Glimpse.Core.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task SignUp(string userName, string password, string email)
+        public async Task SignUp(string userName, string password, string email, string company)
         {
             throw new NotImplementedException();
         }
