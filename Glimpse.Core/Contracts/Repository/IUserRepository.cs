@@ -9,6 +9,6 @@ namespace Glimpse.Core.Contracts.Repository
 
         Task<User> Login(string userName, string password);
 
-        Task SignUp(string userName, string password, string email);
+        Task CreateUser(string userName, string password, string email);
     }
 }
