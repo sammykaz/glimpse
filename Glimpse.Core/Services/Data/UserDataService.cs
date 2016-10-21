@@ -7,9 +7,9 @@ namespace Glimpse.Core.Services.Data
 {
     public class UserDataService: IUserDataService
     {
-        private readonly IUserRepository2 _userRepository;
+        private readonly IUserRepository _userRepository;
         private User2 _activeUser;
-        public UserDataService(IUserRepository2 userRepository)
+        public UserDataService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
