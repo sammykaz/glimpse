@@ -59,6 +59,7 @@
     <Compile Include="Contracts\Services\IJourneyDataService.cs" />
     <Compile Include="Contracts\Services\ISavedJourneyDataService.cs" />
     <Compile Include="Contracts\Services\ISettingsDataService.cs" />
+    <Compile Include="Contracts\Services\IVendorDataService.cs" />
     <Compile Include="Contracts\Services\IUserDataService.cs" />
     <Compile Include="Contracts\Services\IUserTempDataService.cs" />
     <Compile Include="Contracts\ViewModel\IJourneyDetailViewModel.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Services\Data\JourneyDataService.cs" />
     <Compile Include="Services\Data\SavedJourneyDataService.cs" />
     <Compile Include="Services\Data\SettingsDataService.cs" />
+    <Compile Include="Services\Data\VendorDataService.cs" />
     <Compile Include="Services\Data\UserDataService.cs" />
     <Compile Include="Services\Data\UserTempDataService.cs" />
     <Compile Include="Services\General\ConnectionService.cs" />
