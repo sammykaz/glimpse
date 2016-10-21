@@ -6,7 +6,7 @@ using Glimpse.Core.Model;
 
 namespace Glimpse.Core.Repositories
 {
-    public class UserRepository : BaseRepository, IUserRepository
+    public class UserRepository : BaseRepository, IUserRepository2
     {
 
         private static readonly List<User2> AllKnownUsers = new List<User2>
