@@ -51,6 +51,7 @@
     <Compile Include="Contracts\Repository\ISavedJourneyRepository.cs" />
     <Compile Include="Contracts\Repository\ISettingsRepository.cs" />
     <Compile Include="Contracts\Repository\IUserRepository.cs" />
+    <Compile Include="Contracts\Repository\IUserTempRepository.cs" />
     <Compile Include="Contracts\Services\ICityDataService.cs" />
     <Compile Include="Contracts\Services\IConnectionService.cs" />
     <Compile Include="Contracts\Services\IDialogService.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Repositories\SavedJourneyRepository.cs" />
     <Compile Include="Repositories\SettingsRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\UserTempRepository.cs" />
     <Compile Include="Services\Data\CityDataService.cs" />
     <Compile Include="Services\Data\JourneyDataService.cs" />
     <Compile Include="Services\Data\SavedJourneyDataService.cs" />
