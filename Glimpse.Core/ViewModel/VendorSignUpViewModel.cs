@@ -69,7 +69,7 @@ namespace MyTrains.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
-                    var user = new VendorAccount(_firstName, _company, _email, _password);
+                    var user = new Vendor(_firstName, _company, _email, _password);
                     int x = 0;
                 });
             }
