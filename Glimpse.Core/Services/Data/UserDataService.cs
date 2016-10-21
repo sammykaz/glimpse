@@ -7,27 +7,32 @@ namespace Glimpse.Core.Services.Data
 {
     public class UserDataService: IUserDataService
     {
-        private readonly IUserTempRepository _userRepository;
-        private User2 _activeUser;
-        public UserDataService(IUserTempRepository userRepository)
+        private readonly IUserRepository _userRepository;
+        private User _activeUser;
+        public UserDataService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public async Task<User2> SearchUser(string userName)
+        public async Task<User> SearchUser(string userName)
         {
             return await _userRepository.SearchUser(userName);
         }
 
-        public async Task<User2> Login(string userName, string password)
+        public async Task<User> Login(string userName, string password)
         {
             _activeUser = await _userRepository.Login(userName, password);
             return _activeUser;
         }
 
-        public User2 GetActiveUser()
+        public User GetActiveUser()
         {
             return _activeUser;
+        }
+
+        public async Task SignUp(string userName, string password, string email)
+        {
+            await _userRepository.SignUp(userName, password, email);
         }
     }
 }
