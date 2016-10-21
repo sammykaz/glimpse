@@ -13,7 +13,7 @@ namespace Glimpse.Core.ViewModel
     public class SavedJourneysViewModel : BaseViewModel, ISavedJourneysViewModel
     {
         private readonly ISavedJourneyDataService _savedJourneyDataService;
-        private readonly IUserDataService _userDataService;
+        private readonly IUserTempDataService _userDataService;
 
         private ObservableCollection<SavedJourney> _savedJourneys;
 
@@ -42,7 +42,7 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public SavedJourneysViewModel(IMvxMessenger messenger, ISavedJourneyDataService savedJourneyDataService, IUserDataService userDataService) : base(messenger)
+        public SavedJourneysViewModel(IMvxMessenger messenger, ISavedJourneyDataService savedJourneyDataService, IUserTempDataService userDataService) : base(messenger)
         {
             _savedJourneyDataService = savedJourneyDataService;
             _userDataService = userDataService;
