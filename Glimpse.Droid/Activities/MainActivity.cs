@@ -57,9 +57,9 @@ namespace Glimpse.Droid.Activities
             _drawerToggle.DrawerIndicatorEnabled = true;
             _drawerLayout.SetDrawerListener(_drawerToggle);
 
-           // ViewModel.ShowVendorSignUp();
+            ViewModel.ShowVendorSignUp();
             ViewModel.ShowMenu();
-            ViewModel.ShowSearchJourneys();
+
         }
 
         private void _drawerToggle_DrawerOpened(object sender, ActionBarDrawerEventArgs e)
