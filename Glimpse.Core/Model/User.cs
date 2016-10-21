@@ -14,7 +14,7 @@ namespace Glimpse.Core.Model
         private string _password;
 
 
-        public User(string firstName, string password, string email)
+        public User(string firstName, string email, string password)
         {
             _firstName = firstName;
             _email = email;
