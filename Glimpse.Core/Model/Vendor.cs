@@ -10,7 +10,7 @@ namespace Glimpse.Core.Model
     {
         private string _company;
 
-        public Vendor(string firstName, string email, string password,  string company) : base(firstName, email, password)
+        public Vendor(string firstName, string password, string email,  string company) : base(firstName, password, email)
         {
             _company = company;
         }                
