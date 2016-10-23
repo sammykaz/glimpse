@@ -2,32 +2,11 @@
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using MvvmCross.Plugins.Sqlite;
-using SQLite.Net;
-using SQLite.Net.Async;
-using System;
-using Glimpse.Core.Contracts.Repository;
-using MvvmCross.Platform;
 
 namespace Glimpse.Core.Repositories
 {
     public class BaseRepository
     {
-
-        //Database connection placed here temporarily for testing purposes... Should be used throughout the application...
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         private HttpClient CreateHttpClient()
         {

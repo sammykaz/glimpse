@@ -2,7 +2,7 @@
 
 namespace Glimpse.iOS.Utility
 {
-    public static class GlimpseColors
+    public static class MyTrainsColors
     {
         public static UIColor AccentColor = new UIColor(59 / 255f, 202 / 255f, 219 / 255f, 1);
 

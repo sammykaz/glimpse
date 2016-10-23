@@ -9,13 +9,13 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Glimpse.Droid</RootNamespace>
-    <AssemblyName>Glimpse.Droid</AssemblyName>
+    <RootNamespace>MyTrains.Droid</RootNamespace>
+    <AssemblyName>MyTrains.Droid</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <SccProjectName>SAK</SccProjectName>
@@ -26,7 +26,7 @@
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
+    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
@@ -35,14 +35,6 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-    <BundleAssemblies>False</BundleAssemblies>
-    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
-    <Debugger>Xamarin</Debugger>
-    <AotAssemblies>False</AotAssemblies>
-    <EnableLLVM>False</EnableLLVM>
-    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
-    <EnableProguard>False</EnableProguard>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -327,13 +319,13 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Glimpse.Core\Glimpse.Core.csproj">
+    <ProjectReference Include="..\MyTrains.Core\MyTrains.Core.csproj">
       <Project>{a429b66b-b938-4bec-9254-c27bba173d90}</Project>
-      <Name>Glimpse.Core</Name>
+      <Name>MyTrains.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Glimpse.Localization\Glimpse.Localization.csproj">
+    <ProjectReference Include="..\MyTrains.Localization\MyTrains.Localization.csproj">
       <Project>{d9032fc3-4f9d-4117-8ac1-c14c46b78a79}</Project>
-      <Name>Glimpse.Localization</Name>
+      <Name>MyTrains.Localization</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
