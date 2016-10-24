@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using System.Diagnostics;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Plugins.WebBrowser;
@@ -10,7 +8,6 @@ using Glimpse.Core.Contracts.ViewModel;
 using Glimpse.Core.Extensions;
 using Glimpse.Core.Messages;
 using Glimpse.Core.Model;
-using SQLite;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -19,7 +16,6 @@ namespace Glimpse.Core.ViewModel
         private readonly ISettingsDataService _settingsDataService;
         private string _aboutContent;
         private readonly IMvxWebBrowserTask _webBrowser;
-        private readonly IVendorDataService _vendorDataService;
 
         public MvxCommand HelpCommand
         {
@@ -27,26 +23,11 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(() =>
                 {
-                    _webBrowser.ShowWebPage("http://www.snowball.be");//what an awesome site!
+                    _webBrowser.ShowWebPage
+                        ("http://www.snowball.be");//what an awesome site!
                 });
             }
         }
-
-        //Command to initiate PutItem in the database
-
-        public MvxCommand PutItemInDB
-        {
-            get
-            {
-                return new MvxCommand(() =>
-                {
-                    _vendorDataService.PutItem();
-                });
-            }
-        }
-
-        //
-
         public MvxCommand SwitchCurrencyCommand
         {
             get

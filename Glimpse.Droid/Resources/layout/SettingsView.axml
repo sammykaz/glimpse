@@ -44,5 +44,5 @@
         android:textSize="17dp"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="10dp"
-        local:MvxBind="Click PutItemInDB" />
+        local:MvxBind="Click HelpCommand" />
 </RelativeLayout>
