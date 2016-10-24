@@ -8,7 +8,6 @@ using Glimpse.Core.Contracts.ViewModel;
 using Glimpse.Core.Extensions;
 using Glimpse.Core.Messages;
 using Glimpse.Core.Model;
-using Glimpse.Core.Repositories;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -17,32 +16,6 @@ namespace Glimpse.Core.ViewModel
         private readonly ISettingsDataService _settingsDataService;
         private string _aboutContent;
         private readonly IMvxWebBrowserTask _webBrowser;
-        private VendorRepository _vendorDataService;
-
-        public SettingsViewModel(IMvxMessenger messenger, ISettingsDataService settingsDataService, IMvxWebBrowserTask webBrowser) : base(messenger)
-        {
-            _settingsDataService = settingsDataService;
-            _webBrowser = webBrowser;
-        }
-
-
-        //Command to initiate PutItem in the database
-
-        public MvxCommand PutItemInDB
-        {
-            get
-            {
-                return new MvxCommand(() =>
-                {
-                    _vendorDataService = new VendorRepository();
-                    _vendorDataService.PutItem();
-
-    
-                });
-            }
-        }
-
-        //
 
         public MvxCommand HelpCommand
         {
@@ -100,6 +73,13 @@ namespace Glimpse.Core.ViewModel
                 _currencies = value;
                 RaisePropertyChanged(() => Currencies);
             }
+        }
+
+        public SettingsViewModel(IMvxMessenger messenger, ISettingsDataService settingsDataService, IMvxWebBrowserTask webBrowser) : base(messenger)
+        {
+            _settingsDataService = settingsDataService;
+            _webBrowser = webBrowser;
+
         }
 
 
