@@ -8,6 +8,11 @@ using Glimpse.Core.Contracts.ViewModel;
 using Glimpse.Core.Extensions;
 using Glimpse.Core.Messages;
 using Glimpse.Core.Model;
+using Amazon.DynamoDBv2;
+using Amazon.Runtime;
+using System;
+using Amazon.DynamoDBv2.DocumentModel;
+using System.Collections.Generic;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -17,16 +22,54 @@ namespace Glimpse.Core.ViewModel
         private string _aboutContent;
         private readonly IMvxWebBrowserTask _webBrowser;
 
+        //GLOBAL
+        AmazonDynamoDBClient client;
+
         public MvxCommand HelpCommand
         {
             get
             {
                 return new MvxCommand(() =>
                 {
-                    _webBrowser.ShowWebPage
-                        ("http://www.snowball.be");//what an awesome site!
+                   
+                    try
+                    {
+                       IEnumerable<string> profiles = InstanceProfileAWSCredentials.GetAvailableRoles();
+
+                        AWSCredentials credentials = new BasicAWSCredentials("AKIAJO5TSFBKWVDWLOUA", "K+sH0xADftyggpX2hIwDqwblG/gUFKpYecWUvSm+");
+                        AmazonDynamoDBConfig config = new AmazonDynamoDBConfig();
+                        config.ServiceURL = "http://dynamodb.us-east-1.amazonaws.com";
+                        config.RegionEndpoint = Amazon.RegionEndpoint.USEast1;
+                        client = new AmazonDynamoDBClient(credentials, config);
+
+                        UploadData();
+                    }
+                    catch (AmazonDynamoDBException e) { System.Diagnostics.Debug.WriteLine("DynamoDB Message" + e.StackTrace); }
+                    catch (AmazonServiceException e) { System.Diagnostics.Debug.WriteLine("Service Exception" + e.StackTrace); }
+                    catch (Exception e) { System.Diagnostics.Debug.WriteLine("General Exception:" + e.StackTrace); }
+                    
+
+
+                    //_webBrowser.ShowWebPage
+                    //    ("http://www.snowball.be");//what an awesome site!
                 });
             }
+        }
+
+        public void UploadData()
+        {
+            Table outputTable;
+            Boolean exists = Table.TryLoadTable (client, "VendorAccount", out outputTable);
+            Table vendorTable = Table.LoadTable(client, "VendorAccount");
+            var d1 = new Document();
+
+            d1["id"] = "5";
+            d1["branchAddress"] = "4th Balls Street";
+            d1["businessPhoneNumber"] = "1-234-567-8910";
+            vendorTable.PutItemAsync(d1);
+
+    
+
         }
         public MvxCommand SwitchCurrencyCommand
         {
