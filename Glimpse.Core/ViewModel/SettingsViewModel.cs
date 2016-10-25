@@ -12,6 +12,7 @@ using Amazon.DynamoDBv2;
 using Amazon.Runtime;
 using System;
 using Amazon.DynamoDBv2.DocumentModel;
+using System.Collections.Generic;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -33,6 +34,8 @@ namespace Glimpse.Core.ViewModel
                    
                     try
                     {
+                       IEnumerable<string> profiles = InstanceProfileAWSCredentials.GetAvailableRoles();
+
                         AWSCredentials credentials = new BasicAWSCredentials("AKIAJO5TSFBKWVDWLOUA", "K+sH0xADftyggpX2hIwDqwblG/gUFKpYecWUvSm+");
                         AmazonDynamoDBConfig config = new AmazonDynamoDBConfig();
                         config.ServiceURL = "http://dynamodb.us-east-1.amazonaws.com";
@@ -60,9 +63,9 @@ namespace Glimpse.Core.ViewModel
             Table vendorTable = Table.LoadTable(client, "VendorAccount");
             var d1 = new Document();
 
-            d1["id"] = "4";
+            d1["id"] = "5";
             d1["branchAddress"] = "4th Balls Street";
-            d1["businessPhoneNumber"] = "1-234-567-8910:=";
+            d1["businessPhoneNumber"] = "1-234-567-8910";
             vendorTable.PutItemAsync(d1);
 
     
