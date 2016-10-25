@@ -49,6 +49,8 @@ namespace Glimpse.Droid
 			global::MvvmCross.Binding.Droid.Resource.Styleable.MvxListView_MvxItemTemplate = global::Glimpse.Droid.Resource.Styleable.MvxListView_MvxItemTemplate;
 			global::MvvmCross.Plugins.Sqlite.Droid.Resource.String.ApplicationName = global::Glimpse.Droid.Resource.String.ApplicationName;
 			global::MvvmCross.Plugins.Sqlite.Droid.Resource.String.Hello = global::Glimpse.Droid.Resource.String.Hello;
+			global::PCLCrypto.Resource.String.ApplicationName = global::Glimpse.Droid.Resource.String.ApplicationName;
+			global::PCLCrypto.Resource.String.Hello = global::Glimpse.Droid.Resource.String.Hello;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::Glimpse.Droid.Resource.String.ApplicationName;
 			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::Glimpse.Droid.Resource.String.Hello;
 		}
