@@ -5,23 +5,23 @@ using Glimpse.Core.Model;
 
 namespace Glimpse.Core.Services.Data
 {
-    public class UserDataService: IUserDataService
+    public class VendorDataService: IVendorDataService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IVendorRepository _vendorRepository;
         private User _activeUser;
-        public UserDataService(IUserRepository userRepository)
+        public VendorDataService(IVendorRepository vendorRepository)
         {
-            _userRepository = userRepository;
+            _vendorRepository = vendorRepository;
         }
 
         public async Task<User> SearchUser(string userName)
         {
-            return await _userRepository.SearchUser(userName);
+            return await _vendorRepository.SearchUser(userName);
         }
 
         public async Task<User> Login(string userName, string password)
         {
-            _activeUser = await _userRepository.Login(userName, password);
+            _activeUser = await _vendorRepository.Login(userName, password);
             return _activeUser;
         }
 
@@ -30,9 +30,9 @@ namespace Glimpse.Core.Services.Data
             return _activeUser;
         }
 
-        public async Task SignUp(string userName, string password, string email)
+        public async Task SignUp(string userName, string password, string email, string company)
         {
-            await _userRepository.SignUp(userName, password, email);
+            await _vendorRepository.SignUp(userName, password, email, company);
         }
     }
 }

@@ -253,6 +253,7 @@
     <Compile Include="Views\SearchJourneyFragment.cs" />
     <Compile Include="Views\SearchResultsFragment.cs" />
     <Compile Include="Views\SettingsFragment.cs" />
+    <Compile Include="Views\VendorSignUpFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -353,6 +354,7 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\arrow_right.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\arrow_up.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\splash.png" />
+    <AndroidResource Include="Resources\layout\VendorSignUpView.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -408,6 +410,12 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\AWSSDK.DynamoDBv2.3.3.0.1\analyzers\dotnet\cs\AWSSDK.DynamoDBv2.CodeAnalysis.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\edit_text_style.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ButtonSignUpStyle.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

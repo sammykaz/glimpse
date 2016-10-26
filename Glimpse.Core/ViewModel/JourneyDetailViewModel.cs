@@ -13,7 +13,7 @@ namespace Glimpse.Core.ViewModel
         private readonly IJourneyDataService _journeyDataService;
         private readonly ISavedJourneyDataService _savedJourneyDataService;
         private readonly IDialogService _dialogService;
-        private readonly IUserDataService _userDataService;
+        private readonly IUserTempDataService _userDataService;
         private Journey _selectedJourney;
         private int _journeyId;
         private int _numberOfTravellers;
@@ -67,7 +67,7 @@ namespace Glimpse.Core.ViewModel
             IJourneyDataService journeyDataService,
             ISavedJourneyDataService savedJourneyDataService,
             IDialogService dialogService, 
-            IUserDataService userDataService) : base(messenger)
+            IUserTempDataService userDataService) : base(messenger)
         {
             _journeyDataService = journeyDataService;
             _savedJourneyDataService = savedJourneyDataService;

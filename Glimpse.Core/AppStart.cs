@@ -10,7 +10,7 @@ namespace Glimpse.Core
         public async void Start(object hint = null)
         {
             //hardcoded login for this demo
-            var userService = Mvx.Resolve<IUserDataService>();
+            var userService = Mvx.Resolve<IUserTempDataService>();
             await userService.Login("gillcleeren", "123456");
 
             ShowViewModel<MainViewModel>();

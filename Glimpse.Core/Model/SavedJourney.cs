@@ -1,6 +1,6 @@
 ﻿namespace Glimpse.Core.Model
 {
-    public class SavedJourney: BaseModel
+    public class SavedJourney
     {
         public int JourneyId { get; set; }
 

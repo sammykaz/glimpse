@@ -3,7 +3,7 @@ using Glimpse.Core.Model;
 
 namespace Glimpse.Core.Contracts.Services
 {
-    public interface IUserDataService
+    public interface IVendorDataService
     {
         Task<User> SearchUser(string userName);
 
@@ -11,7 +11,7 @@ namespace Glimpse.Core.Contracts.Services
 
         User GetActiveUser();
 
-        Task SignUp(string userName, string password, string email);
+        Task SignUp(string userName, string password, string email, string company);
 
     }
 }
