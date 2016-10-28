@@ -14,10 +14,7 @@ namespace Glimpse.Core.ViewModel
 
         }
 
-        public void ShowLoginPage()
-        {
-            ShowViewModel<LoginPageViewModal>();
-        }
+       
 
     }
 }
