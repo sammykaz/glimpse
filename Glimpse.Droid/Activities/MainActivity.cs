@@ -10,6 +10,9 @@ using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using Glimpse.Core.ViewModel;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Gms.Maps;
+using Android.Gms.Maps.Model;
+using System;
 
 namespace Glimpse.Droid.Activities
 {
@@ -17,12 +20,12 @@ namespace Glimpse.Droid.Activities
         LaunchMode = LaunchMode.SingleTop, 
         ScreenOrientation = ScreenOrientation.Portrait, 
         Name = "glimpse.droid.activities.MainActivity")]
-    public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
+    public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>,IOnMapReadyCallback
     {
         private DrawerLayout _drawerLayout;
         private MvxActionBarDrawerToggle _drawerToggle;
         private FragmentManager _fragmentManager;
-
+        private GoogleMap mMap;
         internal DrawerLayout DrawerLayout { get { return _drawerLayout; } }
 
         static MainActivity instance = new MainActivity();
@@ -57,11 +60,19 @@ namespace Glimpse.Droid.Activities
             _drawerToggle.DrawerIndicatorEnabled = true;
             _drawerLayout.SetDrawerListener(_drawerToggle);
 
-            ViewModel.ShowVendorSignUp();
-            ViewModel.ShowMenu();
+         //   if (mMap == null)
+        //    {
+        //      _fragmentManager.FindFragmentById<MapFragment>(Resource.Id.map).GetMapAsync(this);
+        //    }
+          //ViewModel.ShowMap();
+
+            // ViewModel.ShowVendorSignUp();
+            // ViewModel.ShowMenu();
+          
 
         }
 
+   
         private void _drawerToggle_DrawerOpened(object sender, ActionBarDrawerEventArgs e)
         {
             InvalidateOptionsMenu();
@@ -107,6 +118,20 @@ namespace Glimpse.Droid.Activities
         {
             base.OnConfigurationChanged(newConfig);
             _drawerToggle.SyncState();
+        }
+
+        public void OnMapReady(GoogleMap googleMap)
+        {
+            mMap = googleMap;
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.SetPosition(new LatLng(16.03, 108));
+            markerOptions.SetTitle("My Position");
+            googleMap.AddMarker(markerOptions);
+
+            googleMap.UiSettings.ZoomControlsEnabled = true;
+            googleMap.UiSettings.CompassEnabled = true;
+            googleMap.MoveCamera(CameraUpdateFactory.ZoomIn());
+
         }
     }
 }
