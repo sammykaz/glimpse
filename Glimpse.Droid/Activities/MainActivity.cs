@@ -42,11 +42,11 @@ namespace Glimpse.Droid.Activities
         {
             base.OnCreate(savedInstanceState);
 
-            _fragmentManager = FragmentManager;
-            
-            SetContentView(Resource.Layout.MainView);
+           // _fragmentManager = FragmentManager;
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+             SetContentView(Resource.Layout.MapView);
+
+            /*var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
             _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
@@ -58,12 +58,11 @@ namespace Glimpse.Droid.Activities
             SupportActionBar.SetDisplayShowTitleEnabled(false);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             _drawerToggle.DrawerIndicatorEnabled = true;
-            _drawerLayout.SetDrawerListener(_drawerToggle);
+            _drawerLayout.SetDrawerListener(_drawerToggle);*/
 
-           if (mMap == null)
-           {
-              _fragmentManager.FindFragmentById<MapFragment>(Resource.Id.map).GetMapAsync(this);
-           }
+          
+            MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
+            mapFragment.GetMapAsync(this);
           //ViewModel.ShowMap();
 
             // ViewModel.ShowVendorSignUp();
@@ -95,7 +94,7 @@ namespace Glimpse.Droid.Activities
 
         internal void CloseDrawerMenu()
         {
-            _drawerLayout.CloseDrawers();
+            //_drawerLayout.CloseDrawers();
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -111,18 +110,18 @@ namespace Glimpse.Droid.Activities
         protected override void OnPostCreate(Bundle savedInstanceState)
         {
             base.OnPostCreate(savedInstanceState);
-            _drawerToggle.SyncState();
+            //_drawerToggle.SyncState();
         }
 
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
-            _drawerToggle.SyncState();
+            //_drawerToggle.SyncState();
         }
 
         public void OnMapReady(GoogleMap googleMap)
         {
-            mMap = googleMap;
+            //mMap = googleMap;
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.SetPosition(new LatLng(16.03, 108));
             markerOptions.SetTitle("My Position");
