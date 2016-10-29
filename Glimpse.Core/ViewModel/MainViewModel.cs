@@ -12,6 +12,7 @@ namespace Glimpse.Core.ViewModel
         private readonly Lazy<SavedJourneysViewModel> _savedJourneysViewModel;
         private readonly Lazy<VendorSignUpViewModel> _signupVendorViewModel;
         private readonly Lazy<SettingsViewModel> _settingsViewModel;
+        private readonly Lazy<LoginPageViewModal> _loginPageViewModel;
 
         public SearchJourneyViewModel SearchJourneyViewModel => _searchJourneyViewModel.Value;
 
@@ -21,9 +22,11 @@ namespace Glimpse.Core.ViewModel
 
         public MainViewModel()
         {
-           _searchJourneyViewModel = new Lazy<SearchJourneyViewModel>(Mvx.IocConstruct<SearchJourneyViewModel>);
-           _savedJourneysViewModel = new Lazy<SavedJourneysViewModel>(Mvx.IocConstruct<SavedJourneysViewModel>);
-           _settingsViewModel = new Lazy<SettingsViewModel>(Mvx.IocConstruct<SettingsViewModel>);
+            _searchJourneyViewModel = new Lazy<SearchJourneyViewModel>(Mvx.IocConstruct<SearchJourneyViewModel>);
+            _savedJourneysViewModel = new Lazy<SavedJourneysViewModel>(Mvx.IocConstruct<SavedJourneysViewModel>);
+            _settingsViewModel = new Lazy<SettingsViewModel>(Mvx.IocConstruct<SettingsViewModel>);
+            _loginPageViewModel = new Lazy<LoginPageViewModal>(Mvx.IocConstruct<LoginPageViewModal>);
+       
            _signupVendorViewModel = new Lazy<VendorSignUpViewModel>(Mvx.IocConstruct<VendorSignUpViewModel>);
         }
 
@@ -35,6 +38,11 @@ namespace Glimpse.Core.ViewModel
         public void ShowSearchJourneys()
         {
             ShowViewModel<SearchJourneyViewModel>();
+        }
+
+        public void ShowLoginPage()
+        {
+            ShowViewModel<LoginPageViewModal>();
         }
 
         public void ShowVendorSignUp()
