@@ -20,7 +20,7 @@ namespace Glimpse.Droid.Activities
         LaunchMode = LaunchMode.SingleTop, 
         ScreenOrientation = ScreenOrientation.Portrait, 
         Name = "glimpse.droid.activities.MainActivity")]
-    public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>,IOnMapReadyCallback
+    public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>,IOnMapReadyCallback,IFragmentCacheableActivity
     {
         private DrawerLayout _drawerLayout;
         private MvxActionBarDrawerToggle _drawerToggle;
@@ -60,10 +60,10 @@ namespace Glimpse.Droid.Activities
             _drawerToggle.DrawerIndicatorEnabled = true;
             _drawerLayout.SetDrawerListener(_drawerToggle);
 
-         //   if (mMap == null)
-        //    {
-        //      _fragmentManager.FindFragmentById<MapFragment>(Resource.Id.map).GetMapAsync(this);
-        //    }
+           if (mMap == null)
+           {
+              _fragmentManager.FindFragmentById<MapFragment>(Resource.Id.map).GetMapAsync(this);
+           }
           //ViewModel.ShowMap();
 
             // ViewModel.ShowVendorSignUp();
