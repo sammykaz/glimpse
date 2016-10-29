@@ -63,7 +63,7 @@ namespace Glimpse.Droid.Activities
           
             MapFragment mapFragment = (MapFragment)FragmentManager.FindFragmentById(Resource.Id.map);
             mapFragment.GetMapAsync(this);
-          //ViewModel.ShowMap();
+            //ViewModel.ShowMap();
 
             // ViewModel.ShowVendorSignUp();
             // ViewModel.ShowMenu();
