@@ -78,7 +78,7 @@ namespace Glimpse.Droid.Views
             catch (Exception ex) { }
 
             return false;
-            //ONCE THE DATABASE IS SET UP, WE WILL CALL THIS CLASS TO SEND THE EMAILS IN THE VendorSignUpViewModel.cs file before the Mvvmcommand
+            
         }
 
     }
