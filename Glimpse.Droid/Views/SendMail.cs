@@ -53,7 +53,7 @@ namespace Glimpse.Droid.Views
         public bool SendEmail(string mailSub, string mailbody, string mailTo)
         {
 
-            MailMessage mail = new MailMessage("smtp.testing.g@gmail.com", mailTo);
+            MailMessage mail = new MailMessage("vendor.smtptest@gmail.com", mailTo);
             mail.Subject = mailSub;
             mail.Body = mailbody;
             mail.Priority = MailPriority.High;
@@ -64,7 +64,7 @@ namespace Glimpse.Droid.Views
 
             // Smtp configuration
             //give the email address and password we will use to send (From) emails.
-            mailSmtp.Credentials = new System.Net.NetworkCredential("smtp.testing.g@gmail.com", "testingsmtp1234");
+            mailSmtp.Credentials = new System.Net.NetworkCredential("vendor.smtptest@gmail.com", "thisisthetestingpassword");
 
             mailSmtp.Port = 587;
             mailSmtp.EnableSsl = true;

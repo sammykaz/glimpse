@@ -57,7 +57,7 @@ namespace MyTrains.Droid.Views
 
             //Mail for Admin
             mailBody = sendMail.CreateMailBodyForAdmin(_firstName,_company,"No number!",_email);
-            sendMail.SendEmail("New Sign-Up Information", mailBody, "smtp.testing.g@gmail.com");
+            sendMail.SendEmail("New Sign-Up Information", mailBody, "vendor.smtptest@gmail.com");
         }
         
     }

@@ -15,14 +15,14 @@ namespace Glimpse.Droid.Views.Tests
         [TestMethod()]
         public void SendEmailTest()
         {
-            var mailFrom = "smtp.testing.g@gmail.com";
-            var mailTo = "smtp.testing.g@gmail.com";
+            var mailFrom = "vendor.smtptest@gmail.com";
+            var mailTo = "vendor.smtptest@gmail.com";
             var mailBody ="Test Mail Body";
             var mailSub = "Test Mail Subject";
 
             SmtpClient smtp = new SmtpClient("smtp.gmail.com",587);
             MailMessage mailMessage = new MailMessage(mailFrom, mailTo, mailSub, mailBody);
-            smtp.Credentials = new System.Net.NetworkCredential("smtp.testing.g@gmail.com", "testingsmtp1234");
+            smtp.Credentials = new System.Net.NetworkCredential("vendor.smtptest@gmail.com", "thisisthetestingpassword");
             try
             {
                 smtp.Send(mailMessage);
