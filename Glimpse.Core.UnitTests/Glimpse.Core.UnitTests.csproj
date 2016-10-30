@@ -127,6 +127,7 @@
     <Compile Include="Tests\Services\CityDataServiceTests.cs" />
     <Compile Include="Tests\ViewModels\SearchJourneyViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\SendMailTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Glimpse.Core\Glimpse.Core.csproj">
@@ -144,7 +145,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="Views\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
