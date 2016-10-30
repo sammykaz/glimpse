@@ -28,7 +28,6 @@ namespace MyTrains.Droid.Views
 
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
-           
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as MainActivity).SetCustomTitle("Map View");
         }
