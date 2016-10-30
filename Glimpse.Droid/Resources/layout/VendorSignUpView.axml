@@ -19,7 +19,6 @@
         android:paddingLeft="10dp"
         android:textColor="#000"
         local:MvxBind="Text FirstName, Mode=TwoWay" />
-  
     <EditText
         android:layout_below="@id/txtFirstName"
         android:layout_width="match_parent"
@@ -31,9 +30,8 @@
         android:layout_marginRight="20dp"
         android:hint="Company"
         android:paddingLeft="10dp"
-        android:textColor="#000" 
-        local:MvxBind="Text Company, Mode=TwoWay"/>
-  
+        android:textColor="#000"
+        local:MvxBind="Text Company, Mode=TwoWay" />
     <EditText
         android:layout_below="@id/txtCompany"
         android:inputType="textEmailAddress"
@@ -47,8 +45,7 @@
         android:hint="Email"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text Email, Mode=TwoWay"/>
-  
+        local:MvxBind="Text Email, Mode=TwoWay" />
     <EditText
         android:layout_below="@id/txtEmail"
         android:inputType="textPassword"
@@ -61,8 +58,7 @@
         android:hint="Password"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text Password, Mode=TwoWay"/>
-  
+        local:MvxBind="Text Password, Mode=TwoWay" />
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,7 +79,7 @@
             android:paddingTop="2dp"
             android:background="@drawable/ButtonSignUpStyle"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="30dp" 
-            local:MvxBind= "Click SignUpCommand"/>
+            android:layout_marginLeft="30dp"
+            local:MvxBind="Click SignUpCommand" />
     </RelativeLayout>
 </RelativeLayout>
