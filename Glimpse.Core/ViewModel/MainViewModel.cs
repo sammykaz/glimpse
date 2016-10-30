@@ -47,5 +47,7 @@ namespace Glimpse.Core.ViewModel
             ShowViewModel<VendorSignUpViewModel>();
         }
 
+   
+
     }
 }

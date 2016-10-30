@@ -81,7 +81,9 @@
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\Currency.cs" />
+    <Compile Include="Model\First.cs" />
     <Compile Include="Model\Journey.cs" />
+    <Compile Include="Model\Location.cs" />
     <Compile Include="Model\SavedJourney.cs" />
     <Compile Include="Model\Settings.cs" />
     <Compile Include="Model\User2.cs" />

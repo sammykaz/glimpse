@@ -20,7 +20,7 @@ namespace Glimpse.Droid.Activities
         LaunchMode = LaunchMode.SingleTop, 
         ScreenOrientation = ScreenOrientation.Portrait, 
         Name = "glimpse.droid.activities.MainActivity")]
-    public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>,IOnMapReadyCallback
+    public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
         private DrawerLayout _drawerLayout;
         private MvxActionBarDrawerToggle _drawerToggle;

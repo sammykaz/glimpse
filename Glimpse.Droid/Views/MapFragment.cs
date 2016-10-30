@@ -13,13 +13,17 @@ using Android.App;
 using Android.Gms.Maps;
 using System;
 using Android.Gms.Maps.Model;
+using MvvmCross.Droid.Support.V7.Fragging;
+using MvvmCross.Binding.BindingContext;
+using Glimpse.Droid.Helpers;
 
 namespace MyTrains.Droid.Views
 {
     [MvxFragment(typeof(Glimpse.Core.ViewModel.MainViewModel), Resource.Id.content_frame, true)]
     [Register("mytrains.droid.views.MapFragment")]
-    public class MapFragment : MvxFragment<MapViewModel>, IOnMapReadyCallback
+    public class MapFragment : MvxFragment<MapViewModel>
     {
+        private Marker _first;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -35,21 +39,8 @@ namespace MyTrains.Droid.Views
         public override void OnStart()
         {
             base.OnStart();
-
-          
         }
 
-        public void OnMapReady(GoogleMap googleMap)
-        {
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.SetPosition(new LatLng(16.03, 108));
-            markerOptions.SetTitle("My Position");
-            googleMap.AddMarker(markerOptions);
-
-            googleMap.UiSettings.ZoomControlsEnabled = true;
-            googleMap.UiSettings.CompassEnabled = true;
-            googleMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-
-        }
+    
     }
 }
