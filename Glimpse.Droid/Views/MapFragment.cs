@@ -18,29 +18,35 @@ using MvvmCross.Binding.BindingContext;
 using Glimpse.Droid.Helpers;
 
 namespace MyTrains.Droid.Views
+
 {
-    [MvxFragment(typeof(Glimpse.Core.ViewModel.MainViewModel), Resource.Id.content_frame, true)]
-    [Register("mytrains.droid.views.MapFragment")]
-    public class MapFragment : MvxFragment<MapViewModel>
+    [Activity(Label = "View for MapViewModel")]
+    public class MapView : MvxFragmentActivity
     {
+       
         private Marker _first;
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-            base.OnCreateView(inflater, container, savedInstanceState);
-            return this.BindingInflate(Resource.Layout.MapView, null);
-        }
 
-        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        protected override void OnCreate(Bundle bundle)
         {
-            base.OnViewCreated(view, savedInstanceState);
-            (this.Activity as MainActivity).SetCustomTitle("Map View");
-        }
+            base.OnCreate(bundle);
+            SetContentView(Resource.Layout.MapView);
 
-        public override void OnStart()
-        {
-            base.OnStart();
-        }
+            var viewModel = (MapViewModel)ViewModel;
 
-    
+            var mapFragment = (SupportMapFragment)SupportFragmentManager.FindFragmentById(Resource.Id.map);
+
+            var options = new MarkerOptions();
+            options.SetPosition(new LatLng(viewModel.Store.Location.Lat, viewModel.Store.Location.Lng));
+            options.SetTitle("Store");
+            _first = mapFragment.Map.AddMarker(options);
+
+            var set = this.CreateBindingSet<MapView, MapViewModel>();
+            set.Bind(_first)
+               .For(m => m.Position)
+               .To(vm => vm.Store.Location)
+               .WithConversion(new LatLngValueConverter(), null);
+            set.Apply();
+
+        }
     }
 }
