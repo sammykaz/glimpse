@@ -2062,40 +2062,46 @@ namespace Glimpse.Droid
 			public const int button_selector = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int calendar_bg_selector = 2130837588;
+			public const int ButtonSignUpStyle = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int calendar_border = 2130837589;
+			public const int calendar_bg_selector = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int design_fab_background = 2130837590;
+			public const int calendar_border = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int design_snackbar_background = 2130837591;
+			public const int design_fab_background = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int drawer_shadow_dark = 2130837592;
+			public const int design_snackbar_background = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int drawer_shadow_light = 2130837593;
-			
-			// aapt resource value: 0x7f02005f
-			public const int notification_template_icon_bg = 2130837599;
+			public const int drawer_shadow_dark = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int scaledBackground = 2130837594;
+			public const int drawer_shadow_light = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int secondary_button_selector = 2130837595;
+			public const int edit_text_style = 2130837595;
+			
+			// aapt resource value: 0x7f020061
+			public const int notification_template_icon_bg = 2130837601;
 			
 			// aapt resource value: 0x7f02005c
-			public const int spinner_border = 2130837596;
+			public const int scaledBackground = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int splash = 2130837597;
+			public const int secondary_button_selector = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int toolbar_dropshadow = 2130837598;
+			public const int spinner_border = 2130837598;
+			
+			// aapt resource value: 0x7f02005f
+			public const int splash = 2130837599;
+			
+			// aapt resource value: 0x7f020060
+			public const int toolbar_dropshadow = 2130837600;
 			
 			static Drawable()
 			{
@@ -2163,6 +2169,9 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f0600a6
 			public const int SearchButton = 2131099814;
+			
+			// aapt resource value: 0x7f0600b1
+			public const int SignUpButton = 2131099825;
 			
 			// aapt resource value: 0x7f0600a0
 			public const int ToCitiesSpinner = 2131099808;
@@ -2614,6 +2623,18 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f06006c
 			public const int touch_outside = 2131099756;
 			
+			// aapt resource value: 0x7f0600ae
+			public const int txtCompany = 2131099822;
+			
+			// aapt resource value: 0x7f0600af
+			public const int txtEmail = 2131099823;
+			
+			// aapt resource value: 0x7f0600ad
+			public const int txtFirstName = 2131099821;
+			
+			// aapt resource value: 0x7f0600b0
+			public const int txtPassword = 2131099824;
+			
 			// aapt resource value: 0x7f060009
 			public const int up = 2131099657;
 			
@@ -2875,7 +2896,10 @@ namespace Glimpse.Droid
 			public const int toolbar_shadow = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public const int week = 2130903106;
+			public const int VendorSignUpView = 2130903106;
+			
+			// aapt resource value: 0x7f030043
+			public const int week = 2130903107;
 			
 			static Layout()
 			{

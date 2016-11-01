@@ -4,6 +4,7 @@ using MvvmCross.Platform;
 using Glimpse.Core.Contracts.ViewModel;
 using MyTrains.Core.ViewModel;
 
+
 namespace Glimpse.Core.ViewModel
 {
     public class MainViewModel : MvxViewModel, IMainViewModel
