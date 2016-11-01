@@ -7,9 +7,9 @@ using MvvmCross.Plugins.Messenger;
 
 namespace Glimpse.Core.ViewModel
 {
-    public class LoginPageViewModal : BaseViewModel
+    public class LoginPageViewModel : BaseViewModel
     {
-        public LoginPageViewModal(IMvxMessenger messenger) : base(messenger)
+        public LoginPageViewModel(IMvxMessenger messenger) : base(messenger)
         {
 
         }

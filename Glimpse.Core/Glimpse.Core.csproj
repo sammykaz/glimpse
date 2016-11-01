@@ -112,7 +112,7 @@
     <Compile Include="Utility\UrlConstants.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\JourneyDetailViewModel.cs" />
-    <Compile Include="ViewModel\LoginPageViewModal.cs" />
+    <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\SavedJourneysViewModel.cs" />
