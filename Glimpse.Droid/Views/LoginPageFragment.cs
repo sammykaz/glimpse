@@ -12,7 +12,7 @@ namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame, true)]
     [Register("glimpse.droid.views.LoginPageFragment")]
-    public class LoginPageFragment : MvxFragment<LoginPageViewModal>
+    public class LoginPageFragment : MvxFragment<LoginPageViewModel>
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
