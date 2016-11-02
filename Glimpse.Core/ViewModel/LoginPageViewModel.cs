@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MvvmCross.Plugins.Messenger;
+using MvvmCross.Core.ViewModels;
+using MyTrains.Core.ViewModel;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -13,8 +15,15 @@ namespace Glimpse.Core.ViewModel
         {
 
         }
+        public IMvxCommand ShowVendorSignUp { get { return ShowCommand<VendorSignUpViewModel>(); } }
 
-       
-
+        private MvxCommand ShowCommand<TViewModel>()
+            where TViewModel : IMvxViewModel
+        {
+            return new MvxCommand(() => ShowViewModel<TViewModel>());
+        }
     }
 }
+
+    
+
