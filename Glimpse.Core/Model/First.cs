@@ -23,12 +23,7 @@ namespace Glimpse.Core.Model
             set { _location = value; RaisePropertyChanged(() => Location); }
         }
 
-        private bool _isMale;
-        public bool IsMale
-        {
-            get { return _isMale; }
-            set { _isMale = value; RaisePropertyChanged(() => IsMale); }
-        }
+        
 
         public override string ToString()
         {

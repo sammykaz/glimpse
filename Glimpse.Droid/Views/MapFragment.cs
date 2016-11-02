@@ -24,7 +24,8 @@ namespace MyTrains.Droid.Views
     public class MapView : MvxFragmentActivity
     {
        
-        private Marker _first;
+        private Marker _store;
+
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -38,10 +39,12 @@ namespace MyTrains.Droid.Views
             var options = new MarkerOptions();
             options.SetPosition(new LatLng(viewModel.Store.Location.Lat, viewModel.Store.Location.Lng));
             options.SetTitle("Store");
-            _first = mapFragment.Map.AddMarker(options);
+            _store = mapFragment.Map.AddMarker(options);
+
+
 
             var set = this.CreateBindingSet<MapView, MapViewModel>();
-            set.Bind(_first)
+            set.Bind(_store)
                .For(m => m.Position)
                .To(vm => vm.Store.Location)
                .WithConversion(new LatLngValueConverter(), null);

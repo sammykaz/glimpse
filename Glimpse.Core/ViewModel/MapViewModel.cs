@@ -5,22 +5,9 @@ using Glimpse.Core.Model;
 
 namespace MyTrains.Core.ViewModel
 {
-    public class MapViewModel : BaseViewModel
+    public class MapViewModel
+        : MvxViewModel
     {
-        public MapViewModel(IMvxMessenger messenger) : base(messenger)
-        {
-            Store = new First()
-            {
-                Name = "Store",
-                Location = new Location()
-                {
-                    Lat = 51.4,
-                    Lng = 0.4
-                },
-            };
-        }
-
-         
         private First _store;
         public First Store
         {
@@ -29,22 +16,20 @@ namespace MyTrains.Core.ViewModel
         }
 
 
-        public IMvxCommand MoveCommand
+        public MapViewModel()
         {
-            get
+            Store = new First()
             {
-                return new MvxCommand(() =>
+                Name = "Store",
+                Location = new Location()
                 {
-                    Store.Location = new Location()
-                    {
-                        Lat = Store.Location.Lat - 0.1,
-                        Lng = Store.Location.Lng
-                    };
-
-                });
+                    Lat = 45.5017,
+                    Lng = -73.5673
+                },
+            };
+         
+                
             }
         }
-    
+    }
 
-}
-}
