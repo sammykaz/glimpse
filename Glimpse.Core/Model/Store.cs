@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Glimpse.Core.Model
 {
-    public class First : MvxNotifyPropertyChanged
+    public class Store : MvxNotifyPropertyChanged
     {
         private string _name;
         public string Name

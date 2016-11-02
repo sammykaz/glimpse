@@ -8,8 +8,8 @@ namespace MyTrains.Core.ViewModel
     public class MapViewModel
         : MvxViewModel
     {
-        private First _store;
-        public First Store
+        private Store _store;
+        public Store Store
         {
             get { return _store; }
             set { _store = value; RaisePropertyChanged(() => Store); }
@@ -18,7 +18,7 @@ namespace MyTrains.Core.ViewModel
 
         public MapViewModel()
         {
-            Store = new First()
+            Store = new Store()
             {
                 Name = "Store",
                 Location = new Location()
