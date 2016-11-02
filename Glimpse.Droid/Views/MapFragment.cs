@@ -41,7 +41,21 @@ namespace MyTrains.Droid.Views
             options.SetTitle("Store");
             _store = mapFragment.Map.AddMarker(options);
 
+            LatLng location = new LatLng(50.897778, 3.013333);
+            CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
+            builder.Target(location);
+            builder.Zoom(18);
+            builder.Bearing(155);
+            builder.Tilt(65);
+            CameraPosition cameraPosition = builder.Build();
+            CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
 
+           
+            GoogleMap map = mapFragment.Map;
+            if (map != null)
+            {
+                map.MoveCamera(cameraUpdate);
+            }
 
             var set = this.CreateBindingSet<MapView, MapViewModel>();
             set.Bind(_store)
