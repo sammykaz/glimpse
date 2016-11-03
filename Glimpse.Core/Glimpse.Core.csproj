@@ -97,6 +97,8 @@
     <Compile Include="Repositories\VendorRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\UserTempRepository.cs" />
+    <Compile Include="RestClient\RestClient.cs" />
+    <Compile Include="RestClient\TaskModel.cs" />
     <Compile Include="Services\Data\CityDataService.cs" />
     <Compile Include="Services\Data\JourneyDataService.cs" />
     <Compile Include="Services\Data\SavedJourneyDataService.cs" />
