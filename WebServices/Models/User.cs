@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebServices.Models
+namespace Glimpse.Core.Model
 {
     public class User
     {
