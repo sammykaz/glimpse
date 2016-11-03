@@ -21,6 +21,7 @@ namespace MyTrains.Core.ViewModel
         public MapViewModel(IStoreDataService storeDataService) 
         {
             _storeDataService = storeDataService;
+            LoadStores();
         }
 
         public int DefaulZoom
@@ -59,24 +60,16 @@ namespace MyTrains.Core.ViewModel
 
         internal async Task LoadStores()
         {
-            _stores = (await _storeDataService.GetAllStores()).ToObservableCollection();  
+            _stores = (await _storeDataService.GetAllStores()).ToObservableCollection();
+            Store = Stores[0];
         }
+
+
         
 
-        public MapViewModel()
-        {
-            Store = new Store()
-            {
-                Name = "Store",
-                Location = new Location()
-                {
-                    Lat = 45.5017,
-                    Lng = -73.5673
-                },
-            };
-         
-                
-            }
+
+
+
         }
     }
 
