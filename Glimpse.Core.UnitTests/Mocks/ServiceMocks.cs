@@ -22,5 +22,22 @@ namespace Glimpse.Core.UnitTests.Mocks
             var cityDataService = new CityDataService(mockexpenseRepository.Object);
             return cityDataService;
         }
+
+
+        public static CityDataService GetMockStoreDataService(int count)
+        {
+            var list = new List<City>();
+
+            var mockexpenseRepository = new Mock<ICityRepository>();
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(new City { CityId = count });
+            }
+            mockexpenseRepository.Setup(m => m.GetAllCities()).ReturnsAsync(list);
+
+            var cityDataService = new CityDataService(mockexpenseRepository.Object);
+            return cityDataService;
+        }
+
     }
 }

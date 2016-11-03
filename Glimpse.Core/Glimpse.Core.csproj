@@ -50,6 +50,7 @@
     <Compile Include="Contracts\Repository\IJourneyRepository.cs" />
     <Compile Include="Contracts\Repository\ISavedJourneyRepository.cs" />
     <Compile Include="Contracts\Repository\ISettingsRepository.cs" />
+    <Compile Include="Contracts\Repository\IStoreRepository.cs" />
     <Compile Include="Contracts\Repository\IVendorRepository .cs" />
     <Compile Include="Contracts\Repository\IUserRepository.cs" />
     <Compile Include="Contracts\Repository\IUserTempRepository.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Contracts\Services\IJourneyDataService.cs" />
     <Compile Include="Contracts\Services\ISavedJourneyDataService.cs" />
     <Compile Include="Contracts\Services\ISettingsDataService.cs" />
+    <Compile Include="Contracts\Services\IStoreDataService.cs" />
     <Compile Include="Contracts\Services\IVendorDataService.cs" />
     <Compile Include="Contracts\Services\IUserDataService.cs" />
     <Compile Include="Contracts\Services\IUserTempDataService.cs" />
@@ -98,6 +100,7 @@
     <Compile Include="Repositories\JourneyRepository.cs" />
     <Compile Include="Repositories\SavedJourneyRepository.cs" />
     <Compile Include="Repositories\SettingsRepository.cs" />
+    <Compile Include="Repositories\StoreRepository.cs" />
     <Compile Include="Repositories\VendorRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\UserTempRepository.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="Services\Data\JourneyDataService.cs" />
     <Compile Include="Services\Data\SavedJourneyDataService.cs" />
     <Compile Include="Services\Data\SettingsDataService.cs" />
+    <Compile Include="Services\Data\StoreDataService.cs" />
     <Compile Include="Services\Data\VendorDataService.cs" />
     <Compile Include="Services\Data\UserDataService.cs" />
     <Compile Include="Services\Data\UserTempDataService.cs" />

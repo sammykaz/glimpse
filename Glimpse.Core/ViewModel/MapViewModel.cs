@@ -2,6 +2,7 @@
 using Glimpse.Core.ViewModel;
 using MvvmCross.Core.ViewModels;
 using Glimpse.Core.Model;
+using System.Collections.ObjectModel;
 
 namespace MyTrains.Core.ViewModel
 {
@@ -11,6 +12,9 @@ namespace MyTrains.Core.ViewModel
         private readonly int _defaultTilt = 65;
         private readonly int _defaultBearing = 155;
         private Store _store;
+        private ObservableCollection<Store> _stores;
+
+
 
         public int DefaulZoom
         {
@@ -34,6 +38,13 @@ namespace MyTrains.Core.ViewModel
             set { _store = value; RaisePropertyChanged(() => Store); }
         }
 
+
+      /*  internal async Task LoadStores()
+        {
+            _stores = (await _cityDataService.GetAllCities()).ToObservableCollection();
+            
+        }
+        */
 
         public MapViewModel()
         {

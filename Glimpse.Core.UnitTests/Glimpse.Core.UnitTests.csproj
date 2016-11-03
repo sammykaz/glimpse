@@ -111,6 +111,7 @@
     <Compile Include="Mocks\ServiceMocks.cs" />
     <Compile Include="Tests\Repository\CityRepositoryTests.cs" />
     <Compile Include="Tests\Services\CityDataServiceTests.cs" />
+    <Compile Include="Tests\ViewModels\MapViewModelTests.cs" />
     <Compile Include="Tests\ViewModels\SearchJourneyViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
