@@ -24,19 +24,19 @@ namespace Glimpse.Core.UnitTests.Mocks
         }
 
 
-        public static CityDataService GetMockStoreDataService(int count)
+        public static StoreDataService GetMockStoreDataService(int count)
         {
-            var list = new List<City>();
+            var list = new List<Store>();
 
-            var mockexpenseRepository = new Mock<ICityRepository>();
+            var mockStoreRepository = new Mock<IStoreRepository>();
             for (int i = 0; i < count; i++)
             {
-                list.Add(new City { CityId = count });
+                list.Add(new Store { });
             }
-            mockexpenseRepository.Setup(m => m.GetAllCities()).ReturnsAsync(list);
+            mockStoreRepository.Setup(m => m.GetAllStores()).ReturnsAsync(list);
 
-            var cityDataService = new CityDataService(mockexpenseRepository.Object);
-            return cityDataService;
+            var storeDataService = new StoreDataService(mockStoreRepository.Object);
+            return storeDataService;
         }
 
     }

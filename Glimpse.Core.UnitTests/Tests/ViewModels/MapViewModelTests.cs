@@ -7,6 +7,7 @@ using Glimpse.Core.Services.Data;
 using Glimpse.Core.UnitTests.Mocks;
 using Glimpse.Core.ViewModel;
 using Glimpse.Core.Fake;
+using MyTrains.Core.ViewModel;
 
 namespace Glimpse.Core.UnitTests.Tests.ViewModels
 {
@@ -14,44 +15,22 @@ namespace Glimpse.Core.UnitTests.Tests.ViewModels
     public class MapViewModelTest
     {
         [TestMethod]
-        public async Task Test_LoadFromCitiesCorrectly()
+        public async Task Test_LoadFromStoresCorrectly()
         {
             //arrange
-            CityDataService mockCityDataService = ServiceMocks.GetMockCityDataService(3);
+            StoreDataService mockStoreDataService = ServiceMocks.GetMockStoreDataService(3);
             var mockMessenger = new Mock<IMvxMessenger>();
             var mockConnectionService = new Mock<IConnectionService>();
             var mockDialogService = new Mock<IDialogService>();
 
             //act
-            var searchJourneyViewModel = new SearchJourneyViewModel(mockMessenger.Object, mockCityDataService, mockConnectionService.Object, mockDialogService.Object);
-            await searchJourneyViewModel.LoadCities();
+            var mapViewModel = new MapViewModel (mockStoreDataService);
+            await mapViewModel.LoadStores();
 
             //assert
-            Assert.AreEqual(searchJourneyViewModel.FromCities.Count, 3);
+            Assert.AreEqual(mapViewModel.Stores.Count, 3);
         }
 
-        [TestMethod]
-        public async Task Test_Initialize()
-        {
-            //arrange
-            CityDataService mockCityDataService = ServiceMocks.GetMockCityDataService(3);
-            var mockMessenger = new Mock<IMvxMessenger>();
-            var mockConnectionService = new Mock<IConnectionService>();
-
-            var a = mockConnectionService.Setup(m => m.CheckOnline()).Returns(true);
-
-            var mockDialogService = new Mock<IDialogService>();
-
-            //act
-            var searchJourneyViewModel = new FakeSearchJourneyViewModel(mockMessenger.Object, mockCityDataService, mockConnectionService.Object, mockDialogService.Object);
-            await searchJourneyViewModel.InitializeAsync();
-
-            //assert
-            Assert.IsNotNull(searchJourneyViewModel.FromCities);
-            Assert.IsNotNull(searchJourneyViewModel.ToCities);
-            Assert.IsNotNull(searchJourneyViewModel.SelectedFromCity);
-            Assert.IsNotNull(searchJourneyViewModel.SelectedToCity);
-            Assert.IsNotNull(searchJourneyViewModel.SelectedHour);
-        }
+   
     }
 }
