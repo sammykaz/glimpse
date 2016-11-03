@@ -41,12 +41,12 @@ namespace MyTrains.Droid.Views
             options.SetTitle("Store");
             _store = mapFragment.Map.AddMarker(options);
 
-            LatLng location = new LatLng(50.897778, 3.013333);
+            LatLng location = new LatLng(45.5017, -73.5673);
             CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
             builder.Target(location);
-            builder.Zoom(18);
-            builder.Bearing(155);
-            builder.Tilt(65);
+            builder.Zoom(viewModel.DefaulZoom);
+            builder.Bearing(viewModel.DefaultBearing);
+            builder.Tilt(viewModel.DefaultTilt);
             CameraPosition cameraPosition = builder.Build();
             CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
 
