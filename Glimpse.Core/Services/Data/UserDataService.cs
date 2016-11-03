@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
+using Plugin.RestClient;
 
 namespace Glimpse.Core.Services.Data
 {
@@ -39,32 +40,14 @@ namespace Glimpse.Core.Services.Data
             await _userRepository.SignUp(userName, password, email);
         }
 
-        public List<User> GetUsers()
+        public async Task<List<User>> GetUsersAsync()
         {
-            var users = new List<User>
-            {
-               new User
-            {
-                Email = "asdf1@gmail.com",
-                FirstName = "asdf1",
-                Password = "yolo"
-            },
-               new User
-            {
-                Email = "asdf2@gmail.com",
-                FirstName = "asdf2",
-                Password = "yolo"
-            },
-                  new User
-            {
-                Email = "asdf3@gmail.com",
-                FirstName = "asdf3",
-                Password = "yolo"
-            }
-        };
+            RestClient<User> restClient = new RestClient<User>();
 
+            var usersList = await restClient.GetAsync();
 
-            return users;
+            return usersList;
+
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Plugin.RestClient
     /// </summary>
     public class RestClient<T>
     {
-        private const string WebServiceUrl = "http://taskmodel.azurewebsites.net/api/TaskModels/";
+        private const string WebServiceUrl = "http://glimpsews.azurewebsites.net/api/Users";
 
         public async Task<List<T>> GetAsync()
         {
