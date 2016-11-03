@@ -39,8 +39,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <Content Include="bin\Debug\Glimpse.Core.dll" />
-    <Content Include="bin\Debug\Glimpse.Core.pdb" />
     <Content Include="Glimpse.Core.csproj.vspscc" />
   </ItemGroup>
   <ItemGroup>
@@ -118,8 +116,10 @@
     <Compile Include="Utility\UrlConstants.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\JourneyDetailViewModel.cs" />
+    <Compile Include="ViewModel\LoginPageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
+    <Compile Include="ViewModel\ProfilePageViewModel.cs" />
     <Compile Include="ViewModel\SavedJourneysViewModel.cs" />
     <Compile Include="ViewModel\SearchJourneyViewModel.cs" />
     <Compile Include="ViewModel\SearchResultViewModel.cs" />
@@ -240,6 +240,9 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\AWSSDK.DynamoDBv2.3.3.0.1\analyzers\dotnet\cs\AWSSDK.DynamoDBv2.CodeAnalysis.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

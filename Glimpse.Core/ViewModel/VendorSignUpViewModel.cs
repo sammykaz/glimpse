@@ -3,6 +3,7 @@ using Glimpse.Core.ViewModel;
 using MvvmCross.Core.ViewModels;
 using Glimpse.Core.Model;
 
+
 namespace MyTrains.Core.ViewModel
 {
     public class VendorSignUpViewModel : BaseViewModel
@@ -69,6 +70,7 @@ namespace MyTrains.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
+                    
                     var user = new Vendor(_firstName, _company, _email, _password);
                     int x = 0;
                 });
