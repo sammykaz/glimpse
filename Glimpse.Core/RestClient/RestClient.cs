@@ -26,6 +26,7 @@ namespace Plugin.RestClient
             return taskModels;
         }
 
+        public async Task<List<T>> GetByIdAsync(int id)
         {
             var httpClient = new HttpClient();
 

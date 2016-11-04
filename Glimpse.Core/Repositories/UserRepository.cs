@@ -26,6 +26,12 @@ namespace Glimpse.Core.Repositories
             throw new NotImplementedException();
         }
 
+        {
+            RestClient<User> restClient = new RestClient<User>();
+
+            var usersList = await restClient.PostAsync(user);            
+        }
+
         public async Task<List<User>> GetUsersAsync()
         {
             RestClient<User> restClient = new RestClient<User>();
@@ -33,7 +39,6 @@ namespace Glimpse.Core.Repositories
             var usersList = await restClient.GetAsync();
 
             return usersList;
-
         }
     }
 }
