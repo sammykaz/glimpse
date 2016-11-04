@@ -25,18 +25,17 @@ namespace Glimpse.Core.ViewModel
 
         public MainViewModel()
         {
-<<<<<<< HEAD
+
             _mapViewModel = new Lazy<MapViewModel>(Mvx.IocConstruct<MapViewModel>);
             _searchJourneyViewModel = new Lazy<SearchJourneyViewModel>(Mvx.IocConstruct<SearchJourneyViewModel>);
            _savedJourneysViewModel = new Lazy<SavedJourneysViewModel>(Mvx.IocConstruct<SavedJourneysViewModel>);
            _settingsViewModel = new Lazy<SettingsViewModel>(Mvx.IocConstruct<SettingsViewModel>);
-=======
+
             _searchJourneyViewModel = new Lazy<SearchJourneyViewModel>(Mvx.IocConstruct<SearchJourneyViewModel>);
             _savedJourneysViewModel = new Lazy<SavedJourneysViewModel>(Mvx.IocConstruct<SavedJourneysViewModel>);
             _settingsViewModel = new Lazy<SettingsViewModel>(Mvx.IocConstruct<SettingsViewModel>);
             _loginPageViewModel = new Lazy<LoginPageViewModel>(Mvx.IocConstruct<LoginPageViewModel>);
-       
->>>>>>> refs/remotes/origin/master
+
            _signupVendorViewModel = new Lazy<VendorSignUpViewModel>(Mvx.IocConstruct<VendorSignUpViewModel>);
         }
 
