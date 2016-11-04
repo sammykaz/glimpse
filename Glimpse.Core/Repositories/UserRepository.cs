@@ -26,6 +26,7 @@ namespace Glimpse.Core.Repositories
             throw new NotImplementedException();
         }
 
+        public async Task PostUserAsync(User user)
         {
             RestClient<User> restClient = new RestClient<User>();
 
