@@ -5,17 +5,20 @@ using Glimpse.Core.ViewModel;
 using MvvmCross.Core.ViewModels;
 using Glimpse.Core.Model;
 using Glimpse.Core.Services.Data;
+using System;
+using Glimpse.Core.Contracts.Services;
 
-
-namespace MyTrains.Core.ViewModel
+namespace Glimpse.Core.ViewModel
 {
     public class VendorSignUpViewModel : BaseViewModel
     {
         private List<User> usersListFromDb;
 
-        public VendorSignUpViewModel(IMvxMessenger messenger) : base(messenger)
+        private readonly IUserDataService _userDataService;
+
+        public VendorSignUpViewModel(IMvxMessenger messenger, IUserDataService userDataService) : base(messenger)
         {
-            
+            _userDataService = userDataService;
         }
 
 
@@ -75,11 +78,14 @@ namespace MyTrains.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
+                    User user = new User
+                    {
+                        FirstName = _firstName,
+                        Email = _email,
+                        Password = _password
+                    };
 
-                    var userServices = new UserDataService();
-
-                    usersListFromDb = await userServices.GetUsersAsync();
-                    Debug.WriteLine("LIST OF USERS FROM DB " + usersListFromDb);
+                    await _userDataService.SignUp(user);                    
                 });
             }
         }
