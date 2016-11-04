@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Glimpse.Core.Model;
+using System.Collections.Generic;
 
 namespace Glimpse.Core.Contracts.Repository
 {
@@ -9,6 +10,8 @@ namespace Glimpse.Core.Contracts.Repository
 
         Task<User> Login(string userName, string password);
 
-        Task SignUp(string userName, string password, string email);
+        Task PostUserAsync(User user);
+
+        Task<List<User>> GetUsersAsync();
     }
 }
