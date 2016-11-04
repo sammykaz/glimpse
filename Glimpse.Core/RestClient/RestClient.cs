@@ -13,13 +13,23 @@ namespace Plugin.RestClient
     /// </summary>
     public class RestClient<T>
     {
-        private string WebServiceUrl = "http://glimpsews.azurewebsites.net/api/" + typeof(T).Name + "s";
+        private string WebServiceUrl = "http://glimpsews.azurewebsites.net/api/" + typeof(T).Name + "s/";
 
         public async Task<List<T>> GetAsync()
         {
             var httpClient = new HttpClient();
 
             var json = await httpClient.GetStringAsync(WebServiceUrl);
+
+            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+
+            return taskModels;
+        }
+
+        {
+            var httpClient = new HttpClient();
+
+            var json = await httpClient.GetStringAsync(WebServiceUrl + id);
 
             var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
 
