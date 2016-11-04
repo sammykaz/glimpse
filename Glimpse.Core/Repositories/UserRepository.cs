@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Model;
 using System;
+using Plugin.RestClient;
 
 namespace Glimpse.Core.Repositories
 {
@@ -23,6 +24,16 @@ namespace Glimpse.Core.Repositories
         public async Task SignUp(string userName, string password, string email)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<List<User>> GetUsersAsync()
+        {
+            RestClient<User> restClient = new RestClient<User>();
+
+            var usersList = await restClient.GetAsync();
+
+            return usersList;
+
         }
     }
 }

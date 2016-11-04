@@ -40,14 +40,5 @@ namespace Glimpse.Core.Services.Data
             await _userRepository.SignUp(userName, password, email);
         }
 
-        public async Task<List<User>> GetUsersAsync()
-        {
-            RestClient<User> restClient = new RestClient<User>();
-
-            var usersList = await restClient.GetAsync();
-
-            return usersList;
-
-        }
     }
 }
