@@ -12,8 +12,6 @@ namespace Glimpse.Core.Services.Data
         private readonly IUserRepository _userRepository;
         private User _activeUser;
 
-        public UserDataService() { }
-
         public UserDataService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
@@ -35,9 +33,9 @@ namespace Glimpse.Core.Services.Data
             return _activeUser;
         }
 
-        public async Task SignUp(string userName, string password, string email)
+        public async Task SignUp(User user)
         {
-            await _userRepository.SignUp(userName, password, email);
+            await _userRepository.PostUserAsync(user);
         }
 
     }
