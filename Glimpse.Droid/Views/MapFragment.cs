@@ -47,7 +47,7 @@ namespace Glimpse.Droid.Views
         {
             SetUpMapIfNeeded();
 
-            if (_map != null)
+           if (_map != null)
             {
                 var viewModel = (MapViewModel)ViewModel;
 
@@ -73,7 +73,17 @@ namespace Glimpse.Droid.Views
         {
             base.OnDestroyView();
             _mapView.OnDestroy();
+            _mapView = null;
+            _map = null;
+            _store = null;
         }
+
+        public override void OnSaveInstanceState(Bundle outState)
+        {
+            base.OnSaveInstanceState(outState);
+            _mapView.OnSaveInstanceState(outState);
+        }
+
 
         public override void OnResume()
         {
@@ -96,7 +106,7 @@ namespace Glimpse.Droid.Views
 
         private void SetUpMapIfNeeded()
         {
-            if (null == _map)
+            if ( _map== null)
             {
                 _map = View.FindViewById<MapView>(Resource.Id.map).Map;
             }
