@@ -21,5 +21,20 @@ namespace Glimpse.Core.UnitTests.Mocks
             mockCityRepository.Setup(m => m.GetCityById(It.IsAny<int>())).ReturnsAsync(list[0]);
             return mockCityRepository;
         }
+
+        public static Mock<IStoreRepository> GetMockStoreRepository(int count)
+        {
+            var list = new List<Store>();
+            var mockStoreRepository = new Mock<IStoreRepository>();
+
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(new Store { });
+            }
+
+            mockStoreRepository.Setup(m => m.GetAllStores()).ReturnsAsync(list);
+         
+            return mockStoreRepository;
+        }
     }
 }

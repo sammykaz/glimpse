@@ -48,6 +48,7 @@
     <Compile Include="Contracts\Repository\IJourneyRepository.cs" />
     <Compile Include="Contracts\Repository\ISavedJourneyRepository.cs" />
     <Compile Include="Contracts\Repository\ISettingsRepository.cs" />
+    <Compile Include="Contracts\Repository\IStoreRepository.cs" />
     <Compile Include="Contracts\Repository\IVendorRepository .cs" />
     <Compile Include="Contracts\Repository\IUserRepository.cs" />
     <Compile Include="Contracts\Repository\IUserTempRepository.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Contracts\Services\IJourneyDataService.cs" />
     <Compile Include="Contracts\Services\ISavedJourneyDataService.cs" />
     <Compile Include="Contracts\Services\ISettingsDataService.cs" />
+    <Compile Include="Contracts\Services\IStoreDataService.cs" />
     <Compile Include="Contracts\Services\IVendorDataService.cs" />
     <Compile Include="Contracts\Services\IUserDataService.cs" />
     <Compile Include="Contracts\Services\IUserTempDataService.cs" />
@@ -79,7 +81,9 @@
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\Currency.cs" />
+    <Compile Include="Model\Store.cs" />
     <Compile Include="Model\Journey.cs" />
+    <Compile Include="Model\Location.cs" />
     <Compile Include="Model\SavedJourney.cs" />
     <Compile Include="Model\Settings.cs" />
     <Compile Include="Model\User2.cs" />
@@ -94,6 +98,7 @@
     <Compile Include="Repositories\JourneyRepository.cs" />
     <Compile Include="Repositories\SavedJourneyRepository.cs" />
     <Compile Include="Repositories\SettingsRepository.cs" />
+    <Compile Include="Repositories\StoreRepository.cs" />
     <Compile Include="Repositories\VendorRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\UserTempRepository.cs" />
@@ -103,6 +108,7 @@
     <Compile Include="Services\Data\JourneyDataService.cs" />
     <Compile Include="Services\Data\SavedJourneyDataService.cs" />
     <Compile Include="Services\Data\SettingsDataService.cs" />
+    <Compile Include="Services\Data\StoreDataService.cs" />
     <Compile Include="Services\Data\VendorDataService.cs" />
     <Compile Include="Services\Data\UserDataService.cs" />
     <Compile Include="Services\Data\UserTempDataService.cs" />
@@ -120,6 +126,7 @@
     <Compile Include="ViewModel\SearchJourneyViewModel.cs" />
     <Compile Include="ViewModel\SearchResultViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="ViewModel\VendorSignUpViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
