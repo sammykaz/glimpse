@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Model;
 using System;
+using Plugin.RestClient;
 
 namespace Glimpse.Core.Repositories
 {
     public class VendorRepository : BaseRepository, IVendorRepository
     {
-
         public async Task<User> SearchUser(string userName)
         {
             throw new NotImplementedException();
@@ -20,9 +20,20 @@ namespace Glimpse.Core.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task SignUp(string userName, string password, string email, string company)
+        public async Task PostVendor(Vendor vendor)
         {
-            throw new NotImplementedException();
+            RestClient<Vendor> restClient = new RestClient<Vendor>();
+
+            await restClient.PostAsync(vendor);
+        }
+
+        public async Task<List<Vendor>> GetVendors()
+        {
+            RestClient<Vendor> restClient = new RestClient<Vendor>();
+
+            var vendorsList = await restClient.GetAsync();
+
+            return vendorsList;
         }
     }
 }
