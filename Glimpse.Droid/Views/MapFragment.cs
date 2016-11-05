@@ -14,7 +14,7 @@ namespace MyTrains.Droid.Views
 
 {
     [MvxFragment(typeof(Glimpse.Core.ViewModel.MainViewModel), Resource.Id.content_frame, true)]
-    [Register("mytrains.droid.views.MapFragment")]
+    [Register("glimpse.droid.views.MapFragment")]
     public class MapFragment : MvxFragment<MapViewModel>
     {
         private MapView _mapView;
@@ -34,8 +34,7 @@ namespace MyTrains.Droid.Views
         {
             base.OnActivityCreated(p0);
             (this.Activity as MainActivity).SetCustomTitle("MapView");
-            MapsInitializer.Initialize(Activity);
-            var viewModel = (MapViewModel)ViewModel;
+            MapsInitializer.Initialize(Activity);       
         }
 
         public override void OnStart()

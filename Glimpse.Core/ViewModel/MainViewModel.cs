@@ -2,10 +2,7 @@
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using Glimpse.Core.Contracts.ViewModel;
-<<<<<<< HEAD
 using MyTrains.Core.ViewModel;
-=======
->>>>>>> refs/remotes/origin/master
 using Glimpse.Core.ViewModel;
 
 
