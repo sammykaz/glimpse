@@ -15,10 +15,12 @@ namespace Glimpse.Core.ViewModel
         private List<Vendor> vendorsListFromDb;
 
         private readonly IVendorDataService _vendorDataService;
+        private readonly IUserDataService _userDataService;
 
-        public VendorSignUpViewModel(IMvxMessenger messenger, IVendorDataService vendorDataService) : base(messenger)
+        public VendorSignUpViewModel(IMvxMessenger messenger, IVendorDataService vendorDataService, IUserDataService userDataService) : base(messenger)
         {
             _vendorDataService = vendorDataService;
+            _userDataService = userDataService;
         }
 
 
@@ -86,7 +88,16 @@ namespace Glimpse.Core.ViewModel
                         Password = _password
                     };
 
-                    await _vendorDataService.SignUp(vendor);                    
+                    User user = new User()
+                    {
+                        FirstName = _firstName,
+                        Email = _email,
+                        Password = _password
+                    };
+
+                    await _vendorDataService.SignUp(vendor);
+                    await _userDataService.SignUp(user);
+
                 });
             }
         }
