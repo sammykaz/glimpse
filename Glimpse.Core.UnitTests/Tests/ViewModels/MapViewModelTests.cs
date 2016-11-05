@@ -6,8 +6,6 @@ using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Services.Data;
 using Glimpse.Core.UnitTests.Mocks;
 using Glimpse.Core.ViewModel;
-using Glimpse.Core.Fake;
-using MyTrains.Core.ViewModel;
 
 namespace Glimpse.Core.UnitTests.Tests.ViewModels
 {
