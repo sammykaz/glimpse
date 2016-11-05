@@ -15,7 +15,7 @@ namespace WebServices.Controllers.VendorsController
 {
     public class VendorsController : ApiController
     {
-        private VendorsContext db = new VendorsContext();
+        private GlimpseDbContext db = new GlimpseDbContext();
 
         // GET: api/Vendors
         public IQueryable<Vendor> GetVendors()

@@ -13,7 +13,7 @@ namespace WebServices.Controllers.VendorsController
 {
     public class VendorsMvcController : Controller
     {
-        private VendorsContext db = new VendorsContext();
+        private GlimpseDbContext db = new GlimpseDbContext();
 
         // GET: VendorsMvc
         public ActionResult Index()
