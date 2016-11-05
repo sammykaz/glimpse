@@ -4,6 +4,7 @@ using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
 using Plugin.RestClient;
+using Glimpse.Core.Services.General;
 
 namespace Glimpse.Core.Services.Data
 {
@@ -35,6 +36,9 @@ namespace Glimpse.Core.Services.Data
 
         public async Task SignUp(User user)
         {
+            var cryptoTuple = Cryptography.EncryptAes(user.Password);
+            user.Password = cryptoTuple.Item1;
+            user.Salt = cryptoTuple.Item2;
             await _userRepository.PostUserAsync(user);
         }
 
