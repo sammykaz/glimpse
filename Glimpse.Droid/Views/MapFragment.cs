@@ -5,12 +5,12 @@ using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using Glimpse.Droid.Extensions;
 using Glimpse.Droid.Activities;
-using MyTrains.Core.ViewModel;
+using Glimpse.Core.ViewModel;
 using Glimpse.Droid;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 
-namespace MyTrains.Droid.Views
+namespace Glimpse.Droid.Views
 
 {
     [MvxFragment(typeof(Glimpse.Core.ViewModel.MainViewModel), Resource.Id.content_frame, true)]
