@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using PCLCrypto;
+using System;
 
 namespace Glimpse.Core.Services.General
 {
@@ -39,7 +40,7 @@ namespace Glimpse.Core.Services.General
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        public static string EncryptAes(string password)
+        public static Tuple<string,string> EncryptAes(string password)
         {
             byte[] salt = CreateSalt();
             byte[] key = CreateDerivedKey(password, salt);
@@ -47,8 +48,12 @@ namespace Glimpse.Core.Services.General
             ISymmetricKeyAlgorithmProvider aes = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
             ICryptographicKey symetricKey = aes.CreateSymmetricKey(key);
             var bytes = WinRTCrypto.CryptographicEngine.Encrypt(symetricKey, Encoding.UTF8.GetBytes(password));
-            var digest = System.Convert.ToBase64String(bytes);
-            return digest;
+
+            //convert digested password and salt into base64 string for storage into DB
+            var digest = Convert.ToBase64String(bytes);
+            var base64salt = Convert.ToBase64String(salt);
+
+            return new Tuple<string, string>(digest, base64salt);
         }
 
         /// <summary>
@@ -64,7 +69,7 @@ namespace Glimpse.Core.Services.General
             ISymmetricKeyAlgorithmProvider aes = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
             ICryptographicKey symetricKey = aes.CreateSymmetricKey(key);
             var bytes = WinRTCrypto.CryptographicEngine.Encrypt(symetricKey, Encoding.UTF8.GetBytes(password));
-            var digest = System.Convert.ToBase64String(bytes);
+            var digest = Convert.ToBase64String(bytes);
             return digest;
         }
 
