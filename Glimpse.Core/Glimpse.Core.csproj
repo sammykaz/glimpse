@@ -107,6 +107,7 @@
     <Compile Include="Services\Data\UserDataService.cs" />
     <Compile Include="Services\Data\UserTempDataService.cs" />
     <Compile Include="Services\General\ConnectionService.cs" />
+    <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Utility\MenuOption.cs" />
     <Compile Include="Utility\ResxTextProvider.cs" />
     <Compile Include="Utility\UrlConstants.cs" />
