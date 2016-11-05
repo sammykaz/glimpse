@@ -1,4 +1,6 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -9,11 +11,11 @@ using System.Web.Http.Description;
 using Glimpse.Core.Model;
 using WebServices.Models;
 
-namespace WebServices.Controllers
+namespace WebServices.Controllers.UsersController
 {
     public class UsersController : ApiController
     {
-        private UsersContext db = new UsersContext();
+        private GlimpseDbContext db = new GlimpseDbContext();
 
         // GET: api/Users
         public IQueryable<User> GetUsers()

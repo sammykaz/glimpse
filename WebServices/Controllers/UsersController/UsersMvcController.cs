@@ -9,11 +9,11 @@ using System.Web.Mvc;
 using Glimpse.Core.Model;
 using WebServices.Models;
 
-namespace WebServices.Controllers
+namespace WebServices.Controllers.UsersController
 {
     public class UsersMvcController : Controller
     {
-        private UsersContext db = new UsersContext();
+        private GlimpseDbContext db = new GlimpseDbContext();
 
         // GET: UsersMvc
         public ActionResult Index()
@@ -47,7 +47,7 @@ namespace WebServices.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,Email,Password")] User user)
+        public ActionResult Create([Bind(Include = "Id,FirstName,Email,Password,Salt")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace WebServices.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,Email,Password")] User user)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,Email,Password,Salt")] User user)
         {
             if (ModelState.IsValid)
             {
