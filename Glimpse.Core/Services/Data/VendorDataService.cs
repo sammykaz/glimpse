@@ -2,6 +2,7 @@
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
+using Glimpse.Core.Services.General;
 
 namespace Glimpse.Core.Services.Data
 {
@@ -32,8 +33,10 @@ namespace Glimpse.Core.Services.Data
 
         public async Task SignUp(Vendor vendor)
         {
+            var cryptoTuple = Cryptography.EncryptAes(vendor.Password);
+            vendor.Password = cryptoTuple.Item1;
+            vendor.Salt = cryptoTuple.Item2;
             await _vendorRepository.PostVendor(vendor);
-
         }
     }
 }
