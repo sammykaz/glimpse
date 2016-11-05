@@ -283,6 +283,7 @@
     <Compile Include="Views\SendMail.cs" />
     <Compile Include="Views\SettingsFragment.cs" />
     <Compile Include="Views\MapFragment.cs" />
+    <Compile Include="Views\UserSignUpFragment.cs" />
     <Compile Include="Views\VendorSignUpFragment.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -384,10 +385,13 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\arrow_right.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\arrow_up.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\splash.png" />
-    <AndroidResource Include="Resources\layout\VendorSignUpView.axml" />
+    <AndroidResource Include="Resources\layout\VendorSignUpView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\MapView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\UserSignUpView.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
