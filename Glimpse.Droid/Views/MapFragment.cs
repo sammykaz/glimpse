@@ -73,6 +73,9 @@ namespace Glimpse.Droid.Views
         {
             base.OnDestroyView();
             _mapView.OnDestroy();
+            _mapView = null;
+            _map = null;
+            _store = null;
         }
 
         public override void OnSaveInstanceState(Bundle outState)
