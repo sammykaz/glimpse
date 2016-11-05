@@ -10,14 +10,13 @@ using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using Glimpse.Droid.Extensions;
 using Square.TimesSquare;
 using Glimpse.Droid.Activities;
-using MyTrains.Core.ViewModel;
 using Glimpse.Droid;
 using Glimpse.Droid.Views;
 
-namespace MyTrains.Droid.Views
+namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(Glimpse.Core.ViewModel.MainViewModel), Resource.Id.content_frame, true)]
-    [Register("mytrains.droid.views.VendorSignUpFragment")]
+    [Register("glimpse.droid.views.VendorSignUpFragment")]
     public class VendorSignUpFragment : MvxFragment<VendorSignUpViewModel>
     {
         

@@ -8,36 +8,10 @@ namespace Glimpse.Core.Model
 {
     public class User
     {
+        public string FirstName { get; set; }
 
-        private string _firstName;
-        private string _email;
-        private string _password;
+        public string Email { get; set; }
 
-
-        public User(string firstName, string email, string password)
-        {
-            _firstName = firstName;
-            _email = email;
-            _password = password;
-        }
-
-        public string FirstName
-        {
-            get { return _firstName; }
-            set { _firstName = value; }
-        }
-
-        public string Email
-        {
-            get { return _email; }
-            set { _email = value; }
-        }
-
-        public string Password
-        {
-            get { return _password; }
-            set { _password = value; }
-        }
-
+        public string Password { get; set; }
     }
 }
