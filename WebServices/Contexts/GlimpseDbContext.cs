@@ -16,7 +16,11 @@ namespace WebServices.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
+<<<<<<< HEAD:WebServices/Contexts/GlimpseDbContext.cs
         public GlimpseDbContext() : base("name=GlimpseDbContext")
+=======
+        public UsersContext() : base("UsersContext")
+>>>>>>> refs/remotes/origin/master:WebServices/Models/UsersContext.cs
         {
         }
         public DbSet<User> Users { get; set; }

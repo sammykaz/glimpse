@@ -13,7 +13,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -48,6 +48,7 @@
     <Compile Include="Contracts\Repository\IJourneyRepository.cs" />
     <Compile Include="Contracts\Repository\ISavedJourneyRepository.cs" />
     <Compile Include="Contracts\Repository\ISettingsRepository.cs" />
+    <Compile Include="Contracts\Repository\IStoreRepository.cs" />
     <Compile Include="Contracts\Repository\IVendorRepository .cs" />
     <Compile Include="Contracts\Repository\IUserRepository.cs" />
     <Compile Include="Contracts\Repository\IUserTempRepository.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Contracts\Services\IJourneyDataService.cs" />
     <Compile Include="Contracts\Services\ISavedJourneyDataService.cs" />
     <Compile Include="Contracts\Services\ISettingsDataService.cs" />
+    <Compile Include="Contracts\Services\IStoreDataService.cs" />
     <Compile Include="Contracts\Services\IVendorDataService.cs" />
     <Compile Include="Contracts\Services\IUserDataService.cs" />
     <Compile Include="Contracts\Services\IUserTempDataService.cs" />
@@ -79,7 +81,9 @@
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\City.cs" />
     <Compile Include="Model\Currency.cs" />
+    <Compile Include="Model\Store.cs" />
     <Compile Include="Model\Journey.cs" />
+    <Compile Include="Model\Location.cs" />
     <Compile Include="Model\SavedJourney.cs" />
     <Compile Include="Model\Settings.cs" />
     <Compile Include="Model\User2.cs" />
@@ -94,6 +98,7 @@
     <Compile Include="Repositories\JourneyRepository.cs" />
     <Compile Include="Repositories\SavedJourneyRepository.cs" />
     <Compile Include="Repositories\SettingsRepository.cs" />
+    <Compile Include="Repositories\StoreRepository.cs" />
     <Compile Include="Repositories\VendorRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\UserTempRepository.cs" />
@@ -103,10 +108,12 @@
     <Compile Include="Services\Data\JourneyDataService.cs" />
     <Compile Include="Services\Data\SavedJourneyDataService.cs" />
     <Compile Include="Services\Data\SettingsDataService.cs" />
+    <Compile Include="Services\Data\StoreDataService.cs" />
     <Compile Include="Services\Data\VendorDataService.cs" />
     <Compile Include="Services\Data\UserDataService.cs" />
     <Compile Include="Services\Data\UserTempDataService.cs" />
     <Compile Include="Services\General\ConnectionService.cs" />
+    <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Utility\MenuOption.cs" />
     <Compile Include="Utility\ResxTextProvider.cs" />
     <Compile Include="Utility\UrlConstants.cs" />
@@ -120,6 +127,7 @@
     <Compile Include="ViewModel\SearchJourneyViewModel.cs" />
     <Compile Include="ViewModel\SearchResultViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
+    <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="ViewModel\VendorSignUpViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -221,6 +229,9 @@
     <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8+wpa81\System.Net.Http.Primitives.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.2.0\lib\net46\System.Security.Cryptography.Algorithms.dll</HintPath>
     </Reference>
     <Reference Include="Validation, Version=2.2.0.0, Culture=neutral, PublicKeyToken=2fc06f0d701809a7, processorArchitecture=MSIL">
       <HintPath>..\packages\Validation.2.2.8\lib\portable-net40+sl50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\Validation.dll</HintPath>

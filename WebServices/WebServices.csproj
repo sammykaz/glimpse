@@ -215,10 +215,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Migrations\201611050324238_AddUserSalt.cs" />
     <Compile Include="Migrations\201611050324238_AddUserSalt.Designer.cs">
       <DependentUpon>201611050324238_AddUserSalt.cs</DependentUpon>
     </Compile>
+=======
+>>>>>>> refs/remotes/origin/master
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
