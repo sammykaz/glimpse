@@ -62,9 +62,9 @@ namespace Glimpse.Core.Services.General
         /// <param name="password"></param>
         /// <param name="salt"></param>
         /// <returns></returns>
-        public static string EncryptAes(string password, byte[] salt)
+        public static string EncryptAes(string password, string salt)
         {
-            byte[] key = CreateDerivedKey(password, salt);
+            byte[] key = CreateDerivedKey(password, Convert.FromBase64String(salt));
 
             ISymmetricKeyAlgorithmProvider aes = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
             ICryptographicKey symetricKey = aes.CreateSymmetricKey(key);
