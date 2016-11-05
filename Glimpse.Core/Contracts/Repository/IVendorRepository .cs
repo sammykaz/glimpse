@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Glimpse.Core.Model;
 
 namespace Glimpse.Core.Contracts.Repository
@@ -9,6 +10,8 @@ namespace Glimpse.Core.Contracts.Repository
 
         Task<User> Login(string userName, string password);
 
-        Task SignUp(string userName, string password, string email, string company);
+        Task PostVendor(Vendor vendor);
+
+        Task<List<Vendor>> GetVendors();
     }
 }
