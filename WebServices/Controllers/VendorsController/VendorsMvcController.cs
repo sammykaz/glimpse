@@ -47,7 +47,7 @@ namespace WebServices.Controllers.VendorsController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,Email,Password,Company")] Vendor vendor)
+        public ActionResult Create([Bind(Include = "Id,FirstName,Email,Password,Company,Salt")] Vendor vendor)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace WebServices.Controllers.VendorsController
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,Email,Password,Company")] Vendor vendor)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,Email,Password,Company,Salt")] Vendor vendor)
         {
             if (ModelState.IsValid)
             {
