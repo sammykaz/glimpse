@@ -16,5 +16,7 @@ namespace Glimpse.Core.Model
 
         public string Password { get; set; }
 
+        public string Salt { get; set; }
+
     }
 }
