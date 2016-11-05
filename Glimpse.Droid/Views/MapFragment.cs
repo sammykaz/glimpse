@@ -54,8 +54,11 @@ namespace Glimpse.Droid.Views
                 var options = new MarkerOptions();
                 options.SetPosition(new LatLng(viewModel.Store.Location.Lat, viewModel.Store.Location.Lng));
                 options.SetTitle("Store");
-                _store = _map.AddMarker(options);
+                options.SetAlpha(0.7f);
+                options.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueBlue));
+                options.SetSnippet("This is the displayed store");               
 
+                _store = _map.AddMarker(options);
                 LatLng location = new LatLng(45.5017, -73.5673);
                 CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
                 builder.Target(location);
