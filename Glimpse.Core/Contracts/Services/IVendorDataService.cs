@@ -9,9 +9,8 @@ namespace Glimpse.Core.Contracts.Services
 
         Task<User> Login(string userName, string password);
 
+        Task SignUp(Vendor vendor);
+
         User GetActiveUser();
-
-        Task SignUp(string userName, string password, string email, string company);
-
     }
 }
