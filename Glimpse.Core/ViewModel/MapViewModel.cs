@@ -7,7 +7,7 @@ using Glimpse.Core.Contracts.Services;
 using System.Threading.Tasks;
 using Glimpse.Core.Extensions;
 
-namespace MyTrains.Core.ViewModel
+namespace Glimpse.Core.ViewModel
 {
     public class MapViewModel:  MvxViewModel
     {

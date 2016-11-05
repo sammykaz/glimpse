@@ -5,12 +5,12 @@ using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using Glimpse.Droid.Extensions;
 using Glimpse.Droid.Activities;
-using MyTrains.Core.ViewModel;
+using Glimpse.Core.ViewModel;
 using Glimpse.Droid;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 
-namespace MyTrains.Droid.Views
+namespace Glimpse.Droid.Views
 
 {
     [MvxFragment(typeof(Glimpse.Core.ViewModel.MainViewModel), Resource.Id.content_frame, true)]
@@ -47,7 +47,7 @@ namespace MyTrains.Droid.Views
         {
             SetUpMapIfNeeded();
 
-            if (_map != null)
+           if (_map != null)
             {
                 var viewModel = (MapViewModel)ViewModel;
 
@@ -75,6 +75,13 @@ namespace MyTrains.Droid.Views
             _mapView.OnDestroy();
         }
 
+        public override void OnSaveInstanceState(Bundle outState)
+        {
+            base.OnSaveInstanceState(outState);
+            _mapView.OnSaveInstanceState(outState);
+        }
+
+
         public override void OnResume()
         {
             base.OnResume();
@@ -96,7 +103,7 @@ namespace MyTrains.Droid.Views
 
         private void SetUpMapIfNeeded()
         {
-            if (null == _map)
+            if ( _map== null)
             {
                 _map = View.FindViewById<MapView>(Resource.Id.map).Map;
             }

@@ -2,7 +2,6 @@
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using Glimpse.Core.Contracts.ViewModel;
-using MyTrains.Core.ViewModel;
 using Glimpse.Core.ViewModel;
 
 
