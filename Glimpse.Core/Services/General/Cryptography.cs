@@ -10,7 +10,7 @@ namespace Glimpse.Core.Services.General
         private const int saltSize = 8;
 
         //minimum recommended number of iterations is 1000
-        private const int iterations = 1000;       
+        private const int iterations = 1000;        
 
         /// <summary>
         /// Creates Salt with given length in bytes.
@@ -39,7 +39,7 @@ namespace Glimpse.Core.Services.General
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        public static byte[] EncryptAes(string password)
+        public static string EncryptAes(string password)
         {
             byte[] salt = CreateSalt();
             byte[] key = CreateDerivedKey(password, salt);
@@ -47,7 +47,8 @@ namespace Glimpse.Core.Services.General
             ISymmetricKeyAlgorithmProvider aes = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
             ICryptographicKey symetricKey = aes.CreateSymmetricKey(key);
             var bytes = WinRTCrypto.CryptographicEngine.Encrypt(symetricKey, Encoding.UTF8.GetBytes(password));
-            return bytes;
+            var digest = System.Convert.ToBase64String(bytes);
+            return digest;
         }
 
         /// <summary>
@@ -56,14 +57,15 @@ namespace Glimpse.Core.Services.General
         /// <param name="password"></param>
         /// <param name="salt"></param>
         /// <returns></returns>
-        public static byte[] EncryptAes(string password, byte[] salt)
+        public static string EncryptAes(string password, byte[] salt)
         {
             byte[] key = CreateDerivedKey(password, salt);
 
             ISymmetricKeyAlgorithmProvider aes = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
             ICryptographicKey symetricKey = aes.CreateSymmetricKey(key);
             var bytes = WinRTCrypto.CryptographicEngine.Encrypt(symetricKey, Encoding.UTF8.GetBytes(password));
-            return bytes;
+            var digest = System.Convert.ToBase64String(bytes);
+            return digest;
         }
 
     }
