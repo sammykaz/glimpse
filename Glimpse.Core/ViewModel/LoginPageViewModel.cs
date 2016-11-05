@@ -11,6 +11,8 @@ namespace Glimpse.Core.ViewModel
         }
         public IMvxCommand ShowVendorSignUp { get { return ShowCommand<VendorSignUpViewModel>(); } }
 
+        public IMvxCommand ShowUserSignUp { get { return ShowCommand<UserSignUpViewModel>(); } }
+
         private MvxCommand ShowCommand<TViewModel>()
             where TViewModel : IMvxViewModel
         {
