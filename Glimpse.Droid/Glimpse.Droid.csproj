@@ -16,7 +16,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.1</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -274,6 +274,7 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
+    <Compile Include="Views\BuyerProfilePageFragment.cs" />
     <Compile Include="Views\JourneyDetailsFragment.cs" />
     <Compile Include="Views\LoginPageFragment.cs" />
     <Compile Include="Views\MenuFragment.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="Views\SendMail.cs" />
     <Compile Include="Views\SettingsFragment.cs" />
     <Compile Include="Views\MapFragment.cs" />
+    <Compile Include="Views\VendorProfilePageFragment.cs" />
     <Compile Include="Views\VendorSignUpFragment.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -386,6 +388,10 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\splash.png" />
     <AndroidResource Include="Resources\layout\VendorSignUpView.axml" />
     <AndroidResource Include="Resources\layout\MapView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\VendorProfilePageView.axml" />
+    <AndroidResource Include="Resources\layout\BuyerProfilePageView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

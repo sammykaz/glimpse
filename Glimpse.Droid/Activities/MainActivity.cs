@@ -61,14 +61,14 @@ namespace Glimpse.Droid.Activities
 
 
         
-            ViewModel.ShowMap();
+            //ViewModel.ShowMap();
 
             // ViewModel.ShowVendorSignUp();
             // ViewModel.ShowMenu();
           
 
-            //ViewModel.ShowLoginPage();
-           // ViewModel.ShowMenu();
+            ViewModel.ShowLoginPage();
+            ViewModel.ShowMenu();
 
         }
 
