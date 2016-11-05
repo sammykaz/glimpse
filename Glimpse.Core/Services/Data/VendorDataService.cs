@@ -30,9 +30,10 @@ namespace Glimpse.Core.Services.Data
             return _activeUser;
         }
 
-        public async Task SignUp(string userName, string password, string email, string company)
+        public async Task SignUp(Vendor vendor)
         {
-            await _vendorRepository.SignUp(userName, password, email, company);
+            await _vendorRepository.PostVendor(vendor);
+
         }
     }
 }

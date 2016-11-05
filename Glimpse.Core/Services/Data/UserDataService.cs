@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
+﻿
 using System.Threading.Tasks;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
-using Plugin.RestClient;
 
 namespace Glimpse.Core.Services.Data
 {
@@ -35,7 +34,7 @@ namespace Glimpse.Core.Services.Data
 
         public async Task SignUp(User user)
         {
-            await _userRepository.PostUserAsync(user);
+            await _userRepository.PostUser(user);
         }
 
     }
