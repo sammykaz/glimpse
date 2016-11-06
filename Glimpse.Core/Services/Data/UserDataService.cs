@@ -5,6 +5,7 @@ using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
 using Plugin.RestClient;
 using Glimpse.Core.Services.General;
+using System.Collections.Generic;
 
 namespace Glimpse.Core.Services.Data
 {
@@ -16,6 +17,11 @@ namespace Glimpse.Core.Services.Data
         public UserDataService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
+        }
+
+        public async Task<List<User>> GetUsers()
+        {
+            return await _userRepository.GetUsers();
         }
 
         public async Task<User> SearchUser(string userName)
