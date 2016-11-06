@@ -9,8 +9,7 @@ using Glimpse.Core.ViewModel;
 using Glimpse.Droid;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-
-
+using Android.Graphics;
 
 namespace Glimpse.Droid.Views
 
@@ -55,13 +54,16 @@ namespace Glimpse.Droid.Views
 
                 _map.UiSettings.ZoomControlsEnabled = true;
                 _map.UiSettings.CompassEnabled = true;
-
-
-
-
-
-
-
+                _map.UiSettings.MyLocationButtonEnabled = true;
+                _map.UiSettings.RotateGesturesEnabled = true;
+                _map.UiSettings.ZoomGesturesEnabled = true;
+                _map.BuildingsEnabled = true;
+                _map.AddCircle(new CircleOptions()
+                .InvokeCenter(new LatLng(45.5017, -73.5673))
+                .InvokeRadius(5)
+                .InvokeStrokeColor(Color.Red)
+                .InvokeFillColor(Color.Blue));
+                _map.UiSettings.MapToolbarEnabled = true;
 
 
                 var viewModel = (MapViewModel)ViewModel;
