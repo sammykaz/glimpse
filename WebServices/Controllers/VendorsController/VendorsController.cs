@@ -11,46 +11,46 @@ using System.Web.Http.Description;
 using Glimpse.Core.Model;
 using WebServices.Models;
 
-namespace WebServices.Controllers
+namespace WebServices.Controllers.VendorsController
 {
-    public class UsersController : ApiController
+    public class VendorsController : ApiController
     {
-        private UsersContext db = new UsersContext();
+        private GlimpseDbContext db = new GlimpseDbContext();
 
-        // GET: api/Users
-        public IQueryable<User> GetUsers()
+        // GET: api/Vendors
+        public IQueryable<Vendor> GetVendors()
         {
-            return db.Users;
+            return db.Vendors;
         }
 
-        // GET: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult GetUser(int id)
+        // GET: api/Vendors/5
+        [ResponseType(typeof(Vendor))]
+        public IHttpActionResult GetVendor(int id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
+            Vendor vendor = db.Vendors.Find(id);
+            if (vendor == null)
             {
                 return NotFound();
             }
 
-            return Ok(user);
+            return Ok(vendor);
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Vendors/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutUser(int id, User user)
+        public IHttpActionResult PutVendor(int id, Vendor vendor)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != user.Id)
+            if (id != vendor.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(user).State = EntityState.Modified;
+            db.Entry(vendor).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace WebServices.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!VendorExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +71,35 @@ namespace WebServices.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Users
-        [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser(User user)
+        // POST: api/Vendors
+        [ResponseType(typeof(Vendor))]
+        public IHttpActionResult PostVendor(Vendor vendor)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            db.Vendors.Add(vendor);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+            return CreatedAtRoute("DefaultApi", new { id = vendor.Id }, vendor);
         }
 
-        // DELETE: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult DeleteUser(int id)
+        // DELETE: api/Vendors/5
+        [ResponseType(typeof(Vendor))]
+        public IHttpActionResult DeleteVendor(int id)
         {
-            User user = db.Users.Find(id);
-            if (user == null)
+            Vendor vendor = db.Vendors.Find(id);
+            if (vendor == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
+            db.Vendors.Remove(vendor);
             db.SaveChanges();
 
-            return Ok(user);
+            return Ok(vendor);
         }
 
         protected override void Dispose(bool disposing)
@@ -111,9 +111,9 @@ namespace WebServices.Controllers
             base.Dispose(disposing);
         }
 
-        private bool UserExists(int id)
+        private bool VendorExists(int id)
         {
-            return db.Users.Count(e => e.Id == id) > 0;
+            return db.Vendors.Count(e => e.Id == id) > 0;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿
 using System.Threading.Tasks;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Contracts.Services;
@@ -39,7 +39,7 @@ namespace Glimpse.Core.Services.Data
             var cryptoTuple = Cryptography.EncryptAes(user.Password);
             user.Password = cryptoTuple.Item1;
             user.Salt = cryptoTuple.Item2;
-            await _userRepository.PostUserAsync(user);
+            await _userRepository.PostUser(user);
         }
 
     }

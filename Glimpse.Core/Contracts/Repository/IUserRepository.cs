@@ -10,8 +10,8 @@ namespace Glimpse.Core.Contracts.Repository
 
         Task<User> Login(string userName, string password);
 
-        Task PostUserAsync(User user);
+        Task PostUser(User user);
 
-        Task<List<User>> GetUsersAsync();
+        Task<List<User>> GetUsers();
     }
 }

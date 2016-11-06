@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using Glimpse.Core.Model;
 
 namespace WebServices.Models
 {
-    public class UsersContext : DbContext
+    public class GlimpseDbContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -14,11 +15,11 @@ namespace WebServices.Models
         // automatically whenever you change your model schema, please use data migrations.
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
-    
-        public UsersContext() : base("UsersContext")
+   
+        public GlimpseDbContext() : base("GlimpseDbContext")
         {
         }
-
-        public System.Data.Entity.DbSet<Glimpse.Core.Model.User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Vendor> Vendors { get; set; }   
     }
 }
