@@ -52,19 +52,19 @@ namespace Glimpse.Droid.Views
            if (_map != null)
             {
 
-                _map.UiSettings.ZoomControlsEnabled = true;
-                _map.UiSettings.CompassEnabled = true;
-                _map.UiSettings.MyLocationButtonEnabled = true;
-                _map.UiSettings.RotateGesturesEnabled = true;
-                _map.UiSettings.ZoomGesturesEnabled = true;
-                _map.BuildingsEnabled = true;
+              
                 _map.AddCircle(new CircleOptions()
                 .InvokeCenter(new LatLng(45.5017, -73.5673))
                 .InvokeRadius(5)
                 .InvokeStrokeColor(Color.Red)
                 .InvokeFillColor(Color.Blue));
                 _map.UiSettings.MapToolbarEnabled = true;
-
+                _map.UiSettings.ZoomControlsEnabled = true;
+                _map.UiSettings.CompassEnabled = true;
+                _map.UiSettings.MyLocationButtonEnabled = true;
+                _map.UiSettings.RotateGesturesEnabled = true;
+                _map.UiSettings.ZoomGesturesEnabled = true;
+                _map.BuildingsEnabled = true;
 
                 var viewModel = (MapViewModel)ViewModel;
                     
@@ -103,12 +103,14 @@ namespace Glimpse.Droid.Views
         }
 
         public override void OnSaveInstanceState(Bundle outState)
+
         {
             base.OnSaveInstanceState(outState);
             _mapView.OnSaveInstanceState(outState);
         }
 
         public override void OnResume()
+
         {
             base.OnResume();
             SetUpMapIfNeeded();
@@ -116,18 +118,21 @@ namespace Glimpse.Droid.Views
         }
 
         public override void OnPause()
+
         {
             base.OnPause();
             _mapView.OnPause();
         }
 
         public override void OnLowMemory()
+
         {
             base.OnLowMemory();
             _mapView.OnLowMemory();
         }
 
         private void SetUpMapIfNeeded()
+
         {
             if ( _map== null)
             {
