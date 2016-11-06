@@ -51,14 +51,16 @@ namespace Glimpse.Droid.Views
 
            if (_map != null)
             {
+                
                 var viewModel = (MapViewModel)ViewModel;
 
-         
+                      
                 var options = new MarkerOptions();
                 options.SetPosition(new LatLng(viewModel.Store.Location.Lat, viewModel.Store.Location.Lng));
                 options.SetTitle("Store");
                 options.SetAlpha(0.7f);
-                options.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueBlue));
+                options.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueMagenta));
+                options.InfoWindowAnchor(0.5f, 0.5f);
                 options.SetSnippet("This is the displayed store");
 
                 _store = _map.AddMarker(options);

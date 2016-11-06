@@ -10,6 +10,7 @@ using Glimpse.Core.Extensions;
 namespace Glimpse.Core.ViewModel
 {
     public class MapViewModel:  MvxViewModel
+
     {
         private readonly int _defaultZoom = 18;
         private readonly int _defaultTilt = 65;
@@ -19,7 +20,8 @@ namespace Glimpse.Core.ViewModel
         private IStoreDataService _storeDataService;
 
 
-        public MapViewModel(IStoreDataService storeDataService) 
+        public MapViewModel(IStoreDataService storeDataService)
+
         {
             _storeDataService = storeDataService;
             LoadStores();
@@ -27,18 +29,21 @@ namespace Glimpse.Core.ViewModel
 
 
         public int DefaulZoom
+
         {
             get { return _defaultZoom; }
         }
 
 
         public int DefaultTilt
+
         {
             get { return _defaultTilt; }
         }
    
 
         public int DefaultBearing
+
         {
             get { return _defaultBearing; }
         }
@@ -56,6 +61,7 @@ namespace Glimpse.Core.ViewModel
 
 
         public Store Store
+
         {
             get { return _store; }
             set { _store = value; RaisePropertyChanged(() => Store); }
@@ -63,6 +69,7 @@ namespace Glimpse.Core.ViewModel
 
 
         internal async Task LoadStores()
+
         {
             _stores = (await _storeDataService.GetAllStores()).ToObservableCollection();
             Store = Stores[0];
