@@ -129,7 +129,11 @@
     <Compile Include="ViewModel\SearchResultViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
+<<<<<<< HEAD
     <Compile Include="ViewModel\VendorProfilePageViewModel.cs" />
+=======
+    <Compile Include="ViewModel\UserSignUpViewModel.cs" />
+>>>>>>> refs/remotes/origin/master
     <Compile Include="ViewModel\VendorSignUpViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

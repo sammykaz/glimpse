@@ -2,7 +2,6 @@
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using Glimpse.Core.Contracts.ViewModel;
-using MyTrains.Core.ViewModel;
 using Glimpse.Core.ViewModel;
 
 
@@ -13,6 +12,7 @@ namespace Glimpse.Core.ViewModel
         private readonly Lazy<SearchJourneyViewModel> _searchJourneyViewModel;
         private readonly Lazy<SavedJourneysViewModel> _savedJourneysViewModel;
         private readonly Lazy<VendorSignUpViewModel> _signupVendorViewModel;
+        private readonly Lazy<UserSignUpViewModel> _signupUserViewModel;
         private readonly Lazy<MapViewModel> _mapViewModel;
         private readonly Lazy<SettingsViewModel> _settingsViewModel;
         private readonly Lazy<LoginPageViewModel> _loginPageViewModel;
@@ -37,6 +37,7 @@ namespace Glimpse.Core.ViewModel
             _loginPageViewModel = new Lazy<LoginPageViewModel>(Mvx.IocConstruct<LoginPageViewModel>);
 
            _signupVendorViewModel = new Lazy<VendorSignUpViewModel>(Mvx.IocConstruct<VendorSignUpViewModel>);
+           _signupUserViewModel = new Lazy<UserSignUpViewModel>(Mvx.IocConstruct<UserSignUpViewModel>);
         }
 
         public void ShowMenu()
@@ -62,7 +63,12 @@ namespace Glimpse.Core.ViewModel
             ShowViewModel<VendorSignUpViewModel>();
         }
 
-   
+        public void ShowUserSignUp()
+        {
+            ShowViewModel<UserSignUpViewModel>();
+        }
+
+
 
     }
 }
