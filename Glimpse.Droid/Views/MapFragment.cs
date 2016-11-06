@@ -10,6 +10,7 @@ using Glimpse.Droid;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 
+
 namespace Glimpse.Droid.Views
 
 {
@@ -20,6 +21,7 @@ namespace Glimpse.Droid.Views
         private MapView _mapView;
         private GoogleMap _map;
         private Marker _store;
+
 
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -51,10 +53,16 @@ namespace Glimpse.Droid.Views
             {
                 var viewModel = (MapViewModel)ViewModel;
 
+         
                 var options = new MarkerOptions();
                 options.SetPosition(new LatLng(viewModel.Store.Location.Lat, viewModel.Store.Location.Lng));
                 options.SetTitle("Store");
+                options.SetAlpha(0.7f);
+                options.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueBlue));
+                options.SetSnippet("This is the displayed store");
+
                 _store = _map.AddMarker(options);
+
 
                 LatLng location = new LatLng(45.5017, -73.5673);
                 CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
@@ -65,6 +73,7 @@ namespace Glimpse.Droid.Views
                 CameraPosition cameraPosition = builder.Build();
                 CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
                 _map.MoveCamera(cameraUpdate);
+
             }
         }
 
@@ -83,7 +92,6 @@ namespace Glimpse.Droid.Views
             base.OnSaveInstanceState(outState);
             _mapView.OnSaveInstanceState(outState);
         }
-
 
         public override void OnResume()
         {

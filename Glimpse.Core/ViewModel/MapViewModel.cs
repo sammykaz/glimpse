@@ -18,11 +18,13 @@ namespace Glimpse.Core.ViewModel
         private ObservableCollection<Store> _stores;
         private IStoreDataService _storeDataService;
 
+
         public MapViewModel(IStoreDataService storeDataService) 
         {
             _storeDataService = storeDataService;
             LoadStores();
         }
+
 
         public int DefaulZoom
         {
@@ -35,6 +37,7 @@ namespace Glimpse.Core.ViewModel
             get { return _defaultTilt; }
         }
    
+
         public int DefaultBearing
         {
             get { return _defaultBearing; }
@@ -51,6 +54,7 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+
         public Store Store
         {
             get { return _store; }
@@ -63,11 +67,6 @@ namespace Glimpse.Core.ViewModel
             _stores = (await _storeDataService.GetAllStores()).ToObservableCollection();
             Store = Stores[0];
         }
-
-
-        
-
-
 
 
         }
