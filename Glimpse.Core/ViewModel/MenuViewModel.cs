@@ -24,10 +24,24 @@ namespace Glimpse.Core.ViewModel
         {
             MenuItems.Add(new MenuItem
             {
+                Title = "Buyer Profile Page",
+                ViewModelType = typeof(BuyerProfilePageViewModel),
+                Option = MenuOption.BuyerProfile,
+                IsSelected = true
+            });
+            MenuItems.Add(new MenuItem
+            {
+                Title = "Vendor Profile Page",
+                ViewModelType = typeof(VendorProfilePageViewModel),
+                Option = MenuOption.VendorProfile,
+                IsSelected = false
+            });
+            MenuItems.Add(new MenuItem
+            {
                 Title = "Search Journey",
                 ViewModelType = typeof(SearchJourneyViewModel),
                 Option = MenuOption.SearchJourney,
-                IsSelected = true
+                IsSelected = false
             });
 
             MenuItems.Add(new MenuItem

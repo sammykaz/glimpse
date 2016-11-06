@@ -60,13 +60,6 @@ namespace Glimpse.Droid.Activities
             _drawerLayout.SetDrawerListener(_drawerToggle);
 
 
-        
-            //ViewModel.ShowMap();
-
-            // ViewModel.ShowVendorSignUp();
-            // ViewModel.ShowMenu();
-          
-
             ViewModel.ShowLoginPage();
             ViewModel.ShowMenu();
 

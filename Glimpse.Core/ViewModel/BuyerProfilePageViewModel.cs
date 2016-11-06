@@ -11,6 +11,8 @@ namespace Glimpse.Core.ViewModel
     {
         public BuyerProfilePageViewModel(IMvxMessenger messenger) : base(messenger)
         {
+
         }
+    
     }
 }
