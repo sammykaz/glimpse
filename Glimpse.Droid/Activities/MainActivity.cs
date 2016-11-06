@@ -60,8 +60,6 @@ namespace Glimpse.Droid.Activities
             _drawerLayout.SetDrawerListener(_drawerToggle);
 
 
-        
-      
 
             ViewModel.ShowLoginPage();
             ViewModel.ShowMenu();
@@ -122,7 +120,8 @@ namespace Glimpse.Droid.Activities
             markerOptions.SetPosition(new LatLng(16.03, 108));
             markerOptions.SetTitle("My Position");
             googleMap.AddMarker(markerOptions);
-
+            googleMap.UiSettings.MapToolbarEnabled = true;
+            googleMap.UiSettings.MyLocationButtonEnabled = true;
             googleMap.UiSettings.ZoomControlsEnabled = true;
             googleMap.UiSettings.CompassEnabled = true;
             googleMap.MoveCamera(CameraUpdateFactory.ZoomIn());

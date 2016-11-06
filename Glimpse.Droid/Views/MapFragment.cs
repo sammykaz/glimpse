@@ -6,9 +6,10 @@ using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using Glimpse.Droid.Extensions;
 using Glimpse.Droid.Activities;
 using Glimpse.Core.ViewModel;
-using Glimpse.Droid;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
+
+
 
 namespace Glimpse.Droid.Views
 
@@ -20,7 +21,7 @@ namespace Glimpse.Droid.Views
         private MapView _mapView;
         private GoogleMap _map;
         private Marker _store;
-
+        
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -49,14 +50,27 @@ namespace Glimpse.Droid.Views
 
            if (_map != null)
             {
+                _map.UiSettings.ZoomControlsEnabled = true;
+                _map.UiSettings.CompassEnabled = true;
+                _map.UiSettings.MyLocationButtonEnabled = true;
+                _map.UiSettings.RotateGesturesEnabled = true;
+                _map.UiSettings.ZoomGesturesEnabled = true;
+                _map.BuildingsEnabled = true;
+                _map.UiSettings.MapToolbarEnabled = true;
+
                 var viewModel = (MapViewModel)ViewModel;
+
+                
+             
+
+
 
                 var options = new MarkerOptions();
                 options.SetPosition(new LatLng(viewModel.Store.Location.Lat, viewModel.Store.Location.Lng));
                 options.SetTitle("Store");
                 options.SetAlpha(0.7f);
                 options.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueBlue));
-                options.SetSnippet("This is the displayed store");               
+                options.SetSnippet("This is the displayed store");
 
                 _store = _map.AddMarker(options);
                 LatLng location = new LatLng(45.5017, -73.5673);
@@ -67,10 +81,16 @@ namespace Glimpse.Droid.Views
                 builder.Tilt(viewModel.DefaultTilt);
                 CameraPosition cameraPosition = builder.Build();
                 CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
-                _map.MoveCamera(cameraUpdate);
+                _map.MoveCamera(cameraUpdate);               
+
+            
+                    
+
+        
             }
         }
 
+        
 
         public override void OnDestroyView()
         {

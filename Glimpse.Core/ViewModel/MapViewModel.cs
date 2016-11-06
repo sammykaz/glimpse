@@ -1,11 +1,13 @@
-﻿using MvvmCross.Plugins.Messenger;
-using Glimpse.Core.ViewModel;
-using MvvmCross.Core.ViewModels;
+﻿using MvvmCross.Core.ViewModels;
 using Glimpse.Core.Model;
 using System.Collections.ObjectModel;
 using Glimpse.Core.Contracts.Services;
 using System.Threading.Tasks;
 using Glimpse.Core.Extensions;
+
+
+
+
 
 namespace Glimpse.Core.ViewModel
 {
@@ -14,6 +16,9 @@ namespace Glimpse.Core.ViewModel
         private readonly int _defaultZoom = 18;
         private readonly int _defaultTilt = 65;
         private readonly int _defaultBearing = 155;
+
+
+
         private Store _store;
         private ObservableCollection<Store> _stores;
         private IStoreDataService _storeDataService;
@@ -63,10 +68,6 @@ namespace Glimpse.Core.ViewModel
             _stores = (await _storeDataService.GetAllStores()).ToObservableCollection();
             Store = Stores[0];
         }
-
-
-        
-
 
 
 
