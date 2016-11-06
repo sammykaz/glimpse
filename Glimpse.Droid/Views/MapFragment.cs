@@ -9,6 +9,7 @@ using Glimpse.Core.ViewModel;
 using Glimpse.Droid;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
+using Android.Graphics;
 
 namespace Glimpse.Droid.Views
 
@@ -20,6 +21,7 @@ namespace Glimpse.Droid.Views
         private MapView _mapView;
         private GoogleMap _map;
         private Marker _store;
+
 
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -49,12 +51,33 @@ namespace Glimpse.Droid.Views
 
            if (_map != null)
             {
-                var viewModel = (MapViewModel)ViewModel;
 
+              
+                _map.AddCircle(new CircleOptions()
+                .InvokeCenter(new LatLng(45.5017, -73.5673))
+                .InvokeRadius(5)
+                .InvokeStrokeColor(Color.Red)
+                .InvokeFillColor(Color.Blue));
+                _map.UiSettings.MapToolbarEnabled = true;
+                _map.UiSettings.ZoomControlsEnabled = true;
+                _map.UiSettings.CompassEnabled = true;
+                _map.UiSettings.MyLocationButtonEnabled = true;
+                _map.UiSettings.RotateGesturesEnabled = true;
+                _map.UiSettings.ZoomGesturesEnabled = true;
+                _map.BuildingsEnabled = true;
+
+                var viewModel = (MapViewModel)ViewModel;
+                    
                 var options = new MarkerOptions();
                 options.SetPosition(new LatLng(viewModel.Store.Location.Lat, viewModel.Store.Location.Lng));
                 options.SetTitle("Store");
+                options.SetAlpha(0.7f);
+                options.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueMagenta));
+                options.InfoWindowAnchor(0.7f, 0.7f);           
+                options.SetSnippet("This is the displayed store");
+
                 _store = _map.AddMarker(options);
+
 
                 LatLng location = new LatLng(45.5017, -73.5673);
                 CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
@@ -65,6 +88,7 @@ namespace Glimpse.Droid.Views
                 CameraPosition cameraPosition = builder.Build();
                 CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
                 _map.MoveCamera(cameraUpdate);
+
             }
         }
 
@@ -79,13 +103,14 @@ namespace Glimpse.Droid.Views
         }
 
         public override void OnSaveInstanceState(Bundle outState)
+
         {
             base.OnSaveInstanceState(outState);
             _mapView.OnSaveInstanceState(outState);
         }
 
-
         public override void OnResume()
+
         {
             base.OnResume();
             SetUpMapIfNeeded();
@@ -93,18 +118,21 @@ namespace Glimpse.Droid.Views
         }
 
         public override void OnPause()
+
         {
             base.OnPause();
             _mapView.OnPause();
         }
 
         public override void OnLowMemory()
+
         {
             base.OnLowMemory();
             _mapView.OnLowMemory();
         }
 
         private void SetUpMapIfNeeded()
+
         {
             if ( _map== null)
             {
