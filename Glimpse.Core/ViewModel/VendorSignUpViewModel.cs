@@ -86,18 +86,9 @@ namespace Glimpse.Core.ViewModel
                         Company = _company,
                         Email = _email,
                         Password = _password
-                    };
-
-                    User user = new User()
-                    {
-                        FirstName = _firstName,
-                        Email = _email,
-                        Password = _password
-                    };
+                    };                 
 
                     await _vendorDataService.SignUp(vendor);
-                    await _userDataService.SignUp(user);
-
                 });
             }
         }
