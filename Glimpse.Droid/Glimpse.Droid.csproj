@@ -275,10 +275,8 @@
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Views\BuyerProfilePageFragment.cs" />
-    <Compile Include="Views\JourneyDetailsFragment.cs" />
     <Compile Include="Views\LoginPageFragment.cs" />
     <Compile Include="Views\MenuFragment.cs" />
-    <Compile Include="Views\SearchResultsFragment.cs" />
     <Compile Include="Views\SendMail.cs" />
     <Compile Include="Views\MapFragment.cs" />
     <Compile Include="Views\VendorProfilePageFragment.cs" />
