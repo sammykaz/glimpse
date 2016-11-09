@@ -280,7 +280,6 @@
     <Compile Include="Views\MenuFragment.cs" />
     <Compile Include="Views\SearchResultsFragment.cs" />
     <Compile Include="Views\SendMail.cs" />
-    <Compile Include="Views\SettingsFragment.cs" />
     <Compile Include="Views\MapFragment.cs" />
     <Compile Include="Views\VendorProfilePageFragment.cs" />
     <Compile Include="Views\UserSignUpFragment.cs" />
