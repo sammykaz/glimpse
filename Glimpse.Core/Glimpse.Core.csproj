@@ -47,20 +47,13 @@
     <Compile Include="Contracts\Repository\IStoreRepository.cs" />
     <Compile Include="Contracts\Repository\IVendorRepository .cs" />
     <Compile Include="Contracts\Repository\IUserRepository.cs" />
-    <Compile Include="Contracts\Services\IConnectionService.cs" />
-    <Compile Include="Contracts\Services\IDialogService.cs" />
     <Compile Include="Contracts\Services\IStoreDataService.cs" />
     <Compile Include="Contracts\Services\IVendorDataService.cs" />
     <Compile Include="Contracts\Services\IUserDataService.cs" />
-    <Compile Include="Contracts\ViewModel\ILoginViewModel.cs" />
     <Compile Include="Contracts\ViewModel\IMainViewModel.cs" />
     <Compile Include="Contracts\ViewModel\ISearchJourneyViewModel.cs" />
     <Compile Include="Contracts\ViewModel\ISearchResultViewModel.cs" />
-    <Compile Include="Converters\DateTimeToDayConverter.cs" />
-    <Compile Include="Converters\DateTimeToTimeConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
-    <Compile Include="Extensions\TaskExtensions.cs" />
-    <Compile Include="Messages\CurrencyChangedMessage.cs" />
     <Compile Include="Model\App\MenuItem.cs" />
     <Compile Include="Model\App\SearchParameters.cs" />
     <Compile Include="Model\BaseModel.cs" />
@@ -78,20 +71,15 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\StoreRepository.cs" />
     <Compile Include="Repositories\VendorRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="RestClient\RestClient.cs" />
-    <Compile Include="RestClient\TaskModel.cs" />
     <Compile Include="Services\Data\StoreDataService.cs" />
     <Compile Include="Services\Data\VendorDataService.cs" />
     <Compile Include="Services\Data\UserDataService.cs" />
-    <Compile Include="Services\General\ConnectionService.cs" />
     <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Utility\MenuOption.cs" />
-    <Compile Include="Utility\ResxTextProvider.cs" />
-    <Compile Include="Utility\UrlConstants.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BuyerProfilePageViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
@@ -222,7 +210,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />
-    <Folder Include="Fake\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
