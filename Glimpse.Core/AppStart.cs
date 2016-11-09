@@ -7,12 +7,8 @@ namespace Glimpse.Core
 {
     public class AppStart: MvxNavigatingObject, IMvxAppStart
     {
-        public async void Start(object hint = null)
+        public void Start(object hint = null)
         {
-            //hardcoded login for this demo
-            var userService = Mvx.Resolve<IUserTempDataService>();
-            await userService.Login("gillcleeren", "123456");
-
             ShowViewModel<MainViewModel>();
         }
     }
