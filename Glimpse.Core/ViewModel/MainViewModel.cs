@@ -11,18 +11,12 @@ namespace Glimpse.Core.ViewModel
     {
         private readonly Lazy<VendorSignUpViewModel> _signupVendorViewModel;
         private readonly Lazy<UserSignUpViewModel> _signupUserViewModel;
-        private readonly Lazy<MapViewModel> _mapViewModel;
-        private readonly Lazy<SettingsViewModel> _settingsViewModel;
-        private readonly Lazy<LoginPageViewModel> _loginPageViewModel;
-
-        public SettingsViewModel SettingsViewModel => _settingsViewModel.Value;
+        private readonly Lazy<MapViewModel> _mapViewModel;      
+        private readonly Lazy<LoginPageViewModel> _loginPageViewModel;      
 
         public MainViewModel()
         {
-
-            _mapViewModel = new Lazy<MapViewModel>(Mvx.IocConstruct<MapViewModel>);           
-           _settingsViewModel = new Lazy<SettingsViewModel>(Mvx.IocConstruct<SettingsViewModel>);          
-            _settingsViewModel = new Lazy<SettingsViewModel>(Mvx.IocConstruct<SettingsViewModel>);
+            _mapViewModel = new Lazy<MapViewModel>(Mvx.IocConstruct<MapViewModel>);
             _loginPageViewModel = new Lazy<LoginPageViewModel>(Mvx.IocConstruct<LoginPageViewModel>);
            _signupVendorViewModel = new Lazy<VendorSignUpViewModel>(Mvx.IocConstruct<VendorSignUpViewModel>);
            _signupUserViewModel = new Lazy<UserSignUpViewModel>(Mvx.IocConstruct<UserSignUpViewModel>);

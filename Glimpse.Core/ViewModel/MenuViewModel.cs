@@ -35,15 +35,7 @@ namespace Glimpse.Core.ViewModel
                 ViewModelType = typeof(VendorProfilePageViewModel),
                 Option = MenuOption.VendorProfile,
                 IsSelected = false
-            });  
-
-            MenuItems.Add(new MenuItem
-            {
-                Title = "Settings",
-                ViewModelType = typeof(SettingsViewModel),
-                Option = MenuOption.Settings,
-                IsSelected = false
-            });
+            });          
         }
 
         private void OnMenuEntrySelect(MenuItem item)
