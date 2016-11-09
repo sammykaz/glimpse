@@ -10,8 +10,6 @@ using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Views;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
-using Glimpse.Core.Contracts.Services;
-using Glimpse.Droid.Services;
 
 namespace Glimpse.Droid
 {
@@ -33,8 +31,7 @@ namespace Glimpse.Droid
 
         protected override void InitializeIoC()
         {
-            base.InitializeIoC();
-            Mvx.RegisterSingleton<IDialogService>(() => new DialogService());
+            base.InitializeIoC();         
         }
 
         protected override IMvxAndroidViewPresenter CreateViewPresenter()
