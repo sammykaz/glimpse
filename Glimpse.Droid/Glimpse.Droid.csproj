@@ -278,7 +278,6 @@
     <Compile Include="Views\JourneyDetailsFragment.cs" />
     <Compile Include="Views\LoginPageFragment.cs" />
     <Compile Include="Views\MenuFragment.cs" />
-    <Compile Include="Views\SavedJourneysFragment.cs" />
     <Compile Include="Views\SearchResultsFragment.cs" />
     <Compile Include="Views\SendMail.cs" />
     <Compile Include="Views\SettingsFragment.cs" />
