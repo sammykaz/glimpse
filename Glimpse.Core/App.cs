@@ -21,10 +21,7 @@ namespace Glimpse.Core
             CreatableTypes()
                 .EndingWith("Service")
                 .AsInterfaces()
-                .RegisterAsLazySingleton();
-
-            Mvx.RegisterSingleton<IMvxTextProvider>
-                (new ResxTextProvider(Strings.ResourceManager));
+                .RegisterAsLazySingleton();       
 
             RegisterAppStart(new AppStart());
         }
