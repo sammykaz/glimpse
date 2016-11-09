@@ -11,34 +11,11 @@ namespace Glimpse.Core.ViewModel
     public class JourneyDetailViewModel : BaseViewModel, IJourneyDetailViewModel
     {
         private readonly IJourneyDataService _journeyDataService;
-        private readonly ISavedJourneyDataService _savedJourneyDataService;
         private readonly IDialogService _dialogService;
         private readonly IUserTempDataService _userDataService;
         private Journey _selectedJourney;
         private int _journeyId;
-        private int _numberOfTravellers;
-
-        public MvxCommand AddToSavedJourneysCommand
-        {
-            get
-            {
-                return new MvxCommand(async () =>
-                {
-                    await _savedJourneyDataService.AddSavedJourney
-                    (_userDataService.GetActiveUser().UserId, SelectedJourney.JourneyId, NumberOfTravellers);
-
-                    //Hardcoded text, better with resx translations
-                    //await
-                    //    _dialogService.ShowAlertAsync("This journey is now in your Saved Journeys!", "My Trains says...", "OK");
-
-                    await
-                        _dialogService.ShowAlertAsync
-                        (TextSource.GetText("AddedToSavedJourneysMessage"), 
-                         TextSource.GetText("AddedToSavedJourneysTitle"), 
-                         TextSource.GetText("AddedToSavedJourneysButton"));
-                });
-            }
-        }
+        private int _numberOfTravellers;      
 
         public MvxCommand CloseCommand
         { get { return new MvxCommand(() => Close(this)); } }
@@ -65,12 +42,10 @@ namespace Glimpse.Core.ViewModel
 
         public JourneyDetailViewModel(IMvxMessenger messenger, 
             IJourneyDataService journeyDataService,
-            ISavedJourneyDataService savedJourneyDataService,
             IDialogService dialogService, 
             IUserTempDataService userDataService) : base(messenger)
         {
             _journeyDataService = journeyDataService;
-            _savedJourneyDataService = savedJourneyDataService;
             _dialogService = dialogService;
             _userDataService = userDataService;
         }
