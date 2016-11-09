@@ -8,7 +8,7 @@ using Plugin.RestClient;
 
 namespace Glimpse.Core.Repositories
 {
-    public class UserRepository : BaseRepository, IUserRepository
+    public class UserRepository : IUserRepository
     {
         public async Task<User> SearchUser(string userName)
         {
