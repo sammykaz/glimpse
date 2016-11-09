@@ -35,14 +35,7 @@ namespace Glimpse.Core.ViewModel
                 ViewModelType = typeof(VendorProfilePageViewModel),
                 Option = MenuOption.VendorProfile,
                 IsSelected = false
-            });
-            MenuItems.Add(new MenuItem
-            {
-                Title = "Search Journey",
-                ViewModelType = typeof(SearchJourneyViewModel),
-                Option = MenuOption.SearchJourney,
-                IsSelected = false
-            });
+            });           
 
             MenuItems.Add(new MenuItem
             {

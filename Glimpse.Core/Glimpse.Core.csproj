@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="AppStart.cs" />
-    <Compile Include="Contracts\Repository\ICityRepository.cs" />
     <Compile Include="Contracts\Repository\IJourneyRepository.cs" />
     <Compile Include="Contracts\Repository\ISavedJourneyRepository.cs" />
     <Compile Include="Contracts\Repository\ISettingsRepository.cs" />
@@ -52,7 +51,6 @@
     <Compile Include="Contracts\Repository\IVendorRepository .cs" />
     <Compile Include="Contracts\Repository\IUserRepository.cs" />
     <Compile Include="Contracts\Repository\IUserTempRepository.cs" />
-    <Compile Include="Contracts\Services\ICityDataService.cs" />
     <Compile Include="Contracts\Services\IConnectionService.cs" />
     <Compile Include="Contracts\Services\IDialogService.cs" />
     <Compile Include="Contracts\Services\IJourneyDataService.cs" />
@@ -74,7 +72,6 @@
     <Compile Include="Converters\DateTimeToTimeConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
-    <Compile Include="Fake\SearchJourneyViewModel.cs" />
     <Compile Include="Messages\CurrencyChangedMessage.cs" />
     <Compile Include="Model\App\MenuItem.cs" />
     <Compile Include="Model\App\SearchParameters.cs" />
@@ -94,7 +91,6 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
-    <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\JourneyRepository.cs" />
     <Compile Include="Repositories\SavedJourneyRepository.cs" />
     <Compile Include="Repositories\SettingsRepository.cs" />
@@ -104,9 +100,6 @@
     <Compile Include="Repositories\UserTempRepository.cs" />
     <Compile Include="RestClient\RestClient.cs" />
     <Compile Include="RestClient\TaskModel.cs" />
-    <Compile Include="Services\Data\CityDataService.cs" />
-    <Compile Include="Services\Data\JourneyDataService.cs" />
-    <Compile Include="Services\Data\SavedJourneyDataService.cs" />
     <Compile Include="Services\Data\SettingsDataService.cs" />
     <Compile Include="Services\Data\StoreDataService.cs" />
     <Compile Include="Services\Data\VendorDataService.cs" />
@@ -125,7 +118,6 @@
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\ProfilePageViewModel.cs" />
     <Compile Include="ViewModel\SavedJourneysViewModel.cs" />
-    <Compile Include="ViewModel\SearchJourneyViewModel.cs" />
     <Compile Include="ViewModel\SearchResultViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
@@ -252,6 +244,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />
+    <Folder Include="Fake\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
