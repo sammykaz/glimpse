@@ -7,7 +7,7 @@ using Glimpse.Core.Model;
 
 namespace Glimpse.Core.Repositories
 {
-    class StoreRepository: BaseRepository, IStoreRepository
+    class StoreRepository: IStoreRepository
     {
 
         private static readonly List<Store> AllStores = new List<Store>
