@@ -117,25 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="JourneyDetailViewModel.AddedToSavedJourneysButton" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="JourneyDetailViewModel.AddedToSavedJourneysMessage" xml:space="preserve">
-    <value>Deze reis is toegevoegd aan je opgeslagen reizen!</value>
-  </data>
-  <data name="JourneyDetailViewModel.AddedToSavedJourneysTitle" xml:space="preserve">
-    <value>Glimpse zegt</value>
-  </data>
-  <data name="JourneyDetailViewModel.DepartureDateTitleTextView" xml:space="preserve">
-    <value>Vertrek datum:</value>
-  </data>
-  <data name="JourneyDetailViewModel.FromCityTextView" xml:space="preserve">
-    <value>Van:</value>
-  </data>
-  <data name="JourneyDetailViewModel.JourneyDetailTitleTextView" xml:space="preserve">
-    <value>Details van de geselecteerde reis:</value>
-  </data>
-  <data name="JourneyDetailViewModel.ToCityTextView" xml:space="preserve">
-    <value>Naar:</value>
-  </data>
 </root>
