@@ -17,9 +17,6 @@ namespace Glimpse.Core.UnitTests.Tests.ViewModels
         {
             //arrange
             StoreDataService mockStoreDataService = ServiceMocks.GetMockStoreDataService(3);
-            var mockMessenger = new Mock<IMvxMessenger>();
-            var mockConnectionService = new Mock<IConnectionService>();
-            var mockDialogService = new Mock<IDialogService>();
 
             //act
             var mapViewModel = new MapViewModel (mockStoreDataService);
