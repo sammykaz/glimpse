@@ -10,6 +10,9 @@ using Glimpse.Droid;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Graphics;
+using MvvmCross.Binding.BindingContext;
+using Glimpse.Droid.Helpers;
+using System;
 
 namespace Glimpse.Droid.Views
 
@@ -36,7 +39,22 @@ namespace Glimpse.Droid.Views
         {
             base.OnActivityCreated(p0);
             (this.Activity as MainActivity).SetCustomTitle("MapView");
-            MapsInitializer.Initialize(Activity);       
+            MapsInitializer.Initialize(Activity);
+            try
+            {
+
+
+                var set = this.CreateBindingSet<MapFragment, MapViewModel>();
+                set.Bind(_store)
+                   .For(m => m.Position)
+                   .To(vm => vm.Store.Location)
+                   .WithConversion(new LatLngValueConverter(), null).TwoWay();
+                set.Apply(); 
+            }
+            catch (Exception e)
+            {
+                var breakpoint = 5;
+            }
         }
 
         public override void OnStart()
@@ -50,9 +68,7 @@ namespace Glimpse.Droid.Views
             SetUpMapIfNeeded();
 
            if (_map != null)
-            {
-
-              
+            {              
                 _map.AddCircle(new CircleOptions()
                 .InvokeCenter(new LatLng(45.5017, -73.5673))
                 .InvokeRadius(5)
@@ -76,7 +92,7 @@ namespace Glimpse.Droid.Views
                 options.InfoWindowAnchor(0.7f, 0.7f);           
                 options.SetSnippet("This is the displayed store");
 
-                _store = _map.AddMarker(options);
+                _store = _map.AddMarker(options);              
 
 
                 LatLng location = new LatLng(45.5017, -73.5673);
@@ -88,6 +104,7 @@ namespace Glimpse.Droid.Views
                 CameraPosition cameraPosition = builder.Build();
                 CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
                 _map.MoveCamera(cameraUpdate);
+
 
             }
         }
