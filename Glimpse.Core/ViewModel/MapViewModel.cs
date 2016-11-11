@@ -9,7 +9,7 @@ using Glimpse.Core.Extensions;
 
 namespace Glimpse.Core.ViewModel
 {
-    public class MapViewModel:  MvxViewModel
+    public class MapViewModel:  BaseViewModel
 
     {
         private readonly int _defaultZoom = 18;
@@ -20,11 +20,11 @@ namespace Glimpse.Core.ViewModel
         private IStoreDataService _storeDataService;
 
 
-        public MapViewModel(IStoreDataService storeDataService)
+        public MapViewModel(IMvxMessenger messenger,  IStoreDataService storeDataService) : base(messenger)
 
         {
             _storeDataService = storeDataService;
-            LoadStores();
+           // LoadStores();
         }
 
 
@@ -63,7 +63,16 @@ namespace Glimpse.Core.ViewModel
         public Store Store
 
         {
-            get { return _store; }
+            get {
+                return new Store()
+                {
+                    Name = "Store",
+                    Location = new Location()
+                    {
+                        Lat = 45.5017,
+                        Lng = -73.5673
+                    }
+                }; }
             set { _store = value; RaisePropertyChanged(() => Store); }
         }
 
@@ -75,7 +84,37 @@ namespace Glimpse.Core.ViewModel
             Store = Stores[0];
         }
 
+    /*    protected override async Task InitializeAsync()
+        {
+            await base.InitializeAsync();
 
+           
+                await LoadStores();
+
+                Store = Stores[0];
+
+
+
+           
+        }*/
+
+        public MvxCommand MoveCommand
+        {
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    Store.Location = new Location()
+                    {
+                        Lat = Store.Location.Lat + 0.1,
+                        Lng = Store.Location.Lng
+                    };
+                    
+                });
+            }
         }
+
+
+    }
     }
 

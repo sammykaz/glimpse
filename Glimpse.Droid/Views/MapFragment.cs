@@ -13,6 +13,7 @@ using Android.Graphics;
 using MvvmCross.Binding.BindingContext;
 using Glimpse.Droid.Helpers;
 using System;
+using MvvmCross.Binding.Droid.BindingContext;
 
 namespace Glimpse.Droid.Views
 
@@ -26,35 +27,25 @@ namespace Glimpse.Droid.Views
         private Marker _store;
 
 
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = inflater.Inflate(Resource.Layout.MapView, null);
+            /* var view = inflater.Inflate(Resource.Layout.MapView, null);
+             _mapView = view.FindViewById<MapView>(Resource.Id.map);
+             _mapView.OnCreate(savedInstanceState);
+             return view ; */
+            base.OnCreateView(inflater, container, savedInstanceState);
+            var view = this.BindingInflate(Resource.Layout.MapView, null);
             _mapView = view.FindViewById<MapView>(Resource.Id.map);
             _mapView.OnCreate(savedInstanceState);
-            return view ;
+          
+            return view;
         }
 
         public override void OnActivityCreated(Bundle p0)
         {
             base.OnActivityCreated(p0);
             (this.Activity as MainActivity).SetCustomTitle("MapView");
-            MapsInitializer.Initialize(Activity);
-            try
-            {
-
-
-                var set = this.CreateBindingSet<MapFragment, MapViewModel>();
-                set.Bind(_store)
-                   .For(m => m.Position)
-                   .To(vm => vm.Store.Location)
-                   .WithConversion(new LatLngValueConverter(), null).TwoWay();
-                set.Apply(); 
-            }
-            catch (Exception e)
-            {
-                var breakpoint = 5;
-            }
+            MapsInitializer.Initialize(Activity);   
         }
 
         public override void OnStart()
@@ -104,6 +95,13 @@ namespace Glimpse.Droid.Views
                 CameraPosition cameraPosition = builder.Build();
                 CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
                 _map.MoveCamera(cameraUpdate);
+
+                var set = this.CreateBindingSet<MapFragment, MapViewModel>();
+                set.Bind(_store)
+                   .For(m => m.Position)
+                   .To(vm => vm.Store.Location)
+                   .WithConversion(new LatLngValueConverter(), null).TwoWay();
+                set.Apply();
 
 
             }
