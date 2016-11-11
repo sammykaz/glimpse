@@ -24,7 +24,7 @@ namespace Glimpse.Core.ViewModel
 
         {
             _storeDataService = storeDataService;
-           // LoadStores();
+            LoadStores();
         }
 
 
@@ -63,16 +63,7 @@ namespace Glimpse.Core.ViewModel
         public Store Store
 
         {
-            get {
-                return new Store()
-                {
-                    Name = "Store",
-                    Location = new Location()
-                    {
-                        Lat = 45.5017,
-                        Lng = -73.5673
-                    }
-                }; }
+            get { return _store; }
             set { _store = value; RaisePropertyChanged(() => Store); }
         }
 
@@ -104,11 +95,15 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(() =>
                 {
-                    Store.Location = new Location()
+                    var location = new Location()
                     {
                         Lat = Store.Location.Lat + 0.1,
                         Lng = Store.Location.Lng
                     };
+
+                    Store.Location = location;
+
+                    var bp = 1;
                     
                 });
             }

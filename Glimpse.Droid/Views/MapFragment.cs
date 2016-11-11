@@ -71,9 +71,11 @@ namespace Glimpse.Droid.Views
                 _map.UiSettings.MyLocationButtonEnabled = true;
                 _map.UiSettings.RotateGesturesEnabled = true;
                 _map.UiSettings.ZoomGesturesEnabled = true;
-                _map.BuildingsEnabled = true;
+                _map.BuildingsEnabled = true; 
 
                 var viewModel = (MapViewModel)ViewModel;
+
+               // var mapFragment = (SupportMapFragment)SupportFragmentManager.FindFragmentById(Resource.Id.map);
                     
                 var options = new MarkerOptions();
                 options.SetPosition(new LatLng(viewModel.Store.Location.Lat, viewModel.Store.Location.Lng));
@@ -94,7 +96,7 @@ namespace Glimpse.Droid.Views
                 builder.Tilt(viewModel.DefaultTilt);
                 CameraPosition cameraPosition = builder.Build();
                 CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
-                _map.MoveCamera(cameraUpdate);
+                _map.MoveCamera(cameraUpdate); 
 
                 var set = this.CreateBindingSet<MapFragment, MapViewModel>();
                 set.Bind(_store)
@@ -106,6 +108,7 @@ namespace Glimpse.Droid.Views
 
             }
         }
+
 
 
         public override void OnDestroyView()
