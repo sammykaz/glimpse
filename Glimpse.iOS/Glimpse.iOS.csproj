@@ -97,44 +97,13 @@
     <Compile Include="Controls\CalendarHelper.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="SavedJourneyCell.cs" />
-    <Compile Include="SavedJourneyCell.designer.cs">
-      <DependentUpon>SavedJourneyCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SearchResultsCell.cs" />
-    <Compile Include="SearchResultsCell.designer.cs">
-      <DependentUpon>SearchResultsCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Services\DialogService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="StoryBoardContainer.cs" />
-    <Compile Include="TableViewSources\SavedJourneysTableViewSource.cs" />
-    <Compile Include="TableViewSources\SearchResultsTableViewSource.cs" />
     <Compile Include="Utility\GlimpseColors.cs" />
     <Compile Include="Views\BaseView.cs" />
-    <Compile Include="Views\JourneyDetailView.cs" />
-    <Compile Include="Views\JourneyDetailView.designer.cs">
-      <DependentUpon>JourneyDetailView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\MainView.designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SavedJourneysView.cs" />
-    <Compile Include="Views\SavedJourneysView.designer.cs">
-      <DependentUpon>SavedJourneysView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SearchJourneyView.cs" />
-    <Compile Include="Views\SearchJourneyView.designer.cs">
-      <DependentUpon>SearchJourneyView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SearchResultView.cs" />
-    <Compile Include="Views\SearchResultView.designer.cs">
-      <DependentUpon>SearchResultView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SettingsView.cs" />
-    <Compile Include="Views\SettingsView.designer.cs">
-      <DependentUpon>SettingsView.cs</DependentUpon>
     </Compile>
     <None Include="app.config" />
     <None Include="Info.plist" />
@@ -294,6 +263,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Assets.xcassets\" />
+    <Folder Include="Services\" />
+    <Folder Include="TableViewSources\" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json">
