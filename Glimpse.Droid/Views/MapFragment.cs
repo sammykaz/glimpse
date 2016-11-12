@@ -29,10 +29,6 @@ namespace Glimpse.Droid.Views
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            /* var view = inflater.Inflate(Resource.Layout.MapView, null);
-             _mapView = view.FindViewById<MapView>(Resource.Id.map);
-             _mapView.OnCreate(savedInstanceState);
-             return view ; */
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.MapView, null);
             _mapView = view.FindViewById<MapView>(Resource.Id.map);

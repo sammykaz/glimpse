@@ -30,21 +30,31 @@ namespace Glimpse.Core.ViewModel
 
         {
             _storeDataService = storeDataService;
-           /* locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 50;
-
-            locator.PositionChanged += (sender, e) => {
-                var position = e.Position;
-
-                var location = new Location()
+            _store = new Store()
+            {
+                Name = "Store",
+                Location = new Location()
                 {
-                    Lat = position.Latitude,
-                    Lng = position.Longitude
-                };
+                    Lat = 45.5017,
+                    Lng = -73.5673
+               }
+           };
 
-                Store.Location = location;
-            }; */
 
+
+        }
+
+        private void Locator_PositionChanged(object sender, PositionEventArgs e)
+        {
+            
+           
+            var location = new Location()
+            {
+                Lat =  e.Position.Latitude,
+                 Lng =  e.Position.Longitude
+             };
+
+            Store.Location = location;
         }
 
         public override async void Start()
@@ -55,12 +65,12 @@ namespace Glimpse.Core.ViewModel
 
         protected override async Task InitializeAsync()
         {
-            _stores = (await _storeDataService.GetAllStores()).ToObservableCollection();
-            Store = Stores[0];
+            // _stores = (await _storeDataService.GetAllStores()).ToObservableCollection();
+            locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 50;
+            var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
 
-            /*var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
-
-            new Store()
+            Store =new Store()
             {
                 Name = "Store",
                 Location = new Location()
@@ -68,13 +78,17 @@ namespace Glimpse.Core.ViewModel
                     Lat = position.Latitude,
                     Lng = position.Longitude
                 }
-            }; */
+            };
+
+            locator.PositionChanged += Locator_PositionChanged;
+            await locator.StartListeningAsync(minTime: 1, minDistance: 10);
+           
+            
+     
+
         }
 
-
-
-
-
+  
         public int DefaulZoom
 
         {
@@ -123,7 +137,7 @@ namespace Glimpse.Core.ViewModel
 
             var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
 
-            new Store()
+           Store= new Store()
             {
                 Name = "Store",
                 Location = new Location()
@@ -132,6 +146,7 @@ namespace Glimpse.Core.ViewModel
                     Lng = position.Longitude
                 }
             };
+         
         }
 
         
