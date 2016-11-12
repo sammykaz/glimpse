@@ -18,44 +18,17 @@ namespace Glimpse.Core.ViewModel
         private readonly int _defaultZoom = 18;
         private readonly int _defaultTilt = 65;
         private readonly int _defaultBearing = 155;
-        private Store _store;
+        private Location _userCurrentLocation;
         private ObservableCollection<Store> _stores;
         private IStoreDataService _storeDataService;
         private IGeolocator locator;
-        //locator.DesiredAccuracy = 50;
 
-
-
+        
         public MapViewModel(IMvxMessenger messenger,  IStoreDataService storeDataService) : base(messenger)
-
         {
             _storeDataService = storeDataService;
-            _store = new Store()
-            {
-                Name = "Store",
-                Location = new Location()
-                {
-                    Lat = 45.5017,
-                    Lng = -73.5673
-               }
-           };
-
-
-
         }
 
-        private void Locator_PositionChanged(object sender, PositionEventArgs e)
-        {
-            
-           
-            var location = new Location()
-            {
-                Lat =  e.Position.Latitude,
-                 Lng =  e.Position.Longitude
-             };
-
-            Store.Location = location;
-        }
 
         public override async void Start()
         {
@@ -63,30 +36,44 @@ namespace Glimpse.Core.ViewModel
             await ReloadDataAsync();
         }
 
+
         protected override async Task InitializeAsync()
-        {
-            // _stores = (await _storeDataService.GetAllStores()).ToObservableCollection();
+        {            
+            //Creates the locator
             locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 50;
-            var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
-
-            Store =new Store()
-            {
-                Name = "Store",
-                Location = new Location()
-                {
-                    Lat = position.Latitude,
-                    Lng = position.Longitude
-                }
-            };
-
+            locator.DesiredAccuracy = 5;          
+            
+            //Setting up the event and start listening
             locator.PositionChanged += Locator_PositionChanged;
             await locator.StartListeningAsync(minTime: 1, minDistance: 10);
-           
-            
-     
-
         }
+
+        public async Task<Location> GetUserLocation()
+        {
+            //Get the current location            
+            var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+
+            return new Location()
+            {
+                Lat = position.Latitude,
+                Lng = position.Longitude
+            };            
+        }
+
+
+        /// <summary>
+        /// Event for when position changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Locator_PositionChanged(object sender, PositionEventArgs e)
+        {
+            UserCurrentLocation = new Location()
+            {
+                Lat =  e.Position.Latitude,
+                 Lng =  e.Position.Longitude
+             };           
+        }       
 
   
         public int DefaulZoom
@@ -121,58 +108,11 @@ namespace Glimpse.Core.ViewModel
         }
 
 
-        public Store Store
-
+        public Location UserCurrentLocation
         {
-            get { return _store; }
-            set { _store = value; RaisePropertyChanged(() => Store); }
+            get { return _userCurrentLocation; }
+            set { _userCurrentLocation = value; RaisePropertyChanged(() => UserCurrentLocation); }
         }
-
-
-        internal async Task LoadStores()
-
-        {
-            //_stores = (await _storeDataService.GetAllStores()).ToObservableCollection();
-            //Store = Stores[0];
-
-            var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
-
-           Store= new Store()
-            {
-                Name = "Store",
-                Location = new Location()
-                {
-                    Lat = position.Latitude,
-                    Lng = position.Longitude
-                }
-            };
-         
-        }
-
-        
-
-        public MvxCommand MoveCommand
-        {
-            get
-            {
-                return new MvxCommand(() =>
-                {
-                    var location = new Location()
-                    {
-                        Lat = Store.Location.Lat + 0.1,
-                        Lng = Store.Location.Lng
-                    };
-
-                    Store.Location = location;
-
-                    var bp = 1;
-                    
-                });
-            }
-        }
-
-       // private MvxNamedNotifyPropertyChangedEventSubscription<> _selectedItemToken;
-
 
     }
     }
