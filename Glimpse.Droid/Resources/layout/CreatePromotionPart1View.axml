@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
+    android:weightSum="100"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:gravity="top">
+    <EditText
+        android:id="@+id/promotionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:hint="Title"
+        android:paddingLeft="10dp"
+        android:textColor="#000"
+        local:MvxBind="Text PromotionTitle, Mode=TwoWay" />
+    <EditText
+        android:layout_below="@id/promotionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:id="@+id/promotionDescription"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Description"
+        android:paddingLeft="10dp"
+        android:textColor="#000"
+        local:MvxBind="Text PromotionDescription, Mode=TwoWay"
+        android:layout_weight="30" />
+    <CheckBox
+        android:id="@+id/checkbox_meat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Footwear"
+        local:MvxBind="Click CheckBoxCommand" />
+    <CheckBox
+        android:id="@+id/checkbox_cheese"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Electronics"
+        local:MvxBind="Click CheckBoxCommand" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
+        android:baselineAligned="false">
+        <Button
+            android:text="Continue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ContinuePart1Button"
+            android:textSize="20dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:height="70dp"
+            android:paddingTop="2dp"
+            android:background="@drawable/ButtonSignUpStyle"
+            android:layout_centerHorizontal="true"
+            local:MvxBind="Click ContinuePart1Command"
+            android:layout_alignParentBottom="false"
+            android:layout_marginLeft="30dp" />
+    </RelativeLayout>
+</LinearLayout>

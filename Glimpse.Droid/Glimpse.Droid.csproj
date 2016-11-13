@@ -16,7 +16,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.1</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -274,6 +274,7 @@
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Views\BuyerProfilePageFragment.cs" />
+    <Compile Include="Views\CreatePromotionFragment.cs" />
     <Compile Include="Views\LoginPageFragment.cs" />
     <Compile Include="Views\MenuFragment.cs" />
     <Compile Include="Views\SendMail.cs" />
@@ -393,6 +394,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\UserSignUpView.axml" />
     <AndroidResource Include="Resources\drawable\profile_circular_border_imageview.axml" />
+    <AndroidResource Include="Resources\layout\CreatePromotionPart1View.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
