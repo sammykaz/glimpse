@@ -11,9 +11,9 @@ namespace Glimpse.Core.Repositories
 {
     public class VendorRepository : IVendorRepository
     {
-
         private static readonly List<Vendor> allVendors = new List<Vendor>
         {
+
             new Vendor(){
 
                 FirstName = "Bob",
@@ -23,7 +23,7 @@ namespace Glimpse.Core.Repositories
                 Promotions = new List<Promotion>(){new Promotion(){
                                                 Title = "Buy 1 pants get the 2nd 50% off!",
                                                 Description = "Promotion description",
-                                                Categories = Category.Apparel,
+                                                Categories = {Apparel},
                                                 PromotionStartDate = "11/12/2016",
                                                 PromotionEndDate = "11/13/2016",
                                                 PromotionActive = true,}}}

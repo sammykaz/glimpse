@@ -24,15 +24,15 @@ namespace Glimpse.Core.Model
             set { _description = value; RaisePropertyChanged(() => Description); }
         }
 
-        private Category _categories;
-        public Category Categories
+        private List<Category> _categories = new List<Category>();
+        public List<Category> Categories
         {
             get { return _categories; }
             set
             {
                 if (!Category.IsDefined(typeof(Category), _categories))
                 {
-                    _categories = Category.Apparel;
+                    _categories = null;
                 }
 
                 _categories = value;
@@ -48,7 +48,6 @@ namespace Glimpse.Core.Model
 
 
         //Add images here
-
 
         //Any promotion logic below
 
