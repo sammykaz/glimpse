@@ -5,12 +5,12 @@ namespace Glimpse.Core.Contracts.Services
 {
     public interface IVendorDataService
     {
-        Task<User> SearchUser(string userName);
+        Task<Vendor> SearchUser(string userName);
 
-        Task<User> Login(string userName, string password);
+        Task<Vendor> Login(string userName, string password);
 
         Task SignUp(Vendor vendor);
 
-        User GetActiveUser();
+        Vendor GetActiveVendor();
     }
 }

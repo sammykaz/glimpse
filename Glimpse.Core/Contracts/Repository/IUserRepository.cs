@@ -8,7 +8,7 @@ namespace Glimpse.Core.Contracts.Repository
     {
         Task<User> SearchUser(string userName);
 
-        Task<User> VerifyCredentials(string userName, string password);
+        Task<User> SearchUserByUsernamePassword(string userName, string password);
 
         Task PostUser(User user);
 
