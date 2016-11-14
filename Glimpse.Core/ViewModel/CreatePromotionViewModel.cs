@@ -39,7 +39,6 @@ namespace Glimpse.Core.ViewModel
         }
 
         private bool _footwearIsChecked;
-
         public bool FootwearIsCheck
         {
             get { return _footwearIsChecked; }
@@ -47,6 +46,56 @@ namespace Glimpse.Core.ViewModel
             {
                 _footwearIsChecked = value;
                 RaisePropertyChanged(() => FootwearIsCheck);
+            }
+        }
+        private bool _electronicIsChecked;
+        public bool ElectronicIsChecked
+        {
+            get { return _electronicIsChecked; }
+            set
+            {
+                _electronicIsChecked = value;
+                RaisePropertyChanged(() => ElectronicIsChecked);
+            }
+        }
+        private bool _jewelleryIsChecked;
+        public bool JewlleryIsChecked
+        {
+            get { return _jewelleryIsChecked; }
+            set
+            {
+                _jewelleryIsChecked = value;
+                RaisePropertyChanged(() => JewlleryIsChecked);
+            }
+        }
+        private bool _restaurantsIsChecked;
+        public bool RestaurantsIsChecked
+        {
+            get { return _restaurantsIsChecked; }
+            set
+            {
+                _restaurantsIsChecked = value;
+                RaisePropertyChanged(() => RestaurantsIsChecked);
+            }
+        }
+        private bool _servicesIsChecked;
+        public bool ServicesIsChecked
+        {
+            get { return _servicesIsChecked; }
+            set
+            {
+                _servicesIsChecked = value;
+                RaisePropertyChanged(() => ServicesIsChecked);
+            }
+        }
+        private bool _apparelIsChecked;
+        public bool ApparelIsChecked
+        {
+            get { return _apparelIsChecked; }
+            set
+            {
+                _apparelIsChecked = value;
+                RaisePropertyChanged(() => ApparelIsChecked);
             }
         }
 
