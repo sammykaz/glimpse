@@ -26,6 +26,18 @@ namespace Plugin.RestClient
             return taskModels;
         }
 
+        public async Task<T> GetUserNamePasswordAsync(string userName, string password)
+        {
+            var httpClient = new HttpClient();
+
+            var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + userName + "/" + password);
+
+            var taskModel = JsonConvert.DeserializeObject<T>(json);
+
+            return taskModel;
+        }
+
+
         public async Task<List<T>> GetByIdAsync(int id)
         {
             var httpClient = new HttpClient();
