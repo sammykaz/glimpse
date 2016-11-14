@@ -36,15 +36,26 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-
-        private string _company;
-        public string Company
+        private string _lastName;
+        public string LastName
         {
-            get { return _company; }
+            get { return _lastName; }
             set
             {
-                _company = value;
-                RaisePropertyChanged(() => Company);
+                _lastName = value;
+                RaisePropertyChanged(() => LastName);
+
+            }
+        }
+
+        private string _companyName;
+        public string CompanyName
+        {
+            get { return _companyName; }
+            set
+            {
+                _companyName = value;
+                RaisePropertyChanged(() => CompanyName);
 
             }
         }
@@ -62,6 +73,17 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+        private string _userName;
+        public string UserName
+        {
+            get { return _userName; }
+            set
+            {
+                _userName = value;
+                RaisePropertyChanged(() => UserName);
+
+            }
+        }
 
         private string _password;
         public string Password
@@ -74,6 +96,103 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+        private string _country;
+        public string Country
+        {
+            get { return _country; }
+            set
+            {
+                _country = value;
+                RaisePropertyChanged(() => Country);
+
+            }
+        }
+
+        private string _province;
+        public string Province
+        {
+            get { return _province; }
+            set
+            {
+                _province = value;
+                RaisePropertyChanged(() => Province);
+
+            }
+        }
+
+
+        private string _city;
+        public string City
+        {
+            get { return _city; }
+            set
+            {
+                _city = value;
+                RaisePropertyChanged(() => City);
+
+            }
+        }
+
+        private string _postalCode;
+        public string PostalCode
+        {
+            get { return _postalCode; }
+            set
+            {
+                _postalCode = value;
+                RaisePropertyChanged(() => PostalCode);
+
+            }
+        }
+
+        private string _street;
+        public string Street
+        {
+            get { return _street; }
+            set
+            {
+                _street = value;
+                RaisePropertyChanged(() => Street);
+
+            }
+        }
+
+        private string _streetNumber;
+        public string StreetNumber
+        {
+            get { return _streetNumber; }
+            set
+            {
+                _streetNumber = value;
+                RaisePropertyChanged(() => StreetNumber);
+
+            }
+        }
+
+        private string _personalPhoneNumber;
+        public string PersonalPhoneNumber
+        {
+            get { return _personalPhoneNumber; }
+            set
+            {
+                _personalPhoneNumber = value;
+                RaisePropertyChanged(() => PersonalPhoneNumber);
+
+            }
+        }
+
+        private string _businessPhoneNumber;
+        public string BusinessPhoneNumber
+        {
+            get { return _businessPhoneNumber; }
+            set
+            {
+                _businessPhoneNumber = value;
+                RaisePropertyChanged(() => BusinessPhoneNumber);
+
+            }
+        }
+
         public MvxCommand SignUpCommand
         {
             get
@@ -83,9 +202,13 @@ namespace Glimpse.Core.ViewModel
                     Vendor vendor = new Vendor()
                     {
                         FirstName = _firstName,
-                        Company = _company,
+                        LastName = _lastName,
+                        CompanyName = _companyName,
                         Email = _email,
-                        Password = _password
+                        UserName = _userName,
+                        Password = _password,
+                        Address = new Address() {Country = _country, Province = _province, City = _city, PostalCode = _postalCode, Street = _street, StreetNumber = _streetNumber},
+                        Telephone = new Telephone() {PersonalPhoneNumber = _personalPhoneNumber, BusinessPhoneNumber = _businessPhoneNumber}
                     };                 
 
                     await _vendorDataService.SignUp(vendor);

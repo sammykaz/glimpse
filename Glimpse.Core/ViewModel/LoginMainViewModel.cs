@@ -49,5 +49,4 @@ namespace Glimpse.Core.ViewModel
     }
 }
 
-    
 

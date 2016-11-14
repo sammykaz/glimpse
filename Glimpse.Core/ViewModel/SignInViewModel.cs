@@ -17,7 +17,7 @@ namespace Glimpse.Core.ViewModel
 
         private string _userName;
         private string _password;
-        
+
         public SignInViewModel(IMvxMessenger messenger, IUserDataService userDataService, IVendorDataService vendorDataService) : base(messenger)
         {
             _vendorDataService = vendorDataService;

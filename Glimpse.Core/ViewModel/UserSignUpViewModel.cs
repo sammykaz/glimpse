@@ -34,6 +34,18 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+        private string _lastName;
+        public string LastName
+        {
+            get { return _lastName; }
+            set
+            {
+                _lastName = value;
+                RaisePropertyChanged(() => LastName);
+
+            }
+        }
+
         private string _email;
         public string Email
         {
@@ -46,6 +58,17 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+        private string _userName;
+        public string UserName
+        {
+            get { return _userName; }
+            set
+            {
+                _userName = value;
+                RaisePropertyChanged(() => UserName);
+
+            }
+        }
 
         private string _password;
         public string Password
@@ -67,7 +90,9 @@ namespace Glimpse.Core.ViewModel
                     User user = new User
                     {
                         FirstName = _firstName,
+                        LastName = _lastName,
                         Email = _email,
+                        UserName = _userName,
                         Password = _password
                     };
 

@@ -7,11 +7,11 @@ using Glimpse.Core.Utility;
 
 namespace Glimpse.Core.ViewModel
 {
-    public class LoginViewModel: BaseViewModel
+    public class LoginViewModel : BaseViewModel
     {
         public LoginViewModel(IMvxMessenger messenger) : base(messenger)
         {
-           
+
         }
         public MvxCommand ShowVendorSignUp
         {
