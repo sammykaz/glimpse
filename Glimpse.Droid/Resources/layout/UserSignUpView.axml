@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:background="#DEDEDC"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:minWidth="300dp"
-    android:minHeight="400dp">
+    android:minHeight="400dp"
+    android:orientation="vertical">
     <EditText
         android:id="@+id/txtFirstName"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="@drawable/edit_text_style"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="25dp"
@@ -20,13 +20,33 @@
         android:textColor="#000"
         local:MvxBind="Text FirstName, Mode=TwoWay" />
     <EditText
-        android:layout_below="@id/txtFirstName"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:id="@+id/txtLastName"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Last Name"
+        android:paddingLeft="10dp"
+        android:textColor="#000"
+        local:MvxBind="Text LastName, Mode=TwoWay" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:id="@+id/txtUserName"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Username"
+        android:paddingLeft="10dp"
+        android:textColor="#000"
+        local:MvxBind="Text UserName, Mode=TwoWay" />
+    <EditText
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:id="@+id/txtEmail"
         android:background="@drawable/edit_text_style"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="Email"
@@ -34,7 +54,6 @@
         android:textColor="#000"
         local:MvxBind="Text Email, Mode=TwoWay" />
     <EditText
-        android:layout_below="@id/txtEmail"
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -46,11 +65,6 @@
         android:paddingLeft="10dp"
         android:textColor="#000"
         local:MvxBind="Text Password, Mode=TwoWay" />
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtPassword"
-        android:layout_marginTop="50dp">
         <Button
             android:text="Sign Up!"
             android:layout_width="match_parent"
@@ -66,7 +80,5 @@
             android:paddingTop="2dp"
             android:background="@drawable/ButtonSignUpStyle"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="30dp"
             local:MvxBind="Click SignUpCommand" />
-    </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

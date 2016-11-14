@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:background="@android:color/darker_gray"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="25dp"
@@ -46,6 +45,5 @@
         android:height="70dp"
         android:paddingTop="2dp"
         android:background="@drawable/ButtonSignUpStyle"
-        android:layout_marginLeft="30dp"
         local:MvxBind="Click SignInCommand" />
 </LinearLayout>
