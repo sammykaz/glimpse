@@ -10,6 +10,8 @@ using Glimpse.Droid;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Graphics;
+using System.Collections.Generic;
+using Glimpse.Core.Model;
 
 namespace Glimpse.Droid.Views
 
@@ -20,7 +22,7 @@ namespace Glimpse.Droid.Views
     {
         private MapView _mapView;
         private GoogleMap _map;
-        private Marker _store;
+        private Marker _promotion;
 
 
 
@@ -52,7 +54,7 @@ namespace Glimpse.Droid.Views
            if (_map != null)
             {
 
-              
+              //map settings
                 _map.AddCircle(new CircleOptions()
                 .InvokeCenter(new LatLng(45.5017, -73.5673))
                 .InvokeRadius(5)
@@ -66,18 +68,40 @@ namespace Glimpse.Droid.Views
                 _map.UiSettings.ZoomGesturesEnabled = true;
                 _map.BuildingsEnabled = true;
 
+                //Adding markers to map
                 var viewModel = (MapViewModel)ViewModel;
-                    
-                var options = new MarkerOptions();
-                options.SetPosition(new LatLng(viewModel.Store.Location.Lat, viewModel.Store.Location.Lng));
-                options.SetTitle("Store");
-                options.SetAlpha(0.7f);
-                options.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueMagenta));
-                options.InfoWindowAnchor(0.7f, 0.7f);           
-                options.SetSnippet("This is the displayed store");
+                ; // = viewModel.Vendors.Promotions.FindAll(x => x.PromotionActive == true);
+                var activePromotions = new List<Promotion>();
 
-                _store = _map.AddMarker(options);
+                foreach (var vendor in viewModel.Vendors)
+                {
+                     activePromotions = vendor.Promotions.FindAll(x => x.PromotionActive == true);
+                }
+                
+                foreach (var promotion  in activePromotions)
+                {
+                    _promotion = _map.AddMarker(
+                        new MarkerOptions()
+                            .SetPosition(new LatLng(45.584810, -73.717963))
+                            .SetTitle(promotion._title)
+                            .SetSnippet(promotion._description));
+                }
+                
+                  
 
+                
+               
+                    /*var options = new MarkerOptions();
+                    options.SetPosition(new LatLng(store.Location.Lat,store.Location.Lng));
+                    options.SetTitle(viewModel.Store.Name);
+                    options.SetAlpha(0.7f);
+                    options.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueMagenta));
+                    options.InfoWindowAnchor(0.7f, 0.7f);
+                    options.SetSnippet("This is the displayed store");
+                    _store = _map.AddMarker();
+                             
+
+                //Map tilt & starting location
 
                 LatLng location = new LatLng(45.5017, -73.5673);
                 CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
@@ -87,7 +111,7 @@ namespace Glimpse.Droid.Views
                 builder.Tilt(viewModel.DefaultTilt);
                 CameraPosition cameraPosition = builder.Build();
                 CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
-                _map.MoveCamera(cameraUpdate);
+                _map.MoveCamera(cameraUpdate);*/
 
             }
         }
@@ -99,7 +123,7 @@ namespace Glimpse.Droid.Views
             _mapView.OnDestroy();
             _mapView = null;
             _map = null;
-            _store = null;
+            _promotion = null;
         }
 
         public override void OnSaveInstanceState(Bundle outState)

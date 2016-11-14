@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
@@ -37,6 +39,11 @@ namespace Glimpse.Core.Services.Data
             vendor.Password = cryptoTuple.Item1;
             vendor.Salt = cryptoTuple.Item2;
             await _vendorRepository.PostVendor(vendor);
+        }
+
+        public async Task<List<Vendor>> GetVendors()
+        {
+            return await _vendorRepository.GetVendors();
         }
     }
 }

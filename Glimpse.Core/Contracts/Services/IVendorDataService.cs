@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Glimpse.Core.Model;
+using System.Collections.Generic;
 
 namespace Glimpse.Core.Contracts.Services
 {
@@ -12,5 +13,7 @@ namespace Glimpse.Core.Contracts.Services
         Task SignUp(Vendor vendor);
 
         User GetActiveUser();
+
+        Task<List<Vendor>> GetVendors();
     }
 }

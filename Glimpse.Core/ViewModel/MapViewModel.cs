@@ -15,67 +15,50 @@ namespace Glimpse.Core.ViewModel
         private readonly int _defaultZoom = 18;
         private readonly int _defaultTilt = 65;
         private readonly int _defaultBearing = 155;
-        private Store _store;
-        private ObservableCollection<Store> _stores;
-        private IStoreDataService _storeDataService;
+        private Promotion _promotion;
+        private ObservableCollection<Vendor> _vendors;
+        private IVendorDataService _vendorDataService;
 
-
-        public MapViewModel(IStoreDataService storeDataService)
-
+        public MapViewModel(IVendorDataService vendorDataService)
         {
-            _storeDataService = storeDataService;
-            LoadStores();
+            _vendorDataService = vendorDataService;
+            LoadVendors();
         }
 
 
         public int DefaulZoom
-
         {
             get { return _defaultZoom; }
         }
 
 
         public int DefaultTilt
-
         {
             get { return _defaultTilt; }
         }
    
 
         public int DefaultBearing
-
         {
             get { return _defaultBearing; }
         }
 
 
-        public ObservableCollection<Store> Stores
+        public ObservableCollection<Vendor> Vendors
         {
-            get { return _stores; }
+            get { return _vendors; }
             set
             {
-                _stores = value;
-                RaisePropertyChanged(() => Stores);
+                _vendors = value;
+                RaisePropertyChanged(() => Vendors);
             }
         }
 
-
-        public Store Store
-
-        {
-            get { return _store; }
-            set { _store = value; RaisePropertyChanged(() => Store); }
-        }
-
-
-        internal async Task LoadStores()
+        internal async Task LoadVendors()
 
         {
-            _stores = (await _storeDataService.GetAllStores()).ToObservableCollection();
-            Store = Stores[0];
+            _vendors = (await _vendorDataService.GetVendors()).ToObservableCollection();
         }
-
-
-        }
+      }
     }
 

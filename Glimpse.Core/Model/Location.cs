@@ -17,6 +17,21 @@ namespace Glimpse.Core.Model
         }
 
         private double _lng;
+        private double latitude;
+        private double longitude;
+
+        public Location()
+        {
+            this.latitude = latitude;
+            this.longitude = longitude;
+        }
+
+        public Location(double latitude, double longitude)
+        {
+            this.latitude = latitude;
+            this.longitude = longitude;
+        }
+
         public double Lng
         {
             get { return _lng; }
