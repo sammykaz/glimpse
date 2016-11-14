@@ -30,48 +30,126 @@
         android:id="@+id/promotionDescription"
         android:background="@drawable/edit_text_style"
         android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:hint="Description"
-        android:paddingLeft="10dp"
         android:textColor="#000"
         local:MvxBind="Text PromotionDescription, Mode=TwoWay"
-        android:layout_weight="30" />
-    <CheckBox
-        android:id="@+id/checkbox_meat"
-        android:layout_width="wrap_content"
+        android:layout_weight="30"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="20dp" />
+    <TextView
+        android:text="Categorie"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Footwear"
-        local:MvxBind="Click CheckBoxCommand" />
-    <CheckBox
-        android:id="@+id/checkbox_cheese"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Electronics"
-        local:MvxBind="Click CheckBoxCommand" />
-    <RelativeLayout
-        android:layout_width="fill_parent"
+        android:id="@+id/textView1"
+        android:textColor="@color/white"
+        android:textSize="22dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_centerHorizontal="true"
-        android:baselineAligned="false">
-        <Button
-            android:text="Continue"
-            android:layout_width="match_parent"
+        android:gravity="top"
+        android:layout_width="match_parent"
+        android:layout_weight="50"
+        android:weightSum="100"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_height="wrap_content"
-            android:id="@+id/ContinuePart1Button"
-            android:textSize="20dp"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:height="70dp"
-            android:paddingTop="2dp"
-            android:background="@drawable/ButtonSignUpStyle"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
-            local:MvxBind="Click ContinuePart1Command"
-            android:layout_alignParentBottom="false"
-            android:layout_marginLeft="30dp" />
-    </RelativeLayout>
+            android:gravity="center"
+            android:layout_weight="30"
+            android:layout_width="wrap_content">
+            <CheckBox
+                android:id="@+id/checkbox_footwear"
+                android:layout_below="@id/promotionDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:text="Footwear"
+                local:MvxBind="Click CheckBoxCommand" />
+            <CheckBox
+                android:id="@+id/checkbox_electronic"
+                android:layout_toRightOf="@id/checkbox_footwear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:text="Electronic"
+                local:MvxBind="Click CheckBoxCommand" />
+            <CheckBox
+                android:id="@+id/checkbox_jewellery"
+                android:layout_toRightOf="@id/checkbox_electronic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jewellery"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                local:MvxBind="Click CheckBoxCommand" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_weight="30"
+            android:layout_width="wrap_content"
+            android:weightSum="50">
+            <CheckBox
+                android:id="@+id/checkbox_restaurants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Restaurants"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                local:MvxBind="Click CheckBoxCommand"
+                android:layout_below="@id/checkbox_electronic" />
+            <CheckBox
+                android:id="@+id/checkbox_services"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Services"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                local:MvxBind="Click CheckBoxCommand"
+                android:layout_toRightOf="@id/checkbox_restaurants"
+                android:layout_below="@id/checkbox_electronic" />
+            <CheckBox
+                android:id="@+id/checkbox_apparel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Apparel"
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                local:MvxBind="Click CheckBoxCommand"
+                android:layout_toRightOf="@id/checkbox_services"
+                android:layout_below="@id/checkbox_jewellery" />
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:text="Continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ContinuePart1Button"
+        android:textSize="20dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:height="70dp"
+        android:paddingTop="2dp"
+        android:background="@drawable/ButtonSignUpStyle"
+        android:layout_centerHorizontal="true"
+        local:MvxBind="Click ContinuePart1Command"
+        android:layout_alignParentBottom="false"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp" />
 </LinearLayout>

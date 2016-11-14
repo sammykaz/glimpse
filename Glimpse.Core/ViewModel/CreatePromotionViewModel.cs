@@ -38,5 +38,18 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+        private bool _footwearIsChecked;
+
+        public bool FootwearIsCheck
+        {
+            get { return _footwearIsChecked; }
+            set
+            {
+                _footwearIsChecked = value;
+                RaisePropertyChanged(() => FootwearIsCheck);
+            }
+        }
+
+
     }
 }
