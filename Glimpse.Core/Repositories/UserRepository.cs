@@ -15,7 +15,7 @@ namespace Glimpse.Core.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<User> Login(string userName, string password)
+        public async Task<User> SearchUserByUsernamePassword(string userName, string password)
         {
             throw new NotImplementedException();
         }
