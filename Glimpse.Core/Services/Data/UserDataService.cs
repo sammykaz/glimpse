@@ -31,7 +31,7 @@ namespace Glimpse.Core.Services.Data
 
         public async Task<User> Login(string userName, string password)
         {
-            _activeUser = await _userRepository.Login(userName, password);
+            _activeUser = await _userRepository.SearchUserByUsernamePassword(userName, password);
             return _activeUser;
         }
 
