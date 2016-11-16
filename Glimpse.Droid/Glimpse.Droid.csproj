@@ -284,6 +284,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="bin\Debug\Glimpse.Droid.dll.config" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -487,6 +488,177 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\AWSSDK.Core.dll" />
+    <Content Include="bin\Debug\AWSSDK.Core.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\AWSSDK.Core.pdb" />
+    <Content Include="bin\Debug\AWSSDK.Core.xml" />
+    <Content Include="bin\Debug\AWSSDK.DynamoDBv2.dll" />
+    <Content Include="bin\Debug\AWSSDK.DynamoDBv2.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\AWSSDK.DynamoDBv2.pdb" />
+    <Content Include="bin\Debug\AWSSDK.DynamoDBv2.xml" />
+    <Content Include="bin\Debug\BouncyCastle.dll" />
+    <Content Include="bin\Debug\Glimpse.Core.dll" />
+    <Content Include="bin\Debug\Glimpse.Core.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\Glimpse.Core.pdb" />
+    <Content Include="bin\Debug\Glimpse.Droid.dll" />
+    <Content Include="bin\Debug\Glimpse.Droid.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\Glimpse.Droid.pdb" />
+    <Content Include="bin\Debug\Glimpse.Localization.dll" />
+    <Content Include="bin\Debug\Glimpse.Localization.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\Glimpse.Localization.pdb" />
+    <Content Include="bin\Debug\Java.Interop.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\MailKit.dll" />
+    <Content Include="bin\Debug\MailKit.xml" />
+    <Content Include="bin\Debug\Microsoft.CSharp.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\MimeKit.dll" />
+    <Content Include="bin\Debug\MimeKit.xml" />
+    <Content Include="bin\Debug\Mono.Android.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\Mono.Android.Export.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\Mono.CSharp.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\Mono.Data.Sqlite.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\Mono.Data.Tds.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\mscorlib.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\MvvmCross.Binding.dll" />
+    <Content Include="bin\Debug\MvvmCross.Binding.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\MvvmCross.Binding.Droid.dll" />
+    <Content Include="bin\Debug\MvvmCross.Core.dll" />
+    <Content Include="bin\Debug\MvvmCross.Droid.dll" />
+    <Content Include="bin\Debug\MvvmCross.Droid.Shared.dll" />
+    <Content Include="bin\Debug\MvvmCross.Droid.Support.V4.dll" />
+    <Content Include="bin\Debug\MvvmCross.Droid.Support.V7.AppCompat.dll" />
+    <Content Include="bin\Debug\MvvmCross.Droid.Support.V7.Fragging.dll" />
+    <Content Include="bin\Debug\MvvmCross.Localization.dll" />
+    <Content Include="bin\Debug\MvvmCross.Localization.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\MvvmCross.Platform.dll" />
+    <Content Include="bin\Debug\MvvmCross.Platform.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\MvvmCross.Platform.Droid.dll" />
+    <Content Include="bin\Debug\MvvmCross.Plugins.File.dll" />
+    <Content Include="bin\Debug\MvvmCross.Plugins.File.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\MvvmCross.Plugins.File.Droid.dll" />
+    <Content Include="bin\Debug\MvvmCross.Plugins.Messenger.dll" />
+    <Content Include="bin\Debug\MvvmCross.Plugins.Sqlite.dll" />
+    <Content Include="bin\Debug\MvvmCross.Plugins.Sqlite.Droid.dll" />
+    <Content Include="bin\Debug\MvvmCross.Plugins.WebBrowser.dll" />
+    <Content Include="bin\Debug\MvvmCross.Plugins.WebBrowser.Droid.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
+    <Content Include="bin\Debug\nl-BE\Glimpse.Localization.resources.dll" />
+    <Content Include="bin\Debug\PCLCrypto.dll" />
+    <Content Include="bin\Debug\PCLCrypto.xml" />
+    <Content Include="bin\Debug\PInvoke.BCrypt.dll" />
+    <Content Include="bin\Debug\PInvoke.BCrypt.xml" />
+    <Content Include="bin\Debug\PInvoke.Kernel32.dll" />
+    <Content Include="bin\Debug\PInvoke.Kernel32.xml" />
+    <Content Include="bin\Debug\PInvoke.NCrypt.dll" />
+    <Content Include="bin\Debug\PInvoke.NCrypt.xml" />
+    <Content Include="bin\Debug\PInvoke.Windows.Core.dll" />
+    <Content Include="bin\Debug\PInvoke.Windows.Core.xml" />
+    <Content Include="bin\Debug\Plugin.Connectivity.Abstractions.dll" />
+    <Content Include="bin\Debug\Plugin.Connectivity.Abstractions.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\Plugin.Connectivity.Abstractions.pdb" />
+    <Content Include="bin\Debug\Plugin.Connectivity.Abstractions.xml" />
+    <Content Include="bin\Debug\Plugin.Connectivity.dll" />
+    <Content Include="bin\Debug\Plugin.Connectivity.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\Plugin.Connectivity.pdb" />
+    <Content Include="bin\Debug\Plugin.Connectivity.xml" />
+    <Content Include="bin\Debug\SQLite.Net.Async.dll" />
+    <Content Include="bin\Debug\SQLite.Net.dll" />
+    <Content Include="bin\Debug\SQLite.Net.Platform.XamarinAndroid.dll" />
+    <Content Include="bin\Debug\Square.AndroidTimesSquare.dll" />
+    <Content Include="bin\Debug\System.ComponentModel.Composition.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\System.Core.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\System.Data.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\System.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\System.Net.Http.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\System.Net.Http.Extensions.dll" />
+    <Content Include="bin\Debug\System.Net.Http.Extensions.xml" />
+    <Content Include="bin\Debug\System.Net.Http.Primitives.dll" />
+    <Content Include="bin\Debug\System.Net.Http.Primitives.xml" />
+    <Content Include="bin\Debug\System.Numerics.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\System.Runtime.Serialization.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\System.ServiceModel.Internals.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\System.Transactions.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\System.Xml.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\System.Xml.Linq.dll.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\Validation.dll" />
+    <Content Include="bin\Debug\Validation.xml" />
+    <Content Include="bin\Debug\Xamarin.Android.Support.Animated.Vector.Drawable.dll" />
+    <Content Include="bin\Debug\Xamarin.Android.Support.Design.dll" />
+    <Content Include="bin\Debug\Xamarin.Android.Support.v4.dll" />
+    <Content Include="bin\Debug\Xamarin.Android.Support.v7.AppCompat.dll" />
+    <Content Include="bin\Debug\Xamarin.Android.Support.v7.CardView.dll" />
+    <Content Include="bin\Debug\Xamarin.Android.Support.v7.RecyclerView.dll" />
+    <Content Include="bin\Debug\Xamarin.Android.Support.Vector.Drawable.dll" />
+    <Content Include="bin\Debug\Xamarin.GooglePlayServices.Base.dll" />
+    <Content Include="bin\Debug\Xamarin.GooglePlayServices.Basement.dll" />
+    <Content Include="bin\Debug\Xamarin.GooglePlayServices.Maps.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
