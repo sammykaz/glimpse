@@ -6,28 +6,76 @@ using System.Collections.ObjectModel;
 using Glimpse.Core.Contracts.Services;
 using System.Threading.Tasks;
 using Glimpse.Core.Extensions;
+using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
+using MvvmCross.Platform.WeakSubscription;
 
 namespace Glimpse.Core.ViewModel
 {
-    public class MapViewModel:  MvxViewModel
+    public class MapViewModel:  BaseViewModel
 
     {
         private readonly int _defaultZoom = 18;
         private readonly int _defaultTilt = 65;
         private readonly int _defaultBearing = 155;
-        private Store _store;
+        private Location _userCurrentLocation;
         private ObservableCollection<Store> _stores;
         private IStoreDataService _storeDataService;
+        private IGeolocator locator;
 
-
-        public MapViewModel(IStoreDataService storeDataService)
-
+        
+        public MapViewModel(IMvxMessenger messenger,  IStoreDataService storeDataService) : base(messenger)
         {
             _storeDataService = storeDataService;
-            LoadStores();
         }
 
 
+        public override async void Start()
+        {
+            base.Start();
+            await ReloadDataAsync();
+        }
+
+
+        protected override async Task InitializeAsync()
+        {            
+            //Creates the locator
+            locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 5;          
+            
+            //Setting up the event and start listening
+            locator.PositionChanged += Locator_PositionChanged;
+            await locator.StartListeningAsync(minTime: 1, minDistance: 10);
+        }
+
+        public async Task<Location> GetUserLocation()
+        {
+            //Get the current location            
+            var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+
+            return new Location()
+            {
+                Lat = position.Latitude,
+                Lng = position.Longitude
+            };            
+        }
+
+
+        /// <summary>
+        /// Event for when position changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Locator_PositionChanged(object sender, PositionEventArgs e)
+        {
+            UserCurrentLocation = new Location()
+            {
+                Lat =  e.Position.Latitude,
+                 Lng =  e.Position.Longitude
+             };           
+        }       
+
+  
         public int DefaulZoom
 
         {
@@ -60,22 +108,12 @@ namespace Glimpse.Core.ViewModel
         }
 
 
-        public Store Store
-
+        public Location UserCurrentLocation
         {
-            get { return _store; }
-            set { _store = value; RaisePropertyChanged(() => Store); }
+            get { return _userCurrentLocation; }
+            set { _userCurrentLocation = value; RaisePropertyChanged(() => UserCurrentLocation); }
         }
 
-
-        internal async Task LoadStores()
-
-        {
-            _stores = (await _storeDataService.GetAllStores()).ToObservableCollection();
-            Store = Stores[0];
-        }
-
-
-        }
+    }
     }
 

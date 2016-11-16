@@ -12,7 +12,7 @@ namespace Glimpse.Core.UnitTests.Tests.ViewModels
     [TestClass]
     public class MapViewModelTest
     {
-        [TestMethod]
+        /*[TestMethod]
         public async Task Test_LoadFromStoresCorrectly()
         {
             //arrange
@@ -24,7 +24,7 @@ namespace Glimpse.Core.UnitTests.Tests.ViewModels
 
             //assert
             Assert.AreEqual(mapViewModel.Stores.Count, 3);
-        }
+        } */
 
    
     }
