@@ -1,49 +1,27 @@
-﻿using MvvmCross.Core.ViewModels;
-using MvvmCross.Platform;
+﻿
 using Glimpse.Core.Contracts.Services;
-using Glimpse.Core.Services.Data;
+using MvvmCross.Core.ViewModels;
 using Glimpse.Core.ViewModel;
+using MvvmCross.Platform;
 
 
 namespace Glimpse.Core
 {
     public class AppStart: MvxNavigatingObject, IMvxAppStart
     {
-       public static bool IsUserLoggedIn { get; set; }
-
-        
         public void Start(object hint = null)
         {
-            IsUserLoggedIn = false;
-            if (!IsUserLoggedIn)
-            {
-                ShowViewModel<LoginMainViewModel>();
-            }
-            else
+            //Check if the user is logged in before and authenticate
+            var authenticator = Mvx.Resolve<ILoginDataService>();
+
+            if (authenticator.AuthenticateUserLogin())
             {
                 ShowViewModel<MainViewModel>();
             }
-            
-
-            //var userService = Mvx.Resolve<UserDataService>();
-            // var vendorService = Mvx.Resolve<VendorDataService>();
-
-            // var activeUser = userService.GetActiveUser();
-            // var activeVendor = vendorService.GetActiveVendor();
-
-
- 
-
-
-
-
-
-
-
-
-
-
-            
+            else
+            {
+                ShowViewModel<LoginMainViewModel>();
+            }
         }
     }
 }
