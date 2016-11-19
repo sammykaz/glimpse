@@ -17,7 +17,7 @@ namespace Glimpse.Core.ViewModel
         public UserSignUpViewModel UserSignUpViewModel => _signupUserViewModel.Value;
         public MapViewModel MapViewModel => _mapViewModel.Value;
         public SignInViewModel SignInViewModel => _signInViewModel.Value;
-
+ 
         public LoginMainViewModel(IMvxMessenger messenger)
         {
             _mapViewModel = new Lazy<MapViewModel>(Mvx.IocConstruct<MapViewModel>);
@@ -25,21 +25,6 @@ namespace Glimpse.Core.ViewModel
             _signupUserViewModel = new Lazy<UserSignUpViewModel>(Mvx.IocConstruct<UserSignUpViewModel>);
             _signInViewModel = new Lazy<SignInViewModel>(Mvx.IocConstruct<SignInViewModel>);
         }
-
-        /*
-        public void ShowUserSignUp()
-        {
-            ShowViewModel<UserSignUpViewModel>();
-        }
-        public void ShowMapView()
-        {
-            ShowViewModel<MapViewModel>();
-        }
-        public void ShowVendorSignUp()
-        {
-            ShowViewModel<VendorSignUpViewModel>();
-        }
-        */
 
         public void ShowLoginPage()
         {
