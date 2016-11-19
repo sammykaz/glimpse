@@ -2,6 +2,7 @@
 using System.Reflection;
 using Android.Content;
 using Android.Support.Design.Widget;
+using Glimpse.Droid.Presenter;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
@@ -36,12 +37,12 @@ namespace Glimpse.Droid
 
         protected override IMvxAndroidViewPresenter CreateViewPresenter()
         {
-            var mvxFragmentsPresenter = 
-                new MvxFragmentsPresenter(AndroidViewAssemblies);
+            var mvxFragmentsPresenter = new MvxFragmentsPresenter(AndroidViewAssemblies);
             Mvx.RegisterSingleton<IMvxAndroidViewPresenter>(mvxFragmentsPresenter);
             return mvxFragmentsPresenter;
         }
-
+        
+        
         protected override IEnumerable<Assembly> AndroidViewAssemblies => new List<Assembly>(base.AndroidViewAssemblies)
         {
             typeof(NavigationView).Assembly,
@@ -50,7 +51,7 @@ namespace Glimpse.Droid
             typeof(Android.Support.V4.Widget.DrawerLayout).Assembly,
             typeof(Android.Support.V4.View.ViewPager).Assembly,
         };
-
+        
         protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
         {
             MvxAppCompatSetupHelper.FillTargetFactories(registry);
