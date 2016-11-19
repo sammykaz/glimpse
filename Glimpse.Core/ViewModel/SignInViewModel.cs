@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
+using Glimpse.Core.PresentationHint;
+using Glimpse.Core.Services.General;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
+using Plugin.RestClient;
+using Plugin.Settings.Abstractions;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -14,14 +19,15 @@ namespace Glimpse.Core.ViewModel
     {
         private IVendorDataService _vendorDataService;
         private IUserDataService _userDataService;
-
+        private ILoginDataService _loginDataService;
         private string _userName;
         private string _password;
 
-        public SignInViewModel(IMvxMessenger messenger, IUserDataService userDataService, IVendorDataService vendorDataService) : base(messenger)
+        public SignInViewModel(IMvxMessenger messenger, IUserDataService userDataService, IVendorDataService vendorDataService, ILoginDataService loginDataService) : base(messenger)
         {
             _vendorDataService = vendorDataService;
             _userDataService = userDataService;
+            _loginDataService = loginDataService;
         }
 
 
@@ -50,13 +56,52 @@ namespace Glimpse.Core.ViewModel
         {
             get
             {
-                return new MvxCommand(() =>
+                return new MvxCommand(async () =>
                 {
-                    //Vendor vendor = _vendorDataService.VerifyCredentials(UserName, Password);
-                    //TODO decrypt password here 
+                    List<User> userList = await _userDataService.SearchUser(UserName);
+                    List<Vendor> vendorList = await _vendorDataService.SearchUser(UserName);
 
+                    //Currently have no contraints for multiple accounts having the same username
+
+                    User user = userList.FirstOrDefault(e => e.UserName == UserName);
+                    Vendor vendor = vendorList.FirstOrDefault(e => e.UserName == UserName);
+
+
+                    if (user != null && vendor == null)
+                    {
+                        if (_loginDataService.AuthenticateUser(user, UserName, Password))
+                        {
+                            ShowViewModel<MapViewModel>();
+                        }
+                    }
+                    else if (vendor != null && user == null)
+                    {
+                        if (_loginDataService.AuthenticateVendor(vendor, UserName, Password))
+                        {
+                            ShowViewModel<MapViewModel>();
+                        }
+                    }
+                    else
+                    {
+                        ShowViewModel<LoginViewModel>();
+                    }
 
                 });
+            }
+        }
+
+        public ICommand ClearLoginActivityCommand
+        {
+            get
+            {
+                return new MvxCommand(() => ChangePresentation(new ClearLoginActivityPresentationHint()));
+
+
+
+                //TODO Create logic  to clear previous LoginActivity so it doesn't appear when the user sucessfully logs in
+
+
+
             }
         }
 

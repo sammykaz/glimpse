@@ -209,9 +209,13 @@ namespace Glimpse.Core.ViewModel
                         Password = _password,
                         Address = new Address() {Country = _country, Province = _province, City = _city, PostalCode = _postalCode, Street = _street, StreetNumber = _streetNumber},
                         Telephone = new Telephone() {PersonalPhoneNumber = _personalPhoneNumber, BusinessPhoneNumber = _businessPhoneNumber}
-                    };                 
+                    };
+
+                    ShowCommand<LoginViewModel>();
 
                     await _vendorDataService.SignUp(vendor);
+
+                   
                 });
             }
         }
