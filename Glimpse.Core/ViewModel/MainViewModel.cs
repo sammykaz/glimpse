@@ -11,7 +11,7 @@ namespace Glimpse.Core.ViewModel
     {
         private readonly Lazy<VendorSignUpViewModel> _signupVendorViewModel;
         private readonly Lazy<UserSignUpViewModel> _signupUserViewModel;
-        private readonly Lazy<MapViewModel> _mapViewModel;      
+        private readonly Lazy<MapViewModel> _mapViewModel;   
 
         public MainViewModel()
         {
