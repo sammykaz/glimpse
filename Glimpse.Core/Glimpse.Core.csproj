@@ -55,18 +55,12 @@
     <Compile Include="Contracts\ViewModel\ISearchJourneyViewModel.cs" />
     <Compile Include="Contracts\ViewModel\ISearchResultViewModel.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
-    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\App\MenuItem.cs" />
     <Compile Include="Model\App\SearchParameters.cs" />
     <Compile Include="Model\BaseModel.cs" />
-    <Compile Include="Model\City.cs" />
-    <Compile Include="Model\Currency.cs" />
     <Compile Include="Model\Store.cs" />
-    <Compile Include="Model\Journey.cs" />
     <Compile Include="Model\Location.cs" />
-    <Compile Include="Model\SavedJourney.cs" />
-    <Compile Include="Model\SettingsTemp.cs" />
     <Compile Include="Model\Telephone.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Vendor.cs" />
@@ -224,6 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />
+    <Folder Include="Helpers\" />
     <Folder Include="obj\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
