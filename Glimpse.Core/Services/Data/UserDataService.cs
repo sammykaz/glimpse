@@ -24,16 +24,11 @@ namespace Glimpse.Core.Services.Data
             return await _userRepository.GetUsers();
         }
 
-        public async Task<User> SearchUser(string userName)
+        public async Task<List<User>> SearchUser(string userName)
         {
             return await _userRepository.SearchUser(userName);
         }
 
-        public async Task<User> Login(string userName, string password)
-        {
-            _activeUser = await _userRepository.SearchUserByUsernamePassword(userName, password);
-            return _activeUser;
-        }
 
         public User GetActiveUser()
         {

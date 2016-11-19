@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
@@ -15,16 +16,11 @@ namespace Glimpse.Core.Services.Data
             _vendorRepository = vendorRepository;
         }
 
-        public async Task<Vendor> SearchUser(string userName)
+        public async Task<List<Vendor>> SearchUser(string userName)
         {
             return await _vendorRepository.SearchVendor(userName);
         }
 
-        public async Task<Vendor> Login(string userName, string password)
-        {
-            _activeVendor = await _vendorRepository.GetVendorByUserNamePassword(userName, password);
-            return _activeVendor;
-        }
 
         public Vendor GetActiveVendor()
         {
