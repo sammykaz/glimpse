@@ -600,6 +600,8 @@
     <AndroidResource Include="Resources\drawable\plus.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\Glimpse.Droid.dll" />
+    <Content Include="bin\Debug\Glimpse.Droid.pdb" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="MyTrains.Droid.csproj.vspscc" />
