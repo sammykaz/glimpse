@@ -19,6 +19,19 @@ namespace WebServices.Controllers.UsersController
             return db.Users;
         }
 
+        // GET: api/Vendors/5
+        [Route("api/Users/Search/{userName}")]
+        [ResponseType(typeof(User))]
+        public IHttpActionResult GetUser(string userName)
+        {
+            var user = db.Users.Where(e => e.UserName == userName);
+            if (user == null)
+                return NotFound();
+
+            return Ok(user);
+        }
+
+
         // GET: api/Users/5
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)

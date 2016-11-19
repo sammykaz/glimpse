@@ -20,17 +20,16 @@ namespace WebServices.Controllers.VendorsController
         }
 
         // GET: api/Vendors/5
-        [Route("api/Vendors/Search/{userName}/{password}")]
+        [Route("api/Vendors/Search/{userName}")]
         [ResponseType(typeof(Vendor))]
-        public IHttpActionResult GetVendorByUserNamePassword(string userName, string password)
+        public IHttpActionResult GetVendor(string userName)
         {
-            var vendor = db.Vendors.Where(e => e.UserName == userName && e.Password == password);
+            var vendor = db.Vendors.Where(e => e.UserName == userName);
             if (vendor == null)
                 return NotFound();
 
             return Ok(vendor);
         }
-    
 
         // GET: api/Vendors/5
         [ResponseType(typeof(Vendor))]
