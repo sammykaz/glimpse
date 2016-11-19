@@ -30,6 +30,7 @@ namespace Glimpse.Droid.Views
             // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
             base.OnCreateView(inflater, container, savedInstanceState);
             return this.BindingInflate(Resource.Layout.SignInView, null);
+
         }
 
         public override void OnViewCreated(View view, Bundle savedInstanceState)

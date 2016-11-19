@@ -6,6 +6,10 @@ using MvvmCross.Droid.Shared.Attributes;
 using Glimpse.Core.ViewModel;
 using Glimpse.Droid.Activities;
 using System;
+using Android.Content;
+using Android.Support.Design.Widget;
+using Android.Widget;
+using MvvmCross.Binding.Droid.Views;
 using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
 namespace Glimpse.Droid.Views
@@ -16,19 +20,30 @@ namespace Glimpse.Droid.Views
     {
         public MenuFragment()
         {
-            
+
         }
 
+
+        //navigation_drawer_list
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-           base.OnCreateView(inflater, container, savedInstanceState);
+            base.OnCreateView(inflater, container, savedInstanceState);
+
+
+
             return this.BindingInflate(Resource.Layout.fragment_menu, null);
+        }
+
+        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        {
+            base.OnViewCreated(view, savedInstanceState);
         }
 
         public override void OnStart()
         {
             base.OnStart();
             ViewModel.CloseMenu += OnCloseMenu;
+
         }
 
         public override void OnStop()
@@ -41,6 +56,7 @@ namespace Glimpse.Droid.Views
         {
             (Activity as MainActivity)?.CloseDrawerMenu();
         }
+
 
         public bool OnNavigationItemSelected(IMenuItem menuItem)
         {
