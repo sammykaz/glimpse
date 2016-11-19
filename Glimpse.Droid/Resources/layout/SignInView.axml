@@ -35,7 +35,7 @@
         android:text="Sign In"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/SignUpButton"
+        android:id="@+id/btnSignIn"
         android:textSize="20dp"
         android:textColor="#fff"
         android:textStyle="bold"

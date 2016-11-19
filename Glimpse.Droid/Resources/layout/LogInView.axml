@@ -32,7 +32,7 @@
         android:textSize="17sp"
         android:id="@+id/btnTakeGlimpse"
         android:background="@drawable/HomeButtonTakeGlimpse"
-        local:MvxBind="Click ShowMapView" />
+        local:MvxBind="Click ShowStartingMap" />
     <TextView
         android:text="Or"
         android:layout_width="match_parent"
