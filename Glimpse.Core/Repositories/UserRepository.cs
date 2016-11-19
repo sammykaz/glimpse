@@ -10,15 +10,13 @@ namespace Glimpse.Core.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public async Task<User> SearchUser(string userName)
+        public async Task<List<User>> SearchUser(string userName)
         {
-            throw new NotImplementedException();
+           RestClient<User> restClient = new RestClient<User>();
+           return await restClient.GetUsersAsync(userName);
         }
 
-        public async Task<User> SearchUserByUsernamePassword(string userName, string password)
-        {
-            throw new NotImplementedException();
-        }
+ 
 
         public async Task PostUser(User user)
         {

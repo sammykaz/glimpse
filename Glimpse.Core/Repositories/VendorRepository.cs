@@ -10,20 +10,14 @@ namespace Glimpse.Core.Repositories
 {
     public class VendorRepository : IVendorRepository
     {
-        public async Task<Vendor> SearchUser(string userName)
+ 
+        public async Task<List<Vendor>> SearchVendor(string vendorName)
         {
-            throw new NotImplementedException();
+            RestClient<Vendor> restClient = new RestClient<Vendor>();
+            return await restClient.GetUsersAsync(vendorName);
         }
 
-        public Task<Vendor> SearchVendor(string vendorName)
-        {
-            throw new NotImplementedException();
-        }
 
-        public async Task<Vendor> GetVendorByUserNamePassword(string userName, string password)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task PostVendor(Vendor vendor)
         {
