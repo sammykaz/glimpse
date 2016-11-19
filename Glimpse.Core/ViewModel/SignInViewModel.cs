@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
-using Glimpse.Core.PresentationHint;
 using Glimpse.Core.Services.General;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
@@ -87,21 +86,6 @@ namespace Glimpse.Core.ViewModel
                     }
 
                 });
-            }
-        }
-
-        public ICommand ClearLoginActivityCommand
-        {
-            get
-            {
-                return new MvxCommand(() => ChangePresentation(new ClearLoginActivityPresentationHint()));
-
-
-
-                //TODO Create logic  to clear previous LoginActivity so it doesn't appear when the user sucessfully logs in
-
-
-
             }
         }
 

@@ -2,7 +2,6 @@
 using System.Reflection;
 using Android.Content;
 using Android.Support.Design.Widget;
-using Glimpse.Droid.Presenter;
 using MvvmCross.Binding.Bindings.Target.Construction;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Droid.Platform;
