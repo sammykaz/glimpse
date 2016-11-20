@@ -20,5 +20,9 @@ namespace Glimpse.Core.Model
 
         public string StreetNumber { get; set; }
 
+        public override string ToString()
+        {
+            return Country + " " + Province + " " + City + " " + StreetNumber + " " + Street + " " + PostalCode;
+        }
     }
 }
