@@ -1,4 +1,6 @@
-﻿namespace Glimpse.Core.Model
+﻿using System.Collections.Generic;
+
+namespace Glimpse.Core.Model
 {
     public class Vendor
     {
@@ -20,5 +22,10 @@
         public Address Address { get; set; }
 
         public Telephone Telephone { get; set; }
+
+        public List<Promotion> Promotions { get; set; }
+
+        public Location Location { get; set; }
+
     }
 }
