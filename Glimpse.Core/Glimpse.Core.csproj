@@ -39,7 +39,65 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Release\AWSSDK.Core.dll" />
+    <Content Include="bin\Release\AWSSDK.Core.pdb" />
+    <Content Include="bin\Release\AWSSDK.Core.xml" />
+    <Content Include="bin\Release\AWSSDK.DynamoDBv2.dll" />
+    <Content Include="bin\Release\AWSSDK.DynamoDBv2.pdb" />
+    <Content Include="bin\Release\AWSSDK.DynamoDBv2.xml" />
+    <Content Include="bin\Release\Glimpse.Core.dll" />
+    <Content Include="bin\Release\Glimpse.Core.pdb" />
+    <Content Include="bin\Release\Glimpse.Localization.dll" />
+    <Content Include="bin\Release\Glimpse.Localization.pdb" />
+    <Content Include="bin\Release\MvvmCross.Binding.dll" />
+    <Content Include="bin\Release\MvvmCross.Core.dll" />
+    <Content Include="bin\Release\MvvmCross.Droid.Support.V7.Fragging.dll" />
+    <Content Include="bin\Release\MvvmCross.Localization.dll" />
+    <Content Include="bin\Release\MvvmCross.Platform.dll" />
+    <Content Include="bin\Release\MvvmCross.Plugins.Messenger.dll" />
+    <Content Include="bin\Release\MvvmCross.Plugins.Sqlite.dll" />
+    <Content Include="bin\Release\MvvmCross.Plugins.WebBrowser.dll" />
+    <Content Include="bin\Release\Newtonsoft.Json.dll" />
+    <Content Include="bin\Release\Newtonsoft.Json.xml" />
+    <Content Include="bin\Release\nl-BE\Glimpse.Localization.resources.dll" />
+    <Content Include="bin\Release\PCLCrypto.dll" />
+    <Content Include="bin\Release\PCLCrypto.xml" />
+    <Content Include="bin\Release\PCLStorage.Abstractions.dll" />
+    <Content Include="bin\Release\PCLStorage.Abstractions.xml" />
+    <Content Include="bin\Release\PCLStorage.dll" />
+    <Content Include="bin\Release\PCLStorage.xml" />
+    <Content Include="bin\Release\PInvoke.BCrypt.dll" />
+    <Content Include="bin\Release\PInvoke.BCrypt.xml" />
+    <Content Include="bin\Release\PInvoke.Kernel32.dll" />
+    <Content Include="bin\Release\PInvoke.Kernel32.xml" />
+    <Content Include="bin\Release\PInvoke.NCrypt.dll" />
+    <Content Include="bin\Release\PInvoke.NCrypt.xml" />
+    <Content Include="bin\Release\PInvoke.Windows.Core.dll" />
+    <Content Include="bin\Release\PInvoke.Windows.Core.xml" />
+    <Content Include="bin\Release\Plugin.Connectivity.Abstractions.dll" />
+    <Content Include="bin\Release\Plugin.Connectivity.Abstractions.pdb" />
+    <Content Include="bin\Release\Plugin.Connectivity.Abstractions.xml" />
+    <Content Include="bin\Release\Plugin.Connectivity.dll" />
+    <Content Include="bin\Release\Plugin.Connectivity.pdb" />
+    <Content Include="bin\Release\Plugin.Connectivity.xml" />
+    <Content Include="bin\Release\Plugin.Settings.Abstractions.dll" />
+    <Content Include="bin\Release\Plugin.Settings.Abstractions.xml" />
+    <Content Include="bin\Release\Plugin.Settings.dll" />
+    <Content Include="bin\Release\Plugin.Settings.xml" />
+    <Content Include="bin\Release\SQLite.Net.Async.dll" />
+    <Content Include="bin\Release\SQLite.Net.dll" />
+    <Content Include="bin\Release\System.Net.Http.Extensions.dll" />
+    <Content Include="bin\Release\System.Net.Http.Extensions.xml" />
+    <Content Include="bin\Release\System.Net.Http.Primitives.dll" />
+    <Content Include="bin\Release\System.Net.Http.Primitives.xml" />
+    <Content Include="bin\Release\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="bin\Release\Validation.dll" />
+    <Content Include="bin\Release\Validation.xml" />
     <Content Include="Glimpse.Core.csproj.vspscc" />
+    <Content Include="obj\Debug\Glimpse.Core.dll" />
+    <Content Include="obj\Debug\Glimpse.Core.pdb" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
@@ -94,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="bin\Release\Glimpse.Core.dll.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -228,7 +287,6 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
     <Folder Include="Helpers\" />
-    <Folder Include="obj\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
