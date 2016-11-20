@@ -2,10 +2,7 @@
 using MvvmCross.iOS.Platform;
 using MvvmCross.iOS.Views;
 using MvvmCross.iOS.Views.Presenters;
-using MvvmCross.Platform;
 using Glimpse.Core;
-using Glimpse.Core.Contracts.Services;
-using Glimpse.iOS.Services;
 using UIKit;
 
 namespace Glimpse.iOS
@@ -33,7 +30,6 @@ namespace Glimpse.iOS
         protected override void InitializeIoC()
         {
             base.InitializeIoC();
-            Mvx.RegisterSingleton<IDialogService>(() => new DialogService());
         }
 
         protected override IMvxIosViewsContainer CreateIosViewsContainer()
