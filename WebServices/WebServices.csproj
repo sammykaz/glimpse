@@ -230,15 +230,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611200450477_InitialCreate.cs" />
-    <Compile Include="Migrations\201611200450477_InitialCreate.Designer.cs">
-      <DependentUpon>201611200450477_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201611200506258_promotionMigration.cs" />
-    <Compile Include="Migrations\201611200506258_promotionMigration.Designer.cs">
-      <DependentUpon>201611200506258_promotionMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -326,14 +317,6 @@
       <Project>{A429B66B-B938-4BEC-9254-C27BBA173D90}</Project>
       <Name>Glimpse.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611200450477_InitialCreate.resx">
-      <DependentUpon>201611200450477_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611200506258_promotionMigration.resx">
-      <DependentUpon>201611200506258_promotionMigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

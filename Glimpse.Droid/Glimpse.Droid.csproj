@@ -319,9 +319,6 @@
     <Compile Include="Extensions\ActivityExtensions.cs" />
     <Compile Include="Extensions\MonoTypeExtensions.cs" />
     <Compile Include="Helpers\LatLngValueConverter.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -342,18 +339,6 @@
     <None Include="GettingStarted.Xamarin" />
     <None Include="Glimpse.Droid.csproj.bak" />
     <None Include="MyTrains.Droid.csproj.bak" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="obj\Debug\Schemas\23\android-layout-xml.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="obj\Debug\Schemas\23\schemas.android.com.apk.res.android.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="obj\Debug\sdks.cache" />
-    <None Include="obj\Debug\__library_projects__\AWSSDK.Core.stamp" />
-    <None Include="obj\Debug\__library_projects__\AWSSDK.DynamoDBv2.stamp" />
-    <None Include="obj\Debug\__library_projects__\BouncyCastle.stamp" />
     <None Include="obj\Release\build.force" />
     <None Include="obj\Release\libraryimports.cache" />
     <None Include="obj\Release\libraryprojectimports.cache" />
@@ -621,23 +606,9 @@
     <AndroidResource Include="Resources\drawable\plus.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\Glimpse.Droid.dll" />
-    <Content Include="bin\Debug\Glimpse.Droid.pdb" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="MyTrains.Droid.csproj.vspscc" />
-    <Content Include="obj\Debug\android\bin\mono.android.jar" />
-    <Content Include="obj\Debug\resourcecache\097C31E1E950C9F058DD836A3A2E0117\classes.jar" />
-    <Content Include="obj\Debug\resourcecache\1956D17BC690160C461C78299B38CC15\classes.jar" />
-    <Content Include="obj\Debug\resourcecache\32C5BC1572C4F18B4C92FD26F5AC6E45\classes.jar" />
-    <Content Include="obj\Debug\resourcecache\5C1E44B5E0D3CB76FFE28BAC736D9919\classes.jar" />
-    <Content Include="obj\Debug\resourcecache\5C1E44B5E0D3CB76FFE28BAC736D9919\libs\internal_impl-23.2.1.jar" />
-    <Content Include="obj\Debug\resourcecache\71E2BD83E8F4A7C1761DF3F2599CBBBF\classes.jar" />
-    <Content Include="obj\Debug\resourcecache\8194061C4AD1DFAB283DD2094D26BC2A\classes.jar" />
-    <Content Include="obj\Debug\resourcecache\90A1FB7D7FFEC7C820FB2724293D6701\classes.jar" />
-    <Content Include="obj\Debug\resourcecache\CB796804FEDA9D6FC96DED0DE9F8E1DD\classes.jar" />
-    <Content Include="obj\Debug\resourcecache\F3F7F6B5054DA906BEA9DF76633068DC\classes.jar" />
-    <Content Include="obj\Debug\resourcecache\FA7ABFF9AA9CDD4B2B54578156BCB2D9\classes.jar" />
     <Content Include="obj\Release\res\drawable-hdpi\app_icon.png" />
     <Content Include="obj\Release\res\drawable-hdpi\arrow_down.png" />
     <Content Include="obj\Release\res\drawable-hdpi\arrow_left.png" />
@@ -754,18 +725,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
-    <Folder Include="obj\Debug\res\" />
-    <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="obj\Debug\__library_projects__\AWSSDK.Core\library_project_imports\assets\" />
-    <Folder Include="obj\Debug\__library_projects__\AWSSDK.Core\library_project_imports\bin\" />
-    <Folder Include="obj\Debug\__library_projects__\AWSSDK.Core\library_project_imports\java\" />
-    <Folder Include="obj\Debug\__library_projects__\AWSSDK.Core\library_project_imports\res\" />
-    <Folder Include="obj\Debug\__library_projects__\AWSSDK.DynamoDBv2\library_project_imports\" />
-    <Folder Include="obj\Debug\__library_projects__\BouncyCastle\library_project_imports\assets\" />
-    <Folder Include="obj\Debug\__library_projects__\BouncyCastle\library_project_imports\bin\" />
-    <Folder Include="obj\Debug\__library_projects__\BouncyCastle\library_project_imports\java\" />
-    <Folder Include="obj\Debug\__library_projects__\BouncyCastle\library_project_imports\res\" />
-    <Folder Include="obj\Debug\__library_projects__\Glimpse.Core\library_project_imports\" />
     <Folder Include="obj\Release\TempPE\" />
     <Folder Include="obj\Release\__library_projects__\AWSSDK.Core\library_project_imports\assets\" />
     <Folder Include="obj\Release\__library_projects__\AWSSDK.Core\library_project_imports\bin\" />
