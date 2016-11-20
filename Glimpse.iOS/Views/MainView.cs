@@ -42,9 +42,6 @@ namespace Glimpse.iOS.Views
         {
             var viewControllers = new UIViewController[]
             {
-                CreateTab("Search", "ic-search-", ViewModel.SearchJourneyViewModel),
-                CreateTab("Saved journeys", "ic-saved-", ViewModel.SavedJourneysViewModel),
-                CreateTab("Settings", "ic-settings-", ViewModel.SettingsViewModel)
             };
 
             ViewControllers = viewControllers;
