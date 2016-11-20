@@ -13,5 +13,6 @@
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 	<application android:label="Glimpse" android:theme="@style/AppTheme" android:icon="@drawable/app_icon"></application>
 </manifest>

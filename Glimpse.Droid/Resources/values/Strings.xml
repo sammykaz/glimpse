@@ -4,4 +4,15 @@
   <string name="GoogleKey">AIzaSyCtA2ny60f7ohQNjKn46CgQcocnnlkjet0</string>
   <string name="drawer_open">Open</string>
   <string name="drawer_close">Close</string>
+
+  <string name="number_of_days">The length of your marketing promotion</string>
+  <string-array name="promotion_length_array">
+    <item>1 Day</item>
+    <item>2 Day</item>
+    <item>3 Day</item>
+    <item>4 Day</item>
+    <item>5 Day</item>
+    <item>6 Day</item>
+    <item>7 Day</item>
+  </string-array>
 </resources>

@@ -75,7 +75,7 @@
                 android:textColor="@color/white"
                 android:buttonTint="@color/white"
                 android:text="Footwear"
-                local:MvxBind="Checked FootwearIsChecked"/>
+                local:MvxBind="Checked FootwearIsChecked" />
             <CheckBox
                 android:id="@+id/checkbox_electronic"
                 android:layout_toRightOf="@id/checkbox_footwear"
@@ -148,7 +148,7 @@
         android:paddingTop="2dp"
         android:background="@drawable/ButtonSignUpStyle"
         android:layout_centerHorizontal="true"
-        local:MvxBind="Click ContinuePart1Command"
+        local:MvxBind="Click ContinueCommand"
         android:layout_alignParentBottom="false"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp" />

@@ -4,14 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MvvmCross.Plugins.Messenger;
+using MvvmCross.Core.ViewModels;
 
 namespace Glimpse.Core.ViewModel
 {
     public class CreatePromotionViewModel : BaseViewModel
     {
+        private IMvxMessenger messenger;
         public CreatePromotionViewModel(IMvxMessenger messenger) : base(messenger)
         {
 
+        }
+
+        public MvxCommand ContinueCommand
+        {
+            get
+            {
+
+
+                return new MvxCommand(() =>
+                {
+                    var desc = new Dictionary<string, string> {
+                        {"PromotionTitle", PromotionTitle},{"PromotionDescription", PromotionDescription}, {"FootwearIsChecked", FootwearIsChecked.ToString()},
+                        {"ElectronicIsChecked", ElectronicIsChecked.ToString() },  {"JewlleryIsChecked", JewlleryIsChecked.ToString() }, {"RestaurantsIsChecked", RestaurantsIsChecked.ToString() },
+                        {"ServicesIsChecked", ServicesIsChecked.ToString() }, {"ApparelIsChecked", ApparelIsChecked.ToString()}
+                    };
+                                     
+                    ShowViewModel<CreatePromotionPart2ViewModel>(desc);
+                });
+                
+            }
         }
 
         private string _promotionTitle;
@@ -22,10 +44,9 @@ namespace Glimpse.Core.ViewModel
             {
                 _promotionTitle = value;
                 RaisePropertyChanged(() => PromotionTitle);
-
             }
         }
-
+        
         private string _promotionDescription;
         public string PromotionDescription
         {
