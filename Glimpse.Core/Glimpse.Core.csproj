@@ -39,6 +39,8 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <Content Include="bin\Debug\Glimpse.Core.dll" />
+    <Content Include="bin\Debug\Glimpse.Core.pdb" />
     <Content Include="Glimpse.Core.csproj.vspscc" />
   </ItemGroup>
   <ItemGroup>
@@ -226,7 +228,6 @@
     <Analyzer Include="..\packages\AWSSDK.DynamoDBv2.3.3.0.1\analyzers\dotnet\cs\AWSSDK.DynamoDBv2.CodeAnalysis.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Debug\" />
     <Folder Include="Fake\" />
     <Folder Include="Messages\" />
     <Folder Include="obj\" />
