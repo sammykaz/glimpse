@@ -92,50 +92,18 @@
   <ItemGroup>
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
-    <Compile Include="Bootstrap\PictureChooserPluginBootstrap.cs" />
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Controls\CalendarHelper.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="SavedJourneyCell.cs" />
-    <Compile Include="SavedJourneyCell.designer.cs">
-      <DependentUpon>SavedJourneyCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SearchResultsCell.cs" />
-    <Compile Include="SearchResultsCell.designer.cs">
-      <DependentUpon>SearchResultsCell.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Services\DialogService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="StoryBoardContainer.cs" />
-    <Compile Include="TableViewSources\SavedJourneysTableViewSource.cs" />
-    <Compile Include="TableViewSources\SearchResultsTableViewSource.cs" />
     <Compile Include="Utility\GlimpseColors.cs" />
     <Compile Include="Views\BaseView.cs" />
-    <Compile Include="Views\JourneyDetailView.cs" />
-    <Compile Include="Views\JourneyDetailView.designer.cs">
-      <DependentUpon>JourneyDetailView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainView.cs" />
     <Compile Include="Views\MainView.designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SavedJourneysView.cs" />
-    <Compile Include="Views\SavedJourneysView.designer.cs">
-      <DependentUpon>SavedJourneysView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SearchJourneyView.cs" />
-    <Compile Include="Views\SearchJourneyView.designer.cs">
-      <DependentUpon>SearchJourneyView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SearchResultView.cs" />
-    <Compile Include="Views\SearchResultView.designer.cs">
-      <DependentUpon>SearchResultView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SettingsView.cs" />
-    <Compile Include="Views\SettingsView.designer.cs">
-      <DependentUpon>SettingsView.cs</DependentUpon>
     </Compile>
     <None Include="app.config" />
     <None Include="Info.plist" />
@@ -190,11 +158,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Platform, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.4.4.0\lib\Xamarin.iOS10\MvvmCross.Platform.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.4.1.6\lib\Xamarin.iOS10\MvvmCross.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Platform.iOS, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.4.4.0\lib\Xamarin.iOS10\MvvmCross.Platform.iOS.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.4.1.6\lib\Xamarin.iOS10\MvvmCross.Platform.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Json, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -261,6 +229,14 @@
       <HintPath>..\packages\Xam.Plugin.Connectivity.2.1.2\lib\Xamarin.iOS10\Plugin.Connectivity.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Plugin.Geolocator, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.3.0.4\lib\Xamarin.iOS10\Plugin.Geolocator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Geolocator.Abstractions, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.Geolocator.3.0.4\lib\Xamarin.iOS10\Plugin.Geolocator.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Plugin.Media, Version=2.6.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugin.Media.2.6.1\lib\Xamarin.iOS10\Plugin.Media.dll</HintPath>
       <Private>True</Private>
@@ -311,6 +287,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\Assets.xcassets\" />
+    <Folder Include="Services\" />
+    <Folder Include="TableViewSources\" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json">

@@ -24,7 +24,7 @@ namespace Glimpse.Core.UnitTests.Tests.ViewModels
 
             //assert
             Assert.AreEqual(mapViewModel.Stores.Count, 3);
-        }*/
+        } */
 
    
     }
