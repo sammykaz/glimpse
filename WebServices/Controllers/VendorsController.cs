@@ -1,22 +1,39 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Glimpse.Core.Model;
 using WebServices.Models;
 
-namespace WebServices.Controllers.VendorsController
+namespace WebServices.Controllers
 {
     public class VendorsController : ApiController
     {
-        private readonly GlimpseDbContext db = new GlimpseDbContext();
+        private GlimpseDbContext db = new GlimpseDbContext();
 
         // GET: api/Vendors
         public IQueryable<Vendor> GetVendors()
         {
             return db.Vendors;
+        }
+
+        // GET: api/Vendors/5
+        [ResponseType(typeof(Vendor))]
+        public IHttpActionResult GetVendor(int id)
+        {
+            Vendor vendor = db.Vendors.Find(id);
+            if (vendor == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(vendor);
         }
 
         // GET: api/Vendors/5
@@ -31,26 +48,19 @@ namespace WebServices.Controllers.VendorsController
             return Ok(vendor);
         }
 
-        // GET: api/Vendors/5
-        [ResponseType(typeof(Vendor))]
-        public IHttpActionResult GetVendor(int id)
-        {
-            var vendor = db.Vendors.Find(id);
-            if (vendor == null)
-                return NotFound();
-
-            return Ok(vendor);
-        }
-
         // PUT: api/Vendors/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutVendor(int id, Vendor vendor)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest(ModelState);
+            }
 
             if (id != vendor.Id)
+            {
                 return BadRequest();
+            }
 
             db.Entry(vendor).State = EntityState.Modified;
 
@@ -61,8 +71,13 @@ namespace WebServices.Controllers.VendorsController
             catch (DbUpdateConcurrencyException)
             {
                 if (!VendorExists(id))
+                {
                     return NotFound();
-                throw;
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -73,21 +88,25 @@ namespace WebServices.Controllers.VendorsController
         public IHttpActionResult PostVendor(Vendor vendor)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest(ModelState);
+            }
 
             db.Vendors.Add(vendor);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new {id = vendor.Id}, vendor);
+            return CreatedAtRoute("DefaultApi", new { id = vendor.Id }, vendor);
         }
 
         // DELETE: api/Vendors/5
         [ResponseType(typeof(Vendor))]
         public IHttpActionResult DeleteVendor(int id)
         {
-            var vendor = db.Vendors.Find(id);
+            Vendor vendor = db.Vendors.Find(id);
             if (vendor == null)
+            {
                 return NotFound();
+            }
 
             db.Vendors.Remove(vendor);
             db.SaveChanges();
@@ -98,7 +117,9 @@ namespace WebServices.Controllers.VendorsController
         protected override void Dispose(bool disposing)
         {
             if (disposing)
+            {
                 db.Dispose();
+            }
             base.Dispose(disposing);
         }
 
