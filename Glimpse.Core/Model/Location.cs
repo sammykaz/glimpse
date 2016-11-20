@@ -1,26 +1,37 @@
 ﻿using MvvmCross.Core.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Glimpse.Core.Model
 {
-    public class Location: MvxNotifyPropertyChanged
+    public class Location : MvxNotifyPropertyChanged
     {
+        public Location(double lat, double lon)
+        {
+            _lat = lat;
+            _lon = lon;
+        }
+
         private double _lat;
+
         public double Lat
         {
             get { return _lat; }
-            set { _lat = value; RaisePropertyChanged(() => Lat); }
+            set
+            {
+                _lat = value;
+                RaisePropertyChanged(() => Lat);
+            }
         }
 
-        private double _lng;
-        public double Lng
+        private double _lon;
+
+        public double Lon
         {
-            get { return _lng; }
-            set { _lng = value; RaisePropertyChanged(() => Lng); }
+            get { return _lon; }
+            set
+            {
+                _lon = value;
+                RaisePropertyChanged(() => Lon);
+            }
         }
 
         public override bool Equals(object obj)
@@ -29,17 +40,17 @@ namespace Glimpse.Core.Model
             if (lRhs == null)
                 return false;
 
-            return lRhs.Lat == Lat && lRhs.Lng == Lng;
+            return (lRhs.Lat == Lat) && (lRhs.Lon == Lon);
         }
 
         public override int GetHashCode()
         {
-            return Lat.GetHashCode() + Lng.GetHashCode();
+            return Lat.GetHashCode() + Lon.GetHashCode();
         }
 
         public override string ToString()
         {
-            return string.Format("{0:0.00000} {1:0.00000}", Lat, Lng);
+            return string.Format("{0:0.00000} {1:0.00000}", Lat, Lon);
         }
     }
 }
