@@ -83,6 +83,7 @@ namespace Glimpse.Core.ViewModel
                     else
                     {
                         ShowViewModel<LoginViewModel>();
+                        //TODO if sign in fails, user goes to login page, should give a warning instead
                     }
 
                 });

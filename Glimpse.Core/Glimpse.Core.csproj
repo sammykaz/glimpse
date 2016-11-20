@@ -47,8 +47,8 @@
     <Compile Include="Contracts\Repository\IStoreRepository.cs" />
     <Compile Include="Contracts\Repository\IVendorRepository .cs" />
     <Compile Include="Contracts\Repository\IUserRepository.cs" />
-    <Compile Include="Contracts\Services\IStoreDataService.cs" />
     <Compile Include="Contracts\Services\ILoginDataService.cs" />
+    <Compile Include="Contracts\Services\IStoreDataService.cs" />
     <Compile Include="Contracts\Services\IVendorDataService.cs" />
     <Compile Include="Contracts\Services\IUserDataService.cs" />
     <Compile Include="Contracts\ViewModel\IMainViewModel.cs" />
@@ -60,8 +60,8 @@
     <Compile Include="Model\App\SearchParameters.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Promotion.cs" />
-    <Compile Include="Model\Store.cs" />
     <Compile Include="Model\Location.cs" />
+    <Compile Include="Model\Store.cs" />
     <Compile Include="Model\Telephone.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Vendor.cs" />

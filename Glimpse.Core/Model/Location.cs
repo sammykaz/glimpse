@@ -4,10 +4,15 @@ namespace Glimpse.Core.Model
 {
     public class Location : MvxNotifyPropertyChanged
     {
-        public Location(double lat, double lon)
+        public Location()
+        {
+
+        }
+
+        public Location(double lat, double lng)
         {
             _lat = lat;
-            _lon = lon;
+            _lng = lng;
         }
 
         private double _lat;
@@ -22,15 +27,15 @@ namespace Glimpse.Core.Model
             }
         }
 
-        private double _lon;
+        private double _lng;
 
-        public double Lon
+        public double Lng
         {
-            get { return _lon; }
+            get { return _lng; }
             set
             {
-                _lon = value;
-                RaisePropertyChanged(() => Lon);
+                _lng = value;
+                RaisePropertyChanged(() => Lng);
             }
         }
 
@@ -40,17 +45,17 @@ namespace Glimpse.Core.Model
             if (lRhs == null)
                 return false;
 
-            return (lRhs.Lat == Lat) && (lRhs.Lon == Lon);
+            return (lRhs.Lat == Lat) && (lRhs.Lng == Lng);
         }
 
         public override int GetHashCode()
         {
-            return Lat.GetHashCode() + Lon.GetHashCode();
+            return Lat.GetHashCode() + Lng.GetHashCode();
         }
 
         public override string ToString()
         {
-            return string.Format("{0:0.00000} {1:0.00000}", Lat, Lon);
+            return string.Format("{0:0.00000} {1:0.00000}", Lat, Lng);
         }
     }
 }
