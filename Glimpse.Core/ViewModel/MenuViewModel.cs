@@ -39,20 +39,28 @@ namespace Glimpse.Core.ViewModel
                 Option = MenuOption.Logout,
                 IsSelected = false
             });
-            MenuItems.Add(new MenuItem
+
+            if (!Settings.IsVendorAccount)
             {
-                Title = "Buyer Profile Page",
-                ViewModelType = typeof(BuyerProfilePageViewModel),
-                Option = MenuOption.BuyerProfile,
-                IsSelected = true
-            });
-            MenuItems.Add(new MenuItem
+                MenuItems.Add(new MenuItem
+                {
+                    Title = "Buyer Profile",
+                    ViewModelType = typeof(BuyerProfilePageViewModel),
+                    Option = MenuOption.BuyerProfile,
+                    IsSelected = true
+                });
+            }
+
+            if (Settings.IsVendorAccount)
             {
-                Title = "Vendor Profile Page",
-                ViewModelType = typeof(VendorProfilePageViewModel),
-                Option = MenuOption.VendorProfile,
-                IsSelected = false
-            });
+                MenuItems.Add(new MenuItem
+                {
+                    Title = "Vendor Profile",
+                    ViewModelType = typeof(VendorProfilePageViewModel),
+                    Option = MenuOption.VendorProfile,
+                    IsSelected = false
+                });
+            }
         }
 
         private void OnMenuEntrySelect(MenuItem item)

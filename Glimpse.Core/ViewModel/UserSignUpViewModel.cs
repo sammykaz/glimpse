@@ -7,6 +7,7 @@ using Glimpse.Core.Model;
 using Glimpse.Core.Services.Data;
 using System;
 using Glimpse.Core.Contracts.Services;
+using Glimpse.Core.Services.General;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -95,6 +96,9 @@ namespace Glimpse.Core.ViewModel
                         UserName = _userName,
                         Password = _password
                     };
+
+                    //Set as User Account
+                    Settings.IsVendorAccount = false;
 
                     await _userDataService.SignUp(user);
 

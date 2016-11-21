@@ -7,6 +7,7 @@ using Glimpse.Core.Model;
 using Glimpse.Core.Services.Data;
 using System;
 using Glimpse.Core.Contracts.Services;
+using Glimpse.Core.Services.General;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -210,6 +211,9 @@ namespace Glimpse.Core.ViewModel
                         Address = new Address() {Country = _country, Province = _province, City = _city, PostalCode = _postalCode, Street = _street, StreetNumber = _streetNumber},
                         Telephone = new Telephone() {PersonalPhoneNumber = _personalPhoneNumber, BusinessPhoneNumber = _businessPhoneNumber}
                     };
+
+                    //Set as Vendor Account
+                    Settings.IsVendorAccount = true;
 
                     ShowCommand<LoginViewModel>();
 

@@ -20,6 +20,9 @@ namespace Glimpse.Core.Services.General
         private const string LoggedInKey = "login_key";
         private static readonly bool isLoggedIn = false;
 
+        private const string IsVendorAccountKey = "is_vendor_account_key";
+        private static readonly bool isVendorAccount = false;
+
         private static ISettings AppSettings
         {
             get
@@ -43,6 +46,12 @@ namespace Glimpse.Core.Services.General
         {
             get { return AppSettings.GetValueOrDefault<bool>(LoggedInKey, isLoggedIn); }
             set { AppSettings.AddOrUpdateValue<bool>(LoggedInKey, value); }
+        }
+
+        public static bool IsVendorAccount
+        {
+            get { return AppSettings.GetValueOrDefault<bool>(IsVendorAccountKey, isVendorAccount); }
+            set { AppSettings.AddOrUpdateValue<bool>(IsVendorAccountKey, value); }
         }
     }
 }
