@@ -1,4 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using Glimpse.Core.Model;
+using Newtonsoft.Json;
+using SQLite.Net.Attributes;
 
 namespace Glimpse.Core.Model
 {
@@ -21,8 +26,6 @@ namespace Glimpse.Core.Model
         public Address Address { get; set; }
 
         public Telephone Telephone { get; set; }
-
-        public List<Promotion> Promotions { get; set; }
 
         private Location _location;
         public Location Location
