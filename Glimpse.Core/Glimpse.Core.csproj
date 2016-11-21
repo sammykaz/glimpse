@@ -134,6 +134,7 @@
     <Compile Include="Services\Data\UserDataService.cs" />
     <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Services\General\Settings.cs" />
+    <Compile Include="Utility\Categories.cs" />
     <Compile Include="Utility\Geocoding.cs" />
     <Compile Include="Utility\MenuOption.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />

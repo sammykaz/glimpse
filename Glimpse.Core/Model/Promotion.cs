@@ -1,5 +1,7 @@
 ﻿
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Glimpse.Core.Model
 {
@@ -19,19 +21,15 @@ namespace Glimpse.Core.Model
             set { _description = value; }
         }
 
-        private List<Category> _categories;
-        public List<Category> Categories
-        {
-            get { return _categories; }
-            set
-            {
-                if (!Category.IsDefined(typeof(Category), value))
-                {
-                    _categories = null;
-                }
+        public int VendorId { get; set; }
 
-                _categories = value;
-            }
+        public List<Category> Categories { get; set; }
+
+        public string CategoriesList
+        {
+            get { return String.Join(",", Categories); }
+
+            set { Categories = value.Split(',').Select(x => (Category)Enum.Parse(typeof(Category), x)).ToList(); }
         }
 
         //These dates will be extracted from a calendar UI in the future.
@@ -46,17 +44,6 @@ namespace Glimpse.Core.Model
 
         //Any promotion logic below
 
-    }
-
-    //Category Types for Promotions
-    public enum Category
-    {
-        Footwear,
-        Electronics,
-        Jewellery,
-        Restaurants,
-        Services,
-        Apparel
     }
 
 }
