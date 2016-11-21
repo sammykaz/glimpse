@@ -1,29 +1,21 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using System.Globalization;
 using Android.Gms.Maps.Model;
+using Glimpse.Core.Model;
 using MvvmCross.Platform.Converters;
 
 namespace Glimpse.Droid.Helpers
 {
-    class LatLngValueConverter : MvxValueConverter<Core.Model.Location, LatLng>
+    public class LatLngValueConverter : MvxValueConverter<Location, LatLng>
     {
-        protected override LatLng Convert(Core.Model.Location value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        protected override LatLng Convert(Location value, Type targetType, object parameter, CultureInfo culture)
         {
             return new LatLng(value.Lat, value.Lng);
         }
 
-        protected override Core.Model.Location ConvertBack(LatLng value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        protected override Location ConvertBack(LatLng value, Type targetType, object parameter, CultureInfo culture)
         {
-            return new Core.Model.Location() { Lat = value.Latitude, Lng = value.Longitude };
+            return new Location {Lat = value.Latitude, Lng = value.Longitude};
         }
     }
 }

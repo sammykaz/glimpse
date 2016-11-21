@@ -11,7 +11,7 @@ using System.Web.Http.Description;
 using Glimpse.Core.Model;
 using WebServices.Models;
 
-namespace WebServices.Controllers.VendorsController
+namespace WebServices.Controllers
 {
     public class VendorsController : ApiController
     {
@@ -32,6 +32,18 @@ namespace WebServices.Controllers.VendorsController
             {
                 return NotFound();
             }
+
+            return Ok(vendor);
+        }
+
+        // GET: api/Vendors/5
+        [Route("api/Vendors/Search/{userName}")]
+        [ResponseType(typeof(Vendor))]
+        public IHttpActionResult GetVendor(string userName)
+        {
+            var vendor = db.Vendors.Where(e => e.UserName == userName);
+            if (vendor == null)
+                return NotFound();
 
             return Ok(vendor);
         }

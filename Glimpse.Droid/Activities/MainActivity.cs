@@ -1,5 +1,6 @@
 
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.Content.Res;
 using Android.OS;
@@ -12,7 +13,7 @@ using Glimpse.Core.ViewModel;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using System;
+using Glimpse.Core.Services.General;
 
 namespace Glimpse.Droid.Activities
 {
@@ -27,9 +28,7 @@ namespace Glimpse.Droid.Activities
         private FragmentManager _fragmentManager;
         internal DrawerLayout DrawerLayout { get { return _drawerLayout; } }
 
-        static MainActivity instance = new MainActivity();
-
-        public static MainActivity CurrentActivity => instance;
+        private static MainActivity mainActivity;
 
         public new MainViewModel ViewModel
         {
@@ -37,31 +36,43 @@ namespace Glimpse.Droid.Activities
             set { base.ViewModel = value; }
         }
 
+        public static MainActivity getInstance()
+        {
+            return mainActivity;
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnCreate(savedInstanceState);
+            if (CheckAuthenticationStatus())
+            {
 
-            _fragmentManager = FragmentManager;
+                base.OnCreate(savedInstanceState);
 
-             SetContentView(Resource.Layout.MainView);
+                _fragmentManager = FragmentManager;
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
+                SetContentView(Resource.Layout.MainView);
+                mainActivity = this;
 
-            _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int)GravityFlags.Start);
-            _drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout, Resource.String.drawer_open, Resource.String.drawer_close);
-            _drawerToggle.DrawerClosed += _drawerToggle_DrawerClosed;
-            _drawerToggle.DrawerOpened += _drawerToggle_DrawerOpened;
+                var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+                SetSupportActionBar(toolbar);
 
-            SupportActionBar.SetDisplayShowTitleEnabled(false);
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            _drawerToggle.DrawerIndicatorEnabled = true;
-            _drawerLayout.SetDrawerListener(_drawerToggle);
 
-            ViewModel.ShowLoginPage();
-            ViewModel.ShowMenu();
 
+                _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+                _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int) GravityFlags.Start);
+                _drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout, Resource.String.drawer_open,
+                    Resource.String.drawer_close);
+                _drawerToggle.DrawerClosed += _drawerToggle_DrawerClosed;
+                _drawerToggle.DrawerOpened += _drawerToggle_DrawerOpened;
+
+                SupportActionBar.SetDisplayShowTitleEnabled(false);
+                SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+                _drawerToggle.DrawerIndicatorEnabled = true;
+                _drawerLayout.SetDrawerListener(_drawerToggle);
+
+                ViewModel.ShowMenu();
+                ViewModel.ShowMap();
+            }
         }
 
    
@@ -75,6 +86,8 @@ namespace Glimpse.Droid.Activities
             InvalidateOptionsMenu();
         }
 
+
+        
         public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo, Android.Support.V4.App.FragmentTransaction transaction)
         {
             var currentFrag = SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MvxFragment;
@@ -90,6 +103,10 @@ namespace Glimpse.Droid.Activities
             _drawerLayout.CloseDrawers();
         }
 
+
+
+
+
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             if (_drawerToggle.OnOptionsItemSelected(item))
@@ -99,6 +116,8 @@ namespace Glimpse.Droid.Activities
 
             return base.OnOptionsItemSelected(item);
         }
+
+        
 
         protected override void OnPostCreate(Bundle savedInstanceState)
         {
@@ -126,6 +145,23 @@ namespace Glimpse.Droid.Activities
             googleMap.UiSettings.CompassEnabled = true;
             googleMap.MoveCamera(CameraUpdateFactory.ZoomIn());
 
+        }
+
+        private bool CheckAuthenticationStatus()
+        {
+            //check your shared pref value for login in this method
+            if (Settings.LoginStatus)
+            {
+                if (LoginActivity.getInstance() != null)
+                {
+                    LoginActivity.getInstance().Finish();
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

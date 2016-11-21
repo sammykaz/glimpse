@@ -15,7 +15,7 @@ using Glimpse.Droid.Views;
 
 namespace Glimpse.Droid.Views
 {
-    [MvxFragment(typeof(Glimpse.Core.ViewModel.MainViewModel), Resource.Id.content_frame, true)]
+    [MvxFragment(typeof(Glimpse.Core.ViewModel.LoginMainViewModel), Resource.Id.login_content, true)]
     [Register("glimpse.droid.views.VendorSignUpFragment")]
     public class VendorSignUpFragment : MvxFragment<VendorSignUpViewModel>
     {
@@ -30,7 +30,7 @@ namespace Glimpse.Droid.Views
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
-            (this.Activity as MainActivity).SetCustomTitle("Vendor Sign Up");
+            (this.Activity as LoginActivity).SetCustomTitle("Vendor Sign Up");
             Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
             acc_Button.Click += delegate
             {
@@ -45,7 +45,7 @@ namespace Glimpse.Droid.Views
         public void OnClick(View view)
         {
             string _firstName = view.FindViewById<EditText>(Resource.Id.txtFirstName).Text;
-            string _company = view.FindViewById<EditText>(Resource.Id.txtCompany).Text;
+            string _company = view.FindViewById<EditText>(Resource.Id.txtCompanyName).Text;
             string _email = view.FindViewById<EditText>(Resource.Id.txtEmail).Text;
 
             SendMail sendMail = new Glimpse.Droid.Views.SendMail();

@@ -1,26 +1,42 @@
 ﻿using MvvmCross.Core.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Glimpse.Core.Model
 {
-    public class Location: MvxNotifyPropertyChanged
+    public class Location : MvxNotifyPropertyChanged
     {
+        public Location()
+        {
+
+        }
+
+        public Location(double lat, double lng)
+        {
+            _lat = lat;
+            _lng = lng;
+        }
+
         private double _lat;
+
         public double Lat
         {
             get { return _lat; }
-            set { _lat = value; RaisePropertyChanged(() => Lat); }
+            set
+            {
+                _lat = value;
+                RaisePropertyChanged(() => Lat);
+            }
         }
 
         private double _lng;
+
         public double Lng
         {
             get { return _lng; }
-            set { _lng = value; RaisePropertyChanged(() => Lng); }
+            set
+            {
+                _lng = value;
+                RaisePropertyChanged(() => Lng);
+            }
         }
 
         public override bool Equals(object obj)
@@ -29,7 +45,7 @@ namespace Glimpse.Core.Model
             if (lRhs == null)
                 return false;
 
-            return lRhs.Lat == Lat && lRhs.Lng == Lng;
+            return (lRhs.Lat == Lat) && (lRhs.Lng == Lng);
         }
 
         public override int GetHashCode()

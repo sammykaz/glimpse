@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
+using WebServices;
 
-[assembly: OwinStartup(typeof(WebServices.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 
 namespace WebServices
 {

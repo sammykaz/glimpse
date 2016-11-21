@@ -2,6 +2,7 @@
 {
     public enum MenuOption
     {
+        Logout,
         VendorProfile,
         BuyerProfile        
     }

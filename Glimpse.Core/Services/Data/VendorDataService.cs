@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
@@ -9,26 +10,21 @@ namespace Glimpse.Core.Services.Data
     public class VendorDataService: IVendorDataService
     {
         private readonly IVendorRepository _vendorRepository;
-        private User _activeUser;
+        private Vendor _activeVendor;
         public VendorDataService(IVendorRepository vendorRepository)
         {
             _vendorRepository = vendorRepository;
         }
 
-        public async Task<User> SearchUser(string userName)
+        public async Task<List<Vendor>> SearchUser(string userName)
         {
-            return await _vendorRepository.SearchUser(userName);
+            return await _vendorRepository.SearchVendor(userName);
         }
 
-        public async Task<User> Login(string userName, string password)
-        {
-            _activeUser = await _vendorRepository.Login(userName, password);
-            return _activeUser;
-        }
 
-        public User GetActiveUser()
+        public Vendor GetActiveVendor()
         {
-            return _activeUser;
+            return _activeVendor;
         }
 
         public async Task SignUp(Vendor vendor)
