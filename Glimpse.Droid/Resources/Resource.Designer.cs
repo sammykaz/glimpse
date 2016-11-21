@@ -3178,6 +3178,9 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f090082
 			public const int touch_outside = 2131296386;
 			
+			// aapt resource value: 0x7f0900df
+			public const int txtBusinessPhoneNumber = 2131296479;
+			
 			// aapt resource value: 0x7f0900da
 			public const int txtCity = 2131296474;
 			
@@ -3198,6 +3201,9 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f0900cc
 			public const int txtPassword = 2131296460;
+			
+			// aapt resource value: 0x7f0900de
+			public const int txtPersonalPhoneNumber = 2131296478;
 			
 			// aapt resource value: 0x7f0900db
 			public const int txtPostalCode = 2131296475;

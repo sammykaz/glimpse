@@ -17,7 +17,8 @@
         android:hint="First Name"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text FirstName, Mode=TwoWay" />
+        local:MvxBind="Text FirstName, Mode=TwoWay"
+        android:inputType="text" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -28,7 +29,8 @@
         android:hint="Last Name"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text LastName, Mode=TwoWay" />
+        local:MvxBind="Text LastName, Mode=TwoWay"
+        android:inputType="text" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -39,7 +41,8 @@
         android:hint="Company"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text CompanyName, Mode=TwoWay" />
+        local:MvxBind="Text CompanyName, Mode=TwoWay"
+        android:inputType="text" />
     <EditText
         android:layout_below="@id/txtCompanyName"
         android:inputType="textEmailAddress"
@@ -64,7 +67,8 @@
         android:hint="Username"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text UserName, Mode=TwoWay" />
+        local:MvxBind="Text UserName, Mode=TwoWay"
+        android:inputType="text" />
     <EditText
         android:layout_below="@id/txtUserName"
         android:inputType="textPassword"
@@ -89,7 +93,8 @@
         android:hint="Country"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text Country, Mode=TwoWay" />
+        local:MvxBind="Text Country, Mode=TwoWay"
+        android:inputType="text" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -100,7 +105,8 @@
         android:hint="Province"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text Province, Mode=TwoWay" />
+        local:MvxBind="Text Province, Mode=TwoWay"
+        android:inputType="text" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -111,7 +117,8 @@
         android:hint="City"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text City, Mode=TwoWay" />
+        local:MvxBind="Text City, Mode=TwoWay"
+        android:inputType="text" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -122,7 +129,8 @@
         android:hint="PostalCode"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text PostalCode, Mode=TwoWay" />
+        local:MvxBind="Text PostalCode, Mode=TwoWay"
+        android:inputType="text" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -133,7 +141,8 @@
         android:hint="Street"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text Street, Mode=TwoWay" />
+        local:MvxBind="Text Street, Mode=TwoWay"
+        android:inputType="text" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="35dp"
@@ -144,7 +153,32 @@
         android:hint="StreetNumber"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text StreetNumber, Mode=TwoWay" />
+        local:MvxBind="Text StreetNumber, Mode=TwoWay"
+        android:inputType="number" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:id="@+id/txtPersonalPhoneNumber"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="PersonalPhoneNumber"
+        android:paddingLeft="10dp"
+        android:textColor="#000"
+        local:MvxBind="Text PersonalPhoneNumber, Mode=TwoWay"
+        android:inputType="phone" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:id="@+id/txtBusinessPhoneNumber"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="BusinessPhoneNumber"
+        android:paddingLeft="10dp"
+        android:textColor="#000"
+        local:MvxBind="Text BusinessPhoneNumber, Mode=TwoWay"
+        android:inputType="phone" />
     <Button
         android:text="Sign Up!"
         android:layout_width="match_parent"
