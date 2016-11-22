@@ -15,7 +15,7 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
         [TestInitialize]
         public void Initialize()
         {
-            repository = new VendorRepository(); ;
+            repository = new VendorRepository();
         }
 
         [TestMethod]
@@ -43,20 +43,23 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             address.PostalCode = "h3z4k1";
 
             Telephone telephone = new Telephone();
-            telephone.BusinessPhoneNumber = "514-543-6363";
-            telephone.PersonalPhoneNumber = "514-852-8542";
+            telephone.BusinessPhoneNumber = "5145436363";
+            telephone.PersonalPhoneNumber = "5148528542";
+
+            Location location = new Location(50.0, -150);
 
             Vendor vendor = new Vendor
             {
-                FirstName = "Joseph",
-                LastName = "Boolster",
-                UserName = "JoJo123",
-                Email = "jojo@gmail.com",
-                Password = "mypassword",
+                FirstName = "george",
+                LastName = "ge",
+                UserName = "ge123",
+                Email = "gege@gmail.com",
+                Password = "gepass",
                 Address = address,
                 Telephone = telephone,
-                CompanyName = "Boolmeister",
-                Salt = "salt"
+                CompanyName = "ge1231",
+                Salt = "geosalt",
+                Location = location
             };
 
             //act 
