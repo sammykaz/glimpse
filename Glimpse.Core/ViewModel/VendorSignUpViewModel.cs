@@ -209,19 +209,17 @@ namespace Glimpse.Core.ViewModel
                         UserName = _userName,
                         Password = _password,
                         Address = new Address() {Country = _country, Province = _province, City = _city, PostalCode = _postalCode, Street = _street, StreetNumber = _streetNumber},
-                        Telephone = new Telephone() {PersonalPhoneNumber = _personalPhoneNumber, BusinessPhoneNumber = _businessPhoneNumber},
-                        Location = new Location() { Lat = 0.0, Lng = 0.0 }
-                        //TODO Location initially set to 0?
+                        Telephone = new Telephone() {PersonalPhoneNumber = _personalPhoneNumber, BusinessPhoneNumber = _businessPhoneNumber}
                     };
+
+                    vendor.Location = Utility.Geocoding.Geocode(vendor.Address);
 
                     //Set as Vendor Account
                     Settings.IsVendorAccount = true;
 
-                    ShowCommand<LoginViewModel>();
-
                     await _vendorDataService.SignUp(vendor);
 
-                   
+                    ShowCommand<MapViewModel>();
                 });
             }
         }

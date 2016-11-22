@@ -102,7 +102,7 @@ namespace Glimpse.Core.ViewModel
 
                     await _userDataService.SignUp(user);
 
-                    ShowCommand<LoginViewModel>();
+                    ShowCommand<MapViewModel>();
 
                 });
             }
