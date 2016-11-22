@@ -121,6 +121,14 @@
       <HintPath>..\packages\Xam.Plugin.Geolocator.3.0.4\lib\net45\Plugin.Geolocator.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Plugin.Settings, Version=2.6.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.6.0.12-beta\lib\net45\Plugin.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions, Version=2.6.0.12, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugins.Settings.2.6.0.12-beta\lib\net45\Plugin.Settings.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http">
@@ -158,12 +166,15 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Mocks\TestSettingsMock.cs" />
     <Compile Include="Mocks\RepositoryMocks.cs" />
     <Compile Include="Mocks\ServiceMocks.cs" />
+    <Compile Include="Tests\Repository\LoginRepositoryTests.cs" />
     <Compile Include="Tests\Repository\StoreRepositoryTests.cs" />
     <Compile Include="Tests\Repository\UserRepositoryTests.cs" />
     <Compile Include="Tests\Repository\VendorRepositoryTests.cs" />
     <Compile Include="Tests\Services\CryptographyTests.cs" />
+    <Compile Include="Tests\Services\LoginDataServiceTests.cs" />
     <Compile Include="Tests\Services\StoreDataServiceTests.cs" />
     <Compile Include="Tests\Services\UserDataServiceTests.cs" />
     <Compile Include="Tests\ViewModels\MapViewModelTests.cs" />
@@ -185,6 +196,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Helpers\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <Choose>
