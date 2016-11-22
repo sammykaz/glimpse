@@ -216,10 +216,11 @@ namespace Glimpse.Core.ViewModel
 
                     //Set as Vendor Account
                     Settings.IsVendorAccount = true;
+                    Settings.LoginStatus = true;
 
                     await _vendorDataService.SignUp(vendor);
 
-                    ShowCommand<MapViewModel>();
+                    ShowViewModel<MapViewModel>();
                 });
             }
         }

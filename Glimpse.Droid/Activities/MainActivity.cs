@@ -43,11 +43,9 @@ namespace Glimpse.Droid.Activities
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            base.OnCreate(savedInstanceState);
             if (CheckAuthenticationStatus())
             {
-
-                base.OnCreate(savedInstanceState);
-
                 _fragmentManager = FragmentManager;
 
                 SetContentView(Resource.Layout.MainView);
