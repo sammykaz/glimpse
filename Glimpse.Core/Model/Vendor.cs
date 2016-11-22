@@ -23,19 +23,11 @@ namespace Glimpse.Core.Model
 
         public string Salt { get; set; }
 
-        public Address Address { get; set; }
+        public Address Address { set; get; }
 
         public Telephone Telephone { get; set; }
 
-        private Location _location;
-        public Location Location
-        {
-            get { return _location; }
-            set
-            {
-                _location = Utility.Geocoding.Geocode(Address.ToString());
-            }
-        }
+        public Location Location { get; set; }
 
     }
 }

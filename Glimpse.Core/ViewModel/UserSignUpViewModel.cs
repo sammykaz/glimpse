@@ -99,11 +99,11 @@ namespace Glimpse.Core.ViewModel
 
                     //Set as User Account
                     Settings.IsVendorAccount = false;
+                    Settings.LoginStatus = true;
 
                     await _userDataService.SignUp(user);
 
-                    ShowCommand<LoginViewModel>();
-
+                    ShowViewModel<MapViewModel>();
                 });
             }
         }

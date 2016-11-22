@@ -2,6 +2,7 @@
 using Moq;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Model;
+using Glimpse.Core.Repositories;
 using Glimpse.Core.Services.Data;
 
 namespace Glimpse.Core.UnitTests.Mocks
@@ -22,6 +23,14 @@ namespace Glimpse.Core.UnitTests.Mocks
 
             var storeDataService = new StoreDataService(mockStoreRepository.Object);
             return storeDataService;
+        }
+
+        public static LoginDataService GetMockLoginDataService()
+        {
+            var mockUserRepository = new Mock<UserRepository>();
+            var mockVendorRepository = new Mock<VendorRepository>();
+            var loginDataService = new LoginDataService(mockUserRepository.Object,mockVendorRepository.Object);
+            return loginDataService;
         }
 
     }
