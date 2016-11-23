@@ -1,39 +1,35 @@
-﻿
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using Glimpse.Core.Model;
+using Newtonsoft.Json;
+using SQLite.Net.Attributes;
+
 using System.Collections.Generic;
 
 namespace Glimpse.Core.Model
 {
     public class Vendor
     {
-        //Vendor Sign up information
-
         public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string UserName { get; set; }
 
         public string Email { get; set; }
 
-        public string Address { get; set; }
-
         public string Password { get; set; }
 
-        public string Company { get; set; }
-
-        //Vendor added information
-
-        public List<Promotion> Promotions { get; set; }
-
-        
-        private Location _location;
-        public Location Location
-        {
-            get { return _location; }
-            set
-            {
-                Location temp;
-                _location = Utility.Geocoding.Geocode(Address , out temp); }
-            }
-
-        //For crypto
+        public string CompanyName { get; set; }
 
         public string Salt { get; set; }
+
+        public Address Address { set; get; }
+
+        public Telephone Telephone { get; set; }
+
+        public Location Location { get; set; }
+
     }
 }

@@ -1,42 +1,35 @@
 ﻿
-using MvvmCross.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Glimpse.Core.Model
 {
-    public class Promotion : MvxNotifyPropertyChanged
+    public class Promotion
     {
         public string _title;
         public string Title
         {
             get { return _title; }
-            set { _title = value; RaisePropertyChanged(() => Title); }
+            set { _title = value; }
         }
 
         public string _description;
         public string Description
         {
             get { return _description; }
-            set { _description = value; RaisePropertyChanged(() => Description); }
+            set { _description = value; }
         }
 
-        private List<Category> _categories = new List<Category>();
-        public List<Category> Categories
-        {
-            get { return _categories; }
-            set
-            {
-                if (!Category.IsDefined(typeof(Category), _categories))
-                {
-                    _categories = null;
-                }
+        public int VendorId { get; set; }
 
-                _categories = value;
-            }
+        public List<Category> Categories { get; set; }
+
+        public string CategoriesList
+        {
+            get { return String.Join(",", Categories); }
+
+            set { Categories = value.Split(',').Select(x => (Category)Enum.Parse(typeof(Category), x)).ToList(); }
         }
 
         //These dates will be extracted from a calendar UI in the future.
@@ -44,24 +37,13 @@ namespace Glimpse.Core.Model
 
         public string PromotionEndDate { get; set; }
 
-        public bool PromotionActive;
+        public bool PromotionActive { get; set; }
 
 
         //Add images here
 
         //Any promotion logic below
 
-    }
-    
-    //Category Types for Promotions
-    public enum Category
-    {
-        Footwear,
-        Electronics,
-        Jewellery,
-        Restaurants,
-        Services,
-        Apparel
     }
 
 }

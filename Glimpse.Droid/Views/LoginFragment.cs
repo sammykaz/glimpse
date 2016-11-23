@@ -7,31 +7,35 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
-using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Droid.Shared.Attributes;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using Glimpse.Core.ViewModel;
 using Glimpse.Droid.Activities;
 using Glimpse.Droid.Extensions;
+using MvvmCross.Binding.Droid.BindingContext;
+using MvvmCross.Droid.Shared.Attributes;
+using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
 namespace Glimpse.Droid.Views
 {
-    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame, true)]
-    [Register("glimpse.droid.views.ProfilePageFragment")]
-    public class ProfilePageFragment : MvxFragment<ProfilePageViewModel>
+    [MvxFragment(typeof(Glimpse.Core.ViewModel.LoginMainViewModel), Resource.Id.login_content, true)]
+    [Register("glimpse.droid.views.LoginFragment")]
+    public class LoginFragment : MvxFragment<LoginViewModel>
     {
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            // Use this to return your custom view for this Fragment
+            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
             base.OnCreateView(inflater, container, savedInstanceState);
-            return this.BindingInflate(Resource.Layout.ProfileView, null);
+            return this.BindingInflate(Resource.Layout.LogInView, null);
         }
 
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
-            (this.Activity as MainActivity).SetCustomTitle("Profile");
+            (this.Activity as LoginActivity).SetCustomTitle("Login");
         }
     }
 }

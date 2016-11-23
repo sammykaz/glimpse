@@ -40,8 +40,65 @@
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
     <Content Include="bin\Debug\Glimpse.Core.dll" />
-    <Content Include="bin\Debug\Glimpse.Core.pdb" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Release\AWSSDK.Core.dll" />
+    <Content Include="bin\Release\AWSSDK.Core.pdb" />
+    <Content Include="bin\Release\AWSSDK.Core.xml" />
+    <Content Include="bin\Release\AWSSDK.DynamoDBv2.dll" />
+    <Content Include="bin\Release\AWSSDK.DynamoDBv2.pdb" />
+    <Content Include="bin\Release\AWSSDK.DynamoDBv2.xml" />
+    <Content Include="bin\Release\Glimpse.Core.dll" />
+    <Content Include="bin\Release\Glimpse.Core.pdb" />
+    <Content Include="bin\Release\Glimpse.Localization.dll" />
+    <Content Include="bin\Release\Glimpse.Localization.pdb" />
+    <Content Include="bin\Release\MvvmCross.Binding.dll" />
+    <Content Include="bin\Release\MvvmCross.Core.dll" />
+    <Content Include="bin\Release\MvvmCross.Droid.Support.V7.Fragging.dll" />
+    <Content Include="bin\Release\MvvmCross.Localization.dll" />
+    <Content Include="bin\Release\MvvmCross.Platform.dll" />
+    <Content Include="bin\Release\MvvmCross.Plugins.Messenger.dll" />
+    <Content Include="bin\Release\MvvmCross.Plugins.Sqlite.dll" />
+    <Content Include="bin\Release\MvvmCross.Plugins.WebBrowser.dll" />
+    <Content Include="bin\Release\Newtonsoft.Json.dll" />
+    <Content Include="bin\Release\Newtonsoft.Json.xml" />
+    <Content Include="bin\Release\nl-BE\Glimpse.Localization.resources.dll" />
+    <Content Include="bin\Release\PCLCrypto.dll" />
+    <Content Include="bin\Release\PCLCrypto.xml" />
+    <Content Include="bin\Release\PCLStorage.Abstractions.dll" />
+    <Content Include="bin\Release\PCLStorage.Abstractions.xml" />
+    <Content Include="bin\Release\PCLStorage.dll" />
+    <Content Include="bin\Release\PCLStorage.xml" />
+    <Content Include="bin\Release\PInvoke.BCrypt.dll" />
+    <Content Include="bin\Release\PInvoke.BCrypt.xml" />
+    <Content Include="bin\Release\PInvoke.Kernel32.dll" />
+    <Content Include="bin\Release\PInvoke.Kernel32.xml" />
+    <Content Include="bin\Release\PInvoke.NCrypt.dll" />
+    <Content Include="bin\Release\PInvoke.NCrypt.xml" />
+    <Content Include="bin\Release\PInvoke.Windows.Core.dll" />
+    <Content Include="bin\Release\PInvoke.Windows.Core.xml" />
+    <Content Include="bin\Release\Plugin.Connectivity.Abstractions.dll" />
+    <Content Include="bin\Release\Plugin.Connectivity.Abstractions.pdb" />
+    <Content Include="bin\Release\Plugin.Connectivity.Abstractions.xml" />
+    <Content Include="bin\Release\Plugin.Connectivity.dll" />
+    <Content Include="bin\Release\Plugin.Connectivity.pdb" />
+    <Content Include="bin\Release\Plugin.Connectivity.xml" />
+    <Content Include="bin\Release\Plugin.Settings.Abstractions.dll" />
+    <Content Include="bin\Release\Plugin.Settings.Abstractions.xml" />
+    <Content Include="bin\Release\Plugin.Settings.dll" />
+    <Content Include="bin\Release\Plugin.Settings.xml" />
+    <Content Include="bin\Release\SQLite.Net.Async.dll" />
+    <Content Include="bin\Release\SQLite.Net.dll" />
+    <Content Include="bin\Release\System.Net.Http.Extensions.dll" />
+    <Content Include="bin\Release\System.Net.Http.Extensions.xml" />
+    <Content Include="bin\Release\System.Net.Http.Primitives.dll" />
+    <Content Include="bin\Release\System.Net.Http.Primitives.xml" />
+    <Content Include="bin\Release\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="bin\Release\Validation.dll" />
+    <Content Include="bin\Release\Validation.xml" />
     <Content Include="Glimpse.Core.csproj.vspscc" />
+    <Content Include="obj\Debug\Glimpse.Core.dll" />
+    <Content Include="obj\Debug\Glimpse.Core.pdb" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
@@ -50,6 +107,7 @@
     <Compile Include="Contracts\Repository\IStoreRepository.cs" />
     <Compile Include="Contracts\Repository\IVendorRepository .cs" />
     <Compile Include="Contracts\Repository\IUserRepository.cs" />
+    <Compile Include="Contracts\Services\ILoginDataService.cs" />
     <Compile Include="Contracts\Services\IStoreDataService.cs" />
     <Compile Include="Contracts\Services\IVendorDataService.cs" />
     <Compile Include="Contracts\Services\IUserDataService.cs" />
@@ -58,18 +116,14 @@
     <Compile Include="Contracts\ViewModel\ISearchResultViewModel.cs" />
     <Compile Include="Converters\UploadingImageValueConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Model\Address.cs" />
     <Compile Include="Model\App\MenuItem.cs" />
     <Compile Include="Model\App\SearchParameters.cs" />
     <Compile Include="Model\BaseModel.cs" />
-    <Compile Include="Model\City.cs" />
     <Compile Include="Model\Promotion.cs" />
-    <Compile Include="Model\Currency.cs" />
-    <Compile Include="Model\Store.cs" />
-    <Compile Include="Model\Journey.cs" />
     <Compile Include="Model\Location.cs" />
-    <Compile Include="Model\SavedJourney.cs" />
-    <Compile Include="Model\Settings.cs" />
-    <Compile Include="Model\User2.cs" />
+    <Compile Include="Model\Store.cs" />
+    <Compile Include="Model\Telephone.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,13 +132,19 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="RestClient\RestClient.cs" />
     <Compile Include="Services\Data\StoreDataService.cs" />
+    <Compile Include="Services\Data\LoginDataService.cs" />
     <Compile Include="Services\Data\VendorDataService.cs" />
     <Compile Include="Services\Data\UserDataService.cs" />
     <Compile Include="Services\General\Cryptography.cs" />
+    <Compile Include="Services\General\Settings.cs" />
+    <Compile Include="Utility\Categories.cs" />
     <Compile Include="Utility\Geocoding.cs" />
     <Compile Include="Utility\MenuOption.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BuyerProfilePageViewModel.cs" />
+    <Compile Include="ViewModel\LoginMainViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\StartingMapViewModel.cs" />
     <Compile Include="ViewModel\CreatePromotionPart2ViewModel.cs" />
     <Compile Include="ViewModel\CreatePromotionViewModel.cs" />
     <Compile Include="ViewModel\LoginPageViewModel.cs" />
@@ -92,12 +152,14 @@
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\ProfilePageViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
+    <Compile Include="ViewModel\SignInViewModel.cs" />
     <Compile Include="ViewModel\VendorProfilePageViewModel.cs" />
     <Compile Include="ViewModel\UserSignUpViewModel.cs" />
     <Compile Include="ViewModel\VendorSignUpViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="bin\Release\Glimpse.Core.dll.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -108,9 +170,6 @@
     <Reference Include="AWSSDK.DynamoDBv2, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
       <HintPath>..\packages\AWSSDK.DynamoDBv2.3.3.0.1\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+xamarinios10+MonoTouch10\AWSSDK.DynamoDBv2.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="Mono.Android">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\MonoAndroid\v6.0\Mono.Android.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Binding, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Binding.4.1.4\lib\portable-net45+win+wpa81+wp80\MvvmCross.Binding.dll</HintPath>
@@ -128,15 +187,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Platform, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.4.4.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.4.1.4\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Messenger, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Plugin.Messenger.4.1.4\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.Messenger.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="MvvmCross.Plugins.PictureChooser, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Plugin.PictureChooser.4.4.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.PictureChooser.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Sqlite, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -185,6 +240,14 @@
     </Reference>
     <Reference Include="Plugin.Connectivity.Abstractions, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xam.Plugin.Connectivity.2.1.2\lib\portable-net45+wp80+wp81+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+Xamarin.Mac20+UAP10\Plugin.Connectivity.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Settings, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\login_branch\packages\Xam.Plugins.Settings.2.5.1.0\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Plugin.Settings.Abstractions, Version=2.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\login_branch\packages\Xam.Plugins.Settings.2.5.1.0\lib\portable-net45+wp80+win8+wpa81\Plugin.Settings.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Plugin.Geolocator, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -237,9 +300,7 @@
     <Analyzer Include="..\packages\AWSSDK.DynamoDBv2.3.3.0.1\analyzers\dotnet\cs\AWSSDK.DynamoDBv2.CodeAnalysis.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Fake\" />
-    <Folder Include="Messages\" />
-    <Folder Include="obj\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />

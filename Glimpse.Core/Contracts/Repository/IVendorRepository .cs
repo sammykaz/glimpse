@@ -6,9 +6,8 @@ namespace Glimpse.Core.Contracts.Repository
 {
     public interface IVendorRepository
     {
-        Task<User> SearchUser(string userName);
+        Task<List<Vendor>> SearchVendor(string vendorName);
 
-        Task<User> Login(string userName, string password);
 
         Task PostVendor(Vendor vendor);
 

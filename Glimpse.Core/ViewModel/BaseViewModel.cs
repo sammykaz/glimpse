@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Localization;
@@ -13,6 +14,10 @@ namespace Glimpse.Core.ViewModel
         public BaseViewModel(IMvxMessenger messenger) 
         {
             Messenger = messenger;
+        }
+
+        protected BaseViewModel()
+        {
         }
 
         public IMvxLanguageBinder TextSource => 
@@ -39,5 +44,12 @@ namespace Glimpse.Core.ViewModel
         {
             Messenger = null;
         }
+
+        public MvxCommand ShowCommand<TViewModel>()
+            where TViewModel : IMvxViewModel
+        {
+            return new MvxCommand(() => ShowViewModel<TViewModel>());
+        }
+
     }
 }

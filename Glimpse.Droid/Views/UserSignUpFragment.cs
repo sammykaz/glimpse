@@ -15,7 +15,7 @@ using Glimpse.Droid.Views;
 
 namespace Glimpse.Droid.Views
 {
-    [MvxFragment(typeof(Glimpse.Core.ViewModel.MainViewModel), Resource.Id.content_frame, true)]
+    [MvxFragment(typeof(Glimpse.Core.ViewModel.LoginMainViewModel), Resource.Id.login_content, true)]
     [Register("glimpse.droid.views.UserSignUpFragment")]
     public class UserSignUpFragment : MvxFragment<UserSignUpViewModel>
     {
@@ -30,7 +30,7 @@ namespace Glimpse.Droid.Views
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
-            (this.Activity as MainActivity).SetCustomTitle("User Sign Up");
+            (this.Activity as LoginActivity).SetCustomTitle("User Sign Up");
             Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
             acc_Button.Click += delegate
             {
