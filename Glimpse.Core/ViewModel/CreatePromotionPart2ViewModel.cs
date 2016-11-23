@@ -88,10 +88,9 @@ namespace Glimpse.Core.ViewModel
                     }
                     File = await CrossMedia.Current.PickPhotoAsync();
 
-
                     if (File == null)
                         return;
-
+                        
 //                    image.Source = image.FromStream(() =>
    //                 {
    //                     var stream = file.GetStream();
