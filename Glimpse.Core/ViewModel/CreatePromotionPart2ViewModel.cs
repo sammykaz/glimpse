@@ -5,23 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Core.ViewModels;
-using Android.Widget;
-using Android.Content;
+//using Android.Widget;
+//using Android.Content;
 using Plugin.Media;
-using Android.Media;
+//using Android.Media;
 using Plugin.Media.Abstractions;
+using Glimpse.Core.Model;
+using Glimpse.Core.Contracts.Repository;
 
 namespace Glimpse.Core.ViewModel
 {
     public class CreatePromotionPart2ViewModel : BaseViewModel
     {
 
+        private readonly IPromotionRepository _promotionDataService;
+
+        Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
+
         public CreatePromotionPart2ViewModel(IMvxMessenger messenger) : base(messenger)
         {
         }
 
-
-        Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
+     
+        
 
         protected override void InitFromBundle(IMvxBundle parameters)
         {
@@ -81,26 +87,48 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
-                    if (!CrossMedia.Current.IsPickPhotoSupported)
+                   
+
+                    Promotion promotion = new Promotion()
                     {
-                        // DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
-                        return;
-                    }
-                    File = await CrossMedia.Current.PickPhotoAsync();
 
-                    if (File == null)
-                        return;
-                        
-//                    image.Source = image.FromStream(() =>
-   //                 {
-   //                     var stream = file.GetStream();
-    //                    file.Dispose();
-    //                    return stream;
-     //               });
+                        Title = dataFromCreatePromotionPart1["PromotionTitle"],
+                        Description = dataFromCreatePromotionPart1["PromotionDescription"],
+                        //Categories
 
+
+                    };
+
+                    await _promotionDataService.StorePromotion(promotion);
+
+                    ShowViewModel<MapViewModel>();
                 });
-
             }
+
+
+
+
+
+
+            /*
+        if (!CrossMedia.Current.IsPickPhotoSupported)
+            {
+                // DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
+                return;
+            }
+        File = await CrossMedia.Current.PickPhotoAsync();
+
+        if (File == null)
+            return;
+
+/               image.Source = image.FromStream(() =>
+        {
+            var stream = file.GetStream();
+            file.Dispose();
+            return stream;
+        }); */
+
+
         }
 
 

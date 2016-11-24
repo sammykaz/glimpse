@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using Glimpse.Core.Model;
 using System.Collections.Generic;
 
+
 namespace Glimpse.Core.Contracts.Repository
 {
     public interface IPromotionRepository
     {
-        Task<Promotion> GetPromotion(int id);
+        Task<List<Promotion>> GetPromotion(int id);
 
         Task StorePromotion(Promotion promotion);
     }

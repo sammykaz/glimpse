@@ -61,7 +61,7 @@ namespace Glimpse.Droid.Activities
 
 
                 _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-                _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int) GravityFlags.Start);
+                _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int)GravityFlags.Start);
                 _drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout, Resource.String.drawer_open,
                     Resource.String.drawer_close);
                 _drawerToggle.DrawerClosed += _drawerToggle_DrawerClosed;
@@ -76,7 +76,7 @@ namespace Glimpse.Droid.Activities
                 ViewModel.ShowMap();
 
             }
-
+        }
         //uploading picture from gallery
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
@@ -88,7 +88,6 @@ namespace Glimpse.Droid.Activities
                 imageView.SetImageURI(data.Data);
             }
                
-            }
         }
 
        
