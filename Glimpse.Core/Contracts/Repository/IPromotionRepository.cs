@@ -11,7 +11,7 @@ namespace Glimpse.Core.Contracts.Repository
 {
     public interface IPromotionRepository
     {
-        Task<List<Promotion>> GetPromotion(int id);
+        Task<List<Promotion>> GetPromotion(string username);
 
         Task StorePromotion(Promotion promotion);
     }

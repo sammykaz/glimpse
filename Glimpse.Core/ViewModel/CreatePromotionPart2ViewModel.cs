@@ -87,18 +87,24 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
-                   
 
+                    List<Category> symbols = new List<Category> { };
+
+                    foreach (string key in dataFromCreatePromotionPart1.Keys)
+                    {
+                        if (dataFromCreatePromotionPart1[key] == "true")
+                            symbols.Add((Category)Enum.Parse(typeof(Category), key, true));
+                    }
                     Promotion promotion = new Promotion()
                     {
 
                         Title = dataFromCreatePromotionPart1["PromotionTitle"],
                         Description = dataFromCreatePromotionPart1["PromotionDescription"],
-                        //Categories
+                        Categories = symbols
+                        
 
-
-                    };
-
+                };
+                    var x = 5;
                     await _promotionDataService.StorePromotion(promotion);
 
                     ShowViewModel<MapViewModel>();

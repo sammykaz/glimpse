@@ -19,7 +19,7 @@ namespace Glimpse.Core.Repositories
             await restClient.PostAsync(promotion);
         }
 
-        public async Task<List<Promotion>> GetPromotion(int id)
+        public async Task<List<Promotion>> GetPromotion(string username)
         {
             RestClient<Promotion> restClient = new RestClient<Promotion>();
 
