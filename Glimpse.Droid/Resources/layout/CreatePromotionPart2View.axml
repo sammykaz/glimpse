@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
+    android:weightSum="100"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:gravity="top">
+    <TextView
+        android:text="Lenght of the promotion (in days)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lengthOfThePromotionTextView"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
+    <MvxSpinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40dp"
+        local:MvxBind="ItemsSource LengthOfThePromotion;SelectedItem SelectedLengthOfThePromotion"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/white_border"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp" />
+    <TextView
+        android:text="Select the promotion picture (optional)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SelectPromotionPictureTextView"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="10" />
+    <Mvx.MvxImageView
+        android:id="@+id/imgPic"
+        android:src="@drawable/plus"
+        local:MvxBind="ImageUrl File, Converter=UploadingImage"
+        android:layout_width="170.0dp"
+        android:background="#3B5998"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="100dp"
+        android:layout_weight="25" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_weight="40"
+        android:layout_width="wrap_content"
+        android:weightSum="50" />
+    <Button
+        android:text="Continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/uploadImageButton"
+        android:textSize="20dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:height="70dp"
+        android:background="@drawable/ButtonSignUpStyle"
+        android:layout_centerHorizontal="true"
+        local:MvxBind="Click selectImg"
+        android:layout_alignParentBottom="false"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
+</LinearLayout>
