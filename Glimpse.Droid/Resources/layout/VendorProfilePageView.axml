@@ -105,7 +105,8 @@
                 android:layout_toRightOf="@id/promotions"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/plus"
-                android:layout_marginLeft="95dp" />
+                android:layout_marginLeft="95dp"
+                local:MvxBind="Click ShowCreatePromotionView"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"
