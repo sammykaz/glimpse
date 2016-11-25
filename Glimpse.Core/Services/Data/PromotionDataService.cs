@@ -18,9 +18,9 @@ namespace Glimpse.Core.Services.Data
             return await _promotionRepository.GetPromotion(username);
         }
 
-        public Task StorePromotion(Promotion promotion)
+        public async Task StorePromotion(Promotion promotion)
         {
-            throw new NotImplementedException();
+            await _promotionRepository.StorePromotion(promotion);
         }
     }
 
