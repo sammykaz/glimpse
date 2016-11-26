@@ -35,8 +35,6 @@
         android:id="@+id/textView2"
         android:layout_marginTop="30dp"
         local:MvxBind="Text AboutContent" />
-
-</menu>
 </LinearLayout>
   
   </ScrollView> 
