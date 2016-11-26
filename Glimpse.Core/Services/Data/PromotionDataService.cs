@@ -13,9 +13,9 @@ namespace Glimpse.Core.Services.Data
 
         private readonly IPromotionRepository _promotionRepository;
 
-        public async Task<List<Promotion>> GetPromotions(string username)
+        public async Task<List<Promotion>> GetPromotions(int id)
         {
-            return await _promotionRepository.GetPromotion(username);
+            return await _promotionRepository.GetPromotion(id);
         }
 
         public async Task StorePromotion(Promotion promotion)

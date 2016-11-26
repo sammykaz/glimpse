@@ -7,18 +7,19 @@ using MvvmCross.Plugins.Messenger;
 using MvvmCross.Core.ViewModels;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Glimpse.Core.Model;
+using Glimpse.Core.Contracts.Repository;
 
 namespace Glimpse.Core.ViewModel
 {
     public class CreatePromotionPart2ViewModel : BaseViewModel
     {
+        private readonly IPromotionRepository _promotionDataService;
+        Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
 
         public CreatePromotionPart2ViewModel(IMvxMessenger messenger) : base(messenger)
         {
         }
-
-
-        Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
 
         protected override void InitFromBundle(IMvxBundle parameters)
         {
@@ -35,8 +36,6 @@ namespace Glimpse.Core.ViewModel
             int i = 0;
             base.InitFromBundle(parameters);
         }
-
-      
 
         private List<String> _lengthOfThePromotion = new List<String>()
             {
@@ -56,7 +55,6 @@ namespace Glimpse.Core.ViewModel
             set { _selectedLenghtOfThePromotion = value; RaisePropertyChanged(() => SelectedLengthOfThePromotion); }
         }
 
-
         private MediaFile _file;
         public MediaFile File
         {
@@ -64,43 +62,33 @@ namespace Glimpse.Core.ViewModel
             set { _file = value; RaisePropertyChanged(() => File); }
         }
 
-        private string _foo;
-        public string Foo
-        {
-            get { return _foo; }
-            set { _foo = value; RaisePropertyChanged(() => Foo); }
-        }
-      
-
-    public MvxCommand selectImg
+        public MvxCommand selectImg
         {
             get
             {
                 return new MvxCommand(async () =>
                 {
-                    if (!CrossMedia.Current.IsPickPhotoSupported)
+                    List<Category> promotionCategories = new List<Category> { };
+
+                    foreach (string key in dataFromCreatePromotionPart1.Keys)
                     {
-                        // DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
-                        return;
+                        if (dataFromCreatePromotionPart1[key] == "true")
+                            promotionCategories.Add((Category)Enum.Parse(typeof(Category), key, true));
                     }
-                    File = await CrossMedia.Current.PickPhotoAsync();
 
+                    Promotion promotion = new Promotion()
+                    {
+                        Title = dataFromCreatePromotionPart1["PromotionTitle"],
+                        Description = dataFromCreatePromotionPart1["PromotionDescription"],
+                        Categories = promotionCategories,
+                        PromotionImage = File
+                    };
+                    var x = 5; //break point to test
+                    await _promotionDataService.StorePromotion(promotion);
 
-                    if (File == null)
-                        return;
-
-//                    image.Source = image.FromStream(() =>
-   //                 {
-   //                     var stream = file.GetStream();
-    //                    file.Dispose();
-    //                    return stream;
-     //               });
-
+                    ShowViewModel<MapViewModel>();
                 });
-
             }
         }
-
-
     }
 }

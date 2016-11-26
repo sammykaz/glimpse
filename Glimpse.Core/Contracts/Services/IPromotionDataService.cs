@@ -12,6 +12,6 @@ namespace Glimpse.Core.Contracts.Services
     {
         Task StorePromotion(Promotion promotion);
 
-        Task<List<Promotion>> GetPromotions(string username);
+        Task<List<Promotion>> GetPromotions(int id);
     }
 }

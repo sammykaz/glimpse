@@ -1,4 +1,5 @@
 ﻿
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,8 @@ namespace Glimpse.Core.Model
         public string PromotionEndDate { get; set; }
 
         public bool PromotionActive { get; set; }
-
+ 
+        public MediaFile PromotionImage { get; set;}
 
         //Add images here
 
