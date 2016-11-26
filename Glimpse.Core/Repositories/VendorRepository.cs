@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Model;
-using System;
 using Plugin.RestClient;
 
 namespace Glimpse.Core.Repositories
@@ -16,8 +15,6 @@ namespace Glimpse.Core.Repositories
             RestClient<Vendor> restClient = new RestClient<Vendor>();
             return await restClient.GetUsersAsync(vendorName);
         }
-
-
 
         public async Task PostVendor(Vendor vendor)
         {
@@ -33,6 +30,15 @@ namespace Glimpse.Core.Repositories
             var vendorsList = await restClient.GetAsync();
 
             return vendorsList;
+        }
+
+        public async Task<int> GetVendorId(string username)
+        {
+            RestClient<int> restClient = new RestClient<int>();
+
+            var vendorId = await restClient.GetVendorIdAsync(username);
+
+            return vendorId;
         }
     }
 }
