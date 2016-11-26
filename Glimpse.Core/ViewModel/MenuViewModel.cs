@@ -40,6 +40,14 @@ namespace Glimpse.Core.ViewModel
                 IsSelected = false
             });
 
+            MenuItems.Add(new MenuItem
+            {
+                Title = "Settings",
+                ViewModelType = typeof(SettingsViewModel),
+                Option = MenuOption.Settings,
+                IsSelected = false
+            });
+
             if (!Settings.IsVendorAccount)
             {
                 MenuItems.Add(new MenuItem

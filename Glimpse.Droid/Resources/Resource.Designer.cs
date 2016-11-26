@@ -2581,9 +2581,6 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0900a2
 			public const int CloseButton = 2131296418;
 			
-			// aapt resource value: 0x7f0900c8
-			public const int CurrenciesSpinner = 2131296456;
-			
 			// aapt resource value: 0x7f090090
 			public const int DepartureDateTextView = 2131296400;
 			
@@ -2629,17 +2626,14 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0900c6
 			public const int SearchButton = 2131296454;
 			
-			// aapt resource value: 0x7f0900d3
-			public const int SignUpButton = 2131296467;
+			// aapt resource value: 0x7f0900d2
+			public const int SignUpButton = 2131296466;
 			
 			// aapt resource value: 0x7f0900c0
 			public const int ToCitiesSpinner = 2131296448;
 			
 			// aapt resource value: 0x7f09009b
 			public const int ToCityTitleTextView = 2131296411;
-			
-			// aapt resource value: 0x7f0900ca
-			public const int WebButton = 2131296458;
 			
 			// aapt resource value: 0x7f0900b1
 			public const int action0 = 2131296433;
@@ -2827,8 +2821,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0900a3
 			public const int drawer_layout = 2131296419;
 			
-			// aapt resource value: 0x7f0900d5
-			public const int edit = 2131296469;
+			// aapt resource value: 0x7f0900d4
+			public const int edit = 2131296468;
 			
 			// aapt resource value: 0x7f09006d
 			public const int edit_query = 2131296365;
@@ -2986,11 +2980,11 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f090007
 			public const int progress_horizontal = 2131296263;
 			
-			// aapt resource value: 0x7f0900d4
-			public const int promotionbar = 2131296468;
+			// aapt resource value: 0x7f0900d3
+			public const int promotionbar = 2131296467;
 			
-			// aapt resource value: 0x7f0900d6
-			public const int promotions = 2131296470;
+			// aapt resource value: 0x7f0900d5
+			public const int promotions = 2131296469;
 			
 			// aapt resource value: 0x7f090064
 			public const int radio = 2131296356;
@@ -3058,6 +3052,12 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f09007c
 			public const int settings = 2131296380;
 			
+			// aapt resource value: 0x7f0900c8
+			public const int settingsLanguageMvxSpinner = 2131296456;
+			
+			// aapt resource value: 0x7f0900c7
+			public const int settingsTextView1 = 2131296455;
+			
 			// aapt resource value: 0x7f090063
 			public const int shortcut = 2131296355;
 			
@@ -3100,8 +3100,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f09003f
 			public const int start = 2131296319;
 			
-			// aapt resource value: 0x7f0900cd
-			public const int starting_content = 2131296461;
+			// aapt resource value: 0x7f0900cc
+			public const int starting_content = 2131296460;
 			
 			// aapt resource value: 0x7f0900b3
 			public const int status_bar_latest_event_content = 2131296435;
@@ -3126,9 +3126,6 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f09005d
 			public const int textSpacerNoButtons = 2131296349;
-			
-			// aapt resource value: 0x7f0900c7
-			public const int textView1 = 2131296455;
 			
 			// aapt resource value: 0x7f0900c9
 			public const int textView2 = 2131296457;
@@ -3163,11 +3160,11 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0900ac
 			public const int toolbar = 2131296428;
 			
-			// aapt resource value: 0x7f0900cf
-			public const int toolbar_shadow = 2131296463;
-			
 			// aapt resource value: 0x7f0900ce
-			public const int toolbar_title = 2131296462;
+			public const int toolbar_shadow = 2131296462;
+			
+			// aapt resource value: 0x7f0900cd
+			public const int toolbar_title = 2131296461;
 			
 			// aapt resource value: 0x7f090033
 			public const int top = 2131296307;
@@ -3178,47 +3175,47 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f090082
 			public const int touch_outside = 2131296386;
 			
-			// aapt resource value: 0x7f0900df
-			public const int txtBusinessPhoneNumber = 2131296479;
-			
-			// aapt resource value: 0x7f0900da
-			public const int txtCity = 2131296474;
-			
-			// aapt resource value: 0x7f0900d7
-			public const int txtCompanyName = 2131296471;
-			
-			// aapt resource value: 0x7f0900d8
-			public const int txtCountry = 2131296472;
-			
-			// aapt resource value: 0x7f0900d2
-			public const int txtEmail = 2131296466;
-			
-			// aapt resource value: 0x7f0900d0
-			public const int txtFirstName = 2131296464;
-			
-			// aapt resource value: 0x7f0900d1
-			public const int txtLastName = 2131296465;
-			
-			// aapt resource value: 0x7f0900cc
-			public const int txtPassword = 2131296460;
-			
 			// aapt resource value: 0x7f0900de
-			public const int txtPersonalPhoneNumber = 2131296478;
-			
-			// aapt resource value: 0x7f0900db
-			public const int txtPostalCode = 2131296475;
+			public const int txtBusinessPhoneNumber = 2131296478;
 			
 			// aapt resource value: 0x7f0900d9
-			public const int txtProvince = 2131296473;
+			public const int txtCity = 2131296473;
 			
-			// aapt resource value: 0x7f0900dc
-			public const int txtStreet = 2131296476;
+			// aapt resource value: 0x7f0900d6
+			public const int txtCompanyName = 2131296470;
 			
-			// aapt resource value: 0x7f0900dd
-			public const int txtStreetNumber = 2131296477;
+			// aapt resource value: 0x7f0900d7
+			public const int txtCountry = 2131296471;
+			
+			// aapt resource value: 0x7f0900d1
+			public const int txtEmail = 2131296465;
+			
+			// aapt resource value: 0x7f0900cf
+			public const int txtFirstName = 2131296463;
+			
+			// aapt resource value: 0x7f0900d0
+			public const int txtLastName = 2131296464;
 			
 			// aapt resource value: 0x7f0900cb
-			public const int txtUserName = 2131296459;
+			public const int txtPassword = 2131296459;
+			
+			// aapt resource value: 0x7f0900dd
+			public const int txtPersonalPhoneNumber = 2131296477;
+			
+			// aapt resource value: 0x7f0900da
+			public const int txtPostalCode = 2131296474;
+			
+			// aapt resource value: 0x7f0900d8
+			public const int txtProvince = 2131296472;
+			
+			// aapt resource value: 0x7f0900db
+			public const int txtStreet = 2131296475;
+			
+			// aapt resource value: 0x7f0900dc
+			public const int txtStreetNumber = 2131296476;
+			
+			// aapt resource value: 0x7f0900ca
+			public const int txtUserName = 2131296458;
 			
 			// aapt resource value: 0x7f090009
 			public const int up = 2131296265;
