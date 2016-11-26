@@ -89,7 +89,7 @@ namespace Glimpse.Core.Services.Data
             return isValid;
         }
 
-        private static void SaveUserNamePasswordInSettings(string username, string hashedPassword)
+        public void SaveUserNamePasswordInSettings(string username, string hashedPassword)
         {
             Settings.UserName = username;
             Settings.Password = hashedPassword;

@@ -1,36 +1,68 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using Glimpse.Core.Services.General;
+using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace Glimpse.Core.ViewModel
 {
     public class SettingsViewModel : BaseViewModel
     {
+        private string _currentLanguage;
+        private List<string> _languages;
+
         public SettingsViewModel(IMvxMessenger messenger) : base(messenger)
         {
-         
+          
         }
 
-        private List<string> _languages = new List<string> { "French", "English" };
+        
         public List<string> Languages
         {
             get
             {
                 return _languages;
             }
+            set
+            {
+                _languages = value;
+                RaisePropertyChanged(() => Languages);
+            }
         }
 
-        private string _currentLanguage;
+
         public string CurrentLanguage
         {
-            get { return _currentLanguage; }
+            get
+            {
+                return _currentLanguage;
+            }
             set
             {
                 _currentLanguage = value;
                 RaisePropertyChanged(() => CurrentLanguage);
-
             }
+        }
+
+
+        public override async void Start()
+        {
+            base.Start();
+            await ReloadDataAsync();
+        }
+
+        protected override Task InitializeAsync()
+        {
+            return Task.Run(() =>
+            {
+                CurrentLanguage = Settings.Language;
+                Languages = new List<string> { CurrentLanguage };
+                if (CurrentLanguage == "English")
+                    _languages.Add("Français");
+                else if (CurrentLanguage == "Français")
+                    _languages.Add("English");
+            });
         }
 
         /// <summary>
@@ -42,7 +74,7 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
-                    int x = 0;
+                    Settings.Language = CurrentLanguage;
                 });
             }
         }

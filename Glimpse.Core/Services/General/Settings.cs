@@ -23,6 +23,9 @@ namespace Glimpse.Core.Services.General
         private const string IsVendorAccountKey = "is_vendor_account_key";
         private static readonly bool isVendorAccount = false;
 
+        private const string LanguageKey = "language_key";
+        private static readonly string language = string.Empty;
+
         private static ISettings AppSettings
         {
             get
@@ -42,6 +45,13 @@ namespace Glimpse.Core.Services.General
             get { return AppSettings.GetValueOrDefault<string>(PasswordKey, password); }
             set { AppSettings.AddOrUpdateValue<string>(PasswordKey, value); }
         }
+
+        public static string Language
+        {
+            get { return AppSettings.GetValueOrDefault<string>(LanguageKey, language); }
+            set { AppSettings.AddOrUpdateValue<string>(LanguageKey, value); }
+        }
+
         public static bool LoginStatus
         {
             get { return AppSettings.GetValueOrDefault<bool>(LoggedInKey, isLoggedIn); }
@@ -53,5 +63,7 @@ namespace Glimpse.Core.Services.General
             get { return AppSettings.GetValueOrDefault<bool>(IsVendorAccountKey, isVendorAccount); }
             set { AppSettings.AddOrUpdateValue<bool>(IsVendorAccountKey, value); }
         }
+
+       
     }
 }

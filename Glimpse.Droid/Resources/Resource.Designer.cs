@@ -3058,6 +3058,9 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0900c7
 			public const int settingsTextView1 = 2131296455;
 			
+			// aapt resource value: 0x7f0900c9
+			public const int settingsTextView2 = 2131296457;
+			
 			// aapt resource value: 0x7f090063
 			public const int shortcut = 2131296355;
 			
@@ -3126,9 +3129,6 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f09005d
 			public const int textSpacerNoButtons = 2131296349;
-			
-			// aapt resource value: 0x7f0900c9
-			public const int textView2 = 2131296457;
 			
 			// aapt resource value: 0x7f0900a5
 			public const int textViewLogin = 2131296421;
