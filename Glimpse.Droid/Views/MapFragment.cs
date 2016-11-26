@@ -128,11 +128,13 @@ namespace Glimpse.Droid.Views
 
             foreach(var vendor in viewModel.VendorData.Keys)
             {
+                var numberOfPromotions = viewModel.VendorData[vendor].Count;
+
                 _promotion = _map.AddMarker(
                         new MarkerOptions()
                             .SetPosition(new LatLng(vendor.Location.Lat, vendor.Location.Lng))
                             .SetTitle(vendor.CompanyName)
-                            .SetSnippet("Currently has: " + viewModel.VendorData[vendor].Count + " promotions."));
+                            .SetSnippet("Currently has: " + numberOfPromotions+ " promotion" + (numberOfPromotions > 1 ? "s" : "")));
             }
             //map settings
             _map.UiSettings.MapToolbarEnabled = true;
