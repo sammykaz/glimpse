@@ -99,12 +99,7 @@ namespace Plugin.RestClient
             var list = JsonConvert.DeserializeObject<List<dynamic>>(json);
 
             var obj = list.FirstOrDefault();
-            //just want to see what in here.
-            /* var temp = obj["Id"];
-
-             int Id = (int)temp;
-
-             return Id;*/
+            
             return (int)obj["Id"];
         }
     }
