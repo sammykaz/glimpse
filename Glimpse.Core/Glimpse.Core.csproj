@@ -60,6 +60,7 @@
     <Compile Include="Contracts\ViewModel\IMainViewModel.cs" />
     <Compile Include="Contracts\ViewModel\ISearchJourneyViewModel.cs" />
     <Compile Include="Contracts\ViewModel\ISearchResultViewModel.cs" />
+    <Compile Include="Converters\UploadingImageValueConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\App\MenuItem.cs" />

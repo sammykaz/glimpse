@@ -38,6 +38,8 @@ namespace Glimpse.Core.Model
 
         public string PromotionEndDate { get; set; }
 
+        public string PromotionLength { get; set; }
+
         public bool PromotionActive { get; set; }
  
         public MediaFile PromotionImage { get; set;}

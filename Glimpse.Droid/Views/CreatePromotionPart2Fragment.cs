@@ -34,21 +34,21 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as MainActivity).SetCustomTitle("Create Promotion");
-            ImageView acc_Button = view.FindViewById<ImageView>(Resource.Id.imgPic);
+           /* ImageView acc_Button = view.FindViewById<ImageView>(Resource.Id.imgPic);
             acc_Button.Click += delegate
             {
                 OnClick(this.View);
-            };
+            }; */
         }
 
-        public void OnClick(View view)
+        /*public void OnClick(View view)
         {
             var imageIntent = new Intent();
             imageIntent.SetType("image/*");
             imageIntent.SetAction(Intent.ActionGetContent);
             StartActivityForResult(
             Intent.CreateChooser(imageIntent, "Select photo"), 0);
-        }
+        }*/
 
         public override void OnStart()
         {

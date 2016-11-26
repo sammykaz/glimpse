@@ -17,8 +17,9 @@ namespace Glimpse.Core.ViewModel
         private readonly IPromotionRepository _promotionDataService;
         Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
 
-        public CreatePromotionPart2ViewModel(IMvxMessenger messenger) : base(messenger)
+        public CreatePromotionPart2ViewModel(IMvxMessenger messenger, IPromotionRepository promotionDataService) : base(messenger)
         {
+            _promotionDataService = promotionDataService;
         }
 
         protected override void InitFromBundle(IMvxBundle parameters)
@@ -26,7 +27,6 @@ namespace Glimpse.Core.ViewModel
            // var mykey1value = parameters.Data["key1"];
            
             var myPara = parameters;
-            var service = myPara.Data["ServicesIsChecked"];
             
             foreach (string key in parameters.Data.Keys)
             {
@@ -62,7 +62,33 @@ namespace Glimpse.Core.ViewModel
             set { _file = value; RaisePropertyChanged(() => File); }
         }
 
+
         public MvxCommand selectImg
+        {
+            get
+            {
+                return new MvxCommand(async () =>
+                {
+                    if (!CrossMedia.Current.IsPickPhotoSupported)
+                    {
+                        // DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
+                        return;
+                    }
+                    File = await CrossMedia.Current.PickPhotoAsync();
+
+                    if (File == null)
+                        return;
+                       /*  image.Source = image.FromStream(() =>
+                        {
+                            var stream = file.GetStream();
+                            file.Dispose();
+                            return stream;
+                        });*/
+                });
+            }
+        }
+
+        public MvxCommand createPromotion
         {
             get
             {
@@ -72,7 +98,7 @@ namespace Glimpse.Core.ViewModel
 
                     foreach (string key in dataFromCreatePromotionPart1.Keys)
                     {
-                        if (dataFromCreatePromotionPart1[key] == "true")
+                        if (dataFromCreatePromotionPart1[key] == "True")
                             promotionCategories.Add((Category)Enum.Parse(typeof(Category), key, true));
                     }
 
@@ -81,11 +107,18 @@ namespace Glimpse.Core.ViewModel
                         Title = dataFromCreatePromotionPart1["PromotionTitle"],
                         Description = dataFromCreatePromotionPart1["PromotionDescription"],
                         Categories = promotionCategories,
-                        PromotionImage = File
+                        PromotionImage = File,
+                        PromotionLength = SelectedLengthOfThePromotion
                     };
                     var x = 5; //break point to test
-                    await _promotionDataService.StorePromotion(promotion);
-
+                    try
+                    {
+                        await _promotionDataService.StorePromotion(promotion);
+                    }
+                    catch(Exception e)
+                    {
+                        
+                    }
                     ShowViewModel<MapViewModel>();
                 });
             }

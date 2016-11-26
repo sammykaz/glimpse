@@ -44,7 +44,7 @@
     <Mvx.MvxImageView
         android:id="@+id/imgPic"
         android:src="@drawable/plus"
-        local:MvxBind="ImageUrl File, Converter=UploadingImage"
+        local:MvxBind="ImageUrl File, Converter=UploadingImage; Click selectImg"
         android:layout_width="170.0dp"
         android:background="#3B5998"
         android:adjustViewBounds="true"
@@ -73,7 +73,7 @@
         android:height="70dp"
         android:background="@drawable/ButtonSignUpStyle"
         android:layout_centerHorizontal="true"
-        local:MvxBind="Click selectImg"
+        local:MvxBind="Click createPromotion"
         android:layout_alignParentBottom="false"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp" />

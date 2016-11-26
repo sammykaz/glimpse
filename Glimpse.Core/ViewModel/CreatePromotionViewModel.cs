@@ -25,9 +25,9 @@ namespace Glimpse.Core.ViewModel
                 return new MvxCommand(() =>
                 {
                     var desc = new Dictionary<string, string> {
-                        {"PromotionTitle", PromotionTitle},{"PromotionDescription", PromotionDescription}, {"FootwearIsChecked", FootwearIsChecked.ToString()},
-                        {"ElectronicIsChecked", ElectronicIsChecked.ToString() },  {"JewlleryIsChecked", JewlleryIsChecked.ToString() }, {"RestaurantsIsChecked", RestaurantsIsChecked.ToString() },
-                        {"ServicesIsChecked", ServicesIsChecked.ToString() }, {"ApparelIsChecked", ApparelIsChecked.ToString()}
+                        {"PromotionTitle", PromotionTitle},{"PromotionDescription", PromotionDescription}, {"Footwear", FootwearIsChecked.ToString()},
+                        {"Electronic", ElectronicIsChecked.ToString() },  {"Jewllery", JewlleryIsChecked.ToString() }, {"Restaurants", RestaurantsIsChecked.ToString() },
+                        {"Services", ServicesIsChecked.ToString() }, {"Apparel", ApparelIsChecked.ToString()}
                     };
                                      
                     ShowViewModel<CreatePromotionPart2ViewModel>(desc);
