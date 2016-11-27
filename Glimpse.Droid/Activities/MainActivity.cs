@@ -141,22 +141,6 @@ namespace Glimpse.Droid.Activities
             _drawerToggle.SyncState();
         }
 
-        public void OnMapReady(GoogleMap googleMap)
-        {
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.SetPosition(new LatLng(16.03, 108));
-            markerOptions.SetTitle("My Position");
-            googleMap.AddMarker(markerOptions);
-            googleMap.UiSettings.MapToolbarEnabled = true;
-            googleMap.UiSettings.MyLocationButtonEnabled = true;
-            googleMap.UiSettings.RotateGesturesEnabled = true;
-            googleMap.BuildingsEnabled = true;
-            googleMap.UiSettings.ZoomControlsEnabled = true;
-            googleMap.UiSettings.CompassEnabled = true;
-            googleMap.MoveCamera(CameraUpdateFactory.ZoomIn());
-
-        }
-
         private bool CheckAuthenticationStatus()
         {
             //check your shared pref value for login in this method
