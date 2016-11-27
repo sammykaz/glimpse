@@ -5,27 +5,30 @@ using System.Text;
 using System.Threading.Tasks;
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Core.ViewModels;
-using Plugin.Media;
-using Plugin.Media.Abstractions;
+//using Plugin.Media;
+//using Plugin.Media.Abstractions;
 using Glimpse.Core.Model;
 using Glimpse.Core.Contracts.Repository;
+//using MvvmCross.Plugins.PictureChooser;
+using System.IO;
+using Glimpse.Core.Contracts.Services;
 
 namespace Glimpse.Core.ViewModel
 {
     public class CreatePromotionPart2ViewModel : BaseViewModel
     {
-        private readonly IPromotionRepository _promotionDataService;
+        private readonly IPromotionDataService _promotionDataService;
         Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
+   //     private readonly IMvxPictureChooserTask _pictureChooserTask;
 
-        public CreatePromotionPart2ViewModel(IMvxMessenger messenger, IPromotionRepository promotionDataService) : base(messenger)
+        public CreatePromotionPart2ViewModel(IMvxMessenger messenger, IPromotionDataService promotionDataService) : base(messenger)
         {
             _promotionDataService = promotionDataService;
+ //           _pictureChooserTask = pictureChooserTask;
         }
 
         protected override void InitFromBundle(IMvxBundle parameters)
         {
-           // var mykey1value = parameters.Data["key1"];
-           
             var myPara = parameters;
             
             foreach (string key in parameters.Data.Keys)
@@ -55,39 +58,31 @@ namespace Glimpse.Core.ViewModel
             set { _selectedLenghtOfThePromotion = value; RaisePropertyChanged(() => SelectedLengthOfThePromotion); }
         }
 
-        private MediaFile _file;
-        public MediaFile File
+        private byte[] _bytes;
+        public byte[] Bytes
         {
-            get { return _file; }
-            set { _file = value; RaisePropertyChanged(() => File); }
+            get { return _bytes; }
+            set { _bytes = value; RaisePropertyChanged(() => Bytes); }
         }
 
+        private void OnPicture(Stream pictureStream)
+        {
+            var memoryStream = new MemoryStream();
+            pictureStream.CopyTo(memoryStream);
+            Bytes = memoryStream.ToArray();
+        }
 
-        public MvxCommand selectImg
+       /* public MvxCommand selectImg
         {
             get
             {
-                return new MvxCommand(async () =>
+                return new MvxCommand(() =>
                 {
-                    if (!CrossMedia.Current.IsPickPhotoSupported)
-                    {
-                        // DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
-                        return;
-                    }
-                    File = await CrossMedia.Current.PickPhotoAsync();
-
-                    if (File == null)
-                        return;
-                       /*  image.Source = image.FromStream(() =>
-                        {
-                            var stream = file.GetStream();
-                            file.Dispose();
-                            return stream;
-                        });*/
+                    _pictureChooserTask.ChoosePictureFromLibrary(400, 95, OnPicture, () => { });
                 });
             }
         }
-
+        */
         public MvxCommand createPromotion
         {
             get
@@ -107,7 +102,7 @@ namespace Glimpse.Core.ViewModel
                         Title = dataFromCreatePromotionPart1["PromotionTitle"],
                         Description = dataFromCreatePromotionPart1["PromotionDescription"],
                         Categories = promotionCategories,
-                        PromotionImage = File,
+                       // PromotionImage = File,
                         PromotionLength = SelectedLengthOfThePromotion
                     };
                     var x = 5; //break point to test

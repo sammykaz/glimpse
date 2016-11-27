@@ -23,9 +23,18 @@ namespace Glimpse.Core.Repositories
         {
             RestClient<Promotion> restClient = new RestClient<Promotion>();
 
+            var promotion = await restClient.GetByIdAsync(id);
+
+            return promotion;
+        }
+
+        public async Task<List<Promotion>> GetPromotions()
+        {
+            RestClient<Promotion> restClient = new RestClient<Promotion>();
+
             var promotion = await restClient.GetAsync();
 
-            return promotion; ;
+            return promotion;
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Glimpse.Core.ViewModel
                 {
                     var desc = new Dictionary<string, string> {
                         {"PromotionTitle", PromotionTitle},{"PromotionDescription", PromotionDescription}, {"Footwear", FootwearIsChecked.ToString()},
-                        {"Electronic", ElectronicIsChecked.ToString() },  {"Jewllery", JewlleryIsChecked.ToString() }, {"Restaurants", RestaurantsIsChecked.ToString() },
+                        {"Electronics", ElectronicIsChecked.ToString() },  {"Jewllery", JewlleryIsChecked.ToString() }, {"Restaurants", RestaurantsIsChecked.ToString() },
                         {"Services", ServicesIsChecked.ToString() }, {"Apparel", ApparelIsChecked.ToString()}
                     };
                                      

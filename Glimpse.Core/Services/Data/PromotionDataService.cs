@@ -10,12 +10,21 @@ namespace Glimpse.Core.Services.Data
 {
     public class PromotionDataService : IPromotionDataService
     {
-
         private readonly IPromotionRepository _promotionRepository;
 
-        public async Task<List<Promotion>> GetPromotions(int id)
+        public PromotionDataService(IPromotionRepository promotionRepository)
+        {
+            _promotionRepository = promotionRepository;
+        }
+
+        public async Task<List<Promotion>> GetPromotion(int id)
         {
             return await _promotionRepository.GetPromotion(id);
+        }
+
+        public async Task<List<Promotion>> GetPromotions()
+        {
+            return await _promotionRepository.GetPromotions();
         }
 
         public async Task StorePromotion(Promotion promotion)

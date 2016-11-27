@@ -41,10 +41,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_weight="10" />
-    <Mvx.MvxImageView
+    <ImageView
         android:id="@+id/imgPic"
         android:src="@drawable/plus"
-        local:MvxBind="ImageUrl File, Converter=UploadingImage; Click selectImg"
+        local:MvxBind="Bitmap Bytes,Converter=InMemoryImage; Click selectImg"
         android:layout_width="170.0dp"
         android:background="#3B5998"
         android:adjustViewBounds="true"

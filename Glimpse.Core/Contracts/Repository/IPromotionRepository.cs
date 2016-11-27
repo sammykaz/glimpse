@@ -13,6 +13,8 @@ namespace Glimpse.Core.Contracts.Repository
     {
         Task<List<Promotion>> GetPromotion(int id);
 
+        Task<List<Promotion>> GetPromotions();
+
         Task StorePromotion(Promotion promotion);
     }
 }
