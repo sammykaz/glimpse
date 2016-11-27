@@ -4,6 +4,7 @@ using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Model;
 using Glimpse.Core.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace Glimpse.Core.UnitTests.Tests.Repository
 {
@@ -26,7 +27,6 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
 
             //Assert
             Assert.AreNotEqual(0, promotions.Count);
-            Assert.AreEqual(promotions[9].CategoriesList, "Footwear,Electronics,Restaurants,Services,Apparel");
         }
 
 
@@ -37,14 +37,18 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             var promotionsBefore = await repository.GetPromotions();
             var promotionsCountBefore = promotionsBefore.Count;
 
-
+            List<Category> promotionCategories = new List<Category> { };
+            promotionCategories.Add(Category.Electronics);
             Promotion promotion = new Promotion()
             {
-                Title = "Test Promotion",
+                Title = "TestPromotion",
                 Description = "PromotionDescription",
-                Categories = { Category.Apparel, Category.Electronics },
+                Categories = promotionCategories,
                 PromotionStartDate = "02/04",
-                PromotionEndDate = "24/24"
+                PromotionEndDate = "24/24",
+                VendorId = 0,
+                PromotionActive = true,
+                PromotionLength = "2",
             };
 
             //act 
@@ -67,7 +71,7 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
 
             //Assert
             Assert.AreNotEqual(0, promotions.Count);
-            Assert.AreEqual(promotions[9].CategoriesList, "Footwear,Electronics,Restaurants,Services,Apparel");
+            Assert.AreEqual(promotions[9].CategoriesList, "Footwear");
         }
 
     }
