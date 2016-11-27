@@ -57,6 +57,7 @@
       <HintPath>..\packages\MailKit.1.8.1\lib\net45\MailKit.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="MimeKit, Version=1.8.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
       <HintPath>..\packages\MimeKit.1.8.0\lib\net45\MimeKit.dll</HintPath>
       <Private>True</Private>
@@ -91,6 +92,10 @@
     </Reference>
     <Reference Include="MvvmCross.Wpf, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Core.4.3.0\lib\net45\MvvmCross.Wpf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PCLCrypto, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d4421c8a4786956c, processorArchitecture=MSIL">
@@ -175,6 +180,7 @@
     <Compile Include="Tests\Repository\UserRepositoryTests.cs" />
     <Compile Include="Tests\Repository\VendorRepositoryTests.cs" />
     <Compile Include="Tests\Services\CryptographyTests.cs" />
+    <Compile Include="Tests\Services\LoadPromotionTests.cs" />
     <Compile Include="Tests\Services\LoginDataServiceTests.cs" />
     <Compile Include="Tests\Services\StoreDataServiceTests.cs" />
     <Compile Include="Tests\Services\UserDataServiceTests.cs" />
