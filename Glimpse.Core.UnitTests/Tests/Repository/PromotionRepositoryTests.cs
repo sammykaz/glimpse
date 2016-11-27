@@ -29,6 +29,7 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             Assert.AreEqual(promotions[9].CategoriesList, "Footwear,Electronics,Restaurants,Services,Apparel");
         }
 
+
         [TestMethod]
         public async Task Test_StorePromotion_Creates_Promotion()
         {
@@ -56,5 +57,18 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             var difference = promotionsCountAfter - promotionsCountBefore;
             Assert.IsTrue(difference == 1);
         }
+
+
+        [TestMethod]
+        public async Task Test_Categories_Match_Selected_Categories()
+        {
+            //Act
+            var promotions = await repository.GetPromotions();
+
+            //Assert
+            Assert.AreNotEqual(0, promotions.Count);
+            Assert.AreEqual(promotions[9].CategoriesList, "Footwear,Electronics,Restaurants,Services,Apparel");
+        }
+
     }
 }
