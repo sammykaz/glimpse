@@ -61,6 +61,7 @@
     <Compile Include="Contracts\ViewModel\ISearchJourneyViewModel.cs" />
     <Compile Include="Contracts\ViewModel\ISearchResultViewModel.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\App\MenuItem.cs" />
     <Compile Include="Model\App\SearchParameters.cs" />
@@ -244,6 +245,7 @@
   <ItemGroup>
     <Analyzer Include="..\packages\AWSSDK.DynamoDBv2.3.3.0.1\analyzers\dotnet\cs\AWSSDK.DynamoDBv2.CodeAnalysis.dll" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Folder Include="Converters\" />
     <Folder Include="Helpers\" />
