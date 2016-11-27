@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Glimpse.Core.Model;
+using System.Collections.Generic;
 
 namespace Glimpse.Core.Contracts.Services
 {
@@ -8,9 +9,14 @@ namespace Glimpse.Core.Contracts.Services
     {
         Task<List<Vendor>> SearchUser(string userName);
 
-
         Task SignUp(Vendor vendor);
 
         Vendor GetActiveVendor();
+
+        Task<int> GetVendorId(string username);
+
+        Task<List<Vendor>> GetVendors();
+
+        Task AddVendorPromotion(Vendor vendor);
     }
 }

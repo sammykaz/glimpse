@@ -8,9 +8,10 @@ namespace Glimpse.Core.Contracts.Repository
     {
         Task<List<Vendor>> SearchVendor(string vendorName);
 
-
         Task PostVendor(Vendor vendor);
 
         Task<List<Vendor>> GetVendors();
+
+        Task<int> GetVendorId(string username);
     }
 }

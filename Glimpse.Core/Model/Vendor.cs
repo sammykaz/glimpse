@@ -5,6 +5,8 @@ using Glimpse.Core.Model;
 using Newtonsoft.Json;
 using SQLite.Net.Attributes;
 
+using System.Collections.Generic;
+
 namespace Glimpse.Core.Model
 {
     public class Vendor
@@ -29,5 +31,6 @@ namespace Glimpse.Core.Model
 
         public Location Location { get; set; }
 
+        public int dbID { get; set; }
     }
 }
