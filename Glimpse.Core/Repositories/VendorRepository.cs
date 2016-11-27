@@ -17,8 +17,6 @@ namespace Glimpse.Core.Repositories
             return await restClient.GetUsersAsync(vendorName);
         }
 
-
-
         public async Task PostVendor(Vendor vendor)
         {
             RestClient<Vendor> restClient = new RestClient<Vendor>();

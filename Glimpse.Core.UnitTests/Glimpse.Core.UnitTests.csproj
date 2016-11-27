@@ -41,6 +41,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
@@ -78,15 +81,23 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Platform, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.4.3.0\lib\net45\MvvmCross.Platform.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.4.4.0\lib\net45\MvvmCross.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Platform.Wpf, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.4.3.0\lib\net45\MvvmCross.Platform.Wpf.dll</HintPath>
+      <HintPath>..\packages\MvvmCross.Platform.4.4.0\lib\net45\MvvmCross.Platform.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Messenger, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Plugin.Messenger.4.3.0\lib\net45\MvvmCross.Plugins.Messenger.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.PictureChooser, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.PictureChooser.4.3.0\lib\net45\MvvmCross.Plugins.PictureChooser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.PictureChooser.Wpf, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.PictureChooser.4.3.0\lib\net45\MvvmCross.Plugins.PictureChooser.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Wpf, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -166,11 +177,13 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
+    <Compile Include="Bootstrap\PictureChooserPluginBootstrap.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Mocks\TestSettingsMock.cs" />
     <Compile Include="Mocks\RepositoryMocks.cs" />
     <Compile Include="Mocks\ServiceMocks.cs" />
     <Compile Include="Tests\Repository\LoginRepositoryTests.cs" />
+    <Compile Include="Tests\Repository\PromotionRepositoryTests.cs" />
     <Compile Include="Tests\Repository\StoreRepositoryTests.cs" />
     <Compile Include="Tests\Repository\UserRepositoryTests.cs" />
     <Compile Include="Tests\Repository\VendorRepositoryTests.cs" />
