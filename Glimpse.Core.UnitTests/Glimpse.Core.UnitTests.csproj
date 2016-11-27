@@ -41,6 +41,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
@@ -180,6 +183,7 @@
     <Compile Include="Mocks\RepositoryMocks.cs" />
     <Compile Include="Mocks\ServiceMocks.cs" />
     <Compile Include="Tests\Repository\LoginRepositoryTests.cs" />
+    <Compile Include="Tests\Repository\PromotionRepositoryTests.cs" />
     <Compile Include="Tests\Repository\StoreRepositoryTests.cs" />
     <Compile Include="Tests\Repository\UserRepositoryTests.cs" />
     <Compile Include="Tests\Repository\VendorRepositoryTests.cs" />

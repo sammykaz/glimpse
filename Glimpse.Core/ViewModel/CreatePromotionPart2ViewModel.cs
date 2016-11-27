@@ -35,10 +35,22 @@ namespace Glimpse.Core.ViewModel
             {
                 dataFromCreatePromotionPart1.Add(key, parameters.Data[key]);
             }
-            // And so on
-            int i = 0;
             base.InitFromBundle(parameters);
         }
+        private string _promotionStartDate;
+        public string PromotionStartDate
+        {
+            get { return _promotionStartDate; }
+            set { _promotionStartDate = value; RaisePropertyChanged(() => PromotionStartDate); }
+        }
+
+        private string _promotionEndDate;
+        public string PromotionEndDate
+        {
+            get { return _promotionEndDate; }
+            set { _promotionEndDate = value; RaisePropertyChanged(() => PromotionEndDate); }
+        }
+
 
         private List<String> _lengthOfThePromotion = new List<String>()
             {
@@ -102,10 +114,11 @@ namespace Glimpse.Core.ViewModel
                         Title = dataFromCreatePromotionPart1["PromotionTitle"],
                         Description = dataFromCreatePromotionPart1["PromotionDescription"],
                         Categories = promotionCategories,
+                        PromotionStartDate = _promotionStartDate,
+                        PromotionEndDate = _promotionEndDate,
                        // PromotionImage = File,
-                        PromotionLength = SelectedLengthOfThePromotion
+                       // PromotionLength = SelectedLengthOfThePromotion
                     };
-                    var x = 5; //break point to test
                     try
                     {
                         await _promotionDataService.StorePromotion(promotion);
@@ -114,7 +127,7 @@ namespace Glimpse.Core.ViewModel
                     {
                         
                     }
-                    ShowViewModel<MapViewModel>();
+                    ShowViewModel<VendorProfilePageViewModel>();
                 });
             }
         }

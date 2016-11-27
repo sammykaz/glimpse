@@ -20,6 +20,7 @@ namespace Glimpse.Core.ViewModel
         public VendorProfilePageViewModel(IMvxMessenger messenger, IPromotionDataService promotionDataService) : base(messenger)
         {
             _promotionDataService = promotionDataService;
+            getPromotions.Execute();
         }
 
         public List<Promotion> PromotionList

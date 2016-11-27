@@ -10,26 +10,32 @@
     android:minWidth="25px"
     android:minHeight="25px"
     android:gravity="top">
-    <TextView
-        android:text="Lenght of the promotion (in days)"
+    <EditText
+        android:id="@+id/promotionStartDate"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lengthOfThePromotionTextView"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
-    <MvxSpinner
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="40dp"
-        local:MvxBind="ItemsSource LengthOfThePromotion;SelectedItem SelectedLengthOfThePromotion"
+        android:layout_height="35dp"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/white_border"
+        android:layout_marginTop="25dp"
+        android:hint="Promotion Start Day, Format (dd/mm)"
+        android:paddingLeft="10dp"
+        android:textColor="#000"
+        local:MvxBind="Text PromotionStartDate, Mode=TwoWay" />
+    <EditText
+        android:id="@+id/promotionEndDate"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@drawable/edit_text_style"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="25dp"
+        android:hint="Promotion End Day, Format (dd/mm)"
+        android:paddingLeft="10dp"
+        android:textColor="#000"
+        local:MvxBind="Text PromotionEndDate, Mode=TwoWay" />
     <TextView
         android:text="Select the promotion picture (optional)"
         android:layout_width="match_parent"
