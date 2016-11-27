@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -105,7 +105,8 @@
                 android:layout_toRightOf="@id/promotions"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/plus"
-                android:layout_marginLeft="95dp" />
+                android:layout_marginLeft="95dp"
+                local:MvxBind="Click ShowCreatePromotionView" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"
@@ -113,6 +114,12 @@
             android:layout_below="@+id/promotionbar"
             android:layout_marginTop="5dp"
             android:orientation="vertical">
+            <Mvx.MvxListView
+                android:orientation="vertical"
+                android:layout_height="fill_parent"
+                local:MvxBind="ItemsSource PromotionList"
+                local:MvxItemTemplate="@layout/promotionitemtemplate"
+                android:layout_width="fill_parent" />
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -121,38 +128,10 @@
                 android:layout_marginTop="3dp"
                 android:background="#fff"
                 android:clickable="true"
+                local:MvxBind="Click getPromotions"
                 android:elevation="4dp"
                 android:padding="20dp"
-                android:text="50% off on summer pants" />
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:text="15$ off on all t-shirts" />
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp"
-                android:background="#fff"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:text="Second item 50$ off" />
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:clickable="true"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:text="Winter clothes just arrived!" />
+                android:text="View promotions" />
         </LinearLayout>
     </RelativeLayout>
-</ScrollView>
+</LinearLayout>

@@ -65,7 +65,6 @@ namespace Glimpse.Core.ViewModel
                     User user = userList.FirstOrDefault(e => e.UserName == UserName);
                     Vendor vendor = vendorList.FirstOrDefault(e => e.UserName == UserName);
 
-
                     if (user != null && vendor == null)
                     {
                         if (_loginDataService.AuthenticateUser(user, UserName, Password))

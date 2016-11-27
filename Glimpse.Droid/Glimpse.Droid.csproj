@@ -16,7 +16,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.1</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -312,14 +312,13 @@
     <Compile Include="Extensions\MonoTypeExtensions.cs" />
     <Compile Include="Helpers\LatLngValueConverter.cs" />
     <Compile Include="MainApplication.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Views\BuyerProfilePageFragment.cs" />
+    <Compile Include="Views\CreatePromotionFragment.cs" />
+    <Compile Include="Views\CreatePromotionPart2Fragment.cs" />
     <Compile Include="Views\LoginFragment.cs" />
     <Compile Include="Views\MenuFragment.cs" />
     <Compile Include="Views\SendMail.cs" />
@@ -446,6 +445,12 @@
     <AndroidResource Include="Resources\layout\SignInView.axml" />
     <AndroidResource Include="Resources\layout\LoginMainView.axml" />
     <AndroidResource Include="Resources\layout\StartingMapView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CreatePromotionPart2View.axml" />
+    <AndroidResource Include="Resources\layout\CreatePromotionPart1View.axml" />
+    <AndroidResource Include="Resources\drawable\white_border.axml" />
+    <AndroidResource Include="Resources\layout\PromotionItemTemplate.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
