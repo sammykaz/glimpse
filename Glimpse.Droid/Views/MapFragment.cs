@@ -17,6 +17,7 @@ using MvvmCross.Binding.Droid.BindingContext;
 using Android.App;
 using Android.Content;
 using Glimpse.Core.Model;
+using System.Collections.Generic;
 
 namespace Glimpse.Droid.Views
 
@@ -30,6 +31,7 @@ namespace Glimpse.Droid.Views
         private Marker _currentUserLocation;
         private Context globalContext = null;
         private LatLng location = null;
+        private Marker _promotion;
 
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -117,11 +119,23 @@ namespace Glimpse.Droid.Views
         }
 
 
-        private void InitializeMapAndHandlers()
+        private async void InitializeMapAndHandlers()
         {
             SetUpMapIfNeeded();
             var viewModel = (MapViewModel)ViewModel;
 
+            await viewModel.InitializeData();
+
+            foreach(var vendor in viewModel.VendorData.Keys)
+            {
+                var numberOfPromotions = viewModel.VendorData[vendor].Count;
+
+                _promotion = _map.AddMarker(
+                        new MarkerOptions()
+                            .SetPosition(new LatLng(vendor.Location.Lat, vendor.Location.Lng))
+                            .SetTitle(vendor.CompanyName)
+                            .SetSnippet("Currently has: " + numberOfPromotions+ " promotion" + (numberOfPromotions > 1 ? "s" : "")));
+            }
             //map settings
             _map.UiSettings.MapToolbarEnabled = true;
             _map.UiSettings.ZoomControlsEnabled = true;

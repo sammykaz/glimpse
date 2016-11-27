@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace Plugin.RestClient
 {
@@ -87,6 +86,19 @@ namespace Plugin.RestClient
             var response = await httpClient.DeleteAsync(WebServiceUrl + id);
 
             return response.IsSuccessStatusCode;
+        }
+
+        public async Task<int> GetVendorIdAsync(string username)
+        {
+            var httpClient = new HttpClient();
+
+            var json = await httpClient.GetStringAsync("http://glimpsews.azurewebsites.net/api/vendors/search/" + username);
+
+            var list = JsonConvert.DeserializeObject<List<dynamic>>(json);
+
+            var obj = list.FirstOrDefault();
+            
+            return (int)obj["Id"];
         }
     }
 }
