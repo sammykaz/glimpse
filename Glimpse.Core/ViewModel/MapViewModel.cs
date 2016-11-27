@@ -1,18 +1,12 @@
 ﻿using MvvmCross.Plugins.Messenger;
-using Glimpse.Core.ViewModel;
-using MvvmCross.Core.ViewModels;
 using Glimpse.Core.Model;
-using System.Collections.ObjectModel;
 using Glimpse.Core.Contracts.Services;
 using System.Threading.Tasks;
-using Glimpse.Core.Extensions;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
-using MvvmCross.Platform.WeakSubscription;
-using System;
 using System.Collections.Generic;
-using Amazon.DynamoDBv2;
 using System.Linq;
+using System.Data.SqlClient;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -107,7 +101,7 @@ namespace Glimpse.Core.ViewModel
             }
 
         }
-            public List<Promotion> Promotions
+        public List<Promotion> Promotions
         {
             get { return _allPromotions; }
             set
@@ -146,15 +140,15 @@ namespace Glimpse.Core.ViewModel
             }
 
             //Match active promotions with their vendors
-            foreach(var vendor in _allVendors)
-           {
+            foreach (var vendor in _allVendors)
+            {
                 var vendorPromotions = _allPromotions.Where(x => x.VendorId == vendor.dbID && x.PromotionActive == true);
 
-                if(vendorPromotions.Any())
-                  {
+                if (vendorPromotions.Any())
+                {
                     VendorData.Add(vendor, vendorPromotions.ToList());
-                  }
-           }
+                }
+            }
         }
     }
 }
