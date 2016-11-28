@@ -2587,9 +2587,6 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f09008b
 			public const int ContinuePart1Button = 2131296395;
 			
-			// aapt resource value: 0x7f0900d6
-			public const int CurrenciesSpinner = 2131296470;
-			
 			// aapt resource value: 0x7f09009f
 			public const int DepartureDateTextView = 2131296415;
 			
@@ -2646,9 +2643,6 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f0900aa
 			public const int ToCityTitleTextView = 2131296426;
-			
-			// aapt resource value: 0x7f0900d8
-			public const int WebButton = 2131296472;
 			
 			// aapt resource value: 0x7f0900c0
 			public const int action0 = 2131296448;
@@ -3100,6 +3094,15 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f09007c
 			public const int settings = 2131296380;
 			
+			// aapt resource value: 0x7f0900d7
+			public const int settingsLanguageMvxSpinner = 2131296471;
+			
+			// aapt resource value: 0x7f0900d6
+			public const int settingsTextView1 = 2131296470;
+			
+			// aapt resource value: 0x7f0900d8
+			public const int settingsTextView2 = 2131296472;
+			
 			// aapt resource value: 0x7f090063
 			public const int shortcut = 2131296355;
 			
@@ -3171,9 +3174,6 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f090084
 			public const int textView1 = 2131296388;
-			
-			// aapt resource value: 0x7f0900d7
-			public const int textView2 = 2131296471;
 			
 			// aapt resource value: 0x7f0900b4
 			public const int textViewLogin = 2131296436;

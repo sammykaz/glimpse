@@ -94,6 +94,7 @@
     <Compile Include="ViewModel\CreatePromotionViewModel.cs" />
     <Compile Include="ViewModel\LoginMainViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\StartingMapViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
