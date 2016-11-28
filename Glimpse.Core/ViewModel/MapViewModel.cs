@@ -6,7 +6,6 @@ using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using System.Collections.Generic;
 using System.Linq;
-using System.Data.SqlClient;
 
 namespace Glimpse.Core.ViewModel
 {
