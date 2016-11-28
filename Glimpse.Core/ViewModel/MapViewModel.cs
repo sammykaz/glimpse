@@ -7,6 +7,7 @@ using Plugin.Geolocator.Abstractions;
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace Glimpse.Core.ViewModel
 {
     public class MapViewModel : BaseViewModel
