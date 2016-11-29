@@ -12,18 +12,22 @@ using Glimpse.Core.Contracts.Repository;
 //using MvvmCross.Plugins.PictureChooser;
 using System.IO;
 using Glimpse.Core.Contracts.Services;
+using Glimpse.Core.Services.General;
+
 
 namespace Glimpse.Core.ViewModel
 {
     public class CreatePromotionPart2ViewModel : BaseViewModel
     {
         private readonly IPromotionDataService _promotionDataService;
+        private IVendorDataService _vendorDataService;
         Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
    //     private readonly IMvxPictureChooserTask _pictureChooserTask;
 
-        public CreatePromotionPart2ViewModel(IMvxMessenger messenger, IPromotionDataService promotionDataService) : base(messenger)
+        public CreatePromotionPart2ViewModel(IMvxMessenger messenger, IPromotionDataService promotionDataService, IVendorDataService vendorDataService) : base(messenger)
         {
             _promotionDataService = promotionDataService;
+            _vendorDataService = vendorDataService;
  //           _pictureChooserTask = pictureChooserTask;
         }
 
@@ -109,6 +113,9 @@ namespace Glimpse.Core.ViewModel
                             promotionCategories.Add((Category)Enum.Parse(typeof(Category), key, true));
                     }
 
+                    //var test = await _vendorDataService.GetVendorId(Settings.UserName);
+                    //var test2 = false;
+
                     Promotion promotion = new Promotion()
                     {
                         Title = dataFromCreatePromotionPart1["PromotionTitle"],
@@ -116,9 +123,10 @@ namespace Glimpse.Core.ViewModel
                         Categories = promotionCategories,
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
-                       // PromotionImage = File,
-                       // PromotionLength = SelectedLengthOfThePromotion
-                    };
+                        VendorId = await _vendorDataService.GetVendorId(Settings.UserName)
+                        // PromotionImage = File,
+                        // PromotionLength = SelectedLengthOfThePromotion
+                };
                     try
                     {
                         await _promotionDataService.StorePromotion(promotion);
