@@ -6,18 +6,17 @@ using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 using Glimpse.Droid.Extensions;
 using Glimpse.Droid.Activities;
 using Glimpse.Core.ViewModel;
-using Glimpse.Droid;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using Android.Graphics;
 using MvvmCross.Binding.BindingContext;
 using Glimpse.Droid.Helpers;
-using System;
 using MvvmCross.Binding.Droid.BindingContext;
 using Android.App;
 using Android.Content;
 using Glimpse.Core.Model;
-using System.Collections.Generic;
+using Android.Locations;
+using Android.Content;
+using System;
 
 namespace Glimpse.Droid.Views
 
@@ -53,25 +52,12 @@ namespace Glimpse.Droid.Views
         }
 
 
-        public async override void OnStart()
+        public override void OnStart()
         {
             base.OnStart();
 
-            globalContext = this.Context;
-            //Create a progress dialog for loading
-            ProgressDialog pr = new ProgressDialog(globalContext);
-            pr.SetMessage("Loading Current Position");
-            pr.SetCancelable(false);
 
-            var viewModel = (MapViewModel)ViewModel;
-            pr.Show();
-            //Get the location
-            Location locationAsModel = await viewModel.GetUserLocation();
-            
-            location = new LatLng(locationAsModel.Lat, locationAsModel.Lng);
-            pr.Hide();
-            InitializeMapAndHandlers();
-        }   
+        }
 
 
         public override void OnDestroyView()
@@ -89,10 +75,45 @@ namespace Glimpse.Droid.Views
             _mapView.OnSaveInstanceState(outState);
         }
 
-        public override void OnResume()
+        public async override void OnResume()
         {
             base.OnResume();
-            SetUpMapIfNeeded();
+            // SetUpMapIfNeeded();
+
+            globalContext = this.Context;
+            //if location services are not enabled do not go further
+            if (!CheckLocationServices())
+            {
+                AlertDialog.Builder alert = new AlertDialog.Builder(globalContext);
+                alert.SetTitle("Location services are turned off");
+                alert.SetMessage("Please enable Location Services!");
+                alert.SetPositiveButton("OK", (senderAlert, args) =>
+                {
+
+                });
+                AlertDialog ad = alert.Create();
+
+                ad.Show();
+
+            }
+            //location services are on so we can continue
+            else
+            {
+                //Create a progress dialog for loading
+                ProgressDialog pr = new ProgressDialog(globalContext);
+                pr.SetMessage("Loading Current Position");
+                pr.SetCancelable(false);
+
+                var viewModel = (MapViewModel)ViewModel;
+                pr.Show();
+                //Get the location
+                Core.Model.Location locationAsModel = await viewModel.GetUserLocation();
+
+                location = new LatLng(locationAsModel.Lat, locationAsModel.Lng);
+                pr.Hide();
+                InitializeMapAndHandlers();
+            }
+
             _mapView.OnResume();
         }
 
@@ -116,6 +137,21 @@ namespace Glimpse.Droid.Views
             {
                 _map = View.FindViewById<MapView>(Resource.Id.map).Map;
             }
+        }
+
+        private bool CheckLocationServices()
+        {
+            LocationManager locMgr = (LocationManager)(this.Activity as MainActivity).GetSystemService(Context.LocationService);
+
+
+            bool gps_enabled = false;
+            bool network_enabled = false;
+         
+            gps_enabled = locMgr.IsProviderEnabled(LocationManager.GpsProvider);
+           
+            network_enabled = locMgr.IsProviderEnabled(LocationManager.NetworkProvider);
+
+            return gps_enabled || network_enabled;           
         }
 
 
