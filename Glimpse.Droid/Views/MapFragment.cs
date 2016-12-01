@@ -213,7 +213,7 @@ namespace Glimpse.Droid.Views
         private void ViewModel_LocationUpdate(object sender, Core.Helpers.LocationChangedHandlerArgs e)
         {
             LatLng latLng = new LatLng(e.Location.Lat, e.Location.Lng);
-            CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLngZoom(latLng, 18);
+            CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLng(latLng);
             _map.AnimateCamera(cameraUpdate);
         }
     }
