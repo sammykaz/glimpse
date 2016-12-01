@@ -32,7 +32,6 @@ namespace Glimpse.Droid.Views
         private LatLng location = null;
         private Marker _promotion;
 
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -162,7 +161,7 @@ namespace Glimpse.Droid.Views
 
             await viewModel.InitializeData();
 
-            foreach(var vendor in viewModel.VendorData.Keys)
+           /* foreach(var vendor in viewModel.VendorData.Keys)
             {
                 var numberOfPromotions = viewModel.VendorData[vendor].Count;
 
@@ -171,7 +170,7 @@ namespace Glimpse.Droid.Views
                             .SetPosition(new LatLng(vendor.Location.Lat, vendor.Location.Lng))
                             .SetTitle(vendor.CompanyName)
                             .SetSnippet("Currently has: " + numberOfPromotions+ " promotion" + (numberOfPromotions > 1 ? "s" : "")));
-            }
+            }*/
             //map settings
             _map.UiSettings.MapToolbarEnabled = true;
             _map.UiSettings.ZoomControlsEnabled = true;
@@ -208,8 +207,16 @@ namespace Glimpse.Droid.Views
                 .To(vm => vm.UserCurrentLocation)
                 .WithConversion(new LatLngValueConverter(), null).TwoWay();
             set.Apply();
+            ViewModel.LocationUpdate += ViewModel_LocationUpdate;
             }
+
+        private void ViewModel_LocationUpdate(object sender, Core.Helpers.LocationChangedHandlerArgs e)
+        {
+            LatLng latLng = new LatLng(e.Location.Lat, e.Location.Lng);
+            CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLngZoom(latLng, 18);
+            _map.AnimateCamera(cameraUpdate);
         }
+    }
     }
 
 
