@@ -6,7 +6,7 @@ using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using System.Collections.Generic;
 using System.Linq;
-
+using Glimpse.Core.Helpers;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -23,7 +23,8 @@ namespace Glimpse.Core.ViewModel
         private IPromotionDataService _promotionDataService;
         private Location _userCurrentLocation;
         private IGeolocator locator;
-
+        public delegate void LocationChangedHandler(object sender, LocationChangedHandlerArgs e);
+        public event LocationChangedHandler LocationUpdate;
 
         public MapViewModel(IMvxMessenger messenger, IVendorDataService vendorDataService, IPromotionDataService promotionDataService) : base(messenger)
         {
@@ -73,6 +74,16 @@ namespace Glimpse.Core.ViewModel
                 Lat = e.Position.Latitude,
                 Lng = e.Position.Longitude
             };
+            OnLocationUpdate(UserCurrentLocation);
+        }
+
+         private void OnLocationUpdate(Location location)
+        {
+            if (LocationUpdate != null)
+            {
+                LocationChangedHandlerArgs args = new LocationChangedHandlerArgs(location);
+                LocationUpdate.Invoke(this, args);
+            }
         }
 
         public int DefaulZoom
