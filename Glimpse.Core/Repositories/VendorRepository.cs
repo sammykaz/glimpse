@@ -10,10 +10,10 @@ namespace Glimpse.Core.Repositories
     public class VendorRepository : IVendorRepository
     {
  
-        public async Task<List<Vendor>> SearchVendor(string vendorName)
+        public async Task<Vendor> SearchVendorByEmail(string email)
         {
             RestClient<Vendor> restClient = new RestClient<Vendor>();
-            return await restClient.GetUsersAsync(vendorName);
+            return await restClient.GetUserAsync(email);
         }
 
         public async Task PostVendor(Vendor vendor)
@@ -32,11 +32,11 @@ namespace Glimpse.Core.Repositories
             return vendorsList;
         }
 
-        public async Task<int> GetVendorId(string username)
+        public async Task<int> GetVendorId(string email)
         {
             RestClient<int> restClient = new RestClient<int>();
 
-            var vendorId = await restClient.GetVendorIdAsync(username);
+            var vendorId = await restClient.GetIdAsync(email);
 
             return vendorId;
         }

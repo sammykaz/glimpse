@@ -1,17 +1,21 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Glimpse.Core.Model;
 using WebServices.Models;
 
-namespace WebServices.Controllers.UsersController
+namespace WebServices.Controllers
 {
     public class UsersController : ApiController
     {
-        private readonly GlimpseDbContext db = new GlimpseDbContext();
+        private GlimpseDbContext db = new GlimpseDbContext();
 
         // GET: api/Users
         public IQueryable<User> GetUsers()
@@ -19,24 +23,25 @@ namespace WebServices.Controllers.UsersController
             return db.Users;
         }
 
-        // GET: api/Vendors/5
-        [Route("api/Users/Search/{userName}")]
-        [ResponseType(typeof(User))]
-        public IHttpActionResult GetUser(string userName)
-        {
-            var user = db.Users.Where(e => e.UserName == userName);
-            if (user == null)
-                return NotFound();
-
-            return Ok(user);
-        }
-
-
         // GET: api/Users/5
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
-            var user = db.Users.Find(id);
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+
+        // GET: api/Users/Search/example@gmail.com
+        [Route("api/Users/Search/{email}")]
+        [ResponseType(typeof(User))]
+        public IHttpActionResult GetUserByEmail(string email)
+        {
+            var user = db.Users.Where(e => e.Email == email);
             if (user == null)
                 return NotFound();
 
@@ -48,10 +53,14 @@ namespace WebServices.Controllers.UsersController
         public IHttpActionResult PutUser(int id, User user)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest(ModelState);
+            }
 
-            if (id != user.Id)
+            if (id != user.UserId)
+            {
                 return BadRequest();
+            }
 
             db.Entry(user).State = EntityState.Modified;
 
@@ -62,8 +71,13 @@ namespace WebServices.Controllers.UsersController
             catch (DbUpdateConcurrencyException)
             {
                 if (!UserExists(id))
+                {
                     return NotFound();
-                throw;
+                }
+                else
+                {
+                    throw;
+                }
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -74,21 +88,25 @@ namespace WebServices.Controllers.UsersController
         public IHttpActionResult PostUser(User user)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest(ModelState);
+            }
 
             db.Users.Add(user);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new {id = user.Id}, user);
+            return CreatedAtRoute("DefaultApi", new { id = user.UserId }, user);
         }
 
         // DELETE: api/Users/5
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(int id)
         {
-            var user = db.Users.Find(id);
+            User user = db.Users.Find(id);
             if (user == null)
+            {
                 return NotFound();
+            }
 
             db.Users.Remove(user);
             db.SaveChanges();
@@ -99,13 +117,15 @@ namespace WebServices.Controllers.UsersController
         protected override void Dispose(bool disposing)
         {
             if (disposing)
+            {
                 db.Dispose();
+            }
             base.Dispose(disposing);
         }
 
         private bool UserExists(int id)
         {
-            return db.Users.Count(e => e.Id == id) > 0;
+            return db.Users.Count(e => e.UserId == id) > 0;
         }
     }
 }

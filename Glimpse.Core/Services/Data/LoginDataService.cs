@@ -15,6 +15,8 @@ namespace Glimpse.Core.Services.Data
     {
         private readonly IVendorRepository _vendorRepository;
         private readonly IUserRepository _userRepository;
+        private User user;
+        private Vendor vendor;
 
         public LoginDataService(IUserRepository userRepository, IVendorRepository vendorRepository)
         {
@@ -22,13 +24,13 @@ namespace Glimpse.Core.Services.Data
             _vendorRepository = vendorRepository;
         }
 
-        public bool AuthenticateVendor(Vendor vendor, string username, string password)
+        public bool AuthenticateVendor(Vendor vendor, string email, string password)
         {
             string encryptedPassword = Cryptography.EncryptAes(password, vendor.Salt);
 
-            if (username == vendor.UserName && encryptedPassword == vendor.Password)
+            if (email == vendor.Email && encryptedPassword == vendor.Password)
             {
-                SaveUserNamePasswordInSettings(username, encryptedPassword);
+                SaveEmailPasswordInSettings(email, encryptedPassword);
                 return true;
             }
             else
@@ -37,13 +39,13 @@ namespace Glimpse.Core.Services.Data
             }
         }
 
-        public bool AuthenticateUser(User user, string username, string password)
+        public bool AuthenticateUser(User user, string email, string password)
         {
             string encryptedPassword = Cryptography.EncryptAes(password, user.Salt);
 
-            if (username == user.UserName && encryptedPassword == user.Password)
+            if (email == user.Email && encryptedPassword == user.Password)
             {
-                SaveUserNamePasswordInSettings(username, encryptedPassword);
+                SaveEmailPasswordInSettings(email, encryptedPassword);
                 return true;
             }
             else
@@ -57,26 +59,21 @@ namespace Glimpse.Core.Services.Data
             bool isValid = false;
 
             //Check if user already signed in before
-            if (!string.IsNullOrEmpty(Settings.UserName))
+            if (!string.IsNullOrEmpty(Settings.Email))
             {
-                var userList = _userRepository.SearchUser(Settings.UserName).Result;
-                var vendorList = _vendorRepository.SearchVendor(Settings.UserName).Result;
-
-                //Currently have no contraints for multiple accounts having the same username
-
-                User user = userList.FirstOrDefault(e => e.UserName == Settings.UserName);
-                Vendor vendor = vendorList.FirstOrDefault(e => e.UserName == Settings.UserName);
+                user = _userRepository.SearchUserByEmail(Settings.Email).Result;
+                vendor = _vendorRepository.SearchVendorByEmail(Settings.Email).Result;
 
                 if (user != null && vendor == null)
                 {
-                    if (Settings.UserName == user.UserName && Settings.Password == user.Password)
+                    if (Settings.Email == user.Email && Settings.Password == user.Password)
                     {
                         isValid = true;
                     }
 
                 } else if (user == null && vendor != null)
                 {
-                    if (Settings.UserName == vendor.UserName && Settings.Password == vendor.Password)
+                    if (Settings.Email == vendor.Email && Settings.Password == vendor.Password)
                     {
                         isValid = true;
                     }
@@ -89,16 +86,16 @@ namespace Glimpse.Core.Services.Data
             return isValid;
         }
 
-        public void SaveUserNamePasswordInSettings(string username, string hashedPassword)
+        public void SaveEmailPasswordInSettings(string email, string hashedPassword)
         {
-            Settings.UserName = username;
+            Settings.Email = email;
             Settings.Password = hashedPassword;
             Settings.LoginStatus = true;
         }
 
         public void ClearCredentials()
         {
-            Settings.UserName = string.Empty;
+            Settings.Email = string.Empty;
             Settings.Password = string.Empty;
         }
 

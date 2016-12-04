@@ -1,4 +1,4 @@
-﻿public enum Category
+﻿public enum Categories
 {
     Footwear,
     Electronics,

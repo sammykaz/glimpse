@@ -49,12 +49,10 @@
     <Compile Include="App.cs" />
     <Compile Include="AppStart.cs" />
     <Compile Include="Contracts\Repository\IPromotionRepository.cs" />
-    <Compile Include="Contracts\Repository\IStoreRepository.cs" />
     <Compile Include="Contracts\Repository\IVendorRepository .cs" />
     <Compile Include="Contracts\Repository\IUserRepository.cs" />
     <Compile Include="Contracts\Services\ILoginDataService.cs" />
     <Compile Include="Contracts\Services\IPromotionDataService.cs" />
-    <Compile Include="Contracts\Services\IStoreDataService.cs" />
     <Compile Include="Contracts\Services\IVendorDataService.cs" />
     <Compile Include="Contracts\Services\IUserDataService.cs" />
     <Compile Include="Contracts\ViewModel\IMainViewModel.cs" />
@@ -66,20 +64,18 @@
     <Compile Include="Model\App\MenuItem.cs" />
     <Compile Include="Model\App\SearchParameters.cs" />
     <Compile Include="Model\BaseModel.cs" />
+    <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Promotion.cs" />
     <Compile Include="Model\Location.cs" />
-    <Compile Include="Model\Store.cs" />
     <Compile Include="Model\Telephone.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\PromotionRepository.cs" />
-    <Compile Include="Repositories\StoreRepository.cs" />
     <Compile Include="Repositories\VendorRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="RestClient\RestClient.cs" />
     <Compile Include="Services\Data\PromotionDataService.cs" />
-    <Compile Include="Services\Data\StoreDataService.cs" />
     <Compile Include="Services\Data\LoginDataService.cs" />
     <Compile Include="Services\Data\VendorDataService.cs" />
     <Compile Include="Services\Data\UserDataService.cs" />
@@ -156,9 +152,8 @@
       <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.1.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.WebBrowser.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PCLCrypto, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d4421c8a4786956c, processorArchitecture=MSIL">
       <HintPath>..\packages\PCLCrypto.2.0.147\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10\PCLCrypto.dll</HintPath>
@@ -249,11 +244,11 @@
   <ItemGroup>
     <Analyzer Include="..\packages\AWSSDK.DynamoDBv2.3.3.0.1\analyzers\dotnet\cs\AWSSDK.DynamoDBv2.CodeAnalysis.dll" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Folder Include="bin\Debug\" />
     <Folder Include="Converters\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

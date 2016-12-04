@@ -6,10 +6,10 @@ namespace Glimpse.Core.Contracts.Services
 {
     public interface ILoginDataService
     {
-        bool AuthenticateVendor(Vendor vendor, string username, string password);
-        bool AuthenticateUser(User user, string username, string password);
+        bool AuthenticateVendor(Vendor vendor, string email, string password);
+        bool AuthenticateUser(User user, string email, string password);
         bool AuthenticateUserLogin();
-        void SaveUserNamePasswordInSettings(string username, string hashedPassword);
+        void SaveEmailPasswordInSettings(string email, string hashedPassword);
         void ClearCredentials();
         void ClearLoginState();
     }

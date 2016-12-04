@@ -17,6 +17,7 @@ using Glimpse.Core.Model;
 using Android.Locations;
 using Android.Content;
 using System;
+using System.Collections.Generic;
 
 namespace Glimpse.Droid.Views
 
@@ -160,8 +161,23 @@ namespace Glimpse.Droid.Views
             SetUpMapIfNeeded();
             var viewModel = (MapViewModel)ViewModel;
 
-            await viewModel.InitializeData();
+            List<Promotion> activePromotions = await viewModel.GetAllActivePromotions();
+            List<Vendor> activeVendors = await viewModel.GetAllVendorsWithActivePromotions();
 
+            if (activePromotions != null && activeVendors != null)
+            {
+                foreach (var activeVendor in activeVendors)
+                {
+                    _promotion = _map.AddMarker(
+                        new MarkerOptions()
+                            .SetPosition(new LatLng(activeVendor.Location.Lat, activeVendor.Location.Lng))
+                            .SetTitle(activeVendor.CompanyName)
+                            .SetSnippet("Currently has: " + activePromotions.Count + " promotion" +
+                                        (activePromotions.Count > 1 ? "s" : "")));
+                }
+            }
+
+            /*
             foreach(var vendor in viewModel.VendorData.Keys)
             {
                 var numberOfPromotions = viewModel.VendorData[vendor].Count;
@@ -172,6 +188,11 @@ namespace Glimpse.Droid.Views
                             .SetTitle(vendor.CompanyName)
                             .SetSnippet("Currently has: " + numberOfPromotions+ " promotion" + (numberOfPromotions > 1 ? "s" : "")));
             }
+            */
+
+
+
+
             //map settings
             _map.UiSettings.MapToolbarEnabled = true;
             _map.UiSettings.ZoomControlsEnabled = true;

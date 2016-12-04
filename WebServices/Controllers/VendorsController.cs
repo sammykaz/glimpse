@@ -36,12 +36,12 @@ namespace WebServices.Controllers
             return Ok(vendor);
         }
 
-        // GET: api/Vendors/5
-        [Route("api/Vendors/Search/{userName}")]
+        // GET: api/Vendors/Search/example@gmail.com
+        [Route("api/Vendors/Search/{email}")]
         [ResponseType(typeof(Vendor))]
-        public IHttpActionResult GetVendor(string userName)
+        public IHttpActionResult GetVendorByEmail(string email)
         {
-            var vendor = db.Vendors.Where(e => e.UserName == userName);
+            var vendor = db.Vendors.Where(e => e.Email == email);
             if (vendor == null)
                 return NotFound();
 
@@ -57,7 +57,7 @@ namespace WebServices.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != vendor.Id)
+            if (id != vendor.VendorId)
             {
                 return BadRequest();
             }
@@ -95,7 +95,7 @@ namespace WebServices.Controllers
             db.Vendors.Add(vendor);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = vendor.Id }, vendor);
+            return CreatedAtRoute("DefaultApi", new { id = vendor.VendorId }, vendor);
         }
 
         // DELETE: api/Vendors/5
@@ -125,7 +125,7 @@ namespace WebServices.Controllers
 
         private bool VendorExists(int id)
         {
-            return db.Vendors.Count(e => e.Id == id) > 0;
+            return db.Vendors.Count(e => e.VendorId == id) > 0;
         }
     }
 }

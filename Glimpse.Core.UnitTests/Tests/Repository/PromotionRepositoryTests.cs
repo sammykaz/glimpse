@@ -11,6 +11,7 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
     [TestClass]
     public class PromotionRepositoryTests
     {
+        /*
         IPromotionRepository repository;
 
         [TestInitialize]
@@ -73,6 +74,6 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             Assert.AreNotEqual(0, promotions.Count);
             Assert.AreEqual(promotions[9].CategoriesList, "Footwear");
         }
-
+        */
     }
 }

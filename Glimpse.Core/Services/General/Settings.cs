@@ -1,4 +1,6 @@
-﻿using Glimpse.Core.ViewModel;
+﻿using Android.Hardware.Camera2;
+using Glimpse.Core.Model;
+using Glimpse.Core.ViewModel;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
@@ -11,17 +13,14 @@ namespace Glimpse.Core.Services.General
     // </summary>
     public static class Settings
     {
-        private const string UserNameKey = "username_key";
-        private static readonly string userName = string.Empty;
+        private const string EmailKey = "email_key";
+        private static readonly string email = string.Empty;
 
         private const string PasswordKey = "password_key";
         private static readonly string password = string.Empty;
 
         private const string LoggedInKey = "login_key";
         private static readonly bool isLoggedIn = false;
-
-        private const string IsVendorAccountKey = "is_vendor_account_key";
-        private static readonly bool isVendorAccount = false;
 
         private const string LanguageKey = "language_key";
         private static readonly string language = string.Empty;
@@ -34,10 +33,10 @@ namespace Glimpse.Core.Services.General
             }
         }
 
-        public static string UserName
+        public static string Email
         {
-            get { return AppSettings.GetValueOrDefault<string>(UserNameKey, userName); }
-            set { AppSettings.AddOrUpdateValue<string>(UserNameKey, value); }
+            get { return AppSettings.GetValueOrDefault<string>(EmailKey, email); }
+            set { AppSettings.AddOrUpdateValue<string>(EmailKey, value); }
         }
 
         public static string Password
@@ -57,13 +56,5 @@ namespace Glimpse.Core.Services.General
             get { return AppSettings.GetValueOrDefault<bool>(LoggedInKey, isLoggedIn); }
             set { AppSettings.AddOrUpdateValue<bool>(LoggedInKey, value); }
         }
-
-        public static bool IsVendorAccount
-        {
-            get { return AppSettings.GetValueOrDefault<bool>(IsVendorAccountKey, isVendorAccount); }
-            set { AppSettings.AddOrUpdateValue<bool>(IsVendorAccountKey, value); }
-        }
-
-       
     }
 }

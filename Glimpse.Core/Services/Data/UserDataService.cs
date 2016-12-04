@@ -12,7 +12,6 @@ namespace Glimpse.Core.Services.Data
     public class UserDataService: IUserDataService
     {
         private readonly IUserRepository _userRepository;
-        private User _activeUser;
 
         public UserDataService(IUserRepository userRepository)
         {
@@ -24,15 +23,9 @@ namespace Glimpse.Core.Services.Data
             return await _userRepository.GetUsers();
         }
 
-        public async Task<List<User>> SearchUser(string userName)
+        public async Task<User> SearchUserByEmail(string email)
         {
-            return await _userRepository.SearchUser(userName);
-        }
-
-
-        public User GetActiveUser()
-        {
-            return _activeUser;
+            return await _userRepository.SearchUserByEmail(email);
         }
 
         public async Task SignUp(User user)

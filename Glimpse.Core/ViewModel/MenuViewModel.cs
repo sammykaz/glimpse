@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Xml.Serialization;
 using Glimpse.Core.Contracts.Services;
+using Glimpse.Core.Model;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using Glimpse.Core.Model.App;
@@ -14,20 +16,25 @@ namespace Glimpse.Core.ViewModel
     {
         public MvxCommand<MenuItem> MenuItemSelectCommand => new MvxCommand<MenuItem>(OnMenuEntrySelect);
         public ObservableCollection<MenuItem> MenuItems { get; }
-
         public event EventHandler CloseMenu;
-
         private ILoginDataService _loginDataService;
-
         private string selectedMenuOption;
+        private IUserDataService _userDataService;
+        private IVendorDataService _vendorDataService;
+        private User _user;
+        private Vendor _vendor;
 
-
-
-        public MenuViewModel(IMvxMessenger messenger, ILoginDataService loginDataService) : base(messenger)
+        public MenuViewModel(IMvxMessenger messenger, ILoginDataService loginDataService, IUserDataService userDataService, IVendorDataService vendorDataService) : base(messenger)
         {
             MenuItems = new ObservableCollection<MenuItem>();
-            CreateMenuItems();
             _loginDataService = loginDataService;
+            _userDataService = userDataService;
+            _vendorDataService = vendorDataService;
+
+            _userDataService.SearchUserByEmail(Settings.Email);
+            _vendorDataService.SearchVendorByEmail(Settings.Email);
+
+            CreateMenuItems();
         }
 
         private void CreateMenuItems()
@@ -48,7 +55,9 @@ namespace Glimpse.Core.ViewModel
                 IsSelected = false
             });
 
-            if (!Settings.IsVendorAccount)
+            _user = _userDataService.SearchUserByEmail(Settings.Email).Result;
+
+            if (_user != null)
             {
                 MenuItems.Add(new MenuItem
                 {
@@ -57,9 +66,7 @@ namespace Glimpse.Core.ViewModel
                     Option = MenuOption.BuyerProfile,
                     IsSelected = true
                 });
-            }
-
-            if (Settings.IsVendorAccount)
+            } else
             {
                 MenuItems.Add(new MenuItem
                 {

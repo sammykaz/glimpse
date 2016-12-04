@@ -5,37 +5,41 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
-    android:weightSum="100"
-    android:minWidth="25px"
-    android:minHeight="25px"
-    android:gravity="top">
-    <EditText
-        android:id="@+id/promotionStartDate"
+    android:background="@android:color/background_dark">
+    <TextView
+        android:text="My Promotion starts on"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtStartPromotion"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="25dp"
-        android:hint="Promotion Start Day, Format (dd/mm)"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text PromotionStartDate, Mode=TwoWay" />
-    <EditText
-        android:id="@+id/promotionEndDate"
+        android:layout_weight="10" />
+    <MvvmCross.Binding.Droid.Views.MvxDatePicker
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="true"
+        local:MvxBind="Value PromotionStartDate"
+        android:id="@+id/promotionStartDate" />
+    <TextView
+        android:text="My Promotion ends on"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtEndPromotion"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:layout_marginTop="25dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="25dp"
-        android:hint="Promotion End Day, Format (dd/mm)"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text PromotionEndDate, Mode=TwoWay" />
+        android:layout_weight="10" />
+    <MvvmCross.Binding.Droid.Views.MvxDatePicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="true"
+        local:MvxBind="Value PromotionEndDate"
+        android:id="@+id/promotionEndDate" />
     <TextView
         android:text="Select the promotion picture (optional)"
         android:layout_width="match_parent"
@@ -69,7 +73,7 @@
         android:layout_width="wrap_content"
         android:weightSum="50" />
     <Button
-        android:text="Continue"
+        android:text="Done!"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/uploadImageButton"
@@ -78,9 +82,7 @@
         android:textStyle="bold"
         android:height="70dp"
         android:background="@drawable/ButtonSignUpStyle"
-        android:layout_centerHorizontal="true"
         local:MvxBind="Click createPromotion"
-        android:layout_alignParentBottom="false"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp" />
 </LinearLayout>

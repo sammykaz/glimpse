@@ -1,11 +1,14 @@
-﻿using MvvmCross.Plugins.Messenger;
-using Glimpse.Core.Model;
+﻿using System;
+using MvvmCross.Plugins.Messenger;
 using Glimpse.Core.Contracts.Services;
 using System.Threading.Tasks;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using System.Collections.Generic;
 using System.Linq;
+using Amazon.DynamoDBv2;
+using Glimpse.Core.Model;
+using Glimpse.Core.Services.General;
 
 
 namespace Glimpse.Core.ViewModel
@@ -17,13 +20,13 @@ namespace Glimpse.Core.ViewModel
         private readonly int _defaultTilt = 65;
         private readonly int _defaultBearing = 155;
         private List<Vendor> _allVendors;
-        private List<Promotion> _allPromotions = new List<Promotion>();
-        private Dictionary<Vendor, List<Promotion>> _vendorData = new Dictionary<Vendor, List<Promotion>>();
+        private List<Promotion> _allPromotions;
+        //private Dictionary<string, List<Promotion>> _vendorData = new Dictionary<"activePromotions", List<Promotion>>();
         private IVendorDataService _vendorDataService;
         private IPromotionDataService _promotionDataService;
         private Location _userCurrentLocation;
         private IGeolocator locator;
-
+        private Vendor currentVendor;
 
         public MapViewModel(IMvxMessenger messenger, IVendorDataService vendorDataService, IPromotionDataService promotionDataService) : base(messenger)
         {
@@ -116,7 +119,7 @@ namespace Glimpse.Core.ViewModel
             get { return _userCurrentLocation; }
             set { _userCurrentLocation = value; RaisePropertyChanged(() => UserCurrentLocation); }
         }
-
+/*
         public Dictionary<Vendor, List<Promotion>> VendorData
         {
             get { return _vendorData; }
@@ -126,30 +129,42 @@ namespace Glimpse.Core.ViewModel
                 RaisePropertyChanged(() => VendorData);
             }
         }
-
-        public async Task InitializeData()
+*/
+        public async Task<List<Promotion>> GetAllActivePromotions()
         {
-            //Get vendors & promotions from dB
-            _allVendors = await _vendorDataService.GetVendors();
-            _allPromotions = await _promotionDataService.GetPromotions();
+            List<Promotion> promotionsList = await _promotionDataService.GetPromotions();
 
-            //Get vendor's ids from dB
-            foreach (var vendor in _allVendors)
+            return promotionsList.Where(p => p.PromotionActive == true).ToList();
+        }
+
+        public async Task<List<Vendor>> GetAllVendorsWithActivePromotions()
+        {
+            List<Promotion> promotionsList = await _promotionDataService.GetPromotions();
+            List<Vendor> vendorsList = await _vendorDataService.GetVendors();
+
+            List<Vendor> vendorsWithActivePromotionsList = (from first in vendorsList
+                                                            join second in promotionsList
+                                                            on first.VendorId equals second.VendorId
+                                                            select first).ToList();
+
+            return vendorsWithActivePromotionsList;
+        }
+
+
+        /*
+        
+        //Match active promotions with their vendors
+        foreach (var vendor in _allVendors)
+        {
+            var vendorPromotions = _allPromotions.Where(x => x.VendorId == vendor.dbID && x.PromotionActive == true);
+
+            if (vendorPromotions.Any())
             {
-                vendor.dbID = await _vendorDataService.GetVendorId(vendor.UserName);
-            }
-
-            //Match active promotions with their vendors
-            foreach (var vendor in _allVendors)
-            {
-                var vendorPromotions = _allPromotions.Where(x => x.VendorId == vendor.dbID && x.PromotionActive == true);
-
-                if (vendorPromotions.Any())
-                {
-                    VendorData.Add(vendor, vendorPromotions.ToList());
-                }
+                VendorData.Add(vendor, vendorPromotions.ToList());
             }
         }
+        */
+        
     }
 }
 
