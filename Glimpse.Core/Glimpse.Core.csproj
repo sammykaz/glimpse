@@ -44,6 +44,8 @@
     <Content Include="Glimpse.Core.csproj.vspscc" />
     <Content Include="obj\Debug\Glimpse.Core.dll" />
     <Content Include="obj\Debug\Glimpse.Core.pdb" />
+    <Content Include="Scripts\r.js" />
+    <Content Include="Scripts\require.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />

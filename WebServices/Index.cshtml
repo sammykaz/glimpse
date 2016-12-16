@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html style="padding-bottom: 50px;">
+<head>
+	<meta charset="utf-8" />
+    <base href="/" />
+    <link rel="stylesheet" type="text/css" href="src/css/css.css">
+    <link href="Content/bootstrap.min.css" rel="stylesheet"/>
+    <link href="Content/ui-bootstrap-csp.css" rel="stylesheet"/>
+
+    <!-- Dependency -->
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/angular-ui-router.min.js"></script>
+    <script src="Scripts/angular-animate.min.js"></script>
+    <script src="Scripts/angular-touch.min.js"></script>
+    <script src="Scripts/angular-resource.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="app.js"></script>
+
+
+    <!-- Controllers -->
+    <script src="src/controllers/homeController.js"></script>
+    <script src="src/controllers/loginController.js"></script>
+    <script src="src/controllers/signupController.js"></script>
+
+    <!-- Services -->
+    <script src="src/services/loginService.js"></script>
+    <script src="src/services/sessionService.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="appController">
+    <div>
+        <div ui-view></div>
+    </div>
+</body>
+</html>
