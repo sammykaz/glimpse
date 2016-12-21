@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Linq;
 using System;
 using System.Diagnostics;
+using System.Net;
 
 namespace Plugin.RestClient
 {
@@ -25,18 +26,6 @@ namespace Plugin.RestClient
             return taskModels;
         }
 
-        public async Task<T> GetUserAsync(string email)
-        {
-
-                var httpClient = new HttpClient();
-
-                var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + email + "/");
-
-                 var taskModel = JsonConvert.DeserializeObject<T>(json);
-
-            return taskModel;
-        }
-
 
         public async Task<List<T>> GetByIdAsync(int id)
         {
@@ -49,6 +38,21 @@ namespace Plugin.RestClient
             
 
             return taskModels;
+        }
+
+        public async Task<T> GetUserByEmailAsync(string email)
+        {
+
+            var httpClient = new HttpClient();
+
+            var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + email + "/");
+
+            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+
+            var obj = taskModels.FirstOrDefault();
+
+            return obj;
+
         }
 
         public async Task<bool> PostAsync(T t)

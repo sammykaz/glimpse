@@ -79,7 +79,9 @@ namespace Glimpse.Core.ViewModel
                 return new MvxCommand(async () =>
                 {
 
-                    user = await _userDataService.SearchUserByEmail(_email);
+                    //To be fixed Later
+
+                    //user = await _userDataService.SearchUserByEmail(_email);
 
                     //Check if email exists in db
                     if (user != null)

@@ -13,7 +13,7 @@ namespace Glimpse.Core.Repositories
         public async Task<User> SearchUserByEmail(string email)
         {
            RestClient<User> restClient = new RestClient<User>();
-           return await restClient.GetUserAsync(email);
+           return await restClient.GetUserByEmailAsync(email);
         }
 
  

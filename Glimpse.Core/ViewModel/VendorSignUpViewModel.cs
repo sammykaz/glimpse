@@ -191,7 +191,9 @@ namespace Glimpse.Core.ViewModel
                 return new MvxCommand(async () =>
                 {
 
-                vendor = await _vendorDataService.SearchVendorByEmail(_email);
+                    //To be fixed Later
+
+                    //vendor = await _vendorDataService.SearchVendorByEmail(_email);
 
                     //Check if email exists in db
                     if (vendor != null)

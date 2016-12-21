@@ -41,11 +41,40 @@ namespace WebServices.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUserByEmail(string email)
         {
-            var user = db.Users.Where(e => e.Email == email);
-            if (user == null)
-                return NotFound();
+            try
+            {
+                var user = db.Users.Where(e => e.Email == email);
+                if (user == null)
+                    return NotFound();
 
-            return Ok(user);
+                return Ok(user);
+            }
+            catch (WebException webExcp)
+            {
+                // If you reach this point, an exception has been caught.
+                Console.WriteLine("1. A WebException has been caught.");
+                // Write out the WebException message.
+                Console.WriteLine(webExcp.ToString());
+                // Get the WebException status code.
+                WebExceptionStatus status = webExcp.Status;
+                // If status is WebExceptionStatus.ProtocolError, 
+                //   there has been a protocol error and a WebResponse 
+                //   should exist. Display the protocol error.
+                if (status == WebExceptionStatus.ProtocolError)
+                {
+                    Console.Write("The server returned protocol error ");
+                    // Get HttpWebResponse so that you can check the HTTP status code.
+                    HttpWebResponse httpResponse = (HttpWebResponse)webExcp.Response;
+                    Console.WriteLine((int)httpResponse.StatusCode + " - "
+                       + httpResponse.StatusCode);
+                }
+                return null;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("2. " + e.ToString());
+                return null;
+            }
         }
 
         // PUT: api/Users/5
