@@ -6,10 +6,11 @@ namespace Glimpse.Core.Contracts.Services
 {
     public interface IUserDataService
     {
-        Task<List<User>> SearchUser(string userName);
+        Task<User> SearchUserByEmail(string email);
 
         Task SignUp(User user);
 
-        User GetActiveUser();
+        Task<List<User>> GetUsers();
+
     }
 }

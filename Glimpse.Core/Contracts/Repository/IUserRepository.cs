@@ -6,7 +6,7 @@ namespace Glimpse.Core.Contracts.Repository
 {
     public interface IUserRepository
     {
-        Task<List<User>> SearchUser(string userName);
+        Task<User> SearchUserByEmail(string email);
 
 
         Task PostUser(User user);

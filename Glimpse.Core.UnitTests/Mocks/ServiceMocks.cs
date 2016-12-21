@@ -9,7 +9,7 @@ namespace Glimpse.Core.UnitTests.Mocks
 {
     public class ServiceMocks
     {   
-
+        /*
         public static StoreDataService GetMockStoreDataService(int count)
         {
             var list = new List<Store>();
@@ -32,6 +32,6 @@ namespace Glimpse.Core.UnitTests.Mocks
             var loginDataService = new LoginDataService(mockUserRepository.Object,mockVendorRepository.Object);
             return loginDataService;
         }
-
+        */
     }
 }

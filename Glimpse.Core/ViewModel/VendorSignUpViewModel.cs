@@ -6,6 +6,7 @@ using MvvmCross.Core.ViewModels;
 using Glimpse.Core.Model;
 using Glimpse.Core.Services.Data;
 using System;
+using System.Linq;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Services.General;
 
@@ -13,7 +14,7 @@ namespace Glimpse.Core.ViewModel
 {
     public class VendorSignUpViewModel : BaseViewModel
     {
-        private List<Vendor> vendorsListFromDb;
+        private Vendor vendor;
 
         private readonly IVendorDataService _vendorDataService;
         private readonly IUserDataService _userDataService;
@@ -74,17 +75,6 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        private string _userName;
-        public string UserName
-        {
-            get { return _userName; }
-            set
-            {
-                _userName = value;
-                RaisePropertyChanged(() => UserName);
-
-            }
-        }
 
         private string _password;
         public string Password
@@ -200,27 +190,53 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
-                    Vendor vendor = new Vendor()
+
+                    //To be fixed Later
+
+                    //vendor = await _vendorDataService.SearchVendorByEmail(_email);
+
+                    //Check if email exists in db
+                    if (vendor != null)
                     {
-                        FirstName = _firstName,
-                        LastName = _lastName,
-                        CompanyName = _companyName,
-                        Email = _email,
-                        UserName = _userName,
-                        Password = _password,
-                        Address = new Address() {Country = _country, Province = _province, City = _city, PostalCode = _postalCode, Street = _street, StreetNumber = _streetNumber},
-                        Telephone = new Telephone() {PersonalPhoneNumber = _personalPhoneNumber, BusinessPhoneNumber = _businessPhoneNumber}
-                    };
+                        //TODO Display Error message to user, choose another email
+                    }
+                    else
+                    {
+                        Vendor newVendor = new Vendor()
+                        {
+                            FirstName = _firstName,
+                            LastName = _lastName,
+                            CompanyName = _companyName,
+                            Email = _email,
+                            Password = _password,
+                            Address =
+                                new Address()
+                                {
+                                    Country = _country,
+                                    Province = _province,
+                                    City = _city,
+                                    PostalCode = _postalCode,
+                                    Street = _street,
+                                    StreetNumber = _streetNumber
+                                },
+                            Telephone =
+                                new Telephone()
+                                {
+                                    PersonalPhoneNumber = _personalPhoneNumber,
+                                    BusinessPhoneNumber = _businessPhoneNumber
+                                },
+                            IsVendor = true
+                        };
 
-                    vendor.Location = Utility.Geocoding.Geocode(vendor.Address);
+                        newVendor.Location = Utility.Geocoding.Geocode(newVendor.Address);
 
-                    //Set as Vendor Account
-                    Settings.IsVendorAccount = true;
-                    Settings.LoginStatus = true;
+                        Settings.LoginStatus = true;
+                        Settings.Email = _email;
 
-                    await _vendorDataService.SignUp(vendor);
+                        await _vendorDataService.SignUp(newVendor);
 
-                    ShowViewModel<MapViewModel>();
+                        ShowViewModel<MapViewModel>();
+                    }
                 });
             }
         }

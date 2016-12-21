@@ -1,155 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
-    android:weightSum="100"
-    android:minWidth="25px"
-    android:minHeight="25px"
-    android:gravity="top">
-    <EditText
-        android:id="@+id/promotionTitle"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="25dp"
-        android:hint="Title"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text PromotionTitle, Mode=TwoWay" />
-    <EditText
-        android:layout_below="@id/promotionTitle"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/promotionDescription"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="20dp"
-        android:hint="Description"
-        android:textColor="#000"
-        local:MvxBind="Text PromotionDescription, Mode=TwoWay"
-        android:layout_weight="30"
-        android:paddingLeft="10dp"
-        android:layout_marginLeft="20dp" />
-    <TextView
-        android:text="Categories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1"
-        android:textColor="@color/white"
-        android:textSize="22dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+    xmlns:tools="http://schemas.android.com/tools">
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="top"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_weight="50"
-        android:weightSum="100"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+        <EditText
+            android:id="@+id/promotionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@drawable/edit_text_style"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:hint="Title"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black"
+            local:MvxBind="Text PromotionTitle, Mode=TwoWay" />
+        <EditText
+            android:layout_below="@id/promotionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/promotionDescription"
+            android:background="@drawable/edit_text_style"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:hint="Description"
+            android:textColor="@color/black"
+            local:MvxBind="Text PromotionDescription, Mode=TwoWay"
+            android:layout_weight="30"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="20dp" />
+        <TextView
+            android:text="Categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:layout_weight="30"
-            android:layout_width="wrap_content">
-            <CheckBox
-                android:id="@+id/checkbox_footwear"
-                android:layout_below="@id/promotionDescription"
-                android:layout_width="match_parent"
+            android:gravity="top"
+            android:layout_width="match_parent"
+            android:layout_weight="50"
+            android:weightSum="100"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:text="Footwear"
-                local:MvxBind="Checked FootwearIsChecked" />
-            <CheckBox
-                android:id="@+id/checkbox_electronic"
-                android:layout_toRightOf="@id/checkbox_footwear"
-                android:layout_width="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_weight="30"
+                android:layout_width="wrap_content">
+                <CheckBox
+                    android:id="@+id/checkbox_footwear"
+                    android:layout_below="@id/promotionDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:buttonTint="@color/black"
+                    android:text="Footwear"
+                    local:MvxBind="Checked FootwearIsChecked" />
+                <CheckBox
+                    android:id="@+id/checkbox_electronic"
+                    android:layout_toRightOf="@id/checkbox_footwear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:buttonTint="@color/black"
+                    android:text="Electronic"
+                    local:MvxBind="Checked ElectronicIsChecked" />
+                <CheckBox
+                    android:id="@+id/checkbox_jewellery"
+                    android:layout_toRightOf="@id/checkbox_electronic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Jewellery"
+                    android:textColor="@color/black"
+                    android:buttonTint="@color/black"
+                    local:MvxBind="Checked JewelleryIsChecked" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                android:text="Electronic"
-                local:MvxBind="Checked ElectronicIsChecked" />
-            <CheckBox
-                android:id="@+id/checkbox_jewellery"
-                android:layout_toRightOf="@id/checkbox_electronic"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Jewellery"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                local:MvxBind="Checked JewelleryIsChecked" />
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:layout_weight="30"
+                android:layout_width="wrap_content"
+                android:weightSum="50">
+                <CheckBox
+                    android:id="@+id/checkbox_restaurants"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Restaurants"
+                    android:textColor="@color/black"
+                    android:buttonTint="@color/black"
+                    local:MvxBind="Checked RestaurantsIsChecked"
+                    android:layout_below="@id/checkbox_electronic" />
+                <CheckBox
+                    android:id="@+id/checkbox_services"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Services"
+                    android:textColor="@color/black"
+                    android:buttonTint="@color/black"
+                    local:MvxBind="Checked ServicesIsChecked"
+                    android:layout_toRightOf="@id/checkbox_restaurants"
+                    android:layout_below="@id/checkbox_electronic" />
+                <CheckBox
+                    android:id="@+id/checkbox_apparel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Apparel"
+                    android:textColor="@color/black"
+                    android:buttonTint="@color/black"
+                    local:MvxBind="Checked ApparelIsChecked"
+                    android:layout_toRightOf="@id/checkbox_services"
+                    android:layout_below="@id/checkbox_jewellery" />
+            </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:layout_weight="30"
-            android:layout_width="wrap_content"
-            android:weightSum="50">
-            <CheckBox
-                android:id="@+id/checkbox_restaurants"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Restaurants"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                local:MvxBind="Checked RestaurantsIsChecked"
-                android:layout_below="@id/checkbox_electronic" />
-            <CheckBox
-                android:id="@+id/checkbox_services"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Services"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                local:MvxBind="Checked ServicesIsChecked"
-                android:layout_toRightOf="@id/checkbox_restaurants"
-                android:layout_below="@id/checkbox_electronic" />
-            <CheckBox
-                android:id="@+id/checkbox_apparel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Apparel"
-                android:textColor="@color/white"
-                android:buttonTint="@color/white"
-                local:MvxBind="Checked ApparelIsChecked"
-                android:layout_toRightOf="@id/checkbox_services"
-                android:layout_below="@id/checkbox_jewellery" />
-        </LinearLayout>
+      <Button
+       android:text="Continue"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/ContinuePart1Button"
+       android:textSize="20dp"
+       android:textColor="#fff"
+       android:textStyle="bold"
+       android:height="70dp"
+       android:paddingTop="2dp"
+       android:background="@drawable/ButtonSignUpStyle"
+       android:layout_centerHorizontal="true"
+       local:MvxBind="Click ContinueCommand"
+       android:layout_alignParentBottom="false"
+       android:layout_marginRight="20dp"
+       android:layout_marginLeft="20dp" />
     </LinearLayout>
-    <Button
-        android:text="Continue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ContinuePart1Button"
-        android:textSize="20dp"
-        android:textColor="#fff"
-        android:textStyle="bold"
-        android:height="70dp"
-        android:paddingTop="2dp"
-        android:background="@drawable/ButtonSignUpStyle"
-        android:layout_centerHorizontal="true"
-        local:MvxBind="Click ContinueCommand"
-        android:layout_alignParentBottom="false"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp" />
-</LinearLayout>
+</ScrollView>

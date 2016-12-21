@@ -4,6 +4,9 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Linq;
+using System;
+using System.Diagnostics;
+using System.Net;
 
 namespace Plugin.RestClient
 {
@@ -17,36 +20,39 @@ namespace Plugin.RestClient
 
         public async Task<List<T>> GetAsync()
         {
-            var httpClient = new HttpClient();
-
-            var json = await httpClient.GetStringAsync(WebServiceUrl);
-
-            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
-
-            return taskModels;
-        }
-
-        public async Task<List<T>> GetUsersAsync(string userName)
-        {
-            var httpClient = new HttpClient();
-
-            var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + userName);
-
-            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
-
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync(WebServiceUrl);
+                 var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
             return taskModels;
         }
 
 
         public async Task<List<T>> GetByIdAsync(int id)
         {
+
+                var httpClient = new HttpClient();
+
+                var json = await httpClient.GetStringAsync(WebServiceUrl + id);
+
+                var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+            
+
+            return taskModels;
+        }
+
+        public async Task<T> GetUserByEmailAsync(string email)
+        {
+
             var httpClient = new HttpClient();
 
-            var json = await httpClient.GetStringAsync(WebServiceUrl + id);
+            var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + email + "/");
 
             var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
 
-            return taskModels;
+            var obj = taskModels.FirstOrDefault();
+
+            return obj;
+
         }
 
         public async Task<bool> PostAsync(T t)
@@ -88,17 +94,17 @@ namespace Plugin.RestClient
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<int> GetVendorIdAsync(string username)
+        public async Task<int> GetIdAsync(string email)
         {
-            var httpClient = new HttpClient();
 
-            var json = await httpClient.GetStringAsync("http://glimpsews.azurewebsites.net/api/vendors/search/" + username);
+                var httpClient = new HttpClient();
 
-            var list = JsonConvert.DeserializeObject<List<dynamic>>(json);
+                var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + email + "/");
 
-            var obj = list.FirstOrDefault();
-            
-            return (int)obj["Id"];
+                var list = JsonConvert.DeserializeObject<List<dynamic>>(json);
+
+                var  obj = list.FirstOrDefault();
+                return (int)obj["Id"];
         }
     }
 }

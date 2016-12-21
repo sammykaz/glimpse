@@ -12,22 +12,18 @@ namespace Glimpse.Core.Services.Data
     public class VendorDataService : IVendorDataService
     {
         private readonly IVendorRepository _vendorRepository;
-        private Vendor _activeVendor;
+
         public VendorDataService(IVendorRepository vendorRepository)
         {
             _vendorRepository = vendorRepository;
         }
 
-        public async Task<List<Vendor>> SearchUser(string userName)
+        public async Task<Vendor> SearchVendorByEmail(string email)
         {
-            return await _vendorRepository.SearchVendor(userName);
+            return await _vendorRepository.SearchVendorByEmail(email);
         }
 
 
-        public Vendor GetActiveVendor()
-        {
-            return _activeVendor;
-        }
 
         public async Task SignUp(Vendor vendor)
         {
@@ -42,9 +38,9 @@ namespace Glimpse.Core.Services.Data
             return await _vendorRepository.GetVendors();
         }
 
-        public async Task<int> GetVendorId(string username)
+        public async Task<int> GetVendorId(string email)
         {
-            return await _vendorRepository.GetVendorId(username);
+            return await _vendorRepository.GetVendorId(email);
         }
 
         public async Task AddVendorPromotion(Vendor vendor)

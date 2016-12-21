@@ -19,7 +19,7 @@ using MvvmCross.Droid.Support.V7.Fragging.Fragments;
 
 namespace Glimpse.Droid.Views
 {
-    [MvxFragment(typeof(Glimpse.Core.ViewModel.LoginMainViewModel), Resource.Id.login_content, true)]
+    [MvxFragment(typeof(LoginMainViewModel), Resource.Id.login_content, true)]
     [Register("glimpse.droid.views.LoginFragment")]
     public class LoginFragment : MvxFragment<LoginViewModel>
     {
