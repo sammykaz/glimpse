@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngResource']);
+var app = angular.module('myApp', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngResource', 'blockUI']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationProvider) {
     $qProvider.errorOnUnhandledRejections(false);
@@ -16,6 +16,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             controller: 'SignupController',
             templateUrl: 'src/views/signupView.html'
         })
+        .state('home', {
+            url: '/home',
+            controller: 'homeController',
+            templateUrl: 'src/views/homeView.html'
+        })
+        
     
 })
 .controller('appController', function ($scope){

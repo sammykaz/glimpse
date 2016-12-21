@@ -17,3 +17,5 @@ body {
 .input-form-padding{padding-top:5px !important; padding-right: 0px !important; padding-left: 0px !important;}
 .signup-form-btn{padding-top:10px; padding-right: 0px !important; padding-left: 0px !important;}
 .icon-signup{padding-left:3px;}
+.home-nav-bar{background: rgba(0, 0, 0, 0.58); border-style: double; padding-bottom: 50px;}
+.nav-sections{text-align: center; width: 0%!important;}

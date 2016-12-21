@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-app.controller('HomeController', ['$scope', function ($scope) {
+app.controller('homeController', ['$scope', function ($scope) {
 
     $scope.test = "Angular is working";
 }]);

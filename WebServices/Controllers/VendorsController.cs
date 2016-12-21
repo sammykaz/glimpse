@@ -32,7 +32,6 @@ namespace WebServices.Controllers
             {
                 return NotFound();
             }
-
             return Ok(vendor);
         }
 

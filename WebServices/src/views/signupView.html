@@ -1,5 +1,5 @@
 <div class="signup-form-padding">
-    <div class="container login-form col-sm-6 col-sm-offset-3">
+    <div class="container login-form col-sm-8 col-sm-offset-2">
         <h2 class="login-title">- Sign Up -</h2>
         <div class="panel panel-default signup-form-panel col-sm-10 col-sm-offset-1">
             <div class="panel-body">
@@ -17,10 +17,6 @@
                         </div>
                         <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine}">
                             <input id="txtUser" type="email" class="form-control" placeholder="Email" name="email"  ng-model="user.email" required>
-                        </div>
-                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.username.$invalid && !userForm.username.$pristine}">
-                            <input id="txtUser" type="text" class="form-control" placeholder="Username" name="username"  ng-model="user.username" ng-minlength="3" pattern="[a-zA-Z]+" ng-pattern-restric required>
-                            <p ng-show="userForm.username.$error.minlength" class="help-block">Username is too short.</p>
                         </div>
                     </div>
                     <div class="input-group login-userinput col-sm-12">
@@ -57,13 +53,13 @@
                     <div class="input-group login-userinput col-sm-12">
                         <span class="glyphicon glyphicon-phone-alt icon-signup"></span>
                         <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.personalphone.$invalid && !userForm.personalphone.$pristine}">
-                            <input id="txtUser" type="number" class="form-control" placeholder="Personal Phone Number"name="personalphone"  ng-model="user.personalphone" pattern="[0-9]+" ng-pattern-restric ng-minlength="7" required>
+                            <input id="txtUser" type="text" class="form-control" placeholder="Personal Phone Number"name="personalphone"  ng-model="user.personalphone" pattern="[0-9]+" ng-pattern-restric ng-minlength="7" required>
                         </div>
                         <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.businessphone.$invalid && !userForm.businessphone.$pristine}">
-                            <input id="txtUser" type="number" class="form-control" placeholder="Business Phone Number" name="businessphone"  ng-model="user.businessphone" pattern="[0-9]+" ng-pattern-restric ng-minlength="7" required>
+                            <input id="txtUser" type="text" class="form-control" placeholder="Business Phone Number" name="businessphone"  ng-model="user.businessphone" pattern="[0-9]+" ng-pattern-restric ng-minlength="7" required>
                         </div>
                         <div class="signup-form-btn col-sm-12" ng-class="{ 'has-error' : userForm.$invalid }">
-                            <button class="btn btn-primary btn-block login-button" type="submit" ng-disabled="userForm.$invalid">Sign Up</button>
+                            <button class="btn btn-primary btn-block login-button" type="submit" ng-disabled="userForm.$invalid" ng-click="createUser()">Sign Up</button>
                             <p ng-show="userForm.$invalid" class="help-block">Some fields are missing</p>
                         </div>
                         <div class="col-sm-12">
