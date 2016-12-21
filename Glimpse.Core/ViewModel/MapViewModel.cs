@@ -138,6 +138,7 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+        /*
         public async Task InitializeData()
         {
             //Get vendors & promotions from dB
@@ -162,7 +163,7 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-
+*/
 
 
         // Some refactored methods

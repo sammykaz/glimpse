@@ -2587,6 +2587,9 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f09008b
 			public const int ContinuePart1Button = 2131296395;
 			
+			// aapt resource value: 0x7f090092
+			public const int ContinuePart2Button = 2131296402;
+			
 			// aapt resource value: 0x7f0900a1
 			public const int DepartureDateTextView = 2131296417;
 			
@@ -3240,9 +3243,6 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f090009
 			public const int up = 2131296265;
-			
-			// aapt resource value: 0x7f090092
-			public const int uploadImageButton = 2131296402;
 			
 			// aapt resource value: 0x7f090022
 			public const int useLogo = 2131296290;
