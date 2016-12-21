@@ -1,88 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/background_dark">
-    <TextView
-        android:text="My Promotion starts on"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtStartPromotion"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="10" />
-    <MvvmCross.Binding.Droid.Views.MvxDatePicker
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:calendarViewShown="true"
-        local:MvxBind="Value PromotionStartDate"
-        android:id="@+id/promotionStartDate" />
-    <TextView
-        android:text="My Promotion ends on"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtEndPromotion"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="10" />
-    <MvvmCross.Binding.Droid.Views.MvxDatePicker
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:calendarViewShown="true"
-        local:MvxBind="Value PromotionEndDate"
-        android:id="@+id/promotionEndDate" />
-    <TextView
-        android:text="Select the promotion picture (optional)"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/SelectPromotionPictureTextView"
-        android:textColor="@color/white"
-        android:textSize="18dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="10" />
-    <ImageView
-        android:id="@+id/imgPic"
-        android:src="@drawable/plus"
-        local:MvxBind="Bitmap Bytes,Converter=InMemoryImage; Click selectImg"
-        android:layout_width="170.0dp"
-        android:background="#3B5998"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="100dp"
-        android:layout_weight="25" />
+    xmlns:tools="http://schemas.android.com/tools">
     <LinearLayout
         android:orientation="vertical"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_weight="40"
-        android:layout_width="wrap_content"
-        android:weightSum="50" />
-    <Button
-        android:text="Done!"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/uploadImageButton"
-        android:textSize="20dp"
-        android:textColor="#fff"
-        android:textStyle="bold"
-        android:height="70dp"
-        android:background="@drawable/ButtonSignUpStyle"
-        local:MvxBind="Click createPromotion"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
+        <TextView
+            android:text="My Promotion starts on"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtStartPromotion"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="10" />
+        <MvvmCross.Binding.Droid.Views.MvxDatePicker
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="true"
+            local:MvxBind="Value PromotionStartDate"
+            android:id="@+id/promotionStartDate" />
+        <TextView
+            android:text="My Promotion ends on"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtEndPromotion"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="10" />
+        <MvvmCross.Binding.Droid.Views.MvxDatePicker
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="true"
+            local:MvxBind="Value PromotionEndDate"
+            android:id="@+id/promotionEndDate" />
+        <TextView
+            android:text="Select the promotion picture (optional)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/SelectPromotionPictureTextView"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="10" />
+        <ImageView
+            android:id="@+id/imgPic"
+            android:src="@drawable/plus"
+            local:MvxBind="Bitmap Bytes,Converter=InMemoryImage; Click selectImg"
+            android:layout_width="170.0dp"
+            android:background="#3B5998"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="100dp"
+            android:layout_weight="25" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_weight="40"
+            android:layout_width="wrap_content"
+            android:weightSum="50" />
+      <Button
+       android:text="Continue"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/ContinuePart2Button"
+       android:textSize="20dp"
+       android:textColor="#fff"
+       android:textStyle="bold"
+       android:height="70dp"
+       android:background="@drawable/ButtonSignUpStyle"
+       android:layout_centerHorizontal="true"
+       local:MvxBind="Click createPromotion"
+       android:layout_alignParentBottom="false"
+       android:layout_marginLeft="20dp"
+       android:layout_marginRight="20dp" />
+    </LinearLayout>
+</ScrollView>
