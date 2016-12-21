@@ -6,6 +6,8 @@ using MvvmCross.Core.ViewModels;
 using Glimpse.Core.Model;
 using Glimpse.Core.Services.Data;
 using System;
+using System.Linq;
+using Amazon.DynamoDBv2;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Services.General;
 
@@ -13,7 +15,7 @@ namespace Glimpse.Core.ViewModel
 {
     public class UserSignUpViewModel : BaseViewModel
     {
-        private List<User> usersListFromDb;
+        private User user;
 
         private readonly IUserDataService _userDataService;
 
@@ -59,18 +61,6 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        private string _userName;
-        public string UserName
-        {
-            get { return _userName; }
-            set
-            {
-                _userName = value;
-                RaisePropertyChanged(() => UserName);
-
-            }
-        }
-
         private string _password;
         public string Password
         {
@@ -88,22 +78,36 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
-                    User user = new User
+
+                    //To be fixed Later
+
+                    //user = await _userDataService.SearchUserByEmail(_email);
+
+                    //Check if email exists in db
+                    if (user != null)
                     {
-                        FirstName = _firstName,
-                        LastName = _lastName,
-                        Email = _email,
-                        UserName = _userName,
-                        Password = _password
-                    };
+                        //TODO Display Error message to user, choose another email
+                    }
+                    else
+                    {
+                        User newUser = new User
+                        {
+                            FirstName = _firstName,
+                            LastName = _lastName,
+                            Email = _email,
+                            Password = _password,
+                            IsVendor = false
+                        };
 
-                    //Set as User Account
-                    Settings.IsVendorAccount = false;
-                    Settings.LoginStatus = true;
+                        //Set as User Account
+                        Settings.LoginStatus = true;
+                        Settings.Email = _email;
+                        
 
-                    await _userDataService.SignUp(user);
+                        await _userDataService.SignUp(newUser);
 
-                    ShowViewModel<MapViewModel>();
+                        ShowViewModel<MapViewModel>();
+                    }
                 });
             }
         }

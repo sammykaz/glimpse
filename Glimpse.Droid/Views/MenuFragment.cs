@@ -18,19 +18,9 @@ namespace Glimpse.Droid.Views
     [Register("glimpse.droid.views.MenuFragment")]
     public class MenuFragment : MvxFragment<MenuViewModel>
     {
-        public MenuFragment()
-        {
-
-        }
-
-
-        //navigation_drawer_list
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
-
-
-
             return this.BindingInflate(Resource.Layout.fragment_menu, null);
         }
 

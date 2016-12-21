@@ -138,6 +138,7 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+        /*
         public async Task InitializeData()
         {
             //Get vendors & promotions from dB
@@ -147,13 +148,13 @@ namespace Glimpse.Core.ViewModel
             //Get vendor's ids from dB
             foreach (var vendor in _allVendors)
             {
-                vendor.dbID = await _vendorDataService.GetVendorId(vendor.UserName);
+                vendor.VendorId = await _vendorDataService.GetVendorId(vendor.Email);
             }
 
             //Match active promotions with their vendors
             foreach (var vendor in _allVendors)
             {
-                var vendorPromotions = _allPromotions.Where(x => x.VendorId == vendor.dbID && x.PromotionActive == true);
+                var vendorPromotions = _allPromotions.Where(x => x.VendorId == vendor.VendorId && x.PromotionActive == true);
 
                 if (vendorPromotions.Any())
                 {
@@ -161,6 +162,35 @@ namespace Glimpse.Core.ViewModel
                 }
             }
         }
+
+*/
+
+
+        // Some refactored methods
+
+        public async Task<List<Promotion>> GetAllActivePromotions()
+        {
+            List<Promotion> promotionsList = await _promotionDataService.GetPromotions();
+
+            return promotionsList.Where(p => p.PromotionActive == true).ToList();
+        }
+
+        public async Task<List<Vendor>> GetAllVendorsWithActivePromotions()
+        {
+            List<Promotion> promotionsList = await _promotionDataService.GetPromotions();
+            List<Vendor> vendorsList = await _vendorDataService.GetVendors();
+
+            List<Vendor> vendorsWithActivePromotionsList = (from first in vendorsList
+                                                            join second in promotionsList
+                                                            on first.VendorId equals second.VendorId
+                                                            select first).ToList();
+
+            return vendorsWithActivePromotionsList;
+        }
+
+
+
     }
+
 }
 

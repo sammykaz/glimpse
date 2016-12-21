@@ -52,7 +52,6 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             {
                 FirstName = "george",
                 LastName = "ge",
-                UserName = "ge123",
                 Email = "gege@gmail.com",
                 Password = "gepass",
                 Address = address,

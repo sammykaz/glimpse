@@ -10,10 +10,10 @@ namespace Glimpse.Core.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public async Task<List<User>> SearchUser(string userName)
+        public async Task<User> SearchUserByEmail(string email)
         {
            RestClient<User> restClient = new RestClient<User>();
-           return await restClient.GetUsersAsync(userName);
+           return await restClient.GetUserByEmailAsync(email);
         }
 
  

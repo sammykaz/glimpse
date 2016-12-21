@@ -55,8 +55,6 @@ namespace Glimpse.Droid.Activities
                 var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
                 SetSupportActionBar(toolbar);
 
-
-
                 _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
                 _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int) GravityFlags.Start);
                 _drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout, Resource.String.drawer_open,
@@ -69,8 +67,8 @@ namespace Glimpse.Droid.Activities
                 _drawerToggle.DrawerIndicatorEnabled = true;
                 _drawerLayout.SetDrawerListener(_drawerToggle);
 
-                ViewModel.ShowMenu();
-                ViewModel.ShowMap();
+               ViewModel.ShowMenu();
+               ViewModel.ShowMap();
             }
         }
 

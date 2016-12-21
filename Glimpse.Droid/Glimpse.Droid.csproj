@@ -152,9 +152,8 @@
       <HintPath>..\packages\MvvmCross.Plugin.WebBrowser.4.1.1\lib\MonoAndroid\MvvmCross.Plugins.WebBrowser.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PCLCrypto, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d4421c8a4786956c, processorArchitecture=MSIL">
       <HintPath>..\packages\PCLCrypto.2.0.147\lib\MonoAndroid23\PCLCrypto.dll</HintPath>
@@ -365,31 +364,13 @@
     <AndroidResource Include="Resources\values\SplashStyle.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\SearchJourneyView.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\SavedJourneysView.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\SettingsView.axml">
       <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\item_city.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\item_city_dropdown.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\SearchResultsView.axml">
-      <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\JourneyDetailsView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\item_saved_journey.axml" />
-    <AndroidResource Include="Resources\layout\item_currency.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\drawable\toolbar_dropshadow.axml" />
     <AndroidResource Include="Resources\drawable\secondary_button_selector.axml" />
     <AndroidResource Include="Resources\drawable\border_button.axml" />
@@ -509,9 +490,6 @@
       <Visible>False</Visible>
       <Version>1.6.5.0</Version>
     </XamarinComponentReference>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\item_journey_search_result.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\LogInView.axml" />

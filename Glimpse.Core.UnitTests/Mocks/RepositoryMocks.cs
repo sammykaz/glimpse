@@ -7,7 +7,7 @@ namespace Glimpse.Core.UnitTests.Mocks
 {
     public class RepositoryMocks
     { 
-
+        /*
         public static Mock<IStoreRepository> GetMockStoreRepository(int count)
         {
             var list = new List<Store>();
@@ -22,5 +22,6 @@ namespace Glimpse.Core.UnitTests.Mocks
          
             return mockStoreRepository;
         }
+        */
     }
 }

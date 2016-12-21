@@ -14,6 +14,8 @@ namespace WebServices.Models
 
         public GlimpseDbContext() : base("GlimpseDbContext")
         {
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public DbSet<User> Users { get; set; }

@@ -45,7 +45,7 @@ namespace WebServices.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != promotion.Id)
+            if (id != promotion.PromotionId)
             {
                 return BadRequest();
             }
@@ -83,7 +83,7 @@ namespace WebServices.Controllers
             db.Promotions.Add(promotion);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = promotion.Id }, promotion);
+            return CreatedAtRoute("DefaultApi", new { id = promotion.PromotionId }, promotion);
         }
 
         // DELETE: api/Promotions/5
@@ -113,7 +113,7 @@ namespace WebServices.Controllers
 
         private bool PromotionExists(int id)
         {
-            return db.Promotions.Count(e => e.Id == id) > 0;
+            return db.Promotions.Count(e => e.PromotionId == id) > 0;
         }
     }
 }

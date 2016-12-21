@@ -31,17 +31,6 @@
         android:textColor="#000"
         local:MvxBind="Text LastName, Mode=TwoWay" />
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/txtUserName"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Username"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text UserName, Mode=TwoWay" />
-    <EditText
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="35dp"

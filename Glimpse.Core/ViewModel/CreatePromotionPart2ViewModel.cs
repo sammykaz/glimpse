@@ -41,15 +41,15 @@ namespace Glimpse.Core.ViewModel
             }
             base.InitFromBundle(parameters);
         }
-        private string _promotionStartDate;
-        public string PromotionStartDate
+        private DateTime _promotionStartDate;
+        public DateTime PromotionStartDate
         {
             get { return _promotionStartDate; }
             set { _promotionStartDate = value; RaisePropertyChanged(() => PromotionStartDate); }
         }
 
-        private string _promotionEndDate;
-        public string PromotionEndDate
+        private DateTime _promotionEndDate;
+        public DateTime PromotionEndDate
         {
             get { return _promotionEndDate; }
             set { _promotionEndDate = value; RaisePropertyChanged(() => PromotionEndDate); }
@@ -105,12 +105,14 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
-                    List<Category> promotionCategories = new List<Category> { };
+                    
+
+                    List<Categories> promotionCategories = new List<Categories> { };
 
                     foreach (string key in dataFromCreatePromotionPart1.Keys)
                     {
                         if (dataFromCreatePromotionPart1[key] == "True")
-                            promotionCategories.Add((Category)Enum.Parse(typeof(Category), key, true));
+                            promotionCategories.Add((Categories)Enum.Parse(typeof(Categories), key, true));
                     }
 
                     //var test = await _vendorDataService.GetVendorId(Settings.UserName);
@@ -120,22 +122,25 @@ namespace Glimpse.Core.ViewModel
                     {
                         Title = dataFromCreatePromotionPart1["PromotionTitle"],
                         Description = dataFromCreatePromotionPart1["PromotionDescription"],
-                        Categories = promotionCategories,
+
+                        //Must fix this part, problems when storing enums, because currently it is being stored as a List of Category objects. Not Compatible.
+
+                        //Categories = promotionCategories,
+                        Categories = new List<Category>(),
+
+
+
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
-                        VendorId = await _vendorDataService.GetVendorId(Settings.UserName)
+                        VendorId = await _vendorDataService.GetVendorId(Settings.Email)
                         // PromotionImage = File,
                         // PromotionLength = SelectedLengthOfThePromotion
-                };
-                    try
-                    {
-                        await _promotionDataService.StorePromotion(promotion);
-                    }
-                    catch(Exception e)
-                    {
-                        
-                    }
+                    };
+
+                    await _promotionDataService.StorePromotion(promotion);
+
                     ShowViewModel<VendorProfilePageViewModel>();
+                    
                 });
             }
         }

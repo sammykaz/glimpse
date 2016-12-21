@@ -1,19 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Glimpse.Core.Model;
-using System.Collections.Generic;
 
 namespace Glimpse.Core.Contracts.Services
 {
     public interface IVendorDataService
     {
-        Task<List<Vendor>> SearchUser(string userName);
+        Task<Vendor> SearchVendorByEmail(string email);
 
         Task SignUp(Vendor vendor);
 
-        Vendor GetActiveVendor();
-
-        Task<int> GetVendorId(string username);
+        Task<int> GetVendorId(string email);
 
         Task<List<Vendor>> GetVendors();
 
