@@ -30,7 +30,7 @@ namespace Plugin.RestClient
 
                 var httpClient = new HttpClient();
 
-                var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + email);
+                var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + email + "/");
 
                  var taskModel = JsonConvert.DeserializeObject<T>(json);
 
@@ -95,7 +95,7 @@ namespace Plugin.RestClient
 
                 var httpClient = new HttpClient();
 
-                var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + email);
+                var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + email + "/");
 
                 var list = JsonConvert.DeserializeObject<List<dynamic>>(json);
 
