@@ -13,11 +13,7 @@ using Glimpse.Droid.Helpers;
 using MvvmCross.Binding.Droid.BindingContext;
 using Android.App;
 using Android.Content;
-using Glimpse.Core.Model;
 using Android.Locations;
-using Android.Content;
-using System;
-using System.Collections.Generic;
 
 namespace Glimpse.Droid.Views
 
@@ -161,6 +157,7 @@ namespace Glimpse.Droid.Views
             SetUpMapIfNeeded();
             var viewModel = (MapViewModel)ViewModel;
 
+            /*
             List<Promotion> activePromotions = await viewModel.GetAllActivePromotions();
             List<Vendor> activeVendors = await viewModel.GetAllVendorsWithActivePromotions();
 
@@ -176,9 +173,9 @@ namespace Glimpse.Droid.Views
                                         (activePromotions.Count > 1 ? "s" : "")));
                 }
             }
+            */
 
-            /*
-            foreach(var vendor in viewModel.VendorData.Keys)
+            foreach (var vendor in viewModel.VendorData.Keys)
             {
                 var numberOfPromotions = viewModel.VendorData[vendor].Count;
 
@@ -188,7 +185,7 @@ namespace Glimpse.Droid.Views
                             .SetTitle(vendor.CompanyName)
                             .SetSnippet("Currently has: " + numberOfPromotions+ " promotion" + (numberOfPromotions > 1 ? "s" : "")));
             }
-            */
+            
 
 
 
