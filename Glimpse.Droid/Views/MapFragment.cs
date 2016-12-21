@@ -13,12 +13,15 @@ using Glimpse.Droid.Helpers;
 using MvvmCross.Binding.Droid.BindingContext;
 using Android.App;
 using Android.Content;
+using Glimpse.Core.Model;
 using Android.Locations;
+using Android.Content;
+using System;
 
 namespace Glimpse.Droid.Views
 
 {
-    [MvxFragment(typeof(Glimpse.Core.ViewModel.MainViewModel), Resource.Id.content_frame, true)]
+    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame, true)]
     [Register("glimpse.droid.views.MapFragment")]
     public class MapFragment : MvxFragment<MapViewModel>
     {
@@ -28,7 +31,6 @@ namespace Glimpse.Droid.Views
         private Context globalContext = null;
         private LatLng location = null;
         private Marker _promotion;
-
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -175,7 +177,7 @@ namespace Glimpse.Droid.Views
             }
             */
 
-            foreach (var vendor in viewModel.VendorData.Keys)
+            foreach(var vendor in viewModel.VendorData.Keys)
             {
                 var numberOfPromotions = viewModel.VendorData[vendor].Count;
 
@@ -185,11 +187,6 @@ namespace Glimpse.Droid.Views
                             .SetTitle(vendor.CompanyName)
                             .SetSnippet("Currently has: " + numberOfPromotions+ " promotion" + (numberOfPromotions > 1 ? "s" : "")));
             }
-            
-
-
-
-
             //map settings
             _map.UiSettings.MapToolbarEnabled = true;
             _map.UiSettings.ZoomControlsEnabled = true;
@@ -226,8 +223,16 @@ namespace Glimpse.Droid.Views
                 .To(vm => vm.UserCurrentLocation)
                 .WithConversion(new LatLngValueConverter(), null).TwoWay();
             set.Apply();
+            ViewModel.LocationUpdate += ViewModel_LocationUpdate;
             }
+
+        private void ViewModel_LocationUpdate(object sender, Core.Helpers.LocationChangedHandlerArgs e)
+        {
+            LatLng latLng = new LatLng(e.Location.Lat, e.Location.Lng);
+            CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLng(latLng);
+            _map.AnimateCamera(cameraUpdate);
         }
+    }
     }
 
 

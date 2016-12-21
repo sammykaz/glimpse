@@ -6,6 +6,7 @@ using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using System.Collections.Generic;
 using System.Linq;
+using Glimpse.Core.Helpers;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -76,11 +77,10 @@ namespace Glimpse.Core.ViewModel
             OnLocationUpdate(UserCurrentLocation);
         }
 
-        private void OnLocationUpdate(Location location)
+         private void OnLocationUpdate(Location location)
         {
             if (LocationUpdate != null)
             {
-                //Causing compile error - missing ref?
                 LocationChangedHandlerArgs args = new LocationChangedHandlerArgs(location);
                 LocationUpdate.Invoke(this, args);
             }

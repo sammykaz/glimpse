@@ -59,6 +59,7 @@
     <Compile Include="Contracts\ViewModel\ISearchJourneyViewModel.cs" />
     <Compile Include="Contracts\ViewModel\ISearchResultViewModel.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Helpers\LocationChangedHandlerArgs.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\App\MenuItem.cs" />
