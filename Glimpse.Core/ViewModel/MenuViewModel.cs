@@ -33,7 +33,7 @@ namespace Glimpse.Core.ViewModel
             CreateMenuItems();
         }
 
-        private void CreateMenuItems()
+        private async void CreateMenuItems()
         {
             MenuItems.Add(new MenuItem
             {
@@ -50,9 +50,9 @@ namespace Glimpse.Core.ViewModel
                 Option = MenuOption.Settings,
                 IsSelected = false
             });
-            /*
-             _user = _userDataService.SearchUserByEmail(Settings.Email).Result;
-             _vendor = _vendorDataService.SearchVendorByEmail(Settings.Email).Result;
+
+            _user = await _userDataService.SearchUserByEmail(Settings.Email);
+            _vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
 
             if (_user != null && _vendor == null)
             {
@@ -63,7 +63,8 @@ namespace Glimpse.Core.ViewModel
                     Option = MenuOption.BuyerProfile,
                     IsSelected = true
                 });
-            } else if (_user == null && _vendor != null)
+            }
+            else if (_user == null && _vendor != null)
             {
                 MenuItems.Add(new MenuItem
                 {
@@ -77,7 +78,7 @@ namespace Glimpse.Core.ViewModel
             {
                 //do nothing, no profile for no user
             }
-            */
+
         }
 
         private void OnMenuEntrySelect(MenuItem item)
