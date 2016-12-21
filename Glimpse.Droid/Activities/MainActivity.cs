@@ -67,8 +67,8 @@ namespace Glimpse.Droid.Activities
                 _drawerToggle.DrawerIndicatorEnabled = true;
                 _drawerLayout.SetDrawerListener(_drawerToggle);
 
-                ViewModel.ShowMenu();
-                ViewModel.ShowMap();
+               ViewModel.ShowMenu();
+               ViewModel.ShowMap();
             }
         }
 
