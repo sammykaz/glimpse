@@ -13,7 +13,7 @@ namespace Glimpse.Core.Repositories
         public async Task<Vendor> SearchVendorByEmail(string email)
         {
             RestClient<Vendor> restClient = new RestClient<Vendor>();
-            return await restClient.GetUserByEmailAsync(email);
+            return await restClient.GetByKeyword(email, true);
         }
 
         public async Task PostVendor(Vendor vendor)
