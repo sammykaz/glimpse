@@ -91,17 +91,14 @@ namespace Glimpse.Core.ViewModel
                     else
                     {
                         User newUser = new User
-                        {
-                            FirstName = _firstName,
-                            LastName = _lastName,
+                        {                           
                             Email = _email,
                             Password = _password
                         };
 
                         //Set as User Account
                         Settings.LoginStatus = true;
-                        Settings.Email = _email;
-                        
+                        Settings.Email = _email;                        
 
                         await _userDataService.SignUp(newUser);
 

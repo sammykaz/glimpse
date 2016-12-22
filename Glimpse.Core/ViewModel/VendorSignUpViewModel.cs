@@ -203,9 +203,7 @@ namespace Glimpse.Core.ViewModel
                     else
                     {
                         Vendor newVendor = new Vendor()
-                        {
-                            FirstName = _firstName,
-                            LastName = _lastName,
+                        {                           
                             CompanyName = _companyName,
                             Email = _email,
                             Password = _password,
@@ -219,12 +217,8 @@ namespace Glimpse.Core.ViewModel
                                     Street = _street,
                                     StreetNumber = _streetNumber
                                 },
-                            Telephone =
-                                new Telephone()
-                                {
-                                    PersonalPhoneNumber = _personalPhoneNumber,
-                                    BusinessPhoneNumber = _businessPhoneNumber
-                                }
+                            Telephone = _businessPhoneNumber
+                                
                         };
 
                         newVendor.Location = Utility.Geocoding.Geocode(newVendor.Address);

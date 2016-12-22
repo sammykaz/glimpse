@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebServices.Models
 {
@@ -7,6 +8,7 @@ namespace WebServices.Models
         public int UserId { get; set; }      
 
         [Index(IsUnique = true)]
+        [MaxLength(20)]
         public string Email { get; set; }
 
         public string Password { get; set; }
