@@ -35,46 +35,23 @@ namespace WebServices.Controllers
             return Ok(user);
         }
 
-        // GET: api/Users/Search/example@gmail.com
-        [Route("api/Users/Search/{email}")]
-        [ResponseType(typeof(User))]
-        public IHttpActionResult GetUserByEmail(string email)
-        {
-            try
-            {
-                var user = db.Users.Where(e => e.Email == email);
-                if (user == null)
-                    return NotFound();
 
-                return Ok(user);
-            }
-            catch (WebException webExcp)
+        // GET: api/Users/Search/lala@gmail.com/
+        //trailing slash is important or else 404 error
+        [Route("api/Users/Search/{email}/")]
+        [ResponseType(typeof(User))]
+        public IHttpActionResult GetUser(string email)
+        {            
+            //for most email providers, upper case is the same as lower
+            User user = db.Users.FirstOrDefault(e=> e.Email.ToLower().Equals(email.ToLower()));
+            if (user == null)
             {
-                // If you reach this point, an exception has been caught.
-                Console.WriteLine("1. A WebException has been caught.");
-                // Write out the WebException message.
-                Console.WriteLine(webExcp.ToString());
-                // Get the WebException status code.
-                WebExceptionStatus status = webExcp.Status;
-                // If status is WebExceptionStatus.ProtocolError, 
-                //   there has been a protocol error and a WebResponse 
-                //   should exist. Display the protocol error.
-                if (status == WebExceptionStatus.ProtocolError)
-                {
-                    Console.Write("The server returned protocol error ");
-                    // Get HttpWebResponse so that you can check the HTTP status code.
-                    HttpWebResponse httpResponse = (HttpWebResponse)webExcp.Response;
-                    Console.WriteLine((int)httpResponse.StatusCode + " - "
-                       + httpResponse.StatusCode);
-                }
-                return null;
+                return Ok();
             }
-            catch(Exception e)
-            {
-                Console.WriteLine("2. " + e.ToString());
-                return null;
-            }
+
+            return Ok(user);
         }
+
 
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
