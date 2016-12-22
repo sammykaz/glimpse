@@ -224,8 +224,7 @@ namespace Glimpse.Core.ViewModel
                                 {
                                     PersonalPhoneNumber = _personalPhoneNumber,
                                     BusinessPhoneNumber = _businessPhoneNumber
-                                },
-                            IsVendor = true
+                                }
                         };
 
                         newVendor.Location = Utility.Geocoding.Geocode(newVendor.Address);

@@ -95,8 +95,7 @@ namespace Glimpse.Core.ViewModel
                             FirstName = _firstName,
                             LastName = _lastName,
                             Email = _email,
-                            Password = _password,
-                            IsVendor = false
+                            Password = _password
                         };
 
                         //Set as User Account
