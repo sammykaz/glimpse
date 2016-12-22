@@ -8,7 +8,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Glimpse.Core.Model;
 using WebServices.Models;
 
 namespace WebServices.Controllers
