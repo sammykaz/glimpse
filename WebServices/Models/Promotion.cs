@@ -1,10 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
-namespace Glimpse.Core.Model
+namespace WebServices.Models
 {
     public class Promotion
     {
@@ -12,34 +10,16 @@ namespace Glimpse.Core.Model
         {
             Categories = new List<Category>();
         }
+
         public int PromotionId { get; set; }
 
-        public string _title;
-        public string Title
-        {
-            get { return _title; }
-            set { _title = value; }
-        }
+        public string Title;       
 
-        public string _description;
-        public string Description
-        {
-            get { return _description; }
-            set { _description = value; }
-        }
+        public string Description;       
 
-        public int VendorId { get; set; }
+        public int? VendorId { get; set; }
 
-        public virtual ICollection<Category> Categories { get; set; }
-
-        /*
-        public string CategoriesList
-        {
-            get { return String.Join(",", Categories); }
-
-            set { Categories = value.Split(',').Select(x => (Category)Enum.Parse(typeof(Category), x)).ToList(); }
-        }
-        */
+        public virtual ICollection<Category> Categories { get; set; }     
 
         //These dates will be extracted from a calendar UI in the future.
         public DateTime PromotionStartDate { get; set; }

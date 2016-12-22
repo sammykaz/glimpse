@@ -1,19 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Glimpse.Core.Model
+namespace WebServices.Models
 {
     public class Vendor
     {
         public Vendor()
         {
-            Promotions = new List<Promotion>();
+            this.Promotions = new List<Promotion>();
         }
-        public int VendorId { get; set; }
-        public string FirstName { get; set; }
 
-        public string LastName { get; set; }
+        public int VendorId { get; set; }      
 
+        [Index(IsUnique = true)]
         public string Email { get; set; }
 
         public string Password { get; set; }
@@ -24,12 +23,10 @@ namespace Glimpse.Core.Model
 
         public Address Address { get; set; }
 
-        public Telephone Telephone { get; set; }
+        public string Telephone { get; set; }
 
         public Location Location { get; set; }
 
         public virtual ICollection<Promotion> Promotions { get; set; }
-
-        public bool IsVendor { get; set; }
     }
 }
