@@ -35,9 +35,7 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             var usersBefore = await repository.GetUsers();
             var usersCountBefore = usersBefore.Count;
             User user = new User
-            {
-                FirstName = "Joseph",
-                LastName = "boolster",
+            {               
                 Email = "jojo@gmail.com",
                 Password = "mypassword",
                 Salt = "salt",
