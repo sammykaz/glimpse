@@ -36,7 +36,5 @@ namespace Glimpse.Core.Model
         public Location Location { get; set; }
    
         public virtual ICollection<Promotion> Promotions { get; set; }
-
-        public bool IsVendor { get; set; }
     }
 }
