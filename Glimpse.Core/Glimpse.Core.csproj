@@ -70,7 +70,6 @@
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Promotion.cs" />
     <Compile Include="Model\Location.cs" />
-    <Compile Include="Model\Telephone.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -7,13 +7,13 @@ namespace WebServices.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class firstmig : IMigrationMetadata
+    public sealed partial class location : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(firstmig));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(location));
         
         string IMigrationMetadata.Id
         {
-            get { return "201612040658244_firstmig"; }
+            get { return "201612220657108_location"; }
         }
         
         string IMigrationMetadata.Source

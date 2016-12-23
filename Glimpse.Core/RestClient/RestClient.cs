@@ -40,6 +40,25 @@ namespace Plugin.RestClient
             return taskModels;
         }
 
+        public async Task<T> GetByKeyword(string keyword, bool slashRequired = false)
+        {
+
+            var httpClient = new HttpClient();
+
+            string request = WebServiceUrl + "Search/" + keyword;
+
+            if (slashRequired)
+                request = request + "/";
+
+            var json = await httpClient.GetStringAsync(request);
+
+            var taskModel = JsonConvert.DeserializeObject<T>(json);
+
+            return taskModel;
+        }
+
+
+        //TO REMOVE
         public async Task<T> GetUserByEmailAsync(string email)
         {
 
@@ -47,11 +66,9 @@ namespace Plugin.RestClient
 
             var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + email + "/");
 
-            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+            var taskModel = JsonConvert.DeserializeObject<T>(json);
 
-            var obj = taskModels.FirstOrDefault();
-
-            return obj;
+            return taskModel;
 
         }
 

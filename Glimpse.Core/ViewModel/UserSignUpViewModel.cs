@@ -22,32 +22,7 @@ namespace Glimpse.Core.ViewModel
         public UserSignUpViewModel(IMvxMessenger messenger, IUserDataService userDataService) : base(messenger)
         {
             _userDataService = userDataService;
-        }
-
-
-        private string _firstName;
-        public string FirstName
-        {
-            get { return _firstName; }
-            set
-            {
-                _firstName = value;
-                RaisePropertyChanged(() => FirstName);
-
-            }
-        }
-
-        private string _lastName;
-        public string LastName
-        {
-            get { return _lastName; }
-            set
-            {
-                _lastName = value;
-                RaisePropertyChanged(() => LastName);
-
-            }
-        }
+        }       
 
         private string _email;
         public string Email
@@ -91,18 +66,14 @@ namespace Glimpse.Core.ViewModel
                     else
                     {
                         User newUser = new User
-                        {
-                            FirstName = _firstName,
-                            LastName = _lastName,
+                        {                           
                             Email = _email,
-                            Password = _password,
-                            IsVendor = false
+                            Password = _password
                         };
 
                         //Set as User Account
                         Settings.LoginStatus = true;
-                        Settings.Email = _email;
-                        
+                        Settings.Email = _email;                        
 
                         await _userDataService.SignUp(newUser);
 

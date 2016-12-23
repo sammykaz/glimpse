@@ -15,11 +15,7 @@ namespace Glimpse.Core.Model
         {
             Promotions = new List<Promotion>();
         }
-        public int VendorId { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
+        public int VendorId { get; set; }       
 
         public string Email { get; set; }
 
@@ -31,12 +27,10 @@ namespace Glimpse.Core.Model
 
         public Address Address { set; get; }
 
-        public Telephone Telephone { get; set; }
+        public string Telephone { get; set; }
 
         public Location Location { get; set; }
    
         public virtual ICollection<Promotion> Promotions { get; set; }
-
-        public bool IsVendor { get; set; }
     }
 }

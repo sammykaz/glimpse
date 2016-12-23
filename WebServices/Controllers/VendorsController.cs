@@ -8,7 +8,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Glimpse.Core.Model;
 using WebServices.Models;
 
 namespace WebServices.Controllers
@@ -35,45 +34,21 @@ namespace WebServices.Controllers
             return Ok(vendor);
         }
 
-        // GET: api/Vendors/Search/example@gmail.com
-        [Route("api/Vendors/Search/{email}")]
-        [ResponseType(typeof(Vendor))]
-        public IHttpActionResult GetVendorByEmail(string email)
-        {
-            try
-            {
-                var vendor = db.Vendors.Where(e => e.Email == email);
-                if (vendor == null)
-                    return NotFound();
 
-                return Ok(vendor);
-            }
-            catch (WebException webExcp)
+        // GET: api/Vendors/Search/lala@gmail.com/
+        //trailing slash is important or else 404 error
+        [Route("api/Vendors/Search/{email}/")]
+        [ResponseType(typeof(Vendor))]
+        public IHttpActionResult GetVendor(string email)
+        {
+            //for most email providers, upper case is the same as lower
+            Vendor vendor = db.Vendors.FirstOrDefault(e => e.Email.ToLower().Equals(email.ToLower()));
+            if (vendor == null)
             {
-                // If you reach this point, an exception has been caught.
-                Console.WriteLine("1. A WebException has been caught.");
-                // Write out the WebException message.
-                Console.WriteLine(webExcp.ToString());
-                // Get the WebException status code.
-                WebExceptionStatus status = webExcp.Status;
-                // If status is WebExceptionStatus.ProtocolError, 
-                //   there has been a protocol error and a WebResponse 
-                //   should exist. Display the protocol error.
-                if (status == WebExceptionStatus.ProtocolError)
-                {
-                    Console.Write("The server returned protocol error ");
-                    // Get HttpWebResponse so that you can check the HTTP status code.
-                    HttpWebResponse httpResponse = (HttpWebResponse)webExcp.Response;
-                    Console.WriteLine((int)httpResponse.StatusCode + " - "
-                       + httpResponse.StatusCode);
-                }
-                return null;
+                return Ok();
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("2. " + e.ToString());
-                return null;
-            }
+
+            return Ok(vendor);
         }
 
         // PUT: api/Vendors/5

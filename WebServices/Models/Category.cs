@@ -1,5 +1,6 @@
 ﻿
-namespace Glimpse.Core.Model
+
+namespace WebServices.Models
 {
     public class Category
     {
