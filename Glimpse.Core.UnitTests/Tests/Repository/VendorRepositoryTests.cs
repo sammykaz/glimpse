@@ -40,18 +40,14 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             address.City = "Montreal";
             address.StreetNumber = "104";
             address.Street = "Kingston";
-            address.PostalCode = "h3z4k1";
+            address.PostalCode = "h3z4k1";           
+            string telephone = "5145436363";
 
-            Telephone telephone = new Telephone();
-            telephone.BusinessPhoneNumber = "5145436363";
-            telephone.PersonalPhoneNumber = "5148528542";
 
             Location location = new Location(50.0, -150);
 
             Vendor vendor = new Vendor
-            {
-                FirstName = "george",
-                LastName = "ge",
+            {               
                 Email = "gege@gmail.com",
                 Password = "gepass",
                 Address = address,

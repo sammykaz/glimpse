@@ -23,32 +23,7 @@ namespace Glimpse.Core.ViewModel
         {
             _vendorDataService = vendorDataService;
             _userDataService = userDataService;
-        }
-
-
-        private string _firstName;
-        public string FirstName
-        {
-            get { return _firstName; }
-            set
-            {
-                _firstName = value;
-                RaisePropertyChanged(() => FirstName);
-                
-            }
-        }
-
-        private string _lastName;
-        public string LastName
-        {
-            get { return _lastName; }
-            set
-            {
-                _lastName = value;
-                RaisePropertyChanged(() => LastName);
-
-            }
-        }
+        }             
 
         private string _companyName;
         public string CompanyName
@@ -160,18 +135,6 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        private string _personalPhoneNumber;
-        public string PersonalPhoneNumber
-        {
-            get { return _personalPhoneNumber; }
-            set
-            {
-                _personalPhoneNumber = value;
-                RaisePropertyChanged(() => PersonalPhoneNumber);
-
-            }
-        }
-
         private string _businessPhoneNumber;
         public string BusinessPhoneNumber
         {
@@ -189,11 +152,9 @@ namespace Glimpse.Core.ViewModel
             get
             {
                 return new MvxCommand(async () =>
-                {
+                {                  
 
-                    //To be fixed Later
-
-                    //vendor = await _vendorDataService.SearchVendorByEmail(_email);
+                    vendor = await _vendorDataService.SearchVendorByEmail(_email);
 
                     //Check if email exists in db
                     if (vendor != null)
@@ -203,9 +164,7 @@ namespace Glimpse.Core.ViewModel
                     else
                     {
                         Vendor newVendor = new Vendor()
-                        {
-                            FirstName = _firstName,
-                            LastName = _lastName,
+                        {                           
                             CompanyName = _companyName,
                             Email = _email,
                             Password = _password,
@@ -219,13 +178,8 @@ namespace Glimpse.Core.ViewModel
                                     Street = _street,
                                     StreetNumber = _streetNumber
                                 },
-                            Telephone =
-                                new Telephone()
-                                {
-                                    PersonalPhoneNumber = _personalPhoneNumber,
-                                    BusinessPhoneNumber = _businessPhoneNumber
-                                },
-                            IsVendor = true
+                            Telephone = _businessPhoneNumber
+                                
                         };
 
                         newVendor.Location = Utility.Geocoding.Geocode(newVendor.Address);

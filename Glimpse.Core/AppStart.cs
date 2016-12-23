@@ -9,7 +9,7 @@ namespace Glimpse.Core
 {
     public class AppStart: MvxNavigatingObject, IMvxAppStart
     {
-        public void Start(object hint = null)
+        public async void Start(object hint = null)
         {
             //Check if the user is logged in before and authenticate
             var authenticator = Mvx.Resolve<ILoginDataService>();
@@ -17,7 +17,7 @@ namespace Glimpse.Core
             if(Settings.Language == string.Empty)
             Settings.Language = "English";
 
-            if (authenticator.AuthenticateUserLogin())
+            if (await authenticator.AuthenticateUserLogin())
             {
                 ShowViewModel<MainViewModel>();
             }
