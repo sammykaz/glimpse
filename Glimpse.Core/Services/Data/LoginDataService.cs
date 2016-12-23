@@ -7,7 +7,7 @@ using Plugin.RestClient;
 using Glimpse.Core.Services.General;
 using System.Collections.Generic;
 using System.Linq;
-
+using System;
 
 namespace Glimpse.Core.Services.Data
 {
@@ -54,36 +54,49 @@ namespace Glimpse.Core.Services.Data
             }
         }
 
-        public bool AuthenticateUserLogin()
+        public async Task<bool> AuthenticateUserLogin()
         {
-            bool isValid = false;
+           
 
-            //Check if user already signed in before
-            if (!string.IsNullOrEmpty(Settings.Email))
-            {
-                user = _userRepository.SearchUserByEmail(Settings.Email).Result;
-                vendor = _vendorRepository.SearchVendorByEmail(Settings.Email).Result;
+                bool isValid = false;
+
+                //Check if user already signed in before
+                if (!string.IsNullOrEmpty(Settings.Email))
+                {
+                try
+                {
+                    //TODO improve this
+                    user = await _userRepository.SearchUserByEmail(Settings.Email);
+                    vendor = await _vendorRepository.SearchVendorByEmail(Settings.Email);
+                }
+                catch (Exception e)
+                {
+                    string lol;
+                }
 
                 if (user != null && vendor == null)
-                {
-                    if (Settings.Email == user.Email && Settings.Password == user.Password)
                     {
-                        isValid = true;
-                    }
+                        if (Settings.Email == user.Email && Settings.Password == user.Password)
+                        {
+                            isValid = true;
+                        }
 
-                } else if (user == null && vendor != null)
-                {
-                    if (Settings.Email == vendor.Email && Settings.Password == vendor.Password)
+                    }
+                    else if (user == null && vendor != null)
                     {
-                        isValid = true;
+                        if (Settings.Email == vendor.Email && Settings.Password == vendor.Password)
+                        {
+                            isValid = true;
+                        }
+                    }
+                    else
+                    {
+                        isValid = false;
                     }
                 }
-                else
-                {
-                    isValid = false;
-                }
-            }
-            return isValid;
+                return isValid;
+            
+
         }
 
         public void SaveEmailPasswordInSettings(string email, string hashedPassword)

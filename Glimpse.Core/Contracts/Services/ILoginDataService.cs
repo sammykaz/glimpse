@@ -8,7 +8,7 @@ namespace Glimpse.Core.Contracts.Services
     {
         bool AuthenticateVendor(Vendor vendor, string email, string password);
         bool AuthenticateUser(User user, string email, string password);
-        bool AuthenticateUserLogin();
+        Task<bool> AuthenticateUserLogin();
         void SaveEmailPasswordInSettings(string email, string hashedPassword);
         void ClearCredentials();
         void ClearLoginState();
