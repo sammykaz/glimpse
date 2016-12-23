@@ -12,7 +12,7 @@
                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                         <input id="txtPassword" type="password" class="form-control" name="password" placeholder="Password" ng-model="user.password">
                     </div>
-                    <button class="btn btn-primary btn-block login-button" type="submit" ng-click="login()"><i class="fa fa-sign-in"></i> Login</button>
+                    <button class="btn btn-primary btn-block login-button" type="submit" ng-click="getData()"><i class="fa fa-sign-in"></i> Login</button>
                     <div class="checkbox login-options">
                         <label><input type="checkbox" /> Remember Me</label>
                         <a href="#" class="login-forgot">Forgot Username/Password?</a>
@@ -20,6 +20,8 @@
                     <div class="col-sm-12">
                         <a ui-sref="signup" class="login-forgot">Create new Account</a>
                     </div>
+                    <h2>Authorize</h2>
+                    <p>{{data}}</p>
                 </form>
             </div>
         </div>

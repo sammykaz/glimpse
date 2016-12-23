@@ -12,5 +12,4 @@ app.factory('sessionService', ['', function(){
             sessionStorage.setItem(key,value);
         }
     };
-
 }])
