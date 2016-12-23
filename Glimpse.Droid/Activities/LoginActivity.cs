@@ -1,6 +1,6 @@
 
-
 using Android.App;
+using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Glimpse.Core.Services.General;
@@ -28,15 +28,21 @@ namespace Glimpse.Droid.Activities
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            base.OnCreate(savedInstanceState);
             if (CheckAuthenticationStatus())
             {
-                base.OnCreate(savedInstanceState);
                 SetContentView(Resource.Layout.LoginMainView);
                 loginActivity = this;
 
                 ViewModel.ShowLoginPage();
             }
+            else
+            {
+                StartActivity(typeof(MainActivity));
+                Finish();
+            }
         }
+
 
         public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
             FragmentTransaction transaction)
