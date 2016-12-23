@@ -318,6 +318,7 @@
     <Compile Include="Views\BuyerProfilePageFragment.cs" />
     <Compile Include="Views\CreatePromotionFragment.cs" />
     <Compile Include="Views\CreatePromotionPart2Fragment.cs" />
+    <Compile Include="Views\DatePickerFragment.cs" />
     <Compile Include="Views\LoginFragment.cs" />
     <Compile Include="Views\MenuFragment.cs" />
     <Compile Include="Views\SendMail.cs" />

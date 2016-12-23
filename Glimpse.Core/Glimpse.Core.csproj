@@ -58,6 +58,7 @@
     <Compile Include="Contracts\ViewModel\IMainViewModel.cs" />
     <Compile Include="Contracts\ViewModel\ISearchJourneyViewModel.cs" />
     <Compile Include="Contracts\ViewModel\ISearchResultViewModel.cs" />
+    <Compile Include="Converters\DateTimeValueConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Helpers\LocationChangedHandlerArgs.cs" />
     <Compile Include="Helpers\Settings.cs" />
@@ -246,7 +247,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />
-    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
