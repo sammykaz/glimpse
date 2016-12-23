@@ -166,6 +166,20 @@
         android:textColor="#000"
         local:MvxBind="Text BusinessPhoneNumber, Mode=TwoWay"
         android:inputType="phone" />
+  <Button
+    android:id="@+id/main_pickAPlaceButton"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Pick A Place" />
+  <TextView
+     android:text="Address"
+     android:textAppearance="?android:attr/textAppearanceMedium"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:paddingBottom="20dp"
+     android:paddingLeft="10dp"
+     android:paddingRight="10dp"
+     android:id="@+id/main_placeAddress" />
     <Button
         android:text="Sign Up!"
         android:layout_width="match_parent"

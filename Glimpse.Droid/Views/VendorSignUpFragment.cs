@@ -12,6 +12,9 @@ using Square.TimesSquare;
 using Glimpse.Droid.Activities;
 using Glimpse.Droid;
 using Glimpse.Droid.Views;
+using Android.Gms.Location.Places.UI;
+using Android.App;
+using Android.Content;
 
 namespace Glimpse.Droid.Views
 {
@@ -19,9 +22,12 @@ namespace Glimpse.Droid.Views
     [Register("glimpse.droid.views.VendorSignUpFragment")]
     public class VendorSignUpFragment : MvxFragment<VendorSignUpViewModel>
     {
-        
+        private static readonly int PLACE_PICKER_REQUEST = 1;
+        private Button _pickAPlaceButton;
+        private TextView _placeAddressTextView;
 
-    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
             return this.BindingInflate(Resource.Layout.VendorSignUpView, null);
@@ -31,11 +37,42 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as LoginActivity).SetCustomTitle("Vendor Sign Up");
+          
+   
+            _placeAddressTextView = (this.Activity as LoginActivity).FindViewById<TextView>(Resource.Id.main_placeAddress);
+            _pickAPlaceButton = (this.Activity as LoginActivity).FindViewById<Button>(Resource.Id.main_pickAPlaceButton);
+            _pickAPlaceButton.Click += OnPickAPlaceButtonTapped;
+
+
+
             Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
             acc_Button.Click += delegate
             {
                 OnClick(this.View);
             };
+        }
+
+        private void OnPickAPlaceButtonTapped(object sender, EventArgs eventArgs)
+        {
+            PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+            StartActivityForResult(builder.Build(this.Activity as LoginActivity), PLACE_PICKER_REQUEST);
+        }
+
+        public override void OnActivityResult(int requestCode, int resultCode, Intent data)
+        {
+            if (requestCode == PLACE_PICKER_REQUEST && resultCode == (int) Result.Ok)
+            {
+                GetPlaceFromPicker(data);
+            }
+            base.OnActivityResult(requestCode, resultCode, data);
+        }
+
+  
+
+        private void GetPlaceFromPicker(Intent data)
+        {
+            var placePicked = PlacePicker.GetPlace(this.Context, data);
+            _placeAddressTextView.Text = placePicked?.AddressFormatted?.ToString();
         }
 
         public override void OnStart()

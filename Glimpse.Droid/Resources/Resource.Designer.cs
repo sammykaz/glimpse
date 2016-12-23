@@ -2998,6 +2998,12 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f09009e
 			public const int mainLinearLayout = 2131296414;
 			
+			// aapt resource value: 0x7f0900ee
+			public const int main_pickAPlaceButton = 2131296494;
+			
+			// aapt resource value: 0x7f0900ef
+			public const int main_placeAddress = 2131296495;
+			
 			// aapt resource value: 0x7f0900c0
 			public const int map = 2131296448;
 			
