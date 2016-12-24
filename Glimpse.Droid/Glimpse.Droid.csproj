@@ -352,9 +352,6 @@
     <AndroidResource Include="Resources\layout\fragment_menu.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\item_menu.axml">
-      <SubType>AndroidResource</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\values\dimens.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -367,10 +364,6 @@
     <AndroidResource Include="Resources\layout\SettingsView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\JourneyDetailsView.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\item_saved_journey.axml" />
     <AndroidResource Include="Resources\drawable\toolbar_dropshadow.axml" />
     <AndroidResource Include="Resources\drawable\secondary_button_selector.axml" />
     <AndroidResource Include="Resources\drawable\border_button.axml" />
@@ -435,6 +428,7 @@
     <AndroidResource Include="Resources\layout\PromotionItemTemplate.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\item_menu.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
