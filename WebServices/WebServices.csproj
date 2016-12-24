@@ -1056,11 +1056,14 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ng-map.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Index.cshtml" />
+    <Content Include="src\controllers\mapController.js" />
     <Content Include="src\css\wp.jpg" />
     <Content Include="src\services\userService.js" />
+    <Content Include="src\views\mapView.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

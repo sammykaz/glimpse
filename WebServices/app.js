@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngResource', 'blockUI', 'LocalStorageModule']);
+var app = angular.module('myApp', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngResource', 'blockUI', 'LocalStorageModule', 'ngMap']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationProvider) {
 
@@ -21,6 +21,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             url: '/home',
             controller: 'homeController',
             templateUrl: 'src/views/homeView.html'
+        })
+        .state('map', {
+            url: '/map',
+            controller: 'mapController',
+            templateUrl: 'src/views/mapView.html'
         })
 })
 

@@ -20,3 +20,9 @@ body {
 .nav-sections{text-align: center; width: 0%!important;}
 .nav-bar-background-color{background-color: #000!important;border-color: #080808!important;}
 .nav-bar-textColor{color: #d8d8d8 !important;}
+.map-container{width: 50%;
+    margin: 0 auto;
+    position: relative;
+    top: 5em;
+    border: 1px solid #eee;
+    border-radius: 5px;}
