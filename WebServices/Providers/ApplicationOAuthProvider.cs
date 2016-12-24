@@ -11,36 +11,44 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using WebServices.Models;
 using Glimpse.Core.Contracts.Services;
+using Plugin.RestClient;
+using Glimpse.Core.Services.General;
 
 namespace WebServices.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
-        //private readonly IVendorDataService _vendorDataService;
+
+        private Vendor currentVendor;
+        RestClient<Vendor> restClient = new RestClient<Vendor>();
+
         public ApplicationOAuthProvider(string publicClientId)
         {
-            //_vendorDataService = vendorDataService;
             if (publicClientId == null)
             {
                 throw new ArgumentNullException("publicClientId");
             }
-
             _publicClientId = publicClientId;
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
+            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+            currentVendor = await restClient.GetByKeyword(context.UserName, true);
 
-        var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            if (context.UserName == "admin" && context.Password == "admin")
+            if (currentVendor != null)
             {
-                identity.AddClaim(new Claim(ClaimTypes.Role, "admin"));
-                identity.AddClaim(new Claim("username", "admin"));
-                identity.AddClaim(new Claim(ClaimTypes.Name, "admin test"));
-                context.Validated(identity);
+                string encryptedPassword = Cryptography.EncryptAes(context.Password, currentVendor.Salt);
+                if (encryptedPassword == currentVendor.Password){
+                    identity.AddClaim(new Claim(ClaimTypes.Role, "vendor"));
+                    identity.AddClaim(new Claim("username", currentVendor.CompanyName));
+                    identity.AddClaim(new Claim(ClaimTypes.Name, currentVendor.CompanyName));
+                    context.Validated(identity);
+                }
             }
-            else if (context.UserName == "user" && context.Password == "user")
+
+            if (context.UserName == "user" && context.Password == "user")
             {
                 identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
                 identity.AddClaim(new Claim("username", "user"));
