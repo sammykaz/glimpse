@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -17,6 +18,7 @@ using System.Text;
 using Android.App;
 using MvvmCross.Binding.BindingContext;
 using Android.Graphics;
+using Android.Util;
 
 namespace Glimpse.Droid.Views
 {
@@ -72,8 +74,36 @@ namespace Glimpse.Droid.Views
             StartActivityForResult(Intent.CreateChooser(intent, "Select Picture"), PickImageId);
         }
 
+        public override void OnActivityResult(int requestCode, int resultCode, Intent data)
+        {
+            if ((resultCode == (int)Result.Ok) && (data != null))
+            {
+                Android.Net.Uri uri = data.Data;
+                
+                _imageView = (this.Activity as MainActivity).FindViewById<ImageView>(Resource.Id.promotion_picture);
+                _imageView.SetImageURI(uri);
 
-        void StartDateSelect_OnClick(object sender, EventArgs eventArgs)
+
+                _imageView.BuildDrawingCache(true);
+                Bitmap bmap = _imageView.GetDrawingCache(true);
+                _imageView.SetImageBitmap(bmap);
+                Bitmap b = Bitmap.CreateBitmap(_imageView.GetDrawingCache(true));
+
+
+                var stream = new MemoryStream();
+
+                b.Compress(Bitmap.CompressFormat.Png, 100, stream);
+
+                var viewModel = (CreatePromotionPart2ViewModel)ViewModel;
+
+                byte[] bytes = stream.ToArray();
+
+                viewModel.Bytes = bytes;
+            }
+        }
+
+
+            void StartDateSelect_OnClick(object sender, EventArgs eventArgs)
         {
             DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
             {

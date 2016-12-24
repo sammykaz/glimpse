@@ -41,6 +41,13 @@ namespace Glimpse.Core.Repositories
             return vendorId;
         }
 
+        public async Task PutVendor(int id, Vendor vendor)
+        {
+            RestClient<Vendor> restClient = new RestClient<Vendor>();
+
+            await restClient.PutAsync(id, vendor);
+        }
+
  
     }
 }
