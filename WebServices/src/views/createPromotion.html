@@ -1,10 +1,77 @@
 <div class="animated fadeIn">
-    <div class="home-panel-background col-sm-12">
-       <div class="col-sm-1 nav-sections"><h4><a></a></h4></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Create Promotion</h3>
+        </div>
+        <div class="modal-body ng-scope" id="modal-body">
+            <form>
+                <div class="form-group">
+                    <label>Promotion Title</label>
+                    <input type="text" class="form-control" placeholder="Enter Title" ng-model="promotionTitle">
+                </div>
+                <div class="form-group container modal-checkbox">
+                    <label>Categories</label>
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <input type="checkbox" ng-model="categories.footwear">
+                            <span class="">Footwear</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="checkbox" ng-model="categories.electronics">
+                            <span class="">Electronics</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="checkbox" ng-model="categories.jewellery">
+                            <span class="">Jewellery</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="checkbox" ng-model="categories.restaurants">
+                            <span class="">Restaurants</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="checkbox" ng-model="categories.services">
+                            <span class="">Services</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="checkbox" ng-model="categories.apparel">
+                            <span class="">Apparel</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>File input</label>
+                    <input type="file">
+                    <small class="form-text text-muted">Choose a picture to promote</small>
+                </div>
+                <h4>Promotion Duration</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="col-md-6">
+                        <p class="input-group">
+                            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+            <button class="btn btn-primary" type="button" ng-click="ok()">Create</button>
+        </div>
     </div>
-
-    <h2>Authorize</h2>
-    <p>{{data}}</p>
-
-   
 </div>

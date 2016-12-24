@@ -23,3 +23,4 @@ body {
 .promotion-list{background: white; padding: 10px; border-radius: 10px;}
 .promotion-border{background: rgba(0, 0, 0, 0.38); padding: 4px !important; border-style: double; border-radius: 10px;}
 .promotion-buttons-edit-create{padding-bottom: 10px; padding-top: 10px;}
+.modal-checkbox{padding-left: 0px !important;}
