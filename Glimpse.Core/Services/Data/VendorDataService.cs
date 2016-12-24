@@ -23,8 +23,6 @@ namespace Glimpse.Core.Services.Data
             return await _vendorRepository.SearchVendorByEmail(email);
         }
 
-
-
         public async Task SignUp(Vendor vendor)
         {
             var cryptoTuple = Cryptography.EncryptAes(vendor.Password);
@@ -43,11 +41,10 @@ namespace Glimpse.Core.Services.Data
             return await _vendorRepository.GetVendorId(email);
         }
 
-        public async Task AddVendorPromotion(Vendor vendor)
+        public async Task EditVendor(int id, Vendor vendor)
         {
-            //vendor.Location = Utility.Geocoding.Geocode(vendor.Address);
-            
-            //Add Edit dB code here
+            string test = "";
+            await _vendorRepository.PutVendor(id, vendor);
         }
     }
 }

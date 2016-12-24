@@ -77,44 +77,7 @@ namespace Glimpse.Droid.Activities
                ViewModel.ShowMenu();
                ViewModel.ShowMap();
             }
-        }
-
-
-        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-        {
-            if ((resultCode == Result.Ok) && (data != null))
-            {
-                Uri uri = data.Data;
-                _imageView = FindViewById<ImageView>(Resource.Id.promotion_picture);
-                _imageView.SetImageURI(uri);
-
-
-                _imageView.BuildDrawingCache(true);
-                Bitmap bmap = _imageView.GetDrawingCache(true);
-                _imageView.SetImageBitmap(bmap);
-                Bitmap b = Bitmap.CreateBitmap(_imageView.GetDrawingCache(true));
-                
-
-                var stream = new MemoryStream();
-
-                b.Compress(Bitmap.CompressFormat.Png, 100, stream);
-
-                bool oneTime = false;
-
-                if(!oneTime)
-                {
-                    var set = this.CreateBindingSet<MainActivity, CreatePromotionPart2ViewModel>();
-                    byte[] byteArray = stream.ToArray();
-                    set.Bind(byteArray)
-                     .For(array => array)
-                     .To(vm => vm.Bytes);
-                    //.WithConversion(new LatLngValueConverter(), null).TwoWay();
-                    set.Apply();
-                }
-
-              
-            }
-        }
+        }      
 
         private void _drawerToggle_DrawerOpened(object sender, ActionBarDrawerEventArgs e)
         {

@@ -10,8 +10,12 @@ namespace Glimpse.Core.Contracts.Repository
 
         Task PostVendor(Vendor vendor);
 
+        Task PutVendor(int id, Vendor vendor);
+
         Task<List<Vendor>> GetVendors();
 
         Task<int> GetVendorId(string username);
+
+
     }
 }

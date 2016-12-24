@@ -10,10 +10,10 @@ namespace Glimpse.Core.Contracts.Services
 
         Task SignUp(Vendor vendor);
 
+        Task EditVendor(int id, Vendor vendor);
+
         Task<int> GetVendorId(string email);
 
         Task<List<Vendor>> GetVendors();
-
-        Task AddVendorPromotion(Vendor vendor);
     }
 }
