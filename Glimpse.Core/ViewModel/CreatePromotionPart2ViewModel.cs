@@ -4,6 +4,7 @@ using Glimpse.Core.Model;
 using System.IO;
 using Glimpse.Core.Contracts.Services;
 using MvvmCross.Core.ViewModels;
+using Glimpse.Core.Services.General;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -100,10 +101,14 @@ namespace Glimpse.Core.ViewModel
                         //PromotionImage = File,
                     };
 
-                    await _promotionDataService.StorePromotion(promotion);
+                    Vendor vendor = await _vendorDataService.SearchVendorByEmail( Settings.Email);
 
+                    //    vendor.Promotions.Add(promotion);
+                    vendor.CompanyName = "modified ";
+
+                    await _vendorDataService.EditVendor(vendor.VendorId, vendor);
+                   
                     ShowViewModel<VendorProfilePageViewModel>();
-
                 });
             }
         }
