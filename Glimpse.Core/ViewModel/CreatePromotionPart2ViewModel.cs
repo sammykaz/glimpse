@@ -4,6 +4,7 @@ using Glimpse.Core.Model;
 using System.IO;
 using Glimpse.Core.Contracts.Services;
 using MvvmCross.Core.ViewModels;
+using Glimpse.Core.Services.General;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -90,18 +91,22 @@ namespace Glimpse.Core.ViewModel
 
                     Promotion promotion = new Promotion()
                     {
-                        Title = dataFromCreatePromotionPart1["PromotionTitle"],
-                        Description = dataFromCreatePromotionPart1["PromotionDescription"],
+                     //   Title = dataFromCreatePromotionPart1["PromotionTitle"],
+                   //     Description = dataFromCreatePromotionPart1["PromotionDescription"],
                         Categories = promotionCategories,
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
                         //PromotionImage = File,
                     };
 
-                    await _promotionDataService.StorePromotion(promotion);
+                    Vendor vendor = await _vendorDataService.SearchVendorByEmail( Settings.Email);
 
+                    //    vendor.Promotions.Add(promotion);
+                    vendor.CompanyName = "modified ";
+
+                    await _vendorDataService.EditVendor(vendor.VendorId, vendor);
+                   
                     ShowViewModel<VendorProfilePageViewModel>();
-
                 });
             }
         }
