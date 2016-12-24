@@ -214,7 +214,6 @@
       <DependentUpon>201612220657108_location.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Contexts\GlimpseDbContext.cs" />
