@@ -2629,9 +2629,6 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0900b0
 			public const int PriceTitleTextView = 2131296432;
 			
-			// aapt resource value: 0x7f090092
-			public const int SelectPromotionPictureTextView = 2131296402;
-			
 			// aapt resource value: 0x7f0900db
 			public const int SignUpButton = 2131296475;
 			
@@ -2724,6 +2721,9 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f09008e
 			public const int btnChangeStartDate = 2131296398;
+			
+			// aapt resource value: 0x7f090092
+			public const int btnChoosePicture = 2131296402;
 			
 			// aapt resource value: 0x7f0900bb
 			public const int btnSignIn = 2131296443;
@@ -2908,9 +2908,6 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f09004f
 			public const int image = 2131296335;
 			
-			// aapt resource value: 0x7f090093
-			public const int imgPic = 2131296403;
-			
 			// aapt resource value: 0x7f0900cf
 			public const int info = 2131296463;
 			
@@ -3003,6 +3000,9 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f090082
 			public const int promotionTitle = 2131296386;
+			
+			// aapt resource value: 0x7f090093
+			public const int promotion_picture = 2131296403;
 			
 			// aapt resource value: 0x7f0900dc
 			public const int promotionbar = 2131296476;

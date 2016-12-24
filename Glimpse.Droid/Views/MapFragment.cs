@@ -64,16 +64,16 @@ namespace Glimpse.Droid.Views
         {
             base.OnDestroyView();
             _mapView.OnDestroy();
-            _mapView = null;
+            //_mapView = null;
             _map = null;
             _currentUserLocation = null;
         }
 
-        public override void OnSaveInstanceState(Bundle outState)
+     /*   public override void OnSaveInstanceState(Bundle outState)
         {
             base.OnSaveInstanceState(outState);
             _mapView.OnSaveInstanceState(outState);
-        }
+        } */
 
         public async override void OnResume()
         {

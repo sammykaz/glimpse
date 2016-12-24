@@ -15,6 +15,8 @@ using Glimpse.Droid.Views;
 using Android.Content;
 using System.Text;
 using Android.App;
+using MvvmCross.Binding.BindingContext;
+using Android.Graphics;
 
 namespace Glimpse.Droid.Views
 {
@@ -28,17 +30,14 @@ namespace Glimpse.Droid.Views
         private TextView _endDateDisplay;
         private Button _btnChangeEndDate;
 
+        public static readonly int PickImageId = 1000;
+        private ImageView _imageView;
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
             return this.BindingInflate(Resource.Layout.CreatePromotionPart2View, null); 
         }
-    
-  
-
-      
-
-
 
 
         public override void OnViewCreated(View view, Bundle savedInstanceState)
@@ -56,12 +55,23 @@ namespace Glimpse.Droid.Views
             _btnChangeEndDate = view.FindViewById<Button>(Resource.Id.btnChangeEndDate);
             _btnChangeEndDate.Click += EndDateSelect_OnClick;
 
-            /* ImageView acc_Button = view.FindViewById<ImageView>(Resource.Id.imgPic);
-             acc_Button.Click += delegate
-             {
-                 OnClick(this.View);
-             }; */
+
+            _imageView = view.FindViewById<ImageView>(Resource.Id.promotion_picture);
+            Button button = view.FindViewById<Button>(Resource.Id.btnChoosePicture);
+            button.Click += ButtonOnClick;
+
+         
         }
+
+
+        private void ButtonOnClick(object sender, EventArgs eventArgs)
+        {
+            Intent intent = new Intent();
+            intent.SetType("image/*");
+            intent.SetAction(Intent.ActionGetContent);
+            StartActivityForResult(Intent.CreateChooser(intent, "Select Picture"), PickImageId);
+        }
+
 
         void StartDateSelect_OnClick(object sender, EventArgs eventArgs)
         {
