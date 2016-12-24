@@ -22,12 +22,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             controller: 'PromotionController',
             templateUrl: 'src/views/homeView.html'
         })
-        .state('home.viewPromotions', {
+        .state('home.viewPromotion', {
             url: '/promotions',
             controller: 'PromotionController',
             templateUrl: 'src/views/viewPromotion.html'
         })
-        .state('home.createPromotions', {
+        .state('home.createPromotion', {
             url: '/create-promotions',
             controller: 'PromotionController',
             templateUrl: 'src/views/createPromotion.html'

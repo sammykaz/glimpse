@@ -39,11 +39,14 @@ namespace WebServices.Providers
 
             if (currentVendor != null)
             {
-                string encryptedPassword = Cryptography.EncryptAes(context.Password, currentVendor.Salt);
-                if (encryptedPassword == currentVendor.Password){
-                    identity.AddClaim(new Claim(ClaimTypes.Role, "vendor"));
-                    identity.AddClaim(new Claim("username", currentVendor.CompanyName));
-                    identity.AddClaim(new Claim(ClaimTypes.Name, currentVendor.CompanyName));
+                //context.SetError("invalid_grant", currentVendor.Email + "pass: " + context.Password + "encrypted pass: " + currentVendor.Password);
+                //return;
+                //string encryptedPassword = Cryptography.EncryptAes(context.Password, currentVendor.Salt);
+                
+                if (context.Password == currentVendor.Password){
+                    identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
+                    identity.AddClaim(new Claim("username", "user"));
+                    identity.AddClaim(new Claim(ClaimTypes.Name, "user test"));
                     context.Validated(identity);
                 }
             }

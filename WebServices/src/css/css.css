@@ -19,9 +19,7 @@ body {
 .home-panel-background{background: rgba(0, 0, 0, 0.58); border-style: double; padding-bottom: 50px;}
 .nav-bar-background-color{background-color: #000!important;border-color: #080808!important;}
 .nav-bar-textColor{color: #d8d8d8 !important;}
-.map-container{width: 50%;
-    margin: 0 auto;
-    position: relative;
-    top: 5em;
-    border: 1px solid #eee;
-    border-radius: 5px;}
+.map-container{width: 50%; margin: 0 auto; position: relative; top: 5em; border: 1px solid #eee; border-radius: 5px;}
+.promotion-list{background: white; padding: 10px; border-radius: 10px;}
+.promotion-border{background: rgba(0, 0, 0, 0.38); padding: 4px !important; border-style: double; border-radius: 10px;}
+.promotion-buttons-edit-create{padding-bottom: 10px; padding-top: 10px;}

@@ -18,7 +18,7 @@ app.controller('LoginController', ['$scope', '$http', 'blockUI', 'authentication
     $scope.login = function () {
         authenticationService.login($scope.user).then(function (data) {
             console.log(data);
-            $state.go("home.viewPromotions");
+            $state.go("home.viewPromotion");
         }, function (error) {
             $scope.message = error.error_description;
             console.log($scope.message);
