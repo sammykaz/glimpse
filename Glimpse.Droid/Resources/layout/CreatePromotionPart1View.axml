@@ -46,13 +46,16 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
             android:gravity="top"
             android:layout_width="match_parent"
             android:layout_weight="50"
             android:weightSum="100"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp">
-            <RadioGroup
+             <RadioGroup
                 android:id="@+id/checkbox_category_group"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -119,7 +122,7 @@
             android:textColor="#fff"
             android:textStyle="bold"
             android:height="70dp"
-            android:paddingTop="10dp"
+            android:paddingTop="2dp"
             android:background="@drawable/ButtonSignUpStyle"
             android:layout_centerHorizontal="true"
             local:MvxBind="Click ContinueCommand"
