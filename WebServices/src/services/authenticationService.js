@@ -1,4 +1,11 @@
-﻿app.factory('authenticationService', ['$http', '$q', 'userService1', function ($http, $q, userService1) {
+﻿app.factory('authenticationService', ['$http', '$q', 'userService', function ($http, $q, userService) {
+
+    var _authentication = {
+        isAuth: false,
+        userName: "",
+        useRefreshTokens: false
+    };
+
     var fac = {};
     fac.login = function (user) {
         var obj = { 'username': user.username, 'password': user.password, 'grant_type': 'password' };
@@ -17,7 +24,8 @@
             data: Object.toparams(obj),
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).then(function (response) {
-            userService1.SetCurrentUser(response.data);
+
+            userService.SetCurrentUser(response.data);
             defer.resolve(response.data);
         }, function (error) {
             defer.reject(error.data);
@@ -25,8 +33,8 @@
         return defer.promise;
     }
     fac.logout = function () {
-        userService1.CurrentUser = null;
-        userService1.SetCurrentUser(userService1.CurrentUser);
+        userService.CurrentUser = null;
+        userService.SetCurrentUser(userService.CurrentUser);
     }
     return fac;
 }])

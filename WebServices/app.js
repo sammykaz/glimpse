@@ -4,7 +4,6 @@ var app = angular.module('myApp', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngRe
 
 app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationProvider) {
 
-
     $qProvider.errorOnUnhandledRejections(false);
     $urlRouterProvider.otherwise('/login');
     $stateProvider
@@ -25,32 +24,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
         })
 })
 
-
-.factory('userService1', function () {
-    var fac = {};
-    fac.CurrentUser = null;
-    fac.SetCurrentUser = function (user) {
-        fac.CurrentUser = user;
-        sessionStorage.user = angular.toJson(user);
-    }
-    fac.GetCurrentUser = function () {
-        fac.CurrentUser = angular.fromJson(sessionStorage.user);
-        return fac.CurrentUser;
-    }
-    return fac;
-})
-
-
 .controller('appController', function ($scope) {
     $scope.test = "test";
-});
+})
 
-app.config(function ($httpProvider) {
-    var interceptor = function(userService1, $q, $location)
+.config(function ($httpProvider) {
+    var interceptor = function (userService, $q, $location)
     {
         return {
             request: function (config) {
-                var currentUser = userService1.GetCurrentUser();
+                var currentUser = userService.GetCurrentUser();
                 if (currentUser != null) {
                     config.headers['Authorization'] = 'Bearer ' + currentUser.access_token;
                 }
@@ -71,7 +54,7 @@ app.config(function ($httpProvider) {
 
         }
     }
-    var params = ['userService1', '$q', '$location'];
+    var params = ['userService', '$q', '$location'];
     interceptor.$inject = params;
     $httpProvider.interceptors.push(interceptor);
 });

@@ -194,7 +194,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PromotionsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -202,26 +201,28 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612040658244_firstmig.cs" />
-    <Compile Include="Migrations\201612040658244_firstmig.Designer.cs">
-      <DependentUpon>201612040658244_firstmig.cs</DependentUpon>
+    <Compile Include="Migrations\201612220544451_fluent.cs" />
+    <Compile Include="Migrations\201612220544451_fluent.Designer.cs">
+      <DependentUpon>201612220544451_fluent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612220657108_location.cs" />
+    <Compile Include="Migrations\201612220657108_location.Designer.cs">
+      <DependentUpon>201612220657108_location.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Contexts\GlimpseDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Promotion.cs" />
-    <Compile Include="Models\Telephone.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Utility\Categories.cs" />
-    <Compile Include="Utility\Geocoding.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.js" />
@@ -1059,6 +1060,7 @@
     <Content Include="Scripts\respond.min.js" />
     <None Include="Index.cshtml" />
     <Content Include="src\css\wp.jpg" />
+    <Content Include="src\services\userService.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1072,10 +1074,15 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Scripts\version.json" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Utility\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
@@ -1087,18 +1094,18 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Glimpse.Core\Glimpse.Core.csproj">
-      <Project>{A429B66B-B938-4BEC-9254-C27BBA173D90}</Project>
-      <Name>Glimpse.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612040658244_firstmig.resx">
-      <DependentUpon>201612040658244_firstmig.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612220544451_fluent.resx">
+      <DependentUpon>201612220544451_fluent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612220657108_location.resx">
+      <DependentUpon>201612220657108_location.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <ProjectReference Include="..\Glimpse.Core\Glimpse.Core.csproj">
+      <Project>{a429b66b-b938-4bec-9254-c27bba173d90}</Project>
+      <Name>Glimpse.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
