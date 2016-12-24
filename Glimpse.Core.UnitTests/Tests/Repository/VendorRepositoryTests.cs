@@ -34,13 +34,14 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             //arrange
             var vendorsBefore = await repository.GetVendors();
             var vendorsCountBefore = vendorsBefore.Count;
-            Address address = new Address();
+            /*Address address = new Address();
             address.Country = "Canada";
             address.Province = "Quebec";
             address.City = "Montreal";
             address.StreetNumber = "104";
             address.Street = "Kingston";
-            address.PostalCode = "h3z4k1";           
+            address.PostalCode = "h3z4k1";  
+            */         
             string telephone = "5145436363";
 
 
@@ -50,7 +51,7 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             {               
                 Email = "gege@gmail.com",
                 Password = "gepass",
-                Address = address,
+                //Address = address,
                 Telephone = telephone,
                 CompanyName = "ge1231",
                 Salt = "geosalt",

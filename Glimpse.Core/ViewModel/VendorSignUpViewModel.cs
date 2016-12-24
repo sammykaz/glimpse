@@ -168,21 +168,10 @@ namespace Glimpse.Core.ViewModel
                             CompanyName = _companyName,
                             Email = _email,
                             Password = _password,
-                            Address =
-                                new Address()
-                                {
-                                    Country = _country,
-                                    Province = _province,
-                                    City = _city,
-                                    PostalCode = _postalCode,
-                                    Street = _street,
-                                    StreetNumber = _streetNumber
-                                },
                             Telephone = _businessPhoneNumber
                                 
                         };
 
-                        newVendor.Location = Utility.Geocoding.Geocode(newVendor.Address);
 
                         Settings.LoginStatus = true;
                         Settings.Email = _email;
