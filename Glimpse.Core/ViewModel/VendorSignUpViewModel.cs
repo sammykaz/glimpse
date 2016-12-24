@@ -38,36 +38,6 @@ namespace Glimpse.Core.ViewModel
         }
 
 
-        private Location _location;
-        public Location Location
-        {
-            get
-            {
-                if (_location == null)
-                    _location = new Location();
-
-                return _location;
-            }
-            set
-            {
-                _location = value;
-                RaisePropertyChanged(() => Location);
-
-            }
-        }
-
-        private string _address;
-        public string Address
-        {
-            get { return _address; }
-            set
-            {
-                _address = value;
-                RaisePropertyChanged(() => Address);
-
-            }
-        }
-
         private string _email;
         public string Email
         {
@@ -81,18 +51,6 @@ namespace Glimpse.Core.ViewModel
         }
 
 
-        private string _businessPhoneNumber;
-        public string BusinessPhoneNumber
-        {
-            get { return _businessPhoneNumber; }
-            set
-            {
-                _businessPhoneNumber = value;
-                RaisePropertyChanged(() => BusinessPhoneNumber);
-
-            }
-        }
-
         private string _password;
         public string Password
         {
@@ -104,9 +62,90 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-     
+        private string _country;
+        public string Country
+        {
+            get { return _country; }
+            set
+            {
+                _country = value;
+                RaisePropertyChanged(() => Country);
 
-      
+            }
+        }
+
+        private string _province;
+        public string Province
+        {
+            get { return _province; }
+            set
+            {
+                _province = value;
+                RaisePropertyChanged(() => Province);
+
+            }
+        }
+
+
+        private string _city;
+        public string City
+        {
+            get { return _city; }
+            set
+            {
+                _city = value;
+                RaisePropertyChanged(() => City);
+
+            }
+        }
+
+        private string _postalCode;
+        public string PostalCode
+        {
+            get { return _postalCode; }
+            set
+            {
+                _postalCode = value;
+                RaisePropertyChanged(() => PostalCode);
+
+            }
+        }
+
+        private string _street;
+        public string Street
+        {
+            get { return _street; }
+            set
+            {
+                _street = value;
+                RaisePropertyChanged(() => Street);
+
+            }
+        }
+
+        private string _streetNumber;
+        public string StreetNumber
+        {
+            get { return _streetNumber; }
+            set
+            {
+                _streetNumber = value;
+                RaisePropertyChanged(() => StreetNumber);
+
+            }
+        }
+
+        private string _businessPhoneNumber;
+        public string BusinessPhoneNumber
+        {
+            get { return _businessPhoneNumber; }
+            set
+            {
+                _businessPhoneNumber = value;
+                RaisePropertyChanged(() => BusinessPhoneNumber);
+
+            }
+        }
 
         public MvxCommand SignUpCommand
         {
@@ -128,11 +167,22 @@ namespace Glimpse.Core.ViewModel
                         {                           
                             CompanyName = _companyName,
                             Email = _email,
-                            Telephone = _businessPhoneNumber,
                             Password = _password,
-                            Location = _location,
-                            //Address = Address      
+                            Address =
+                                new Address()
+                                {
+                                    Country = _country,
+                                    Province = _province,
+                                    City = _city,
+                                    PostalCode = _postalCode,
+                                    Street = _street,
+                                    StreetNumber = _streetNumber
+                                },
+                            Telephone = _businessPhoneNumber
+                                
                         };
+
+                        newVendor.Location = Utility.Geocoding.Geocode(newVendor.Address);
 
                         Settings.LoginStatus = true;
                         Settings.Email = _email;
