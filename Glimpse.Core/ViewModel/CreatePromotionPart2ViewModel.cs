@@ -76,7 +76,6 @@ namespace Glimpse.Core.ViewModel
                 return new MvxCommand(async () =>
                 {
 
-
                     List<Category> promotionCategories = new List<Category> { };
 
                     foreach (string key in dataFromCreatePromotionPart1.Keys)

@@ -15,6 +15,10 @@ using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Glimpse.Core.Services.General;
 using Android.Widget;
+using Android.Net;
+using Android.Graphics;
+using MvvmCross.Binding.BindingContext;
+using System.IO;
 
 namespace Glimpse.Droid.Activities
 {
@@ -28,6 +32,9 @@ namespace Glimpse.Droid.Activities
         private MvxActionBarDrawerToggle _drawerToggle;
         private FragmentManager _fragmentManager;
         internal DrawerLayout DrawerLayout { get { return _drawerLayout; } }
+
+        public static readonly int PickImageId = 1000;
+        private ImageView _imageView;
 
         private static MainActivity mainActivity;
 
@@ -72,15 +79,40 @@ namespace Glimpse.Droid.Activities
             }
         }
 
-        //uploading picture from gallery
+
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
-            base.OnActivityResult(requestCode, resultCode, data);
-
-            if (resultCode == Result.Ok)
+            if ((resultCode == Result.Ok) && (data != null))
             {
-                var imageView = FindViewById<ImageView>(Resource.Id.imgPic);
-                imageView.SetImageURI(data.Data);
+                Uri uri = data.Data;
+                _imageView = FindViewById<ImageView>(Resource.Id.promotion_picture);
+                _imageView.SetImageURI(uri);
+
+
+                _imageView.BuildDrawingCache(true);
+                Bitmap bmap = _imageView.GetDrawingCache(true);
+                _imageView.SetImageBitmap(bmap);
+                Bitmap b = Bitmap.CreateBitmap(_imageView.GetDrawingCache(true));
+                
+
+                var stream = new MemoryStream();
+
+                b.Compress(Bitmap.CompressFormat.Png, 100, stream);
+
+                bool oneTime = false;
+
+                if(!oneTime)
+                {
+                    var set = this.CreateBindingSet<MainActivity, CreatePromotionPart2ViewModel>();
+                    byte[] byteArray = stream.ToArray();
+                    set.Bind(byteArray)
+                     .For(array => array)
+                     .To(vm => vm.Bytes);
+                    //.WithConversion(new LatLngValueConverter(), null).TwoWay();
+                    set.Apply();
+                }
+
+              
             }
         }
 
