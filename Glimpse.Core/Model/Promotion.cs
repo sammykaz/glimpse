@@ -8,10 +8,6 @@ namespace Glimpse.Core.Model
 {
     public class Promotion
     {
-        public Promotion()
-        {
-            Categories = new List<Category>();
-        }
         public int PromotionId { get; set; }
 
         public string _title;
@@ -30,7 +26,7 @@ namespace Glimpse.Core.Model
 
         public int VendorId { get; set; }
 
-        public List<Category> Categories { get; set; }
+        public Category Categories { get; set; }
 /*
         public string CategoriesList
         {

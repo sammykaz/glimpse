@@ -6,11 +6,6 @@ namespace WebServices.Models
 {
     public class Promotion
     {
-        public Promotion()
-        {
-            Categories = new List<Category>();
-        }
-
         public int PromotionId { get; set; }
 
         public string Title;       
@@ -19,7 +14,7 @@ namespace WebServices.Models
 
         public int? VendorId { get; set; }
 
-        public virtual ICollection<Category> Categories { get; set; }     
+        public Category Categories { get; set; }     
 
         //These dates will be extracted from a calendar UI in the future.
         public DateTime PromotionStartDate { get; set; }

@@ -12,6 +12,7 @@ namespace Glimpse.Core.ViewModel
         private readonly IPromotionDataService _promotionDataService;
         private IVendorDataService _vendorDataService;
         Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
+        private Category selectedCategory;
 
         public CreatePromotionPart2ViewModel(IPromotionDataService promotionDataService, IVendorDataService vendorDataService)
         {
@@ -75,14 +76,10 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
-
-
-                    List<Category> promotionCategories = new List<Category> { };
-
                     foreach (string key in dataFromCreatePromotionPart1.Keys)
                     {
                         if (dataFromCreatePromotionPart1[key] == "True")
-                            promotionCategories.Add(new Category((Categories)Enum.Parse(typeof(Categories), key, true)));
+                            selectedCategory = new Category((Categories)Enum.Parse(typeof(Categories), key, true));
                     }
 
                     //Calculate DateTime span
@@ -93,7 +90,11 @@ namespace Glimpse.Core.ViewModel
                     {
                         Title = dataFromCreatePromotionPart1["PromotionTitle"],
                         Description = dataFromCreatePromotionPart1["PromotionDescription"],
-                        Categories = promotionCategories,
+
+
+                        Categories = selectedCategory,
+
+
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
                         //PromotionImage = File,
