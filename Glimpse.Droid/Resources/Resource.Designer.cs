@@ -2998,12 +2998,6 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f09009e
 			public const int mainLinearLayout = 2131296414;
 			
-			// aapt resource value: 0x7f0900ee
-			public const int main_pickAPlaceButton = 2131296494;
-			
-			// aapt resource value: 0x7f0900ef
-			public const int main_placeAddress = 2131296495;
-			
 			// aapt resource value: 0x7f0900c0
 			public const int map = 2131296448;
 			
@@ -3154,6 +3148,9 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f090078
 			public const int search_voice_btn = 2131296376;
 			
+			// aapt resource value: 0x7f0900e6
+			public const int selectBuisinessLocationButton = 2131296486;
+			
 			// aapt resource value: 0x7f090079
 			public const int select_dialog_listview = 2131296377;
 			
@@ -3286,17 +3283,14 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f090093
 			public const int touch_outside = 2131296403;
 			
-			// aapt resource value: 0x7f0900ed
-			public const int txtBusinessPhoneNumber = 2131296493;
+			// aapt resource value: 0x7f0900e7
+			public const int txtAddress = 2131296487;
 			
 			// aapt resource value: 0x7f0900e8
-			public const int txtCity = 2131296488;
+			public const int txtBusinessPhoneNumber = 2131296488;
 			
 			// aapt resource value: 0x7f0900e5
 			public const int txtCompanyName = 2131296485;
-			
-			// aapt resource value: 0x7f0900e6
-			public const int txtCountry = 2131296486;
 			
 			// aapt resource value: 0x7f0900da
 			public const int txtEmail = 2131296474;
@@ -3313,23 +3307,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0900db
 			public const int txtPassword = 2131296475;
 			
-			// aapt resource value: 0x7f0900ec
-			public const int txtPersonalPhoneNumber = 2131296492;
-			
-			// aapt resource value: 0x7f0900e9
-			public const int txtPostalCode = 2131296489;
-			
-			// aapt resource value: 0x7f0900e7
-			public const int txtProvince = 2131296487;
-			
 			// aapt resource value: 0x7f09008c
 			public const int txtStartPromotion = 2131296396;
-			
-			// aapt resource value: 0x7f0900ea
-			public const int txtStreet = 2131296490;
-			
-			// aapt resource value: 0x7f0900eb
-			public const int txtStreetNumber = 2131296491;
 			
 			// aapt resource value: 0x7f090009
 			public const int up = 2131296265;
