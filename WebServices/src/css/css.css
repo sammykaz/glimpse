@@ -20,9 +20,12 @@ body {
 .nav-bar-background-color{background-color: #000!important;border-color: #080808!important;}
 .nav-bar-textColor{color: #d8d8d8 !important;}
 .map-container{width: 50%; margin: 0 auto; position: relative; top: 5em; border: 1px solid #eee; border-radius: 5px;}
-.promotion-list{background: white; padding: 10px; border-radius: 10px;}
-.promotion-border{background: rgba(0, 0, 0, 0.38); padding: 2px !important; border-style: double; border-radius: 10px;}
+.promotion-list{background: white; padding: 10px; border-radius: 8px;}
+.promotion-border{background: rgba(0, 0, 0, 0.38); padding: 1px !important; border-style: double; border-radius: 10px;}
 .promotion-buttons-edit-create{padding-bottom: 10px; padding-top: 10px;}
 .modal-checkbox{padding-left: 0px !important;}
 .cropArea {background: #E4E4E4; overflow: hidden; height:300px; width:100% !important}
 .my-modal-header{background-color: rgb(66, 139, 202); color: white; border-right: 0px; border-left: 0px; border-top: 0px; border-bottom: 20px double !important; border-color: rgb(255, 255, 255);}
+.promotion-table-title{height: 100%; display: inline-block; background: #418ac9; border-top-right-radius: 8px; border-top-left-radius: 8px; color: white;}
+.promotion-table{padding-top: 0px !important; padding-right: 0px !important; padding-left: 0px !important;}
+.btn-white{background:white! important;}

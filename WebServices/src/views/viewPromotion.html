@@ -1,38 +1,63 @@
 
 <div class="animated fadeIn">
-    
-    <h2>Authorize</h2>
-    <p>{{data}}</p>
     <div class="promotion-border col-sm-10 col-sm-offset-1">
-        
-        <div class="col-sm-12 promotion-list">
-            <div class="col-sm-offset-8">
-                <div class="col-sm-12 promotion-buttons-edit-create">
-                    <button type="submit" class="btn btn-success pull-right">Edit Promotions</button>
-                    <button type="submit" class="btn btn-primary pull-right" ng-click="showCreatePromotionModal()">Create Promotion</button>
+        <div class="col-sm-12 promotion-list promotion-table">
+            <div class="col-sm-12 promotion-table-title">
+                <div class="col-sm-4">
+                    <h3>Your Promotions</h3>
+                </div>
+                <div class="col-sm-offset-4">
+                    <div class="col-sm-12 promotion-buttons-edit-create">
+                        <button type="submit" class="btn btn-success pull-right" ng-click="showCreatePromotionModal()">Add</button>
+                        <button type="submit" class="btn btn-white pull-right">Edit</button>
+                    </div>
                 </div>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Promotion Title</th>
-                        <th>Promotion Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Hard coded promotion 1</td>
-                        <td>Today</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Temmporarty promotion 2</td>
-                        <td>Tomorrow</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="col-sm-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="col-sm-4">Promotion Title</th>
+                            <th class="col-sm-3">Promotion Start</th>
+                            <th class="col-sm-3">Promotion End</th>
+                            <th class="col-sm-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Hard coded promotion 1</td>
+                            <td>Today</td>
+                            <td>Tomorrow</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Temporary promotion 1</td>
+                            <td>Tomorrow</td>
+                            <td>Never</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Temporary promotion 2</td>
+                            <td>Tomorrow</td>
+                            <td>Never</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Temporary promotion 3</td>
+                            <td>Tomorrow</td>
+                            <td>Never</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>Temporary promotion 4</td>
+                            <td>Tomorrow</td>
+                            <td>Never</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
