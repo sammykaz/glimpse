@@ -27,11 +27,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             controller: 'PromotionController',
             templateUrl: 'src/views/viewPromotion.html'
         })
-        .state('home.createPromotion', {
-            url: '/create-promotions',
-            controller: 'PromotionController',
-            templateUrl: 'src/views/createPromotion.html'
-        })
         .state('map', {
             url: '/map',
             controller: 'mapController',

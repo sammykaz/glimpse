@@ -31,23 +31,26 @@ app.controller('modalController', function ($scope, $uibModalInstance) {
     $scope.description = '';
     $scope.startDay = undefined;
     $scope.endDay = undefined;
-
+    $scope.showDateWarning = false;
     $scope.ok = function () {
-        $uibModalInstance.close($scope.categories);
+        if ($scope.sdt > $scope.edt)
+            $scope.showDateWarning = true;
+        else
+            $uibModalInstance.close($scope.edt);
     };
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
 
+    $scope.closeWarning = function () {
+        $scope.showDateWarning = false;
+    }
     $scope.today = function () {
-        $scope.dt = new Date();
+        $scope.sdt = new Date();
+        $scope.edt = new Date();
     };
     $scope.today();
-
-    $scope.clear = function () {
-        $scope.dt = null;
-    };
 
     $scope.inlineOptions = {
         customClass: getDayClass,
@@ -55,33 +58,36 @@ app.controller('modalController', function ($scope, $uibModalInstance) {
         showWeeks: true
     };
 
-    $scope.dateOptions = {
-        formatYear: 'yy',
+    $scope.startDateOptions = {
+        format: 'dd-MMMM-yyyy',
         maxDate: new Date(2020, 5, 22),
         minDate: new Date(),
         startingDay: 1
     };
 
-    $scope.open1 = function () {
-        $scope.popup1.opened = true;
+    $scope.endDateOptions = {
+        format: 'dd-MMMM-yyyy',
+        maxDate: new Date(2020, 5, 22),
+        minDate: $scope.sdt,
+        startingDay: 1
     };
 
-    $scope.open2 = function () {
-        $scope.popup2.opened = true;
+    $scope.openStartDate = function () {
+        $scope.startDate.opened = true;
     };
 
-    $scope.setDate = function (year, month, day) {
-        $scope.dt = new Date(year, month, day);
+    $scope.openEndDate = function () {
+        $scope.endDate.opened = true;
     };
 
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[0];
 
-    $scope.popup1 = {
+    $scope.startDate = {
         opened: false
     };
 
-    $scope.popup2 = {
+    $scope.endDate = {
         opened: false
     };
 
