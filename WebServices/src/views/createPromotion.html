@@ -66,14 +66,14 @@
                     <label>Photo</label>
                     <input type="file" ngf-select ng-model="picFile" accept="image/*" class="btn btn-primary">
                     <div class="pull-right">
-                        <button class="btn btn-danger" ng-click="picFile = null" ng-show="picFile">Remove</button>
+                        <button class="btn btn-danger" ng-click="removeImage()" ng-show="picFile">Remove</button>
                     </div>
                     <small class="form-text text-muted">Choose a picture to promote</small>
                     <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
                         <img-crop image="picFile  | ngfDataUrl" result-image="croppedDataUrl" ng-init="croppedDataUrl=''"></img-crop>
                     </div>
                     <div>
-                        <img ng-src="{{croppedDataUrl}}" />
+                        <img ng-show="croppedDataUrl!=null" ng-src="{{croppedDataUrl}}" />
                     </div>
                 </div>
             </form>
@@ -82,7 +82,7 @@
             <strong>Warning!</strong> Start date cannot start before the end date. <a ng-click="closeWarning()">Close</a>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+            <button class="btn btn-warning" type="button" ng-click="upload(croppedDataUrl,title)">Cancel</button>
             <button class="btn btn-primary" type="button" ng-click="ok()">Create</button>
         </div>
     </div>

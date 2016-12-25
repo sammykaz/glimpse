@@ -49,21 +49,28 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     }
 
     $scope.upload = function (dataUrl, name) {
-        Upload.upload({
-            url: '',
-            data: {
-                file: Upload.dataUrltoBlob(dataUrl, name)
-            },
-        }).then(function (response) {
-            $timeout(function () {
-                $scope.result = response.data;
-            });
-        }, function (response) {
-            if (response.status > 0) $scope.errorMsg = response.status
-                + ': ' + response.data;
-        }, function (evt) {
-            $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
-        });
+        console.log(dataUrl);
+        //Upload.upload({
+        //    url: '',
+        //    data: {
+        //        file: Upload.dataUrltoBlob(dataUrl, name)
+        //    },
+        //}).then(function (response) {
+        //    $timeout(function () {
+        //        $scope.result = response.data;
+        //    });
+        //}, function (response) {
+        //    if (response.status > 0) $scope.errorMsg = response.status
+        //        + ': ' + response.data;
+        //}, function (evt) {
+        //    $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+        //});
+    }
+
+    $scope.removeImage = function () {
+        $scope.picFile = null;
+        $scope.croppedDataUrl = null;
+        console.log($scope.croppedDataUrl);
     }
 
     $scope.today = function () {
