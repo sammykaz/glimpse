@@ -1,6 +1,9 @@
 ﻿<div class="map-container animated fadeIn">
-    <ng-map center="40.74, -74.18">
-        <marker position="40.74,-74.18" title="Hello World!"></marker>
-    </ng-map>
+    <div map-lazy-load="https://maps.google.com/maps/api/js"
+         map-lazy-load-params="{{googleMapsUrl}}">
+        <ng-map center="-25.363882,131.044922" zoom="4">
+            <marker position="-25.363882,131.044922" title="Hello World!"></marker>
+        </ng-map>
+    </div>
 
 </div>

@@ -42,6 +42,29 @@
                     <label>Description</label>
                     <textarea class="form-control" rows="3"></textarea>
                 </div>
+                <div>
+                    <label>Photo</label>
+                    <input class="btn btn-primary" type="file" ngf-select ng-model="picFile" name="file"
+                           accept="image/*" ngf-max-size="2MB" required
+                           ngf-model-invalid="errorFile">
+                    <div class="pull-right">
+                        <button class="btn btn-danger" ng-click="picFile = null" ng-show="picFile">Remove</button>
+                    </div>
+                    <small class="form-text text-muted">Choose a picture to promote</small>
+                    <i ng-show="myForm.file.$error.required">*required</i><br>
+                    <i ng-show="myForm.file.$error.maxSize">
+                        File too large
+                        {{errorFile.size / 1000000|number:1}}MB: max 2M
+                    </i>
+                    <div class="cropArea">
+                        <img-crop image="myImage" area-type="rectangle" result-image="myCroppedImage" result-image-size="'max'"></img-crop>
+                    </div>
+                    <div>Cropped Image:</div>
+                    <div><img ng-src="{{myCroppedImage}}" /></div>
+                    <small class="form-text text-muted">Choose a picture to promote</small>
+                </div>
+                    <br>
+                </div>
                 <label>Promotion Duration</label>
                 <div class="row">
                     <div class="col-md-6">
