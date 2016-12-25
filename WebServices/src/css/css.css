@@ -24,3 +24,4 @@ body {
 .promotion-border{background: rgba(0, 0, 0, 0.38); padding: 4px !important; border-style: double; border-radius: 10px;}
 .promotion-buttons-edit-create{padding-bottom: 10px; padding-top: 10px;}
 .modal-checkbox{padding-left: 0px !important;}
+.cropArea {background: #E4E4E4; overflow: hidden; height:350px; width:100% !important}

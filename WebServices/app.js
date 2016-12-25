@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngResource', 'blockUI', 'LocalStorageModule', 'ngMap']);
+var app = angular.module('myApp', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngResource', 'blockUI', 'LocalStorageModule', 'ngMap', 'ngFileUpload']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationProvider) {
 
