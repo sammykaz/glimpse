@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-app.controller('HomeController', ['$scope', 'dataService', '$state', function ($scope, dataService, $state) {
+app.controller('HomeController', ['$scope', 'dataService', '$state', 'authenticationService', function ($scope, dataService, $state, authenticationService) {
 
     $scope.data = "";
 
@@ -12,4 +12,8 @@ app.controller('HomeController', ['$scope', 'dataService', '$state', function ($
         //$state.go("login");
     })
 
+    $scope.logout = function () {
+        authenticationService.logout();
+        $state.go("login");
+    }
 }]);

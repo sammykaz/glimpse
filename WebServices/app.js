@@ -19,7 +19,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
         })
         .state('home', {
             url: '/home',
-            controller: 'PromotionController',
+            controller: 'HomeController',
             templateUrl: 'src/views/homeView.html'
         })
         .state('home.viewPromotion', {
