@@ -202,7 +202,8 @@ var requirejs, require, define, xpcUtil;
 
                 //XPCOM, you so crazy
                 try {
-                    inStream = Cc['@mozilla.org/network/file-input-stream;1']
+                    inStream = Cc['@mozilla.org/network/file-
+-stream;1']
                                .createInstance(Ci.nsIFileInputStream);
                     inStream.init(fileObj, 1, 0, false);
 
