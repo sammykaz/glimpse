@@ -23,20 +23,7 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
             console.log("Modal dismissed");
         });
     }
-    $scope.myImage = 'https://x.kinja-static.com/assets/images/logos/placeholders/default.png';
-    $scope.myCroppedImage = '';
-
-    var handleFileSelect = function (evt) {
-        var file = evt.currentTarget.files[0];
-        var reader = new FileReader();
-        reader.onload = function (evt) {
-            $scope.$apply(function ($scope) {
-                $scope.myImage = evt.target.result;
-            });
-        };
-        reader.readAsDataURL(file);
-    };
-    angular.element(document.querySelector('#fileInput')).on('change', handleFileSelect);
+   
 }]);
 
 app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout) {
@@ -61,22 +48,21 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         $scope.showDateWarning = false;
     }
 
-    $scope.uploadPic = function(file) {
-        file.upload = Upload.upload({
-            url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-            data: {username: $scope.username, file: file},
-        });
-
-        file.upload.then(function (response) {
+    $scope.upload = function (dataUrl, name) {
+        Upload.upload({
+            url: '',
+            data: {
+                file: Upload.dataUrltoBlob(dataUrl, name)
+            },
+        }).then(function (response) {
             $timeout(function () {
-                file.result = response.data;
+                $scope.result = response.data;
             });
         }, function (response) {
-            if (response.status > 0)
-            $scope.errorMsg = response.status + ': ' + response.data;
+            if (response.status > 0) $scope.errorMsg = response.status
+                + ': ' + response.data;
         }, function (evt) {
-            // Math.min is to fix IE which reports 200% sometimes
-            file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+            $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
         });
     }
 

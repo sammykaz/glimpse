@@ -24,9 +24,5 @@ body {
 .promotion-border{background: rgba(0, 0, 0, 0.38); padding: 4px !important; border-style: double; border-radius: 10px;}
 .promotion-buttons-edit-create{padding-bottom: 10px; padding-top: 10px;}
 .modal-checkbox{padding-left: 0px !important;}
-.cropArea {
-  background: #E4E4E4;
-  overflow: hidden;
-  width:500px;
-  height:350px;
-}
+.cropArea {background: #E4E4E4; overflow: hidden; height:300px; width:100% !important}
+.my-modal-header{background-color: rgb(66, 139, 202); color: white; border-right: 0px; border-left: 0px; border-top: 0px; border-bottom: 20px double !important; border-color: rgb(255, 255, 255);}
