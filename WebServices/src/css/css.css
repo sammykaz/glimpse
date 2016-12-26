@@ -34,4 +34,5 @@ body {
 .profile-form{ background: white; padding-bottom: 30px; border-style: double; border-radius: 25px; padding-top: 15px; color: black!important;}
 .profile-title{font-family: 'Exo', sans-serif;text-align:center;color: black;}
 .profile-company{font-family: 'Exo', sans-serif;}
+.profile-label{color: #00007d; text-decoration: underline;}
 
