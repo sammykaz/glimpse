@@ -1,0 +1,59 @@
+﻿<div class="signup-form-padding animated fadeIn">
+    <div class="container login-form col-sm-8 col-sm-offset-2">
+        <h2 class="login-title">- Profile -</h2>
+        <div class="panel panel-default signup-form-panel col-sm-10 col-sm-offset-1">
+            <div class="panel-body">
+                <form name="userForm" novalidate>
+                    <div class="input-group login-userinput col-sm-12">
+                        <span class="glyphicon glyphicon-user icon-signup"></span>
+                        <div class="input-form-padding col-sm-12">
+                            <label>First Name</label>
+                        </div>
+                        <div class="input-form-padding col-sm-12">
+                            <label>Last Name</label>
+                        </div>
+                        <div class="input-form-padding col-sm-12">
+                            <label>Company Name</label>
+                        </div>
+                        <div class="input-form-padding col-sm-12">
+                            <label>Email</label>
+                        </div>
+                    </div>
+                    <div class="input-group login-userinput col-sm-12">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.country.$invalid && !userForm.country.$pristine}">
+                            <input id="txtUser" type="text" class="form-control" placeholder="Country" name="country"  ng-model="user.country" pattern="[a-zA-Z]+" ng-pattern-restric required>
+                        </div>
+                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.province.$invalid && !userForm.province.$pristine}">
+                            <input id="txtUser" type="text" class="form-control" placeholder="Province" name="province"  ng-model="user.province" pattern="[a-zA-Z]+" ng-pattern-restric required >
+                        </div>
+                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.city.$invalid && !userForm.city.$pristine}">
+                            <input id="txtUser" type="text" class="form-control" placeholder="City" name="city"  ng-model="user.city" pattern="[a-zA-Z]+" ng-pattern-restric required>
+                            </div>
+                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.postal.$invalid && !userForm.postal.$pristine}">
+                            <input id="txtUser" type="text" class="form-control" placeholder="Postal Code" name="postal"  ng-model="user.postal" required>
+                            </div>
+                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.streetname.$invalid && !userForm.streetname.$pristine}">
+                            <input id="txtUser" type="text" class="form-control" placeholder="Street Name" name="streetname"  ng-model="user.streetname" pattern="[a-zA-Z]+" ng-pattern-restric ng-pattern-restricrequired>
+                            </div>
+                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.streetnumber.$invalid && !userForm.streetnumber.$pristine}">
+                            <input id="txtUser" type="number" class="form-control" placeholder="Street Number" name="streetnumber"  ng-model="user.streetnumber" required>
+                        </div>
+                    </div>
+                    <div class="input-group login-userinput col-sm-12">
+                        <span class="glyphicon glyphicon-phone-alt icon-signup"></span>
+                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.personalphone.$invalid && !userForm.personalphone.$pristine}">
+                            <input id="txtUser" type="text" class="form-control" placeholder="Personal Phone Number"name="personalphone"  ng-model="user.personalphone" pattern="[0-9]+" ng-pattern-restric ng-minlength="7" required>
+                        </div>
+                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.businessphone.$invalid && !userForm.businessphone.$pristine}">
+                            <input id="txtUser" type="text" class="form-control" placeholder="Business Phone Number" name="businessphone"  ng-model="user.businessphone" pattern="[0-9]+" ng-pattern-restric ng-minlength="7" required>
+                        </div>
+                        <div class="col-sm-12">
+                            <a ui-sref="login" class="login-forgot">Back to login</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
