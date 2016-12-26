@@ -3,7 +3,7 @@
 body {
   background: url("wp.jpg") no-repeat;
 }
-.login-form{width:390px; background: rgba(0, 0, 0, 0.38); padding-bottom: 30px; border-style: double; border-radius: 25px;}
+.login-form{width:390px; background: rgba(0, 0, 0, 0.38); padding-bottom: 30px; border-style: double; border-radius: 25px; color: white!important; padding-top: 15px;}
 .login-form-padding{padding-top: 250px;}
 .signup-form-padding{padding-top: 50px;}
 .login-form-panel{padding-top: 10px;}
@@ -11,8 +11,10 @@ body {
 .login-title{font-family: 'Exo', sans-serif;text-align:center;color: white;}
 .login-userinput{margin-bottom: 10px;}
 .login-button{margin-top:10px;}
+.login-input-fields{border: 1px solid rgb(189, 189, 189) !important;}
 .login-options{margin-bottom:0px;}
-.login-forgot{float: right;}
+.login-new-account{color: #adf !important; float: right;}
+.login-new-account:hover{    color: white !important; text-decoration: underline;}
 .input-form-padding{padding-top:5px !important; padding-right: 0px !important; padding-left: 0px !important;}
 .signup-form-btn{padding-top:10px; padding-right: 0px !important; padding-left: 0px !important;}
 .icon-signup{padding-left:3px;}
@@ -29,3 +31,4 @@ body {
 .promotion-table-title{height: 100%; display: inline-block; background: #418ac9; border-top-right-radius: 8px; border-top-left-radius: 8px; color: white;}
 .promotion-table{padding-top: 0px !important; padding-right: 0px !important; padding-left: 0px !important;}
 .btn-white{background:white! important;}
+
