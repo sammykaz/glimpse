@@ -8,7 +8,7 @@ using Android.Support.V4.Widget;
 using Android.Views;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using MvvmCross.Droid.Support.V4;
 using Glimpse.Core.ViewModel;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Gms.Maps;
@@ -91,7 +91,7 @@ namespace Glimpse.Droid.Activities
 
 
         
-        public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo, Android.Support.V4.App.FragmentTransaction transaction)
+   /*     public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo, Android.Support.V4.App.FragmentTransaction transaction)
         {
             var currentFrag = SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MvxFragment;
 
@@ -101,6 +101,7 @@ namespace Glimpse.Droid.Activities
             base.OnBeforeFragmentChanging(fragmentInfo, transaction);
         }
 
+    */
         internal void CloseDrawerMenu()
         {
             _drawerLayout.CloseDrawers();

@@ -6,7 +6,7 @@ using Android.Widget;
 using MvvmCross.Droid.Shared.Attributes;
 using Glimpse.Core.ViewModel;
 using MvvmCross.Binding.Droid.BindingContext;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using MvvmCross.Droid.Support.V4;
 using Glimpse.Droid.Extensions;
 using Square.TimesSquare;
 using Glimpse.Droid.Activities;

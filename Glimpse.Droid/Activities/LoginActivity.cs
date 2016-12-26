@@ -7,7 +7,7 @@ using Glimpse.Core.Services.General;
 using Glimpse.Core.ViewModel;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using MvvmCross.Droid.Support.V4;
 using FragmentTransaction = Android.Support.V4.App.FragmentTransaction;
 
 namespace Glimpse.Droid.Activities
@@ -44,7 +44,7 @@ namespace Glimpse.Droid.Activities
         }
 
 
-        public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
+      /*  public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo,
             FragmentTransaction transaction)
         {
             var currentFrag = SupportFragmentManager.FindFragmentById(Resource.Id.login_content) as MvxFragment;
@@ -52,7 +52,7 @@ namespace Glimpse.Droid.Activities
             if ((currentFrag != null) && (currentFrag.FindAssociatedViewModelType() != fragmentInfo.ViewModelType))
                 fragmentInfo.AddToBackStack = true;
             base.OnBeforeFragmentChanging(fragmentInfo, transaction);
-        }
+        } */
 
         public static LoginActivity getInstance()
         {
