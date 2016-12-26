@@ -1,57 +1,81 @@
 ﻿<div class="signup-form-padding animated fadeIn">
-    <div class="container login-form col-sm-8 col-sm-offset-2">
-        <h2 class="login-title">- Profile -</h2>
-        <div class="panel panel-default signup-form-panel col-sm-10 col-sm-offset-1">
+    <div class="container profile-form col-sm-10 offset-sm-1">
+        <h2 class="profile-title">- Profile -</h2>
+        <div class="panel panel-default signup-form-panel">
             <div class="panel-body">
-                <form name="userForm" novalidate>
-                    <div class="input-group login-userinput col-sm-12">
-                        <span class="glyphicon glyphicon-user icon-signup"></span>
-                        <div class="input-form-padding col-sm-12">
-                            <label>First Name</label>
-                        </div>
-                        <div class="input-form-padding col-sm-12">
-                            <label>Last Name</label>
-                        </div>
-                        <div class="input-form-padding col-sm-12">
-                            <label>Company Name</label>
-                        </div>
-                        <div class="input-form-padding col-sm-12">
-                            <label>Email</label>
-                        </div>
-                    </div>
-                    <div class="input-group login-userinput col-sm-12">
-                        <span class="glyphicon glyphicon-map-marker"></span>
-                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.country.$invalid && !userForm.country.$pristine}">
-                            <input id="txtUser" type="text" class="form-control" placeholder="Country" name="country"  ng-model="user.country" pattern="[a-zA-Z]+" ng-pattern-restric required>
-                        </div>
-                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.province.$invalid && !userForm.province.$pristine}">
-                            <input id="txtUser" type="text" class="form-control" placeholder="Province" name="province"  ng-model="user.province" pattern="[a-zA-Z]+" ng-pattern-restric required >
-                        </div>
-                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.city.$invalid && !userForm.city.$pristine}">
-                            <input id="txtUser" type="text" class="form-control" placeholder="City" name="city"  ng-model="user.city" pattern="[a-zA-Z]+" ng-pattern-restric required>
-                            </div>
-                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.postal.$invalid && !userForm.postal.$pristine}">
-                            <input id="txtUser" type="text" class="form-control" placeholder="Postal Code" name="postal"  ng-model="user.postal" required>
-                            </div>
-                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.streetname.$invalid && !userForm.streetname.$pristine}">
-                            <input id="txtUser" type="text" class="form-control" placeholder="Street Name" name="streetname"  ng-model="user.streetname" pattern="[a-zA-Z]+" ng-pattern-restric ng-pattern-restricrequired>
-                            </div>
-                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.streetnumber.$invalid && !userForm.streetnumber.$pristine}">
-                            <input id="txtUser" type="number" class="form-control" placeholder="Street Number" name="streetnumber"  ng-model="user.streetnumber" required>
-                        </div>
-                    </div>
-                    <div class="input-group login-userinput col-sm-12">
-                        <span class="glyphicon glyphicon-phone-alt icon-signup"></span>
-                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.personalphone.$invalid && !userForm.personalphone.$pristine}">
-                            <input id="txtUser" type="text" class="form-control" placeholder="Personal Phone Number"name="personalphone"  ng-model="user.personalphone" pattern="[0-9]+" ng-pattern-restric ng-minlength="7" required>
-                        </div>
-                        <div class="input-form-padding col-sm-12" ng-class="{ 'has-error' : userForm.businessphone.$invalid && !userForm.businessphone.$pristine}">
-                            <input id="txtUser" type="text" class="form-control" placeholder="Business Phone Number" name="businessphone"  ng-model="user.businessphone" pattern="[0-9]+" ng-pattern-restric ng-minlength="7" required>
-                        </div>
+                <form>
+                    <div class="form-group row">
                         <div class="col-sm-12">
-                            <a ui-sref="login" class="login-forgot">Back to login</a>
+                            <div class="col-sm-4">
+                                <h3 class="profile-company">Glimpse</h3>
+                            </div>
+                            <button type="submit" class="btn btn-primary pull-right" ng-click="edit()">Edit</button>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-xs-2 col-form-label">Email</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="text" value="Glimpse@glimpse.com" ng-show="editOn">
+                            <p ng-hide="editOn">Glimpse@glimpse.com</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-search-input" class="col-xs-2 col-form-label">Company Name</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="text" value="Glimpse" ng-show="editOn">
+                            <p ng-hide="editOn">Glimpse</p>
+                        </div>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-xs-2 col-form-label  form-control-danger">Country</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="text" value="Canada" ng-show="editOn">
+                            <p ng-hide="editOn">Canada</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-url-input" class="col-xs-2 col-form-label">Province</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="text" value="Quebec" ng-show="editOn">
+                            <p ng-hide="editOn">Quebec</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-tel-input" class="col-xs-2 col-form-label">City</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="text" value="Montreal" ng-show="editOn">
+                            <p ng-hide="editOn">Montreal</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-password-input" class="col-xs-2 col-form-label">Postal Code</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="text" value="H9F 2G3" ng-show="editOn">
+                            <p ng-hide="editOn">H9F 2G3</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-number-input" class="col-xs-2 col-form-label">Street Name</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="text" value="Beaugrand" ng-show="editOn">
+                            <p ng-hide="editOn">Beaugrand</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-datetime-local-input" class="col-xs-2 col-form-label">Street Number</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="text" value="47" ng-show="editOn">
+                            <p ng-hide="editOn">47</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-xs-2 col-form-label">Telephone</label>
+                        <div class="col-xs-10">
+                            <input class="form-control" type="text" value="(514) 864 3515" ng-show="editOn">
+                            <p ng-hide="editOn">(514) 864 3515</p>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success pull-right" ng-click="edit()" ng-show="editOn">Save</button>
                 </form>
             </div>
         </div>
