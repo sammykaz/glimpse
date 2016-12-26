@@ -51,7 +51,47 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.closeWarning = function () {
         $scope.showDateWarning = false;
     }
+    $scope.selectedFilter = 'Apply Filters';
+    $scope.applyFilter = function (filterType) {
+        $scope.selectedFilter = filterType || 'Apply Filters';
+        Caman("#previewImage", function () {
 
+            switch (filterType) {
+                case 'Gamma':
+                    this.gamma(100);
+                    break;
+                case 'Greyscale':
+                    this.greyscale();
+                    break;
+                case 'Hue':
+                    this.hue(90);
+                    break;
+                case 'Noise':
+                    this.noise(15);
+                    break;
+                case 'Saturation':
+                    this.saturation(-30);
+                    break;
+                case 'Invert':
+                    this.invert();
+                    break;
+                case 'Sepia':
+                    this.sepia(50);
+                    break;
+                case 'Vibrance':
+                    this.vibrance(15);
+                    break;
+                default:
+                    break;
+            }
+            this.render(function () {
+            });
+            $('#previewImage').css({
+                height: '100%',
+                width: 'auto'
+            })
+        });
+    }
     $scope.upload = function (dataUrl, name) {
         console.log(dataUrl);
         //Upload.upload({
@@ -74,6 +114,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.removeImage = function () {
         $scope.picFile = null;
         $scope.croppedDataUrl = null;
+        $scope.isCropImageEnable = false;
         console.log($scope.croppedDataUrl);
     }
 
