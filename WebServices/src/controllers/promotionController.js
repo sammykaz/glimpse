@@ -43,6 +43,10 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+    $scope.isCropImageEnable = false;
+    $scope.cropImage = function () {
+        $scope.isCropImageEnable = true;
+    }
 
     $scope.closeWarning = function () {
         $scope.showDateWarning = false;
