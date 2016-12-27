@@ -25,7 +25,7 @@ body {
 .nav-bar-textColor{color: #d8d8d8 !important;}
 .map-container{width: 50%; margin: 0 auto; position: relative; top: 5em; border: 1px solid #eee; border-radius: 5px;}
 .promotion-list{background: white; padding: 10px; border-radius: 8px;}
-.promotion-border{background: rgba(0, 0, 0, 0.38); padding: 1px !important; border-style: double; border-radius: 10px;}
+.promotion-border{background: rgba(0, 0, 0, 0.38); padding: 1px !important; border-style: double; border-radius: 10px; margin-top: 50px;}
 .promotion-buttons-edit-create{padding-bottom: 10px; padding-top: 10px;}
 .modal-checkbox{padding-left: 0px !important;}
 .cropArea {background: #E4E4E4; overflow: hidden; height:300px; width:100% !important}
@@ -34,7 +34,7 @@ body {
 .promotion-table{padding-top: 0px !important; padding-right: 0px !important; padding-left: 0px !important;}
 .btn-white{background:white! important;}
 .profile-form{ background: white; padding-bottom: 30px; border-style: double; border-radius: 25px; padding-top: 15px; color: black!important;}
-.profile-title{font-family: 'Exo', sans-serif;text-align:center;color: black;}
+.profile-title{font-family: 'Exo', sans-serif;text-align:center;color: black; border-bottom: 2px solid;}
 .profile-company{font-family: 'Exo', sans-serif;}
 .profile-label{color: #00007d; text-decoration: underline;}
 .input-has-error{border: #d9534f; border-radius: .25rem; border-style: double; border-width: 1px;}
