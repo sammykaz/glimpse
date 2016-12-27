@@ -1,12 +1,11 @@
-using Glimpse.Core.Model;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using WebServices.Models;
-
 namespace WebServices.Migrations
 {
+    using Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+
     internal sealed class Configuration : DbMigrationsConfiguration<WebServices.Models.GlimpseDbContext>
     {
         public Configuration()
@@ -18,15 +17,17 @@ namespace WebServices.Migrations
         {
             // Tuple<string, string> passwordTuple = Cryptography.EncryptAes("password");
             //string password = passwordTuple.Item1.
-
+            /*
             IList<User> users = new List<User>();
 
             for (int i = 0; i < 100; i++)
             {
-                users.Add(new User() {
+                users.Add(new User()
+                {
                     Email = Faker.Internet.Email(),
                     Password = RandomString(8),
-                    Salt = "userSalt" });
+                    Salt = "userSalt"
+                });
             }
 
             IList<Promotion> promotions1 = new List<Promotion>();
@@ -40,14 +41,15 @@ namespace WebServices.Migrations
             IList<Promotion> promotions9 = new List<Promotion>();
             IList<Promotion> promotions10 = new List<Promotion>();
 
-           foreach(Promotion promotion in promotions1)
-            { 
-                promotions1.Add(new Promotion() {
+            foreach (Promotion promotion in promotions1)
+            {
+                promotions1.Add(new Promotion()
+                {
                     Title = Faker.Lorem.Words(2).ToString(),
                     Description = Faker.Lorem.Sentence(5),
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate(),
+                    PromotionEndDate = GetRandomDate()
                 });
             }
 
@@ -59,7 +61,8 @@ namespace WebServices.Migrations
                     Description = Faker.Lorem.Sentence(5),
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate(),
+                    PromotionEndDate = GetRandomDate()
+                    
                 });
             }
 
@@ -71,7 +74,8 @@ namespace WebServices.Migrations
                     Description = Faker.Lorem.Sentence(5),
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate(),
+                    PromotionEndDate = GetRandomDate()
+                    
                 });
             }
 
@@ -83,7 +87,8 @@ namespace WebServices.Migrations
                     Description = Faker.Lorem.Sentence(5),
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate(),
+                    PromotionEndDate = GetRandomDate()
+                    
                 });
             }
 
@@ -95,7 +100,8 @@ namespace WebServices.Migrations
                     Description = Faker.Lorem.Sentence(5),
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate(),
+                    PromotionEndDate = GetRandomDate()
+                    
                 });
             }
 
@@ -107,7 +113,8 @@ namespace WebServices.Migrations
                     Description = Faker.Lorem.Sentence(5),
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate(),
+                    PromotionEndDate = GetRandomDate()
+                    
                 });
             }
 
@@ -119,7 +126,8 @@ namespace WebServices.Migrations
                     Description = Faker.Lorem.Sentence(5),
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate(),
+                    PromotionEndDate = GetRandomDate()
+                    
                 });
             }
 
@@ -131,7 +139,8 @@ namespace WebServices.Migrations
                     Description = Faker.Lorem.Sentence(5),
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate(),
+                    PromotionEndDate = GetRandomDate()
+                    
                 });
             }
 
@@ -143,7 +152,8 @@ namespace WebServices.Migrations
                     Description = Faker.Lorem.Sentence(5),
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate(),
+                    PromotionEndDate = GetRandomDate()
+                    
                 });
             }
 
@@ -155,7 +165,8 @@ namespace WebServices.Migrations
                     Description = Faker.Lorem.Sentence(5),
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate(),
+                    PromotionEndDate = GetRandomDate()
+                    
                 });
             }
 
@@ -167,7 +178,8 @@ namespace WebServices.Migrations
                     Description = Faker.Lorem.Sentence(5),
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate(),
+                    PromotionEndDate = GetRandomDate()
+                    
                 });
             }
 
@@ -390,26 +402,22 @@ namespace WebServices.Migrations
             Faker.Internet.FreeEmail();  // "houston_purdy@yahoo.com"
             Faker.Internet.DomainName();  // "larkinhirthe.com"
             Faker.Phone.Number();  // "(033)216-0058 x0344"
-
             Faker.Address.StreetAddress();  // "52613 Turcotte Lock"
             Faker.Address.SecondaryAddress();  // "Suite 656"
             Faker.Address.City();  // "South Wavaside"
-
             Faker.Address.UkCounty();  // "West Glamorgan"
             Faker.Address.UkPostCode().ToUpper();  // "BQ7 3AM"
-
             Faker.Address.UsState();  // "Tennessee"
             Faker.Address.ZipCode();  // "66363-7828"
-
             Faker.Company.Name();  // "Dickens Group"
             */
-
+            
         }
 
 
 
 
-    private static Random random = new Random();
+        private static Random random = new Random();
         public static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -419,8 +427,8 @@ namespace WebServices.Migrations
 
         private static Location GetRandomLatLon()
         {
-                double lat = random.NextDouble() * (360 - 180);
-                double lon = random.NextDouble() * (180 - 90);
+            double lat = random.NextDouble() * (360 - 180);
+            double lon = random.NextDouble() * (180 - 90);
             return new Location(lat, lon);
         }
 
@@ -447,5 +455,7 @@ namespace WebServices.Migrations
         {
             return random.NextDouble() >= 0.5;
         }
+    
+        
     }
 }

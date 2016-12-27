@@ -1,32 +1,31 @@
 ﻿
 using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebServices.Models
 {
     public class Promotion
     {
+        [Key]
         public int PromotionId { get; set; }
 
-        public string Title;       
+        public int VendorId { get; set; }
 
-        public string Description;       
+        public Vendor Vendor { get; set; }
 
-        public int? VendorId { get; set; }
+        public string Title { get; set; }
 
-        public Category Categories { get; set; }     
+        public string Description { get; set; }
 
-        //These dates will be extracted from a calendar UI in the future.
+        public Category Categories { get; set; }
+
         public DateTime PromotionStartDate { get; set; }
 
         public DateTime PromotionEndDate { get; set; }
+ 
+        public byte[] PromotionImage { get; set;}
 
-        public bool PromotionActive { get; set; }
-
-
-        //Add images here
-
-        //Any promotion logic below
 
     }
 

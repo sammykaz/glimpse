@@ -9,6 +9,7 @@ namespace WebServices.Models
         }
 
         public int CategoryId { get; set; }
+
         public Categories Categories { get; set; }
     }
 }

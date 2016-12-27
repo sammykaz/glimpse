@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebServices.Models
 {
@@ -8,10 +8,10 @@ namespace WebServices.Models
     {
         public Vendor()
         {
-            this.Promotions = new List<Promotion>();
+            Promotions = new List<Promotion>();
         }
-
-        public int VendorId { get; set; }      
+        [Key]
+        public int VendorId { get; set; }
 
         [Index(IsUnique = true)]
         [MaxLength(20)]
@@ -23,12 +23,12 @@ namespace WebServices.Models
 
         public string Salt { get; set; }
 
-        public string Address { get; set; }
+        public string Address { set; get; }
 
         public string Telephone { get; set; }
 
         public Location Location { get; set; }
-
+   
         public virtual ICollection<Promotion> Promotions { get; set; }
     }
 }

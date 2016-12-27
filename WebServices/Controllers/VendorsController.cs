@@ -8,7 +8,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Glimpse.Core.Model;
 using WebServices.Models;
 
 namespace WebServices.Controllers
@@ -35,6 +34,7 @@ namespace WebServices.Controllers
 
             return Ok(vendor);
         }
+
 
         // GET: api/Vendors/Search/lala@gmail.com/
         //trailing slash is important or else 404 error
