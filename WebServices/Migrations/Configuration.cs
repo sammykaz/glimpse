@@ -1,3 +1,4 @@
+using Glimpse.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -47,7 +48,6 @@ namespace WebServices.Migrations
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
                     PromotionEndDate = GetRandomDate(),
-                    PromotionActive = GetRandomBoolean()
                 });
             }
 
@@ -60,7 +60,6 @@ namespace WebServices.Migrations
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
                     PromotionEndDate = GetRandomDate(),
-                    PromotionActive = GetRandomBoolean()
                 });
             }
 
@@ -73,7 +72,6 @@ namespace WebServices.Migrations
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
                     PromotionEndDate = GetRandomDate(),
-                    PromotionActive = GetRandomBoolean()
                 });
             }
 
@@ -86,7 +84,6 @@ namespace WebServices.Migrations
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
                     PromotionEndDate = GetRandomDate(),
-                    PromotionActive = GetRandomBoolean()
                 });
             }
 
@@ -99,7 +96,6 @@ namespace WebServices.Migrations
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
                     PromotionEndDate = GetRandomDate(),
-                    PromotionActive = GetRandomBoolean()
                 });
             }
 
@@ -112,7 +108,6 @@ namespace WebServices.Migrations
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
                     PromotionEndDate = GetRandomDate(),
-                    PromotionActive = GetRandomBoolean()
                 });
             }
 
@@ -125,7 +120,6 @@ namespace WebServices.Migrations
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
                     PromotionEndDate = GetRandomDate(),
-                    PromotionActive = GetRandomBoolean()
                 });
             }
 
@@ -138,7 +132,6 @@ namespace WebServices.Migrations
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
                     PromotionEndDate = GetRandomDate(),
-                    PromotionActive = GetRandomBoolean()
                 });
             }
 
@@ -151,7 +144,6 @@ namespace WebServices.Migrations
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
                     PromotionEndDate = GetRandomDate(),
-                    PromotionActive = GetRandomBoolean()
                 });
             }
 
@@ -164,7 +156,6 @@ namespace WebServices.Migrations
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
                     PromotionEndDate = GetRandomDate(),
-                    PromotionActive = GetRandomBoolean()
                 });
             }
 
@@ -177,7 +168,6 @@ namespace WebServices.Migrations
                     Categories = GetRandomCategory(),
                     PromotionStartDate = new DateTime(2016, 12, 1),
                     PromotionEndDate = GetRandomDate(),
-                    PromotionActive = GetRandomBoolean()
                 });
             }
 

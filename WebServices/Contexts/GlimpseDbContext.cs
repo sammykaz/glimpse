@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using Glimpse.Core.Model;
+using System.Data.Entity;
 
 namespace WebServices.Models
 {
