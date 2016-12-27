@@ -3,7 +3,7 @@ namespace WebServices.Models
 {
     public class Location
     {
-
+        public Location() { }
         public Location(double Lat, double Lng)
         {
             this.Lat = Lat;
