@@ -7,7 +7,9 @@ body {
 .login-form-padding{padding-top: 250px;}
 .signup-form-padding{padding-top: 50px;}
 .login-form-panel{padding-top: 10px;}
+.signup-form{background: rgba(0, 0, 0, 0.6); padding-bottom: 30px; border-style: double; border-radius: 25px; color: white!important; padding-top: 15px;}
 .signup-form-panel{padding-bottom: 15px; padding-top: 10px;}
+.signup-form-input{display: block; width: 100%; padding: .5rem .75rem; font-size: 1rem; background: gainsboro; line-height: 1.25; color: white !important; background-color: rgba(12, 35, 46, 0) !important; border: 1px solid rgb(255, 255, 255); border-radius: .25rem;}
 .login-title{font-family: 'Exo', sans-serif;text-align:center;color: white;}
 .login-userinput{margin-bottom: 10px;}
 .login-button{margin-top:10px;}
@@ -35,4 +37,6 @@ body {
 .profile-title{font-family: 'Exo', sans-serif;text-align:center;color: black;}
 .profile-company{font-family: 'Exo', sans-serif;}
 .profile-label{color: #00007d; text-decoration: underline;}
+.input-has-error{border: #d9534f; border-radius: .25rem; border-style: double; border-width: 1px;}
+
 
