@@ -84,6 +84,7 @@
                                 <li><a href="javascript:void(0)" ng-click="applyFilter('Vibrance')">Vibrance</a></li>
                             </ul>
                         </div>
+                        <button ng-click="resetFilter()" ng-show="isResetEnable">Reset Filter</button>
                         <button class="btn btn-danger" ng-click="removeImage()" ng-show="picFile">Remove</button>
                     </div>
                     <small class="form-text text-muted">Choose a picture to promote</small>

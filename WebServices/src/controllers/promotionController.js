@@ -33,6 +33,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.startDay = undefined;
     $scope.endDay = undefined;
     $scope.showDateWarning = false;
+    $scope.isResetEnable = false;
     $scope.ok = function () {
         if ($scope.sdt > $scope.edt)
             $scope.showDateWarning = true;
@@ -55,6 +56,9 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.applyFilter = function (filterType) {
         $scope.selectedFilter = filterType || 'Apply Filters';
         Caman("#previewImage", function () {
+            if ($scope.isResetEnable) {
+                this.reset(function () { });
+            }
 
             switch (filterType) {
                 case 'Gamma':
@@ -85,6 +89,9 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                     break;
             }
             this.render(function () {
+                $scope.$apply(function () {
+                    $scope.isResetEnable = true;
+                })
             });
             $('#previewImage').css({
                 height: '100%',
@@ -117,7 +124,13 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         $scope.isCropImageEnable = false;
         console.log($scope.croppedDataUrl);
     }
-
+    $scope.resetFilter = function () {
+        $scope.isResetEnable = false;
+        $scope.selectedFilter = 'Apply Filters';
+        Caman("#previewImage", function () {
+            this.reset();
+        });
+    }
     $scope.today = function () {
         $scope.sdt = new Date();
         $scope.edt = new Date();
