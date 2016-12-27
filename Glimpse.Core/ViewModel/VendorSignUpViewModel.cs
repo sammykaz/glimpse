@@ -38,20 +38,29 @@ namespace Glimpse.Core.ViewModel
         }
 
 
-        private Location _location;
-        public Location Location
+        private string _email;
+        public string Email
         {
-            get
-            {
-                if (_location == null)
-                    _location = new Location();
-
-                return _location;
-            }
+            get { return _email; }
             set
             {
-                _location = value;
-                RaisePropertyChanged(() => Location);
+                _email = value;
+                RaisePropertyChanged(() => Email);
+
+            }
+        }
+
+
+        private string _password;
+        public string Password
+        {
+            get { return _password; }
+            set
+            {
+                _password = value;
+                RaisePropertyChanged(() => Password);
+            }
+        }
 
             }
         }
@@ -128,7 +137,6 @@ namespace Glimpse.Core.ViewModel
                         {                           
                             CompanyName = _companyName,
                             Email = _email,
-                            Telephone = _businessPhoneNumber,
                             Password = _password,
                             Location = _location,
                             Address = Address     
