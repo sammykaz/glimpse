@@ -10,6 +10,11 @@ namespace Glimpse.Core.Model
     {
         public int PromotionId { get; set; }
 
+       
+        public int VendorId { get; set; }
+
+        public Vendor Vendor { get; set; }
+
         private string _title;
         public string Title
         {
@@ -23,8 +28,6 @@ namespace Glimpse.Core.Model
             get { return _description; }
             set { _description = value; }
         }
-
-        public int VendorId { get; set; }
 
         public Category Categories { get; set; }
 
