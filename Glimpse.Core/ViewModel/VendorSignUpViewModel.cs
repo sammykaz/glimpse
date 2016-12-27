@@ -32,27 +32,20 @@ namespace Glimpse.Core.ViewModel
         }
 
 
-        private string _email;
-        public string Email
+        private Location _location;
+        public Location Location
         {
-            get { return _email; }
-            set
+            get
             {
-                _email = value;
-                RaisePropertyChanged(() => Email);
+                if (_location == null)
+                    _location = new Location();
 
+                return _location;
             }
-        }
-
-
-        private string _password;
-        public string Password
-        {
-            get { return _password; }
             set
             {
-                _password = value;
-                RaisePropertyChanged(() => Password);
+                _location = value;
+                RaisePropertyChanged(() => Location);
             }
         }
 
@@ -64,6 +57,18 @@ namespace Glimpse.Core.ViewModel
             {
                 _address = value;
                 RaisePropertyChanged(() => Address);
+
+            }
+        }
+
+        private string _email;
+        public string Email
+        {
+            get { return _email; }
+            set
+            {
+                _email = value;
+                RaisePropertyChanged(() => Email);
 
             }
         }
@@ -81,7 +86,16 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-
+        private string _password;
+        public string Password
+        {
+            get { return _password; }
+            set
+            {
+                _password = value;
+                RaisePropertyChanged(() => Password);
+            }
+        }
 
         public MvxCommand SignUpCommand
         {
@@ -103,8 +117,9 @@ namespace Glimpse.Core.ViewModel
                         {
                             CompanyName = _companyName,
                             Email = _email,
+                            Telephone = _businessPhoneNumber,
                             Password = _password,
-                            //Location = _location,
+                            Location = _location,
                             Address = Address
                         };
 
