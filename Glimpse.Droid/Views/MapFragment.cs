@@ -2,7 +2,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using MvvmCross.Droid.Shared.Attributes;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using MvvmCross.Droid.Support.V4;
 using Glimpse.Droid.Extensions;
 using Glimpse.Droid.Activities;
 using Glimpse.Core.ViewModel;
@@ -161,6 +161,7 @@ namespace Glimpse.Droid.Views
             var viewModel = (MapViewModel)ViewModel;
 
             
+            /*
             List<Promotion> activePromotions = await viewModel.GetAllActivePromotions();
             List<Vendor> activeVendors = await viewModel.GetAllVendorsWithActivePromotions();
 
@@ -176,7 +177,8 @@ namespace Glimpse.Droid.Views
                                         (activePromotions.Count > 1 ? "s" : "")));
                 }
             }
-            
+            */
+
             /*
             foreach(var vendor in viewModel.VendorData.Keys)
             {

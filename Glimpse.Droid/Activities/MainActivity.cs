@@ -8,7 +8,7 @@ using Android.Support.V4.Widget;
 using Android.Views;
 using MvvmCross.Droid.Shared.Caching;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using MvvmCross.Droid.Support.V4;
 using Glimpse.Core.ViewModel;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Gms.Maps;
@@ -77,44 +77,7 @@ namespace Glimpse.Droid.Activities
                ViewModel.ShowMenu();
                ViewModel.ShowMap();
             }
-        }
-
-
-        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-        {
-            if ((resultCode == Result.Ok) && (data != null))
-            {
-                Uri uri = data.Data;
-                _imageView = FindViewById<ImageView>(Resource.Id.promotion_picture);
-                _imageView.SetImageURI(uri);
-
-
-                _imageView.BuildDrawingCache(true);
-                Bitmap bmap = _imageView.GetDrawingCache(true);
-                _imageView.SetImageBitmap(bmap);
-                Bitmap b = Bitmap.CreateBitmap(_imageView.GetDrawingCache(true));
-                
-
-                var stream = new MemoryStream();
-
-                b.Compress(Bitmap.CompressFormat.Png, 100, stream);
-
-                bool oneTime = false;
-
-                if(!oneTime)
-                {
-                    var set = this.CreateBindingSet<MainActivity, CreatePromotionPart2ViewModel>();
-                    byte[] byteArray = stream.ToArray();
-                    set.Bind(byteArray)
-                     .For(array => array)
-                     .To(vm => vm.Bytes);
-                    //.WithConversion(new LatLngValueConverter(), null).TwoWay();
-                    set.Apply();
-                }
-
-              
-            }
-        }
+        }      
 
         private void _drawerToggle_DrawerOpened(object sender, ActionBarDrawerEventArgs e)
         {
@@ -128,7 +91,7 @@ namespace Glimpse.Droid.Activities
 
 
         
-        public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo, Android.Support.V4.App.FragmentTransaction transaction)
+   /*     public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo, Android.Support.V4.App.FragmentTransaction transaction)
         {
             var currentFrag = SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MvxFragment;
 
@@ -138,6 +101,7 @@ namespace Glimpse.Droid.Activities
             base.OnBeforeFragmentChanging(fragmentInfo, transaction);
         }
 
+    */
         internal void CloseDrawerMenu()
         {
             _drawerLayout.CloseDrawers();

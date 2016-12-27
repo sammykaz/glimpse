@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Faker.NET4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Faker.Net.1.0.3\lib\net40\Faker.NET4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -201,16 +205,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612220544451_fluent.cs" />
-    <Compile Include="Migrations\201612220544451_fluent.Designer.cs">
-      <DependentUpon>201612220544451_fluent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612220657108_location.cs" />
-    <Compile Include="Migrations\201612220657108_location.Designer.cs">
-      <DependentUpon>201612220657108_location.cs</DependentUpon>
+    <Compile Include="Migrations\201612270323003_migration1.cs" />
+    <Compile Include="Migrations\201612270323003_migration1.Designer.cs">
+      <DependentUpon>201612270323003_migration1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Contexts\GlimpseDbContext.cs" />
@@ -1120,18 +1119,15 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612220544451_fluent.resx">
-      <DependentUpon>201612220544451_fluent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612220657108_location.resx">
-      <DependentUpon>201612220657108_location.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Glimpse.Core\Glimpse.Core.csproj">
       <Project>{a429b66b-b938-4bec-9254-c27bba173d90}</Project>
       <Name>Glimpse.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612270323003_migration1.resx">
+      <DependentUpon>201612270323003_migration1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

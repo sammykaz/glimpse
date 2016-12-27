@@ -65,7 +65,6 @@
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Helpers\LocationChangedHandlerArgs.cs" />
     <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="Model\Address.cs" />
     <Compile Include="Model\App\MenuItem.cs" />
     <Compile Include="Model\App\SearchParameters.cs" />
     <Compile Include="Model\BaseModel.cs" />
@@ -85,8 +84,7 @@
     <Compile Include="Services\Data\UserDataService.cs" />
     <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Services\General\Settings.cs" />
-    <Compile Include="Utility\Categories.cs" />
-    <Compile Include="Utility\Geocoding.cs" />
+    <Compile Include="Model\Categories.cs" />
     <Compile Include="Utility\MenuOption.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BuyerProfilePageViewModel.cs" />
@@ -128,9 +126,6 @@
     <Reference Include="MvvmCross.Core, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Core.4.1.4\lib\portable-net45+win+wpa81+wp80\MvvmCross.Core.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="MvvmCross.Droid.Support.V7.Fragging">
-      <HintPath>..\Libraries\MvvmCross.Droid.Support.V7.Fragging.4.1.1\lib\MonoAndroid403\MvvmCross.Droid.Support.V7.Fragging.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Localization, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Binding.4.1.4\lib\portable-net45+win+wpa81+wp80\MvvmCross.Localization.dll</HintPath>

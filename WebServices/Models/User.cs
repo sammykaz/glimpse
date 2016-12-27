@@ -5,7 +5,8 @@ namespace WebServices.Models
 {
     public class User
     {
-        public int UserId { get; set; }      
+        [Key]
+        public int UserId { get; set; }
 
         [Index(IsUnique = true)]
         [MaxLength(20)]
@@ -14,6 +15,5 @@ namespace WebServices.Models
         public string Password { get; set; }
 
         public string Salt { get; set; }
-
     }
 }

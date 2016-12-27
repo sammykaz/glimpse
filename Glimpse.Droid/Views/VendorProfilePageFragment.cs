@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Shared.Attributes;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using MvvmCross.Droid.Support.V4;
 using Glimpse.Core.ViewModel;
 using Glimpse.Droid.Activities;
 using Glimpse.Droid.Extensions;

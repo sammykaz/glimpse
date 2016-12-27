@@ -88,7 +88,6 @@ Global
 		{BBD6BA79-365C-46FB-9662-04318221A0A7}.AppStore|x86.ActiveCfg = AppStore|iPhoneSimulator
 		{BBD6BA79-365C-46FB-9662-04318221A0A7}.Debug|Any CPU.ActiveCfg = Debug|iPhone
 		{BBD6BA79-365C-46FB-9662-04318221A0A7}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{BBD6BA79-365C-46FB-9662-04318221A0A7}.Debug|iPhone.Build.0 = Debug|iPhone
 		{BBD6BA79-365C-46FB-9662-04318221A0A7}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{BBD6BA79-365C-46FB-9662-04318221A0A7}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{BBD6BA79-365C-46FB-9662-04318221A0A7}.Debug|x86.ActiveCfg = Debug|iPhoneSimulator

@@ -10,7 +10,7 @@ using Android.Content;
 using Android.Support.Design.Widget;
 using Android.Widget;
 using MvvmCross.Binding.Droid.Views;
-using MvvmCross.Droid.Support.V7.Fragging.Fragments;
+using MvvmCross.Droid.Support.V4;
 
 namespace Glimpse.Droid.Views
 {
