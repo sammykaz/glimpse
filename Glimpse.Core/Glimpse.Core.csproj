@@ -63,7 +63,6 @@
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Helpers\LocationChangedHandlerArgs.cs" />
     <Compile Include="Helpers\Settings.cs" />
-    <Compile Include="Model\Address.cs" />
     <Compile Include="Model\App\MenuItem.cs" />
     <Compile Include="Model\App\SearchParameters.cs" />
     <Compile Include="Model\BaseModel.cs" />
@@ -83,8 +82,7 @@
     <Compile Include="Services\Data\UserDataService.cs" />
     <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Services\General\Settings.cs" />
-    <Compile Include="Utility\Categories.cs" />
-    <Compile Include="Utility\Geocoding.cs" />
+    <Compile Include="Model\Categories.cs" />
     <Compile Include="Utility\MenuOption.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BuyerProfilePageViewModel.cs" />

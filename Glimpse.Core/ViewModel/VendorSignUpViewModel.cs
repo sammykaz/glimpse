@@ -1,12 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using MvvmCross.Plugins.Messenger;
-using Glimpse.Core.ViewModel;
+﻿using MvvmCross.Plugins.Messenger;
 using MvvmCross.Core.ViewModels;
 using Glimpse.Core.Model;
-using Glimpse.Core.Services.Data;
-using System;
-using System.Linq;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Services.General;
 
@@ -23,7 +17,7 @@ namespace Glimpse.Core.ViewModel
         {
             _vendorDataService = vendorDataService;
             _userDataService = userDataService;
-        }             
+        }
 
         private string _companyName;
         public string CompanyName
@@ -52,7 +46,6 @@ namespace Glimpse.Core.ViewModel
             {
                 _location = value;
                 RaisePropertyChanged(() => Location);
-
             }
         }
 
@@ -104,16 +97,12 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-     
-
-      
-
         public MvxCommand SignUpCommand
         {
             get
             {
                 return new MvxCommand(async () =>
-                {                  
+                {
 
                     vendor = await _vendorDataService.SearchVendorByEmail(_email);
 
@@ -125,13 +114,13 @@ namespace Glimpse.Core.ViewModel
                     else
                     {
                         Vendor newVendor = new Vendor()
-                        {                           
+                        {
                             CompanyName = _companyName,
                             Email = _email,
                             Telephone = _businessPhoneNumber,
                             Password = _password,
                             Location = _location,
-                            //Address = Address      
+                            Address = Address
                         };
 
                         Settings.LoginStatus = true;
@@ -144,7 +133,6 @@ namespace Glimpse.Core.ViewModel
                 });
             }
         }
-
-
     }
 }
+    
