@@ -97,18 +97,17 @@ namespace Glimpse.Droid.Views
         }
         public void OnClick(View view)
         {
-            string _firstName = view.FindViewById<EditText>(Resource.Id.txtFirstName).Text;
             string _company = view.FindViewById<EditText>(Resource.Id.txtCompanyName).Text;
             string _email = view.FindViewById<EditText>(Resource.Id.txtEmail).Text;
 
             SendMail sendMail = new Glimpse.Droid.Views.SendMail();
 
             //Mail for vendor
-            string mailBody = sendMail.CreateMailBodyForVendor(_firstName);
+            string mailBody = sendMail.CreateMailBodyForVendor(_company);
             sendMail.SendEmail("Account Created", mailBody, _email);
 
             //Mail for Admin
-            mailBody = sendMail.CreateMailBodyForAdmin(_firstName,_company,"No number!",_email);
+            mailBody = sendMail.CreateMailBodyForAdmin(_company, _company,"No number!",_email);
             sendMail.SendEmail("New Sign-Up Information", mailBody, "vendor.smtptest@gmail.com");
         }
         
