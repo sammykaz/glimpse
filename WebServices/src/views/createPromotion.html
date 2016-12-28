@@ -66,10 +66,12 @@
                     <label>Photo</label>
                     <input type="file" ngf-select ng-model="picFile" accept="image/*" class="btn btn-primary">
                     <div class="pull-right" style="margin-top:10px;">
-                        <button class="btn btn-danger" ng-click="cropImage()" ng-show="picFile">Crop</button>
-                        <div class="dropdown" style="display:inline-block"  ng-hide="isCropImageEnable">
+                        <button class="btn btn-danger" ng-click="cropImage()" ng-show="!saveCrop" type="button">Crop</button>
+                        <button class="btn btn-danger" ng-click="doneCrop()" ng-show="saveCrop" type="button">Save Crop</button>
+                        <button class="btn btn-danger" ng-click="cancelCrop()" ng-show="saveCrop" type="button">Cancel Crop</button>
 
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"  ng-show="picFile">
+                        <div class="dropdown" style="display:inline-block" ng-hide="isCropImageEnable">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
                                 {{selectedFilter}}
                                 <span class="caret"></span>
                             </button>
@@ -84,18 +86,19 @@
                                 <li><a href="javascript:void(0)" ng-click="applyFilter('Vibrance')">Vibrance</a></li>
                             </ul>
                         </div>
-                        <button ng-click="resetFilter()" ng-show="isResetEnable">Reset Filter</button>
-                        <button class="btn btn-danger" ng-click="removeImage()" ng-show="picFile">Remove</button>
+                        <button ng-click="resetFilter()" ng-show="isResetEnable" type="button">Reset Filter</button>
+                        <button class="btn btn-danger" ng-click="removeImage()" ng-show="picFile" type="button">Remove</button>
                     </div>
                     <small class="form-text text-muted">Choose a picture to promote</small>
 
 
                     <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
-                        <img ngf-src="picFile" ng-hide="isCropImageEnable" ngf-background="picFile" style="height: 100%;width: auto;background-size: contain;background-repeat: no-repeat;" id="previewImage">
-                        <ui-cropper image="picFile  | ngfDataUrl" area-type="rectangle"
-                                    result-image="croppedDataUrl" allow-crop-resize-on-corners="true" ng-init="croppedDataUrl=''" ng-show="isCropImageEnable"></ui-cropper>                    </div>
+                        <img ngf-src="previewImage" ng-hide="isCropImageEnable" style="height: 100%;width: auto;background-size: contain;background-repeat: no-repeat;" id="previewImage">
+                        <ui-cropper image="previewImage" area-type="rectangle"
+                                    result-image="croppedDataUrl" allow-crop-resize-on-corners="true" ng-show="isCropImageEnable"></ui-cropper>
+                    </div>
                     <div ng-show="isCropImageEnable">
-                    <img ng-show="croppedDataUrl!=null" ng-src="{{croppedDataUrl}}" />
+                        <img ng-show="croppedDataUrl!=null" ng-src="{{croppedDataUrl}}" />
                     </div>
                 </div>
             </form>
