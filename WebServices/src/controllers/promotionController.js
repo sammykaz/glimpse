@@ -44,14 +44,49 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
-    $scope.isCropImageEnable = false;
-    $scope.cropImage = function () {
-        $scope.isCropImageEnable = true;
-    }
 
     $scope.closeWarning = function () {
         $scope.showDateWarning = false;
     }
+
+
+    $scope.croppedDataUrl = '';
+    $scope.isCropImageEnable = false;
+    $scope.saveCrop = false;
+    var imageFile = '';
+
+    $scope.$watch('picFile', function() {
+        if(!!$scope.picFile){
+            debugger;
+            imageFile = $scope.picFile;
+            $scope.previewImage = imageFile;
+        }
+    });
+
+   
+
+    $scope.cropImage = function () {
+        debugger;
+        $scope.isCropImageEnable = true;
+        $scope.saveCrop = true;
+    }
+
+    $scope.doneCrop = function () {
+        debugger;
+        $scope.isCropImageEnable = false;
+        $scope.saveCrop = false;
+        $scope.previewImage = $scope.croppedDataUrl;
+    }
+
+    $scope.cancelCrop = function () {
+        debugger;
+        $scope.isCropImageEnable = false;
+        $scope.saveCrop = false;
+    }
+
+
+
+
     $scope.selectedFilter = 'Apply Filters';
     $scope.applyFilter = function (filterType) {
         $scope.selectedFilter = filterType || 'Apply Filters';
@@ -99,6 +134,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             })
         });
     }
+
     $scope.upload = function (dataUrl, name) {
         console.log(dataUrl);
         //Upload.upload({
