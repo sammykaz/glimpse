@@ -432,11 +432,11 @@ namespace WebServices.Migrations
             return new Location(lat, lon);
         }
 
-        private static Category GetRandomCategory()
+        private static Categories GetRandomCategory()
         {
             Array values = Enum.GetValues(typeof(Categories));
             Categories category = (Categories)values.GetValue(random.Next(values.Length));
-            return new Category(category);
+            return category;
         }
 
         private static DateTime GetRandomDate()

@@ -5,6 +5,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebServices.Models
 {
+
+    public enum Categories
+    {
+        Footwear,
+        Electronics,
+        Jewellery,
+        Restaurants,
+        Services,
+        Apparel
+    }
+
     public class Promotion
     {
         [Key]
@@ -18,7 +29,7 @@ namespace WebServices.Models
 
         public string Description { get; set; }
 
-        public Category Categories { get; set; }
+        public Categories Category { get; set; }
 
         public DateTime PromotionStartDate { get; set; }
 
