@@ -37,19 +37,28 @@ namespace WebServices.Providers
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             currentVendor = await restClient.GetByKeyword(context.UserName, true);
 
-                //context.SetError("invalid_grant", currentVendor.Email + "pass: " + context.Password + "encrypted pass: " + currentVendor.Password);
-                //return;
-                //string encryptedPassword = Cryptography.EncryptAes(context.Password, currentVendor.Salt);
-                
-                if (context.Password == currentVendor.Password){
+            //context.SetError("invalid_grant", currentVendor.Email + "pass: " + context.Password + "encrypted pass: " + currentVendor.Password);
+            //return;
+            //string encryptedPassword = Cryptography.EncryptAes(context.Password, currentVendor.Salt);
+
+            if (currentVendor!=null){
+                if (context.Password == currentVendor.Password) {
                     identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
                     identity.AddClaim(new Claim("username", "user"));
                     identity.AddClaim(new Claim(ClaimTypes.Name, "user test"));
                     context.Validated(identity);
-                }else
+                }
+                else
                 {
+                    context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
                 }
+            }
+            else
+            {
+                context.SetError("invalid_grant", "The user name or password is incorrect.");
+                return;
+            }
 
             //var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
