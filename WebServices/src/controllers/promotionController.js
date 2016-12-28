@@ -16,6 +16,7 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
         $uibModal.open({
             templateUrl: '/src/views/createPromotion.html',
             controller: 'modalController',
+            size: 'lg',
             scope: $scope
         }).result.then(function (result) {
             console.log(result);
