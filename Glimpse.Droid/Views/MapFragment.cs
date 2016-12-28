@@ -24,7 +24,7 @@ namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame, true)]
     [Register("glimpse.droid.views.MapFragment")]
-    public class MapFragment : MvxFragment<MapViewModel>
+    public class MapFragment : MvxFragment<MapViewModel>, IOnMapReadyCallback
     {
         private MapView _mapView;
         private GoogleMap _map;
@@ -39,7 +39,8 @@ namespace Glimpse.Droid.Views
             var view = this.BindingInflate(Resource.Layout.MapView, null);
             _mapView = view.FindViewById<MapView>(Resource.Id.map);
             _mapView.OnCreate(savedInstanceState);
-          
+            _mapView.GetMapAsync(this);
+
             return view;
         }
 
@@ -65,7 +66,7 @@ namespace Glimpse.Droid.Views
             base.OnDestroyView();
             _mapView.OnDestroy();
             //_mapView = null;
-            _map = null;
+           // _map = null;
             _currentUserLocation = null;
         }
 
@@ -135,7 +136,7 @@ namespace Glimpse.Droid.Views
         {
             if (_map== null)
             {
-                _map = View.FindViewById<MapView>(Resource.Id.map).Map;
+                View.FindViewById<MapView>(Resource.Id.map).GetMapAsync(this);
             }
         }
 
@@ -236,6 +237,11 @@ namespace Glimpse.Droid.Views
             LatLng latLng = new LatLng(e.Location.Lat, e.Location.Lng);
             CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLng(latLng);
             _map.AnimateCamera(cameraUpdate);
+        }
+
+        public void OnMapReady(GoogleMap googleMap)
+        {
+            _map = googleMap;
         }
     }
     }
