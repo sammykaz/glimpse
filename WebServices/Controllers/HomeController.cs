@@ -16,7 +16,7 @@ namespace WebServices.Controllers
         public IHttpActionResult GetForAuthenticate()
         {
             var identity = (ClaimsIdentity)User.Identity;
-            return Ok("Hello " + identity.Name);
+            return Ok(identity.Name + ": Authorized");
         }
     }
 }

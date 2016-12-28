@@ -298,8 +298,6 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
-    <None Include="Properties\PublishProfiles\GlimpseWS - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\GlimpseWS - Web Deploy.pubxml" />
     <Content Include="Scripts\caman.full.min.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
@@ -319,6 +317,8 @@
     <Content Include="Scripts\angular-local-storage.min.js.map" />
     <Content Include="Scripts\angular-modal-service.js.map" />
     <Content Include="Scripts\angular-modal-service.min.js.map" />
+    <None Include="Properties\PublishProfiles\GlimpseWS - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\GlimpseWS - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\FileAPI.flash.swf" />
     <Content Include="Scripts\FileAPI.js" />

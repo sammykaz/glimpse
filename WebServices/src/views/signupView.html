@@ -5,13 +5,7 @@
             <div class="panel-body">
                 <form name="userForm" novalidate>
                     <div class="input-group login-userinput col-sm-12">
-                        <span class="glyphicon glyphicon-user icon-signup"></span>
-                        <div class="input-form-padding col-sm-12">
-                            <input id="txtUser" type="text" name="firstname" class="signup-form-input" placeholder="First Name"  ng-model="user.firstname" pattern="[a-zA-Z]+" ng-pattern-restric ng-class="{ 'input-has-error' : userForm.firstname.$invalid && !userForm.firstname.$pristine}" required>
-                        </div>
-                        <div class="input-form-padding col-sm-12">
-                            <input id="txtUser" type="text" class="signup-form-input" placeholder="Last Name" name="lastname"  ng-model="user.lastname" pattern="[a-zA-Z]+" ng-pattern-restric ng-class="{ 'input-has-error' : userForm.lastname.$invalid && !userForm.lastname.$pristine}" required>
-                        </div>
+                        <span class="fa fa-user fa-2x icon-signup"></span>
                         <div class="input-form-padding col-sm-12">
                             <input id="txtUser" type="text" class="signup-form-input" placeholder="Company" name="company"  ng-model="user.company" ng-class="{ 'input-has-error' : userForm.company.$invalid && !userForm.company.$pristine}" required>
                         </div>
@@ -20,7 +14,7 @@
                         </div>
                     </div>
                     <div class="input-group login-userinput col-sm-12">
-                        <span class="glyphicon glyphicon-lock icon-signup"></span>
+                        <span class="fa fa-lock fa-2x icon-signup"></span>
                         <div class="input-form-padding col-sm-12" ng-class="{ 'has-danger' : userForm.$invalid}">
                             <input id="txtPassword" type="password" class="signup-form-input" placeholder="Password"  name="password"  ng-model="user.password" ng-minlength="5" ng-class="{ 'input-has-error' : userForm.password.$invalid && !userForm.password.$pristine}" required>
                             <p ng-show="userForm.password.$error.minlength" class="form-control-feedback">Password is too short.</p>
@@ -30,7 +24,7 @@
                         </div>
                     </div>
                     <div class="input-group login-userinput col-sm-12">
-                        <span class="glyphicon glyphicon-map-marker"></span>
+                        <span class="fa fa-map-marker fa-2x icon-signup"></span>
                         <div class="input-form-padding col-sm-12">
                             <input id="txtUser" type="text" class="signup-form-input" placeholder="Country" name="country"  ng-model="user.country" pattern="[a-zA-Z]+" ng-pattern-restric ng-class="{ 'input-has-error' : userForm.country.$invalid && !userForm.country.$pristine}" required>
                         </div>
@@ -47,16 +41,13 @@
                             <input id="txtUser" type="text" class="signup-form-input" placeholder="Street Name" name="streetname"  ng-model="user.streetname" pattern="[a-zA-Z]+" ng-pattern-restric  ng-class="{ 'input-has-error' : userForm.streetname.$invalid && !userForm.streetname.$pristine}" required>
                             </div>
                         <div class="input-form-padding col-sm-12">
-                            <input id="txtUser" type="number" class="signup-form-input" placeholder="Street Number" name="streetnumber"  ng-model="user.streetnumber" ng-class="{ 'input-has-error' : userForm.streetnumber.$invalid && !userForm.streetnumber.$pristine}" required>
+                            <input id="txtUser" type="text" class="signup-form-input" placeholder="Street Number" name="streetnumber"  ng-model="user.streetnumber" ng-class="{ 'input-has-error' : userForm.streetnumber.$invalid && !userForm.streetnumber.$pristine}" required>
                         </div>
                     </div>
                     <div class="input-group login-userinput col-sm-12">
-                        <span class="glyphicon glyphicon-phone-alt icon-signup"></span>
+                        <span class="fa fa-phone fa-2x icon-signup"></span>
                         <div class="input-form-padding col-sm-12">
                             <input id="txtUser" type="text" class="signup-form-input" placeholder="Personal Phone Number"name="personalphone"  ng-model="user.personalphone" pattern="[0-9]+" ng-pattern-restric ng-minlength="7" ng-class="{ 'input-has-error' : userForm.personalphone.$invalid && !userForm.personalphone.$pristine}" required>
-                        </div>
-                        <div class="input-form-padding col-sm-12">
-                            <input id="txtUser" type="text" class="signup-form-input" placeholder="Business Phone Number" name="businessphone"  ng-model="user.businessphone" pattern="[0-9]+" ng-pattern-restric ng-minlength="7" ng-class="{ 'input-has-error' : userForm.businessphone.$invalid && !userForm.businessphone.$pristine}" required>
                         </div>
                         <div class="signup-form-btn col-sm-12" ng-class="{ 'has-danger' : userForm.$invalid}">
                             <button class="btn btn-primary btn-block login-button" type="submit" ng-disabled="userForm.$invalid" ng-click="createUser()">Sign Up</button>

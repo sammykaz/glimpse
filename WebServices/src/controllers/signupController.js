@@ -1,14 +1,10 @@
 'use strict';
 
-app.controller('SignupController', ['$scope', '$http','userService', function ($scope, $http, userService) {
+app.controller('SignupController', ['$scope', '$http', 'dataService','$state', function ($scope, $http, dataService, $state) {
 
     $scope.user = undefined;
-
+    console.log(dataService.GetVendors().query());
     $scope.createUser = function () {
-        var telData = {
-            personalPhoneNumber: $scope.user.personalphone,
-            businessPhoneNumber: $scope.user.businessphone
-        }
         var addressData = {
             PostalCode: $scope.user.postal,
             city: $scope.user.city,
@@ -17,22 +13,22 @@ app.controller('SignupController', ['$scope', '$http','userService', function ($
             street: $scope.user.streetname,
             streetNumber: $scope.user.streetnumber
         }
+        console.log()
         var location = {
             Lat: 0.0,
             Lng: 0.0
         }
         var userData = {
-            firstname: $scope.user.firstname,
-            lastname: $scope.user.lastname,
             email: $scope.user.email,
-            company: $scope.user.company,
+            companyName: $scope.user.company,
             password: $scope.user.password,
-            address: addressData,
-            telephone: telData,
+            address: $scope.user.streetnumber + ", " + $scope.user.streetname + ", " + $scope.user.postal + ", " + $scope.user.city + ", " + $scope.user.province + ", " + $scope.user.country,
+            telephone: $scope.user.personalphone,
             Location: location
         }
-        userService.getVendors().save(userData, function (resp, headers) {
+        dataService.GetVendors().save(userData, function (resp, headers) {
             //success callback
+            $state.go("login");
             console.log(resp);
         },
             function(err){
