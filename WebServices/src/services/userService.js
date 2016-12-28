@@ -5,7 +5,7 @@
         fac.CurrentUser = user;
         sessionStorage.user = angular.toJson(user);
     }
-    fac.GetCurrentUser = function () {
+    fac.CurrentUser = function () {
         fac.CurrentUser = angular.fromJson(sessionStorage.user);
         return fac.CurrentUser;
     }

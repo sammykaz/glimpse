@@ -39,7 +39,9 @@ namespace WebServices.Providers
 
             //context.SetError("invalid_grant", currentVendor.Email + "pass: " + context.Password + "encrypted pass: " + currentVendor.Password);
             //return;
-            //string encryptedPassword = Cryptography.EncryptAes(context.Password, currentVendor.Salt);
+            //string password = context.Password;
+            //string salt = currentVendor.Salt;
+            //string encryptedPassword = Cryptography.EncryptAes(password, salt);
 
             if (currentVendor!=null){
                 if (context.Password == currentVendor.Password) {

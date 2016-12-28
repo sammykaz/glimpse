@@ -20,7 +20,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
         .state('home', {
             url: '/home',
             controller: 'HomeController',
-            templateUrl: 'src/views/homeView.html'
+            templateUrl: 'src/views/homeView.html',
+            resolve: {
+                "check": function (userService, $state) {
+                    if (userService.CurrentUser == null) {
+                        $state.go("login");
+                    }
+                }
+            }
         })
         .state('home.viewPromotion', {
             url: '/promotions',
@@ -38,13 +45,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             templateUrl: 'src/views/mapView.html'
         })
 })
-
 .controller('appController', function ($scope) {
     $scope.test = "test";
 })
-
 .config(function ($httpProvider) {
-    var interceptor = function (userService, $q, $location)
+    var interceptor = function (userService, $q, $location, $state)
     {
         return {
             request: function (config) {
@@ -57,7 +62,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             responseError : function(rejection)
             {
                 if (rejection.status === 401) {
-                    console.log("$location.path('/home')");
+                    $location.path('/login')
                     return $q.reject(rejection);
                 }
                 if (rejection.status === 403) {
@@ -66,7 +71,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
                 }
                 return $q.reject(rejection);
             }
-
         }
     }
     var params = ['userService', '$q', '$location'];
