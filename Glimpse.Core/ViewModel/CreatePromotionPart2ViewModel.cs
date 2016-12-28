@@ -98,12 +98,12 @@ namespace Glimpse.Core.ViewModel
 
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
-                        //PromotionImage = File,
+                        PromotionImage = Bytes,
                     };
 
                     Vendor vendor = await _vendorDataService.SearchVendorByEmail( Settings.Email);
 
-                    //    vendor.Promotions.Add(promotion);
+                        vendor.Promotions.Add(promotion);
                     vendor.CompanyName = "modified ";
 
                     await _vendorDataService.EditVendor(vendor.VendorId, vendor);

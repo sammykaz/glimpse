@@ -209,6 +209,10 @@
     <Compile Include="Migrations\201612270323003_migration1.Designer.cs">
       <DependentUpon>201612270323003_migration1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612280012115_enum.cs" />
+    <Compile Include="Migrations\201612280012115_enum.Designer.cs">
+      <DependentUpon>201612280012115_enum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Category.cs" />
@@ -283,6 +287,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612270323003_migration1.resx">
       <DependentUpon>201612270323003_migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612280012115_enum.resx">
+      <DependentUpon>201612280012115_enum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,17 @@
 ﻿
-namespace WebServices.Models
+/*namespace WebServices.Models
 {
-    public class Category
+    public enum Categories
+    {
+        Footwear,
+        Electronics,
+        Jewellery,
+        Restaurants,
+        Services,
+        Apparel
+    }
+
+    public class Category   
     {
         public Category(Categories categories)
         {
@@ -13,3 +23,4 @@ namespace WebServices.Models
         public Categories Categories { get; set; }
     }
 }
+*/

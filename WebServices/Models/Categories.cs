@@ -1,4 +1,4 @@
-﻿public enum Categories
+﻿/*public enum Categories
 {
     Footwear,
     Electronics,
@@ -6,4 +6,4 @@
     Restaurants,
     Services,
     Apparel
-}
+}*/
