@@ -195,10 +195,6 @@
       <Project>{A429B66B-B938-4BEC-9254-C27BBA173D90}</Project>
       <Name>Glimpse.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Glimpse.Droid\Glimpse.Droid.csproj">
-      <Project>{D92CB6CF-6878-465D-AC54-8FD588EDE792}</Project>
-      <Name>Glimpse.Droid</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
