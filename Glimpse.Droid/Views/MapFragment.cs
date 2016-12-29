@@ -160,7 +160,16 @@ namespace Glimpse.Droid.Views
             SetUpMapIfNeeded();
             var viewModel = (MapViewModel)ViewModel;
 
+            var activePromotions = await ViewModel.GetActivePromotions();
+
             
+
+            //Print out the pins
+
+
+
+
+
             /*
             List<Promotion> activePromotions = await viewModel.GetAllActivePromotions();
             List<Vendor> activeVendors = await viewModel.GetAllVendorsWithActivePromotions();

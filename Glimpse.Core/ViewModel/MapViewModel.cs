@@ -7,6 +7,8 @@ using Plugin.Geolocator.Abstractions;
 using System.Collections.Generic;
 using System.Linq;
 using Glimpse.Core.Helpers;
+using System.Collections;
+using System;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -16,8 +18,8 @@ namespace Glimpse.Core.ViewModel
         private readonly int _defaultZoom = 18;
         private readonly int _defaultTilt = 65;
         private readonly int _defaultBearing = 155;
-        private List<Vendor> _allVendors;
-        private List<Promotion> _allPromotions = new List<Promotion>();
+        private List<Vendor> allVendors;
+        private List<Promotion> allPromotions = new List<Promotion>();
         private Dictionary<Vendor, List<Promotion>> _vendorData = new Dictionary<Vendor, List<Promotion>>();
         private IVendorDataService _vendorDataService;
         private IPromotionDataService _promotionDataService;
@@ -104,20 +106,20 @@ namespace Glimpse.Core.ViewModel
 
         public List<Vendor> Vendors
         {
-            get { return _allVendors; }
+            get { return allVendors; }
             set
             {
-                _allVendors = value;
+                allVendors = value;
                 RaisePropertyChanged(() => Vendors);
             }
 
         }
         public List<Promotion> Promotions
         {
-            get { return _allPromotions; }
+            get { return allPromotions; }
             set
             {
-                _allPromotions = value;
+                allPromotions = value;
                 RaisePropertyChanged(() => Promotions);
             }
         }
@@ -138,64 +140,30 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public async Task<List<Promotion>> GetPromotions()
+        public async Task<IEnumerable> GetActivePromotions()
         {
-            _allPromotions = await _promotionDataService.GetPromotions();
-            List<Promotion> activePromotions = _allPromotions.Where(e => (e.PromotionEndDate - e.PromotionStartDate).TotalSeconds > 0).ToList();
-            return activePromotions;
+            allPromotions = await _promotionDataService.GetPromotions();
+            allVendors = await _vendorDataService.GetVendors();
+
+            List<Promotion> activePromotions = allPromotions.Where(e => (e.PromotionEndDate - e.PromotionStartDate).TotalSeconds > 0).ToList();
+
+            var mapPromotions = allVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,
+                                (e, b) => new
+                                {
+                                    e.CompanyName,
+                                    e.Location,
+                                    b.Title,
+                                    b.Description,
+                                    b.PromotionImage,
+                                    b.PromotionEndDate
+                                });
+
+            //Select all promotions excluding those with empty locations
+            var validatedMapPromotions = mapPromotions.Where(e => e.Location.Lat != 0 || e.Location.Lng != 0);
+
+            return validatedMapPromotions;
         }
 
-        /*
-        public async Task InitializeData()
-        {
-            //Get vendors & promotions from dB
-            _allVendors = await _vendorDataService.GetVendors();
-            _allPromotions = await _promotionDataService.GetPromotions();
-
-            //Get vendor's ids from dB
-            foreach (var vendor in _allVendors)
-            {
-                vendor.VendorId = await _vendorDataService.GetVendorId(vendor.Email);
-            }
-
-            //Match active promotions with their vendors
-            foreach (var vendor in _allVendors)
-            {
-                var vendorPromotions = _allPromotions.Where(x => x.VendorId == vendor.VendorId && x.PromotionActive == true);
-
-                if (vendorPromotions.Any())
-                {
-                    VendorData.Add(vendor, vendorPromotions.ToList());
-                }
-            }
-        }
-
-*/
-
-
-        // Some refactored methods
-        /*
-        public async Task<List<Promotion>> GetAllActivePromotions()
-        {
-            List<Promotion> promotionsList = await _promotionDataService.GetPromotions();
-
-            return promotionsList.Where(p => p.PromotionActive == true).ToList();
-        }
-        */
-        /*
-        public async Task<List<Vendor>> GetAllVendorsWithActivePromotions()
-        {
-            List<Promotion> promotionsList = await _promotionDataService.GetPromotions();
-            List<Vendor> vendorsList = await _vendorDataService.GetVendors();
-
-            List<Vendor> vendorsWithActivePromotionsList = (from first in vendorsList
-                                                            join second in promotionsList
-                                                            on first.VendorId equals second.VendorId
-                                                            select first).ToList();
-
-            return vendorsWithActivePromotionsList;
-        }
-        */
 
 
 
