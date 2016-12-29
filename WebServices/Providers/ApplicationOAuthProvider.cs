@@ -10,9 +10,6 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using WebServices.Models;
-using Glimpse.Core.Contracts.Services;
-using Plugin.RestClient;
-using Glimpse.Core.Services.General;
 
 namespace WebServices.Providers
 {
@@ -20,67 +17,37 @@ namespace WebServices.Providers
     {
         private readonly string _publicClientId;
 
-        private Vendor currentVendor;
-        RestClient<Vendor> restClient = new RestClient<Vendor>();
-
         public ApplicationOAuthProvider(string publicClientId)
         {
             if (publicClientId == null)
             {
                 throw new ArgumentNullException("publicClientId");
             }
+
             _publicClientId = publicClientId;
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            currentVendor = await restClient.GetByKeyword(context.UserName, true);
+            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            //context.SetError("invalid_grant", currentVendor.Email + "pass: " + context.Password + "encrypted pass: " + currentVendor.Password);
-            //return;
-            //string password = context.Password;
-            //string salt = currentVendor.Salt;
-            //string encryptedPassword = Cryptography.EncryptAes(password, salt);
+            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
 
-            if (currentVendor!=null){
-                if (context.Password == currentVendor.Password) {
-                    identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
-                    identity.AddClaim(new Claim("username", "user"));
-                    identity.AddClaim(new Claim(ClaimTypes.Name, "user test"));
-                    context.Validated(identity);
-                }
-                else
-                {
-                    context.SetError("invalid_grant", "The user name or password is incorrect.");
-                    return;
-                }
-            }
-            else
+            if (user == null)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
 
-            //var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
+               OAuthDefaults.AuthenticationType);
+            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
+                CookieAuthenticationDefaults.AuthenticationType);
 
-            //ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
-
-            //if (user == null)
-            //{
-            //    context.SetError("invalid_grant", "The user name or password is incorrect.");
-            //    return;
-            //}
-
-            //ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-            //   OAuthDefaults.AuthenticationType);
-            //ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-            //    CookieAuthenticationDefaults.AuthenticationType);
-
-            //AuthenticationProperties properties = CreateProperties(user.UserName);
-            //AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
-            //context.Validated(ticket);
-            //context.Request.Context.Authentication.SignIn(cookiesIdentity);
+            AuthenticationProperties properties = CreateProperties(user.UserName);
+            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
+            context.Validated(ticket);
+            context.Request.Context.Authentication.SignIn(cookiesIdentity);
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)

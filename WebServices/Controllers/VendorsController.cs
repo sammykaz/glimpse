@@ -31,6 +31,7 @@ namespace WebServices.Controllers
             {
                 return NotFound();
             }
+
             return Ok(vendor);
         }
 
@@ -49,20 +50,6 @@ namespace WebServices.Controllers
             }
 
             return Ok(vendor);
-        }
-
-        // GET: api/Vendors/5/promotions
-        [ResponseType(typeof(Vendor))]
-        [Route("api/Vendors/{id}/promotions")]
-        public IHttpActionResult GetVendorPromotions(int id)
-        {
-            Vendor vendor = db.Vendors.Find(id);
-            if (vendor == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(vendor.Promotions);
         }
 
         // PUT: api/Vendors/5
@@ -99,53 +86,6 @@ namespace WebServices.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
-        // PUT: api/Vendors/5/promotions
-        [ResponseType(typeof(void))]
-        [Route("api/Vendors/{id}/promotions")]
-        public IHttpActionResult PutCollectionVendor(int id, Vendor vendor)
-        {
-            if (vendor.Promotions.Count == 0)
-            {
-                vendor.CompanyName = "its empty";
-            }
-            else
-            {
-                vendor.CompanyName = vendor.Promotions.ElementAt(0).Description;
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != vendor.VendorId)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(vendor.Promotions).State = EntityState.Modified;
-            db.Entry(vendor).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!VendorExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
 
         // POST: api/Vendors
         [ResponseType(typeof(Vendor))]

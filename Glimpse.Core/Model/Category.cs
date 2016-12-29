@@ -8,8 +8,6 @@ namespace Glimpse.Core.Model
             Categories = categories;
         }
 
-        public int CategoryId { get; set; }
-
         public Categories Categories { get; set; }
     }
 }

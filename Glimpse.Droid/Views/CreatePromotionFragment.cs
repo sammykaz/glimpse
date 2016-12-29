@@ -30,7 +30,8 @@ namespace Glimpse.Droid.Views
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
-            (this.Activity as MainActivity).SetCustomTitle("Create Promotion Part 1");
+            (this.Activity as MainActivity).SetCustomTitle("Create Promotion");
+         
         }
 
         public override void OnStart()

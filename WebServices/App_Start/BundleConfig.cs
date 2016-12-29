@@ -23,21 +23,6 @@ namespace WebServices
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
-
-            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-           "~/Scripts/angular.min.js",
-           "~/Scripts/angular-route.min.js",
-           "~/Scripts/angular-sanitize.min.js",
-           "~/Scripts/angular-ui.min.js",
-           "~/Scripts/angular-ui/ui-bootstrap.min.js",
-           "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js",
-           "~/Scripts/angular-ui.min.js",
-           "~/Scripts/angular-block-ui.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/controllers").Include(
-           "~/src/homeController.js",
-           "~/src/loginController.js",
-           "~/src/signupController.js"));
         }
     }
 }
