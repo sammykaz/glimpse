@@ -45,14 +45,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             templateUrl: 'src/views/mapView.html'
         })
 })
-.constant("categories", {
-    Footwear : true,
-    Electronics: true,
-    Jewellery: true,
-    Restaurants: true,
-    Services: true,
-    Apparel: true
-})
 .controller('appController', function ($scope) {
     $scope.test = "test";
 })

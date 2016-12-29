@@ -4,7 +4,7 @@
         <div class="col-sm-12 promotion-list promotion-table">
             <div class="col-sm-12 promotion-table-title">
                 <div class="col-sm-4">
-                    <h3 class="login-button">Your Promotions</h3>
+                    <h3 class="login-button">Recent Promotions</h3>
                 </div>
                 <div class="offset-sm-4">
                     <div class="col-sm-12 promotion-buttons-edit-create">
@@ -13,27 +13,27 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th class="col-sm-3">Promotion Title</th>
-                            <th class="col-sm-3">Promotion Start At</th>
-                            <th class="col-sm-3">Promotion End At</th>
-                            <th class="col-sm-3"></th>
-                        </tr>
-                    </thead>
-                    <tbody ng-repeat="(key, promotion) in promotions">
-                        <tr>
-                            <th scope="row">{{key}}</th>
-                            <td class="col-sm-3">{{promotion.Title}}</td>
-                            <td class="col-sm-3">{{promotion.PromotionStartDate}}</td>
-                            <td class="col-sm-3">{{promotion.PromotionEndDate}}</td>
-                            <td class="col-sm-3"></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-sm-12 padding-zero members-scroll">
+                <div class="col-sm-12 padding-zero" ng-repeat="(key, promotion) in promotions">
+                    <div class="col-sm-12 padding-zero promotion-title">{{promotion.Title}}</div>
+                    <div class="col-sm-12 padding-zero promotion-info">
+                        <div class="col-sm-6 padding-zero promotion-info">Promotion Description</div>
+                        <div class="col-sm-6 padding-zero promotion-value">{{promotion.Description}}</div>
+                    </div>
+                    <div class="col-sm-6 padding-zero promotion-info">Promotion Category</div>
+                    <div class="col-sm-6 padding-zero promotion-value" ng-switch={{promotion.Category}}>
+                        <div ng-switch-when=0>Footwear</div>
+                        <div ng-switch-when=1>Electronics</div>
+                        <div ng-switch-when=2>Jewellery</div>
+                        <div ng-switch-when=3>Restaurants</div>
+                        <div ng-switch-when=4>Services</div>
+                        <div ng-switch-when=5>Apparel</div>
+                    </div>
+                    <div class="col-sm-6 padding-zero promotion-info">Promotion Start Date</div>
+                    <div class="col-sm-6 padding-zero promotion-value">{{promotion.PromotionStartDate}}</div>
+                    <div class="col-sm-6 padding-zero promotion-info">Promotion End Date</div>
+                    <div class="col-sm-6 padding-zero promotion-value">{{promotion.PromotionEndDate}}</div>
+                </div>
             </div>
         </div>
     </div>

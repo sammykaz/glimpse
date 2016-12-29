@@ -3,13 +3,17 @@
 app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibModal', function ($scope, dataService, $state, $uibModal) {
     $scope.data = "";
     
-    $scope.promotions = dataService.getPromotions().query();
+    var promotionsquery = dataService.getPromotions().query();
+    promotionsquery.$promise.then(function (data) {
+        $scope.promotions = data;
+    }, function (error) {
+        console.log("Error: Could not load promotions");
+    })
     console.log($scope.promotions);
     dataService.GetAuthorizeData().then(function (data) {
         console.log("Authorized");
     }, function (error) {
         console.log("No longer logged in");
-        //$state.go("login");
     })
 
     $scope.showCreatePromotionModal = function () {
@@ -24,12 +28,38 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
             console.log("Modal dismissed");
         });
     }
+
+    var convertCategory = function () {
+        switch ($scope.promotions.Category) {
+            case 0:
+                $scope.promotions.Category = "Footwear"
+                break;
+            case 1:
+                $scope.promotions.Category = "Electronics"
+                break;
+            case 2:
+                $scope.promotions.Category = "Jewellery"
+                break;
+            case 3:
+                $scope.promotions.Category = "Restaurants"
+                break;
+            case 4:
+                $scope.promotions.Category = "Services"
+                break;
+            case 5:
+                $scope.promotions.Category = "Apparel"
+                break;
+            default:
+                break;
+        }
+    }
+    
    
 }]);
 
-app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout, dataService, categories) {
+app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout, dataService) {
     $scope.promotionTitle = '';
-    $scope.categories = undefined;
+    $scope.category = undefined;
     $scope.description = '';
     $scope.startDay = undefined;
     $scope.endDay = undefined;
@@ -39,9 +69,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         if ($scope.sdt > $scope.edt)
             $scope.showDateWarning = true;
         else {
-            var categories1 = [];
-            categories1.push(3);
-            //var categories1 = {0:1, 1:3};
             var image = $scope.picFile;
             var sdt = $scope.sdt;
             var edt = $scope.edt;
@@ -49,7 +76,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 vendorId: "37",//localStorage.id,
                 title: $scope.promotionTitle,
                 description: $scope.promotionDescription,
-                category: categories1,
+                category: $scope.category,
                 promotionStartDate: sdt,
                 promotionEndDate: edt,
                 promotionImage: image
@@ -65,15 +92,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             $uibModalInstance.close("");
         }
     };
-
-    //Object.prototype.getKeyByValue = function( value ) {
-    //    for( var prop in this ) {
-    //        if( this.hasOwnProperty( prop ) ) {
-    //            if( this[ prop ] === value )
-    //                return prop;
-    //        }
-    //    }
-    //}
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
@@ -96,19 +114,29 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         }
     });
     
-    var getPromotions = function () {
-        var promotions = [];
-        var categories = $scope.categories;
-        if (categories != null) {
-            for (var key in categories) {
-                if (categories.hasOwnProperty(key)) {
-                    if (categories[key] == true) {
-                        promotions.push(key);
-                    }
-                }
-            }
+    var getCategory = function () {
+        switch ($scope.promotions.Category) {
+            case 0:
+                $scope.promotions.Category = "Footwear"
+                break;
+            case 1:
+                $scope.promotions.Category = "Electronics"
+                break;
+            case 2:
+                $scope.promotions.Category = "Jewellery"
+                break;
+            case 3:
+                $scope.promotions.Category = "Restaurants"
+                break;
+            case 4:
+                $scope.promotions.Category = "Services"
+                break;
+            case 5:
+                $scope.promotions.Category = "Apparel"
+                break;
+            default:
+                break;
         }
-        return promotions;
     }
     $scope.cropImage = function () {
         debugger;
