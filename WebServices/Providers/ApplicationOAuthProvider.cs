@@ -47,7 +47,8 @@ namespace WebServices.Providers
                 if (context.Password == currentVendor.Password) {
                     identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
                     identity.AddClaim(new Claim("username", "user"));
-                    identity.AddClaim(new Claim(ClaimTypes.Name, "user test"));
+                    identity.AddClaim(new Claim(ClaimTypes.Name, ""+ currentVendor.VendorId));
+                    identity.AddClaim(new Claim(ClaimTypes.Sid, ""+ currentVendor.VendorId));
                     context.Validated(identity);
                 }
                 else
