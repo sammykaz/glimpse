@@ -100,6 +100,7 @@ namespace WebServices.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        /*
         // PUT: api/Vendors/5/promotions
         [ResponseType(typeof(void))]
         [Route("api/Vendors/{id}/promotions")]
@@ -145,7 +146,7 @@ namespace WebServices.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        */
 
         // POST: api/Vendors
         [ResponseType(typeof(Vendor))]
