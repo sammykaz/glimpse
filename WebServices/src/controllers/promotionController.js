@@ -1,12 +1,12 @@
 'use strict';
 
 app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibModal', function ($scope, dataService, $state, $uibModal) {
-
     $scope.data = "";
-
+    
+    $scope.promotions = dataService.getPromotions().query();
+    console.log($scope.promotions);
     dataService.GetAuthorizeData().then(function (data) {
-        console.log(data);
-        $scope.data = data;
+        console.log("Authorized");
     }, function (error) {
         console.log("No longer logged in");
         //$state.go("login");
@@ -27,8 +27,8 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
    
 }]);
 
-app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout) {
-    $scope.title = '';
+app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout, dataService, categories) {
+    $scope.promotionTitle = '';
     $scope.categories = undefined;
     $scope.description = '';
     $scope.startDay = undefined;
@@ -38,9 +38,42 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.ok = function () {
         if ($scope.sdt > $scope.edt)
             $scope.showDateWarning = true;
-        else
-            $uibModalInstance.close($scope.edt);
+        else {
+            var categories1 = [];
+            categories1.push(3);
+            //var categories1 = {0:1, 1:3};
+            var image = $scope.picFile;
+            var sdt = $scope.sdt;
+            var edt = $scope.edt;
+            var promotionData = {
+                vendorId: "37",//localStorage.id,
+                title: $scope.promotionTitle,
+                description: $scope.promotionDescription,
+                category: categories1,
+                promotionStartDate: sdt,
+                promotionEndDate: edt,
+                promotionImage: image
+            }
+            dataService.getPromotions().save(promotionData, function (resp, headers) {
+                //success callback
+                console.log(resp);
+            },
+            function (err) {
+                console.log(err);
+            });
+            console.log(promotionData);
+            //$uibModalInstance.close("");
+        }
     };
+
+    //Object.prototype.getKeyByValue = function( value ) {
+    //    for( var prop in this ) {
+    //        if( this.hasOwnProperty( prop ) ) {
+    //            if( this[ prop ] === value )
+    //                return prop;
+    //        }
+    //    }
+    //}
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
@@ -49,7 +82,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.closeWarning = function () {
         $scope.showDateWarning = false;
     }
-
 
     $scope.croppedDataUrl = '';
     $scope.isCropImageEnable = false;
@@ -63,9 +95,21 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             $scope.previewImage = imageFile;
         }
     });
-
-   
-
+    
+    var getPromotions = function () {
+        var promotions = [];
+        var categories = $scope.categories;
+        if (categories != null) {
+            for (var key in categories) {
+                if (categories.hasOwnProperty(key)) {
+                    if (categories[key] == true) {
+                        promotions.push(key);
+                    }
+                }
+            }
+        }
+        return promotions;
+    }
     $scope.cropImage = function () {
         debugger;
         $scope.isCropImageEnable = true;
@@ -159,6 +203,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         $scope.picFile = null;
         $scope.croppedDataUrl = null;
         $scope.isCropImageEnable = false;
+        $scope.previewImage = null;
         console.log($scope.croppedDataUrl);
     }
     $scope.resetFilter = function () {
