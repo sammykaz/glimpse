@@ -138,6 +138,13 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+        public async Task<List<Promotion>> GetPromotions()
+        {
+            _allPromotions = await _promotionDataService.GetPromotions();
+            List<Promotion> activePromotions = _allPromotions.Where(e => (e.PromotionEndDate - e.PromotionStartDate).TotalSeconds > 0).ToList();
+            return activePromotions;
+        }
+
         /*
         public async Task InitializeData()
         {
