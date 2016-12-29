@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using Glimpse.Core.Model;
+using System.Data.Entity;
+using WebServices.Migrations;
 
 namespace WebServices.Models
 {

@@ -161,6 +161,7 @@ namespace Glimpse.Droid.Views
             var viewModel = (MapViewModel)ViewModel;
 
             
+            /*
             List<Promotion> activePromotions = await viewModel.GetAllActivePromotions();
             List<Vendor> activeVendors = await viewModel.GetAllVendorsWithActivePromotions();
 
@@ -176,7 +177,8 @@ namespace Glimpse.Droid.Views
                                         (activePromotions.Count > 1 ? "s" : "")));
                 }
             }
-            
+            */
+
             /*
             foreach(var vendor in viewModel.VendorData.Keys)
             {
