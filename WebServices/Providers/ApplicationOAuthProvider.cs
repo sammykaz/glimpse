@@ -13,6 +13,7 @@ using WebServices.Models;
 using Glimpse.Core.Contracts.Services;
 using Plugin.RestClient;
 using Glimpse.Core.Services.General;
+using PCLCrypto;
 
 namespace WebServices.Providers
 {
@@ -39,9 +40,9 @@ namespace WebServices.Providers
 
             //context.SetError("invalid_grant", currentVendor.Email + "pass: " + context.Password + "encrypted pass: " + currentVendor.Password);
             //return;
-            //string password = context.Password;
-            //string salt = currentVendor.Salt;
-            //string encryptedPassword = Cryptography.EncryptAes(password, salt);
+            string password = context.Password;
+            string salt = currentVendor.Salt;
+            string encryptedPassword = Cryptography.EncryptAes(password, salt);
 
             if (currentVendor!=null){
                 if (context.Password == currentVendor.Password) {
