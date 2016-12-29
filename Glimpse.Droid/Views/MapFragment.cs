@@ -18,6 +18,8 @@ using Android.Locations;
 using Android.Content;
 using System;
 using System.Collections.Generic;
+using Com.Google.Maps.Android.Clustering;
+
 
 namespace Glimpse.Droid.Views
 
@@ -32,6 +34,7 @@ namespace Glimpse.Droid.Views
         private Context globalContext = null;
         private LatLng location = null;
         private Marker _promotion;
+        private ClusterManager _clusterManager;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -201,6 +204,11 @@ namespace Glimpse.Droid.Views
             _map.UiSettings.RotateGesturesEnabled = true;
             _map.UiSettings.ZoomGesturesEnabled = true;
             _map.BuildingsEnabled = true;
+
+            //TEST
+            _clusterManager = new ClusterManager(this.Context, _map);
+            //_map.SetOnCameraChangeListener(_clusterManager);
+            _map.SetOnMarkerClickListener(_clusterManager);
 
             //current user marker
             var options = new MarkerOptions();
