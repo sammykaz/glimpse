@@ -124,6 +124,7 @@ namespace WebServices.Controllers
                 return BadRequest();
             }
 
+            db.Entry(vendor.Promotions).State = EntityState.Modified;
             db.Entry(vendor).State = EntityState.Modified;
 
             try
