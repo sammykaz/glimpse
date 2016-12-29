@@ -18,47 +18,19 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th class="col-sm-4">Promotion Title</th>
-                            <th class="col-sm-3">Promotion Start</th>
-                            <th class="col-sm-3">Promotion End</th>
-                            <th class="col-sm-2"></th>
+                            <th class="col-sm-3">Promotion Title</th>
+                            <th class="col-sm-3">Promotion Start At</th>
+                            <th class="col-sm-3">Promotion End At</th>
+                            <th class="col-sm-3"></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody ng-repeat="(key, promotion) in promotions">
                         <tr>
-                            <th scope="row">1</th>
-                            <td class="col-sm-4">Hard coded promotion 1</td>
-                            <td class="col-sm-3">Today</td>
-                            <td class="col-sm-2">Tomorrow</td>
-                            <td class="col-sm-2"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td class="col-sm-4">Temporary promotion 1</td>
-                            <td class="col-sm-3">Tomorrow</td>
-                            <td class="col-sm-3">Never</td>
-                            <td class="col-sm-2"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td class="col-sm-4">Temporary promotion 2</td>
-                            <td class="col-sm-3">Tomorrow</td>
-                            <td class="col-sm-3">Never</td>
-                            <td class="col-sm-2"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td class="col-sm-4">Temporary promotion 3</td>
-                            <td class="col-sm-3">Tomorrow</td>
-                            <td class="col-sm-3">Never</td>
-                            <td class="col-sm-2"></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td class="col-sm-4">Temporary promotion 4</td>
-                            <td class="col-sm-3">Tomorrow</td>
-                            <td class="col-sm-3">Never</td>
-                            <td class="col-sm-2"></td>
+                            <th scope="row">{{key}}</th>
+                            <td class="col-sm-3">{{promotion.Title}}</td>
+                            <td class="col-sm-3">{{promotion.PromotionStartDate}}</td>
+                            <td class="col-sm-3">{{promotion.PromotionEndDate}}</td>
+                            <td class="col-sm-3"></td>
                         </tr>
                     </tbody>
                 </table>

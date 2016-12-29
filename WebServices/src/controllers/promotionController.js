@@ -62,7 +62,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 console.log(err);
             });
             console.log(promotionData);
-            //$uibModalInstance.close("");
+            $uibModalInstance.close("");
         }
     };
 
