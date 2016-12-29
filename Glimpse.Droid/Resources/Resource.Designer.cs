@@ -3526,6 +3526,9 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f050013
 			public const int amu_visibility_ground_overlay = 2131034131;
 			
+			// aapt resource value: 0x7f050014
+			public const int style_json = 2131034132;
+			
 			static Raw()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();

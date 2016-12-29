@@ -5,9 +5,6 @@ namespace Glimpse.Droid.Helpers
 {
     public class ClusterItem : Java.Lang.Object, IClusterItem
     {
-        public ClusterItem()
-        {
-        }
         public LatLng Position { get; set; }
 
         public ClusterItem(double lat, double lng)

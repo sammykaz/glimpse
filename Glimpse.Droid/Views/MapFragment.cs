@@ -19,14 +19,14 @@ using Android.Content;
 using System;
 using System.Collections.Generic;
 using Com.Google.Maps.Android.Clustering;
-
+using Java.Lang;
+using Android.Widget;
 
 namespace Glimpse.Droid.Views
-
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame, true)]
     [Register("glimpse.droid.views.MapFragment")]
-    public class MapFragment : MvxFragment<MapViewModel>, IOnMapReadyCallback
+    public class MapFragment : MvxFragment<MapViewModel>, IOnMapReadyCallback, ClusterManager.IOnClusterClickListener, ClusterManager.IOnClusterItemClickListener
     {
         private MapView _mapView;
         private GoogleMap _map;
@@ -59,8 +59,6 @@ namespace Glimpse.Droid.Views
         public override void OnStart()
         {
             base.OnStart();
-
-
         }
 
 
@@ -93,7 +91,6 @@ namespace Glimpse.Droid.Views
                 alert.SetMessage("Please enable Location Services!");
                 alert.SetPositiveButton("OK", (senderAlert, args) =>
                 {
-
                 });
                 AlertDialog ad = alert.Create();
 
@@ -164,7 +161,7 @@ namespace Glimpse.Droid.Views
             SetUpMapIfNeeded();
             var viewModel = (MapViewModel)ViewModel;
 
-            
+
             /*
             List<Promotion> activePromotions = await viewModel.GetAllActivePromotions();
             List<Vendor> activeVendors = await viewModel.GetAllVendorsWithActivePromotions();
@@ -206,12 +203,17 @@ namespace Glimpse.Droid.Views
             _map.BuildingsEnabled = true;
 
             //TEST
+            SetViewPoint(new LatLng(63.430515, 10.395053), false);
+
             _clusterManager = new ClusterManager(this.Context, _map);
-            //_map.SetOnCameraChangeListener(_clusterManager);
+            _clusterManager.SetOnClusterClickListener(this);
+            _clusterManager.SetOnClusterItemClickListener(this);
+            _map.SetOnCameraIdleListener(_clusterManager);
             _map.SetOnMarkerClickListener(_clusterManager);
 
+            AddClusterItems();
             //current user marker
-            var options = new MarkerOptions();
+            /*var options = new MarkerOptions();
             options.SetPosition(location);
             options.SetTitle("My Position");
             options.SetAlpha(0.7f);
@@ -220,9 +222,9 @@ namespace Glimpse.Droid.Views
             options.SetSnippet("This is where HARAMBE is hiding!");
 
             _currentUserLocation = _map.AddMarker(options);
-
+            */
             //camera initialized on the user            
-            CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
+            /*CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
             builder.Target(location);
             builder.Zoom(viewModel.DefaulZoom);
             builder.Bearing(viewModel.DefaultBearing);
@@ -237,8 +239,8 @@ namespace Glimpse.Droid.Views
                 .To(vm => vm.UserCurrentLocation)
                 .WithConversion(new LatLngValueConverter(), null).TwoWay();
             set.Apply();
-            ViewModel.LocationUpdate += ViewModel_LocationUpdate;
-            }
+            ViewModel.LocationUpdate += ViewModel_LocationUpdate;*/
+        }
 
         private void ViewModel_LocationUpdate(object sender, Core.Helpers.LocationChangedHandlerArgs e)
         {
@@ -250,6 +252,64 @@ namespace Glimpse.Droid.Views
         public void OnMapReady(GoogleMap googleMap)
         {
             _map = googleMap;
+            try
+            {
+
+                bool success = googleMap.SetMapStyle(MapStyleOptions.LoadRawResourceStyle(this.Context, Resource.Raw.style_json));
+
+            }
+            catch (System.Exception e)
+            {
+
+            }
+        }
+
+        public bool OnClusterClick(ICluster cluster)
+        {
+            Toast.MakeText(this.Context, cluster.Items.Count + " items in cluster", ToastLength.Short).Show();
+            return false;
+        }
+
+        public bool OnClusterItemClick(Java.Lang.Object p0)
+        {
+            	Toast.MakeText (this.Context, "Marker clicked", ToastLength.Short).Show ();
+			return false;
+        }
+        private void AddClusterItems()
+        {
+            double lat = 63.430515;
+            double lng = 10.395053;
+
+            List<ClusterItem> items = new List<ClusterItem>();
+
+            for (var i = 0; i < 10; i++)
+            {
+                double offset = i / 60d;
+                lat = lat + offset;
+                lng = lng + offset;
+
+                var item = new ClusterItem(lat, lng);
+                items.Add(item);
+            }
+
+            _clusterManager.AddItems(items);
+        }
+
+        public void SetViewPoint(LatLng latlng, bool animated)
+        {
+            CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
+            builder.Target(latlng);
+            builder.Zoom(14.5F);
+            CameraPosition cameraPosition = builder.Build();
+
+            if (animated)
+            {
+                _map.AnimateCamera(CameraUpdateFactory.NewCameraPosition(cameraPosition));
+            }
+            else
+            {
+                _map.MoveCamera(CameraUpdateFactory.NewCameraPosition(cameraPosition));
+            }
         }
     }
     }
