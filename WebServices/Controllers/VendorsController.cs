@@ -100,6 +100,52 @@ namespace WebServices.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // PUT: api/Vendors/5/promotions
+        [ResponseType(typeof(void))]
+        [Route("api/Vendors/{id}/promotions")]
+        public IHttpActionResult PutCollectionVendor(int id, Vendor vendor)
+        {
+            if (vendor.Promotions.Count == 0)
+            {
+                vendor.CompanyName = "its empty";
+            }
+            else
+            {
+                vendor.CompanyName = vendor.Promotions.ElementAt(0).Description;
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != vendor.VendorId)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(vendor).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!VendorExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+
         // POST: api/Vendors
         [ResponseType(typeof(Vendor))]
         public IHttpActionResult PostVendor(Vendor vendor)
