@@ -51,6 +51,20 @@ namespace WebServices.Controllers
             return Ok(vendor);
         }
 
+        // GET: api/Vendors/5/promotions
+        [ResponseType(typeof(Vendor))]
+        [Route("api/Vendors/{id}/promotions")]
+        public IHttpActionResult GetVendorPromotions(int id)
+        {
+            Vendor vendor = db.Vendors.Find(id);
+            if (vendor == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(vendor.Promotions);
+        }
+
         // PUT: api/Vendors/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutVendor(int id, Vendor vendor)
