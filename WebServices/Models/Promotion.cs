@@ -1,42 +1,37 @@
 ﻿
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace WebServices.Models
 {
-
-    public enum Categories
-    {
-        Footwear,
-        Electronics,
-        Jewellery,
-        Restaurants,
-        Services,
-        Apparel
-    }
-
     public class Promotion
     {
-        [Key]
+        public Promotion()
+        {
+            Categories = new List<Category>();
+        }
+
         public int PromotionId { get; set; }
 
-        public int VendorId { get; set; }
+        public string Title;       
 
-        public Vendor Vendor { get; set; }
+        public string Description;       
 
-        public string Title { get; set; }
+        public int? VendorId { get; set; }
 
-        public string Description { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }     
 
-        public Categories Category { get; set; }
-
+        //These dates will be extracted from a calendar UI in the future.
         public DateTime PromotionStartDate { get; set; }
 
         public DateTime PromotionEndDate { get; set; }
- 
-        public byte[] PromotionImage { get; set;}
 
+        public bool PromotionActive { get; set; }
+
+
+        //Add images here
+
+        //Any promotion logic below
 
     }
 

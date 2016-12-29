@@ -167,15 +167,14 @@ namespace Glimpse.Core.ViewModel
 
 
         // Some refactored methods
-        /*
+
         public async Task<List<Promotion>> GetAllActivePromotions()
         {
             List<Promotion> promotionsList = await _promotionDataService.GetPromotions();
 
             return promotionsList.Where(p => p.PromotionActive == true).ToList();
         }
-        */
-        /*
+
         public async Task<List<Vendor>> GetAllVendorsWithActivePromotions()
         {
             List<Promotion> promotionsList = await _promotionDataService.GetPromotions();
@@ -188,7 +187,6 @@ namespace Glimpse.Core.ViewModel
 
             return vendorsWithActivePromotionsList;
         }
-        */
 
 
 

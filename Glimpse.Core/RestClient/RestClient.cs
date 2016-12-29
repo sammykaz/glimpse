@@ -97,7 +97,7 @@ namespace Plugin.RestClient
 
             httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            var result = await httpClient.PutAsync(WebServiceUrl + id + "/promotions", httpContent);
+            var result = await httpClient.PutAsync(WebServiceUrl + id, httpContent);
 
             return result.IsSuccessStatusCode;
         }

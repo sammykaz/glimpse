@@ -35,14 +35,15 @@ namespace WebServices.Controllers
             return Ok(user);
         }
 
+
         // GET: api/Users/Search/lala@gmail.com/
         //trailing slash is important or else 404 error
         [Route("api/Users/Search/{email}/")]
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(string email)
-        {
+        {            
             //for most email providers, upper case is the same as lower
-            User user = db.Users.FirstOrDefault(e => e.Email.ToLower().Equals(email.ToLower()));
+            User user = db.Users.FirstOrDefault(e=> e.Email.ToLower().Equals(email.ToLower()));
             if (user == null)
             {
                 return Ok();
@@ -50,6 +51,7 @@ namespace WebServices.Controllers
 
             return Ok(user);
         }
+
 
         // PUT: api/Users/5
         [ResponseType(typeof(void))]

@@ -44,8 +44,6 @@
     <Content Include="Glimpse.Core.csproj.vspscc" />
     <Content Include="obj\Debug\Glimpse.Core.dll" />
     <Content Include="obj\Debug\Glimpse.Core.pdb" />
-    <Content Include="Scripts\r.js" />
-    <Content Include="Scripts\require.js" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
@@ -65,6 +63,7 @@
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Helpers\LocationChangedHandlerArgs.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Model\Address.cs" />
     <Compile Include="Model\App\MenuItem.cs" />
     <Compile Include="Model\App\SearchParameters.cs" />
     <Compile Include="Model\BaseModel.cs" />
@@ -84,7 +83,8 @@
     <Compile Include="Services\Data\UserDataService.cs" />
     <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Services\General\Settings.cs" />
-    <Compile Include="Model\Categories.cs" />
+    <Compile Include="Utility\Categories.cs" />
+    <Compile Include="Utility\Geocoding.cs" />
     <Compile Include="Utility\MenuOption.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BuyerProfilePageViewModel.cs" />
