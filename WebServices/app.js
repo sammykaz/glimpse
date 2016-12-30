@@ -48,6 +48,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
 .controller('appController', function ($scope) {
     $scope.test = "test";
 })
+.filter('reverse', function() {
+    return function(items) {
+        return items.slice().reverse();
+    };
+})
 .config(function ($httpProvider) {
     var interceptor = function (userService, $q, $location, $state)
     {

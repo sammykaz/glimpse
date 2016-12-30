@@ -2,10 +2,11 @@
 
 app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibModal', function ($scope, dataService, $state, $uibModal) {
     $scope.data = "";
-    
+
     var promotionsquery = dataService.getPromotions().query();
     promotionsquery.$promise.then(function (data) {
         $scope.promotions = data;
+        console.log(data);
     }, function (error) {
         console.log("Error: Could not load promotions");
     })
@@ -69,7 +70,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         if ($scope.sdt > $scope.edt)
             $scope.showDateWarning = true;
         else {
-            var image = $scope.picFile;
+            var image = { file: $scope.previewImage };
+
             var sdt = $scope.sdt;
             var edt = $scope.edt;
             var promotionData = {
@@ -93,6 +95,16 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         }
     };
 
+    $scope.arrayBufferToBase64 = function (buffer) {
+        var binary = '';
+        var bytes = new Uint8Array(buffer);
+        var len = bytes.byteLength;
+        for (var i = 0; i < len; i++) {
+            binary += String.fromCharCode(bytes[i]);
+        }
+        return window.btoa(binary);
+    }
+
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
@@ -108,7 +120,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 
     $scope.$watch('picFile', function() {
         if(!!$scope.picFile){
-            debugger;
+           // debugger;
             imageFile = $scope.picFile;
             $scope.previewImage = imageFile;
         }

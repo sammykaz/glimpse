@@ -9,7 +9,7 @@
         return $resource('/api/vendors/:vendor', { user: "@vendor" });
     }
     fac.getPromotions = function () {
-        return $resource('/api/promotions:promotion', { user: "@promotion" });
+        return $resource('/api/promotions/:promotion', { user: "@promotion" });
     }
     return fac;
 }])
