@@ -80,8 +80,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 description: $scope.promotionDescription,
                 category: $scope.category,
                 promotionStartDate: sdt,
-                promotionEndDate: edt,
-                promotionImage: image
+                promotionEndDate: edt
+                //promotionImage: image
             }
             dataService.getPromotions().save(promotionData, function (resp, headers) {
                 //success callback
