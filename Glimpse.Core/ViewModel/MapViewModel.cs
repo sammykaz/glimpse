@@ -161,7 +161,7 @@ namespace Glimpse.Core.ViewModel
             //Select all promotions excluding those with empty locations
             var validatedMapPromotions = mapPromotions.Where(e => e.Location.Lat != 0 || e.Location.Lng != 0);
 
-            return validatedMapPromotions.ToList();
+            return validatedMapPromotions;
         }
 
 

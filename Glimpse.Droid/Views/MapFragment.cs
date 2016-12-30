@@ -13,13 +13,14 @@ using Glimpse.Droid.Helpers;
 using MvvmCross.Binding.Droid.BindingContext;
 using Android.App;
 using Android.Content;
-using Glimpse.Core.Model;
 using Android.Locations;
-using System;
 using System.Collections.Generic;
 using Com.Google.Maps.Android.Clustering;
 using Android.Widget;
-
+using System.Collections;
+using System.Drawing;
+using Glimpse.Core.Helpers;
+using System;
 
 namespace Glimpse.Droid.Views
 {
@@ -28,12 +29,17 @@ namespace Glimpse.Droid.Views
     public class MapFragment : MvxFragment<MapViewModel>, IOnMapReadyCallback, ClusterManager.IOnClusterClickListener, ClusterManager.IOnClusterItemClickListener
     {
         private MapView _mapView;
-        private GoogleMap _map;
-        private Marker _currentUserLocation;
+        private GoogleMap map;
+        private Marker currentUserLocation;
         private Context globalContext = null;
         private LatLng location = null;
-        private Marker _promotion;
-        private ClusterManager _clusterManager;
+        private ClusterManager clusterManager;
+        private List<ClusterItem> clusterList;
+
+        public MapFragment()
+        {
+            clusterList = new List<ClusterItem>();
+        }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -153,17 +159,16 @@ namespace Glimpse.Droid.Views
         {
             LatLng latLng = new LatLng(e.Location.Lat, e.Location.Lng);
             CameraUpdate cameraUpdate = CameraUpdateFactory.NewLatLng(latLng);
-            _map.AnimateCamera(cameraUpdate);
+            map.AnimateCamera(cameraUpdate);
         }
 
 
         public void OnMapReady(GoogleMap googleMap)
         {
-            _map = googleMap;
+            map = googleMap;
             try
             {
                 bool success = googleMap.SetMapStyle(MapStyleOptions.LoadRawResourceStyle(this.Context, Resource.Raw.style_json));
-
             }
             catch (System.Exception e)
             {
@@ -171,6 +176,8 @@ namespace Glimpse.Droid.Views
             }
 
             var viewModel = (MapViewModel)ViewModel;
+
+
                 //current user marker
                 var options = new MarkerOptions();
                 options.SetPosition(location);
@@ -180,7 +187,7 @@ namespace Glimpse.Droid.Views
                 options.InfoWindowAnchor(0.7f, 0.7f);
                 options.SetSnippet("This is where HARAMBE is hiding!");
 
-                _currentUserLocation = _map.AddMarker(options);
+                currentUserLocation = map.AddMarker(options);
 
                 //camera initialized on the user            
                 CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
@@ -190,10 +197,10 @@ namespace Glimpse.Droid.Views
                 builder.Tilt(viewModel.DefaultTilt);
                 CameraPosition cameraPosition = builder.Build();
                 CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
-                _map.MoveCamera(cameraUpdate);
+                map.MoveCamera(cameraUpdate);
 
                 var set = this.CreateBindingSet<MapFragment, MapViewModel>();
-                set.Bind(_currentUserLocation)
+                set.Bind(currentUserLocation)
                     .For(m => m.Position)
                     .To(vm => vm.UserCurrentLocation)
                     .WithConversion(new LatLngValueConverter(), null).TwoWay();
@@ -201,21 +208,23 @@ namespace Glimpse.Droid.Views
                 ViewModel.LocationUpdate += ViewModel_LocationUpdate;
 
             //map settings
-            _map.UiSettings.MapToolbarEnabled = true;
-            _map.UiSettings.ZoomControlsEnabled = true;
-            _map.UiSettings.CompassEnabled = true;
-            _map.UiSettings.MyLocationButtonEnabled = true;
-            _map.UiSettings.RotateGesturesEnabled = true;
-            _map.UiSettings.ZoomGesturesEnabled = true;
-            _map.BuildingsEnabled = true;
+            map.UiSettings.MapToolbarEnabled = true;
+            map.UiSettings.ZoomControlsEnabled = true;
+            map.UiSettings.CompassEnabled = true;
+            map.UiSettings.MyLocationButtonEnabled = true;
+            map.UiSettings.RotateGesturesEnabled = true;
+            map.UiSettings.ZoomGesturesEnabled = true;
+            map.BuildingsEnabled = true;
 
             //TEST
-            _clusterManager = new ClusterManager(this.Context, _map);
-            _clusterManager.SetOnClusterClickListener(this);
-            _clusterManager.SetOnClusterItemClickListener(this);
-            _map.SetOnCameraIdleListener(_clusterManager);
-            _map.SetOnMarkerClickListener(_clusterManager);
-            AddClusterItems();
+            clusterManager = new ClusterManager(this.Context, map);
+            clusterManager.SetOnClusterClickListener(this);
+            clusterManager.SetOnClusterItemClickListener(this);
+            map.SetOnCameraIdleListener(clusterManager);
+            map.SetOnMarkerClickListener(clusterManager);
+
+            //Show promotions
+            ShowPromotionsOnMap();
         }
 
         public bool OnClusterClick(ICluster cluster)
@@ -230,28 +239,76 @@ namespace Glimpse.Droid.Views
 			return false;
         }
 
-        private void AddClusterItems()
+        private void CreateClusterItem(double lat, double lng)
         {
-            double lat = 45.4582;
-            double lng = -73.640116;
+            clusterList.Add(new ClusterItem(lat, lng));
+        }
 
-            List<ClusterItem> items = new List<ClusterItem>();
+        private void GenerateCluster()
+        {
+            clusterManager.AddItems(clusterList);
+        }
 
-            for (var i = 0; i < 10; i++)
+
+        private async void ShowPromotionsOnMap()
+        {
+            var viewModel = (MapViewModel)ViewModel;
+
+            IEnumerable activePromotions = await ViewModel.GetActivePromotions();
+
+            //Print out the pins
+            foreach (var promotion in activePromotions)
             {
-                double offset = i / 60d;
-                lat = lat + offset;
-                lng = lng + offset;
+                string companyName = promotion.GetType().GetProperty("CompanyName").GetValue(promotion, null).ToString();
+                string title = promotion.GetType().GetProperty("Title").GetValue(promotion, null).ToString();
+                string description = promotion.GetType().GetProperty("Description").GetValue(promotion, null).ToString();
+                string expirationDate = promotion.GetType().GetProperty("PromotionEndDate").GetValue(promotion, null).ToString();
 
-                var item = new ClusterItem(lat, lng);
-                items.Add(item);
+                double lat = (double) PropValue.GetPropertyValue(promotion, "Location.Lat");
+                double lng = (double) PropValue.GetPropertyValue(promotion, "Location.Lng");
+
+                byte[] imageBytes = promotion.GetType().GetProperty("PromotionImage").GetValue(promotion, null) as byte[];
+
+                //Convert byte array back to image
+                try
+                {
+                    ImageConverter ic = new ImageConverter();
+                    Image img = (Image)ic.ConvertFrom(imageBytes);
+                    Bitmap bitmap1 = new Bitmap(img);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("Error converting byte[] to image" + e.StackTrace);
+                }
+
+                //Set up promotion snippet
+                string promotionSnippet = companyName + "\n"
+                                        + description + "\n"
+                                        + "Expiring: " + expirationDate + "\n";
+                //+ promotionDetails.PromotionImage;
+
+
+                //Need to Create clusters only for items nearby it
+                CreateClusterItem(lat, lng);
+
+                
+/*
+                _map.AddMarker(new MarkerOptions()
+                        .SetPosition(new LatLng(lat, lng))
+                        .SetTitle(title)
+                        .SetSnippet(promotionSnippet));
+*/
+
+    
             }
+            GenerateCluster();
 
-            _clusterManager.AddItems(items);
         }
 
-        
-        }
+
+
+
+    }
     }
     
 
