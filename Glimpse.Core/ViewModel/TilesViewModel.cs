@@ -1,4 +1,5 @@
-﻿using Glimpse.Core.Services.General;
+﻿using Glimpse.Core.Contracts.Services;
+using Glimpse.Core.Services.General;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using System.Collections.Generic;
@@ -11,25 +12,13 @@ namespace Glimpse.Core.ViewModel
     {
         private string _currentLanguage;
         private List<string> _languages;
+        private IPromotionDataService _promotionDataService;
 
-        public TilesViewModel(IMvxMessenger messenger) : base(messenger)
+        public TilesViewModel(IMvxMessenger messenger, IPromotionDataService promotionDataService) : base(messenger)
         {
-
+            _promotionDataService = promotionDataService;
         }
 
-
-        public List<string> Languages
-        {
-            get
-            {
-                return _languages;
-            }
-            set
-            {
-                _languages = value;
-                RaisePropertyChanged(() => Languages);
-            }
-        }
 
 
         public string CurrentLanguage
@@ -46,37 +35,6 @@ namespace Glimpse.Core.ViewModel
         }
 
 
-        public override async void Start()
-        {
-            base.Start();
-            await ReloadDataAsync();
-        }
 
-        protected override Task InitializeAsync()
-        {
-            return Task.Run(() =>
-            {
-                CurrentLanguage = Settings.Language;
-                Languages = new List<string> { CurrentLanguage };
-                if (CurrentLanguage == "English")
-                    _languages.Add("Français");
-                else if (CurrentLanguage == "Français")
-                    _languages.Add("English");
-            });
-        }
-
-        /// <summary>
-        /// Triggered when the language is selected
-        /// </summary>
-        public MvxCommand SwitchLanguageCommand
-        {
-            get
-            {
-                return new MvxCommand(async () =>
-                {
-                    Settings.Language = CurrentLanguage;
-                });
-            }
-        }
     }
 }

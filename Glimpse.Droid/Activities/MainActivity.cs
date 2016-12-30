@@ -19,6 +19,12 @@ using Android.Net;
 using Android.Graphics;
 using MvvmCross.Binding.BindingContext;
 using System.IO;
+using Android.Support.V4.View;
+using Glimpse.Droid.Adapter;
+using System.Collections.Generic;
+using Glimpse.Droid.Views;
+using MvvmCross.Platform;
+using MvvmCross.Core.ViewModels;
 
 namespace Glimpse.Droid.Activities
 {
@@ -28,6 +34,9 @@ namespace Glimpse.Droid.Activities
         Name = "glimpse.droid.activities.MainActivity")]
     public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
+        private ViewPager _viewPager;
+        private MvxViewPagerFragmentAdapter _adapter;
+
         private DrawerLayout _drawerLayout;
         private MvxActionBarDrawerToggle _drawerToggle;
         private FragmentManager _fragmentManager;
@@ -44,13 +53,15 @@ namespace Glimpse.Droid.Activities
             set { base.ViewModel = value; }
         }
 
+    
+
         public static MainActivity getInstance()
         {
             return mainActivity;
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
-        {
+        { 
             base.OnCreate(savedInstanceState);
             if (CheckAuthenticationStatus())
             {
@@ -74,10 +85,31 @@ namespace Glimpse.Droid.Activities
                 _drawerToggle.DrawerIndicatorEnabled = true;
                 _drawerLayout.SetDrawerListener(_drawerToggle);
 
-               ViewModel.ShowMenu();
-               ViewModel.ShowMap();
+                ViewModel.ShowMenu();
+
+                var fragments = new List<MvxViewPagerFragmentAdapter.FragmentInfo>
+                  {
+                    new MvxViewPagerFragmentAdapter.FragmentInfo
+                    {
+                      FragmentType = typeof(Views.MapFragment),
+                      Title = "Fragment1",
+                      ViewModel = ViewModel.MapViewModel
+                        },
+                    new MvxViewPagerFragmentAdapter.FragmentInfo
+                    {
+                      FragmentType = typeof(Views.TilesFragment),
+                      Title = "Fragment2",
+                      ViewModel = ViewModel.TilesViewModel
+                    }
+                  };
+
+                _viewPager = FindViewById<ViewPager>(Resource.Id.content_frame);
+                _adapter = new MvxViewPagerFragmentAdapter(this, SupportFragmentManager, fragments);
+                _viewPager.Adapter = _adapter;
+
             }
-        }      
+        } 
+    
 
         private void _drawerToggle_DrawerOpened(object sender, ActionBarDrawerEventArgs e)
         {
