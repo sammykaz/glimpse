@@ -15,9 +15,8 @@ using Android.App;
 using Android.Content;
 using Glimpse.Core.Model;
 using Android.Locations;
-using Android.Content;
 using System;
-using System.Collections.Generic;
+using System.Collections;
 
 namespace Glimpse.Droid.Views
 
@@ -160,13 +159,27 @@ namespace Glimpse.Droid.Views
             SetUpMapIfNeeded();
             var viewModel = (MapViewModel)ViewModel;
 
-            var activePromotions = await ViewModel.GetActivePromotions();
-
+            IEnumerable activePromotions = await ViewModel.GetActivePromotions();
             
-
             //Print out the pins
+            foreach (var promotion in activePromotions)
+            {
+                
+                Promotion promotionDetails = (Promotion) promotion;
+                Vendor vendorDetails = (Vendor) promotion;
 
+                //Set up promotion snippet
+                string promotionSnippet = vendorDetails.CompanyName + "<br/>"
+                                        + promotionDetails.Description + "<br/>"
+                                        + "Expiring " + promotionDetails.PromotionEndDate + "<br/>"
+                                        + promotionDetails.PromotionImage;
 
+                _map.AddMarker(new MarkerOptions()
+                        .SetPosition(new LatLng(vendorDetails.Location.Lat, vendorDetails.Location.Lng))
+                        .SetTitle(promotionDetails.Title)
+                        .SetSnippet(promotionSnippet));
+                
+            }
 
 
 
