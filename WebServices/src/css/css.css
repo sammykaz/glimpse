@@ -43,6 +43,6 @@ body {
 .promotion-title{vertical-align: middle; text-align:center; line-height: 100px; font-family: 'Exo', sans-serif; color: white;  font-size: 20px; background: #252672; border-radius: 20px; border-style: double;}
 .promotion-info{vertical-align: middle; text-align:center; line-height: 100px; background: #a4c7db; font-weight: bold; font-family: 'Exo';}
 .promotion-value{vertical-align: middle; text-align:center; line-height: 100px; background:white !important; font-family: 'Exo'; font-weight: initial;}
-.promotion-image{display: block; position: absolute; top: 50%; right: -55%;}
+.promotion-image{float: left; width: 200%; position: relative; right: 50%;}
 
 

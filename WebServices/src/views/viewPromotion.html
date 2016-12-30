@@ -19,7 +19,7 @@
                     <div class="col-sm-12 padding-zero promotion-info">
                         <div class="col-sm-6 padding-zero promotion-info">Promotion Description</div>
                         <div class="col-sm-6 padding-zero promotion-value">{{promotion.Description}}</div>
-                    </div>
+                    </div> 
                     <div class="col-sm-6 padding-zero promotion-info">Promotion Category</div>
                     <div class="col-sm-6 padding-zero promotion-value" ng-switch={{promotion.Category}}>
                         <div ng-switch-when=0>Footwear</div>
@@ -34,7 +34,7 @@
                     <div class="col-sm-6 padding-zero promotion-info">Promotion End Date</div>
                     <div class="col-sm-6 padding-zero promotion-value">{{promotion.PromotionEndDate}}</div>
                     <div class="col-sm-6 padding-zero promotion-info">Promotion Image</div>
-                    <div class="col-sm-6 padding-zero promotion-value"><img class="promotion-image" ng-src="data:image/JPEG;base64,{{promotion.PromotionImage}}"></div>
+                    <div class="col-sm-6 padding-zero promotion-value"><img class="promotion-image" ng-show="promotion.PromotionImage!=null" ng-src="data:image/JPEG;base64,{{promotion.PromotionImage}}" ng-click="openImg()"></div>
                 </div>
             </div>
         </div>

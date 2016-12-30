@@ -39,7 +39,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             controller: 'ProfileController',
             templateUrl: 'src/views/profileView.html'
         })
-        .state('map', {
+        .state('home.map', {
             url: '/map',
             controller: 'mapController',
             templateUrl: 'src/views/mapView.html'
