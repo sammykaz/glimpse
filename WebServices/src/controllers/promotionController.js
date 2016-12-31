@@ -182,7 +182,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 
             switch (filterType) {
                 case 'Gamma':
-                    this.gamma(100);
+                    this.gamma(50);
                     break;
                 case 'Greyscale':
                     this.greyscale();
