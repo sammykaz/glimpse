@@ -72,6 +72,7 @@
       <HintPath>..\packages\Xamarin.Android.Maps.Utils.0.4.4-beta1\lib\MonoAndroid10\GoogleMapsUtilityBinding.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Java.Interop" />
     <Reference Include="MailKit, Version=1.8.0.0, Culture=neutral, PublicKeyToken=4e064fe7c44a8f1b, processorArchitecture=MSIL">
       <HintPath>..\packages\MailKit.1.8.1\lib\MonoAndroid10\MailKit.dll</HintPath>
       <Private>True</Private>
@@ -352,7 +353,7 @@
     <Compile Include="Views\DatePickerFragment.cs" />
     <Compile Include="Views\LoginFragment.cs" />
     <Compile Include="Views\MenuFragment.cs" />
-    <Compile Include="Views\PromotionFragment.cs" />
+    <Compile Include="Views\PromotionDialogFragment.cs" />
     <Compile Include="Views\SendMail.cs" />
     <Compile Include="Views\MapFragment.cs" />
     <Compile Include="Views\SettingsFragment.cs" />
@@ -465,6 +466,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\item_menu.axml" />
     <AndroidResource Include="Resources\Raw\style_json.json" />
+    <AndroidResource Include="Resources\layout\PromotionDialogView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -560,6 +564,7 @@
   <ItemGroup>
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <AndroidResource Include="Resources\drawable\promotions\lb_sale_accessories_1-2.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

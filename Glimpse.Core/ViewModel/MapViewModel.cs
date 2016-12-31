@@ -18,11 +18,9 @@ namespace Glimpse.Core.ViewModel
         private readonly int _defaultZoom = 18;
         private readonly int _defaultTilt = 65;
         private readonly int _defaultBearing = 155;
-        private List<Vendor> allVendors;
-        private List<Promotion> allPromotions = new List<Promotion>();
         private Dictionary<Vendor, List<Promotion>> _vendorData = new Dictionary<Vendor, List<Promotion>>();
-        private IVendorDataService _vendorDataService;
-        private IPromotionDataService _promotionDataService;
+        private IVendorDataService vendorDataService;
+        private IPromotionDataService promotionDataService;
         private Location _userCurrentLocation;
         private IGeolocator locator;
         public delegate void LocationChangedHandler(object sender, LocationChangedHandlerArgs e);
@@ -30,8 +28,8 @@ namespace Glimpse.Core.ViewModel
 
         public MapViewModel(IMvxMessenger messenger, IVendorDataService vendorDataService, IPromotionDataService promotionDataService) : base(messenger)
         {
-            _vendorDataService = vendorDataService;
-            _promotionDataService = promotionDataService;
+            this.vendorDataService = vendorDataService;
+            this.promotionDataService = promotionDataService;
         }
 
         public override async void Start()
@@ -104,25 +102,6 @@ namespace Glimpse.Core.ViewModel
             get { return _defaultBearing; }
         }
 
-        public List<Vendor> Vendors
-        {
-            get { return allVendors; }
-            set
-            {
-                allVendors = value;
-                RaisePropertyChanged(() => Vendors);
-            }
-
-        }
-        public List<Promotion> Promotions
-        {
-            get { return allPromotions; }
-            set
-            {
-                allPromotions = value;
-                RaisePropertyChanged(() => Promotions);
-            }
-        }
 
         public Location UserCurrentLocation
         {
@@ -140,30 +119,10 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public async Task<IEnumerable> GetActivePromotions()
+        public  Task<IEnumerable> GetActivePromotions()
         {
-            allPromotions = await _promotionDataService.GetPromotions();
-            allVendors = await _vendorDataService.GetVendors();
-
-            List<Promotion> activePromotions = allPromotions.Where(e => (e.PromotionEndDate - e.PromotionStartDate).TotalSeconds > 0).ToList();
-
-            var mapPromotions = allVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,
-                                (e, b) => new
-                                {
-                                    e.CompanyName,
-                                    e.Location,
-                                    b.Title,
-                                    b.Description,
-                                    b.PromotionImage,
-                                    b.PromotionEndDate
-                                });
-
-            //Select all promotions excluding those with empty locations
-            var validatedMapPromotions = mapPromotions.Where(e => e.Location.Lat != 0 || e.Location.Lng != 0);
-
-            return validatedMapPromotions;
+            return promotionDataService.GetActivePromotions();
         }
-
 
 
 

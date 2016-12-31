@@ -21,6 +21,8 @@ using System.Collections;
 using System.Drawing;
 using Glimpse.Core.Helpers;
 using System;
+using Glimpse.Core.Services.Data;
+using MvvmCross.Platform;
 
 namespace Glimpse.Droid.Views
 {
@@ -35,7 +37,7 @@ namespace Glimpse.Droid.Views
         private LatLng location = null;
         private ClusterManager clusterManager;
         private List<ClusterItem> clusterList;
-
+        private IEnumerable activePromotions;
         public MapFragment()
         {
             clusterList = new List<ClusterItem>();
@@ -229,14 +231,15 @@ namespace Glimpse.Droid.Views
 
         public bool OnClusterClick(ICluster cluster)
         {
-            Toast.MakeText(this.Context, cluster.Items.Count + " items in cluster", ToastLength.Short).Show();
+         Toast.MakeText (this.Context, "Cluster clicked", ToastLength.Short).Show();
             return false;
         }
 
         public bool OnClusterItemClick(Java.Lang.Object p0)
         {
-            	Toast.MakeText (this.Context, "Marker clicked", ToastLength.Short).Show ();
-			return false;
+            var promotionDialog = new PromotionDialogFragment();
+            promotionDialog.Show(this.Activity.FragmentManager, "put a tag here");
+            return false;
         }
 
         private void CreateClusterItem(double lat, double lng)
@@ -254,7 +257,8 @@ namespace Glimpse.Droid.Views
         {
             var viewModel = (MapViewModel)ViewModel;
 
-            IEnumerable activePromotions = await ViewModel.GetActivePromotions();
+            
+            activePromotions = await ViewModel.GetActivePromotions();
 
             //Print out the pins
             foreach (var promotion in activePromotions)
@@ -263,11 +267,11 @@ namespace Glimpse.Droid.Views
                 string title = promotion.GetType().GetProperty("Title").GetValue(promotion, null).ToString();
                 string description = promotion.GetType().GetProperty("Description").GetValue(promotion, null).ToString();
                 string expirationDate = promotion.GetType().GetProperty("PromotionEndDate").GetValue(promotion, null).ToString();
+                object imageBytes = promotion.GetType().GetProperty("PromotionImage").GetValue(promotion, null);
 
                 double lat = (double) PropValue.GetPropertyValue(promotion, "Location.Lat");
                 double lng = (double) PropValue.GetPropertyValue(promotion, "Location.Lng");
 
-                byte[] imageBytes = promotion.GetType().GetProperty("PromotionImage").GetValue(promotion, null) as byte[];
 
                 //Convert byte array back to image
                 try
@@ -289,6 +293,10 @@ namespace Glimpse.Droid.Views
 
 
                 //Need to Create clusters only for items nearby it
+
+
+
+
                 CreateClusterItem(lat, lng);
 
                 
@@ -305,9 +313,7 @@ namespace Glimpse.Droid.Views
 
         }
 
-
-
-
+    
     }
     }
     
