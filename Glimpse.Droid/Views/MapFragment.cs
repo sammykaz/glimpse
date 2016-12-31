@@ -18,17 +18,16 @@ using System.Collections.Generic;
 using Com.Google.Maps.Android.Clustering;
 using Android.Widget;
 using System.Collections;
-using System.Drawing;
 using Glimpse.Core.Helpers;
 using System;
-using Glimpse.Core.Services.Data;
-using MvvmCross.Platform;
+using Exception = System.Exception;
+using Android.Graphics;
 
 namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame, true)]
     [Register("glimpse.droid.views.MapFragment")]
-    public class MapFragment : MvxFragment<MapViewModel>, IOnMapReadyCallback, ClusterManager.IOnClusterClickListener, ClusterManager.IOnClusterItemClickListener
+    public class MapFragment : MvxFragment<MapViewModel>, IOnMapReadyCallback, ClusterManager.IOnClusterItemClickListener, ClusterManager.IOnClusterClickListener
     {
         private MapView _mapView;
         private GoogleMap map;
@@ -36,11 +35,11 @@ namespace Glimpse.Droid.Views
         private Context globalContext = null;
         private LatLng location = null;
         private ClusterManager clusterManager;
-        private List<ClusterItem> clusterList;
+        private List<PromotionItem> clusterList;
         private IEnumerable activePromotions;
         public MapFragment()
         {
-            clusterList = new List<ClusterItem>();
+            clusterList = new List<PromotionItem>();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -235,16 +234,17 @@ namespace Glimpse.Droid.Views
             return false;
         }
 
-        public bool OnClusterItemClick(Java.Lang.Object p0)
+        public bool OnClusterItemClick(Java.Lang.Object item)
         {
-            var promotionDialog = new PromotionDialogFragment();
+            PromotionItem promotionItem = (PromotionItem) item;
+            var promotionDialog = new PromotionDialogFragment(promotionItem);
             promotionDialog.Show(this.Activity.FragmentManager, "put a tag here");
             return false;
         }
 
-        private void CreateClusterItem(double lat, double lng)
+        private void CreateClusterItem(double lat, double lng, string title, string description, string expirationDate, string companyName, Bitmap image)
         {
-            clusterList.Add(new ClusterItem(lat, lng));
+            clusterList.Add(new PromotionItem(lat, lng, title, description, expirationDate, companyName, image));
         }
 
         private void GenerateCluster()
@@ -267,46 +267,35 @@ namespace Glimpse.Droid.Views
                 string title = promotion.GetType().GetProperty("Title").GetValue(promotion, null).ToString();
                 string description = promotion.GetType().GetProperty("Description").GetValue(promotion, null).ToString();
                 string expirationDate = promotion.GetType().GetProperty("PromotionEndDate").GetValue(promotion, null).ToString();
-                object imageBytes = promotion.GetType().GetProperty("PromotionImage").GetValue(promotion, null);
+                byte[] imageBytes = (byte[]) promotion.GetType().GetProperty("PromotionImage").GetValue(promotion, null);
 
                 double lat = (double) PropValue.GetPropertyValue(promotion, "Location.Lat");
                 double lng = (double) PropValue.GetPropertyValue(promotion, "Location.Lng");
 
+                //Convert anonymous iobject to byte[]
+                //byte[] imageArrayBytes = ObjectByteArrayConversion.ObjectToByteArray(imageBytes);
 
                 //Convert byte array back to image
+                Bitmap bitmap = null;
                 try
                 {
-                    ImageConverter ic = new ImageConverter();
-                    Image img = (Image)ic.ConvertFrom(imageBytes);
-                    Bitmap bitmap1 = new Bitmap(img);
+                   bitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
                 }
                 catch(Exception e)
                 {
                     Console.WriteLine("Error converting byte[] to image" + e.StackTrace);
                 }
 
-                //Set up promotion snippet
-                string promotionSnippet = companyName + "\n"
-                                        + description + "\n"
-                                        + "Expiring: " + expirationDate + "\n";
-                //+ promotionDetails.PromotionImage;
 
+                //Check the distance for each pair of coordinates
+                //var sCoord = new GeoCoordinate();
+                //var eCoord = new GeoCoordinate();
 
-                //Need to Create clusters only for items nearby it
-
+                //return sCoord.GetDistanceTo(eCoord);
 
 
 
-                CreateClusterItem(lat, lng);
-
-                
-/*
-                _map.AddMarker(new MarkerOptions()
-                        .SetPosition(new LatLng(lat, lng))
-                        .SetTitle(title)
-                        .SetSnippet(promotionSnippet));
-*/
-
+                CreateClusterItem(lat, lng,title,description,expirationDate,companyName, bitmap);
     
             }
             GenerateCluster();

@@ -340,8 +340,9 @@
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Extensions\ActivityExtensions.cs" />
     <Compile Include="Extensions\MonoTypeExtensions.cs" />
-    <Compile Include="Helpers\ClusterItem.cs" />
     <Compile Include="Helpers\LatLngValueConverter.cs" />
+    <Compile Include="Helpers\ObjectByteArrayConversion.cs" />
+    <Compile Include="Helpers\PromotionItem.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

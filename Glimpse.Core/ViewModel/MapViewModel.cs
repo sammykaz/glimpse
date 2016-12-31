@@ -124,7 +124,7 @@ namespace Glimpse.Core.ViewModel
             return promotionDataService.GetActivePromotions();
         }
 
-
+   
 
     }
 

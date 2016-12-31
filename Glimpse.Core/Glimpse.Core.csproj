@@ -63,7 +63,6 @@
     <Compile Include="Converters\DateTimeValueConverter.cs" />
     <Compile Include="Converters\InMemoryImageConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
-    <Compile Include="Helpers\ObjectByteArrayConversion.cs" />
     <Compile Include="Helpers\PropValue.cs" />
     <Compile Include="Helpers\LocationChangedHandlerArgs.cs" />
     <Compile Include="Helpers\Settings.cs" />
