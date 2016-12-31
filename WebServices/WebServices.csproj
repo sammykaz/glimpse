@@ -1138,6 +1138,7 @@
     <Content Include="src\controllers\mapController.js" />
     <Content Include="src\controllers\promotionController.js" />
     <Content Include="src\css\animate.css" />
+    <Content Include="src\css\pbk.jpg" />
     <Content Include="src\css\ui-cropper.css" />
     <Content Include="src\css\wp.jpg" />
     <Content Include="src\services\userService.js" />
@@ -1209,7 +1210,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55709</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

@@ -7,8 +7,17 @@ app.controller('HomeController', ['$scope', 'dataService', '$state', 'authentica
     dataService.GetAuthorizeData().then(function (data) {
         console.log(data);
         localStorage.id = data;
-        console.log(dataService.getVendors().get({ vendor: localStorage.id }));
-        $scope.data = data;
+        
+        var vendor = dataService.getVendors().get({ vendor: localStorage.id });
+        vendor.$promise.then(function (data){
+            localStorage.company = vendor.CompanyName;
+            localStorage.address = vendor.Address;
+            localStorage.email = vendor.Email;
+            localStorage.tel = vendor.Telephone;
+        }, function(error){
+            console.log("vendor not found");
+        })
+       
     },function (error) {
         console.log("No longer logged in");
         $state.go("login");
