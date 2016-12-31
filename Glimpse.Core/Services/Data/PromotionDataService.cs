@@ -1,35 +1,64 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
 using Glimpse.Core.Services.General;
+using Glimpse.Core.Services.Data;
 
 namespace Glimpse.Core.Services.Data
 {
     public class PromotionDataService : IPromotionDataService
     {
-        private readonly IPromotionRepository _promotionRepository;
+        private readonly IPromotionRepository promotionRepository;
+        private readonly IVendorRepository vendorRepository;
 
-        public PromotionDataService(IPromotionRepository promotionRepository)
+        public PromotionDataService(IPromotionRepository promotionRepository, IVendorRepository vendorRepositor)
         {
-            _promotionRepository = promotionRepository;
+            this.promotionRepository = promotionRepository;
+            this.vendorRepository = vendorRepositor;
         }
 
         public async Task<List<Promotion>> GetPromotion(int id)
         {
-            return await _promotionRepository.GetPromotion(id);
+            return await promotionRepository.GetPromotion(id);
         }
 
         public async Task<List<Promotion>> GetPromotions()
         {
-            return await _promotionRepository.GetPromotions();
+            return await promotionRepository.GetPromotions();
         }
 
         public async Task StorePromotion(Promotion promotion)
         {
-            await _promotionRepository.StorePromotion(promotion);
+            await promotionRepository.StorePromotion(promotion);
+        }
+
+        public async Task<IEnumerable> GetActivePromotions()
+        {
+            List<Promotion> allPromotions = await promotionRepository.GetPromotions();
+            List<Vendor> allVendors = await vendorRepository.GetVendors();
+
+            List<Promotion> activePromotions = allPromotions.Where(e => (e.PromotionEndDate - e.PromotionStartDate).TotalSeconds > 0).ToList();
+
+            var mapPromotions = allVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,
+                                (e, b) => new
+                                {
+                                    e.CompanyName,
+                                    e.Location,
+                                    b.Title,
+                                    b.Description,
+                                    b.PromotionImage,
+                                    b.PromotionEndDate
+                                });
+
+            //Select all promotions excluding those with empty locations
+            var validatedMapPromotions = mapPromotions.Where(e => e.Location.Lat != 0 || e.Location.Lng != 0);
+
+            return validatedMapPromotions;
         }
     }
 
