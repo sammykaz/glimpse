@@ -10,15 +10,15 @@ namespace Glimpse.Core.ViewModel
 {
     public class CreatePromotionPart2ViewModel : BaseViewModel
     {
-        private readonly IPromotionDataService _promotionDataService;
-        private IVendorDataService _vendorDataService;
+        private readonly IPromotionDataService promotionDataService;
+        private IVendorDataService vendorDataService;
         Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
-        private Category selectedCategory;
+        private Categories selectedCategory;
 
         public CreatePromotionPart2ViewModel(IPromotionDataService promotionDataService, IVendorDataService vendorDataService)
         {
-            _promotionDataService = promotionDataService;
-            _vendorDataService = vendorDataService;
+            this.promotionDataService = promotionDataService;
+            this.vendorDataService = vendorDataService;
         }
 
         protected override void InitFromBundle(IMvxBundle parameters)
@@ -80,7 +80,7 @@ namespace Glimpse.Core.ViewModel
                     foreach (string key in dataFromCreatePromotionPart1.Keys)
                     {
                         if (dataFromCreatePromotionPart1[key] == "True")
-                            selectedCategory = new Category((Categories)Enum.Parse(typeof(Categories), key, true));
+                            selectedCategory = (Categories) Enum.Parse(typeof(Categories), key, true);
                     }
 
                     //Calculate DateTime span
@@ -91,24 +91,26 @@ namespace Glimpse.Core.ViewModel
                     {
                         Title = dataFromCreatePromotionPart1["PromotionTitle"],
                         Description = dataFromCreatePromotionPart1["PromotionDescription"],
-
-
-                        Categories = selectedCategory,
-
-
+                        Category = selectedCategory,
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
                         PromotionImage = Bytes,
                     };
 
-                    Vendor vendor = await _vendorDataService.SearchVendorByEmail( Settings.Email);
+                    //Vendor vendor = await vendorDataService.SearchVendorByEmail( Settings.Email);
 
-                        vendor.Promotions.Add(promotion);
-                    vendor.CompanyName = "modified ";
 
-                    await _vendorDataService.EditVendor(vendor.VendorId, vendor);
+                    //TODO Fix how pomotion gets added
+
+
+
+                    await promotionDataService.StorePromotion(promotion);
+                    //vendor.Promotions.Add(promotion);
+                    //vendor.CompanyName = "modified ";
+
+                    //await vendorDataService.EditVendor(vendor.VendorId, vendor);
                    
-                    ShowViewModel<VendorProfilePageViewModel>();
+                    ShowViewModel<MapViewModel>();
                 });
             }
         }

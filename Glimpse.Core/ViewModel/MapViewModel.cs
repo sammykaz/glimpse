@@ -7,6 +7,8 @@ using Plugin.Geolocator.Abstractions;
 using System.Collections.Generic;
 using System.Linq;
 using Glimpse.Core.Helpers;
+using System.Collections;
+using System;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -16,11 +18,9 @@ namespace Glimpse.Core.ViewModel
         private readonly int _defaultZoom = 18;
         private readonly int _defaultTilt = 65;
         private readonly int _defaultBearing = 155;
-        private List<Vendor> _allVendors;
-        private List<Promotion> _allPromotions = new List<Promotion>();
         private Dictionary<Vendor, List<Promotion>> _vendorData = new Dictionary<Vendor, List<Promotion>>();
-        private IVendorDataService _vendorDataService;
-        private IPromotionDataService _promotionDataService;
+        private IVendorDataService vendorDataService;
+        private IPromotionDataService promotionDataService;
         private Location _userCurrentLocation;
         private IGeolocator locator;
         public delegate void LocationChangedHandler(object sender, LocationChangedHandlerArgs e);
@@ -28,8 +28,8 @@ namespace Glimpse.Core.ViewModel
 
         public MapViewModel(IMvxMessenger messenger, IVendorDataService vendorDataService, IPromotionDataService promotionDataService) : base(messenger)
         {
-            _vendorDataService = vendorDataService;
-            _promotionDataService = promotionDataService;
+            this.vendorDataService = vendorDataService;
+            this.promotionDataService = promotionDataService;
         }
 
         public override async void Start()
@@ -102,25 +102,6 @@ namespace Glimpse.Core.ViewModel
             get { return _defaultBearing; }
         }
 
-        public List<Vendor> Vendors
-        {
-            get { return _allVendors; }
-            set
-            {
-                _allVendors = value;
-                RaisePropertyChanged(() => Vendors);
-            }
-
-        }
-        public List<Promotion> Promotions
-        {
-            get { return _allPromotions; }
-            set
-            {
-                _allPromotions = value;
-                RaisePropertyChanged(() => Promotions);
-            }
-        }
 
         public Location UserCurrentLocation
         {
@@ -138,59 +119,12 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        /*
-        public async Task InitializeData()
+        public  Task<IEnumerable> GetActivePromotions()
         {
-            //Get vendors & promotions from dB
-            _allVendors = await _vendorDataService.GetVendors();
-            _allPromotions = await _promotionDataService.GetPromotions();
-
-            //Get vendor's ids from dB
-            foreach (var vendor in _allVendors)
-            {
-                vendor.VendorId = await _vendorDataService.GetVendorId(vendor.Email);
-            }
-
-            //Match active promotions with their vendors
-            foreach (var vendor in _allVendors)
-            {
-                var vendorPromotions = _allPromotions.Where(x => x.VendorId == vendor.VendorId && x.PromotionActive == true);
-
-                if (vendorPromotions.Any())
-                {
-                    VendorData.Add(vendor, vendorPromotions.ToList());
-                }
-            }
+            return promotionDataService.GetActivePromotions();
         }
 
-*/
-
-
-        // Some refactored methods
-        /*
-        public async Task<List<Promotion>> GetAllActivePromotions()
-        {
-            List<Promotion> promotionsList = await _promotionDataService.GetPromotions();
-
-            return promotionsList.Where(p => p.PromotionActive == true).ToList();
-        }
-        */
-        /*
-        public async Task<List<Vendor>> GetAllVendorsWithActivePromotions()
-        {
-            List<Promotion> promotionsList = await _promotionDataService.GetPromotions();
-            List<Vendor> vendorsList = await _vendorDataService.GetVendors();
-
-            List<Vendor> vendorsWithActivePromotionsList = (from first in vendorsList
-                                                            join second in promotionsList
-                                                            on first.VendorId equals second.VendorId
-                                                            select first).ToList();
-
-            return vendorsWithActivePromotionsList;
-        }
-        */
-
-
+   
 
     }
 
