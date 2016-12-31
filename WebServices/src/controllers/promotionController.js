@@ -80,29 +80,17 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 category: $scope.category,
                 promotionStartDate: sdt,
                 promotionEndDate: edt,
-                promotionImage: formdata
+                //promotionImage: formdata
             }
-            Upload.upload({
-                url: 'api/promotions/17',
-                promotionImage: $scope.picFile
-            }).progress(function (evt) {
-                //var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                //console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
-            }).success(function (data, status, headers, config) {
-                //console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
-                console.log("success");
-            }).error(function(err){
-                console.log(err)
-            });
 
-            //dataService.getPromotions().save(promotionData, function (resp, headers) {
-            //    //success callback
-            //    console.log(resp);
-            //},
-            //function (err) {
-            //    console.log(err);
-            //});
-            //console.log(promotionData);
+            dataService.getPromotions().save(promotionData, function (resp, headers) {
+                //success callback
+                console.log(resp);
+            },
+            function (err) {
+                console.log(err);
+            });
+            console.log(promotionData);
             $uibModalInstance.close("");
         }
     };
