@@ -1,12 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Glimpse.Core.Helpers
 {
     public static class ObjectByteArrayConversion
    {     // Convert an object to a byte array
-        /*
-        private static byte[] ObjectToByteArray(Object obj)
+        
+        public static byte[] ObjectToByteArray(Object obj)
         {
             if (obj == null)
                 return null;
@@ -19,7 +20,7 @@ namespace Glimpse.Core.Helpers
         }
 
         // Convert a byte array to an Object
-        private static Object ByteArrayToObject(byte[] arrBytes)
+        public static Object ByteArrayToObject(byte[] arrBytes)
         {
             MemoryStream memStream = new MemoryStream();
             BinaryFormatter binForm = new BinaryFormatter();
@@ -29,7 +30,7 @@ namespace Glimpse.Core.Helpers
 
             return obj;
         }
-        */
+        
     }
 
     
