@@ -214,8 +214,6 @@
       <DependentUpon>201612280012115_enum.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Categories.cs" />
-    <Compile Include="Models\Category.cs" />
     <Compile Include="Contexts\GlimpseDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Location.cs" />
@@ -1153,7 +1151,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55709</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

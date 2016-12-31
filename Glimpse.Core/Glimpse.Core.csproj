@@ -69,7 +69,6 @@
     <Compile Include="Model\App\MenuItem.cs" />
     <Compile Include="Model\App\SearchParameters.cs" />
     <Compile Include="Model\BaseModel.cs" />
-    <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Promotion.cs" />
     <Compile Include="Model\Location.cs" />
     <Compile Include="Model\User.cs" />
@@ -85,7 +84,6 @@
     <Compile Include="Services\Data\UserDataService.cs" />
     <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Services\General\Settings.cs" />
-    <Compile Include="Model\Categories.cs" />
     <Compile Include="Utility\MenuOption.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BuyerProfilePageViewModel.cs" />

@@ -352,6 +352,7 @@
     <Compile Include="Views\DatePickerFragment.cs" />
     <Compile Include="Views\LoginFragment.cs" />
     <Compile Include="Views\MenuFragment.cs" />
+    <Compile Include="Views\PromotionFragment.cs" />
     <Compile Include="Views\SendMail.cs" />
     <Compile Include="Views\MapFragment.cs" />
     <Compile Include="Views\SettingsFragment.cs" />
