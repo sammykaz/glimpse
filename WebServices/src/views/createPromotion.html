@@ -13,34 +13,34 @@
                     <label>Categories</label>
                     <div class="col-sm-12">
                         <div class="col-sm-4">
-                            <input type="checkbox" ng-model="categories.footwear">
+                            <input type="radio" ng-model="category" value=0>
                             <span class="">Footwear</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="checkbox" ng-model="categories.electronics">
+                            <input type="radio" ng-model="category" value=1>
                             <span class="">Electronics</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="checkbox" ng-model="categories.jewellery">
+                            <input type="radio" ng-model="category" value=2>
                             <span class="">Jewellery</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="checkbox" ng-model="categories.restaurants">
+                            <input type="radio" ng-model="category" value=3>
                             <span class="">Restaurants</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="checkbox" ng-model="categories.services">
+                            <input type="radio" ng-model="category" value=4>
                             <span class="">Services</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="checkbox" ng-model="categories.apparel">
+                            <input type="radio" ng-model="category" value=5>
                             <span class="">Apparel</span>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" rows="3"></textarea>
+                    <textarea class="form-control" rows="3" ng-model="promotionDescription"></textarea>
                 </div>
 
                 <label>Promotion Duration</label>
@@ -86,7 +86,7 @@
                                 <li><a href="javascript:void(0)" ng-click="applyFilter('Vibrance')">Vibrance</a></li>
                             </ul>
                         </div>
-                        <button class="btn btn-white"ng-click="resetFilter()" ng-show="isResetEnable" type="button">Reset Filter</button>
+                        <button class="btn btn-warning"ng-click="resetFilter()" ng-show="isResetEnable" type="button">Reset Filter</button>
                         <button class="btn btn-danger" ng-click="removeImage()" ng-show="picFile" type="button">Remove</button>
                     </div>
                     <small class="form-text text-muted">Choose a picture to promote</small>

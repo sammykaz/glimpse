@@ -39,7 +39,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             controller: 'ProfileController',
             templateUrl: 'src/views/profileView.html'
         })
-        .state('map', {
+        .state('home.map', {
             url: '/map',
             controller: 'mapController',
             templateUrl: 'src/views/mapView.html'
@@ -47,6 +47,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
 })
 .controller('appController', function ($scope) {
     $scope.test = "test";
+})
+.filter('reverse', function() {
+    return function(items) {
+        return items.slice().reverse();
+    };
 })
 .config(function ($httpProvider) {
     var interceptor = function (userService, $q, $location, $state)

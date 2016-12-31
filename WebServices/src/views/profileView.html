@@ -7,7 +7,7 @@
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <div class="col-sm-4">
-                                <h3 class="profile-company">Glimpse</h3>
+                                <h3 class="profile-company">{{company}}</h3>
                             </div>
                             <button type="submit" class="btn btn-primary pull-right" ng-click="edit()" ng-hide="editOn">Edit</button>
                         </div>
@@ -16,7 +16,7 @@
                         <label for="example-text-input" class="col-xs-2 profile-label">Email</label>
                         <div class="col-xs-10">
                             <input class="form-control" type="text" value="Glimpse@glimpse.com" ng-show="editOn">
-                            <p ng-hide="editOn">Glimpse@glimpse.com</p>
+                            <p ng-hide="editOn">{{email}}</p>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -27,52 +27,17 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-xs-2 profile-label">Country</label>
+                        <label class="col-xs-2 profile-label">Address</label>
                         <div class="col-xs-10">
                             <input class="form-control" type="text" value="Canada" ng-show="editOn">
-                            <p ng-hide="editOn">Canada</p>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="example-url-input" class="col-xs-2 profile-label">Province</label>
-                        <div class="col-xs-10">
-                            <input class="form-control" type="text" value="Quebec" ng-show="editOn">
-                            <p ng-hide="editOn">Quebec</p>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="example-tel-input" class="col-xs-2 profile-label">City</label>
-                        <div class="col-xs-10">
-                            <input class="form-control" type="text" value="Montreal" ng-show="editOn">
-                            <p ng-hide="editOn">Montreal</p>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="example-password-input" class="col-xs-2 profile-label">Postal Code</label>
-                        <div class="col-xs-10">
-                            <input class="form-control" type="text" value="H9F 2G3" ng-show="editOn">
-                            <p ng-hide="editOn">H9F 2G3</p>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="example-number-input" class="col-xs-2 profile-label">Street Name</label>
-                        <div class="col-xs-10">
-                            <input class="form-control" type="text" value="Beaugrand" ng-show="editOn">
-                            <p ng-hide="editOn">Beaugrand</p>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="example-datetime-local-input" class="col-xs-2 profile-label">Street Number</label>
-                        <div class="col-xs-10">
-                            <input class="form-control" type="text" value="47" ng-show="editOn">
-                            <p ng-hide="editOn">47</p>
+                            <p ng-hide="editOn">{{address}}</p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-date-input" class="col-xs-2 profile-label">Telephone</label>
                         <div class="col-xs-10">
                             <input class="form-control" type="text" value="(514) 864 3515" ng-show="editOn">
-                            <p ng-hide="editOn">(514) 864 3515</p>
+                            <p ng-hide="editOn">{{tel}}</p>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-success pull-right" ng-click="" ng-show="editOn">Save</button>

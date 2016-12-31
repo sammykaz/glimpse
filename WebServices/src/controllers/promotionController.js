@@ -1,15 +1,20 @@
 'use strict';
 
 app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibModal', function ($scope, dataService, $state, $uibModal) {
-
     $scope.data = "";
 
-    dataService.GetAuthorizeData().then(function (data) {
+    var promotionsquery = dataService.getPromotions().query();
+    promotionsquery.$promise.then(function (data) {
+        $scope.promotions = data;
         console.log(data);
-        $scope.data = data;
+    }, function (error) {
+        console.log("Error: Could not load promotions");
+    })
+    console.log($scope.promotions);
+    dataService.GetAuthorizeData().then(function (data) {
+        console.log("Authorized");
     }, function (error) {
         console.log("No longer logged in");
-        //$state.go("login");
     })
 
     $scope.showCreatePromotionModal = function () {
@@ -24,12 +29,36 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
             console.log("Modal dismissed");
         });
     }
-   
+
+    var convertCategory = function () {
+        switch ($scope.promotions.Category) {
+            case 0:
+                $scope.promotions.Category = "Footwear"
+                break;
+            case 1:
+                $scope.promotions.Category = "Electronics"
+                break;
+            case 2:
+                $scope.promotions.Category = "Jewellery"
+                break;
+            case 3:
+                $scope.promotions.Category = "Restaurants"
+                break;
+            case 4:
+                $scope.promotions.Category = "Services"
+                break;
+            case 5:
+                $scope.promotions.Category = "Apparel"
+                break;
+            default:
+                break;
+        }
+    }
 }]);
 
-app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout) {
-    $scope.title = '';
-    $scope.categories = undefined;
+app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout, dataService, $http) {
+    $scope.promotionTitle = '';
+    $scope.category = undefined;
     $scope.description = '';
     $scope.startDay = undefined;
     $scope.endDay = undefined;
@@ -38,9 +67,55 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.ok = function () {
         if ($scope.sdt > $scope.edt)
             $scope.showDateWarning = true;
-        else
-            $uibModalInstance.close($scope.edt);
+        else {
+            var image = { file: $scope.previewImage };
+            var formdata = new FormData();
+            formdata.append("img",image);
+            var sdt = $scope.sdt;
+            var edt = $scope.edt;
+            var promotionData = {
+                vendorId: "37",//localStorage.id,
+                title: $scope.promotionTitle,
+                description: $scope.promotionDescription,
+                category: $scope.category,
+                promotionStartDate: sdt,
+                promotionEndDate: edt,
+                promotionImage: formdata
+            }
+            Upload.upload({
+                url: 'api/promotions/17',
+                promotionImage: $scope.picFile
+            }).progress(function (evt) {
+                //var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                //console.log('progress: ' + progressPercentage + '% ' + evt.config.file.name);
+            }).success(function (data, status, headers, config) {
+                //console.log('file ' + config.file.name + 'uploaded. Response: ' + data);
+                console.log("success");
+            }).error(function(err){
+                console.log(err)
+            });
+
+            //dataService.getPromotions().save(promotionData, function (resp, headers) {
+            //    //success callback
+            //    console.log(resp);
+            //},
+            //function (err) {
+            //    console.log(err);
+            //});
+            //console.log(promotionData);
+            $uibModalInstance.close("");
+        }
     };
+
+    $scope.arrayBufferToBase64 = function (buffer) {
+        var binary = '';
+        var bytes = new Uint8Array(buffer);
+        var len = bytes.byteLength;
+        for (var i = 0; i < len; i++) {
+            binary += String.fromCharCode(bytes[i]);
+        }
+        return window.btoa(binary);
+    }
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
@@ -50,7 +125,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         $scope.showDateWarning = false;
     }
 
-
     $scope.croppedDataUrl = '';
     $scope.isCropImageEnable = false;
     $scope.saveCrop = false;
@@ -58,14 +132,36 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 
     $scope.$watch('picFile', function() {
         if(!!$scope.picFile){
-            debugger;
+           // debugger;
             imageFile = $scope.picFile;
             $scope.previewImage = imageFile;
         }
     });
-
-   
-
+    
+    var getCategory = function () {
+        switch ($scope.promotions.Category) {
+            case 0:
+                $scope.promotions.Category = "Footwear"
+                break;
+            case 1:
+                $scope.promotions.Category = "Electronics"
+                break;
+            case 2:
+                $scope.promotions.Category = "Jewellery"
+                break;
+            case 3:
+                $scope.promotions.Category = "Restaurants"
+                break;
+            case 4:
+                $scope.promotions.Category = "Services"
+                break;
+            case 5:
+                $scope.promotions.Category = "Apparel"
+                break;
+            default:
+                break;
+        }
+    }
     $scope.cropImage = function () {
         debugger;
         $scope.isCropImageEnable = true;
@@ -98,7 +194,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 
             switch (filterType) {
                 case 'Gamma':
-                    this.gamma(100);
+                    this.gamma(50);
                     break;
                 case 'Greyscale':
                     this.greyscale();
@@ -159,6 +255,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         $scope.picFile = null;
         $scope.croppedDataUrl = null;
         $scope.isCropImageEnable = false;
+        $scope.previewImage = null;
         console.log($scope.croppedDataUrl);
     }
     $scope.resetFilter = function () {

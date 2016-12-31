@@ -6,7 +6,10 @@ app.controller('ProfileController', ['$scope', 'dataService', '$state', 'authent
     $scope.editOn = false;
     dataService.GetAuthorizeData().then(function (data) {
         console.log(data);
-        $scope.data = data;
+        $scope.email = localStorage.email;
+        $scope.company = localStorage.company;
+        $scope.address = localStorage.address;
+        $scope.tel = localStorage.tel;
     },function (error) {
         console.log("No longer logged in");
         //$state.go("login");
