@@ -10,6 +10,7 @@ app.controller('LoginController', ['$scope', '$http', 'blockUI', 'authentication
         }, function (error) {
             $scope.message = error.error_description;
             console.log($scope.message);
+            $scope.incorrect = true;
         })
     }
 

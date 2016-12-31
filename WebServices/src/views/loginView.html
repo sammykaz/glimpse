@@ -12,6 +12,9 @@
                         <span class="input-group-addon"><span class="fa fa-lock"></span></span>
                         <input id="txtPassword" type="password" class="form-control login-input-fields" name="password" placeholder="Password" ng-model="user.password">
                     </div>
+                    <div class="input-form-padding col-sm-12 has-danger" ng-show="incorrect">
+                        <p  class="form-control-feedback">Incorrect username or password</p>
+                    </div>
                     <button class="btn btn-primary btn-block login-button" ng-click="login()"><i class="fa fa-sign-in"></i> Login</button>
                     <div class="checkbox login-options">
                         <label><input type="checkbox" /> Remember Me</label>
