@@ -11,6 +11,6 @@ module.exports = function(grunt) {
     }});
 	
   // Default task.
-  grunt.registerTask('unittest', ['karma:unit:run']);
-  grunt.registerTask('default', ['karma:unit']);
+  grunt.registerTask('unittest', ['karma:unit']);
+  
 };
