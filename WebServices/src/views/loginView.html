@@ -13,15 +13,15 @@
                         <input id="txtPassword" type="password" class="form-control login-input-fields" name="password" placeholder="Password" ng-model="user.password">
                     </div>
                     <div class="input-form-padding col-sm-12 has-danger" ng-show="incorrect">
-                        <p  class="form-control-feedback">Incorrect username or password</p>
+                        <p  class="form-control-feedback">Incorrect username or password, you can try again shortly</p>
                     </div>
-                    <button class="btn btn-primary btn-block login-button" ng-click="login()"><i class="fa fa-sign-in"></i> Login</button>
+                    <button class="btn btn-primary btn-block login-button" ng-click="login()" ng-disabled="preventLogin"><i class="fa fa-sign-in"></i> Login</button>
                     <div class="checkbox login-options">
                         <label><input type="checkbox" /> Remember Me</label>
                         <a href="#" class="login-new-account">Forgot Username/Password?</a>
                     </div>
                     <div class="col-sm-12">
-                        <a class="login-new-account"ui-sref="signup" class="login-forgot">Create new Account</a>
+                        <a class="login-new-account"ui-sref="signup">Create new Account</a>
                     </div>
                 </form>
             </div>

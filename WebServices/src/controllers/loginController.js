@@ -1,9 +1,11 @@
 'use strict';
 
-app.controller('LoginController', ['$scope', '$http', 'blockUI', 'authenticationService', '$state', function ($scope, $http, blockUI, authenticationService, $state) {
-    $scope.user;
-
+app.controller('LoginController', ['$scope', '$http', 'blockUI', 'authenticationService', '$state', '$timeout', function ($scope, $http, blockUI, authenticationService, $state, $timeout) {
+    
+    $scope.preventLogin;
     $scope.login = function () {
+        $scope.preventLogin = true;
+        
         authenticationService.login($scope.user).then(function (data) {
             console.log(data);
             $state.go("home.viewPromotion");
@@ -12,6 +14,10 @@ app.controller('LoginController', ['$scope', '$http', 'blockUI', 'authentication
             console.log($scope.message);
             $scope.incorrect = true;
         })
+
+        $timeout(function () {
+            $scope.preventLogin = false;
+        },3000)
     }
 
 }]);
