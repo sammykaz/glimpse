@@ -69,8 +69,10 @@
     <Compile Include="Model\App\SearchParameters.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\CustomModels\DistanceMatrix.cs" />
     <Compile Include="Model\Promotion.cs" />
     <Compile Include="Model\Location.cs" />
+    <Compile Include="Model\CustomModels\PromotionWithLocation.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Services\Data\VendorDataService.cs" />
     <Compile Include="Services\Data\UserDataService.cs" />
     <Compile Include="Services\General\Cryptography.cs" />
+    <Compile Include="Services\General\GoogleWebService.cs" />
     <Compile Include="Services\General\Settings.cs" />
     <Compile Include="Model\Categories.cs" />
     <Compile Include="Utility\MenuOption.cs" />
