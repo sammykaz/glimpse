@@ -85,7 +85,7 @@ namespace Glimpse.Core.ViewModel
 
                     //Calculate DateTime span
                     //TimeSpan promotionLength = _promotionEndDate - _promotionStartDate;
-
+                    Vendor vendor = await vendorDataService.SearchVendorByEmail(Settings.Email);
 
                     Promotion promotion = new Promotion()
                     {
@@ -95,9 +95,10 @@ namespace Glimpse.Core.ViewModel
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
                         PromotionImage = Bytes,
+                        VendorId = vendor.VendorId
                     };
 
-                    //Vendor vendor = await vendorDataService.SearchVendorByEmail( Settings.Email);
+                   
 
 
                     //TODO Fix how pomotion gets added
