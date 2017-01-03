@@ -10,7 +10,7 @@ using Glimpse.Droid.Extensions;
 
 namespace Glimpse.Droid.Views
 {
-    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame, true)]
+    [MvxFragment(typeof(MainViewModel), Resource.Id.viewPager, true)]
     [Register("glimpse.droid.views.TilesFragment")]
     public class TilesFragment : MvxFragment<TilesViewModel>
     {

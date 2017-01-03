@@ -352,6 +352,7 @@
     <Compile Include="Views\MenuFragment.cs" />
     <Compile Include="Views\SendMail.cs" />
     <Compile Include="Views\MapFragment.cs" />
+    <Compile Include="Views\ViewPagerFragment.cs" />
     <Compile Include="Views\TilesFragment.cs" />
     <Compile Include="Views\SettingsFragment.cs" />
     <Compile Include="Views\SignInFragment.cs" />
@@ -465,6 +466,9 @@
     <AndroidResource Include="Resources\Raw\style_json.json" />
     <AndroidResource Include="Resources\layout\TilesView.axml" />
     <AndroidResource Include="Resources\layout\PromotionAndDistanceTemplate.axml" />
+    <AndroidResource Include="Resources\layout\ViewPagerView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

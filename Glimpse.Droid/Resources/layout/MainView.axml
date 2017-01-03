@@ -10,7 +10,7 @@
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
     <!-- Actual content of the screen -->
-        <android.support.v4.view.ViewPager
+        <FrameLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"

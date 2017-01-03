@@ -34,8 +34,7 @@ namespace Glimpse.Droid.Activities
         Name = "glimpse.droid.activities.MainActivity")]
     public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
-        private ViewPager _viewPager;
-        private MvxViewPagerFragmentAdapter _adapter;
+       
 
         private DrawerLayout _drawerLayout;
         private MvxActionBarDrawerToggle _drawerToggle;
@@ -86,26 +85,8 @@ namespace Glimpse.Droid.Activities
                 _drawerLayout.SetDrawerListener(_drawerToggle);
 
                 ViewModel.ShowMenu();
-
-                var fragments = new List<MvxViewPagerFragmentAdapter.FragmentInfo>
-                  {
-                    new MvxViewPagerFragmentAdapter.FragmentInfo
-                    {
-                      FragmentType = typeof(Views.MapFragment),
-                      Title = "Fragment1",
-                      ViewModel = ViewModel.MapViewModel
-                        },
-                    new MvxViewPagerFragmentAdapter.FragmentInfo
-                    {
-                      FragmentType = typeof(Views.TilesFragment),
-                      Title = "Fragment2",
-                      ViewModel = ViewModel.TilesViewModel
-                    }
-                  };
-
-                _viewPager = FindViewById<ViewPager>(Resource.Id.content_frame);
-                _adapter = new MvxViewPagerFragmentAdapter(this, SupportFragmentManager, fragments);
-                _viewPager.Adapter = _adapter;
+                ViewModel.ShowViewPager();
+               
 
             }
         } 

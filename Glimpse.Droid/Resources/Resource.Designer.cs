@@ -3148,6 +3148,9 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a0080
 			public const int user_profile_photo = 2131361920;
 			
+			// aapt resource value: 0x7f0a00d9
+			public const int viewPager = 2131362009;
+			
 			// aapt resource value: 0x7f0a000a
 			public const int view_offset_helper = 2131361802;
 			
@@ -3457,7 +3460,10 @@ namespace Glimpse.Droid
 			public const int VendorSignUpView = 2130903119;
 			
 			// aapt resource value: 0x7f030050
-			public const int week = 2130903120;
+			public const int ViewPagerView = 2130903120;
+			
+			// aapt resource value: 0x7f030051
+			public const int week = 2130903121;
 			
 			static Layout()
 			{
