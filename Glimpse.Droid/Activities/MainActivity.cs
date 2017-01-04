@@ -164,5 +164,34 @@ namespace Glimpse.Droid.Activities
                 return false;
             }
         }
+
+
+        //Liststener for on back pressed used in the viewpager fragment
+        protected OnBackPressedListener onBackPressedListener;
+
+        public interface OnBackPressedListener
+        {
+            void doBack();
+        }
+
+        public void setOnBackPressedListener(OnBackPressedListener onBackPressedListener)
+        {
+            this.onBackPressedListener = onBackPressedListener;
+        }
+
+        public override void OnBackPressed()
+        {
+            if (onBackPressedListener != null)
+            onBackPressedListener.doBack();
+        else
+            base.OnBackPressed();
+        }
+
+        protected override void OnDestroy()
+        {
+            onBackPressedListener = null;
+            base.OnDestroy();
+        }
+
     }
 }

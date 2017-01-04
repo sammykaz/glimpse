@@ -17,7 +17,7 @@ namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame, true)]
     [Register("glimpse.droid.views.ViewPagerFragment")]
-    public class ViewPagerFragment : MvxFragment<ViewPagerViewModel>, IOnPageChangeListener
+    public class ViewPagerFragment : MvxFragment<ViewPagerViewModel>, IOnPageChangeListener, MainActivity.OnBackPressedListener
     {
 
         private ViewPager _viewPager;
@@ -32,6 +32,7 @@ namespace Glimpse.Droid.Views
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
+            (this.Activity as MainActivity).setOnBackPressedListener(this);
             (this.Activity as MainActivity).SetCustomTitle("Map");
 
             var fragments = new List<MvxViewPagerFragmentAdapter.FragmentInfo>
@@ -54,11 +55,6 @@ namespace Glimpse.Droid.Views
             _adapter = new MvxViewPagerFragmentAdapter(this.Context, ChildFragmentManager, fragments);
             _viewPager.Adapter = _adapter;
             _viewPager.AddOnPageChangeListener(this);
-          /*  _viewPager.AddOnPageChangeListener(new SimpleOnPageChangeListener()
-            {
-                public override 
-                 
-             });*/
         }
 
         public void OnPageScrollStateChanged(int state)
@@ -77,6 +73,20 @@ namespace Glimpse.Droid.Views
             (this.Activity as MainActivity).SetCustomTitle("Map");
             else if (position == 1)
                 (this.Activity as MainActivity).SetCustomTitle("Tiles");
+        }
+
+        public void doBack()
+        {
+
+            if (_viewPager.CurrentItem == 1 && _viewPager.IsShown)
+            {
+                _viewPager.SetCurrentItem(0, true);
+            }
+            else
+            {
+                (this.Activity as MainActivity).setOnBackPressedListener(null);
+                (this.Activity as MainActivity).OnBackPressed();
+            }
         }
     }
 }
