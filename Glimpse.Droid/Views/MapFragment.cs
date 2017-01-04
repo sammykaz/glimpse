@@ -50,7 +50,7 @@ namespace Glimpse.Droid.Views
         public override void OnActivityCreated(Bundle p0)
         {
             base.OnActivityCreated(p0);
-            (this.Activity as MainActivity).SetCustomTitle("MapView");
+           // (this.Activity as MainActivity).SetCustomTitle("MapView");
             MapsInitializer.Initialize(Activity);   
         }
 
