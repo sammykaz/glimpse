@@ -262,6 +262,11 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
@@ -288,6 +293,13 @@
     <Content Include="Global.asax" />
     <Content Include="Gruntfile.js" />
     <Content Include="karma.conf.js" />
+    <None Include="Resources\pic2.gif" />
+    <None Include="Resources\pic3.jpg" />
+    <None Include="Resources\pic4.jpg" />
+    <None Include="Resources\pic5.jpg" />
+    <None Include="Resources\pic6.jpg" />
+    <None Include="Resources\pic1.png" />
+    <None Include="Resources\pic0.png" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -1194,6 +1206,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612280012115_enum.resx">
       <DependentUpon>201612280012115_enum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
