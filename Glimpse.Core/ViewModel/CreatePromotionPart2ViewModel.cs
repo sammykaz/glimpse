@@ -10,15 +10,15 @@ namespace Glimpse.Core.ViewModel
 {
     public class CreatePromotionPart2ViewModel : BaseViewModel
     {
-        private readonly IPromotionDataService promotionDataService;
-        private IVendorDataService vendorDataService;
+        private readonly IPromotionDataService _promotionDataService;
+        private IVendorDataService _vendorDataService;
         Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
         private Categories selectedCategory;
 
         public CreatePromotionPart2ViewModel(IPromotionDataService promotionDataService, IVendorDataService vendorDataService)
         {
-            this.promotionDataService = promotionDataService;
-            this.vendorDataService = vendorDataService;
+            _promotionDataService = promotionDataService;
+            _vendorDataService = vendorDataService;
         }
 
         protected override void InitFromBundle(IMvxBundle parameters)

@@ -15,7 +15,7 @@ namespace Glimpse.Core.Model
 
         public string Description { get; set; }      
 
-        public Category Categories { get; set; }
+        public Categories Category { get; set; }
 
         public string CompanyName { get; set; }
 
