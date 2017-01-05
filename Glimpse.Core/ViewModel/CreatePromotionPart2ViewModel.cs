@@ -86,6 +86,7 @@ namespace Glimpse.Core.ViewModel
                     //Calculate DateTime span
                     //TimeSpan promotionLength = _promotionEndDate - _promotionStartDate;
 
+
                     Vendor vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
 
                     Promotion promotion = new Promotion()

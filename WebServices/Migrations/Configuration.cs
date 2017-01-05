@@ -1,9 +1,13 @@
 namespace WebServices.Migrations
 {
+    using Glimpse.Core.Services.General;
     using Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
+    using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.IO;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<WebServices.Models.GlimpseDbContext>
@@ -11,408 +15,210 @@ namespace WebServices.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-        }
+        }       
+
 
         protected override void Seed(WebServices.Models.GlimpseDbContext context)
         {
-            // Tuple<string, string> passwordTuple = Cryptography.EncryptAes("password");
-            //string password = passwordTuple.Item1.
-            /*
-            IList<User> users = new List<User>();
 
-            for (int i = 0; i < 100; i++)
+          //  IList<Vendor> vendors = generateVendors();
+
+            IList<Promotion> promotions = generatePromotions(2, context.Vendors.Select(vendor => vendor.VendorId).ToList());
+
+            
+
+
+
+      //      foreach (Vendor vendor in vendors)
+       //         context.Vendors.Add(vendor);
+
+
+            foreach (Promotion promotion in promotions)
+                context.Promotions.Add(promotion);
+
+
+            base.Seed(context); 
+        }
+
+        private List<Promotion> generatePromotions(int numberOfPromotions, List<int> vendorIds)
+        {
+            List<Promotion> promotions = new List<Promotion>();
+
+            for(int i = 0; i < numberOfPromotions; i++)
             {
-                users.Add(new User()
+                //get random vendorid
+                int vendorId = vendorIds[random.Next(0, vendorIds.Count)];
+
+                promotions.Add(new Promotion()
                 {
-                    Email = Faker.Internet.Email(),
-                    Password = RandomString(8),
-                    Salt = "userSalt"
+                    Title = Faker.Lorem.Sentence(1),
+                    Description = Faker.Lorem.Sentence(3),
+                    Category = GetRandomCategory(),
+                    PromotionStartDate = DateTime.Now,
+                    PromotionEndDate = GetRandomDate(),
+                    PromotionImage = GetByteArrayOfRandomImage(),
+                    // need to access the vendors i just created
+                    VendorId = vendorId                    
                 });
             }
 
-            IList<Promotion> promotions1 = new List<Promotion>();
-            IList<Promotion> promotions2 = new List<Promotion>();
-            IList<Promotion> promotions3 = new List<Promotion>();
-            IList<Promotion> promotions4 = new List<Promotion>();
-            IList<Promotion> promotions5 = new List<Promotion>();
-            IList<Promotion> promotions6 = new List<Promotion>();
-            IList<Promotion> promotions7 = new List<Promotion>();
-            IList<Promotion> promotions8 = new List<Promotion>();
-            IList<Promotion> promotions9 = new List<Promotion>();
-            IList<Promotion> promotions10 = new List<Promotion>();
+            return promotions;  
+        }
 
-            foreach (Promotion promotion in promotions1)
+        private byte[] GetByteArrayOfRandomImage()
+        {
+
+            //get random picture from the ressources
+            Bitmap image;//= WebServices.Properties.Resources.pic1;
+            int pictureIndex = random.Next(7);
+
+            switch (pictureIndex)
             {
-                promotions1.Add(new Promotion()
-                {
-                    Title = Faker.Lorem.Words(2).ToString(),
-                    Description = Faker.Lorem.Sentence(5),
-                    Categories = GetRandomCategory(),
-                    PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate()
-                });
+                case 0:
+                    image = WebServices.Properties.Resources.pic0;
+                    break;
+                case 1:
+                    image = WebServices.Properties.Resources.pic1;
+                    break;
+                case 2:
+                    image = WebServices.Properties.Resources.pic2;
+                    break;
+                case 3:
+                    image = WebServices.Properties.Resources.pic3;
+                    break;
+                case 4:
+                    image = WebServices.Properties.Resources.pic4;
+                    break;
+                case 5:
+                    image = WebServices.Properties.Resources.pic5;
+                    break;
+                case 6:
+                    image = WebServices.Properties.Resources.pic6;
+                    break;
+                default:
+                    image = WebServices.Properties.Resources.pic0;
+                    break;
+            }           
+
+            byte[] data;
+
+            using (var memoryStream = new MemoryStream())
+            {
+                image.Save(memoryStream, ImageFormat.Bmp);
+
+                data = memoryStream.ToArray();
             }
 
-            foreach (Promotion promotion in promotions2)
+            return data;
+        }
+
+        private List<Vendor> generateVendors()
+        {
+            List<string> defaultVendorNames = new List<string>()
             {
-                promotions2.Add(new Promotion()
+                "sam",
+                "eric",
+                "joseph",
+                "omer",
+                "asma"
+            };
+
+
+
+            List<Vendor> defaultVendors = new List<Vendor>();
+
+            foreach(string name in defaultVendorNames)
+            {
+                //have an issue with using PCLCrypto, meanwhile must be done manually
+                //Tuple<string, string> passwordTuple = Cryptography.EncryptAes(name);
+
+                defaultVendors.Add(new Vendor()
                 {
-                    Title = Faker.Lorem.Words(2).ToString(),
-                    Description = Faker.Lorem.Sentence(5),
-                    Categories = GetRandomCategory(),
-                    PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate()
-                    
-                });
-            }
-
-            foreach (Promotion promotion in promotions3)
-            {
-                promotions3.Add(new Promotion()
-                {
-                    Title = Faker.Lorem.Words(2).ToString(),
-                    Description = Faker.Lorem.Sentence(5),
-                    Categories = GetRandomCategory(),
-                    PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate()
-                    
-                });
-            }
-
-            foreach (Promotion promotion in promotions4)
-            {
-                promotions4.Add(new Promotion()
-                {
-                    Title = Faker.Lorem.Words(2).ToString(),
-                    Description = Faker.Lorem.Sentence(5),
-                    Categories = GetRandomCategory(),
-                    PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate()
-                    
-                });
-            }
-
-            foreach (Promotion promotion in promotions5)
-            {
-                promotions5.Add(new Promotion()
-                {
-                    Title = Faker.Lorem.Words(2).ToString(),
-                    Description = Faker.Lorem.Sentence(5),
-                    Categories = GetRandomCategory(),
-                    PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate()
-                    
-                });
-            }
-
-            foreach (Promotion promotion in promotions6)
-            {
-                promotions6.Add(new Promotion()
-                {
-                    Title = Faker.Lorem.Words(2).ToString(),
-                    Description = Faker.Lorem.Sentence(5),
-                    Categories = GetRandomCategory(),
-                    PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate()
-                    
-                });
-            }
-
-            foreach (Promotion promotion in promotions7)
-            {
-                promotions7.Add(new Promotion()
-                {
-                    Title = Faker.Lorem.Words(2).ToString(),
-                    Description = Faker.Lorem.Sentence(5),
-                    Categories = GetRandomCategory(),
-                    PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate()
-                    
-                });
-            }
-
-            foreach (Promotion promotion in promotions8)
-            {
-                promotions8.Add(new Promotion()
-                {
-                    Title = Faker.Lorem.Words(2).ToString(),
-                    Description = Faker.Lorem.Sentence(5),
-                    Categories = GetRandomCategory(),
-                    PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate()
-                    
-                });
-            }
-
-            foreach (Promotion promotion in promotions9)
-            {
-                promotions9.Add(new Promotion()
-                {
-                    Title = Faker.Lorem.Words(2).ToString(),
-                    Description = Faker.Lorem.Sentence(5),
-                    Categories = GetRandomCategory(),
-                    PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate()
-                    
-                });
-            }
-
-            foreach (Promotion promotion in promotions10)
-            {
-                promotions10.Add(new Promotion()
-                {
-                    Title = Faker.Lorem.Words(2).ToString(),
-                    Description = Faker.Lorem.Sentence(5),
-                    Categories = GetRandomCategory(),
-                    PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate()
-                    
-                });
-            }
-
-            foreach (Promotion promotion in promotions1)
-            {
-                promotions1.Add(new Promotion()
-                {
-                    Title = Faker.Lorem.Words(2).ToString(),
-                    Description = Faker.Lorem.Sentence(5),
-                    Categories = GetRandomCategory(),
-                    PromotionStartDate = new DateTime(2016, 12, 1),
-                    PromotionEndDate = GetRandomDate()
-                    
-                });
-            }
-
-            IList<Vendor> vendors = new List<Vendor>();
-
-            vendors.Add(new Vendor()
-            {
-                Email = Faker.Internet.Email(),
-                Password = RandomString(8),
-                Salt = "vendorSalt",
-                CompanyName = Faker.Company.Name(),
-                Address = Faker.Address.Country() + "," + Faker.Address.UsState() + "," + Faker.Address.City() +
-                              "," + Faker.Address.StreetSuffix() + "," + Faker.Address.ZipCode(),
-                Telephone = Faker.Phone.Number(),
-                Location = GetRandomLatLon(),
-                Promotions = promotions1
-            });
-
-            vendors.Add(new Vendor()
-            {
-                Email = Faker.Internet.Email(),
-                Password = RandomString(8),
-                Salt = "vendorSalt",
-                CompanyName = Faker.Company.Name(),
-                Address = Faker.Address.Country() + "," + Faker.Address.UsState() + "," + Faker.Address.City() +
-                              "," + Faker.Address.StreetSuffix() + "," + Faker.Address.ZipCode(),
-                Telephone = Faker.Phone.Number(),
-                Location = GetRandomLatLon(),
-                Promotions = promotions2
-            });
-
-            vendors.Add(new Vendor()
-            {
-                Email = Faker.Internet.Email(),
-                Password = RandomString(8),
-                Salt = "vendorSalt",
-                CompanyName = Faker.Company.Name(),
-                Address = Faker.Address.Country() + "," + Faker.Address.UsState() + "," + Faker.Address.City() +
-                              "," + Faker.Address.StreetSuffix() + "," + Faker.Address.ZipCode(),
-                Telephone = Faker.Phone.Number(),
-                Location = GetRandomLatLon(),
-                Promotions = promotions3
-            });
-
-            vendors.Add(new Vendor()
-            {
-                Email = Faker.Internet.Email(),
-                Password = RandomString(8),
-                Salt = "vendorSalt",
-                CompanyName = Faker.Company.Name(),
-                Address = Faker.Address.Country() + "," + Faker.Address.UsState() + "," + Faker.Address.City() +
-                              "," + Faker.Address.StreetSuffix() + "," + Faker.Address.ZipCode(),
-                Telephone = Faker.Phone.Number(),
-                Location = GetRandomLatLon(),
-                Promotions = promotions4
-            });
-
-            vendors.Add(new Vendor()
-            {
-                Email = Faker.Internet.Email(),
-                Password = RandomString(8),
-                Salt = "vendorSalt",
-                CompanyName = Faker.Company.Name(),
-                Address = Faker.Address.Country() + "," + Faker.Address.UsState() + "," + Faker.Address.City() +
-                              "," + Faker.Address.StreetSuffix() + "," + Faker.Address.ZipCode(),
-                Telephone = Faker.Phone.Number(),
-                Location = GetRandomLatLon(),
-                Promotions = promotions5
-            });
-
-            vendors.Add(new Vendor()
-            {
-                Email = Faker.Internet.Email(),
-                Password = RandomString(8),
-                Salt = "vendorSalt",
-                CompanyName = Faker.Company.Name(),
-                Address = Faker.Address.Country() + "," + Faker.Address.UsState() + "," + Faker.Address.City() +
-                              "," + Faker.Address.StreetSuffix() + "," + Faker.Address.ZipCode(),
-                Telephone = Faker.Phone.Number(),
-                Location = GetRandomLatLon(),
-                Promotions = promotions6
-            });
-
-            vendors.Add(new Vendor()
-            {
-                Email = Faker.Internet.Email(),
-                Password = RandomString(8),
-                Salt = "vendorSalt",
-                CompanyName = Faker.Company.Name(),
-                Address = Faker.Address.Country() + "," + Faker.Address.UsState() + "," + Faker.Address.City() +
-                              "," + Faker.Address.StreetSuffix() + "," + Faker.Address.ZipCode(),
-                Telephone = Faker.Phone.Number(),
-                Location = GetRandomLatLon(),
-                Promotions = promotions7
-            });
-
-            vendors.Add(new Vendor()
-            {
-                Email = Faker.Internet.Email(),
-                Password = RandomString(8),
-                Salt = "vendorSalt",
-                CompanyName = Faker.Company.Name(),
-                Address = Faker.Address.Country() + "," + Faker.Address.UsState() + "," + Faker.Address.City() +
-                              "," + Faker.Address.StreetSuffix() + "," + Faker.Address.ZipCode(),
-                Telephone = Faker.Phone.Number(),
-                Location = GetRandomLatLon(),
-                Promotions = promotions8
-            });
-
-            vendors.Add(new Vendor()
-            {
-                Email = Faker.Internet.Email(),
-                Password = RandomString(8),
-                Salt = "vendorSalt",
-                CompanyName = Faker.Company.Name(),
-                Address = Faker.Address.Country() + "," + Faker.Address.UsState() + "," + Faker.Address.City() +
-                              "," + Faker.Address.StreetSuffix() + "," + Faker.Address.ZipCode(),
-                Telephone = Faker.Phone.Number(),
-                Location = GetRandomLatLon(),
-                Promotions = promotions9
-            });
-
-            vendors.Add(new Vendor()
-            {
-                Email = Faker.Internet.Email(),
-                Password = RandomString(8),
-                Salt = "vendorSalt",
-                CompanyName = Faker.Company.Name(),
-                Address = Faker.Address.Country() + "," + Faker.Address.UsState() + "," + Faker.Address.City() +
-                              "," + Faker.Address.StreetSuffix() + "," + Faker.Address.ZipCode(),
-                Telephone = Faker.Phone.Number(),
-                Location = GetRandomLatLon(),
-                Promotions = promotions9
-            });
-
-            for (int i = 0; i < 100; i++)
-            {
-                vendors.Add(new Vendor()
-                {
-                    Email = Faker.Internet.Email(),
-                    Password = RandomString(8),
-                    Salt = "vendorSalt",
+                    Email = name + "@gmail.com",
+                    Password = "fakepassword",//passwordTuple.Item1,
+                    Salt = "fakesalt",//passwordTuple.Item2,
                     CompanyName = Faker.Company.Name(),
                     Address = Faker.Address.Country() + "," + Faker.Address.UsState() + "," + Faker.Address.City() +
-                              "," + Faker.Address.StreetSuffix() + "," + Faker.Address.ZipCode(),
+                            "," + Faker.Address.StreetSuffix() + "," + Faker.Address.ZipCode(),
                     Telephone = Faker.Phone.Number(),
-                    Location = GetRandomLatLon(),
-                    Promotions = null
+                    Location = GetRandomLatLon()                    
                 });
             }
 
+            return defaultVendors;
 
-            foreach (Promotion promotion in promotions1)
-            {
-                context.Promotions.Add(promotion);
-            }
+       }
 
-            foreach (Promotion promotion in promotions2)
-            {
-                context.Promotions.Add(promotion);
-            }
 
-            foreach (Promotion promotion in promotions3)
-            {
-                context.Promotions.Add(promotion);
-            }
+       //     protected override void Seed(WebServices.Models.GlimpseDbContext context)
+     //       {
+          /*
+           * 
 
-            foreach (Promotion promotion in promotions4)
-            {
-                context.Promotions.Add(promotion);
-            }
+                foreach (Promotion promotion in promotions1)
+                {
+                    context.Promotions.Add(promotion);
+                }
 
-            foreach (Promotion promotion in promotions5)
-            {
-                context.Promotions.Add(promotion);
-            }
+                foreach (Promotion promotion in promotions2)
+                {
+                    context.Promotions.Add(promotion);
+                }
 
-            foreach (Promotion promotion in promotions6)
-            {
-                context.Promotions.Add(promotion);
-            }
+                foreach (Promotion promotion in promotions3)
+                {
+                    context.Promotions.Add(promotion);
+                }
 
-            foreach (Promotion promotion in promotions7)
-            {
-                context.Promotions.Add(promotion);
-            }
+                foreach (Promotion promotion in promotions4)
+                {
+                    context.Promotions.Add(promotion);
+                }
 
-            foreach (Promotion promotion in promotions8)
-            {
-                context.Promotions.Add(promotion);
-            }
+                foreach (Promotion promotion in promotions5)
+                {
+                    context.Promotions.Add(promotion);
+                }
 
-            foreach (Promotion promotion in promotions9)
-            {
-                context.Promotions.Add(promotion);
-            }
+                foreach (Promotion promotion in promotions6)
+                {
+                    context.Promotions.Add(promotion);
+                }
 
-            foreach (Promotion promotion in promotions10)
-            {
-                context.Promotions.Add(promotion);
-            }
+                foreach (Promotion promotion in promotions7)
+                {
+                    context.Promotions.Add(promotion);
+                }
 
-            foreach (User user in users)
-            {
-                context.Users.Add(user);
-            }
+                foreach (Promotion promotion in promotions8)
+                {
+                    context.Promotions.Add(promotion);
+                }
 
-            foreach (Vendor vendor in vendors)
-            {
-                context.Vendors.Add(vendor);
-            }
+                foreach (Promotion promotion in promotions9)
+                {
+                    context.Promotions.Add(promotion);
+                }
 
-            base.Seed(context);
+                foreach (Promotion promotion in promotions10)
+                {
+                    context.Promotions.Add(promotion);
+                }
 
-            /*
-            var name = Faker.Name.FullName();  // "Alene Hayes"
-            Faker.Internet.Email(name);  // "alene_hayes@hartmann.co.uk"
-            Faker.Internet.UserName(name);  // "alene.hayes"
-            Faker.Internet.Email();  // "morris@friesen.us"
-            Faker.Internet.FreeEmail();  // "houston_purdy@yahoo.com"
-            Faker.Internet.DomainName();  // "larkinhirthe.com"
-            Faker.Phone.Number();  // "(033)216-0058 x0344"
-            Faker.Address.StreetAddress();  // "52613 Turcotte Lock"
-            Faker.Address.SecondaryAddress();  // "Suite 656"
-            Faker.Address.City();  // "South Wavaside"
-            Faker.Address.UkCounty();  // "West Glamorgan"
-            Faker.Address.UkPostCode().ToUpper();  // "BQ7 3AM"
-            Faker.Address.UsState();  // "Tennessee"
-            Faker.Address.ZipCode();  // "66363-7828"
-            Faker.Company.Name();  // "Dickens Group"
-            */
-            
-        }
+                foreach (User user in users)
+                {
+                    context.Users.Add(user);
+                }
+
+                foreach (Vendor vendor in vendors)
+                {
+                    context.Vendors.Add(vendor); */
+    //        }
+
+
+
+
+
 
 
 
@@ -427,8 +233,15 @@ namespace WebServices.Migrations
 
         private static Location GetRandomLatLon()
         {
-            double lat = random.NextDouble() * (360 - 180);
-            double lon = random.NextDouble() * (180 - 90);
+            //this is around hall building
+            double centerLat = 45.495393;
+            double centerLng = -73.578862;
+
+            //how far from center promotions will be generated
+            double radius = 0.02;
+
+            double lat = centerLat + (random.NextDouble() * radius);
+            double lon = centerLng + (random.NextDouble() * radius);
             return new Location(lat, lon);
         }
 
@@ -441,14 +254,11 @@ namespace WebServices.Migrations
 
         private static DateTime GetRandomDate()
         {
-            DateTime start = new DateTime(2016, 12, 1);
-            DateTime end = new DateTime(2017, 31, 1);
+            DateTime start = DateTime.Now;
+           
+            int randomDays = random.Next(30);
 
-            var range = start - end;
-
-            var randTimeSpan = new TimeSpan((long)(random.NextDouble() * range.Ticks));
-
-            return end + randTimeSpan;
+            return start.AddDays(randomDays);         
         }
 
         private static bool GetRandomBoolean()
