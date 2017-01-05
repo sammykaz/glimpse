@@ -8,6 +8,7 @@ using MvvmCross.Core.ViewModels;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
 using Newtonsoft.Json;
+using Glimpse.Core.Services.General;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -15,10 +16,12 @@ namespace Glimpse.Core.ViewModel
     {
 
         private IPromotionDataService _promotionDataService;
+        private IVendorDataService _vendorDataService;
         public List<Promotion> _myPromotionList;
 
-        public VendorProfilePageViewModel(IMvxMessenger messenger, IPromotionDataService promotionDataService) : base(messenger)
+        public VendorProfilePageViewModel(IMvxMessenger messenger, IPromotionDataService promotionDataService, IVendorDataService vendorDataService) : base(messenger)
         {
+            _vendorDataService = vendorDataService;
             _promotionDataService = promotionDataService;
             getPromotions.Execute();
         }
@@ -46,7 +49,9 @@ namespace Glimpse.Core.ViewModel
                 {
                     //var result = await _promotionDataService.GetPromotions(6);
                     PromotionList = await _promotionDataService.GetPromotions();
-                    int x = 5;
+                    Vendor vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
+                    List<Promotion> promotionForVendor = PromotionList.Where(c => c.VendorId == vendor.VendorId).ToList();
+                    PromotionList = promotionForVendor;
                 });
             }
         }

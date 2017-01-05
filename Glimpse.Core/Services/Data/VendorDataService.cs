@@ -42,8 +42,7 @@ namespace Glimpse.Core.Services.Data
         }
 
         public async Task EditVendor(int id, Vendor vendor)
-        {
-            string test = "";
+        {         
             await _vendorRepository.PutVendor(id, vendor);
         }
     }

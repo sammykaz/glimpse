@@ -86,6 +86,7 @@ namespace Glimpse.Core.ViewModel
                     //Calculate DateTime span
                     //TimeSpan promotionLength = _promotionEndDate - _promotionStartDate;
 
+                    Vendor vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
 
                     Promotion promotion = new Promotion()
                     {
@@ -95,22 +96,18 @@ namespace Glimpse.Core.ViewModel
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
                         PromotionImage = Bytes,
-                    };
+                        VendorId = vendor.VendorId,
+                    };                  
 
-                    //Vendor vendor = await vendorDataService.SearchVendorByEmail( Settings.Email);
+                    vendor.Promotions.Add(promotion);
 
+                    await _promotionDataService.StorePromotion(promotion);
 
-                    //TODO Fix how pomotion gets added
+                    //this next line is not actually adding promotions, dont know why, works for all other
+                    //await _vendorDataService.EditVendor(vendor.VendorId, vendor);
 
+                    ShowViewModel<VendorProfilePageViewModel>();
 
-
-                    await promotionDataService.StorePromotion(promotion);
-                    //vendor.Promotions.Add(promotion);
-                    //vendor.CompanyName = "modified ";
-
-                    //await vendorDataService.EditVendor(vendor.VendorId, vendor);
-                   
-                    ShowViewModel<MapViewModel>();
                 });
             }
         }

@@ -19,6 +19,12 @@ using Android.Net;
 using Android.Graphics;
 using MvvmCross.Binding.BindingContext;
 using System.IO;
+using Android.Support.V4.View;
+using Glimpse.Droid.Adapter;
+using System.Collections.Generic;
+using Glimpse.Droid.Views;
+using MvvmCross.Platform;
+using MvvmCross.Core.ViewModels;
 
 namespace Glimpse.Droid.Activities
 {
@@ -28,6 +34,8 @@ namespace Glimpse.Droid.Activities
         Name = "glimpse.droid.activities.MainActivity")]
     public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
+       
+
         private DrawerLayout _drawerLayout;
         private MvxActionBarDrawerToggle _drawerToggle;
         private FragmentManager _fragmentManager;
@@ -44,13 +52,15 @@ namespace Glimpse.Droid.Activities
             set { base.ViewModel = value; }
         }
 
+    
+
         public static MainActivity getInstance()
         {
             return mainActivity;
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
-        {
+        { 
             base.OnCreate(savedInstanceState);
             if (CheckAuthenticationStatus())
             {
@@ -74,10 +84,13 @@ namespace Glimpse.Droid.Activities
                 _drawerToggle.DrawerIndicatorEnabled = true;
                 _drawerLayout.SetDrawerListener(_drawerToggle);
 
-               ViewModel.ShowMenu();
-               ViewModel.ShowMap();
+                ViewModel.ShowMenu();
+                ViewModel.ShowViewPager();
+               
+
             }
-        }      
+        } 
+    
 
         private void _drawerToggle_DrawerOpened(object sender, ActionBarDrawerEventArgs e)
         {
@@ -151,5 +164,34 @@ namespace Glimpse.Droid.Activities
                 return false;
             }
         }
+
+
+        //Liststener for on back pressed used in the viewpager fragment
+        protected OnBackPressedListener onBackPressedListener;
+
+        public interface OnBackPressedListener
+        {
+            void doBack();
+        }
+
+        public void setOnBackPressedListener(OnBackPressedListener onBackPressedListener)
+        {
+            this.onBackPressedListener = onBackPressedListener;
+        }
+
+        public override void OnBackPressed()
+        {
+            if (onBackPressedListener != null)
+            onBackPressedListener.doBack();
+        else
+            base.OnBackPressed();
+        }
+
+        protected override void OnDestroy()
+        {
+            onBackPressedListener = null;
+            base.OnDestroy();
+        }
+
     }
 }

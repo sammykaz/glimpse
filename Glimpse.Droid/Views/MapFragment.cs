@@ -25,7 +25,7 @@ using Android.Graphics;
 
 namespace Glimpse.Droid.Views
 {
-    [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame, true)]
+    [MvxFragment(typeof(MainViewModel), Resource.Id.viewPager, true)]
     [Register("glimpse.droid.views.MapFragment")]
     public class MapFragment : MvxFragment<MapViewModel>, IOnMapReadyCallback, ClusterManager.IOnClusterItemClickListener, ClusterManager.IOnClusterClickListener
     {
@@ -56,7 +56,7 @@ namespace Glimpse.Droid.Views
         public override void OnActivityCreated(Bundle p0)
         {
             base.OnActivityCreated(p0);
-            (this.Activity as MainActivity).SetCustomTitle("MapView");
+           // (this.Activity as MainActivity).SetCustomTitle("MapView");
             MapsInitializer.Initialize(Activity);   
         }
 
