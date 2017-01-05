@@ -3,7 +3,7 @@
 app.controller('SignupController', ['$scope', '$http', 'dataService','$state', function ($scope, $http, dataService, $state) {
 
     $scope.user = undefined;
-    console.log(dataService.GetVendors().query());
+    console.log(dataService.getVendors().query());
     $scope.createUser = function () {
         var addressData = {
             PostalCode: $scope.user.postal,
@@ -26,7 +26,7 @@ app.controller('SignupController', ['$scope', '$http', 'dataService','$state', f
             telephone: $scope.user.personalphone,
             Location: location
         }
-        dataService.GetVendors().save(userData, function (resp, headers) {
+        dataService.getVendors().save(userData, function (resp, headers) {
             //success callback
             $state.go("login");
             console.log(resp);

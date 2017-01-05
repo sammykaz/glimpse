@@ -5,8 +5,11 @@
             return response.data;
         })
     }
-    fac.GetVendors = function () {
-        return $resource('/api/vendors', { user: "@vendor" });
+    fac.getVendors = function () {
+        return $resource('/api/vendors/:vendor', { user: "@vendor" });
+    }
+    fac.getPromotions = function () {
+        return $resource('/api/promotions/:promotion', { user: "@promotion" });
     }
     return fac;
 }])

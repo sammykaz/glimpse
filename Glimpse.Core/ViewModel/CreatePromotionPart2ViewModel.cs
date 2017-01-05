@@ -10,15 +10,15 @@ namespace Glimpse.Core.ViewModel
 {
     public class CreatePromotionPart2ViewModel : BaseViewModel
     {
-        private readonly IPromotionDataService _promotionDataService;
-        private IVendorDataService _vendorDataService;
+        private readonly IPromotionDataService promotionDataService;
+        private IVendorDataService vendorDataService;
         Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
-        private Category selectedCategory;
+        private Categories selectedCategory;
 
         public CreatePromotionPart2ViewModel(IPromotionDataService promotionDataService, IVendorDataService vendorDataService)
         {
-            _promotionDataService = promotionDataService;
-            _vendorDataService = vendorDataService;
+            this.promotionDataService = promotionDataService;
+            this.vendorDataService = vendorDataService;
         }
 
         protected override void InitFromBundle(IMvxBundle parameters)
@@ -80,7 +80,7 @@ namespace Glimpse.Core.ViewModel
                     foreach (string key in dataFromCreatePromotionPart1.Keys)
                     {
                         if (dataFromCreatePromotionPart1[key] == "True")
-                            selectedCategory = new Category((Categories)Enum.Parse(typeof(Categories), key, true));
+                            selectedCategory = (Categories) Enum.Parse(typeof(Categories), key, true);
                     }
 
                     //Calculate DateTime span
@@ -92,11 +92,7 @@ namespace Glimpse.Core.ViewModel
                     {
                         Title = dataFromCreatePromotionPart1["PromotionTitle"],
                         Description = dataFromCreatePromotionPart1["PromotionDescription"],
-
-
-                        Categories = selectedCategory,
-
-
+                        Category = selectedCategory,
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
                         PromotionImage = Bytes,
@@ -108,9 +104,10 @@ namespace Glimpse.Core.ViewModel
                     await _promotionDataService.StorePromotion(promotion);
 
                     //this next line is not actually adding promotions, dont know why, works for all other
-                    await _vendorDataService.EditVendor(vendor.VendorId, vendor);
+                    //await _vendorDataService.EditVendor(vendor.VendorId, vendor);
 
                     ShowViewModel<VendorProfilePageViewModel>();
+
                 });
             }
         }

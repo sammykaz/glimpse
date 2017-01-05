@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<Tests>
+  <Test>
+    <Name>DefaultTest Test Variable should be 1 (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>DefaultTest Test Variable should be 1 (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>HomeController Data should be empty initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>HomeController Data should be empty initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController should have the google maps url initialized (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController should have the google maps url initialized (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>ProfileController should have editOn set as false initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>ProfileController should have editOn set as false initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>ProfileController should have editOn set as true when edit method called  (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>ProfileController should have editOn set as true when edit method called  (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController should have the reset filter set as false initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController should have the reset filter set as false initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController should set crop enable as false initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController should set crop enable as false initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController should have saveCrop set as false initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController should have saveCrop set as false initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController should have isCropImageEnable and saveCrop enabled when the cropImage method is called (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController should have isCropImageEnable and saveCrop enabled when the cropImage method is called (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController should have isCropImageEnable and saveCrop disabled when the cancelCrop method is called (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController should have isCropImageEnable and saveCrop disabled when the cancelCrop method is called (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController should have clear image and hide crop preview when the removeImage method is called (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController should have clear image and hide crop preview when the removeImage method is called (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>SignupController should have the user undefined initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>SignupController should have the user undefined initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>SignupController should initialize the scope value (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>SignupController should initialize the scope value (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+</Tests>

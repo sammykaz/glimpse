@@ -5,17 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebServices.Models
 {
-
-    public enum Categories
-    {
-        Footwear,
-        Electronics,
-        Jewellery,
-        Restaurants,
-        Services,
-        Apparel
-    }
-
     public class Promotion
     {
         [Key]
@@ -37,7 +26,16 @@ namespace WebServices.Models
  
         public byte[] PromotionImage { get; set;}
 
-
     }
 
+    public enum Categories
+    {
+        Footwear,
+        Electronics,
+        Jewellery,
+        Restaurants,
+        Services,
+        Apparel
+    }
+   
 }

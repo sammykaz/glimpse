@@ -29,7 +29,7 @@ namespace Glimpse.Core.Model
             set { _description = value; }
         }
 
-        public Category Categories { get; set; }
+        public Categories Category { get; set; }
 
         public DateTime PromotionStartDate { get; set; }
 
@@ -39,4 +39,13 @@ namespace Glimpse.Core.Model
 
     }
 
+    public enum Categories
+    {
+        Footwear,
+        Electronics,
+        Jewellery,
+        Restaurants,
+        Services,
+        Apparel
+    }
 }

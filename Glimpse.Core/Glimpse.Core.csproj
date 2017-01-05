@@ -63,6 +63,7 @@
     <Compile Include="Converters\DateTimeValueConverter.cs" />
     <Compile Include="Converters\InMemoryImageConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Helpers\PropValue.cs" />
     <Compile Include="Helpers\LocationChangedHandlerArgs.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Model\App\MenuItem.cs" />
@@ -87,11 +88,11 @@
     <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Services\General\GoogleWebService.cs" />
     <Compile Include="Services\General\Settings.cs" />
-    <Compile Include="Model\Categories.cs" />
     <Compile Include="Utility\MenuOption.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BuyerProfilePageViewModel.cs" />
     <Compile Include="ViewModel\CreatePromotionPart2ViewModel.cs" />
+    <Compile Include="ViewModel\PromotionDialogViewModel.cs" />
     <Compile Include="ViewModel\CreatePromotionViewModel.cs" />
     <Compile Include="ViewModel\LoginMainViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
@@ -246,6 +247,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\" />
+    <Folder Include="Messages\" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
