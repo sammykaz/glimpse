@@ -90,25 +90,37 @@ namespace Glimpse.Core.ViewModel
                                     Image = b.PromotionImage                                             
                                 }).ToList();
 
+
+
             List<Location> promotionLocations = mapPromotions.Select(promotionWithLocation => promotionWithLocation.Location).ToList();
 
-            DistanceMatrix distanceMatrix = await _gwb.GetMultipleDurationResponse(_userLocation, promotionLocations);
+            List<IEnumerable<Location>> splitPromotionLocation = promotionLocations.Chunk(10).ToList();
 
-            
-            for(int i = 0; i < mapPromotions.Count; i++)
+
+            //index to plug result into mapPromotions list
+            int j = 0;
+            foreach(IEnumerable<Location> subList in splitPromotionLocation)
             {
-                if(distanceMatrix.rows[0].elements[i].status.Equals("OK"))
+                List<Location> subListAsList = subList.ToList();
+                DistanceMatrix distanceMatrix = await _gwb.GetMultipleDurationResponse(_userLocation, subListAsList);
+
+                for (int i = 0; i < subListAsList.Count; i++)
                 {
-                    mapPromotions[i].Duration = distanceMatrix.rows[0].elements[i].duration.value;
+                    if (distanceMatrix.rows[0].elements[i].status.Equals("OK"))
+                    {
+                        mapPromotions[j].Duration = distanceMatrix.rows[0].elements[i].duration.value;
+                    }
+                    j++;
+
                 }
-               
-            }
 
-            List<PromotionWithLocation> final = mapPromotions.OrderBy(promotion => promotion.Duration).ToList().FindAll(p => p.Duration != 9999);
-            //GetMultipleDurationResponse(Location origin, List < Location > destination)
+            }  
 
+            List<PromotionWithLocation> final = mapPromotions.OrderBy(promotion => promotion.Duration).ToList().FindAll(p => p.Duration != 9999);          
+         
             return final;
         }
+
 
         public List<PromotionWithLocation> PromotionList
         {
@@ -123,5 +135,21 @@ namespace Glimpse.Core.ViewModel
       
 
 
+    }
+
+    public static class EnumerableExtensions
+    {
+
+        /// <summary>
+        /// Break a list of items into chunks of a specific size
+        /// </summary>
+        public static IEnumerable<IEnumerable<T>> Chunk<T>(this IEnumerable<T> source, int chunksize)
+        {
+            while (source.Any())
+            {
+                yield return source.Take(chunksize);
+                source = source.Skip(chunksize);
+            }
+        }
     }
 }
