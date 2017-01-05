@@ -67,12 +67,15 @@ namespace Glimpse.Droid.Views
             //throw new NotImplementedException();
         }
 
-        public void OnPageSelected(int position)
+        public async void OnPageSelected(int position)
         {
-            if(position == 0)
-            (this.Activity as MainActivity).SetCustomTitle("Map");
+            if (position == 0)
+                (this.Activity as MainActivity).SetCustomTitle("Map");
             else if (position == 1)
+            {
                 (this.Activity as MainActivity).SetCustomTitle("Tiles");
+                 await ViewModel.TilesViewModel.ReloadAsync();
+            }
         }
 
         public void doBack()
