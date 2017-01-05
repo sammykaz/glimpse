@@ -3,30 +3,34 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using Glimpse.Core.Contracts.ViewModel;
 using Glimpse.Core.ViewModel;
-
+using Glimpse.Core.Services;
+using Glimpse.Core.Services.Data;
+using Glimpse.Core.Repositories;
 
 namespace Glimpse.Core.ViewModel
 {
     public class MainViewModel : MvxViewModel, IMainViewModel
     {
-        private readonly Lazy<VendorSignUpViewModel> _signupVendorViewModel;
-        private readonly Lazy<UserSignUpViewModel> _signupUserViewModel;
-        private readonly Lazy<MapViewModel> _mapViewModel;   
+
+        private Lazy<ViewPagerViewModel> viewPager; 
+
 
         public MainViewModel()
         {
-            _mapViewModel = new Lazy<MapViewModel>(Mvx.IocConstruct<MapViewModel>);
-           _signupVendorViewModel = new Lazy<VendorSignUpViewModel>(Mvx.IocConstruct<VendorSignUpViewModel>);
-           _signupUserViewModel = new Lazy<UserSignUpViewModel>(Mvx.IocConstruct<UserSignUpViewModel>);
+            viewPager = new Lazy<ViewPagerViewModel>(Mvx.IocConstruct<ViewPagerViewModel>);
         }
+
+      
+
 
         public void ShowMenu()
         {
             ShowViewModel<MenuViewModel>();
         }
-        public void ShowMap()
+        public void ShowViewPager()
+
         {
-            ShowViewModel<MapViewModel>();
+            ShowViewModel<ViewPagerViewModel>();
         }
       
 

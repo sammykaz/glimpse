@@ -10,15 +10,15 @@ namespace Glimpse.Core.ViewModel
 {
     public class CreatePromotionPart2ViewModel : BaseViewModel
     {
-        private readonly IPromotionDataService promotionDataService;
-        private IVendorDataService vendorDataService;
+        private readonly IPromotionDataService _promotionDataService;
+        private IVendorDataService _vendorDataService;
         Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
         private Categories selectedCategory;
 
         public CreatePromotionPart2ViewModel(IPromotionDataService promotionDataService, IVendorDataService vendorDataService)
         {
-            this.promotionDataService = promotionDataService;
-            this.vendorDataService = vendorDataService;
+            _promotionDataService = promotionDataService;
+            _vendorDataService = vendorDataService;
         }
 
         protected override void InitFromBundle(IMvxBundle parameters)
@@ -85,7 +85,9 @@ namespace Glimpse.Core.ViewModel
 
                     //Calculate DateTime span
                     //TimeSpan promotionLength = _promotionEndDate - _promotionStartDate;
-                    Vendor vendor = await vendorDataService.SearchVendorByEmail(Settings.Email);
+
+
+                    Vendor vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
 
                     Promotion promotion = new Promotion()
                     {
@@ -95,23 +97,18 @@ namespace Glimpse.Core.ViewModel
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
                         PromotionImage = Bytes,
-                        VendorId = vendor.VendorId
-                    };
+                        VendorId = vendor.VendorId,
+                    };                  
 
-                   
+                    vendor.Promotions.Add(promotion);
 
+                    await _promotionDataService.StorePromotion(promotion);
 
-                    //TODO Fix how pomotion gets added
+                    //this next line is not actually adding promotions, dont know why, works for all other
+                    //await _vendorDataService.EditVendor(vendor.VendorId, vendor);
 
+                    ShowViewModel<VendorProfilePageViewModel>();
 
-
-                    await promotionDataService.StorePromotion(promotion);
-                    //vendor.Promotions.Add(promotion);
-                    //vendor.CompanyName = "modified ";
-
-                    //await vendorDataService.EditVendor(vendor.VendorId, vendor);
-                   
-                    ShowViewModel<MapViewModel>();
                 });
             }
         }
