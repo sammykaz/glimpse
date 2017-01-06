@@ -31,7 +31,8 @@ app.controller('SignupController', ['$scope', '$http', 'dataService','$state', f
             $state.go("login");
             console.log(resp);
         },
-            function(err){
+            function (err) {
+               
             // error callback
             console.log(err);
         });

@@ -30,6 +30,22 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
         });
     }
 
+    $scope.editPromotion = function (promotion) {
+        $uibModal.open({
+            templateUrl: '/src/views/createPromotion.html',
+            controller: 'modalController',
+            size: 'lg',
+            scope: $scope,
+            resolve: {
+                promotionDetails: promotion
+            }
+        }).result.then(function (result) {
+            console.log(result);
+        }, function () {
+            console.log("Modal dismissed");
+        });
+    }
+
     var convertCategory = function () {
         switch ($scope.promotions.Category) {
             case 0:
@@ -56,21 +72,25 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
     }
 }]);
 
-app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout, dataService, $http) {
-    $scope.promotionTitle = '';
-    $scope.category = undefined;
-    $scope.description = '';
-    $scope.startDay = undefined;
-    $scope.endDay = undefined;
+
+
+app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout, dataService, $http, promotionDetails) {
+    console.log(promotionDetails);
+    $scope.promotionTitle = promotionDetails.Title || '';
+    $scope.category = promotionDetails.Category || undefined;
+    $scope.description = promotionDetails.Description || '';
+    $scope.startDay = promotionDetails.PromotionStartDate || undefined;
+    $scope.endDay = promotionDetails.PromotionEndDate || undefined;
     $scope.showDateWarning = false;
     $scope.isResetEnable = false;
+    $scope.previewImage = promotionDetails.PromotionImage || undefined;
     $scope.ok = function () {
         if ($scope.sdt > $scope.edt)
             $scope.showDateWarning = true;
         else {
             var image = { file: $scope.previewImage };
             var formdata = new FormData();
-            formdata.append("img",image);
+            formdata.append("img", image);
             var sdt = $scope.sdt;
             var edt = $scope.edt;
             var promotionData = {
@@ -118,14 +138,14 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.saveCrop = false;
     var imageFile = '';
 
-    $scope.$watch('picFile', function() {
-        if(!!$scope.picFile){
-           // debugger;
+    $scope.$watch('picFile', function () {
+        if (!!$scope.picFile) {
+            // debugger;
             imageFile = $scope.picFile;
             $scope.previewImage = imageFile;
         }
     });
-    
+
     var getCategory = function () {
         switch ($scope.promotions.Category) {
             case 0:
