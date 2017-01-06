@@ -88,11 +88,6 @@ namespace Glimpse.Core.Services.General
         {
             string url = baseUrl + "origins=" + origin.Lat + "," + origin.Lng;
 
-            for(int i = 1; i< destinations.Count; i++)
-            {
-                url = url + "|" + origin.Lat + "," + origin.Lng;
-            }
-
             url = url + "&destinations=";
 
             var count = destinations.Count;
