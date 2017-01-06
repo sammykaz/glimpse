@@ -7,12 +7,8 @@ namespace WebServices.Models
 {
     public class Promotion
     {
-        [Key]
-        public int PromotionId { get; set; }
-
-        public int VendorId { get; set; }
-
-        public Vendor Vendor { get; set; }
+        [Key, Column(Order = 1), DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int PromotionId { get; set; }      
 
         public string Title { get; set; }
 
@@ -25,6 +21,11 @@ namespace WebServices.Models
         public DateTime PromotionEndDate { get; set; }
  
         public byte[] PromotionImage { get; set;}
+
+        public virtual Vendor Vendor { get; set; }
+
+        [Key, Column(Order = 2)]
+        public virtual int VendorId { get; set; }
 
     }
 

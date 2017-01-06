@@ -259,6 +259,10 @@
     <Compile Include="Migrations\201701042041527_seedingdata.Designer.cs">
       <DependentUpon>201701042041527_seedingdata.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701062220405_makingpromowork.cs" />
+    <Compile Include="Migrations\201701062220405_makingpromowork.Designer.cs">
+      <DependentUpon>201701062220405_makingpromowork.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Contexts\GlimpseDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -1214,6 +1218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701042041527_seedingdata.resx">
       <DependentUpon>201701042041527_seedingdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701062220405_makingpromowork.resx">
+      <DependentUpon>201701062220405_makingpromowork.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

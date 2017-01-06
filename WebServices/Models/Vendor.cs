@@ -8,7 +8,7 @@ namespace WebServices.Models
     {
         public Vendor()
         {
-            Promotions = new List<Promotion>();
+            Promotions = new HashSet<Promotion>();
         }
         [Key]
         public int VendorId { get; set; }
