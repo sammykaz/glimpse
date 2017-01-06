@@ -42,7 +42,7 @@ namespace Glimpse.Core.Services.Data
             List<Promotion> allPromotions = await promotionRepository.GetPromotions();
             List<Vendor> allVendors = await vendorRepository.GetVendors();
 
-            List<Promotion> activePromotions = allPromotions.Where(e => (e.PromotionEndDate - e.PromotionStartDate).TotalSeconds > 0).ToList();
+            List<Promotion> activePromotions = allPromotions.Where(e => DateTime.Now < e.PromotionEndDate).ToList();
 
             var mapPromotions = allVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,
                                 (e, b) => new
