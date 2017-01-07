@@ -71,7 +71,7 @@ namespace WebServices.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Content(HttpStatusCode.BadRequest, "Any object s");//BadRequest("This is a custom message");(ModelState);
             }
 
             if (id != vendor.VendorId)
