@@ -17,12 +17,21 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
         console.log("No longer logged in");
     })
 
-    $scope.showCreatePromotionModal = function () {
+    $scope.isPromotionExpired = function (promotionEndDate) {
+        var currentDate = new Date();
+        var promotionEndDate = new Date(promotionEndDate);
+        return currentDate.getTime() > promotionEndDate.getTime();
+    }
+
+    $scope.showCreatePromotion = function () {
         $uibModal.open({
             templateUrl: '/src/views/createPromotion.html',
             controller: 'modalController',
             size: 'lg',
-            scope: $scope
+            scope: $scope,
+            resolve: {
+                promotionDetails: {}
+        }
         }).result.then(function (result) {
             console.log(result);
         }, function () {
@@ -34,6 +43,22 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
         $uibModal.open({
             templateUrl: '/src/views/createPromotion.html',
             controller: 'modalController',
+            size: 'lg',
+            scope: $scope,
+            resolve: {
+                promotionDetails: promotion
+            }
+        }).result.then(function (result) {
+            console.log(result);
+        }, function () {
+            console.log("Modal dismissed");
+        });
+    }
+
+    $scope.editPromotionDate = function (promotion) {
+        $uibModal.open({
+            templateUrl: '/src/views/changePromotionDate.html',
+            controller: 'changeDateModalController',
             size: 'lg',
             scope: $scope,
             resolve: {
@@ -79,12 +104,14 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.promotionTitle = promotionDetails.Title || '';
     $scope.category = promotionDetails.Category || undefined;
     $scope.description = promotionDetails.Description || '';
+    $scope.promotionDescription = promotionDetails.Description || '';
     $scope.startDay = promotionDetails.PromotionStartDate || undefined;
     $scope.endDay = promotionDetails.PromotionEndDate || undefined;
+    $scope.sdt = new Date($scope.startDay);
+    $scope.edt = new Date($scope.endDay);
     $scope.showDateWarning = false;
     $scope.isResetEnable = false;
-    $scope.previewImage = promotionDetails.PromotionImage || undefined;
-    $scope.ok = function () {
+    $scope.previewImage = promotionDetails.PromotionImage ? "data:image/JPEG;base64," + promotionDetails.PromotionImage : undefined; $scope.ok = function () {
         if ($scope.sdt > $scope.edt)
             $scope.showDateWarning = true;
         else {
@@ -277,8 +304,9 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         $scope.sdt = new Date();
         $scope.edt = new Date();
     };
-    $scope.today();
-
+    if (!($scope.startDay || $scope.endDay)) {
+        $scope.today();
+    }
     $scope.inlineOptions = {
         customClass: getDayClass,
         minDate: new Date(),
