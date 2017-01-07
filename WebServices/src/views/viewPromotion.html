@@ -8,18 +8,27 @@
                 </div>
                 <div class="offset-sm-4">
                     <div class="col-sm-12 promotion-buttons-edit-create">
-                        <button type="submit" class="btn btn-success pull-right" ng-click="showCreatePromotionModal()">Add</button>
-
+                        <a href="javascript:void(0)" class="btn btn-success pull-right" ng-click="showCreatePromotion()">Add</a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-12 padding-zero members-scroll prat">
                 <div class="col-sm-12 padding-zero" ng-repeat="(key, promotion) in promotions | reverse">
                     <div class="pull-right">
+
                         <button type="button" class="btn btn-white pull-right" ng-click="editPromotion(promotion)">Edit</button>
+                       
                     </div>
-                    <div class="col-sm-12 padding-zero promotion-title">{{promotion.Title}}</div>
-                    <div class="col-sm-12 padding-zero promotion-info">
+
+                    <div class="col-sm-12 padding-zero promotion-title">
+                        {{promotion.Title}}
+
+                        <span ng-show="isPromotionExpired(promotion.PromotionEndDate)" style="float: right;padding-top: 20px;">
+                            <span>Expired</span>
+                            <button type="button" class="btn btn-white pull-right" ng-click="editPromotionDate(promotion)">Re-post</button>
+                        </span>
+
+                    </div>                    <div class="col-sm-12 padding-zero promotion-info">
                         <div class="col-sm-6 padding-zero promotion-info">Promotion Description</div>
                         <div class="col-sm-6 padding-zero promotion-value">{{promotion.Description}}</div>
                     </div>
