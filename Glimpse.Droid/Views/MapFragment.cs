@@ -40,10 +40,7 @@ using Java.Lang;
 using Java.Util;
 using MvvmCross.Platform;
 using Newtonsoft.Json;
-using Org.Json;
-using WebServices.Models;
 using String = System.String;
-using Vendor = Glimpse.Core.Model.Vendor;
 
 namespace Glimpse.Droid.Views
 {
@@ -289,9 +286,10 @@ namespace Glimpse.Droid.Views
             var viewModel = (MapViewModel) ViewModel;
 
             //Purpose of testing 
-            GlimpseDbContext context = new GlimpseDbContext();
             var vendorService = Mvx.Resolve<IVendorDataService>();
-            List <WebServices.Models.Promotion> promotions = DataGenerator.GeneratePromotions(50, context.Vendors.Select(v => v.VendorId).ToList());
+            List<Vendor> vendors = await vendorService.GetVendors();
+
+            var promotions = DataGenerator.GeneratePromotions(50, vendors.Select(v => v.VendorId).ToList());
             
             AddClusterItems(promotions);
            
@@ -349,7 +347,7 @@ namespace Glimpse.Droid.Views
             //GenerateCluster();
         }
 
-        private void AddClusterItems(List<WebServices.Models.Promotion> promotions)
+        private void AddClusterItems(List<Promotion> promotions)
         {
             List<PromotionItem> items = new List<PromotionItem>();
             /* double lat = 45.4582;

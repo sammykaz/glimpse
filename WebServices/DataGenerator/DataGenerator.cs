@@ -1,8 +1,7 @@
-﻿using Glimpse.Core.Services.General;
-using WebServices.Models;
+﻿using Glimpse.Core.Model;
+using Glimpse.Core.Services.General;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Migrations;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;

@@ -25,14 +25,14 @@ namespace WebServices.Migrations
 
           //  IList<Vendor> vendors = generateVendors();
 
-            IList<Promotion> promotions = DataGenerator.GeneratePromotions(50, context.Vendors.Select(vendor => vendor.VendorId).ToList());
+          //  IList<Promotion> promotions = DataGenerator.GeneratePromotions(50, context.Vendors.Select(vendor => vendor.VendorId).ToList());
 
           //      foreach (Vendor vendor in vendors)
           //         context.Vendors.Add(vendor);
 
 
-            foreach (Promotion promotion in promotions)
-                context.Promotions.Add(promotion);
+          //  foreach (Promotion promotion in promotions)
+          //      context.Promotions.Add(promotion);
             
 
             base.Seed(context); 
