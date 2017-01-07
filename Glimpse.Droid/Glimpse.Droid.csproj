@@ -237,6 +237,7 @@
       <HintPath>..\packages\System.Collections.Immutable.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -477,6 +478,7 @@
     <AndroidResource Include="Resources\layout\PromotionDialogView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\Raw\radar.json" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -494,6 +496,10 @@
     <ProjectReference Include="..\Glimpse.Localization\Glimpse.Localization.csproj">
       <Project>{d9032fc3-4f9d-4117-8ac1-c14c46b78a79}</Project>
       <Name>Glimpse.Localization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebServices\WebServices.csproj">
+      <Project>{baf62920-7da2-440f-9a91-56ee74ca6031}</Project>
+      <Name>WebServices</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
