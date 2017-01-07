@@ -1157,6 +1157,7 @@
     <Content Include="src\css\ui-cropper.css" />
     <Content Include="src\css\wp.jpg" />
     <Content Include="src\services\userService.js" />
+    <Content Include="src\views\changePromotionDate.html" />
     <Content Include="src\views\mapView.html" />
     <Content Include="TestScripts\DefaultTest.js" />
     <Content Include="TestScripts\HomeControllerTest.js" />
