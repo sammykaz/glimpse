@@ -124,7 +124,6 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f010161
 			public const int MvxBind = 2130772321;
-
 			
 			// aapt resource value: 0x7f010165
 			public const int MvxDropDownItemTemplate = 2130772325;
@@ -134,7 +133,7 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f010164
 			public const int MvxItemTemplate = 2130772324;
-
+			
 			// aapt resource value: 0x7f010162
 			public const int MvxLang = 2130772322;
 			
@@ -719,7 +718,7 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f010093
 			public const int listPreferredItemPaddingLeft = 2130772115;
-
+			
 			// aapt resource value: 0x7f010094
 			public const int listPreferredItemPaddingRight = 2130772116;
 			
@@ -3561,7 +3560,10 @@ namespace Glimpse.Droid
 			public const int amu_visibility_ground_overlay = 2131034131;
 			
 			// aapt resource value: 0x7f050014
-			public const int style_json = 2131034132;
+			public const int radar = 2131034132;
+			
+			// aapt resource value: 0x7f050015
+			public const int style_json = 2131034133;
 			
 			static Raw()
 			{
