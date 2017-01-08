@@ -66,6 +66,20 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
             }
         }).result.then(function (result) {
             console.log(result);
+            console.log($scope.promotions);
+            promotion["PromotionStartDate"] = result.startDate;
+            promotion["PromotionEndDate"] = result.endDate;
+
+            dataService.updatePromotion().update({
+                promotion: promotion.PromotionId
+            }, promotion).$promise.then(function (user) {
+                $scope.promotions.forEach(function (element, index) {
+                    if (element.PromotionId === promotion.PromotionId) {
+                        $scope.promotions[index].PromotionStartDate = result.startDate;
+                        $scope.promotions[index].PromotionEndDate = result.endDate;
+                    }
+                });
+            });
         }, function () {
             console.log("Modal dismissed");
         });
