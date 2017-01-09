@@ -40,6 +40,11 @@ namespace Glimpse.Core.ViewModel
             await ReloadDataAsync();
         }
 
+        public async Task ReloadAsync()
+        {
+            await ReloadDataAsync();
+        }
+
         protected override async Task InitializeAsync()
         {
             //Creates the locator
