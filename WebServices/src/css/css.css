@@ -40,7 +40,7 @@ body {
 .input-has-error{border: #d9534f; border-radius: .25rem; border-style: double; border-width: 1px;}
 .members-scroll{overflow: scroll; height: 1000px;overflow-x : hidden;}
 .padding-zero{padding-right:0px !important; padding-left:0px!important}
-.promotion-title{vertical-align: middle; text-align:center; line-height: 100px; font-family: 'Exo', sans-serif; color: black;  font-size: 50px; background: white; border-radius: 10px; border-bottom-style: double;}
+.promotion-title{vertical-align: middle; text-align:center; line-height: 100px; font-family: 'Exo', sans-serif; color: black;  font-size: 50px; background: white; border-radius: 10px; border-bottom-style: double; border-color: #4089c9;}
 .promotion-info{vertical-align: middle; text-align:center; line-height: 100px; background: #a4c7db; font-weight: bold; font-family: 'Exo';}
 .promotion-value{vertical-align: middle; text-align:center; line-height: 100px; background:white !important; font-family: 'Exo'; font-weight: initial;}
 .promotion-image{height:500px;}
