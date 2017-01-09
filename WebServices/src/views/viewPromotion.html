@@ -1,16 +1,17 @@
 
 <div class="animated fadeIn">
+
+    <div class="col-sm-12 promotion-buttons-edit-create">
+        <a href="javascript:void(0)" class="btn btn-success pull-right" ng-click="showCreatePromotion()">Add</a>
+    </div>
+
     <div class="promotion-border col-sm-10 offset-sm-1">
         <div class="col-sm-12 promotion-list promotion-table">
+            
+
+            <div class="col-sm-12 promotion-table-b4-title">Pay Less!</div>
             <div class="col-sm-12 promotion-table-title">
-                <div class="col-sm-4">
-                    <h3 class="login-button">Recent Promotions</h3>
-                </div>
-                <div class="offset-sm-4">
-                    <div class="col-sm-12 promotion-buttons-edit-create">
-                        <a href="javascript:void(0)" class="btn btn-success pull-right" ng-click="showCreatePromotion()">Add</a>
-                    </div>
-                </div>
+                <h3 class="login-button">Recent Promotions In Your Area!</h3>
             </div>
             <div class="col-sm-12 padding-zero members-scroll prat">
                 <div class="col-sm-12 padding-zero" ng-repeat="(key, promotion) in promotions | reverse">
@@ -30,11 +31,11 @@
                             <button type="button" class="btn btn-white pull-right" ng-click="editPromotionDate(promotion)">Re-post</button>
                         </span>
 
-                    </div>                    <div class="col-sm-12 padding-zero promotion-info">
-                        <div class="col-sm-6 padding-zero promotion-info">Promotion Description</div>
-                        <div class="col-sm-6 padding-zero promotion-value">{{promotion.Description}}</div>
+                    </div> 
+                    <div class="col-sm-6 promotion-value promotion-image"><img class="col-sm-12 img-middle" ng-show="promotion.PromotionImage!=null" ng-src="data:image/JPEG;base64,{{promotion.PromotionImage}}" ng-click="openImg()"></div>                   
+                    <div class="col-sm-6 promotion-value">
+                        {{promotion.Description}}
                     </div>
-                    <div class="col-sm-6 padding-zero promotion-info">Promotion Category</div>
                     <div class="col-sm-6 padding-zero promotion-value" ng-switch={{promotion.Category}}>
                         <div ng-switch-when=0>Footwear</div>
                         <div ng-switch-when=1>Electronics</div>
@@ -43,12 +44,12 @@
                         <div ng-switch-when=4>Services</div>
                         <div ng-switch-when=5>Apparel</div>
                     </div>
-                    <div class="col-sm-6 padding-zero promotion-info">Promotion Start Date</div>
-                    <div class="col-sm-6 padding-zero promotion-value">{{promotion.PromotionStartDate}}</div>
-                    <div class="col-sm-6 padding-zero promotion-info">Promotion End Date</div>
-                    <div class="col-sm-6 padding-zero promotion-value">{{promotion.PromotionEndDate}}</div>
-                    <div class="col-sm-6 padding-zero promotion-info">Promotion Image</div>
-                    <div class="col-sm-6 padding-zero promotion-value"><img class="promotion-image" ng-show="promotion.PromotionImage!=null" ng-src="data:image/JPEG;base64,{{promotion.PromotionImage}}" ng-click="openImg()"></div>
+  
+                    
+                    <div class="col-sm-6 padding-zero promotion-value">Start Date: {{promotion.PromotionStartDate}}</div>
+                    <div class="col-sm-6 padding-zero promotion-value">End Date: {{promotion.PromotionEndDate}}</div>
+                    
+                    
                 </div>
             </div>
         </div>

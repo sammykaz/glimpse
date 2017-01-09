@@ -30,7 +30,7 @@ body {
 .modal-checkbox{padding-left: 0px !important;}
 .cropArea {background: #E4E4E4; overflow: hidden; height:300px; width:100% !important}
 .my-modal-header{background-color: rgb(66, 139, 202); color: white; border-right: 0px; border-left: 0px; border-top: 0px; border-bottom: 20px double !important; border-color: rgb(255, 255, 255);}
-.promotion-table-title{height: 100%; display: inline-block; background: #418ac9; border-top-right-radius: 8px; border-top-left-radius: 8px; color: white;}
+.promotion-table-title{height: 100%; display: inline-block; background: #418ac9; border-top-right-radius: 8px; border-top-left-radius: 8px; color: white; text-align: center !important}
 .promotion-table{padding-top: 0px !important; padding-right: 0px !important; padding-left: 0px !important; padding-bottom: 0px;}
 .btn-white{background:white! important;}
 .profile-form{ background: white; padding-bottom: 30px; border-style: double; border-radius: 25px; padding-top: 15px; color: black!important;}
@@ -40,11 +40,11 @@ body {
 .input-has-error{border: #d9534f; border-radius: .25rem; border-style: double; border-width: 1px;}
 .members-scroll{overflow: scroll; height: 1000px;overflow-x : hidden;}
 .padding-zero{padding-right:0px !important; padding-left:0px!important}
-.promotion-title{vertical-align: middle; text-align:center; line-height: 100px; font-family: 'Exo', sans-serif; color: white;  font-size: 20px; background: #252672; border-radius: 20px; border-style: double;}
+.promotion-title{vertical-align: middle; text-align:center; line-height: 100px; font-family: 'Exo', sans-serif; color: black;  font-size: 50px; background: white; border-radius: 10px; border-bottom-style: double;}
 .promotion-info{vertical-align: middle; text-align:center; line-height: 100px; background: #a4c7db; font-weight: bold; font-family: 'Exo';}
 .promotion-value{vertical-align: middle; text-align:center; line-height: 100px; background:white !important; font-family: 'Exo'; font-weight: initial;}
-.promotion-image{max-width: 500px;
-    height: auto;
-    position: relative;}
+.promotion-image{height:500px;}
+.img-middle{top:15%}
+.promotion-table-b4-title{height: 100%; display: inline-block; background: white; border-top-right-radius: 8px; border-top-left-radius: 8px; color: #418ac9; text-align: center !important; font-size: 50px;}
 
 
