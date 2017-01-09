@@ -11,10 +11,18 @@
     fac.getPromotions = function () {
         return $resource('/api/promotions/:promotion', { user: "@promotion" });
     }
+
     fac.updatePromotion = function () {
         return $resource('/api/promotions/:promotion', null, {
             'update': {
                 method: 'PUT'
+            }
+        });
+    }
+    fac.deletePromotion = function () {
+        return $resource('/api/promotions/:promotion', null, {
+            'delete': {
+                method: 'DELETE'
             }
         });
     }
