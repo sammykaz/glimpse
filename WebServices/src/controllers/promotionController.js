@@ -213,20 +213,17 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         }
     }
     $scope.cropImage = function () {
-        debugger;
         $scope.isCropImageEnable = true;
         $scope.saveCrop = true;
     }
 
     $scope.doneCrop = function () {
-        debugger;
         $scope.isCropImageEnable = false;
         $scope.saveCrop = false;
         $scope.previewImage = $scope.croppedDataUrl;
     }
 
     $scope.cancelCrop = function () {
-        debugger;
         $scope.isCropImageEnable = false;
         $scope.saveCrop = false;
     }
