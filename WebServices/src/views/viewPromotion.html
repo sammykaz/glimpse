@@ -18,7 +18,10 @@
 
                         <button type="button" class="btn btn-green pull-right" ng-click="editPromotion(promotion)">Edit</button>
                     </div>
+                    <div class="pull-right">
 
+                        <button type="button" class="btn btn-green pull-right" ng-click="deletePromotion(promotion, promotions.indexOf(promotion))">Delete</button>
+                    </div>
                     <div class="col-sm-12 padding-zero promotion-title">
                         {{promotion.Title}}
 
