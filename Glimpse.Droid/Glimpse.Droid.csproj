@@ -332,6 +332,7 @@
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\StartingMapActivity.cs" />
     <Compile Include="Adapter\MvxViewPagerFragmentAdapter .cs" />
+    <Compile Include="Adapter\SlidingImageAdapter.cs" />
     <Compile Include="Bootstrap\DownloadCachePluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
@@ -359,6 +360,7 @@
     <Compile Include="Views\PromotionDialogFragment.cs" />
     <Compile Include="Views\SendMail.cs" />
     <Compile Include="Views\MapFragment.cs" />
+    <Compile Include="Views\TileDetailsFragment.cs" />
     <Compile Include="Views\ViewPagerFragment.cs" />
     <Compile Include="Views\TilesFragment.cs" />
     <Compile Include="Views\SettingsFragment.cs" />
@@ -477,6 +479,12 @@
     <AndroidResource Include="Resources\layout\PromotionDialogView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\TileDetailsView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\pager_item.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -573,6 +581,9 @@
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <AndroidResource Include="Resources\drawable\promotions\lb_sale_accessories_1-2.jpg" />
+    <AndroidResource Include="Resources\drawable\selecteditem_dot.xml" />
+    <AndroidResource Include="Resources\drawable\nonselecteditem_dot.xml" />
+    <AndroidResource Include="Resources\drawable\btn_round_semitransperant.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
