@@ -56,7 +56,14 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
         });
     }
 
- 
+    $scope.deletePromotion = function (promotion, index) {
+        dataService.deletePromotion().delete({
+            promotion: promotion.PromotionId
+        }).$promise.then(function () {
+            $scope.promotions.splice(index, 1);
+        });
+    }
+
     $scope.editPromotionDate = function (promotion) {
         $uibModal.open({
             templateUrl: '/src/views/changePromotionDate.html',
