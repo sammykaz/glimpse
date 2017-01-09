@@ -56,6 +56,7 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
         });
     }
 
+ 
     $scope.editPromotionDate = function (promotion) {
         $uibModal.open({
             templateUrl: '/src/views/changePromotionDate.html',
@@ -114,7 +115,7 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
 
 
 
-app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout, dataService, $http, promotionDetails) {
+app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout, dataService, $http, promotionDetails, $q) {
     console.log(promotionDetails);
     $scope.promotionTitle = promotionDetails.Title || '';
     $scope.category = promotionDetails.Category || undefined;
@@ -126,7 +127,28 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.edt = new Date($scope.endDay);
     $scope.showDateWarning = false;
     $scope.isResetEnable = false;
-    $scope.previewImage = promotionDetails.PromotionImage ? "data:image/JPEG;base64," + promotionDetails.PromotionImage : undefined; $scope.ok = function () {
+    $scope.previewImage = promotionDetails.PromotionImage ? "data:image/JPEG;base64," + promotionDetails.PromotionImage : undefined;
+
+    function getImageData() {
+
+        var defer = $q.defer();
+        var imageData = null;
+        if (typeof $scope.previewImage === 'object') {
+            Upload.base64DataUrl($scope.previewImage).then(function (base64) {
+                imageData = base64;
+                defer.resolve(imageData);
+            }).catch(function () {
+                defer.resolve(imageData);
+            });
+        } else {
+            imageData = $scope.previewImage;
+            defer.resolve(imageData);
+        }
+
+        return defer.promise;
+    }
+
+    $scope.ok = function () {
         if ($scope.sdt > $scope.edt)
             $scope.showDateWarning = true;
         else {
@@ -141,19 +163,35 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 description: $scope.promotionDescription,
                 category: $scope.category,
                 promotionStartDate: sdt,
-                promotionEndDate: edt,
-                //promotionImage: formdata
+                promotionEndDate: edt
             }
 
-            dataService.getPromotions().save(promotionData, function (resp, headers) {
-                //success callback
-                console.log(resp);
-            },
-            function (err) {
-                console.log(err);
-            });
-            console.log(promotionData);
-            $uibModalInstance.close("");
+            if (!!$scope.previewImage) {
+                getImageData().then(function (imageBased64) {
+                    promotionData["promotionImage"] = imageBased64.split(",")[1];
+                    onSaveClick();
+                });
+            } else {
+                promotionData["promotionImage"] = null;
+                onSaveClick();
+            }
+
+
+            function onSaveClick() {
+
+                dataService.getPromotions().save(promotionData, function (resp, headers) {
+                    //success callback
+                    console.log(resp);
+                },
+                function (err) {
+                    console.log(err);
+                });
+                console.log(promotionData);
+                $uibModalInstance.close("");
+            }
+
+
+
         }
     };
 
@@ -182,7 +220,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 
     $scope.$watch('picFile', function () {
         if (!!$scope.picFile) {
-            // debugger;
             imageFile = $scope.picFile;
             $scope.previewImage = imageFile;
         }
