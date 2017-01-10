@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngResource', 'blockUI', 'LocalStorageModule', 'ngMap', 'ngFileUpload', 'uiCropper']);
+var app = angular.module('myApp', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngResource', 'blockUI', 'LocalStorageModule', 'ngFileUpload', 'uiCropper', 'uiGmapgoogle-maps']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationProvider) {
 
@@ -44,6 +44,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             controller: 'mapController',
             templateUrl: 'src/views/mapView.html'
         })
+})
+.config(function(uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        //    key: 'your api key',
+        v: '3.20', //defaults to latest 3.X anyhow
+        libraries: 'weather,geometry,visualization'
+    });
 })
 .controller('appController', function ($scope) {
     $scope.test = "test";
