@@ -85,7 +85,7 @@ namespace Glimpse.Droid.Activities
                 _drawerLayout.SetDrawerListener(_drawerToggle);
 
                 ViewModel.ShowMenu();
-                ViewModel.ShowViewPager();
+                ViewModel.ShowImageSlider();
                
 
             }

@@ -482,7 +482,7 @@
     <AndroidResource Include="Resources\layout\TileDetailsView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\pager_item.axml">
+    <AndroidResource Include="Resources\layout\ImageSwipeLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -584,6 +584,9 @@
     <AndroidResource Include="Resources\drawable\selecteditem_dot.xml" />
     <AndroidResource Include="Resources\drawable\nonselecteditem_dot.xml" />
     <AndroidResource Include="Resources\drawable\btn_round_semitransperant.xml" />
+    <AndroidResource Include="Resources\Raw\promotion.png" />
+    <AndroidResource Include="Resources\Raw\promociones.jpg" />
+    <AndroidResource Include="Resources\drawable\Bart.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

@@ -20,6 +20,7 @@ namespace Glimpse.Droid.Adapter
 
         Context _context;
         int[] _resources;
+        LayoutInflater _layoutInflater;
 
         public SlidingImageAdapter(Context context, int[] resources)
         {
@@ -39,12 +40,15 @@ namespace Glimpse.Droid.Adapter
         public override bool IsViewFromObject(View view, Java.Lang.Object @object)
         {
             return view == ((LinearLayout)@object);
+  
         }
 
         public override Java.Lang.Object InstantiateItem(ViewGroup container, int position)
         {
-            View itemView = LayoutInflater.From(_context).Inflate(Resource.Layout.pager_item, container, false);
-            ImageView imageView = (ImageView)itemView.FindViewById(Resource.Id.img_pager_item);
+            _layoutInflater = (LayoutInflater)_context.GetSystemService(Context.LayoutInflaterService);
+            View itemView = _layoutInflater.Inflate(Resource.Layout.ImageSwipeLayout, container, false);
+            ImageView imageView = (ImageView)itemView.FindViewById(Resource.Id.pagerImageItem);
+            imageView.SetImageResource(_resources[position]);
             container.AddView(itemView);
 
             return itemView;
