@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+
+namespace WebServices.Models
+{
+    public class PromotionImage
+    {
+        [Key]
+        public int PromotionImageId { get; set; }
+
+        public byte[] Image { get; set; }
+
+        public virtual Promotion Promotion { get; set; }
+    }
+}
+
