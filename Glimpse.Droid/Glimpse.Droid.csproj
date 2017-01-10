@@ -586,7 +586,6 @@
     <AndroidResource Include="Resources\drawable\btn_round_semitransperant.xml" />
     <AndroidResource Include="Resources\Raw\promotion.png" />
     <AndroidResource Include="Resources\Raw\promociones.jpg" />
-    <AndroidResource Include="Resources\drawable\Bart.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

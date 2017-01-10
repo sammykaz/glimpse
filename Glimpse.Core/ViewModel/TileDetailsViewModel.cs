@@ -9,42 +9,24 @@ namespace Glimpse.Core.ViewModel
 {
     public class TileDetailsViewModel : BaseViewModel
     {
-        private string _currentLanguage;
-        private List<string> _languages;
+        private byte[] _images;
 
-        public TileDetailsViewModel(IMvxMessenger messenger) : base(messenger)
-        {
-          
-        }
+        public TileDetailsViewModel()
+        { }
 
-        
-        public List<string> Languages
+
+        public byte[] Images
         {
             get
             {
-                return _languages;
+                return _images;
             }
             set
             {
-                _languages = value;
-                RaisePropertyChanged(() => Languages);
+                _images = value;
+                RaisePropertyChanged(() => Images);
             }
         }
-
-
-        public string CurrentLanguage
-        {
-            get
-            {
-                return _currentLanguage;
-            }
-            set
-            {
-                _currentLanguage = value;
-                RaisePropertyChanged(() => CurrentLanguage);
-            }
-        }
-
 
         public override async void Start()
         {
@@ -56,27 +38,8 @@ namespace Glimpse.Core.ViewModel
         {
             return Task.Run(() =>
             {
-                CurrentLanguage = Settings.Language;
-                Languages = new List<string> { CurrentLanguage };
-                if (CurrentLanguage == "English")
-                    _languages.Add("Français");
-                else if (CurrentLanguage == "Français")
-                    _languages.Add("English");
+                
             });
-        }
-
-        /// <summary>
-        /// Triggered when the language is selected
-        /// </summary>
-        public MvxCommand SwitchLanguageCommand
-        {
-            get
-            {
-                return new MvxCommand(async () =>
-                {
-                    Settings.Language = CurrentLanguage;
-                });
-            }
         }
     }
 }

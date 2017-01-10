@@ -11,25 +11,24 @@ using Android.Widget;
 using Glimpse.Droid.Adapter;
 using Android.Support.V4.View;
 using System;
+using System.IO;
+using System.Collections.Generic;
+using Android.Graphics;
+
 
 namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame, true)]
     [Register("glimpse.droid.views.TileDetailsFragment")]
-    public class TileDetailsFragment : MvxFragment<TileDetailsViewModel>, ViewPager.IOnPageChangeListener, View.IOnClickListener
+    public class TileDetailsFragment : MvxFragment<TileDetailsViewModel>, ViewPager.IOnPageChangeListener
     { 
         protected View _view;
         private int _dotsCount;
         private ImageView[] _dots;
-        private LinearLayout pagerIndicator;
+        private LinearLayout _dotsLinearLayout;
         private ViewPager _viewPager;
         private SlidingImageAdapter _adapter;
-        private int[] _ImageResources =
-        {
-             Resource.Drawable.Bart,
-            Resource.Drawable.bk,
-           
-        };
+        private Bitmap[] _ImageResources;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -41,24 +40,25 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as MainActivity).SetCustomTitle("Details");
-            SetReference();
+            SetupViewPagerAndAdapter();
+            SetupDotsControl();
         }
 
 
 
-        public void SetReference()
+        public void SetupViewPagerAndAdapter()
         {
-            pagerIndicator = (LinearLayout)View.FindViewById(Resource.Id.viewPagerCountDots);
-            _viewPager = (ViewPager)View.FindViewById(Resource.Id.imagesViewPager);
+            byte[] byteImages = ViewModel.Images;
+           // _ImageResources = new Bitmap[] { BitmapFactory.DecodeResource(Resources, Resource.Raw.promotion), BitmapFactory.DecodeResource(Resources, Resource.Raw.promociones) };
             _adapter = new SlidingImageAdapter(this.Context, _ImageResources);
+            _viewPager = (ViewPager)View.FindViewById(Resource.Id.imagesViewPager);
             _viewPager.Adapter = _adapter;
             _viewPager.SetOnPageChangeListener(this);
-            setUIPageViewController();
-
         }
 
-        private void setUIPageViewController()
+        private void SetupDotsControl()
         {
+            _dotsLinearLayout = (LinearLayout)View.FindViewById(Resource.Id.viewPagerCountDots);
             _dotsCount = _adapter.Count;
             _dots = new ImageView[_dotsCount];
 
@@ -68,7 +68,7 @@ namespace Glimpse.Droid.Views
                 _dots[i].SetImageDrawable(Resources.GetDrawable(Resource.Drawable.nonselecteditem_dot));
                 LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WrapContent, LinearLayout.LayoutParams.WrapContent);
                 p.SetMargins(4, 0, 4, 0);
-                pagerIndicator.AddView(_dots[i], p);
+                _dotsLinearLayout.AddView(_dots[i], p);
             }
             _dots[0].SetImageDrawable(Resources.GetDrawable(Resource.Drawable.selecteditem_dot));
         }
@@ -92,9 +92,7 @@ namespace Glimpse.Droid.Views
             _dots[position].SetImageDrawable(Resources.GetDrawable(Resource.Drawable.selecteditem_dot));
         }
 
-        public void OnClick(View v)
-        {
-           // throw new NotImplementedException();
-        }
+
+
     }
 }

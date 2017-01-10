@@ -5,9 +5,8 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/imagesViewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="400dp" />
     <RelativeLayout
-        android:id="@+id/viewPagerIndicator"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"

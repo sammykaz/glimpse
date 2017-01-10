@@ -12,6 +12,7 @@ using Android.Widget;
 using Android.Support.V4.App;
 using Android.Support.V4.View;
 using Java.Lang;
+using Android.Graphics;
 
 namespace Glimpse.Droid.Adapter
 {
@@ -19,10 +20,10 @@ namespace Glimpse.Droid.Adapter
     {
 
         Context _context;
-        int[] _resources;
+        Bitmap[] _resources;
         LayoutInflater _layoutInflater;
 
-        public SlidingImageAdapter(Context context, int[] resources)
+        public SlidingImageAdapter(Context context, Bitmap[] resources)
         {
             _context = context;
             _resources = resources;
@@ -48,7 +49,7 @@ namespace Glimpse.Droid.Adapter
             _layoutInflater = (LayoutInflater)_context.GetSystemService(Context.LayoutInflaterService);
             View itemView = _layoutInflater.Inflate(Resource.Layout.ImageSwipeLayout, container, false);
             ImageView imageView = (ImageView)itemView.FindViewById(Resource.Id.pagerImageItem);
-            imageView.SetImageResource(_resources[position]);
+            imageView.SetImageBitmap(_resources[position]);
             container.AddView(itemView);
 
             return itemView;
