@@ -19,6 +19,7 @@ namespace Glimpse.Core.ViewModel
         {
             _promotionDataService = promotionDataService;
             _vendorDataService = vendorDataService;
+            _promotionImageList = new List<byte[]>();
         }
 
         protected override void InitFromBundle(IMvxBundle parameters)
@@ -31,6 +32,7 @@ namespace Glimpse.Core.ViewModel
             }
             base.InitFromBundle(parameters);
         }
+
         private DateTime _promotionStartDate;
         public DateTime PromotionStartDate
         {
@@ -43,6 +45,17 @@ namespace Glimpse.Core.ViewModel
         {
             get { return _promotionEndDate; }
             set { _promotionEndDate = value; RaisePropertyChanged(() => PromotionEndDate); }
+        }
+
+        private List<byte[]> _promotionImageList;
+        public List<byte[]> PromotionImageList
+        {
+            get { return _promotionImageList; }
+            set
+            {
+                _promotionImageList = value;
+                RaisePropertyChanged(() => PromotionImageList);
+            }
         }
 
 
@@ -60,17 +73,6 @@ namespace Glimpse.Core.ViewModel
             Bytes = memoryStream.ToArray();
         }
 
-        /* public MvxCommand selectImg
-         {
-             get
-             {
-                 return new MvxCommand(() =>
-                 {
-                     _pictureChooserTask.ChoosePictureFromLibrary(400, 95, OnPicture, () => { });
-                 });
-             }
-         }
-         */
         public MvxCommand createPromotion
         {
             get
