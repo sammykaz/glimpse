@@ -110,14 +110,15 @@ namespace Glimpse.Core.ViewModel
 
                     //this next line is not actually adding promotions, dont know why, works for all other
                     //await _vendorDataService.EditVendor(vendor.VendorId, vendor);
-
+                    List<Promotion> promotions = await _promotionDataService.GetPromotions();
+                    
 
                     foreach(byte[] promotionImage in PromotionImageList)
                     {
                         PromotionImage promotionImageInstance = new PromotionImage()
                         {
                             Image = promotionImage,
-                            Promotion = promotion
+                            PromotionId = promotions[promotions.Count - 1].PromotionId
                         };
 
                         await _promotionImageDataService.StorePromotion(promotionImageInstance);

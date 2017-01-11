@@ -264,6 +264,10 @@
     <Compile Include="Migrations\201701112236209_promotionimagemodel.Designer.cs">
       <DependentUpon>201701112236209_promotionimagemodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701112312202_foreignkeypromotion.cs" />
+    <Compile Include="Migrations\201701112312202_foreignkeypromotion.Designer.cs">
+      <DependentUpon>201701112312202_foreignkeypromotion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Contexts\GlimpseDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -1223,6 +1227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701112236209_promotionimagemodel.resx">
       <DependentUpon>201701112236209_promotionimagemodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701112312202_foreignkeypromotion.resx">
+      <DependentUpon>201701112312202_foreignkeypromotion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
