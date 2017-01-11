@@ -1,8 +1,7 @@
 'use strict';
 
-app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibModal', 'blockUI', function ($scope, dataService, $state, $uibModal, blockUI) {
+app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibModal', function ($scope, dataService, $state, $uibModal) {
     $scope.data = "";
-    blockUI.start();
     var promotionsquery = dataService.getPromotions().query();
     promotionsquery.$promise.then(function (data) {
         $scope.promotions = data;
@@ -10,7 +9,6 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
     }, function (error) {
         console.log("Error: Could not load promotions");
     })
-    blockUI.stop();
     console.log($scope.promotions);
     dataService.GetAuthorizeData().then(function (data) {
         console.log("Authorized");
