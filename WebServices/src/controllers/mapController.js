@@ -1,66 +1,61 @@
 ﻿'use strict';
 app.controller("mapController", ['$scope', 'dataService', function ($scope, dataService) {
-
-    var promotionsquery = dataService.getPromotions().query();
-    promotionsquery.$promise.then(function (data) {
+    var pins = [];
+    var i = 0;
+    var promotionsquery = dataService.getPromotions().query().$promise.then(function (data) {
+        angular.forEach(data, function (promo) {
+            var vendorId = promo.VendorId;
+            var vendor = dataService.getVendors().get({ vendor: vendorId });
+            vendor.$promise.then(function (data) {
+                var pin = {
+                    "id": i++,
+                    "latitude": data.Location.Lat,
+                    "longitude": data.Location.Lng,
+                    "title": i
+                }
+                pins.push(pin);
+            }, function (error) {
+                console.log("vendor not found");
+            })
+        })
         $scope.promotions = data;
         console.log(data);
+        $scope.randomMarkers = pins;
     }, function (error) {
         console.log("Error: Could not load promotions");
     })
 
+    console.log(dataService.getVendors().get({ vendor: 36 }))
     $scope.map = {
         center: {
-            latitude: 40.1451,
-            longitude: -99.6680
+            latitude: 45.4581475,
+            longitude: -73.64009765625
         },
-        zoom: 4,
-        bounds: {
-            northeast: {
-                latitude: 45.1451,
-                longitude: -80.6680
-            },
-            southwest: {
-                latitude: 30.000,
-                longitude: -120.6680
-            }
-        }
+        zoom: 8
+
     };
     $scope.options = {
         scrollwheel: false
     };
+    
+    $scope.getPromotionPins = function () {
+        for (var i = 0; i < $scope.promotions.length; i++) {
+            var vendorId = $scope.promotions[i].VendorId;
+            var vendor = dataService.getVendors().get({ vendor: vendorId });
+            vendor.$promise.then(function (data) {
+                var pin = {
+                    "id": i,
+                    "latitude": data.Location.Lat,
+                    "longitude": data.Location.Lng,
+                    "title": $scope.promotions[i].title
+                }
+                pins.push(pin);
+            }, function (error) {
+                console.log("vendor not found");
+            })
 
-    //var addPromotionPins = function 
-    var createRandomMarker = function (i, bounds, idKey) {
-        var lat_min = bounds.southwest.latitude,
-          lat_range = bounds.northeast.latitude - lat_min,
-          lng_min = bounds.southwest.longitude,
-          lng_range = bounds.northeast.longitude - lng_min;
-
-        if (idKey == null) {
-            idKey = "id";
+            console.log(vendor);
         }
-
-        var latitude = lat_min + (Math.random() * lat_range);
-        var longitude = lng_min + (Math.random() * lng_range);
-        var ret = {
-            latitude: latitude,
-            longitude: longitude,
-            title: 'm' + i
-        };
-        ret[idKey] = i;
-        return ret;
-    };
-    var markers = [];
-    var x = {
-        id: 2,
-        latitude: 36.47237295026877,
-        longitude: -93.59872415879792,
-        title: 'm'
+        
     }
-    markers.push(x);
-    markers.push(x);
-    $scope.randomMarkers = markers;
-
-    $scope.test = alert("clicked");
 }]);
