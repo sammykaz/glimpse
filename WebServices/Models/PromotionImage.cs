@@ -13,6 +13,8 @@ namespace WebServices.Models
 
         public byte[] Image { get; set; }
 
+        public int PromotionId { get; set; }
+
         public virtual Promotion Promotion { get; set; }
     }
 }

@@ -12,13 +12,15 @@ namespace Glimpse.Core.ViewModel
     {
         private readonly IPromotionDataService _promotionDataService;
         private IVendorDataService _vendorDataService;
+        private readonly IPromotionImageDataService _promotionImageDataService;
         Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
         private Categories selectedCategory;
 
-        public CreatePromotionPart2ViewModel(IPromotionDataService promotionDataService, IVendorDataService vendorDataService)
+        public CreatePromotionPart2ViewModel(IPromotionDataService promotionDataService, IVendorDataService vendorDataService, IPromotionImageDataService promotionImageDataService)
         {
             _promotionDataService = promotionDataService;
             _vendorDataService = vendorDataService;
+            _promotionImageDataService = promotionImageDataService;
             _promotionImageList = new List<byte[]>();
         }
 
@@ -108,6 +110,19 @@ namespace Glimpse.Core.ViewModel
 
                     //this next line is not actually adding promotions, dont know why, works for all other
                     //await _vendorDataService.EditVendor(vendor.VendorId, vendor);
+
+
+                    foreach(byte[] promotionImage in PromotionImageList)
+                    {
+                        PromotionImage promotionImageInstance = new PromotionImage()
+                        {
+                            Image = promotionImage,
+                            Promotion = promotion
+                        };
+
+                        await _promotionImageDataService.StorePromotion(promotionImageInstance);
+                    }
+
 
                     ShowViewModel<VendorProfilePageViewModel>();
 

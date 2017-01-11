@@ -10,7 +10,9 @@ namespace Glimpse.Core.Model
     {              
         public int PromotionImageId { get; set; }
 
-        public byte[] Image { get; set; }    
-    
+        public byte[] Image { get; set; }
+
+        public virtual Promotion Promotion { get; set; }
+
     }
 }
