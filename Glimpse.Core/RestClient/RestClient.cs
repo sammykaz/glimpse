@@ -16,6 +16,7 @@ namespace Plugin.RestClient
     /// </summary>
     public class RestClient<T>
     {                                         // http://glimpsews.azurewebsites.net/api/ 
+        private readonly string WebServiceUrl = "http://glimpseservices.azurewebsites.net/api/" + typeof(T).Name + "s/";
 
         public async Task<List<T>> GetAsync()
         {
