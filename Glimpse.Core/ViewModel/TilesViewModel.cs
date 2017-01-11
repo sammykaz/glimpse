@@ -126,6 +126,33 @@ namespace Glimpse.Core.ViewModel
             return final;
         }
 
+        private bool _isRefreshing;
+
+        public virtual bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                RaisePropertyChanged(() => IsRefreshing);
+            }
+        }
+
+        public MvxCommand ReloadCommand
+        {
+            get
+            {
+                return new MvxCommand(async () =>
+                {
+                    IsRefreshing = true;
+
+                    await ReloadAsync();
+
+                    IsRefreshing = false;
+                });
+            }
+        }
+
 
         public List<PromotionWithLocation> PromotionList
         {
