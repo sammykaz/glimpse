@@ -14,7 +14,7 @@ namespace Plugin.RestClient
     ///     RestClient implements methods for calling CRUD operations
     ///     using HTTP.
     /// </summary>
-    public class RestClient<T>
+    public class RestClient<T> { 
 
         // http://glimpsews.azurewebsites.net/api/ 
 
