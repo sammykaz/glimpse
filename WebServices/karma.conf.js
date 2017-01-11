@@ -15,8 +15,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [    
-     "Scripts/angular.min.js",
+    "Scripts/angular.min.js",
     "Scripts/jquery-3.1.1.min.js",
+    "Scripts/angular-mocks.js",
     "Scripts/angular-route.min.js",
     "Scripts/angular-ui-router.min.js",
     "Scripts/angular-animate.min.js",
@@ -28,8 +29,11 @@ module.exports = function(config) {
     "Scripts/ng-map.min.js",
     "Scripts/ui-cropper.js",
     "Scripts/angular-ui/ui-bootstrap-tpls.min.js",
+    "Scripts/lodash.min.js",
     "Scripts/angular-local-storage.min.js",
-    "Scripts/ng-file-upload-shim.min.js" ,
+    "Scripts/angular-simple-logger.min.js",
+    "Scripts/angular-google-maps.min.js",
+    "Scripts/ng-file-upload-shim.min.js",
     "Scripts/ng-file-upload.min.js",
     "Scripts/caman.full.min.js",
     "app.js",

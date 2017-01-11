@@ -1167,10 +1167,12 @@
     <Content Include="src\views\changePromotionDate.html" />
     <Content Include="src\views\mapView.html" />
     <Content Include="TestScripts\DefaultTest.js" />
+    <Content Include="TestScripts\ExpiredTest.js" />
     <Content Include="TestScripts\HomeControllerTest.js" />
     <Content Include="TestScripts\MapTest.js" />
     <Content Include="TestScripts\ProfileTest.js" />
     <Content Include="TestScripts\PromoTest.js" />
+    <Content Include="TestScripts\RePostTest.js" />
     <Content Include="TestScripts\SignUpTest.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
