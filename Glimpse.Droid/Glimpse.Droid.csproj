@@ -68,6 +68,10 @@
       <HintPath>..\packages\MimeKit.1.8.0\lib\MonoAndroid10\BouncyCastle.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Faker.Portable, Version=2.5.0.0, Culture=neutral, PublicKeyToken=968d76e55a3a9814, processorArchitecture=MSIL">
+      <HintPath>..\packages\Faker.Net.Portable.2.5.0\lib\portable-net40+sl5+win8+wpa81+wp8\Faker.Portable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="GoogleMapsUtilityBinding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Android.Maps.Utils.0.4.4-beta1\lib\MonoAndroid10\GoogleMapsUtilityBinding.dll</HintPath>
       <Private>True</Private>
@@ -343,6 +347,7 @@
     <Compile Include="Extensions\ActivityExtensions.cs" />
     <Compile Include="Extensions\MonoTypeExtensions.cs" />
     <Compile Include="Helpers\ByteArrayImageValueConverter.cs" />
+    <Compile Include="Helpers\CustomPromotionRenderer.cs" />
     <Compile Include="Helpers\LatLngValueConverter.cs" />
     <Compile Include="Helpers\ObjectByteArrayConversion.cs" />
     <Compile Include="Helpers\PromotionItem.cs" />
@@ -497,10 +502,6 @@
       <Project>{d9032fc3-4f9d-4117-8ac1-c14c46b78a79}</Project>
       <Name>Glimpse.Localization</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebServices\WebServices.csproj">
-      <Project>{baf62920-7da2-440f-9a91-56ee74ca6031}</Project>
-      <Name>WebServices</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\drawer_shadow_light.9.png" />
@@ -579,6 +580,13 @@
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <AndroidResource Include="Resources\drawable\promotions\lb_sale_accessories_1-2.jpg" />
+    <None Include="Resources\drawable\promotions\pic6.jpg" />
+    <None Include="Resources\drawable\promotions\pic2.gif" />
+    <None Include="Resources\drawable\promotions\pic3.jpg" />
+    <None Include="Resources\drawable\promotions\pic5.jpg" />
+    <None Include="Resources\drawable\promotions\pic4.jpg" />
+    <None Include="Resources\drawable\promotions\pic1.png" />
+    <None Include="Resources\drawable\promotions\pic0.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

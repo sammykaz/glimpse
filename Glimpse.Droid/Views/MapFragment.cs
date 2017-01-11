@@ -20,6 +20,7 @@ using Android.Widget;
 using System.Collections;
 using Glimpse.Core.Helpers;
 using System;
+using System.Linq;
 using Exception = System.Exception;
 using Android.Graphics;
 using Android.Support.V4.Content;
@@ -28,21 +29,19 @@ using Com.Google.Maps.Android.Clustering.View;
 using Com.Google.Maps.Android.Geometry;
 using Com.Google.Maps.Android;
 using Glimpse.Core.Contracts.Services;
-using Glimpse.Core.DataGenerator;
 using Glimpse.Core.Model;
 using Glimpse.Core.Services.Data;
-using Java.IO;
-using Java.Lang;
-using Java.Util;
 using MvvmCross.Platform;
 using Newtonsoft.Json;
 using String = System.String;
+using static Android.Gms.Maps.GoogleMap;
 
 namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.viewPager, true)]
     [Register("glimpse.droid.views.MapFragment")]
-    public class MapFragment : MvxFragment<MapViewModel>, IOnMapReadyCallback, ClusterManager.IOnClusterItemClickListener, ClusterManager.IOnClusterClickListener
+    public class MapFragment : MvxFragment<MapViewModel>, IOnMapReadyCallback,
+        ClusterManager.IOnClusterItemClickListener, ClusterManager.IOnClusterClickListener, IOnCameraIdleListener
     {
         private MapView _mapView;
         private GoogleMap map;
@@ -52,10 +51,12 @@ namespace Glimpse.Droid.Views
         private ClusterManager clusterManager;
         private List<PromotionItem> clusterList;
         private IEnumerable activePromotions;
-        public MapFragment()
-        {
-            clusterList = new List<PromotionItem>();
-        }
+        private IAlgorithm clusterAlgorithm;
+        private IClusterRenderer clusterRenderer;
+
+        private Dictionary<int, PromotionItem> visibleMarkers = new Dictionary<int, PromotionItem>();
+
+        private List<PromotionItem> itemsList = new List<PromotionItem>();
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -63,7 +64,6 @@ namespace Glimpse.Droid.Views
             var view = this.BindingInflate(Resource.Layout.MapView, null);
             _mapView = view.FindViewById<MapView>(Resource.Id.map);
             _mapView.OnCreate(savedInstanceState);
-
             return view;
         }
 
@@ -71,8 +71,8 @@ namespace Glimpse.Droid.Views
         public override void OnActivityCreated(Bundle p0)
         {
             base.OnActivityCreated(p0);
-           // (this.Activity as MainActivity).SetCustomTitle("MapView");
-            MapsInitializer.Initialize(Activity);   
+            // (this.Activity as MainActivity).SetCustomTitle("MapView");
+            MapsInitializer.Initialize(Activity);
         }
 
 
@@ -88,11 +88,11 @@ namespace Glimpse.Droid.Views
             _mapView.OnDestroy();
         }
 
-     /*   public override void OnSaveInstanceState(Bundle outState)
-        {
-            base.OnSaveInstanceState(outState);
-            _mapView.OnSaveInstanceState(outState);
-        } */
+        /*   public override void OnSaveInstanceState(Bundle outState)
+           {
+               base.OnSaveInstanceState(outState);
+               _mapView.OnSaveInstanceState(outState);
+           } */
 
         public async override void OnResume()
         {
@@ -121,7 +121,7 @@ namespace Glimpse.Droid.Views
                 pr.SetMessage("Loading Current Position");
                 pr.SetCancelable(false);
 
-                var viewModel = (MapViewModel)ViewModel;
+                var viewModel = (MapViewModel) ViewModel;
                 pr.Show();
                 //Get the location
                 Core.Model.Location locationAsModel = await viewModel.GetUserLocation();
@@ -149,24 +149,25 @@ namespace Glimpse.Droid.Views
         }
 
         private void SetUpMap()
-        {       
-                //Calls the OnMapReady method.
-                View.FindViewById<MapView>(Resource.Id.map).GetMapAsync(this);
+        {
+            //Calls the OnMapReady method.
+            View.FindViewById<MapView>(Resource.Id.map).GetMapAsync(this);
         }
 
         private bool CheckLocationServices()
         {
-            LocationManager locMgr = (LocationManager)(this.Activity as MainActivity).GetSystemService(Context.LocationService);
+            LocationManager locMgr =
+                (LocationManager) (this.Activity as MainActivity).GetSystemService(Context.LocationService);
 
 
             bool gps_enabled = false;
             bool network_enabled = false;
-         
+
             gps_enabled = locMgr.IsProviderEnabled(LocationManager.GpsProvider);
-           
+
             network_enabled = locMgr.IsProviderEnabled(LocationManager.NetworkProvider);
 
-            return gps_enabled || network_enabled;           
+            return gps_enabled || network_enabled;
         }
 
 
@@ -191,37 +192,38 @@ namespace Glimpse.Droid.Views
 
             }
 
-            var viewModel = (MapViewModel)ViewModel;
+            var viewModel = (MapViewModel) ViewModel;
 
+            
 
-                //current user marker
-                var options = new MarkerOptions();
-                options.SetPosition(location);
-                options.SetTitle("My Position");
-                options.SetAlpha(0.7f);
-                options.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueMagenta));
-                options.InfoWindowAnchor(0.7f, 0.7f);
-                options.SetSnippet("This is where HARAMBE is hiding!");
+            //current user marker
+            var options = new MarkerOptions();
+            options.SetPosition(location);
+            options.SetTitle("My Position");
+            options.SetAlpha(0.7f);
+            options.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueMagenta));
+            options.InfoWindowAnchor(0.7f, 0.7f);
+            options.SetSnippet("This is where HARAMBE is hiding!");
 
-                currentUserLocation = map.AddMarker(options);
+            currentUserLocation = map.AddMarker(options);
 
-                //camera initialized on the user            
-                CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
-                builder.Target(location);
-                builder.Zoom(viewModel.DefaulZoom);
-                builder.Bearing(viewModel.DefaultBearing);
-                builder.Tilt(viewModel.DefaultTilt);
-                CameraPosition cameraPosition = builder.Build();
-                CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
-                map.MoveCamera(cameraUpdate);
+            //camera initialized on the user            
+            CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
+            builder.Target(location);
+            builder.Zoom(viewModel.DefaulZoom);
+            builder.Bearing(viewModel.DefaultBearing);
+            builder.Tilt(viewModel.DefaultTilt);
+            CameraPosition cameraPosition = builder.Build();
+            CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
+            map.MoveCamera(cameraUpdate);
 
-                var set = this.CreateBindingSet<MapFragment, MapViewModel>();
-                set.Bind(currentUserLocation)
-                    .For(m => m.Position)
-                    .To(vm => vm.UserCurrentLocation)
-                    .WithConversion(new LatLngValueConverter(), null).TwoWay();
-                set.Apply();
-                ViewModel.LocationUpdate += ViewModel_LocationUpdate;
+            var set = this.CreateBindingSet<MapFragment, MapViewModel>();
+            set.Bind(currentUserLocation)
+                .For(m => m.Position)
+                .To(vm => vm.UserCurrentLocation)
+                .WithConversion(new LatLngValueConverter(), null).TwoWay();
+            set.Apply();
+            ViewModel.LocationUpdate += ViewModel_LocationUpdate;
 
             //map settings
             map.UiSettings.MapToolbarEnabled = true;
@@ -232,12 +234,17 @@ namespace Glimpse.Droid.Views
             map.UiSettings.ZoomGesturesEnabled = true;
             map.BuildingsEnabled = true;
 
+
             //TEST
             clusterManager = new ClusterManager(this.Context, map);
+            clusterAlgorithm = new PreCachingAlgorithmDecorator(new NonHierarchicalDistanceBasedAlgorithm());
+            clusterManager.Algorithm = clusterAlgorithm;
+
             clusterManager.SetOnClusterClickListener(this);
             clusterManager.SetOnClusterItemClickListener(this);
-            map.SetOnCameraIdleListener(clusterManager);
-            map.SetOnMarkerClickListener(clusterManager);
+             map.SetOnCameraIdleListener(clusterManager);
+             map.SetOnMarkerClickListener(clusterManager);
+
 
             //Show promotions
             ShowPromotionsOnMap();
@@ -245,7 +252,7 @@ namespace Glimpse.Droid.Views
 
         public bool OnClusterClick(ICluster cluster)
         {
-         Toast.MakeText (this.Context, "Cluster clicked", ToastLength.Short).Show();
+            Toast.MakeText(this.Context, "Cluster clicked", ToastLength.Short).Show();
             return false;
         }
 
@@ -257,7 +264,18 @@ namespace Glimpse.Droid.Views
             return false;
         }
 
-        private void CreateClusterItem(double lat, double lng, string title, string description, string expirationDate, string companyName, Bitmap image)
+
+        public async void OnCameraIdle()
+        {
+         
+
+        }
+
+
+
+
+        private void CreateClusterItem(double lat, double lng, string title, string description, string expirationDate,
+            string companyName, Bitmap image)
         {
             clusterList.Add(new PromotionItem(lat, lng, title, description, expirationDate, companyName, image));
         }
@@ -276,10 +294,8 @@ namespace Glimpse.Droid.Views
             var vendorService = Mvx.Resolve<IVendorDataService>();
             List<Vendor> vendors = await vendorService.GetVendors();
 
-            var promotions = DataGenerator.GeneratePromotions(50, vendors.Select(v => v.VendorId).ToList());
-            
-            AddClusterItems(promotions);
-           
+           // var promotions = DataGenerator.DataGenerator.GeneratePromotions(50, vendors.Select(v => v.VendorId).ToList());
+            AddClusterItems();
 
 
 
@@ -295,6 +311,7 @@ namespace Glimpse.Droid.Views
 
 
 
+            /*
             
             activePromotions = await ViewModel.GetActivePromotions();
 
@@ -340,45 +357,89 @@ namespace Glimpse.Droid.Views
             //GenerateCluster();
         }
 
-        private void AddClusterItems(List<Promotion> promotions)
+        private void AddClusterItems()
         {
-            List<PromotionItem> items = new List<PromotionItem>();
-            /* double lat = 45.4582;
-             double lng = -73.640116;
 
+            //  double lat = 45.4582;
+            //  double lng = -73.640116;
+            double lat = 47.59978;
+            double lng = -122.3346;
 
-
-             for (var i = 0; i < 10; i++)
+            Random random = new Random();
+            /*
+             for (var i = 0; i < 50; i++)
              {
                  double offset = i / 60d;
                  lat = lat + offset;
                  lng = lng + offset;
 
-                 var item = new PromotionItem(lat, lng, "title");
+                 var item = new PromotionItem(lat, lng, "title","description","expirationDate","companyName", null);
                  items.Add(item);
              }
-             */
-
-            foreach (var p in promotions)
+*/
+            for (int i = 0; i < 1000; ++i)
             {
-                Bitmap bitmap = null;
-                try
-                {
-                    bitmap = BitmapFactory.DecodeByteArray(p.PromotionImage, 0, p.PromotionImage.Length);
-                }
-                catch (Exception e)
-                {
-                }
-
-                var item = new PromotionItem(p.Vendor.Location.Lat, p.Vendor.Location.Lng, p.Title, p.Description, 
-                                            p.PromotionEndDate.ToString(), p.Vendor.CompanyName, bitmap);
+                
+                var t = i * System.Math.PI * 0.033f;
+                var r = System.Math.Exp(0.001 * t);
+                var x = r * System.Math.Cos(t);
+                var y = r * System.Math.Sin(t);
+                
+           
+                var item = new PromotionItem(lat + x, lng + y, "title", "description", "expirationDate", "companyName", null);
+                itemsList.Add(item);
             }
-            
-            clusterManager.AddItems(items);
+
+
+            clusterManager.AddItems(itemsList);
         }
+        /*
+        //Note that the type "Items" will be whatever type of object you're adding markers for so you'll
+        //likely want to create a List of whatever type of items you're trying to add to the map and edit this appropriately
+        //Your "Item" class will need at least a unique id, latitude and longitude.
+        private void addItemsToMap(List<PromotionItem> items)
+        {
+            if (map != null)
+            {
+                //This is the current user-viewable region of the map
+                LatLngBounds bounds = map.Projection.VisibleRegion.LatLngBounds;
 
+                //Loop through all the items that are available to be placed on the map
+                foreach(PromotionItem item in items)
+                {
+                    //If the item is within the the bounds of the screen
+                    if (bounds.Contains(new LatLng(item.Position.Latitude, item.Position.Longitude)))
+                    {
+                        //If the item isn't already being displayed
+                        if (!clusterManager.containsKey(item.getId()))
+                        {
+                            //Add the Marker to the Map and keep track of it with the HashMap
+                            //getMarkerForItem just returns a MarkerOptions object
+                            this.courseMarkers.put(item.getId(), this.mMap.addMarker(getMarkerForItem(item)));
+                        }
+                    }
 
+                    //If the marker is off screen
+                    else
+                    {
+                        //If the course was previously on screen
+                        if (courseMarkers.containsKey(item.getId()))
+                        {
+                            //1. Remove the Marker from the GoogleMap
+                            courseMarkers.get(item.getId()).remove();
+
+                            //2. Remove the reference to the Marker from the HashMap
+                            courseMarkers.remove(item.getId());
+                        }
+                    }
+                }
+            }
+        }
+        */
+
+     
     }
+}
     
 
 

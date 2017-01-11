@@ -1,4 +1,5 @@
-﻿using Android.Gms.Maps.Model;
+﻿using System;
+using Android.Gms.Maps.Model;
 using Android.Graphics;
 using Com.Google.Maps.Android.Clustering;
 using Glimpse.Droid.Helpers;
@@ -21,6 +22,7 @@ namespace Glimpse.Core.Helpers
             CompanyName = companyName;
             PromotionImage = promotionImage;
         }
+
 
         public LatLng Position { get; set; }
 

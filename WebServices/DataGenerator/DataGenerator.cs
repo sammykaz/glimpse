@@ -7,7 +7,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 
-namespace Glimpse.Core.DataGenerator
+namespace WebServices.DataGenerator
 {
     public static class DataGenerator
     {
