@@ -9,13 +9,13 @@ namespace Glimpse.Core.ViewModel
 {
     public class TileDetailsViewModel : BaseViewModel
     {
-        private byte[] _images;
+        private List<byte[]> _images;
 
         public TileDetailsViewModel()
         { }
 
 
-        public byte[] Images
+        public List<byte[]> Images
         {
             get
             {
