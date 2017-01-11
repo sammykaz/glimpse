@@ -49,8 +49,12 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
             resolve: {
                 promotionDetails: promotion
             }
-        }).result.then(function (result) {
-            console.log(result);
+        }).result.then(function (updatedPromotionData) {
+            $scope.promotions.forEach(function (element, index) {
+                if (element.PromotionId === promotion.PromotionId) {
+                    $scope.promotions[index] = updatedPromotionData;
+                }
+            });
         }, function () {
             console.log("Modal dismissed");
         });
@@ -159,13 +163,15 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         if ($scope.sdt > $scope.edt)
             $scope.showDateWarning = true;
         else {
-            var image = { file: $scope.previewImage };
+            var isEditMode = !(angular.equals({}, promotionDetails));
+            var image = {
+                file: $scope.previewImage
+            };
             var formdata = new FormData();
             formdata.append("img", image);
             var sdt = $scope.sdt;
             var edt = $scope.edt;
             var promotionData = {
-                vendorId: localStorage.id,
                 title: $scope.promotionTitle,
                 description: $scope.promotionDescription,
                 category: $scope.category,
@@ -173,14 +179,30 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 promotionEndDate: edt
             }
 
+            if (isEditMode) {
+                promotionData["vendorId"] = promotionDetails.VendorId;
+            } else {
+                promotionData["vendorId"] = localStorage.id;
+            }
+
             if (!!$scope.previewImage) {
                 getImageData().then(function (imageBased64) {
                     promotionData["promotionImage"] = imageBased64.split(",")[1];
-                    onSaveClick();
+
+                    if (isEditMode) {
+                        onEditClick(promotionDetails.PromotionId, promotionData);
+                    } else {
+                        onSaveClick();
+                    }
+
                 });
             } else {
                 promotionData["promotionImage"] = null;
-                onSaveClick();
+                if (isEditMode) {
+                    onEditClick(promotionDetails.PromotionId, promotionData);
+                } else {
+                    onSaveClick();
+                }
             }
 
 
@@ -190,12 +212,36 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                     //success callback
                     console.log(resp);
                 },
-                function (err) {
-                    console.log(err);
-                });
+                  function (err) {
+                      console.log(err);
+                  });
                 console.log(promotionData);
                 $uibModalInstance.close("");
             }
+
+            function onEditClick(promotionId, promotion) {
+                var promotionData = {};
+                promotionData["Category"] = promotion.category || '';
+                promotionData["Description"] = promotion.description || '';
+                promotionData["PromotionEndDate"] = promotion["promotionEndDate"];
+                promotionData["PromotionId"] = promotionId;
+                promotionData["PromotionStartDate"] = promotion["promotionStartDate"];
+                promotionData["PromotionImage"] = promotion["promotionImage"];
+                promotionData["Title"] = promotion["title"];
+                promotionData["Vendor"] = promotion["vendor"] || null;
+                promotionData["VendorId"] = promotion["vendorId"];
+
+                dataService.updatePromotion().update({
+                    promotion: promotionId
+                }, promotionData).$promise.then(function () {
+                    $uibModalInstance.close(promotionData);
+                }).catch(function (err) {
+                    console.log(err);
+                    $uibModalInstance.close({});
+                });
+            }
+
+
 
 
 
