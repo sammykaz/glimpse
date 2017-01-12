@@ -11,7 +11,7 @@ namespace Glimpse.Droid.Views
     {
         private string title;
         private string description;
-        private string expirationDate;
+        private int expirationDate;
         private string companyName;
         private Bitmap image;
 
@@ -37,7 +37,7 @@ namespace Glimpse.Droid.Views
 
             txtTitle.Text = title;
             txtDescription.Text = description;
-            txtExpirationDate.Text = expirationDate;
+            txtExpirationDate.Text = expirationDate.ToString();
             txtCompanyName.Text = companyName;
             promotionImage.SetImageBitmap(image);
 
