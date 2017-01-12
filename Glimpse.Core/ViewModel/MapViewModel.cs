@@ -21,15 +21,17 @@ namespace Glimpse.Core.ViewModel
         private Dictionary<Vendor, List<Promotion>> _vendorData = new Dictionary<Vendor, List<Promotion>>();
         private IVendorDataService vendorDataService;
         private IPromotionDataService promotionDataService;
+        private IPromotionClickDataService promotionClickDataService;
         private Location _userCurrentLocation;
         private IGeolocator locator;
         public delegate void LocationChangedHandler(object sender, LocationChangedHandlerArgs e);
         public event LocationChangedHandler LocationUpdate;
 
-        public MapViewModel(IMvxMessenger messenger, IVendorDataService vendorDataService, IPromotionDataService promotionDataService) : base(messenger)
+        public MapViewModel(IMvxMessenger messenger, IVendorDataService vendorDataService, IPromotionDataService promotionDataService, IPromotionClickDataService promotionClickDataService) : base(messenger)
         {
             this.vendorDataService = vendorDataService;
             this.promotionDataService = promotionDataService;
+            this.promotionClickDataService = promotionClickDataService;
         }
 
         public override async void Start()
@@ -47,6 +49,17 @@ namespace Glimpse.Core.ViewModel
             //Setting up the event and start listening
             locator.PositionChanged += Locator_PositionChanged;
             await locator.StartListeningAsync(minTime: 1, minDistance: 10);
+        }
+
+        public async Task StorePromotionClick(int promotionId)
+        {
+            PromotionClick promotionClick = new PromotionClick
+            {
+                PromotionId = promotionId,
+                Time = DateTime.Now
+            };
+
+            await promotionClickDataService.StorePromotionClick(promotionClick);
         }
 
         public async Task<Location> GetUserLocation()
@@ -76,6 +89,7 @@ namespace Glimpse.Core.ViewModel
             };
             OnLocationUpdate(UserCurrentLocation);
         }
+
 
          private void OnLocationUpdate(Location location)
         {

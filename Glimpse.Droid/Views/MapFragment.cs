@@ -237,14 +237,20 @@ namespace Glimpse.Droid.Views
         public bool OnClusterItemClick(Java.Lang.Object item)
         {
             PromotionItem promotionItem = (PromotionItem) item;
+            StorePromotionItemClick(promotionItem.PromotionId);
             var promotionDialog = new PromotionDialogFragment(promotionItem);
             promotionDialog.Show(this.Activity.FragmentManager, "put a tag here");
             return false;
         }
 
-        private void CreateClusterItem(double lat, double lng, string title, string description, string expirationDate, string companyName, Bitmap image)
+        private async void StorePromotionItemClick(int promotionId)
         {
-            clusterList.Add(new PromotionItem(lat, lng, title, description, expirationDate, companyName, image));
+            await ViewModel.StorePromotionClick(promotionId);
+        }
+
+        private void CreateClusterItem(double lat, double lng, string title, string description, string expirationDate, string companyName, Bitmap image, int promotionId)
+        {
+            clusterList.Add(new PromotionItem(lat, lng, title, description, expirationDate, companyName, image, promotionId));
         }
 
         private void GenerateCluster()
@@ -263,6 +269,7 @@ namespace Glimpse.Droid.Views
             //Print out the pins
             foreach (var promotion in activePromotions)
             {
+                int promotionId = (int)promotion.GetType().GetProperty("PromotionId").GetValue(promotion, null);
                 string companyName = promotion.GetType().GetProperty("CompanyName").GetValue(promotion, null).ToString();
                 string title = promotion.GetType().GetProperty("Title").GetValue(promotion, null).ToString();
                 string description = promotion.GetType().GetProperty("Description").GetValue(promotion, null).ToString();
@@ -295,7 +302,7 @@ namespace Glimpse.Droid.Views
 
 
 
-                CreateClusterItem(lat, lng,title,description,expirationDate,companyName, bitmap);
+                CreateClusterItem(lat, lng,title,description,expirationDate,companyName, bitmap, promotionId);
     
             }
             GenerateCluster();

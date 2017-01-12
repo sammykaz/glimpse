@@ -52,7 +52,8 @@ namespace Glimpse.Core.Services.Data
                                     b.Title,
                                     b.Description,
                                     b.PromotionImage,
-                                    b.PromotionEndDate
+                                    b.PromotionEndDate,
+                                    b.PromotionId
                                 });
 
             //Select all promotions excluding those with empty locations
