@@ -28,7 +28,7 @@ namespace Glimpse.Droid.Views
         private LinearLayout _dotsLinearLayout;
         private ViewPager _viewPager;
         private SlidingImageAdapter _adapter;
-        private Bitmap[] _ImageResources;
+        private List<Bitmap> _ImageResources;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -49,7 +49,7 @@ namespace Glimpse.Droid.Views
         public void SetupViewPagerAndAdapter()
         {
             //byte[] byteImages = ViewModel.Images;
-            _ImageResources = new Bitmap[] {BitmapFactory.DecodeResource(Resources, Resource.Raw.promotion), BitmapFactory.DecodeResource(Resources, Resource.Raw.promociones) };
+            _ImageResources = new List<Bitmap> {BitmapFactory.DecodeResource(Resources, Resource.Raw.promotion), BitmapFactory.DecodeResource(Resources, Resource.Raw.promociones) };
             _adapter = new SlidingImageAdapter(this.Context, _ImageResources);
             _viewPager = (ViewPager)View.FindViewById(Resource.Id.imagesViewPager);
             _viewPager.Adapter = _adapter;

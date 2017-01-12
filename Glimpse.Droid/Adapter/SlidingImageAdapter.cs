@@ -20,10 +20,10 @@ namespace Glimpse.Droid.Adapter
     {
 
         Context _context;
-        Bitmap[] _resources;
+        List<Bitmap> _resources;
         LayoutInflater _layoutInflater;
 
-        public SlidingImageAdapter(Context context, Bitmap[] resources)
+        public SlidingImageAdapter(Context context, List<Bitmap> resources)
         {
             _context = context;
             _resources = resources;
@@ -34,7 +34,7 @@ namespace Glimpse.Droid.Adapter
         {
             get
             {
-                return _resources.Length;
+                return _resources.Count;
             }
         }
 
