@@ -17,11 +17,14 @@ namespace Glimpse.Core.Services.General
         private readonly string baseUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?";
 
         //JOSEPH KEY
-        //private readonly string key = "&key=AIzaSyCh-7urF7EEXVqH7gePdjvgx3Pjp4qZEvE";
+         //private readonly string key = "&key=AIzaSyCh-7urF7EEXVqH7gePdjvgx3Pjp4qZEvE";
         //private readonly string key = "&key=AIzaSyB3IwKBpvbadKnZLd7QK4OhnBt6G3-1uDU";
 
+        //Eric's KEY
+        private readonly string key = "AIzaSyBRO7YkJf3hzbSen3tT2vfWZttdE4MJ3xk";
+
         //SAM KEY
-        private readonly string key = "&key=AIzaSyBgkvg2Yy7YyphYP3l_Bim8ZtwzjfSuoYM";
+        // private readonly string key = "&key=AIzaSyBgkvg2Yy7YyphYP3l_Bim8ZtwzjfSuoYM";
 
 
         private string result;
@@ -87,11 +90,6 @@ namespace Glimpse.Core.Services.General
         private string buildUrl(Location origin, List<Location> destinations)
         {
             string url = baseUrl + "origins=" + origin.Lat + "," + origin.Lng;
-
-            for(int i = 1; i< destinations.Count; i++)
-            {
-                url = url + "|" + origin.Lat + "," + origin.Lng;
-            }
 
             url = url + "&destinations=";
 

@@ -11,21 +11,23 @@ namespace Glimpse.Core.ViewModel
 {
     public class ViewPagerViewModel : BaseViewModel
     {
-        public Lazy<TilesViewModel> _tilesViewModel;
-        public Lazy<MapViewModel> _mapViewModel;
+        private TilesViewModel _tilesViewModel;
+        private MapViewModel _mapViewModel;
 
         public ViewPagerViewModel(IMvxMessenger messenger) : base(messenger)
         {
-             _tilesViewModel = new Lazy<TilesViewModel>(Mvx.IocConstruct<TilesViewModel>);
-             _mapViewModel = new Lazy<MapViewModel>(Mvx.IocConstruct<MapViewModel>);
+            _mapViewModel = (MapViewModel)Mvx.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<MapViewModel>.GetDefaultRequest(), null);
+            _tilesViewModel = (TilesViewModel)Mvx.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<TilesViewModel>.GetDefaultRequest(), null);
         }
 
         public MapViewModel MapViewModel
         {
             get
-            {
-                return (MapViewModel)Mvx.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<MapViewModel>.GetDefaultRequest(), null);
+            { 
+                if(_mapViewModel ==  null)
+                    _mapViewModel = (MapViewModel)Mvx.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<MapViewModel>.GetDefaultRequest(), null);
 
+                return _mapViewModel;
             }
         }
 
@@ -33,7 +35,10 @@ namespace Glimpse.Core.ViewModel
         {
             get
             {
-                return (TilesViewModel)Mvx.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<TilesViewModel>.GetDefaultRequest(), null);
+                if(_tilesViewModel == null)
+                    _tilesViewModel = _tilesViewModel = (TilesViewModel)Mvx.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<TilesViewModel>.GetDefaultRequest(), null);
+
+                return _tilesViewModel;
 
             }
         }

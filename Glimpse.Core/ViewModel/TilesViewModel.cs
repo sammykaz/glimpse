@@ -40,6 +40,11 @@ namespace Glimpse.Core.ViewModel
             await ReloadDataAsync();
         }
 
+        public async Task ReloadAsync()
+        {
+            await ReloadDataAsync();
+        }
+
         protected override async Task InitializeAsync()
         {
             //Creates the locator
@@ -119,6 +124,33 @@ namespace Glimpse.Core.ViewModel
             List<PromotionWithLocation> final = mapPromotions.OrderBy(promotion => promotion.Duration).ToList().FindAll(p => p.Duration != 9999);          
          
             return final;
+        }
+
+        private bool _isRefreshing;
+
+        public virtual bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                RaisePropertyChanged(() => IsRefreshing);
+            }
+        }
+
+        public MvxCommand ReloadCommand
+        {
+            get
+            {
+                return new MvxCommand(async () =>
+                {
+                    IsRefreshing = true;
+
+                    await ReloadAsync();
+
+                    IsRefreshing = false;
+                });
+            }
         }
 
 

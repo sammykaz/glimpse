@@ -241,6 +241,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JasmineController.cs" />
+    <Compile Include="Controllers\PromotionImagesController.cs" />
     <Compile Include="Controllers\PromotionsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VendorsController.cs" />
@@ -260,11 +261,20 @@
     <Compile Include="Migrations\201701042041527_seedingdata.Designer.cs">
       <DependentUpon>201701042041527_seedingdata.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701112236209_promotionimagemodel.cs" />
+    <Compile Include="Migrations\201701112236209_promotionimagemodel.Designer.cs">
+      <DependentUpon>201701112236209_promotionimagemodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701112312202_foreignkeypromotion.cs" />
+    <Compile Include="Migrations\201701112312202_foreignkeypromotion.Designer.cs">
+      <DependentUpon>201701112312202_foreignkeypromotion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Contexts\GlimpseDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Promotion.cs" />
+    <Compile Include="Models\PromotionImage.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1155,14 +1165,28 @@
     <None Include="Index.cshtml" />
     <Content Include="Scripts\tether.min.js" />
     <Content Include="Scripts\ui-cropper.js" />
+    <Content Include="src\controllers\homeController.js" />
+    <Content Include="src\controllers\loginController.js" />
     <Content Include="src\controllers\mapController.js" />
+    <Content Include="src\controllers\profileController.js" />
     <Content Include="src\controllers\promotionController.js" />
+    <Content Include="src\controllers\signupController.js" />
     <Content Include="src\css\animate.css" />
+    <Content Include="src\css\css.css" />
+    <Content Include="src\css\ng-img-crop.css" />
     <Content Include="src\css\pbk.jpg" />
     <Content Include="src\css\ui-cropper.css" />
     <Content Include="src\css\wp.jpg" />
+    <Content Include="src\services\authenticationService.js" />
+    <Content Include="src\services\dataService.js" />
     <Content Include="src\services\userService.js" />
+    <Content Include="src\views\createPromotion.html" />
+    <Content Include="src\views\homeView.html" />
+    <Content Include="src\views\loginView.html" />
     <Content Include="src\views\mapView.html" />
+    <Content Include="src\views\profileView.html" />
+    <Content Include="src\views\signupView.html" />
+    <Content Include="src\views\viewPromotion.html" />
     <Content Include="TestScripts\DefaultTest.js" />
     <Content Include="TestScripts\HomeControllerTest.js" />
     <Content Include="TestScripts\MapTest.js" />
@@ -1188,6 +1212,9 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Jasmine\SpecRunner.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="test-results.testxml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1219,6 +1246,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701042041527_seedingdata.resx">
       <DependentUpon>201701042041527_seedingdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701112236209_promotionimagemodel.resx">
+      <DependentUpon>201701112236209_promotionimagemodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701112312202_foreignkeypromotion.resx">
+      <DependentUpon>201701112312202_foreignkeypromotion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
