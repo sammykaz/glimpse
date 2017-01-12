@@ -30,10 +30,7 @@ using Com.Google.Maps.Android.Geometry;
 using Com.Google.Maps.Android;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
-using Glimpse.Core.Services.Data;
 using MvvmCross.Platform;
-using Newtonsoft.Json;
-using String = System.String;
 using static Android.Gms.Maps.GoogleMap;
 
 namespace Glimpse.Droid.Views
@@ -52,7 +49,6 @@ namespace Glimpse.Droid.Views
         private List<PromotionItem> clusterList;
         private IEnumerable activePromotions;
         private IAlgorithm clusterAlgorithm;
-        private IClusterRenderer clusterRenderer;
 
         private Dictionary<int, PromotionItem> visibleMarkers = new Dictionary<int, PromotionItem>();
 
@@ -245,6 +241,7 @@ namespace Glimpse.Droid.Views
              map.SetOnCameraIdleListener(clusterManager);
              map.SetOnMarkerClickListener(clusterManager);
 
+            clusterList = new List<PromotionItem>();
 
             //Show promotions
             ShowPromotionsOnMap();
@@ -294,24 +291,7 @@ namespace Glimpse.Droid.Views
             var vendorService = Mvx.Resolve<IVendorDataService>();
             List<Vendor> vendors = await vendorService.GetVendors();
 
-           // var promotions = DataGenerator.DataGenerator.GeneratePromotions(50, vendors.Select(v => v.VendorId).ToList());
-            AddClusterItems();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*
+           // AddClusterItems();
             
             activePromotions = await ViewModel.GetActivePromotions();
 
@@ -352,9 +332,8 @@ namespace Glimpse.Droid.Views
 
                 CreateClusterItem(lat, lng,title,description,expirationDate,companyName, bitmap);             
             }
-            */
 
-            //GenerateCluster();
+           GenerateCluster();
         }
 
         private void AddClusterItems()
@@ -366,17 +345,8 @@ namespace Glimpse.Droid.Views
             double lng = -122.3346;
 
             Random random = new Random();
-            /*
-             for (var i = 0; i < 50; i++)
-             {
-                 double offset = i / 60d;
-                 lat = lat + offset;
-                 lng = lng + offset;
+            
 
-                 var item = new PromotionItem(lat, lng, "title","description","expirationDate","companyName", null);
-                 items.Add(item);
-             }
-*/
             for (int i = 0; i < 1000; ++i)
             {
                 

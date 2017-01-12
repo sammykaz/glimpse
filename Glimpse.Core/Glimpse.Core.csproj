@@ -84,6 +84,7 @@
     <Compile Include="Repositories\VendorRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="RestClient\RestClient.cs" />
+    <Compile Include="Services\Data\FilteringDataService.cs" />
     <Compile Include="Services\Data\PromotionDataService.cs" />
     <Compile Include="Services\Data\LoginDataService.cs" />
     <Compile Include="Services\Data\PromotionImageDataService.cs" />

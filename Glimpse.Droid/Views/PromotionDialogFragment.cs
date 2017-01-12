@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Glimpse.Core.Helpers;
+using Glimpse.Droid.Helpers;
 
 namespace Glimpse.Droid.Views
 {
@@ -39,7 +40,7 @@ namespace Glimpse.Droid.Views
             txtDescription.Text = description;
             txtExpirationDate.Text = expirationDate;
             txtCompanyName.Text = companyName;
-            promotionImage.SetImageBitmap(image);
+            promotionImage.SetImageBitmap(BitmapProcessing.decodeSampledBitmapFromResource(Resources,Resource.Id.imgPromoDialogPicture, 200, 200));
 
 
             return view;

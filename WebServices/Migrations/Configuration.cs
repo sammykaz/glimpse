@@ -21,9 +21,9 @@ namespace WebServices.Migrations
         protected override void Seed(WebServices.Models.GlimpseDbContext context)
         {
 
-          //  IList<Vendor> vendors = generateVendors();
+          IList<Vendor> vendors = generateVendors();
 
-          //  IList<Promotion> promotions = DataGenerator.GeneratePromotions(50, context.Vendors.Select(vendor => vendor.VendorId).ToList());
+         IList<Promotion> promotions = GeneratePromotions(50, context.Vendors.Select(vendor => vendor.VendorId).ToList());
 
             
 
@@ -33,14 +33,14 @@ namespace WebServices.Migrations
        //         context.Vendors.Add(vendor);
 
 
-          //  foreach (Promotion promotion in promotions)
-          //      context.Promotions.Add(promotion);
+          foreach (Promotion promotion in promotions)
+                context.Promotions.Add(promotion);
             
 
             base.Seed(context); 
         }
 
-        private List<Promotion> generatePromotions(int numberOfPromotions, List<int> vendorIds)
+        private List<Promotion> GeneratePromotions(int numberOfPromotions, List<int> vendorIds)
         {
             List<Promotion> promotions = new List<Promotion>();
 
@@ -234,8 +234,10 @@ namespace WebServices.Migrations
         private static Location GetRandomLatLon()
         {
             //this is around hall building
-            double centerLat = 45.495393;
-            double centerLng = -73.578862;
+            
+            //near eric's house
+            double centerLat = 45.572223;
+            double centerLng = -73.624737;
 
             //how far from center promotions will be generated
             double radius = 0.02;

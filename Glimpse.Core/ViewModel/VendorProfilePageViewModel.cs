@@ -47,10 +47,9 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand( async() =>
                 {
-                    //var result = await _promotionDataService.GetPromotions(6);
-                    PromotionList = await _promotionDataService.GetPromotions();
+                    List<Promotion> promotionsList = await _promotionDataService.GetPromotions();
                     Vendor vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
-                    List<Promotion> promotionForVendor = PromotionList.Where(c => c.VendorId == vendor.VendorId).ToList();
+                    List<Promotion> promotionForVendor = promotionsList.Where(c => c.VendorId == vendor.VendorId).ToList();
                     PromotionList = promotionForVendor;
                 });
             }
