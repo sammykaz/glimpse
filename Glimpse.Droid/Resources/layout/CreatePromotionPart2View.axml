@@ -51,17 +51,60 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Change Date" />
-        <Button
-            android:id="@+id/btnChoosePicture"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Pick Image" />
-        <Mvx.MvxImageView
-            android:src="@android:drawable/ic_menu_gallery"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/promotion_picture"
-            local:MvxBind="Image Bytes,Converter=InMemoryImage" />
+      
+      
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white">
+            <TextView
+               android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20dp"
+                android:text="Choose your cover picture!"/>
+            <Mvx.MvxImageView
+                android:src="@drawable/plus"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:id="@+id/promotion_cover"
+                local:MvxBind="Image Bytes,Converter=InMemoryImage" />
+            <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:textSize="20dp"
+                  android:text="Choose your additional pictures! (optional)"/>
+          <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+           android:gravity="center"
+            android:background="@android:color/white">
+            <Mvx.MvxImageView
+                android:src="@drawable/plus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/promotion_picture1"
+                local:MvxBind="Image Bytes,Converter=InMemoryImage" />
+            <Mvx.MvxImageView
+                android:src="@drawable/plus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"  
+                android:id="@+id/promotion_picture2"
+                local:MvxBind="Image Bytes,Converter=InMemoryImage" />
+            <Mvx.MvxImageView
+                android:src="@drawable/plus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/promotion_picture3"
+                local:MvxBind="Image Bytes,Converter=InMemoryImage" />
+          </LinearLayout>
+        </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
             android:layout_height="wrap_content"
@@ -77,6 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ContinuePart2Button"
+            android:layout_marginTop="10dp"
             android:textSize="20dp"
             android:textColor="#fff"
             android:textStyle="bold"

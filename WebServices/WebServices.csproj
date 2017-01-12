@@ -241,6 +241,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JasmineController.cs" />
+    <Compile Include="Controllers\PromotionImagesController.cs" />
     <Compile Include="Controllers\PromotionsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VendorsController.cs" />
@@ -259,11 +260,20 @@
     <Compile Include="Migrations\201701042041527_seedingdata.Designer.cs">
       <DependentUpon>201701042041527_seedingdata.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701112236209_promotionimagemodel.cs" />
+    <Compile Include="Migrations\201701112236209_promotionimagemodel.Designer.cs">
+      <DependentUpon>201701112236209_promotionimagemodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701112312202_foreignkeypromotion.cs" />
+    <Compile Include="Migrations\201701112312202_foreignkeypromotion.Designer.cs">
+      <DependentUpon>201701112312202_foreignkeypromotion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Contexts\GlimpseDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Promotion.cs" />
+    <Compile Include="Models\PromotionImage.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1241,6 +1251,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701042041527_seedingdata.resx">
       <DependentUpon>201701042041527_seedingdata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701112236209_promotionimagemodel.resx">
+      <DependentUpon>201701112236209_promotionimagemodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701112312202_foreignkeypromotion.resx">
+      <DependentUpon>201701112312202_foreignkeypromotion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

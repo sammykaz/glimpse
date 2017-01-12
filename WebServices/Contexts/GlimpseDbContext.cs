@@ -23,5 +23,7 @@ namespace WebServices.Models
         public DbSet<Vendor> Vendors { get; set; }
 
         public DbSet<Promotion> Promotions { get; set; }
+
+        public System.Data.Entity.DbSet<WebServices.Models.PromotionImage> PromotionImages { get; set; }
     }
 }

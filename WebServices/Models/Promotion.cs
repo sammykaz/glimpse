@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,6 +8,11 @@ namespace WebServices.Models
 {
     public class Promotion
     {
+        public Promotion()
+        {
+            PromotionImages = new List<PromotionImage>();
+        }
+
         [Key]
         public int PromotionId { get; set; }
 
@@ -25,6 +31,8 @@ namespace WebServices.Models
         public DateTime PromotionEndDate { get; set; }
  
         public byte[] PromotionImage { get; set;}
+
+        public virtual ICollection<PromotionImage> PromotionImages { get; set; }
 
     }
 

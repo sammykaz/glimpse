@@ -12,13 +12,16 @@ namespace Glimpse.Core.ViewModel
     {
         private readonly IPromotionDataService _promotionDataService;
         private IVendorDataService _vendorDataService;
+        private readonly IPromotionImageDataService _promotionImageDataService;
         Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
         private Categories selectedCategory;
 
-        public CreatePromotionPart2ViewModel(IPromotionDataService promotionDataService, IVendorDataService vendorDataService)
+        public CreatePromotionPart2ViewModel(IPromotionDataService promotionDataService, IVendorDataService vendorDataService, IPromotionImageDataService promotionImageDataService)
         {
             _promotionDataService = promotionDataService;
             _vendorDataService = vendorDataService;
+            _promotionImageDataService = promotionImageDataService;
+            _promotionImageList = new List<byte[]>();
         }
 
         protected override void InitFromBundle(IMvxBundle parameters)
@@ -31,6 +34,7 @@ namespace Glimpse.Core.ViewModel
             }
             base.InitFromBundle(parameters);
         }
+
         private DateTime _promotionStartDate;
         public DateTime PromotionStartDate
         {
@@ -43,6 +47,17 @@ namespace Glimpse.Core.ViewModel
         {
             get { return _promotionEndDate; }
             set { _promotionEndDate = value; RaisePropertyChanged(() => PromotionEndDate); }
+        }
+
+        private List<byte[]> _promotionImageList;
+        public List<byte[]> PromotionImageList
+        {
+            get { return _promotionImageList; }
+            set
+            {
+                _promotionImageList = value;
+                RaisePropertyChanged(() => PromotionImageList);
+            }
         }
 
 
@@ -60,17 +75,6 @@ namespace Glimpse.Core.ViewModel
             Bytes = memoryStream.ToArray();
         }
 
-        /* public MvxCommand selectImg
-         {
-             get
-             {
-                 return new MvxCommand(() =>
-                 {
-                     _pictureChooserTask.ChoosePictureFromLibrary(400, 95, OnPicture, () => { });
-                 });
-             }
-         }
-         */
         public MvxCommand createPromotion
         {
             get
@@ -106,6 +110,20 @@ namespace Glimpse.Core.ViewModel
 
                     //this next line is not actually adding promotions, dont know why, works for all other
                     //await _vendorDataService.EditVendor(vendor.VendorId, vendor);
+                    List<Promotion> promotions = await _promotionDataService.GetPromotions();
+                    
+
+                    foreach(byte[] promotionImage in PromotionImageList)
+                    {
+                        PromotionImage promotionImageInstance = new PromotionImage()
+                        {
+                            Image = promotionImage,
+                            PromotionId = promotions[promotions.Count - 1].PromotionId
+                        };
+
+                        await _promotionImageDataService.StorePromotion(promotionImageInstance);
+                    }
+
 
                     ShowViewModel<VendorProfilePageViewModel>();
 
