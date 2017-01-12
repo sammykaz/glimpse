@@ -32,8 +32,12 @@ namespace Glimpse.Core.ViewModel
         {
             ShowViewModel<ViewPagerViewModel>();
         }
-      
 
+        public void ShowImageSlider()
+
+        {
+            ShowViewModel<TileDetailsViewModel>();
+        }
 
     }
 }

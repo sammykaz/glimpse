@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -80,9 +81,9 @@ namespace Glimpse.Core.ViewModel
             List<Promotion> allPromotions = await _promotionDataService.GetPromotions();
             List<Vendor> allVendors = await _vendorDataService.GetVendors();
 
-            DateTime now = DateTime.Now;            
+            DateTime now = DateTime.Now;
 
-            List<Promotion> activePromotions = allPromotions.Where(e => e.PromotionStartDate.CompareTo(now) <= 0  && e.PromotionEndDate.CompareTo(now) >= 0).ToList();
+            List<Promotion> activePromotions = allPromotions.Where(e => e.PromotionStartDate.CompareTo(now) <= 0 && e.PromotionEndDate.CompareTo(now) >= 0).ToList();
 
             var mapPromotions = allVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,
                                 (e, b) => new PromotionWithLocation
@@ -92,7 +93,8 @@ namespace Glimpse.Core.ViewModel
                                     Description = b.Description,
                                     CompanyName = e.CompanyName,
                                     Duration = 9999,
-                                    Image = b.PromotionImage                                             
+                                    Image = b.PromotionImage,
+                                    PromotionId = b.PromotionId
                                 }).ToList();
 
 
@@ -104,7 +106,7 @@ namespace Glimpse.Core.ViewModel
 
             //index to plug result into mapPromotions list
             int j = 0;
-            foreach(IEnumerable<Location> subList in splitPromotionLocation)
+            foreach (IEnumerable<Location> subList in splitPromotionLocation)
             {
                 List<Location> subListAsList = subList.ToList();
                 DistanceMatrix distanceMatrix = await _gwb.GetMultipleDurationResponse(_userLocation, subListAsList);
@@ -119,10 +121,10 @@ namespace Glimpse.Core.ViewModel
 
                 }
 
-            }  
+            }
 
-            List<PromotionWithLocation> final = mapPromotions.OrderBy(promotion => promotion.Duration).ToList().FindAll(p => p.Duration != 9999);          
-         
+            List<PromotionWithLocation> final = mapPromotions.OrderBy(promotion => promotion.Duration).ToList().FindAll(p => p.Duration != 9999);
+
             return final;
         }
 
@@ -164,9 +166,21 @@ namespace Glimpse.Core.ViewModel
             }
 
         }
-      
 
+        public ICommand ViewTileDetails
+        {
+            get
+            {
+                return new MvxCommand<PromotionWithLocation>(item =>
+                {
+                    var desc = new Dictionary<string, string> {
+                        {"PromotionID", Convert.ToString(item.PromotionId)} };
 
+                    ShowViewModel<TileDetailsViewModel>(desc);
+
+                });
+            }
+        }
     }
 
     public static class EnumerableExtensions
