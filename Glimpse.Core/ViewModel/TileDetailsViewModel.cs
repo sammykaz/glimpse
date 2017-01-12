@@ -1,4 +1,5 @@
-﻿using Glimpse.Core.Model;
+﻿using Glimpse.Core.Contracts.Services;
+using Glimpse.Core.Model;
 using Glimpse.Core.Services.General;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
@@ -12,16 +13,19 @@ namespace Glimpse.Core.ViewModel
     public class TileDetailsViewModel : BaseViewModel
     {
         private List<byte[]> _images;
-        private int promotionId; 
+        private readonly IPromotionImageDataService _promotionImageDataService;
+        private int _promotionId; 
 
-        public TileDetailsViewModel()
-        { }
+        public TileDetailsViewModel(IMvxMessenger messenger, IPromotionImageDataService promotionImageDataService)
+        {
+            _promotionImageDataService = promotionImageDataService;
+        }
 
         protected override void InitFromBundle(IMvxBundle parameters)
         {
             if (parameters.Data.ContainsKey("PromotionID"))
             {
-                promotionId = Convert.ToInt32((parameters.Data["PromotionID"]));
+                _promotionId = Convert.ToInt32((parameters.Data["PromotionID"]));
             }
 
 
@@ -41,7 +45,15 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-     /*   public override async void Start()
+        public async Task<List<byte[]>> GetImageList()
+        {
+            //getting images for promotion
+            _images = await _promotionImageDataService.GetImageListFromPromotionImageId(1125);
+
+            return _images;
+        }
+
+        public override async void Start()
         {
             base.Start();
             await ReloadDataAsync();
@@ -49,10 +61,10 @@ namespace Glimpse.Core.ViewModel
 
         protected override Task InitializeAsync()
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
             {
-                
+               
             });
-        }*/
+        }
     }
 }
