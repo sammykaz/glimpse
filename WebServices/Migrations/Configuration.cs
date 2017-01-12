@@ -33,8 +33,8 @@ namespace WebServices.Migrations
        //         context.Vendors.Add(vendor);
 
 
-            foreach (Promotion promotion in promotions)
-                context.Promotions.Add(promotion);
+         //   foreach (Promotion promotion in promotions)
+         //       context.Promotions.Add(promotion);
 
 
             base.Seed(context); 
