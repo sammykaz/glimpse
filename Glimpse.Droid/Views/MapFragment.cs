@@ -22,6 +22,7 @@ using Glimpse.Core.Helpers;
 using System;
 using Exception = System.Exception;
 using Android.Graphics;
+using Glimpse.Core.Model;
 
 namespace Glimpse.Droid.Views
 {
@@ -36,7 +37,7 @@ namespace Glimpse.Droid.Views
         private LatLng location = null;
         private ClusterManager clusterManager;
         private List<PromotionItem> clusterList;
-        private IEnumerable activePromotions;
+        private List<PromotionWithLocation> activePromotions;
         public MapFragment()
         {
             clusterList = new List<PromotionItem>();
@@ -242,7 +243,7 @@ namespace Glimpse.Droid.Views
             return false;
         }
 
-        private void CreateClusterItem(double lat, double lng, string title, string description, string expirationDate, string companyName, Bitmap image)
+        private void CreateClusterItem(double lat, double lng, string title, string description, int expirationDate, string companyName, Bitmap image)
         {
             clusterList.Add(new PromotionItem(lat, lng, title, description, expirationDate, companyName, image));
         }
@@ -257,12 +258,13 @@ namespace Glimpse.Droid.Views
         {
             var viewModel = (MapViewModel)ViewModel;
 
-            
+
             activePromotions = await ViewModel.GetActivePromotions();
 
             //Print out the pins
-            foreach (var promotion in activePromotions)
+            foreach (var p in activePromotions)
             {
+                /*
                 string companyName = promotion.GetType().GetProperty("CompanyName").GetValue(promotion, null).ToString();
                 string title = promotion.GetType().GetProperty("Title").GetValue(promotion, null).ToString();
                 string description = promotion.GetType().GetProperty("Description").GetValue(promotion, null).ToString();
@@ -271,15 +273,14 @@ namespace Glimpse.Droid.Views
 
                 double lat = (double) PropValue.GetPropertyValue(promotion, "Location.Lat");
                 double lng = (double) PropValue.GetPropertyValue(promotion, "Location.Lng");
-
-                //Convert anonymous iobject to byte[]
-                //byte[] imageArrayBytes = ObjectByteArrayConversion.ObjectToByteArray(imageBytes);
-
+                */
+                
+                
                 //Convert byte array back to image
                 Bitmap bitmap = null;
                 try
                 {
-                   bitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                   bitmap = BitmapFactory.DecodeByteArray(p.Image, 0, p.Image.Length);
                 }
                 catch(Exception e)
                 {
@@ -287,15 +288,9 @@ namespace Glimpse.Droid.Views
                 }
 
 
-                //Check the distance for each pair of coordinates
-                //var sCoord = new GeoCoordinate();
-                //var eCoord = new GeoCoordinate();
-
-                //return sCoord.GetDistanceTo(eCoord);
 
 
-
-                CreateClusterItem(lat, lng,title,description,expirationDate,companyName, bitmap);
+                CreateClusterItem(p.Location.Lat, p.Location.Lng,p.Title,p.Description,p.Duration,p.CompanyName, bitmap);
     
             }
             GenerateCluster();

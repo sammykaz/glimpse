@@ -58,7 +58,7 @@ namespace Glimpse.Core.ViewModel
             //get initial user location
             _userLocation = await GetUserLocation();
 
-            PromotionList = await getPromotionsWithLocation();
+            PromotionList = await GetPromotionsWithLocation();
         }
 
 
@@ -76,7 +76,7 @@ namespace Glimpse.Core.ViewModel
         }
 
 
-        private async Task<List<PromotionWithLocation>> getPromotionsWithLocation()
+        private async Task<List<PromotionWithLocation>> GetPromotionsWithLocation()
         {
             List<Promotion> allPromotions = await _promotionDataService.GetPromotions();
             List<Vendor> allVendors = await _vendorDataService.GetVendors();
