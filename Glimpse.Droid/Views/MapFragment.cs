@@ -47,7 +47,7 @@ namespace Glimpse.Droid.Views
         private LatLng location = null;
         private ClusterManager clusterManager;
         private List<PromotionItem> clusterList;
-        private IEnumerable activePromotions;
+        private List<PromotionWithLocation> activePromotions;
         private IAlgorithm clusterAlgorithm;
 
         private Dictionary<int, PromotionItem> visibleMarkers = new Dictionary<int, PromotionItem>();
@@ -265,20 +265,15 @@ namespace Glimpse.Droid.Views
             return false;
         }
 
+        private async void StoreItemClick(int promotionId)
+        {
+            await ViewModel.StorePromotionClick(promotionId);
+        }
 
         public async void OnCameraIdle()
         {
          
 
-        }
-
-
-
-
-        private void CreateClusterItem(double lat, double lng, string title, string description, string expirationDate,
-            string companyName, Bitmap image)
-        {
-            await ViewModel.StorePromotionClick(promotionId);
         }
 
         private void CreateClusterItem(double lat, double lng, string title, string description, int expirationDate, string companyName, Bitmap image, int promotionId)
@@ -329,8 +324,6 @@ namespace Glimpse.Droid.Views
                 {
                     Console.WriteLine("Error converting byte[] to image" + e.StackTrace);
                 }
-
-
 
 
                 CreateClusterItem(p.Location.Lat, p.Location.Lng, p.Title, p.Description, p.Duration, p.CompanyName, bitmap, p.PromotionId);

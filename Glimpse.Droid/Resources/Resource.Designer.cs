@@ -2536,8 +2536,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a000d
 			public const int MvxBindingTagUnique = 2131361805;
 			
-			// aapt resource value: 0x7f0a00db
-			public const int SignUpButton = 2131362011;
+			// aapt resource value: 0x7f0a00de
+			public const int SignUpButton = 2131362014;
 			
 			// aapt resource value: 0x7f0a00b5
 			public const int action0 = 2131361973;
@@ -3602,7 +3602,10 @@ namespace Glimpse.Droid
 			public const int promotion = 2131034133;
 			
 			// aapt resource value: 0x7f050016
-			public const int style_json = 2131034134;
+			public const int radar = 2131034134;
+			
+			// aapt resource value: 0x7f050017
+			public const int style_json = 2131034135;
 			
 			static Raw()
 			{
