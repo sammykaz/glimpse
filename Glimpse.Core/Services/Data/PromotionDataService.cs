@@ -42,7 +42,9 @@ namespace Glimpse.Core.Services.Data
             List<Promotion> allPromotions = await promotionRepository.GetPromotions();
             List<Vendor> allVendors = await vendorRepository.GetVendors();
 
-            List<Promotion> activePromotions = allPromotions.Where(e => (e.PromotionEndDate - e.PromotionStartDate).TotalSeconds > 0).ToList();
+            DateTime now = DateTime.Now;
+
+            List<Promotion> activePromotions = allPromotions.Where(e => e.PromotionStartDate.CompareTo(now) <= 0 && e.PromotionEndDate.CompareTo(now) >= 0).ToList();
 
             /*
             var mapPromotions = allVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,
@@ -66,7 +68,9 @@ namespace Glimpse.Core.Services.Data
                     CompanyName = e.CompanyName,
                     Duration = 9999,
                     Image = b.PromotionImage,
-                    PromotionId = b.PromotionId
+                    PromotionId = b.PromotionId,
+                    PromotionStartDate = b.PromotionStartDate,
+                    PromotionEndDate = b.PromotionEndDate
                 });
 
             //Select all promotions excluding those with empty locations
