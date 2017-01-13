@@ -21,20 +21,19 @@
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>HomeController Data should be empty initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
-    <DisplayName>HomeController Data should be empty initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Name>PromotionController should call deletePromotion method (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>PromotionController should call deletePromotion method (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>modalController should have the google maps url initialized (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
-    <DisplayName>modalController should have the google maps url initialized (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
-    <Outcome>Failed</Outcome>
-    <ErrorStackTrace>Expected undefined to be &apos;https://maps.googleapis.com/maps/api/js?key=AIzaSyDCezs9lCKQtmKlP8mm_fBWZt25DlXoUjg&amp;callback=initMap&apos;.
-Error: Expected undefined to be &apos;https://maps.googleapis.com/maps/api/js?key=AIzaSyDCezs9lCKQtmKlP8mm_fBWZt25DlXoUjg&amp;callback=initMap&apos;.
-    at jasmine.Spec.&lt;anonymous&gt; (C:/Users/Abdulla Daoud/Documents/GitHub/New folder/glimpse/WebServices/TestScripts/MapTest.js:14:37)
-
-
-</ErrorStackTrace>
+    <Name>PromotionController should call editPromotion method (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>PromotionController should call editPromotion method (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>HomeController Data should be empty initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>HomeController Data should be empty initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
   </Test>
   <Test>
     <Name>ProfileController should have editOn set as false initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
