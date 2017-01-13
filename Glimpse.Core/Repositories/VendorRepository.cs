@@ -48,6 +48,12 @@ namespace Glimpse.Core.Repositories
             await restClient.PutAsync(id, vendor);
         }
 
- 
+        public async Task DeleteVendor(Vendor vendor)
+        {
+            RestClient<Vendor> restClient = new RestClient<Vendor>();
+
+            await restClient.DeleteAsync(vendor.VendorId, vendor);
+        }
+
     }
 }
