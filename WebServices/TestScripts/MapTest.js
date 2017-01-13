@@ -1,4 +1,4 @@
-﻿/*
+﻿
 describe('modalController', function () {
     var $controller, $rootScope;
     beforeEach(angular.mock.module('myApp'));
@@ -8,9 +8,10 @@ describe('modalController', function () {
         $rootScope = _$rootScope_;
     }));
 
-    it('should have the google maps url initialized', function () {
+    it('should have the google maps zoomed at montreal area', function () {
         var scope = $rootScope.$new();
         var controller = $controller('mapController', { $scope: scope });
-        expect(scope.googleMapsUrl).toBe("https://maps.googleapis.com/maps/api/js?key=AIzaSyDCezs9lCKQtmKlP8mm_fBWZt25DlXoUjg&callback=initMap");
+        expect(scope.map.center.latitude).toBe(45.4581475);
+        expect(scope.map.center.latitude).toBe(-73.64009765625);
     });
-});*/
+});

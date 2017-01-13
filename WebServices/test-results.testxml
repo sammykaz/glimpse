@@ -36,6 +36,11 @@
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
+    <Name>modalController should have the google maps url initialized (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController should have the google maps url initialized (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
     <Name>ProfileController should have editOn set as false initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
     <DisplayName>ProfileController should have editOn set as false initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
@@ -78,7 +83,13 @@
   <Test>
     <Name>modalController should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
     <DisplayName>modalController should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
-    <Outcome>Passed</Outcome>
+    <Outcome>Failed</Outcome>
+    <ErrorStackTrace>ReferenceError: Caman is not defined
+    at b.$scope.applyFilter (C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/src/controllers/promotionController.js:325:9)
+    at jasmine.Spec.&lt;anonymous&gt; (C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/TestScripts/PromoTest.js:59:15)
+
+
+</ErrorStackTrace>
   </Test>
   <Test>
     <Name>changeDateModalController should be able to show previous date (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
