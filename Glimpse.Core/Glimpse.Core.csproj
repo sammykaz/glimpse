@@ -50,11 +50,13 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="AppStart.cs" />
+    <Compile Include="Contracts\Repository\IPromotionClickRepository.cs" />
     <Compile Include="Contracts\Repository\IPromotionImageRepository.cs" />
     <Compile Include="Contracts\Repository\IPromotionRepository.cs" />
     <Compile Include="Contracts\Repository\IVendorRepository .cs" />
     <Compile Include="Contracts\Repository\IUserRepository.cs" />
     <Compile Include="Contracts\Services\ILoginDataService.cs" />
+    <Compile Include="Contracts\Services\IPromotionClickDataService.cs" />
     <Compile Include="Contracts\Services\IPromotionDataService.cs" />
     <Compile Include="Contracts\Services\IPromotionImageDataService.cs" />
     <Compile Include="Contracts\Services\IVendorDataService.cs" />
@@ -75,15 +77,18 @@
     <Compile Include="Model\Promotion.cs" />
     <Compile Include="Model\Location.cs" />
     <Compile Include="Model\CustomModels\PromotionWithLocation.cs" />
+    <Compile Include="Model\PromotionClick.cs" />
     <Compile Include="Model\PromotionImage.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\PromotionClickRepository.cs" />
     <Compile Include="Repositories\PromotionImageRepository.cs" />
     <Compile Include="Repositories\PromotionRepository.cs" />
     <Compile Include="Repositories\VendorRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="RestClient\RestClient.cs" />
+    <Compile Include="Services\Data\PromotionClickDataService.cs" />
     <Compile Include="Services\Data\PromotionDataService.cs" />
     <Compile Include="Services\Data\LoginDataService.cs" />
     <Compile Include="Services\Data\PromotionImageDataService.cs" />
