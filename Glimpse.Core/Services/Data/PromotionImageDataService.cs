@@ -20,12 +20,20 @@ namespace Glimpse.Core.Services.Data
           
         }
 
-        public async Task<List<PromotionImage>> GetPromotion(int id)
+        public async Task<List<PromotionImage>> GetPromotionImage(int id)
         {
             return await promotionImageRepository.GetPromotionImage(id);
         }
 
-        public async Task<List<PromotionImage>> GetPromotions()
+        public async Task<List<byte[]>> GetImageListFromPromotionImageId(int id)
+        {
+            List<PromotionImage> allPromotionImages = await GetPromotionImages();
+            List<byte[]> listofImages = allPromotionImages.Where(x => (x.PromotionId == id)).Select(x => x.Image).ToList();
+
+            return listofImages;
+        }
+
+        public async Task<List<PromotionImage>> GetPromotionImages()
         {
             return await promotionImageRepository.GetPromotionImages();
         }

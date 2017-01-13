@@ -241,6 +241,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JasmineController.cs" />
+    <Compile Include="Controllers\PromotionClicksController.cs" />
     <Compile Include="Controllers\PromotionImagesController.cs" />
     <Compile Include="Controllers\PromotionsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -269,11 +270,16 @@
     <Compile Include="Migrations\201701112312202_foreignkeypromotion.Designer.cs">
       <DependentUpon>201701112312202_foreignkeypromotion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701130221398_promotionclick.cs" />
+    <Compile Include="Migrations\201701130221398_promotionclick.Designer.cs">
+      <DependentUpon>201701130221398_promotionclick.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Contexts\GlimpseDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Promotion.cs" />
+    <Compile Include="Models\PromotionClick.cs" />
     <Compile Include="Models\PromotionImage.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vendor.cs" />
@@ -1252,6 +1258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701112312202_foreignkeypromotion.resx">
       <DependentUpon>201701112312202_foreignkeypromotion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701130221398_promotionclick.resx">
+      <DependentUpon>201701130221398_promotionclick.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
