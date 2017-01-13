@@ -12,5 +12,7 @@ namespace Glimpse.Core.Contracts.Services
 
         Task<List<User>> GetUsers();
 
+        Task DeleteUser(User user);
+
     }
 }

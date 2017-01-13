@@ -8,6 +8,7 @@ namespace Glimpse.Core.Contracts.Repository
     {
         Task<User> SearchUserByEmail(string email);
 
+        Task DeleteUser(User user);
 
         Task PostUser(User user);
 
