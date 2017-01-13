@@ -1,5 +1,6 @@
 ﻿'use strict';
 app.controller("mapController", ['$scope', 'dataService', function ($scope, dataService) {
+    $scope.randomMarkers = [];
     var pins = [];
     var i = 0;
     var promotionsquery = dataService.getPromotions().query().$promise.then(function (data) {
