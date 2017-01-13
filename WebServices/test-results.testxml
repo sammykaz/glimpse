@@ -76,11 +76,6 @@
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>modalController should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
-    <DisplayName>modalController should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
-    <Outcome>Passed</Outcome>
-  </Test>
-  <Test>
     <Name>changeDateModalController should be able to show previous date (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
     <DisplayName>changeDateModalController should be able to show previous date (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
