@@ -56,13 +56,13 @@ namespace WebServices.Controllers
         [Route("api/Vendors/{id}/promotions")]
         public IHttpActionResult GetVendorPromotions(int id)
         {
-            Vendor vendor = db.Vendors.Find(id);
-            if (vendor == null)
+            List<Promotion> promosOfVendor = db.Promotions.Where(promo => promo.VendorId == id).ToList();
+            /*if (vendor == null)
             {
                 return NotFound();
-            }
+            } */
 
-            return Ok(vendor.Promotions);
+            return Ok(promosOfVendor);
         }
 
         // PUT: api/Vendors/5

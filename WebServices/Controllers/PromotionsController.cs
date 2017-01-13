@@ -31,6 +31,21 @@ namespace WebServices.Controllers
             return Ok(promotion);
         }
 
+        // GET: api/Vendors/5/promotions
+        [ResponseType(typeof(Vendor))]
+        [Route("api/Promotions/{id}/promotionclicks")]
+        public IHttpActionResult GetVendorPromotions(int id)
+        {
+            List<PromotionClick> promotionClicksOfPromotion = db.PromotionClicks.Where(promoClick => promoClick.PromotionId == id).ToList();
+            /*if (vendor == null)
+            {
+                return NotFound();
+            } */
+
+            return Ok(promotionClicksOfPromotion);
+        }
+
+
         // PUT: api/Promotions/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPromotion(int id, Promotion promotion)
