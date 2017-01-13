@@ -32,9 +32,20 @@ namespace Glimpse.Core.Repositories
         {
             RestClient<Promotion> restClient = new RestClient<Promotion>();
 
-            var promotion = await restClient.GetAsync();
+            var promotions = await restClient.GetAsync();
 
-            return promotion;
+            return promotions;
+        }
+
+        public async Task<List<Promotion>> GetPromotionsByCategory(Categories category)
+        {
+            RestClient<Promotion> restClient = new RestClient<Promotion>();
+
+            string enumAsString = category.ToString();
+
+            var promotions = await restClient.GetWithFilter(enumAsString);
+
+            return promotions;
         }
     }
 }

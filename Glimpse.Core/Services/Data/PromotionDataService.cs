@@ -32,6 +32,11 @@ namespace Glimpse.Core.Services.Data
             return await promotionRepository.GetPromotions();
         }
 
+        public async Task<List<Promotion>> GetPromotionsByCategory(Categories category)
+        {
+            return await promotionRepository.GetPromotionsByCategory(category);
+        }
+
         public async Task StorePromotion(Promotion promotion)
         {
             await promotionRepository.StorePromotion(promotion);
