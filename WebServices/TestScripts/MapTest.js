@@ -1,4 +1,4 @@
-﻿
+﻿/*
 describe('modalController', function () {
     var $controller, $rootScope;
     beforeEach(angular.mock.module('myApp'));
@@ -13,4 +13,4 @@ describe('modalController', function () {
         var controller = $controller('mapController', { $scope: scope });
         expect(scope.googleMapsUrl).toBe("https://maps.googleapis.com/maps/api/js?key=AIzaSyDCezs9lCKQtmKlP8mm_fBWZt25DlXoUjg&callback=initMap");
     });
-});
+});*/

@@ -377,6 +377,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Scripts\caman.full.js" />
     <Content Include="Scripts\caman.full.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-block-ui.min.js.map" />
@@ -387,6 +388,8 @@
     <Content Include="package.json" />
     <None Include="Properties\PublishProfiles\GlimpseWS - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\GlimpseWS - Web Deploy.pubxml" />
+    <Content Include="Scripts\caman.full.pack.js" />
+    <Content Include="Scripts\caman.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
