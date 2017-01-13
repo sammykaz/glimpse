@@ -78,25 +78,9 @@ namespace Glimpse.Core.ViewModel
 
         private async Task<List<PromotionWithLocation>> GetPromotionsWithLocation()
         {
-            List<Promotion> allPromotions = await _promotionDataService.GetPromotions();
-            List<Vendor> allVendors = await _vendorDataService.GetVendors();
 
-            DateTime now = DateTime.Now;
 
-            List<Promotion> activePromotions = allPromotions.Where(e => e.PromotionStartDate.CompareTo(now) <= 0 && e.PromotionEndDate.CompareTo(now) >= 0).ToList();
-
-            var mapPromotions = allVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,
-                                (e, b) => new PromotionWithLocation
-                                {
-                                    Title = b.Title,
-                                    Location = e.Location,
-                                    Description = b.Description,
-                                    CompanyName = e.CompanyName,
-                                    Duration = 9999,
-                                    Image = b.PromotionImage,
-                                    PromotionId = b.PromotionId
-                                }).ToList();
-
+            var mapPromotions = await _promotionDataService.GetActivePromotions();
 
 
             List<Location> promotionLocations = mapPromotions.Select(promotionWithLocation => promotionWithLocation.Location).ToList();
