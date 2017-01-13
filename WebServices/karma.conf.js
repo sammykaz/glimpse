@@ -35,12 +35,11 @@ module.exports = function(config) {
     "Scripts/angular-google-maps.min.js",
     "Scripts/ng-file-upload-shim.min.js",
     "Scripts/ng-file-upload.min.js",
-    //"Scripts/caman.full.min.js",
     "app.js",
     "src/controllers/*.js",
     "src/services/*.js",
     "Scripts/angular-mocks.js",
-    "TestScripts/*.js"
+    "TestScripts/*.js",
     ],
 
 

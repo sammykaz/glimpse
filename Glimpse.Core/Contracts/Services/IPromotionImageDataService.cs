@@ -12,8 +12,10 @@ namespace Glimpse.Core.Contracts.Services
 
         Task StorePromotion(PromotionImage promotionImage);
 
-        Task<List<PromotionImage>> GetPromotion(int id);
+        Task<List<PromotionImage>> GetPromotionImage(int id);
 
-        Task<List<PromotionImage>> GetPromotions();
+        Task<List<PromotionImage>> GetPromotionImages();
+
+        Task<List<byte[]>> GetImageListFromPromotionImageId(int id);
     }
 }

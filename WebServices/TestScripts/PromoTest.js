@@ -52,11 +52,11 @@ describe('modalController', function () {
         expect(scope.previewImage).toBe(null);
         expect(scope.isCropImageEnable).toBe(false);
     });
-    it('should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter', function () {
+    /*it('should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter', function () {
         var scope = $rootScope.$new();
         var controller = $controller('modalController', { $scope: scope, $uibModalInstance: {}, promotionDetails: {} });
         expect(scope.selectedFilter).toBe("Apply Filters");
         scope.applyFilter('Greyscale');
         expect(scope.selectedFilter).toBe("Greyscale");
-    });
+    });*/
 });

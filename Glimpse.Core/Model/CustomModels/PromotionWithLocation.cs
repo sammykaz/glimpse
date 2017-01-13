@@ -23,9 +23,10 @@ namespace Glimpse.Core.Model
 
         public byte[] Image { get; set; }
 
-
+        
         public Location Location { get; set; }
 
+        public int PromotionId { get; set; }
      //   public byte[] PromotionImage { get; set; }
 
     }
