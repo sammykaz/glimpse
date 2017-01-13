@@ -9,7 +9,6 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
     }, function (error) {
         console.log("Error: Could not load promotions");
     })
-    console.log($scope.promotions);
     dataService.GetAuthorizeData().then(function (data) {
         console.log("Authorized");
     }, function (error) {

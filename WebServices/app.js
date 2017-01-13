@@ -56,7 +56,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
     $scope.test = "test";
 })
 .filter('reverse', function() {
-    return function(items) {
+    return function (items) {
+        if (items != undefined)
         return items.slice().reverse();
     };
 })
