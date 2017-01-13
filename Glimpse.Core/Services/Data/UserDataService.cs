@@ -36,5 +36,10 @@ namespace Glimpse.Core.Services.Data
             await _userRepository.PostUser(user);
         }
 
+        public async Task DeleteUser(User user)
+        {
+           await _userRepository.DeleteUser(user);
+        }
+
     }
 }
