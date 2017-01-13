@@ -186,6 +186,7 @@
     <Compile Include="Tests\Services\GoogleWebServiceTests.cs" />
     <Compile Include="Tests\Services\LoadPromotionTests.cs" />
     <Compile Include="Tests\Services\LoginDataServiceTests.cs" />
+    <Compile Include="Tests\Services\PromotionDataServiceTests.cs" />
     <Compile Include="Tests\Services\UserDataServiceTests.cs" />
     <Compile Include="Tests\ViewModels\MapViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
