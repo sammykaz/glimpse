@@ -37,13 +37,14 @@ namespace Glimpse.Core.Services.Data
             await promotionRepository.StorePromotion(promotion);
         }
 
-        public async Task<IEnumerable> GetActivePromotions()
+        public async Task<List<PromotionWithLocation>> GetActivePromotions()
         {
             List<Promotion> allPromotions = await promotionRepository.GetPromotions();
             List<Vendor> allVendors = await vendorRepository.GetVendors();
 
             List<Promotion> activePromotions = allPromotions.Where(e => (e.PromotionEndDate - e.PromotionStartDate).TotalSeconds > 0).ToList();
 
+            /*
             var mapPromotions = allVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,
                                 (e, b) => new
                                 {
@@ -52,13 +53,26 @@ namespace Glimpse.Core.Services.Data
                                     b.Title,
                                     b.Description,
                                     b.PromotionImage,
-                                    b.PromotionEndDate
+                                    b.PromotionEndDate,
+                                    b.PromotionId
                                 });
+            */
+            var mapPromotions = allVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,
+                (e, b) => new PromotionWithLocation
+                {
+                    Title = b.Title,
+                    Location = e.Location,
+                    Description = b.Description,
+                    CompanyName = e.CompanyName,
+                    Duration = 9999,
+                    Image = b.PromotionImage,
+                    PromotionId = b.PromotionId
+                });
 
             //Select all promotions excluding those with empty locations
             var validatedMapPromotions = mapPromotions.Where(e => e.Location.Lat != 0 || e.Location.Lng != 0);
 
-            return validatedMapPromotions;
+            return validatedMapPromotions.ToList();
         }
     }
 

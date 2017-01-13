@@ -9,6 +9,10 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar" />
+      
+      <!-- View Pager-->
+        <include layout="@layout/ViewPagerView"/>
+      
     <!-- Actual content of the screen -->
         <FrameLayout
             android:id="@+id/content_frame"
