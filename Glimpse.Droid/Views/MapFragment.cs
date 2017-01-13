@@ -22,6 +22,7 @@ using Glimpse.Core.Helpers;
 using System;
 using Exception = System.Exception;
 using Android.Graphics;
+using Glimpse.Core.Model;
 
 namespace Glimpse.Droid.Views
 {
@@ -36,7 +37,7 @@ namespace Glimpse.Droid.Views
         private LatLng location = null;
         private ClusterManager clusterManager;
         private List<PromotionItem> clusterList;
-        private IEnumerable activePromotions;
+        private List<PromotionWithLocation> activePromotions;
         public MapFragment()
         {
             clusterList = new List<PromotionItem>();
@@ -56,8 +57,8 @@ namespace Glimpse.Droid.Views
         public override void OnActivityCreated(Bundle p0)
         {
             base.OnActivityCreated(p0);
-           // (this.Activity as MainActivity).SetCustomTitle("MapView");
-            MapsInitializer.Initialize(Activity);   
+            // (this.Activity as MainActivity).SetCustomTitle("MapView");
+            MapsInitializer.Initialize(Activity);
         }
 
 
@@ -73,11 +74,11 @@ namespace Glimpse.Droid.Views
             _mapView.OnDestroy();
         }
 
-     /*   public override void OnSaveInstanceState(Bundle outState)
-        {
-            base.OnSaveInstanceState(outState);
-            _mapView.OnSaveInstanceState(outState);
-        } */
+        /*   public override void OnSaveInstanceState(Bundle outState)
+           {
+               base.OnSaveInstanceState(outState);
+               _mapView.OnSaveInstanceState(outState);
+           } */
 
         public async override void OnResume()
         {
@@ -134,9 +135,9 @@ namespace Glimpse.Droid.Views
         }
 
         private void SetUpMap()
-        {       
-                //Calls the OnMapReady method.
-                View.FindViewById<MapView>(Resource.Id.map).GetMapAsync(this);
+        {
+            //Calls the OnMapReady method.
+            View.FindViewById<MapView>(Resource.Id.map).GetMapAsync(this);
         }
 
         private bool CheckLocationServices()
@@ -146,12 +147,12 @@ namespace Glimpse.Droid.Views
 
             bool gps_enabled = false;
             bool network_enabled = false;
-         
+
             gps_enabled = locMgr.IsProviderEnabled(LocationManager.GpsProvider);
-           
+
             network_enabled = locMgr.IsProviderEnabled(LocationManager.NetworkProvider);
 
-            return gps_enabled || network_enabled;           
+            return gps_enabled || network_enabled;
         }
 
 
@@ -179,34 +180,34 @@ namespace Glimpse.Droid.Views
             var viewModel = (MapViewModel)ViewModel;
 
 
-                //current user marker
-                var options = new MarkerOptions();
-                options.SetPosition(location);
-                options.SetTitle("My Position");
-                options.SetAlpha(0.7f);
-                options.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueMagenta));
-                options.InfoWindowAnchor(0.7f, 0.7f);
-                options.SetSnippet("This is where HARAMBE is hiding!");
+            //current user marker
+            var options = new MarkerOptions();
+            options.SetPosition(location);
+            options.SetTitle("My Position");
+            options.SetAlpha(0.7f);
+            options.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueMagenta));
+            options.InfoWindowAnchor(0.7f, 0.7f);
+            options.SetSnippet("This is where HARAMBE is hiding!");
 
-                currentUserLocation = map.AddMarker(options);
+            currentUserLocation = map.AddMarker(options);
 
-                //camera initialized on the user            
-                CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
-                builder.Target(location);
-                builder.Zoom(viewModel.DefaulZoom);
-                builder.Bearing(viewModel.DefaultBearing);
-                builder.Tilt(viewModel.DefaultTilt);
-                CameraPosition cameraPosition = builder.Build();
-                CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
-                map.MoveCamera(cameraUpdate);
+            //camera initialized on the user            
+            CameraPosition.Builder builder = CameraPosition.InvokeBuilder();
+            builder.Target(location);
+            builder.Zoom(viewModel.DefaulZoom);
+            builder.Bearing(viewModel.DefaultBearing);
+            builder.Tilt(viewModel.DefaultTilt);
+            CameraPosition cameraPosition = builder.Build();
+            CameraUpdate cameraUpdate = CameraUpdateFactory.NewCameraPosition(cameraPosition);
+            map.MoveCamera(cameraUpdate);
 
-                var set = this.CreateBindingSet<MapFragment, MapViewModel>();
-                set.Bind(currentUserLocation)
-                    .For(m => m.Position)
-                    .To(vm => vm.UserCurrentLocation)
-                    .WithConversion(new LatLngValueConverter(), null).TwoWay();
-                set.Apply();
-                ViewModel.LocationUpdate += ViewModel_LocationUpdate;
+            var set = this.CreateBindingSet<MapFragment, MapViewModel>();
+            set.Bind(currentUserLocation)
+                .For(m => m.Position)
+                .To(vm => vm.UserCurrentLocation)
+                .WithConversion(new LatLngValueConverter(), null).TwoWay();
+            set.Apply();
+            ViewModel.LocationUpdate += ViewModel_LocationUpdate;
 
             //map settings
             map.UiSettings.MapToolbarEnabled = true;
@@ -230,25 +231,19 @@ namespace Glimpse.Droid.Views
 
         public bool OnClusterClick(ICluster cluster)
         {
-         Toast.MakeText (this.Context, "Cluster clicked", ToastLength.Short).Show();
+            Toast.MakeText(this.Context, "Cluster clicked", ToastLength.Short).Show();
             return false;
         }
 
         public bool OnClusterItemClick(Java.Lang.Object item)
         {
-            PromotionItem promotionItem = (PromotionItem) item;
-            StorePromotionItemClick(promotionItem.PromotionId);
+            PromotionItem promotionItem = (PromotionItem)item;
             var promotionDialog = new PromotionDialogFragment(promotionItem);
             promotionDialog.Show(this.Activity.FragmentManager, "put a tag here");
             return false;
         }
 
-        private async void StorePromotionItemClick(int promotionId)
-        {
-            await ViewModel.StorePromotionClick(promotionId);
-        }
-
-        private void CreateClusterItem(double lat, double lng, string title, string description, string expirationDate, string companyName, Bitmap image, int promotionId)
+        private void CreateClusterItem(double lat, double lng, string title, string description, int expirationDate, string companyName, Bitmap image, int promotionId)
         {
             clusterList.Add(new PromotionItem(lat, lng, title, description, expirationDate, companyName, image, promotionId));
         }
@@ -263,13 +258,13 @@ namespace Glimpse.Droid.Views
         {
             var viewModel = (MapViewModel)ViewModel;
 
-            
+
             activePromotions = await ViewModel.GetActivePromotions();
 
             //Print out the pins
-            foreach (var promotion in activePromotions)
+            foreach (var p in activePromotions)
             {
-                int promotionId = (int)promotion.GetType().GetProperty("PromotionId").GetValue(promotion, null);
+                /*
                 string companyName = promotion.GetType().GetProperty("CompanyName").GetValue(promotion, null).ToString();
                 string title = promotion.GetType().GetProperty("Title").GetValue(promotion, null).ToString();
                 string description = promotion.GetType().GetProperty("Description").GetValue(promotion, null).ToString();
@@ -278,40 +273,30 @@ namespace Glimpse.Droid.Views
 
                 double lat = (double) PropValue.GetPropertyValue(promotion, "Location.Lat");
                 double lng = (double) PropValue.GetPropertyValue(promotion, "Location.Lng");
+                */
 
-                //Convert anonymous iobject to byte[]
-                //byte[] imageArrayBytes = ObjectByteArrayConversion.ObjectToByteArray(imageBytes);
 
                 //Convert byte array back to image
                 Bitmap bitmap = null;
                 try
                 {
-                   bitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                    bitmap = BitmapFactory.DecodeByteArray(p.Image, 0, p.Image.Length);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine("Error converting byte[] to image" + e.StackTrace);
                 }
 
 
-                //Check the distance for each pair of coordinates
-                //var sCoord = new GeoCoordinate();
-                //var eCoord = new GeoCoordinate();
-
-                //return sCoord.GetDistanceTo(eCoord);
 
 
+                CreateClusterItem(p.Location.Lat, p.Location.Lng, p.Title, p.Description, p.Duration, p.CompanyName, bitmap, p.PromotionId);
 
-                CreateClusterItem(lat, lng,title,description,expirationDate,companyName, bitmap, promotionId);
-    
             }
             GenerateCluster();
 
         }
 
-    
-    }
-    }
-    
 
-
+    }
+}

@@ -133,7 +133,7 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public  Task<List<PromotionWithLocation>> GetActivePromotions()
+        public Task<List<PromotionWithLocation>> GetActivePromotions()
         {
             return promotionDataService.GetActivePromotions();
         }
