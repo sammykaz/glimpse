@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngResource', 'blockUI', 'LocalStorageModule', 'ngFileUpload', 'uiCropper', 'uiGmapgoogle-maps']);
+var app = angular.module('myApp', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngResource', 'blockUI', 'LocalStorageModule', 'ngFileUpload', 'uiCropper', 'uiGmapgoogle-maps', 'chart.js']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationProvider) {
 
@@ -43,6 +43,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             url: '/map',
             controller: 'mapController',
             templateUrl: 'src/views/mapView.html'
+        })
+        .state('home.analysis', {
+            url: '/analysis',
+            controller: 'analysisController',
+            templateUrl: 'src/views/analysisView.html'
         })
 })
 .config(function(uiGmapGoogleMapApiProvider) {

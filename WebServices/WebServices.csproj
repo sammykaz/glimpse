@@ -327,6 +327,8 @@
     <Content Include="Scripts\angular-aria.min.js" />
     <Content Include="Scripts\angular-block-ui.js" />
     <Content Include="Scripts\angular-block-ui.min.js" />
+    <Content Include="Scripts\angular-chart.js" />
+    <Content Include="Scripts\angular-chart.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
     <Content Include="Scripts\angular-csp.css" />
@@ -396,6 +398,8 @@
     <None Include="Properties\PublishProfiles\GlimpseWS - Web Deploy.pubxml" />
     <Content Include="Scripts\caman.full.pack.js" />
     <Content Include="Scripts\caman.js" />
+    <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
@@ -408,6 +412,7 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Scripts\angular-chart.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\FileAPI.flash.swf" />
     <Content Include="Scripts\FileAPI.js" />
@@ -1178,6 +1183,7 @@
     <Content Include="Scripts\ui-cropper.js" />
     <Content Include="src\controllers\homeController.js" />
     <Content Include="src\controllers\loginController.js" />
+    <Content Include="src\controllers\analysisController.js" />
     <Content Include="src\controllers\mapController.js" />
     <Content Include="src\controllers\profileController.js" />
     <Content Include="src\controllers\promotionController.js" />
@@ -1196,6 +1202,7 @@
     <Content Include="src\views\loginView.html" />
     <Content Include="src\views\changePromotionDate.html" />
     <Content Include="src\views\mapView.html" />
+    <Content Include="src\views\analysisView.html" />
     <Content Include="src\views\profileView.html" />
     <Content Include="src\views\signupView.html" />
     <Content Include="src\views\viewPromotion.html" />
