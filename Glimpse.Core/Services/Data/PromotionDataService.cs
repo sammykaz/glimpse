@@ -53,7 +53,8 @@ namespace Glimpse.Core.Services.Data
                                     b.Title,
                                     b.Description,
                                     b.PromotionImage,
-                                    b.PromotionEndDate
+                                    b.PromotionEndDate,
+                                    b.PromotionId
                                 });
             */
             var mapPromotions = allVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,

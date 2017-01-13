@@ -25,5 +25,7 @@ namespace WebServices.Models
         public DbSet<Promotion> Promotions { get; set; }
 
         public System.Data.Entity.DbSet<WebServices.Models.PromotionImage> PromotionImages { get; set; }
+
+        public System.Data.Entity.DbSet<WebServices.Models.PromotionClick> PromotionClicks { get; set; }
     }
 }
