@@ -258,7 +258,8 @@ namespace Glimpse.Droid.Views
 
         public bool OnClusterItemClick(Java.Lang.Object item)
         {
-            PromotionItem promotionItem = (PromotionItem) item;
+            PromotionItem promotionItem = (PromotionItem)item;
+            StoreItemClick(promotionItem.PromotionId);
             var promotionDialog = new PromotionDialogFragment(promotionItem);
             promotionDialog.Show(this.Activity.FragmentManager, "put a tag here");
             return false;
@@ -277,7 +278,12 @@ namespace Glimpse.Droid.Views
         private void CreateClusterItem(double lat, double lng, string title, string description, string expirationDate,
             string companyName, Bitmap image)
         {
-            clusterList.Add(new PromotionItem(lat, lng, title, description, expirationDate, companyName, image));
+            await ViewModel.StorePromotionClick(promotionId);
+        }
+
+        private void CreateClusterItem(double lat, double lng, string title, string description, int expirationDate, string companyName, Bitmap image, int promotionId)
+        {
+            clusterList.Add(new PromotionItem(lat, lng, title, description, expirationDate, companyName, image, promotionId));
         }
 
         private void GenerateCluster()
@@ -299,8 +305,9 @@ namespace Glimpse.Droid.Views
             activePromotions = await ViewModel.GetActivePromotions();
 
             //Print out the pins
-            foreach (var promotion in activePromotions)
+            foreach (var p in activePromotions)
             {
+                /*
                 string companyName = promotion.GetType().GetProperty("CompanyName").GetValue(promotion, null).ToString();
                 string title = promotion.GetType().GetProperty("Title").GetValue(promotion, null).ToString();
                 string description = promotion.GetType().GetProperty("Description").GetValue(promotion, null).ToString();
@@ -309,58 +316,25 @@ namespace Glimpse.Droid.Views
 
                 double lat = (double) PropValue.GetPropertyValue(promotion, "Location.Lat");
                 double lng = (double) PropValue.GetPropertyValue(promotion, "Location.Lng");
+                */
 
-                //Convert anonymous iobject to byte[]
-                //byte[] imageArrayBytes = ObjectByteArrayConversion.ObjectToByteArray(imageBytes);
 
                 //Convert byte array back to image
                 Bitmap bitmap = null;
                 try
                 {
-                   bitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+                    bitmap = BitmapFactory.DecodeByteArray(p.Image, 0, p.Image.Length);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine("Error converting byte[] to image" + e.StackTrace);
                 }
 
 
-                //Check the distance for each pair of coordinates
-                //var sCoord = new GeoCoordinate();
-                //var eCoord = new GeoCoordinate();
-
-                //return sCoord.GetDistanceTo(eCoord);
 
 
+                CreateClusterItem(p.Location.Lat, p.Location.Lng, p.Title, p.Description, p.Duration, p.CompanyName, bitmap, p.PromotionId);
 
-                CreateClusterItem(lat, lng,title,description,expirationDate,companyName, bitmap);             
-            }
-
-           GenerateCluster();
-        }
-
-        private void AddClusterItems()
-        {
-
-            //  double lat = 45.4582;
-            //  double lng = -73.640116;
-            double lat = 47.59978;
-            double lng = -122.3346;
-
-            Random random = new Random();
-            
-
-            for (int i = 0; i < 1000; ++i)
-            {
-                
-                var t = i * System.Math.PI * 0.033f;
-                var r = System.Math.Exp(0.001 * t);
-                var x = r * System.Math.Cos(t);
-                var y = r * System.Math.Sin(t);
-                
-           
-                var item = new PromotionItem(lat + x, lng + y, "title", "description", "expirationDate", "companyName", null);
-                itemsList.Add(item);
             }
 
 

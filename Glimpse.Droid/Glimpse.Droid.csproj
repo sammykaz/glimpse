@@ -337,6 +337,7 @@
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\StartingMapActivity.cs" />
     <Compile Include="Adapter\MvxViewPagerFragmentAdapter .cs" />
+    <Compile Include="Adapter\SlidingImageAdapter.cs" />
     <Compile Include="Bootstrap\DownloadCachePluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
@@ -365,6 +366,7 @@
     <Compile Include="Views\PromotionDialogFragment.cs" />
     <Compile Include="Views\SendMail.cs" />
     <Compile Include="Views\MapFragment.cs" />
+    <Compile Include="Views\TileDetailsFragment.cs" />
     <Compile Include="Views\ViewPagerFragment.cs" />
     <Compile Include="Views\TilesFragment.cs" />
     <Compile Include="Views\SettingsFragment.cs" />
@@ -483,6 +485,12 @@
     <AndroidResource Include="Resources\layout\PromotionDialogView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\TileDetailsView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ImageSwipeLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Raw\radar.json" />
   </ItemGroup>
   <ItemGroup>
@@ -580,13 +588,11 @@
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <AndroidResource Include="Resources\drawable\promotions\lb_sale_accessories_1-2.jpg" />
-    <None Include="Resources\drawable\promotions\pic6.jpg" />
-    <None Include="Resources\drawable\promotions\pic2.gif" />
-    <None Include="Resources\drawable\promotions\pic3.jpg" />
-    <None Include="Resources\drawable\promotions\pic5.jpg" />
-    <None Include="Resources\drawable\promotions\pic4.jpg" />
-    <None Include="Resources\drawable\promotions\pic1.png" />
-    <None Include="Resources\drawable\promotions\pic0.png" />
+    <AndroidResource Include="Resources\drawable\selecteditem_dot.xml" />
+    <AndroidResource Include="Resources\drawable\nonselecteditem_dot.xml" />
+    <AndroidResource Include="Resources\drawable\btn_round_semitransperant.xml" />
+    <AndroidResource Include="Resources\Raw\promotion.png" />
+    <AndroidResource Include="Resources\Raw\promociones.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

@@ -13,7 +13,7 @@ namespace Glimpse.Core.Helpers
         private double lng;
         private Android.Graphics.Bitmap image;
 
-        public PromotionItem(double lat, double lng, string title, string description, string expirationDate, string companyName, Bitmap promotionImage)
+        public PromotionItem(double lat, double lng, string title, string description, int expirationDate, string companyName, Bitmap promotionImage, int promotionId)
         {
             Position = new LatLng(lat, lng);
             Title = title;
@@ -21,15 +21,16 @@ namespace Glimpse.Core.Helpers
             ExpirationDate = expirationDate;
             CompanyName = companyName;
             PromotionImage = promotionImage;
+            PromotionId = promotionId;
         }
 
-
+        public int PromotionId { get; set; }
         public LatLng Position { get; set; }
 
         public string Title { get; set; }
         public string Description { get; set; }
 
-        public string ExpirationDate { get; set; }
+        public int ExpirationDate { get; set; }
 
         public string CompanyName { get; set; }
 
