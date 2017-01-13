@@ -145,9 +145,12 @@ namespace Glimpse.Droid.Views
         }
 
         private void SetUpMap()
-        {
-            //Calls the OnMapReady method.
-            View.FindViewById<MapView>(Resource.Id.map).GetMapAsync(this);
+        {          
+            if (map == null)
+            {
+                //Calls the OnMapReady method.
+                View.FindViewById<MapView>(Resource.Id.map).GetMapAsync(this);
+            }
         }
 
         private bool CheckLocationServices()
