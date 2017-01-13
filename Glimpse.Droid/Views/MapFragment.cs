@@ -238,9 +238,15 @@ namespace Glimpse.Droid.Views
         public bool OnClusterItemClick(Java.Lang.Object item)
         {
             PromotionItem promotionItem = (PromotionItem)item;
+            StoreItemClick(promotionItem.PromotionId);
             var promotionDialog = new PromotionDialogFragment(promotionItem);
             promotionDialog.Show(this.Activity.FragmentManager, "put a tag here");
             return false;
+        }
+
+        private async void StoreItemClick(int promotionId)
+        {
+            await ViewModel.StorePromotionClick(promotionId);
         }
 
         private void CreateClusterItem(double lat, double lng, string title, string description, int expirationDate, string companyName, Bitmap image, int promotionId)
