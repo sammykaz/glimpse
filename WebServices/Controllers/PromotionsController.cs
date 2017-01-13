@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -43,6 +44,20 @@ namespace WebServices.Controllers
             } */
 
             return Ok(promotionClicksOfPromotion);
+        }
+
+        // GET: api/Vendors/5/promotions
+        [ResponseType(typeof(Vendor))]
+        [Route("api/Promotions/filter/{filterName}")]
+        public IHttpActionResult GetVendorPromotions(Categories filterName)
+        {
+            List<Promotion> promotionsFiltered = db.Promotions.Where(promo => promo.Category == filterName).ToList();
+            /*if (vendor == null)
+            {
+                return NotFound();
+            } */
+
+            return Ok(promotionsFiltered);
         }
 
 
