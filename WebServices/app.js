@@ -52,7 +52,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
 })
 .config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
-        //    key: 'your api key',
+        key: 'AIzaSyBPfBp5ilCMRWpYhrLdd3tSVawOEznvDB0',
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization'
     });

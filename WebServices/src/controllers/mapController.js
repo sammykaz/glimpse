@@ -3,6 +3,8 @@ app.controller("mapController", ['$scope', 'dataService', function ($scope, data
     $scope.randomMarkers = [];
     var pins = [];
     var i = 0;
+  
+    
     var promotionsquery = dataService.getPromotions().query().$promise.then(function (data) {
         angular.forEach(data, function (promo) {
             var vendorId = promo.VendorId;

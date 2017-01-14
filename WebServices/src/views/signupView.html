@@ -50,8 +50,10 @@
                             <input id="txtUser" type="text" class="signup-form-input" placeholder="Personal Phone Number"name="personalphone"  ng-model="user.personalphone" pattern="[0-9]+" ng-pattern-restric ng-minlength="7" ng-class="{ 'input-has-error' : userForm.personalphone.$invalid && !userForm.personalphone.$pristine}" required>
                         </div>
                         <div class="signup-form-btn col-sm-12" ng-class="{ 'has-danger' : userForm.$invalid}">
-                            <button class="btn btn-primary btn-block login-button" type="submit" ng-disabled="userForm.$invalid" ng-click="createUser()">Sign Up</button>
+                            <button class="btn btn-primary btn-block login-button" ng-disabled="userForm.$invalid" ng-click="validateAddress()">Sign Up</button>
                             <p ng-show="userForm.$invalid" class="form-control-feedback">Some fields are missing</p>
+                            <p ng-show="passConfirmation" class="form-control-feedback">Password confirmation does not match Password</p>
+                            <p ng-hide="addressIsValid" class="form-control-feedback">The Address entered is invalid</p>
                         </div>
                         <div class="col-sm-12">
                             <a ui-sref="login" class="login-forgot">Back to login</a>
