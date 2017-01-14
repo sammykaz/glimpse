@@ -47,14 +47,16 @@ app.controller('SignupController', ['$scope', '$http', 'dataService', '$state', 
     $scope.validateAddress = function () {
         $scope.address = getAddress();
         if ($scope.user.password == $scope.user.confirmpassword) {
+            $scope.passConfirmation = false;
             geocoder.geocode({ 'address': $scope.address }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
-                    $scope.passConfirmation = false;
+                    $scope.addressIsValid = true;
                     $scope.location.lat = results[0].geometry.location.lat();
                     $scope.location.lng = results[0].geometry.location.lng();
                     $scope.createUser();
                 }
                 else {
+                    $scope.addressIsValid = false;
                     return false;
                 }
             });

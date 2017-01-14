@@ -38,6 +38,7 @@ body {
 .profile-company{font-family: 'Exo', sans-serif;}
 .profile-label{color: #00007d; text-decoration: underline;}
 .input-has-error{border: #d9534f; border-radius: .25rem; border-style: double; border-width: 1px;}
+.error-warning{color: #d9534f;}
 .members-scroll{overflow: scroll; height: 1000px;overflow-x : hidden;}
 .padding-zero{padding-right:0px !important; padding-left:0px!important}
 .promotion-title{vertical-align: middle; text-align:center; line-height: 100px; font-family: 'Exo', sans-serif; color: black;  font-size: 50px; background: white; border-radius: 10px; border-bottom-style: double; border-color: #4089c9;}
