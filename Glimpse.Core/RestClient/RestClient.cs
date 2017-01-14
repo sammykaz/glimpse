@@ -18,7 +18,7 @@ namespace Plugin.RestClient
 
         // http://glimpsews.azurewebsites.net/api/ 
 
-        private readonly string WebServiceUrl = "http://glimpseservices.azurewebsites.net/api/" + typeof(T).Name + "s/";
+        private readonly string WebServiceUrl = "http://10.0.3.2/Glimpse/api/" + typeof(T).Name + "s/";
 
         public async Task<List<T>> GetAsync()
         {
@@ -38,6 +38,18 @@ namespace Plugin.RestClient
 
                 var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
             
+
+            return taskModels;
+        }
+
+        public async Task<List<T>> GetWithFilter(string filter)
+        {
+
+            var httpClient = new HttpClient();
+
+            var json = await httpClient.GetStringAsync(WebServiceUrl + "filter/" + filter);
+
+            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
 
             return taskModels;
         }

@@ -36,8 +36,23 @@ namespace Glimpse.Core.UnitTests.Tests.Services
             {
                 Assert.IsTrue(promo.PromotionStartDate < DateTime.Now && promo.PromotionEndDate > DateTime.Now);                   
             }
-            Assert.IsTrue(activePromos.Count > 0);
 
+        }
+
+        [TestMethod]
+        public async Task GetPromotionsByCategory_Returns_GoodCategory()
+        {
+            //arrange
+            Categories category = Categories.Footwear;
+
+            //act
+            List<Promotion> categoryPromos = await _pds.GetPromotionsByCategory(category);
+            //assert
+
+            foreach (Promotion promo in categoryPromos)
+            {
+                Assert.IsTrue(promo.Category == category);
+            }        
         }
 
     }

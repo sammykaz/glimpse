@@ -36,17 +36,29 @@ namespace Glimpse.Droid.Views
             return this.BindingInflate(Resource.Layout.TileDetailsView, null);
         }
 
-        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        public override async void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as MainActivity).SetCustomTitle("Details");
+            await LoadImageList();
+            SetupViewPagerAndAdapter();
+            SetupDotsControl();
         }
 
+        public override async void OnStart()
+        {
+            base.OnStart();
+      
+        }
 
         public async override void OnResume()
         {
             base.OnResume();
-           
+            await LoadImageList();
+        }
+
+        private async System.Threading.Tasks.Task LoadImageList()
+        {
             //Create a progress dialog for loading
             ProgressDialog pr = new ProgressDialog(this.Context);
             pr.SetMessage("Loading Images");
@@ -57,8 +69,6 @@ namespace Glimpse.Droid.Views
             //Get the images
             _byteImages = await viewModel.GetImageList();
             pr.Hide();
-            SetupViewPagerAndAdapter();
-            SetupDotsControl();
         }
 
         public void SetupViewPagerAndAdapter()
@@ -93,6 +103,19 @@ namespace Glimpse.Droid.Views
                 }
                 _dots[0].SetImageDrawable(Resources.GetDrawable(Resource.Drawable.selecteditem_dot));
             }
+        }
+        private async void  LoadImagesIfNeeded()
+        {
+            //Create a progress dialog for loading
+            ProgressDialog pr = new ProgressDialog(this.Context);
+            pr.SetMessage("Loading Images");
+            pr.SetCancelable(false);
+
+            var viewModel = (TileDetailsViewModel)ViewModel;
+            pr.Show();
+            //Get the images
+            _byteImages = await viewModel.GetImageList();
+            pr.Hide();
         }
 
         public void OnPageScrollStateChanged(int state)
