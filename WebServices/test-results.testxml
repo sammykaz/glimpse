@@ -118,29 +118,11 @@
   <Test>
     <Name>SignupController should have the user information empty initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
     <DisplayName>SignupController should have the user information empty initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
-    <Outcome>Failed</Outcome>
-    <ErrorStackTrace>ReferenceError: google is not defined
-    at new &lt;anonymous&gt; (C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/src/controllers/signupController.js:8:24)
-    at Object.instantiate (C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/Scripts/angular.min.js:43:276)
-    at C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/Scripts/angular.min.js:93:141
-    at C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/Scripts/angular-mocks.js:2274:14
-    at jasmine.Spec.&lt;anonymous&gt; (C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/TestScripts/SignUpTest.js:13:26)
-
-
-</ErrorStackTrace>
+    <Outcome>Passed</Outcome>
   </Test>
   <Test>
     <Name>SignupController should initialize the scope value (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
     <DisplayName>SignupController should initialize the scope value (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
-    <Outcome>Failed</Outcome>
-    <ErrorStackTrace>ReferenceError: google is not defined
-    at new &lt;anonymous&gt; (C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/src/controllers/signupController.js:8:24)
-    at Object.instantiate (C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/Scripts/angular.min.js:43:276)
-    at C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/Scripts/angular.min.js:93:141
-    at C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/Scripts/angular-mocks.js:2274:14
-    at jasmine.Spec.&lt;anonymous&gt; (C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/TestScripts/SignUpTest.js:19:26)
-
-
-</ErrorStackTrace>
+    <Outcome>Passed</Outcome>
   </Test>
 </Tests>

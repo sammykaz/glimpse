@@ -13,7 +13,6 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
     var promotionsquery = dataService.getPromotions().query();
     promotionsquery.$promise.then(function (data) {
         $scope.promotions = data;
-        console.log(data);
     }, function (error) {
         console.log("Error: Could not load promotions");
     })
@@ -34,7 +33,6 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
                 promotionDetails: {}
         }
         }).result.then(function (result) {
-            console.log(result);
         }, function () {
             console.log("Modal dismissed");
         });
@@ -209,13 +207,9 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             function onSaveClick() {
 
                 dataService.getPromotions().save(promotionData, function (resp, headers) {
-                    //success callback
-                    console.log(resp);
                 },
-                  function (err) {
-                      console.log(err);
-                  });
-                console.log(promotionData);
+                function (err) {
+                });
                 $uibModalInstance.close("");
             }
 
@@ -240,11 +234,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                     $uibModalInstance.close({});
                 });
             }
-
-
-
-
-
         }
     };
 

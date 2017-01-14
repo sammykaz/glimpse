@@ -24,11 +24,9 @@ app.controller('SignupController', ['$scope', '$http', 'dataService', '$state', 
             $scope.passConfirmation = false;
             dataService.getVendors().save(userData, function (resp, headers) {
                 $state.go("login");
-                console.log(resp);
             },
             function (err) {
                 Alert("Please verify your values");
-                console.log(err);
             });
         }
         else {
