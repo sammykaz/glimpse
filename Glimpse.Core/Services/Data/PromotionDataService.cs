@@ -55,6 +55,7 @@ namespace Glimpse.Core.Services.Data
             var mapPromotions = uniqueVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,
                 (e, b) => new PromotionWithLocation
                 {
+                    VendorId = b.VendorId,
                     Title = b.Title,
                     Location = e.Location,
                     Description = b.Description,

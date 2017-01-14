@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.Gms.Maps.Model;
 using Android.Graphics;
 using Com.Google.Maps.Android.Clustering;
+using Glimpse.Core.Model;
 using Glimpse.Droid.Helpers;
 
 
@@ -9,9 +11,12 @@ namespace Glimpse.Core.Helpers
 {
     public class PromotionItem : Java.Lang.Object, IClusterItem
     {
-        private double lat;
-        private double lng;
-        private Android.Graphics.Bitmap image;
+        public PromotionItem(List<PromotionWithLocation> promotionItems, double lat, double lng)
+        {
+            PromotionItems = promotionItems;
+            Position = new LatLng(lat, lng);
+        }
+
 
         public PromotionItem(double lat, double lng, string title, string description, int expirationDate, string companyName, Bitmap promotionImage, int promotionId)
         {
@@ -35,5 +40,7 @@ namespace Glimpse.Core.Helpers
         public string CompanyName { get; set; }
 
         public Bitmap PromotionImage { get; set; }
+
+        public List<PromotionWithLocation> PromotionItems { get; set; }
     }
 }

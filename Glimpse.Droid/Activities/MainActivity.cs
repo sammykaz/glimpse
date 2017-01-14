@@ -64,29 +64,30 @@ namespace Glimpse.Droid.Activities
             base.OnCreate(savedInstanceState);
             if (CheckAuthenticationStatus())
             {
-                _fragmentManager = FragmentManager;
+                RunOnUiThread(() => {
+                    _fragmentManager = FragmentManager;
 
-                SetContentView(Resource.Layout.MainView);
-                mainActivity = this;
+                    SetContentView(Resource.Layout.MainView);
+                    mainActivity = this;
 
-                var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-                SetSupportActionBar(toolbar);
+                    var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+                    SetSupportActionBar(toolbar);
 
-                _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-                _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int) GravityFlags.Start);
-                _drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout, Resource.String.drawer_open,
-                    Resource.String.drawer_close);
-                _drawerToggle.DrawerClosed += _drawerToggle_DrawerClosed;
-                _drawerToggle.DrawerOpened += _drawerToggle_DrawerOpened;
+                    _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+                    _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int) GravityFlags.Start);
+                    _drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout, Resource.String.drawer_open,
+                        Resource.String.drawer_close);
+                    _drawerToggle.DrawerClosed += _drawerToggle_DrawerClosed;
+                    _drawerToggle.DrawerOpened += _drawerToggle_DrawerOpened;
 
-                SupportActionBar.SetDisplayShowTitleEnabled(false);
-                SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-                _drawerToggle.DrawerIndicatorEnabled = true;
-                _drawerLayout.SetDrawerListener(_drawerToggle);
+                    SupportActionBar.SetDisplayShowTitleEnabled(false);
+                    SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+                    _drawerToggle.DrawerIndicatorEnabled = true;
+                    _drawerLayout.SetDrawerListener(_drawerToggle);
 
-                ViewModel.ShowMenu();
-                ViewModel.ShowViewPager();
-               
+                    ViewModel.ShowMenu();
+                    ViewModel.ShowViewPager();
+                });
 
             }
         } 

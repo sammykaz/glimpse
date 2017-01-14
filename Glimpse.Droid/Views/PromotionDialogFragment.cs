@@ -10,19 +10,19 @@ namespace Glimpse.Droid.Views
 {
     public class PromotionDialogFragment : DialogFragment
     {
-        private string title;
-        private string description;
-        private int expirationDate;
-        private string companyName;
+        private readonly string title;
+        private readonly string description;
+        private readonly int expirationDate;
+        private readonly string companyName;
         private Bitmap image;
 
         public PromotionDialogFragment(PromotionItem item)
         {
-            this.title = item.Title;
-            this.description = item.Description;
-            this.expirationDate = item.ExpirationDate;
-            this.companyName = item.CompanyName;
-            this.image = item.PromotionImage;
+            title = item.Title;
+            description = item.Description;
+            expirationDate = item.ExpirationDate;
+            companyName = item.CompanyName;
+            image = item.PromotionImage;
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -30,22 +30,23 @@ namespace Glimpse.Droid.Views
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.PromotionDialogView, container, false);
 
-            TextView txtTitle = view.FindViewById<TextView>(Resource.Id.txtPromoDialogTitle);
-            TextView txtDescription = view.FindViewById<TextView>(Resource.Id.txtPromoDialogDescription);
-            TextView txtExpirationDate = view.FindViewById<TextView>(Resource.Id.txtPromoDialogExpirationDate);
-            TextView txtCompanyName = view.FindViewById<TextView>(Resource.Id.txtPromoDialogCompanyName);
-            ImageView promotionImage = view.FindViewById<ImageView>(Resource.Id.imgPromoDialogPicture);
+            Activity.RunOnUiThread(() =>
+            {
+                var txtTitle = view.FindViewById<TextView>(Resource.Id.txtPromoDialogTitle);
+                var txtDescription = view.FindViewById<TextView>(Resource.Id.txtPromoDialogDescription);
+                var txtExpirationDate = view.FindViewById<TextView>(Resource.Id.txtPromoDialogExpirationDate);
+                var txtCompanyName = view.FindViewById<TextView>(Resource.Id.txtPromoDialogCompanyName);
+                var promotionImage = view.FindViewById<ImageView>(Resource.Id.imgPromoDialogPicture);
 
-            txtTitle.Text = title;
-            txtDescription.Text = description;
-            txtExpirationDate.Text = expirationDate.ToString();
-            txtCompanyName.Text = companyName;
-            promotionImage.SetImageBitmap(BitmapProcessing.decodeSampledBitmapFromResource(Resources,Resource.Id.imgPromoDialogPicture, 400, 400));
-
+                txtTitle.Text = title;
+                txtDescription.Text = description;
+                txtExpirationDate.Text = expirationDate.ToString();
+                txtCompanyName.Text = companyName;
+                promotionImage.SetImageBitmap(BitmapProcessing.decodeSampledBitmapFromResource(Resources,
+                    Resource.Id.imgPromoDialogPicture, 400, 400));
+            });
 
             return view;
         }
-
-
     }
 }
