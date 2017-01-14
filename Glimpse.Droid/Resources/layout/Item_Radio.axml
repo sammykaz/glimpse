@@ -5,8 +5,9 @@
     android:layout_height="wrap_content"
     android:background="@android:color/transparent"
     android:button="@android:color/transparent"
-    android:drawableTop="@android:drawable/btn_radio"
-    android:textSize="12dp"
+    android:drawableTop="@android:drawable/btn_radio"            
+    android:textSize="10dp"
+             android:gravity="center"
     android:paddingLeft="5dp"
     android:drawablePadding="-5dp"
     local:MvxBind="Text" />
