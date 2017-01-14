@@ -25,7 +25,7 @@ namespace Glimpse.Core.Services.Data
             return await promotionImageRepository.GetPromotionImage(id);
         }
 
-        public async Task<List<byte[]>> GetImageListFromPromotionImageId(int id)
+        public async Task<List<byte[]>> GetImageListFromPromotionWithLocationId(int id)
         {
             List<PromotionImage> allPromotionImages = await GetPromotionImages();
             List<byte[]> listofImages = allPromotionImages.Where(x => (x.PromotionId == id)).Select(x => x.Image).ToList();

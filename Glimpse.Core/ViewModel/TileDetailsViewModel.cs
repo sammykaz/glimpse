@@ -48,12 +48,12 @@ namespace Glimpse.Core.ViewModel
         public async Task<List<byte[]>> GetImageList()
         {
             //getting images for promotion
-            _images = await _promotionImageDataService.GetImageListFromPromotionImageId(_promotionId);
+            _images = await _promotionImageDataService.GetImageListFromPromotionWithLocationId(_promotionId);
 
             return _images;
         }
 
-        public override async void Start()
+       /* public override async void Start()
         {
             base.Start();
             await ReloadDataAsync();
@@ -65,6 +65,6 @@ namespace Glimpse.Core.ViewModel
             {
                
             });
-        }
+        }*/
     }
 }

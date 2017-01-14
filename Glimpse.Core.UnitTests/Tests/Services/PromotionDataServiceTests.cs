@@ -36,7 +36,6 @@ namespace Glimpse.Core.UnitTests.Tests.Services
             {
                 Assert.IsTrue(promo.PromotionStartDate < DateTime.Now && promo.PromotionEndDate > DateTime.Now);                   
             }
-            Assert.IsTrue(activePromos.Count > 0);
 
         }
 
