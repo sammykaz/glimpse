@@ -5,9 +5,7 @@ app.controller('HomeController', ['$scope', 'dataService', '$state', 'authentica
     $scope.data = "";
     
     dataService.GetAuthorizeData().then(function (data) {
-        console.log(data);
         localStorage.id = data;
-        
         var vendor = dataService.getVendors().get({ vendor: localStorage.id });
         vendor.$promise.then(function (data){
             localStorage.company = vendor.CompanyName;

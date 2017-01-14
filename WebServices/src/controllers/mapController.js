@@ -22,7 +22,6 @@ app.controller("mapController", ['$scope', 'dataService', function ($scope, data
             })
         })
         $scope.promotions = data;
-        console.log(data);
         $scope.randomMarkers = pins;
     }, function (error) {
         console.log("Error: Could not load promotions");
