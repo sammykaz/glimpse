@@ -314,6 +314,7 @@
     <Content Include="Global.asax" />
     <Content Include="Gruntfile.js" />
     <Content Include="karma.conf.js" />
+    <None Include="Properties\PublishProfiles\local deploy.pubxml" />
     <None Include="Resources\pic2.gif" />
     <None Include="Resources\pic3.jpg" />
     <None Include="Resources\pic4.jpg" />
