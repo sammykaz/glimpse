@@ -33,6 +33,8 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
                 promotionDetails: {}
         }
         }).result.then(function (result) {
+            //console.log(result);
+            //$scope.promotions.push(result);
         }, function () {
             console.log("Modal dismissed");
         });
@@ -136,7 +138,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.edt = new Date($scope.endDay);
     $scope.showDateWarning = false;
     $scope.isResetEnable = false;
-    $scope.previewImage = promotionDetails.PromotionImage ? "data:image/JPEG;base64," + promotionDetails.PromotionImage : undefined;
+    $scope.previewImage = promotionDetails.PromotionImage ? "data:image/JPEG;base64," + promotionDetails.PromotionImage : '';
 
     function getImageData() {
 
@@ -203,14 +205,14 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 }
             }
 
-
             function onSaveClick() {
 
                 dataService.getPromotions().save(promotionData, function (resp, headers) {
+                    $uibModalInstance.close(promotionData);
                 },
                 function (err) {
                 });
-                $uibModalInstance.close("");
+                
             }
 
             function onEditClick(promotionId, promotion) {
