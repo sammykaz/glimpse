@@ -49,6 +49,8 @@ namespace Glimpse.Droid.Views
         private List<PromotionItem> clusterList;
         private List<PromotionWithLocation> activePromotions;
         private IAlgorithm clusterAlgorithm;
+        
+
 
         private Dictionary<int, PromotionItem> visibleMarkers = new Dictionary<int, PromotionItem>();
 
@@ -291,16 +293,22 @@ namespace Glimpse.Droid.Views
         {
             var viewModel = (MapViewModel) ViewModel;
 
-            //Purpose of testing 
-            var vendorService = Mvx.Resolve<IVendorDataService>();
-            List<Vendor> vendors = await vendorService.GetVendors();
+            
+           var vendorService = Mvx.Resolve<IVendorDataService>();
 
            // AddClusterItems();
             
             activePromotions = await ViewModel.GetActivePromotions();
 
+            //var uniqueVendorPromotions = activePromotions.
+            List<Vendor> allVendors = await vendorService.GetVendors();
+
+
+            var uniqueVendors = allVendors.GroupBy(x => new { x.Location.Lat, x.Location.Lng}).Select(g => g.First()).ToList();
+
+
             //Print out the pins
-            foreach (var p in activePromotions)
+            foreach (var v in uniqueVendors)
             {
                 /*
                 string companyName = promotion.GetType().GetProperty("CompanyName").GetValue(promotion, null).ToString();
@@ -308,11 +316,25 @@ namespace Glimpse.Droid.Views
                 string description = promotion.GetType().GetProperty("Description").GetValue(promotion, null).ToString();
                 string expirationDate = promotion.GetType().GetProperty("PromotionEndDate").GetValue(promotion, null).ToString();
                 byte[] imageBytes = (byte[]) promotion.GetType().GetProperty("PromotionImage").GetValue(promotion, null);
-
+                
                 double lat = (double) PropValue.GetPropertyValue(promotion, "Location.Lat");
                 double lng = (double) PropValue.GetPropertyValue(promotion, "Location.Lng");
                 */
 
+                IEnumerator<Promotion> promotions = v.Promotions.GetEnumerator();
+
+                if (promotions != null)
+                {
+                    while (promotions.MoveNext())
+                    {
+                        var currentPromotion = promotions.Current;
+
+                    }
+                }
+
+                //activePromotions.Where(p => (p.Location.Lat.CompareTo(v.Location.Lat)) == 0 && (p.Location.Lng.CompareTo(v.Location.Lng) == 0))
+
+                /*
 
                 //Convert byte array back to image
                 Bitmap bitmap = null;
@@ -327,11 +349,10 @@ namespace Glimpse.Droid.Views
 
 
                 CreateClusterItem(p.Location.Lat, p.Location.Lng, p.Title, p.Description, p.Duration, p.CompanyName, bitmap, p.PromotionId);
-
+                */
             }
+            GenerateCluster();
 
-
-            clusterManager.AddItems(itemsList);
         }
         /*
         //Note that the type "Items" will be whatever type of object you're adding markers for so you'll

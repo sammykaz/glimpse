@@ -319,6 +319,7 @@
     <None Include="Properties\PublishProfiles\GlimpseMobile - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseServices - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseServices - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\LocalDeploy.pubxml" />
     <None Include="Resources\pic2.gif" />
     <None Include="Resources\pic3.jpg" />
     <None Include="Resources\pic4.jpg" />

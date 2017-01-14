@@ -40,7 +40,7 @@ namespace Glimpse.Droid.Views
             txtDescription.Text = description;
             txtExpirationDate.Text = expirationDate.ToString();
             txtCompanyName.Text = companyName;
-            promotionImage.SetImageBitmap(BitmapProcessing.decodeSampledBitmapFromResource(Resources,Resource.Id.imgPromoDialogPicture, 200, 200));
+            promotionImage.SetImageBitmap(BitmapProcessing.decodeSampledBitmapFromResource(Resources,Resource.Id.imgPromoDialogPicture, 400, 400));
 
 
             return view;
