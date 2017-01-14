@@ -7,6 +7,7 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
         console.log("Authorized");
     }, function (error) {
         console.log("No longer logged in");
+        alert("You have been logged out due to session timeout");
     })
 
     var promotionsquery = dataService.getPromotions().query();

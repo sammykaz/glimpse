@@ -11,7 +11,6 @@
     fac.getPromotions = function () {
         return $resource('/api/promotions/:promotion', { user: "@promotion" });
     }
-
     fac.updatePromotion = function () {
         return $resource('/api/promotions/:promotion', null, {
             'update': {
@@ -25,6 +24,12 @@
                 method: 'DELETE'
             }
         });
+    }
+    fac.getAllPromotionFromSpecificVendor = function (vendorId) {
+        return $resource('/api/vendors/'+vendorId+'/promotions', { user: "@promotion" })
+    }
+    fac.getPromotionClicks = function () {
+        return $resource('/api/promotionclicks', { user: "@promotionclicks" })
     }
     return fac;
 }])

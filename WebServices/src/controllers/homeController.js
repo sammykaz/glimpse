@@ -20,7 +20,7 @@ app.controller('HomeController', ['$scope', 'dataService', '$state', 'authentica
        
     },function (error) {
         console.log("No longer logged in");
-        alert("You have been logged out due to session timeout")
+        alert("You have been logged out due to session timeout");
         $state.go("login");
     })
 

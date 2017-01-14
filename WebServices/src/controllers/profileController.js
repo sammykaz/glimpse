@@ -12,7 +12,7 @@ app.controller('ProfileController', ['$scope', 'dataService', '$state', 'authent
         $scope.tel = localStorage.tel;
     },function (error) {
         console.log("No longer logged in");
-        //$state.go("login");
+        alert("You have been logged out due to session timeout");
     })
 
     $scope.edit = function () {
