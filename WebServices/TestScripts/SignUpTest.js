@@ -9,12 +9,19 @@ describe('SignupController', function () {
     }));
 
     it('should have the user information empty initially', function () {
+
         var scope = $rootScope.$new();
         var controller = $controller('SignupController', { $scope: scope });
-        expect(scope.user).toBe({ streetnumber: '', streetname: '', postal: '', city: '', province: '', country: '' });
+        expect(scope.user.streetnumber).toBe('');
+        expect(scope.user.streetname).toBe('');
+        expect(scope.user.postal).toBe('');
+        expect(scope.user.city).toBe('');
+        expect(scope.user.province).toBe('');
+        expect(scope.user.country).toBe('');
     });
 
     it('should initialize the scope value', function () {
+
         var scope = $rootScope.$new();
         var controller = $controller('SignupController', { $scope: scope });
         scope.user = {};

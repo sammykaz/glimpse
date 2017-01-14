@@ -14,7 +14,8 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [    
+    files: [
+    'http://maps.googleapis.com/maps/api/js?sensor=false&language=en',
     "Scripts/angular.min.js",
     "Scripts/jquery-3.1.1.min.js",
     "Scripts/angular-mocks.js",
