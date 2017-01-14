@@ -32,6 +32,11 @@ namespace Glimpse.Core.Services.Data
             return await promotionRepository.GetPromotions();
         }
 
+        public async Task<List<Promotion>> GetPromotionsByCategory(Categories category)
+        {
+            return await promotionRepository.GetPromotionsByCategory(category);
+        }
+
         public async Task StorePromotion(Promotion promotion)
         {
             await promotionRepository.StorePromotion(promotion);
@@ -56,7 +61,9 @@ namespace Glimpse.Core.Services.Data
                     CompanyName = e.CompanyName,
                     Duration = 9999,
                     Image = b.PromotionImage,
-                    PromotionId = b.PromotionId
+                    PromotionId = b.PromotionId,
+                    PromotionStartDate = b.PromotionStartDate,
+                    PromotionEndDate = b.PromotionEndDate
                 });
 
             //Select all promotions excluding those with empty locations

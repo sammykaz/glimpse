@@ -16,6 +16,6 @@ namespace Glimpse.Core.Contracts.Services
 
         Task<List<PromotionImage>> GetPromotionImages();
 
-        Task<List<byte[]>> GetImageListFromPromotionImageId(int id);
+        Task<List<byte[]>> GetImageListFromPromotionWithLocationId(int id);
     }
 }

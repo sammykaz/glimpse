@@ -18,5 +18,7 @@ namespace Glimpse.Core.Contracts.Services
         Task<List<Promotion>> GetPromotions();
 
         Task<List<PromotionWithLocation>> GetActivePromotions();
+
+        Task<List<Promotion>> GetPromotionsByCategory(Categories category);
     }
 }

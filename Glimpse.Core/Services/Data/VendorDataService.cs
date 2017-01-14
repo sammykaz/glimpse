@@ -45,5 +45,10 @@ namespace Glimpse.Core.Services.Data
         {         
             await _vendorRepository.PutVendor(id, vendor);
         }
+
+        public async Task DeleteVendor(Vendor vendor)
+        {
+            await _vendorRepository.DeleteVendor(vendor);
+        }
     }
 }
