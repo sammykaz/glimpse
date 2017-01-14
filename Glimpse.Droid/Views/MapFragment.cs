@@ -21,6 +21,7 @@ using System.Collections;
 using Glimpse.Core.Helpers;
 using System;
 using System.Linq;
+using System.Threading;
 using Exception = System.Exception;
 using Android.Graphics;
 using Android.Support.V4.Content;
@@ -30,6 +31,7 @@ using Com.Google.Maps.Android.Geometry;
 using Com.Google.Maps.Android;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
+using Java.Lang;
 using MvvmCross.Platform;
 using static Android.Gms.Maps.GoogleMap;
 
@@ -151,7 +153,7 @@ namespace Glimpse.Droid.Views
             if (map == null)
             {
                 //Calls the OnMapReady method.
-                View.FindViewById<MapView>(Resource.Id.map).GetMapAsync(this);
+                View.FindViewById<MapView>(Resource.Id.map).GetMapAsync(this);            
             }
         }
 
@@ -249,7 +251,9 @@ namespace Glimpse.Droid.Views
             clusterList = new List<PromotionItem>();
 
             //Show promotions
-            ShowPromotionsOnMap();
+           ShowPromotionsOnMap();
+          
+
         }
 
         public bool OnClusterClick(ICluster cluster)
@@ -258,12 +262,12 @@ namespace Glimpse.Droid.Views
             return false;
         }
 
-        public bool OnClusterItemClick(Java.Lang.Object item)
+        public bool OnClusterItemClick(PromotionItem item)
         {
-            PromotionItem promotionItem = (PromotionItem)item;
-            StoreItemClick(promotionItem.PromotionId);
+            StoreItemClick(item.PromotionId);
             var promotionDialog = new PromotionDialogFragment(promotionItem);
             promotionDialog.Show(this.Activity.FragmentManager, "put a tag here");
+            
             return false;
         }
 
@@ -278,9 +282,9 @@ namespace Glimpse.Droid.Views
 
         }
 
-        private void CreateClusterItem(double lat, double lng, string title, string description, int expirationDate, string companyName, Bitmap image, int promotionId)
+        private void CreateClusterItem(List<PromotionWithLocation> promotionItems, double lat, double lng)
         {
-            clusterList.Add(new PromotionItem(lat, lng, title, description, expirationDate, companyName, image, promotionId));
+            clusterList.Add(new PromotionItem(promotionItems, lat, lng));
         }
 
         private void GenerateCluster()
@@ -305,37 +309,15 @@ namespace Glimpse.Droid.Views
 
 
             var uniqueVendors = allVendors.GroupBy(x => new { x.Location.Lat, x.Location.Lng}).Select(g => g.First()).ToList();
-
+            
 
             //Print out the pins
             foreach (var v in uniqueVendors)
             {
-                /*
-                string companyName = promotion.GetType().GetProperty("CompanyName").GetValue(promotion, null).ToString();
-                string title = promotion.GetType().GetProperty("Title").GetValue(promotion, null).ToString();
-                string description = promotion.GetType().GetProperty("Description").GetValue(promotion, null).ToString();
-                string expirationDate = promotion.GetType().GetProperty("PromotionEndDate").GetValue(promotion, null).ToString();
-                byte[] imageBytes = (byte[]) promotion.GetType().GetProperty("PromotionImage").GetValue(promotion, null);
+                //Get promotions for each vendor
+                List<PromotionWithLocation> promotionsList = activePromotions.Where(e => e.VendorId == v.VendorId).ToList();
                 
-                double lat = (double) PropValue.GetPropertyValue(promotion, "Location.Lat");
-                double lng = (double) PropValue.GetPropertyValue(promotion, "Location.Lng");
-                */
-
-                IEnumerator<Promotion> promotions = v.Promotions.GetEnumerator();
-
-                if (promotions != null)
-                {
-                    while (promotions.MoveNext())
-                    {
-                        var currentPromotion = promotions.Current;
-
-                    }
-                }
-
-                //activePromotions.Where(p => (p.Location.Lat.CompareTo(v.Location.Lat)) == 0 && (p.Location.Lng.CompareTo(v.Location.Lng) == 0))
-
-                /*
-
+/*
                 //Convert byte array back to image
                 Bitmap bitmap = null;
                 try
@@ -346,10 +328,10 @@ namespace Glimpse.Droid.Views
                 {
                     Console.WriteLine("Error converting byte[] to image" + e.StackTrace);
                 }
+*/
 
-
-                CreateClusterItem(p.Location.Lat, p.Location.Lng, p.Title, p.Description, p.Duration, p.CompanyName, bitmap, p.PromotionId);
-                */
+                CreateClusterItem(promotionsList, v.Location.Lat, v.Location.Lng);
+                
             }
             GenerateCluster();
 
