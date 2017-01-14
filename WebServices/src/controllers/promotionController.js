@@ -2,17 +2,19 @@
 
 app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibModal', function ($scope, dataService, $state, $uibModal) {
     $scope.data = "";
+
+    dataService.GetAuthorizeData().then(function (data) {
+        console.log("Authorized");
+    }, function (error) {
+        console.log("No longer logged in");
+    })
+
     var promotionsquery = dataService.getPromotions().query();
     promotionsquery.$promise.then(function (data) {
         $scope.promotions = data;
         console.log(data);
     }, function (error) {
         console.log("Error: Could not load promotions");
-    })
-    dataService.GetAuthorizeData().then(function (data) {
-        console.log("Authorized");
-    }, function (error) {
-        console.log("No longer logged in");
     })
 
     $scope.isPromotionExpired = function (promotionEndDate) {
