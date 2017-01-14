@@ -1,7 +1,6 @@
 ﻿'use strict';
 app.controller('analysisController', ['$scope', 'dataService', function ($scope, dataService) {
 
-    var map = [];
     $scope.data = [];
     $scope.vendorPromotionsClicked = [];
     $scope.series = [];

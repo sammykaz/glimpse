@@ -1210,6 +1210,7 @@
     <Content Include="TestScripts\DefaultTest.js" />
     <Content Include="TestScripts\ExpiredTest.js" />
     <Content Include="TestScripts\HomeControllerTest.js" />
+    <Content Include="TestScripts\AnalysisTest.js" />
     <Content Include="TestScripts\MapTest.js" />
     <Content Include="TestScripts\ProfileTest.js" />
     <Content Include="TestScripts\PromoTest.js" />

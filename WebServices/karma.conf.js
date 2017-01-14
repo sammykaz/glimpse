@@ -24,6 +24,8 @@ module.exports = function(config) {
     "Scripts/angular-touch.min.js",
     "Scripts/angular-resource.min.js",
     "Scripts/angular-block-ui.min.js",
+    "Scripts/Chart.min.js",
+    "Scripts/angular-chart.min.js",
     "Scripts/tether.min.js",
     "Scripts/bootstrap.min.js",
     "Scripts/ng-map.min.js",

@@ -12,6 +12,6 @@ describe('modalController', function () {
         var scope = $rootScope.$new();
         var controller = $controller('mapController', { $scope: scope });
         expect(scope.map.center.latitude).toBe(45.4581475);
-        expect(scope.map.center.latitude).toBe(-73.64009765625);
+        expect(scope.map.center.longitude).toBe(-73.64009765625);
     });
 });

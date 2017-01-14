@@ -8,10 +8,10 @@ describe('SignupController', function () {
         $rootScope = _$rootScope_;
     }));
 
-    it('should have the user undefined initially', function () {
+    it('should have the user information empty initially', function () {
         var scope = $rootScope.$new();
         var controller = $controller('SignupController', { $scope: scope });
-        expect(scope.user).toBe(undefined);
+        expect(scope.user).toBe({ streetnumber: '', streetname: '', postal: '', city: '', province: '', country: '' });
     });
 
     it('should initialize the scope value', function () {
