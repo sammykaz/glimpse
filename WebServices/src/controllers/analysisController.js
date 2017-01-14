@@ -6,7 +6,7 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
     $scope.vendorPromotionsClicked = [];
     $scope.series = [];
     $scope.seriesTitle = [];
-
+    $scope.noPromotionClicked = false;
     var promotionsquery = dataService.getAllPromotionFromSpecificVendor(localStorage.id).query();
     promotionsquery.$promise.then(function (data) {
         $scope.promotions = data;
@@ -38,6 +38,9 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
             })
         });
         console.log($scope.vendorPromotionsClicked);
+        if ($scope.vendorPromotionsClicked.length == 0) {
+            $scope.noPromotionClicked = true;
+        }
         insertData();
     }
     

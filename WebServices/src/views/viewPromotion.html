@@ -17,18 +17,19 @@
                 <div class="col-sm-12 padding-zero" ng-repeat="(key, promotion) in promotions | reverse">
                     <div class="pull-right">
 
-                        <button type="button" class="btn btn-green pull-right" ng-click="editPromotion(promotion)">Edit</button>
+                        <button type="button" class="btn btn-success pull-right" ng-click="editPromotion(promotion)">Edit</button>
                     </div>
                     <div class="pull-right">
 
-                        <button type="button" class="btn btn-green pull-right" ng-click="deletePromotion(promotion, promotions.indexOf(promotion))">Delete</button>
+                        <button type="button" class="btn btn-danger pull-right" ng-click="deletePromotion(promotion, promotions.indexOf(promotion))">Delete</button>
                     </div>
                     <div class="col-sm-12 padding-zero promotion-title">
                         {{promotion.Title}}
 
-                        <span ng-show="isPromotionExpired(promotion.PromotionEndDate)" style="float: right;padding-top: 20px;">
+                        
+                        <span ng-show="isPromotionExpired(promotion.PromotionEndDate)" class="promotion-expired pull-right">
                             <span>Expired</span>
-                            <button type="button" class="btn btn-white pull-right" ng-click="editPromotionDate(promotion)">Re-post</button>
+                            <button type="button" class="btn btn-info" ng-click="editPromotionDate(promotion)">Re-post</button>
                         </span>
 
                     </div> 
