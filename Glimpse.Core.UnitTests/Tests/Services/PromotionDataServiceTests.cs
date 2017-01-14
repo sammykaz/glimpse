@@ -55,5 +55,124 @@ namespace Glimpse.Core.UnitTests.Tests.Services
             }        
         }
 
+        [TestMethod]
+        public void FilterPromotionWithLocationList_Returns_GoodCategory()
+        {
+            //arrange
+            Categories category = Categories.Footwear;
+            List<PromotionWithLocation> promosWithLocation = new List<PromotionWithLocation>();
+
+            for(int i = 0; i <= 10; i++)
+            {
+                promosWithLocation.Add(new PromotionWithLocation
+                {
+                    VendorId = 1,
+                    Title = "Unit Test Title",
+                    Description = "Unit Test Description",
+                    Category = category,
+                    CompanyName = "Unit Test Company",
+                    Duration = 2
+                });
+            }
+
+            for (int i = 0; i <= 10; i++)
+            {
+                promosWithLocation.Add(new PromotionWithLocation
+                {
+                    VendorId = 1,
+                    Title = "Unit Test Title",
+                    Description = "Unit Test Description",
+                    Category = Categories.Apparel,
+                    CompanyName = "Unit Test Company",
+                    Duration = 2
+                });
+            }
+
+            for (int i = 0; i <= 10; i++)
+            {
+                promosWithLocation.Add(new PromotionWithLocation
+                {
+                    VendorId = 1,
+                    Title = "Unit Test Title",
+                    Description = "Unit Test Description",
+                    Category = Categories.Jewellery,
+                    CompanyName = "Unit Test Company",
+                    Duration = 2
+                });
+            }
+
+            //act
+            List<PromotionWithLocation> categoryPromos =  _pds.FilterPromotionWithLocationList(promosWithLocation, category);
+            //assert
+
+            foreach (PromotionWithLocation promo in categoryPromos)
+            {
+                Assert.IsTrue(promo.Category == category);
+            }
+        }
+
+
+        [TestMethod]
+        public void FilterPromotionWithLocationList_All_Returns_AllCategories()
+        {
+            //arrange
+            Categories category1 = Categories.Footwear;
+            Categories category2 = Categories.Restaurants;
+            Categories category3 = Categories.Jewellery;
+            List<PromotionWithLocation> promosWithLocation = new List<PromotionWithLocation>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                promosWithLocation.Add(new PromotionWithLocation
+                {
+                    VendorId = 1,
+                    Title = "Unit Test Title",
+                    Description = "Unit Test Description",
+                    Category = category1,
+                    CompanyName = "Unit Test Company",
+                    Duration = 2
+                });
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                promosWithLocation.Add(new PromotionWithLocation
+                {
+                    VendorId = 1,
+                    Title = "Unit Test Title",
+                    Description = "Unit Test Description",
+                    Category = category2,
+                    CompanyName = "Unit Test Company",
+                    Duration = 2
+                });
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                promosWithLocation.Add(new PromotionWithLocation
+                {
+                    VendorId = 1,
+                    Title = "Unit Test Title",
+                    Description = "Unit Test Description",
+                    Category = category3,
+                    CompanyName = "Unit Test Company",
+                    Duration = 2
+                });
+            }
+
+            //act
+            List<PromotionWithLocation> categoryPromos = _pds.FilterPromotionWithLocationList(promosWithLocation, null);
+            //assert
+
+            foreach (PromotionWithLocation promo in categoryPromos)
+            {
+                Assert.IsTrue(promo.Category == category1 || promo.Category == category2 || promo.Category == category3);
+            }
+
+            Assert.AreEqual(10, categoryPromos.Count(promo => promo.Category == category1));
+            Assert.AreEqual(10, categoryPromos.Count(promo => promo.Category == category2));
+            Assert.AreEqual(10, categoryPromos.Count(promo => promo.Category == category3));
+        }
+
     }
 }
