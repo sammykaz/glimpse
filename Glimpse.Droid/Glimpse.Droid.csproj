@@ -473,7 +473,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\item_menu.axml" />
     <AndroidResource Include="Resources\Raw\style_json.json" />
-    <AndroidResource Include="Resources\layout\TilesView.axml" />
+    <AndroidResource Include="Resources\layout\TilesView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\PromotionAndDistanceTemplate.axml" />
     <AndroidResource Include="Resources\layout\ViewPagerView.axml" />
     <AndroidResource Include="Resources\layout\PromotionDialogView.axml">
@@ -483,6 +485,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ImageSwipeLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Item_Radio.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

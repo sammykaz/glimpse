@@ -5,6 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"    
     local:MvxBind="Refreshing IsRefreshing; RefreshCommand ReloadCommand">
+     <MvxRadioGroup
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:textSize="40dp"
+    android:orientation="horizontal"
+    local:MvxItemTemplate="@layout/item_radio"
+    local:MvxBind="ItemsSource Categories;SelectedItem SelectedItem"
+    />
     <Mvx.MvxListView
         android:orientation="vertical"
         android:layout_height="fill_parent"
