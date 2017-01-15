@@ -4,14 +4,17 @@
         <div class="panel panel-default signup-form-panel" ng-hide="noPromotionClicked">
             <div class="panel-body">
                 <div class="col-sm-12">
-                    <div class="col-sm-12 promotion-table-b4-title">Chart Line</div>
+                    <div class="col-sm-12 promotion-table-b4-title">Line Chart </div>
                     <div class="col-sm-12 analysis-description">Number of views during the last days</div>
                     <canvas id="line" class="chart chart-line" chart-data="data"
                             chart-labels="labels" chart-series="seriesTitle" chart-options="chartLineOptions"
                             chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
+                    <div class="col-sm-12 analysis-description">
+                        Days of the month
+                    </div>
                 </div>
                 <div class="col-sm-12">
-                    <div class="col-sm-12 promotion-table-b4-title">Chart Pie</div>
+                    <div class="col-sm-12 promotion-table-b4-title signup-form-padding">Pie Chart </div>
                     <div class="col-sm-8">
                         <canvas id="pie" class="chart chart-pie"
                                 chart-data="totalClicked" chart-labels="seriesTitle" chart-options="chartPieOptions">
