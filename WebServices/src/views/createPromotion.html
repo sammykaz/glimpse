@@ -1,7 +1,7 @@
 <div class="animated fadeIn">
     <div class="modal-content">
         <div class="modal-header my-modal-header">
-            <h3 class="modal-title" id="modal-title">Create Promotion</h3>
+            <h3 class="modal-title" id="modal-title">{{ edit == true ? ' Modify Promotion' : 'Create Promotion'}}</h3>
         </div>
         <div class="modal-body ng-scope" id="modal-body">
             <form>
@@ -13,27 +13,27 @@
                     <label>Categories</label>
                     <div class="col-sm-12">
                         <div class="col-sm-4">
-                            <input type="radio" ng-model="category" value=0>
+                            <input type="radio" ng-model="category" ng-value="0">
                             <span class="">Footwear</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="radio" ng-model="category" value=1>
+                            <input type="radio" ng-model="category" ng-value="1">
                             <span class="">Electronics</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="radio" ng-model="category" value=2>
+                            <input type="radio" ng-model="category" ng-value="2">
                             <span class="">Jewellery</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="radio" ng-model="category" value=3>
+                            <input type="radio" ng-model="category" ng-value="3">
                             <span class="">Restaurants</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="radio" ng-model="category" value=4>
+                            <input type="radio" ng-model="category" ng-value="4">
                             <span class="">Services</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="radio" ng-model="category" value=5>
+                            <input type="radio" ng-model="category" ng-value="5">
                             <span class="">Apparel</span>
                         </div>
                     </div>
@@ -104,11 +104,23 @@
             </form>
         </div>
         <div class="alert alert-warning" role="alert" ng-show="showDateWarning">
-            <strong>Warning!</strong> Start date cannot start before the end date. <a ng-click="closeWarning()">Close</a>
+            <strong>Warning!</strong> Start date cannot start before the end date. <a ng-click="closeWarning(0)" class="close-warning">Close Warning</a>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="showTitleWarning">
+            <strong>Oh snap!</strong> The promotion must have a title <a ng-click="closeWarning(1)" class="close-warning">Close Warning</a>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="showDescriptionWarning">
+            <strong>Oh snap!</strong> The promotion must have a description <a ng-click="closeWarning(2)" class="close-warning">Close Warning</a>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="showCategorynWarning">
+            <strong>Oh snap!</strong> The promotion must have a category <a ng-click="closeWarning(3)" class="close-warning">Close Warning</a>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="showImageWarning">
+            <strong>Oh snap!</strong> The promotion must have a image <a ng-click="closeWarning(4)" class="close-warning">Close Warning</a>
         </div>
         <div class="modal-footer">
             <button class="btn btn-danger" type="button" ng-click="cancel()">Cancel</button>
-            <button class="btn btn-primary" type="button" ng-click="ok()">Create</button>
+            <button class="btn btn-primary" type="button" ng-click="ok()">{{ edit == true ? 'Modify' : 'Create'}}</button>
         </div>
     </div>
 </div>

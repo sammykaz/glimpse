@@ -7,7 +7,6 @@ app.controller('LoginController', ['$scope', '$http', 'blockUI', 'authentication
         $scope.preventLogin = true;
         
         authenticationService.login($scope.user).then(function (data) {
-            console.log(data);
             $state.go("home.viewPromotion");
         }, function (error) {
             $scope.message = error.error_description;

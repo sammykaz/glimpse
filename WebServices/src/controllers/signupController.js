@@ -1,39 +1,66 @@
 'use strict';
 
-app.controller('SignupController', ['$scope', '$http', 'dataService','$state', function ($scope, $http, dataService, $state) {
+app.controller('SignupController', ['$scope', '$http', 'dataService', '$state', function ($scope, $http, dataService, $state) {
+    $scope.passConfirmation = false;
+    $scope.location = { lat: '', lng: '' };
+    $scope.user = { streetnumber: '', streetname: '', postal: '', city: '', province: '', country: '' };
+    $scope.addressIsValid = true;
+    var geocoder = new google.maps.Geocoder();
 
-    $scope.user = undefined;
-    console.log(dataService.getVendors().query());
     $scope.createUser = function () {
-        var addressData = {
-            PostalCode: $scope.user.postal,
-            city: $scope.user.city,
-            country: $scope.user.country,
-            province: $scope.user.province,
-            street: $scope.user.streetname,
-            streetNumber: $scope.user.streetnumber
-        }
-        console.log()
         var location = {
-            Lat: 0.0,
-            Lng: 0.0
+            Lat: $scope.location.lat,
+            Lng: $scope.location.lng
         }
         var userData = {
             email: $scope.user.email,
             companyName: $scope.user.company,
             password: $scope.user.password,
-            address: $scope.user.streetnumber + ", " + $scope.user.streetname + ", " + $scope.user.postal + ", " + $scope.user.city + ", " + $scope.user.province + ", " + $scope.user.country,
+            address: $scope.address,
             telephone: $scope.user.personalphone,
             Location: location
         }
-        dataService.getVendors().save(userData, function (resp, headers) {
-            //success callback
-            $state.go("login");
-            console.log(resp);
-        },
-            function(err){
-            // error callback
-            console.log(err);
-        });
+        if ($scope.address != false) {
+            $scope.passConfirmation = false;
+            dataService.getVendors().save(userData, function (resp, headers) {
+                $state.go("login");
+            },
+            function (err) {
+                Alert("Please verify your values");
+            });
+        }
+        else {
+            console.log("Form is invalid");
+        }
+    }
+
+    var getAddress = function () {
+        if ($scope.user.streetnumber != '' && $scope.user.streetname != '' && $scope.user.postal != '' && $scope.user.city != '' && $scope.user.province != '' && $scope.user.country != '') {
+            return $scope.user.streetnumber + ", " + $scope.user.streetname + ", " + $scope.user.postal + ", " + $scope.user.city + ", " + $scope.user.province + ", " + $scope.user.country;
+        }
+        else
+            return false;
+    }
+
+    $scope.validateAddress = function () {
+        $scope.address = getAddress();
+        if ($scope.user.password == $scope.user.confirmpassword) {
+            $scope.passConfirmation = false;
+            geocoder.geocode({ 'address': $scope.address }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    $scope.addressIsValid = true;
+                    $scope.location.lat = results[0].geometry.location.lat();
+                    $scope.location.lng = results[0].geometry.location.lng();
+                    $scope.createUser();
+                }
+                else {
+                    $scope.addressIsValid = false;
+                    return false;
+                }
+            });
+        }
+        else {
+            $scope.passConfirmation = true;
+        }
     }
 }]);
