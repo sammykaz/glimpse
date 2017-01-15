@@ -277,8 +277,26 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         $uibModalInstance.dismiss('cancel');
     };
 
-    $scope.closeWarning = function () {
-        $scope.showDateWarning = false;
+    $scope.closeWarning = function (warning) {
+        switch (warning) {
+            case 0:
+                $scope.showDateWarning = false;
+                break;
+            case 1:
+                $scope.showTitleWarning = false;
+                break;
+            case 2:
+                $scope.showDescriptionWarning = false;
+                break;
+            case 3:
+                $scope.showCategorynWarning = false;
+                break;
+            case 4:
+                $scope.showImageWarning = false;
+                break;
+            default:
+                break;
+        }
     }
 
     $scope.croppedDataUrl = '';
@@ -503,8 +521,26 @@ app.controller('changeDateModalController', function ($scope, $uibModalInstance,
         $uibModalInstance.dismiss('cancel');
     }
 
-    $scope.closeWarning = function () {
-        $scope.showDateWarning = false;
+    $scope.closeWarning = function (warning) {
+        switch (warning) {
+            case 0:
+                $scope.showDateWarning = false;
+                break;
+            case 1:
+                $scope.showTitleWarning = false;
+                break;
+            case 2:
+                $scope.showDescriptionWarning = false;
+                break;
+            case 3:
+                $scope.showCategorynWarning = false;
+                break;
+            case 4:
+                $scope.showImageWarning = false;
+                break;
+            default:
+                break;
+        }
     }
 
     $scope.inlineOptions = {
