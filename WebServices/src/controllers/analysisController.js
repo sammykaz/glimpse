@@ -85,12 +85,9 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
 
         angular.forEach($scope.data, function (element, index) {
             angular.forEach(element, function (element1, index1) {
-                console.log(element1);
                 $scope.totalClicked[index] += element1;
             })
         })
-        console.log($scope.totalClicked);
-        
     }
 
     var today = new Date();
