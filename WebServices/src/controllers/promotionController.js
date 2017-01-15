@@ -140,6 +140,10 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.sdt = new Date($scope.startDay);
     $scope.edt = new Date($scope.endDay);
     $scope.showDateWarning = false;
+    $scope.showTitleWarning = false;
+    $scope.showDescriptionWarning = false;
+    $scope.showCategorynWarning = false;
+    $scope.showImageWarning = false;
     $scope.isResetEnable = false;
     $scope.previewImage = promotionDetails.PromotionImage ? "data:image/JPEG;base64," + promotionDetails.PromotionImage : '';
 
@@ -165,6 +169,23 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.ok = function () {
         if ($scope.sdt > $scope.edt)
             $scope.showDateWarning = true;
+        else if ($scope.promotionTitle.length == 0) {
+            $scope.showDateWarning = false;
+            $scope.showTitleWarning = true;
+        }
+        else if ($scope.promotionDescription.length == 0) {
+            $scope.showTitleWarning = false;
+            $scope.showDescriptionWarning = true;
+        }
+        else if ($scope.category == undefined) {
+            $scope.showDescriptionWarning = false;
+            $scope.showCategorynWarning = true;
+        }
+        else if ($scope.previewImage == null || $scope.previewImage.length == 0) {
+            $scope.showCategorynWarning = false;
+            $scope.showImageWarning = true;
+        }
+        
         else {
             var isEditMode = !(angular.equals({}, promotionDetails));
             var image = {
@@ -215,7 +236,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 },
                 function (err) {
                 });
-                
+
             }
 
             function onEditClick(promotionId, promotion) {
@@ -387,7 +408,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         $scope.croppedDataUrl = null;
         $scope.isCropImageEnable = false;
         $scope.previewImage = null;
-        console.log($scope.croppedDataUrl);
     }
     $scope.resetFilter = function () {
         $scope.isResetEnable = false;

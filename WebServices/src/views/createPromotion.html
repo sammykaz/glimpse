@@ -106,6 +106,18 @@
         <div class="alert alert-warning" role="alert" ng-show="showDateWarning">
             <strong>Warning!</strong> Start date cannot start before the end date. <a ng-click="closeWarning()" class="close-warning">Close Warning</a>
         </div>
+        <div class="alert alert-danger" role="alert" ng-show="showTitleWarning">
+            <strong>Warning!</strong> The promotion must have a title <a ng-click="closeWarning()" class="close-warning">Close Warning</a>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="showDescriptionWarning">
+            <strong>Warning!</strong> The promotion must have a description <a ng-click="closeWarning()" class="close-warning">Close Warning</a>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="showCategorynWarning">
+            <strong>Warning!</strong> The promotion must have a category <a ng-click="closeWarning()" class="close-warning">Close Warning</a>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="showImageWarning">
+            <strong>Warning!</strong> The promotion must have a image <a ng-click="closeWarning()" class="close-warning">Close Warning</a>
+        </div>
         <div class="modal-footer">
             <button class="btn btn-danger" type="button" ng-click="cancel()">Cancel</button>
             <button class="btn btn-primary" type="button" ng-click="ok()">{{ edit == true ? 'Modify' : 'Create'}}</button>
