@@ -30,7 +30,8 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
             size: 'lg',
             scope: $scope,
             resolve: {
-                promotionDetails: {}
+                promotionDetails: {},
+                edit: false
         }
         }).result.then(function (result) {
             //console.log(result);
@@ -47,7 +48,8 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
             size: 'lg',
             scope: $scope,
             resolve: {
-                promotionDetails: promotion
+                promotionDetails: promotion,
+                edit : true
             }
         }).result.then(function (updatedPromotionData) {
             $scope.promotions.forEach(function (element, index) {
@@ -126,7 +128,8 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
 
 
 
-app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout, dataService, $http, promotionDetails, $q) {
+app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout, dataService, $http, promotionDetails, $q, edit) {
+    $scope.edit = edit;
     console.log(promotionDetails);
     $scope.promotionTitle = promotionDetails.Title || '';
     $scope.category = promotionDetails.Category || undefined;

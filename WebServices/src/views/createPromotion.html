@@ -1,7 +1,7 @@
 <div class="animated fadeIn">
     <div class="modal-content">
         <div class="modal-header my-modal-header">
-            <h3 class="modal-title" id="modal-title">Create Promotion</h3>
+            <h3 class="modal-title" id="modal-title">{{ edit == true ? ' Modify Promotion' : 'Create Promotion'}}</h3>
         </div>
         <div class="modal-body ng-scope" id="modal-body">
             <form>
@@ -108,7 +108,7 @@
         </div>
         <div class="modal-footer">
             <button class="btn btn-danger" type="button" ng-click="cancel()">Cancel</button>
-            <button class="btn btn-primary" type="button" ng-click="ok()">Create</button>
+            <button class="btn btn-primary" type="button" ng-click="ok()">{{ edit == true ? 'Modify' : 'Create'}}</button>
         </div>
     </div>
 </div>
