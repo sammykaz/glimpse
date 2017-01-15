@@ -2,6 +2,7 @@
 app.controller('analysisController', ['$scope', 'dataService', function ($scope, dataService) {
 
     $scope.data = [];
+    $scope.totalClicked = [];
     $scope.vendorPromotionsClicked = [];
     $scope.series = [];
     $scope.seriesTitle = [];
@@ -81,6 +82,15 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
                 }
             })
         })
+
+        angular.forEach($scope.data, function (element, index) {
+            angular.forEach(element, function (element1, index1) {
+                console.log(element1);
+                $scope.totalClicked[index] += element1;
+            })
+        })
+        console.log($scope.totalClicked);
+        
     }
 
     var today = new Date();
@@ -88,7 +98,8 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
 
     var initializeData = function () {
         angular.forEach($scope.series, function (serie, indexSerie) {
-            $scope.data[indexSerie] = [0,0,0,0,0,0,0]
+            $scope.data[indexSerie] = [0, 0, 0, 0, 0, 0, 0]
+            $scope.totalClicked[indexSerie] = 0;
         })
     }
 
@@ -96,7 +107,7 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
         console.log(points, evt);
     };
     $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
-    $scope.options = {
+    $scope.chartLineOptions = {
         scales: {
             yAxes: [
               {
@@ -108,6 +119,16 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
             ]
         },
         legend: {display: true}
-         
+    };
+
+    $scope.chartPieOptions = {
+        legend: {
+            display: true,
+            position: 'right',
+            labels: {
+                boxWidth: 40,
+            }
+        }
+       
     };
 }]);
