@@ -433,6 +433,15 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             this.reset();
         });
     }
+    $scope.saveFilter = function () {
+        $scope.isResetEnable = false;
+        Caman("#previewImage", function() {
+            var imageBase64data = this.toBase64('jpeg');
+            $scope.$apply(function() {
+                $scope.previewImage = imageBase64data;
+            });
+        });
+    }
     $scope.today = function () {
         $scope.sdt = new Date();
         $scope.edt = new Date();
