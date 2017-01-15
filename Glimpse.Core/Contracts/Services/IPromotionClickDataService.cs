@@ -14,5 +14,7 @@ namespace Glimpse.Core.Contracts.Services
         Task<List<PromotionClick>> GetPromotionClick(int id);
 
         Task<List<PromotionClick>> GetPromotionClicks();
+
+        Task DeletePromotionClick(PromotionClick promotionClick);
     }
 }

@@ -34,5 +34,10 @@ namespace Glimpse.Core.Services.Data
         {
             await promotionClickRepository.StorePromotionClick(promotionClick);
         }
+
+        public async Task DeletePromotionClick(PromotionClick promotionClick)
+        {
+            await promotionClickRepository.DeletePromotionClick(promotionClick);
+        }
     }
 }
