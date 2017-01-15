@@ -9,7 +9,6 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
     var promotionsquery = dataService.getAllPromotionFromSpecificVendor(localStorage.id).query();
     promotionsquery.$promise.then(function (data) {
         $scope.promotions = data;
-        console.log(data);
         getPromotionClicks();
     }, function (error) {
         console.log("Error: Could not load promotions");
@@ -19,7 +18,6 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
         var promotionClicksquery = dataService.getPromotionClicks().query();
         promotionClicksquery.$promise.then(function (data) {
             $scope.promotionClicks = data;
-            console.log(data);
             getVendorPromotionsClicked();
         }, function (error) {
             console.log("Error: Could not load promotions");
@@ -36,7 +34,6 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
                 }
             })
         });
-        console.log($scope.vendorPromotionsClicked);
         if ($scope.vendorPromotionsClicked.length == 0) {
             $scope.noPromotionClicked = true;
         }
@@ -58,31 +55,24 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
                     var date = newDate.getDate();
                     switch(date) {
                         case $scope.labels[0]:
-                            console.log("Clicked 6 days ago");
                             $scope.data[indexSerie][0]++;
                             break;
                         case $scope.labels[1]:
-                            console.log("Clicked 5 days ago");
                             $scope.data[indexSerie][1]++;
                             break;
                         case $scope.labels[2]:
-                            console.log("Clicked 4 days ago");
                             $scope.data[indexSerie][2]++;
                             break;
                         case $scope.labels[3]:
-                            console.log("Clicked 3 days ago");
                             $scope.data[indexSerie][3]++;
                             break;
                         case $scope.labels[4]:
-                            console.log("Clicked 2 days ago");
                             $scope.data[indexSerie][4]++;
                             break;
                         case $scope.labels[5]:
-                            console.log("Clicked 1 days ago");
                             $scope.data[indexSerie][5]++;
                             break;
                         case $scope.labels[6]:
-                            console.log("Clicked today ago");
                             $scope.data[indexSerie][6]++;
                             break;
                         default:

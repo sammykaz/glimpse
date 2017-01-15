@@ -50,4 +50,5 @@ body {
 .angular-google-map-container {height: 600px;}
 .close-warning{color: #014c8c !important; text-decoration: underline !important;}
 .promotion-expired{color: red; font-size: 25px;}
+.text-center{text-align: center;}
 
