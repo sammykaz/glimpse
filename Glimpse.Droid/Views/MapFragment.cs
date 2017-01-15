@@ -323,22 +323,20 @@ namespace Glimpse.Droid.Views
                 Categories category = (Categories)checkedId0BasedIndex;
                 ViewModel.SelectedItem = category;
             }
-
+            
             clusterManager.ClearItems();
+            clusterList.Clear();
             ShowPromotionsOnMaBySelectedCategory();
         }
 
-        private async void ShowPromotionsOnMaBySelectedCategory()
+        private  void ShowPromotionsOnMaBySelectedCategory()
         {
             var viewModel = (MapViewModel)ViewModel;
-
-
             activePromotions = viewModel.FilteredPromotionList;
 
             //Print out the pins
             foreach (var p in activePromotions)
             {            
-
                 //Convert byte array back to image
                 Bitmap bitmap = null;
                 try
