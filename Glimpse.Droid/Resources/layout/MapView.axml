@@ -4,8 +4,19 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+  
+  <MvxRadioGroup
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:textSize="20dp"
+     android:orientation="horizontal"
+     android:id="@+id/mapfilter_radiogroup"
+     local:MvxItemTemplate="@layout/item_radio"
+     local:MvxBind="ItemsSource Categories;SelectedItem SelectedItem" />
+  
     <com.google.android.gms.maps.MapView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/map" />
+ 
 </LinearLayout>

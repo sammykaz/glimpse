@@ -55,6 +55,7 @@ namespace Glimpse.Core.UnitTests.Tests.Services
             }        
         }
 
+        //This method does not require access to the database
         [TestMethod]
         public void FilterPromotionWithLocationList_Returns_GoodCategory()
         {

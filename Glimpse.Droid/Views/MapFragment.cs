@@ -28,7 +28,7 @@ namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.viewPager, true)]
     [Register("glimpse.droid.views.MapFragment")]
-    public class MapFragment : MvxFragment<MapViewModel>, IOnMapReadyCallback, ClusterManager.IOnClusterItemClickListener, ClusterManager.IOnClusterClickListener
+    public class MapFragment : MvxFragment<MapViewModel>, IOnMapReadyCallback, ClusterManager.IOnClusterItemClickListener, ClusterManager.IOnClusterClickListener, RadioGroup.IOnCheckedChangeListener
     {
         private MapView _mapView;
         private GoogleMap map;
@@ -38,6 +38,9 @@ namespace Glimpse.Droid.Views
         private ClusterManager clusterManager;
         private List<PromotionItem> clusterList;
         private List<PromotionWithLocation> activePromotions;
+        private RadioGroup _radioGroup;
+        private int _previousCheckedFilterId;
+
         public MapFragment()
         {
             clusterList = new List<PromotionItem>();
@@ -227,6 +230,10 @@ namespace Glimpse.Droid.Views
 
             //Show promotions
             ShowPromotionsOnMap();
+
+            //setup radiogroup
+            _radioGroup = (RadioGroup)View.FindViewById(Resource.Id.mapfilter_radiogroup);
+            _radioGroup.SetOnCheckedChangeListener(this);
         }
 
         public bool OnClusterClick(ICluster cluster)
@@ -264,7 +271,7 @@ namespace Glimpse.Droid.Views
         {
             var viewModel = (MapViewModel)ViewModel;
 
-
+            if(activePromotions ==  null)
             activePromotions = await ViewModel.GetActivePromotions();
 
             //Print out the pins
@@ -301,6 +308,51 @@ namespace Glimpse.Droid.Views
             }
             GenerateCluster();
 
+        }
+
+
+        public void OnCheckedChanged(RadioGroup group, int checkedId)
+        {
+            if (checkedId == 1)
+            {
+                ViewModel.SelectedItem = null;
+            }
+            else
+            {
+                int checkedId0BasedIndex = checkedId - 2;
+                Categories category = (Categories)checkedId0BasedIndex;
+                ViewModel.SelectedItem = category;
+            }
+
+            clusterManager.ClearItems();
+            ShowPromotionsOnMaBySelectedCategory();
+        }
+
+        private async void ShowPromotionsOnMaBySelectedCategory()
+        {
+            var viewModel = (MapViewModel)ViewModel;
+
+
+            activePromotions = viewModel.FilteredPromotionList;
+
+            //Print out the pins
+            foreach (var p in activePromotions)
+            {            
+
+                //Convert byte array back to image
+                Bitmap bitmap = null;
+                try
+                {
+                    bitmap = BitmapFactory.DecodeByteArray(p.Image, 0, p.Image.Length);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error converting byte[] to image" + e.StackTrace);
+                }
+
+                CreateClusterItem(p.Location.Lat, p.Location.Lng, p.Title, p.Description, p.Duration, p.CompanyName, bitmap, p.PromotionId);
+            }
+            GenerateCluster();
         }
 
 
