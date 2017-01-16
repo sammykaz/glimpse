@@ -15,7 +15,7 @@ namespace Glimpse.Core.UnitTests.Tests.Services
     {
         private VendorDataService _vds;
 
-        private readonly string _testEmail = "Email@gmail.com";
+        private readonly string _testEmail = "tip92@gmail.com";
         private readonly string _testPassword = "unitTestPassword";
         
         [TestInitialize]
@@ -62,6 +62,38 @@ namespace Glimpse.Core.UnitTests.Tests.Services
 
             await _vds.DeleteVendor(vendorWithTestEmail[0]);
         }
+
+
+        [TestMethod]
+        public async Task CheckIfVendorExists_returns_valid()
+        {
+            //arrange
+            Vendor vendor = new Vendor
+            {
+                Email = _testEmail,
+                Password = _testPassword,
+                CompanyName = "UnitTestCompany",
+                Address = "Unit Test Address",
+                Telephone = "543-535-5353",
+                Location = new Location
+                {
+                    Lat = 54.434,
+                    Lng = 53.656,
+                },
+            };
+
+            //act
+            await _vds.SignUp(vendor);
+
+            //assert
+            Assert.IsTrue(await _vds.CheckIfVendorExists(_testEmail));
+
+            //clean up
+
+            await _vds.DeleteVendor(vendor);
+        }
+
+
 
     }
 }

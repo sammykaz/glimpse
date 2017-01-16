@@ -20,7 +20,7 @@
         local:MvxBind="Text CompanyName, Mode=TwoWay"
         android:inputType="text" />
     <Button
-        android:id="@+id/selectBuisinessLocationButton"
+        android:id="@+id/selectBusinessLocationButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -35,8 +35,7 @@
         android:layout_marginRight="20dp"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text Address, Mode=TwoWay"/>
-  
+        local:MvxBind="Text Address, Mode=TwoWay" />
     <EditText
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
@@ -73,6 +72,15 @@
         android:paddingLeft="10dp"
         android:textColor="#000"
         local:MvxBind="Text Password, Mode=TwoWay" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/errorMsg"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="10dp"
+        android:textColor="#ff0000"
+        local:MvxBind="Text ErrorMessage, Mode=TwoWay" />
     <Button
         android:text="Sign Up!"
         android:layout_width="match_parent"

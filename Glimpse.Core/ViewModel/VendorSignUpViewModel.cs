@@ -97,19 +97,28 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                _errorMessage = value;
+                RaisePropertyChanged(() => ErrorMessage);
+            }
+        }
+
         public MvxCommand SignUpCommand
         {
             get
             {
                 return new MvxCommand(async () =>
                 {
-
-                    vendor = await _vendorDataService.SearchVendorByEmail(_email);
-
                     //Check if email exists in db
-                    if (vendor != null)
+                    if (await _vendorDataService.CheckIfVendorExists(Email))
                     {
-                        //TODO Display Error message to user, choose another email
+                        ErrorMessage = "This email: "+Email+" is already being used by another vendor";
                     }
                     else
                     {
