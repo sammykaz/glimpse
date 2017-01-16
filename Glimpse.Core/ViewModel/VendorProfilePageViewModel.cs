@@ -36,9 +36,21 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public override async void Start()
+        private async Task<List<Promotion>> GetPromotionsForLoggedInVendor()
         {
-            PromotionList = await _promotionDataService.GetPromotions();
+            List<Promotion> promotionForVendor = await _promotionDataService.GetPromotions();
+            Vendor vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
+            return promotionForVendor.Where(c => c.VendorId == vendor.VendorId).ToList();
+        }
+
+        /// <summary>
+        /// Init method so that list is refreshed when show view model is called
+        /// The parameter is required to be able to get this method called since none exist with empty argument...
+        /// </summary>
+        /// <param name="index"></param>
+        public async void Init(int index)
+        {
+            PromotionList = await GetPromotionsForLoggedInVendor();
         }
 
         public MvxCommand getPromotions
@@ -47,11 +59,7 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand( async() =>
                 {
-                    //var result = await _promotionDataService.GetPromotions(6);
-                    PromotionList = await _promotionDataService.GetPromotions();
-                    Vendor vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
-                    List<Promotion> promotionForVendor = PromotionList.Where(c => c.VendorId == vendor.VendorId).ToList();
-                    PromotionList = promotionForVendor;
+                    PromotionList = await GetPromotionsForLoggedInVendor();
                 });
             }
         }
