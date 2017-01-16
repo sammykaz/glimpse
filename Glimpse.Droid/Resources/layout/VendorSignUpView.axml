@@ -72,6 +72,18 @@
         android:paddingLeft="10dp"
         android:textColor="#000"
         local:MvxBind="Text Password, Mode=TwoWay" />
+   <EditText
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:id="@+id/txtConfirmPassword"
+        android:background="@drawable/edit_text_style"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="ConfirmPassword"
+        android:paddingLeft="10dp"
+        android:textColor="#000"
+        local:MvxBind="Text ConfirmPassword, Mode=TwoWay" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

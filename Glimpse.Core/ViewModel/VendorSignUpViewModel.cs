@@ -98,6 +98,18 @@ namespace Glimpse.Core.ViewModel
         }
 
 
+        private string _confirmPassword;
+        public string ConfirmPassword
+        {
+            get { return _confirmPassword; }
+            set
+            {
+                _confirmPassword = value;
+                RaisePropertyChanged(() => ConfirmPassword);
+            }
+        }
+
+
         private string _errorMessage;
         public string ErrorMessage
         {
@@ -109,6 +121,7 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+
         public MvxCommand SignUpCommand
         {
             get
@@ -118,7 +131,12 @@ namespace Glimpse.Core.ViewModel
                     //Check if email exists in db
                     if (await _vendorDataService.CheckIfVendorExists(Email))
                     {
-                        ErrorMessage = "This email: "+Email+" is already being used by another vendor";
+                        ErrorMessage = "This email: " + Email + " is already being used by another vendor";
+                    }
+                    //Check that passwords match
+                    else if (Password != ConfirmPassword)
+                    {
+                        ErrorMessage = "Passwords do not match!";
                     }
                     else
                     {

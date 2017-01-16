@@ -2758,8 +2758,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a0036
 			public const int enterAlwaysCollapsed = 2131361846;
 			
-			// aapt resource value: 0x7f0a00e6
-			public const int errorMsg = 2131362022;
+			// aapt resource value: 0x7f0a00e7
+			public const int errorMsg = 2131362023;
 			
 			// aapt resource value: 0x7f0a0037
 			public const int exitUntilCollapsed = 2131361847;
@@ -3151,6 +3151,9 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a00e2
 			public const int txtCompanyName = 2131362018;
 			
+			// aapt resource value: 0x7f0a00e6
+			public const int txtConfirmPassword = 2131362022;
+			
 			// aapt resource value: 0x7f0a00d4
 			public const int txtEmail = 2131362004;
 			
@@ -3196,8 +3199,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a0080
 			public const int user_profile_photo = 2131361920;
 			
-			// aapt resource value: 0x7f0a00e7
-			public const int viewPager = 2131362023;
+			// aapt resource value: 0x7f0a00e8
+			public const int viewPager = 2131362024;
 			
 			// aapt resource value: 0x7f0a00d8
 			public const int viewPagerCountDots = 2131362008;

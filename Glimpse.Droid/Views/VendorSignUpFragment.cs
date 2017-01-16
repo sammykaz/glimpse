@@ -41,7 +41,7 @@ namespace Glimpse.Droid.Views
             (this.Activity as LoginActivity).SetCustomTitle("Vendor Sign Up");
 
             _addressTextView = (this.Activity as LoginActivity).FindViewById<TextView>(Resource.Id.txtAddress);
-            _selectBuisinessLocationButton = (this.Activity as LoginActivity).FindViewById<Button>(Resource.Id.selectBuisinessLocationButton);
+            _selectBuisinessLocationButton = (this.Activity as LoginActivity).FindViewById<Button>(Resource.Id.selectBusinessLocationButton);
             _selectBuisinessLocationButton.Click += OnSelectBuisinessLocationTapped;
 
             //Sends email on click
