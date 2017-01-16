@@ -20,14 +20,15 @@ namespace Glimpse.Droid.Adapter
 {
     public class PromotionDialogRecyclerAdapter : RecyclerView.Adapter
     {
-        private PromotionWithLocation currentPromotion;
+        private List<PromotionWithLocation> currentPromotion;
         private RecyclerView recyclerView;
         private Context context;
         private int mCurrentPosition = -1;
 
-        public PromotionDialogRecyclerAdapter(PromotionWithLocation promotion, RecyclerView recyclerView, Context context)
+        public PromotionDialogRecyclerAdapter(List<PromotionWithLocation> promotion, RecyclerView recyclerView, Context context)
         {
-            this.currentPromotion = promotion;
+            this.currentPromotion = new List<PromotionWithLocation>();
+            currentPromotion.AddRange(promotion);
             this.recyclerView = recyclerView;
             this.context = context;
         }
@@ -82,11 +83,11 @@ namespace Glimpse.Droid.Adapter
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
                 MyView myHolder = holder as MyView;
-                myHolder.CompanyNameTextView.Text = currentPromotion.CompanyName;
-                myHolder.TitleTextView.Text = currentPromotion.Title;
-                myHolder.DescriptionTextView.Text = currentPromotion.Description;
-                myHolder.PromotionImageView.SetImageBitmap(BitmapFactory.DecodeByteArray(currentPromotion.Image, 0, currentPromotion.Image.Length));
-                myHolder.ExpirationDateTextView.Text = currentPromotion.PromotionEndDate.Date.ToString();
+                myHolder.CompanyNameTextView.Text = currentPromotion[position].CompanyName;
+                myHolder.TitleTextView.Text = currentPromotion[position].Title;
+                myHolder.DescriptionTextView.Text = currentPromotion[position].Description;
+                myHolder.PromotionImageView.SetImageBitmap(BitmapFactory.DecodeByteArray(currentPromotion[position].Image, 0, currentPromotion[position].Image.Length));
+                myHolder.ExpirationDateTextView.Text = "Expiring " + currentPromotion[position].PromotionEndDate.Date.ToString();
 
             
             if (position > mCurrentPosition)
@@ -108,6 +109,9 @@ namespace Glimpse.Droid.Adapter
             //view.StartAnimation(anim);
         }
 
-        public override int ItemCount { get; }
+        public override int ItemCount
+        {
+            get { return this.currentPromotion.Count; }
+        }
     }
 }

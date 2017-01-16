@@ -24,11 +24,11 @@ namespace Glimpse.Droid.Views
         private RecyclerView mRecyclerView;
         private RecyclerView.LayoutManager mLayoutManager;
         private RecyclerView.Adapter mAdapter;
-        private readonly PromotionWithLocation currentPromotion;
+        private readonly List<PromotionWithLocation> currentPromotion;
 
         public PromotionDialogFragment(PromotionItem item)
         {
-            currentPromotion = item.CurrentPromotion;
+            currentPromotion = new List<PromotionWithLocation> { item.CurrentPromotion };
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
