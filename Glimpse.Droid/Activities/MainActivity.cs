@@ -28,7 +28,7 @@ using MvvmCross.Core.ViewModels;
 
 namespace Glimpse.Droid.Activities
 {
-    [Activity(Label = "Main Activity", Theme = "@style/AppTheme", 
+    [Activity(Label = "Main Activity", 
         LaunchMode = LaunchMode.SingleTop, 
         ScreenOrientation = ScreenOrientation.Portrait, 
         Name = "glimpse.droid.activities.MainActivity")]
