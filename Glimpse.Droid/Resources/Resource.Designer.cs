@@ -3481,61 +3481,62 @@ namespace Glimpse.Droid
 			public const int item_menu = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int LoginMainView = 2130903088;
+			public const int Item_Radio = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int LogInView = 2130903089;
+			public const int LoginMainView = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int MainView = 2130903090;
+			public const int LogInView = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int MapView = 2130903091;
+			public const int MainView = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int month = 2130903092;
+			public const int MapView = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int notification_media_action = 2130903093;
+			public const int month = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int notification_media_cancel_action = 2130903094;
+			public const int notification_media_action = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int notification_template_big_media = 2130903095;
+			public const int notification_media_cancel_action = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int notification_template_big_media_narrow = 2130903096;
+			public const int notification_template_big_media = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int notification_template_lines = 2130903097;
+			public const int notification_template_big_media_narrow = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int notification_template_media = 2130903098;
+			public const int notification_template_lines = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int notification_template_part_chronometer = 2130903099;
+			public const int notification_template_media = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int notification_template_part_time = 2130903100;
+			public const int notification_template_part_chronometer = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int place_autocomplete_fragment = 2130903101;
+			public const int notification_template_part_time = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int place_autocomplete_item_powered_by_google = 2130903102;
+			public const int place_autocomplete_fragment = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int place_autocomplete_item_prediction = 2130903103;
+			public const int place_autocomplete_item_powered_by_google = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int place_autocomplete_progress = 2130903104;
+			public const int place_autocomplete_item_prediction = 2130903104;
 			
 			// aapt resource value: 0x7f030041
-			public const int PromotionAndDistanceTemplate = 2130903105;
+			public const int place_autocomplete_progress = 2130903105;
 			
 			// aapt resource value: 0x7f030042
 			public const int PromotionDialogRecyclerViewRow = 2130903106;
+			public const int PromotionAndDistanceTemplate = 2130903106;
 			
 			// aapt resource value: 0x7f030043
 			public const int PromotionDialogView = 2130903107;

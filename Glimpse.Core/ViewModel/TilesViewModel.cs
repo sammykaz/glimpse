@@ -17,8 +17,7 @@ namespace Glimpse.Core.ViewModel
 {
     public class TilesViewModel : BaseViewModel
     {
-        private string _currentLanguage;
-        private List<string> _languages;
+        private string _currentLanguage;        
         private IPromotionDataService _promotionDataService;
         private IVendorDataService _vendorDataService;
         private List<PromotionWithLocation> _promotions;
@@ -59,6 +58,26 @@ namespace Glimpse.Core.ViewModel
             _userLocation = await GetUserLocation();
 
             PromotionList = await GetPromotionsWithLocation();
+        }
+
+
+        private List<string> _categories;
+        public List<string> Categories
+        {
+            get
+            {
+                List<string> allCategories = new List<string>();
+                foreach(string name in Enum.GetNames(typeof(Categories)))
+                {
+                    allCategories.Add(name);
+                };
+                return allCategories;
+            }
+            set
+            {
+                _categories = value;
+                RaisePropertyChanged(() => Categories);
+            }
         }
 
 

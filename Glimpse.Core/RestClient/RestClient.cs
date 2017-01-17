@@ -53,6 +53,18 @@ namespace Plugin.RestClient
             return taskModels;
         }
 
+        public async Task<List<T>> GetWithFilter(string filter)
+        {
+
+            var httpClient = new HttpClient();
+
+            var json = await httpClient.GetStringAsync(WebServiceUrl + "filter/" + filter);
+
+            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+
+            return taskModels;
+        }
+
         public async Task<T> GetByKeyword(string keyword, bool slashRequired = false)
         {
 
