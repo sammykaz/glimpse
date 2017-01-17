@@ -250,7 +250,9 @@ namespace Glimpse.Droid.Views
             //Store for analytics
             StoreItemClick(currentPromotion.PromotionId);
 
-            var promotionDialog = new PromotionDialogFragment(item);
+            PromotionDialogFragment promotionDialog = new PromotionDialogFragment(item);
+            promotionDialog.SetStyle(DialogFragmentStyle.NoFrame, Resource.Style.Theme_AppCompat_Light_Dialog);
+
             promotionDialog.Show(Activity.FragmentManager, "put a tag here");
 
             return false;

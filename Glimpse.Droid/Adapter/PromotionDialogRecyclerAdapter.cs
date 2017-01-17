@@ -87,9 +87,10 @@ namespace Glimpse.Droid.Adapter
                 myHolder.TitleTextView.Text = currentPromotion[position].Title;
                 myHolder.DescriptionTextView.Text = currentPromotion[position].Description;
                 myHolder.PromotionImageView.SetImageBitmap(BitmapFactory.DecodeByteArray(currentPromotion[position].Image, 0, currentPromotion[position].Image.Length));
-                myHolder.ExpirationDateTextView.Text = "Expiring " + currentPromotion[position].PromotionEndDate.Date.ToString();
+            myHolder.ExpirationDateTextView.Text = "Expiring " + currentPromotion[position].PromotionEndDate.ToString("MMMM dd, yyyy");
 
-            
+
+
             if (position > mCurrentPosition)
                 {
                     int currentAnim = Resource.Animation.slide_left_to_right;

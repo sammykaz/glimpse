@@ -2494,88 +2494,91 @@ namespace Glimpse.Droid
 			public const int common_ic_googleplayservices = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int design_fab_background = 2130837625;
+			public const int corner_shape = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int design_ic_visibility = 2130837626;
+			public const int design_fab_background = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int design_snackbar_background = 2130837627;
+			public const int design_ic_visibility = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int drawer_shadow_dark = 2130837628;
+			public const int design_snackbar_background = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int drawer_shadow_light = 2130837629;
+			public const int drawer_shadow_dark = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int edit_text_style = 2130837630;
+			public const int drawer_shadow_light = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int HomeButtonBuyerSignUp = 2130837631;
+			public const int edit_text_style = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int HomeButtonSignIn = 2130837632;
+			public const int HomeButtonBuyerSignUp = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int HomeButtonTakeGlimpse = 2130837633;
+			public const int HomeButtonSignIn = 2130837633;
 			
 			// aapt resource value: 0x7f020082
-			public const int HomeButtonVendorSignIn = 2130837634;
+			public const int HomeButtonTakeGlimpse = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int HomeButtonVendorSignUp = 2130837635;
+			public const int HomeButtonVendorSignIn = 2130837635;
 			
 			// aapt resource value: 0x7f020084
-			public const int navigation_empty_icon = 2130837636;
+			public const int HomeButtonVendorSignUp = 2130837636;
 			
 			// aapt resource value: 0x7f020085
-			public const int nonselecteditem_dot = 2130837637;
-			
-			// aapt resource value: 0x7f020094
-			public const int notification_template_icon_bg = 2130837652;
+			public const int navigation_empty_icon = 2130837637;
 			
 			// aapt resource value: 0x7f020086
-			public const int places_ic_clear = 2130837638;
+			public const int nonselecteditem_dot = 2130837638;
+			
+			// aapt resource value: 0x7f020095
+			public const int notification_template_icon_bg = 2130837653;
 			
 			// aapt resource value: 0x7f020087
-			public const int places_ic_search = 2130837639;
+			public const int places_ic_clear = 2130837639;
 			
 			// aapt resource value: 0x7f020088
-			public const int plus = 2130837640;
+			public const int places_ic_search = 2130837640;
 			
 			// aapt resource value: 0x7f020089
-			public const int powered_by_google_dark = 2130837641;
+			public const int plus = 2130837641;
 			
 			// aapt resource value: 0x7f02008a
-			public const int powered_by_google_light = 2130837642;
+			public const int powered_by_google_dark = 2130837642;
 			
 			// aapt resource value: 0x7f02008b
-			public const int profile_circular_border_imageview = 2130837643;
+			public const int powered_by_google_light = 2130837643;
 			
 			// aapt resource value: 0x7f02008c
-			public const int scaledBackground = 2130837644;
+			public const int profile_circular_border_imageview = 2130837644;
 			
 			// aapt resource value: 0x7f02008d
-			public const int secondary_button_selector = 2130837645;
+			public const int scaledBackground = 2130837645;
 			
 			// aapt resource value: 0x7f02008e
-			public const int selecteditem_dot = 2130837646;
+			public const int secondary_button_selector = 2130837646;
 			
 			// aapt resource value: 0x7f02008f
-			public const int settings = 2130837647;
+			public const int selecteditem_dot = 2130837647;
 			
 			// aapt resource value: 0x7f020090
-			public const int spinner_border = 2130837648;
+			public const int settings = 2130837648;
 			
 			// aapt resource value: 0x7f020091
-			public const int splash = 2130837649;
+			public const int spinner_border = 2130837649;
 			
 			// aapt resource value: 0x7f020092
-			public const int toolbar_dropshadow = 2130837650;
+			public const int splash = 2130837650;
 			
 			// aapt resource value: 0x7f020093
-			public const int white_border = 2130837651;
+			public const int toolbar_dropshadow = 2130837651;
+			
+			// aapt resource value: 0x7f020094
+			public const int white_border = 2130837652;
 			
 			static Drawable()
 			{
@@ -2602,8 +2605,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a000d
 			public const int MvxBindingTagUnique = 2131361805;
 			
-			// aapt resource value: 0x7f0a00e0
-			public const int SignUpButton = 2131362016;
+			// aapt resource value: 0x7f0a00df
+			public const int SignUpButton = 2131362015;
 			
 			// aapt resource value: 0x7f0a00b5
 			public const int action0 = 2131361973;
@@ -2806,8 +2809,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a00a7
 			public const int drawer_layout = 2131361959;
 			
-			// aapt resource value: 0x7f0a00e2
-			public const int edit = 2131362018;
+			// aapt resource value: 0x7f0a00e1
+			public const int edit = 2131362017;
 			
 			// aapt resource value: 0x7f0a006e
 			public const int edit_query = 2131361902;
@@ -2875,8 +2878,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a0050
 			public const int image = 2131361872;
 			
-			// aapt resource value: 0x7f0a00d9
-			public const int imagesViewPager = 2131362009;
+			// aapt resource value: 0x7f0a00d8
+			public const int imagesViewPager = 2131362008;
 			
 			// aapt resource value: 0x7f0a00c0
 			public const int info = 2131361984;
@@ -2898,9 +2901,6 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f0a00be
 			public const int line3 = 2131361982;
-			
-			// aapt resource value: 0x7f0a00d1
-			public const int linearLayoutPromotionDialog = 2131362001;
 			
 			// aapt resource value: 0x7f0a001c
 			public const int listMode = 2131361820;
@@ -3013,20 +3013,20 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a0099
 			public const int promotion_picture3 = 2131361945;
 			
-			// aapt resource value: 0x7f0a00e1
-			public const int promotionbar = 2131362017;
+			// aapt resource value: 0x7f0a00e0
+			public const int promotionbar = 2131362016;
 			
-			// aapt resource value: 0x7f0a00e3
-			public const int promotions = 2131362019;
+			// aapt resource value: 0x7f0a00e2
+			public const int promotions = 2131362018;
 			
 			// aapt resource value: 0x7f0a0065
 			public const int radio = 2131361893;
 			
-			// aapt resource value: 0x7f0a00d2
-			public const int recyclerView = 2131362002;
+			// aapt resource value: 0x7f0a00d1
+			public const int recyclerView = 2131362001;
 			
-			// aapt resource value: 0x7f0a00db
-			public const int refresher = 2131362011;
+			// aapt resource value: 0x7f0a00da
+			public const int refresher = 2131362010;
 			
 			// aapt resource value: 0x7f0a003f
 			public const int right = 2131361855;
@@ -3082,8 +3082,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a0079
 			public const int search_voice_btn = 2131361913;
 			
-			// aapt resource value: 0x7f0a00e4
-			public const int selectBuisinessLocationButton = 2131362020;
+			// aapt resource value: 0x7f0a00e3
+			public const int selectBuisinessLocationButton = 2131362019;
 			
 			// aapt resource value: 0x7f0a007a
 			public const int select_dialog_listview = 2131361914;
@@ -3091,14 +3091,14 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a007f
 			public const int settings = 2131361919;
 			
-			// aapt resource value: 0x7f0a00d4
-			public const int settingsLanguageMvxSpinner = 2131362004;
-			
 			// aapt resource value: 0x7f0a00d3
-			public const int settingsTextView1 = 2131362003;
+			public const int settingsLanguageMvxSpinner = 2131362003;
 			
-			// aapt resource value: 0x7f0a00d5
-			public const int settingsTextView2 = 2131362005;
+			// aapt resource value: 0x7f0a00d2
+			public const int settingsTextView1 = 2131362002;
+			
+			// aapt resource value: 0x7f0a00d4
+			public const int settingsTextView2 = 2131362004;
 			
 			// aapt resource value: 0x7f0a0064
 			public const int shortcut = 2131361892;
@@ -3145,8 +3145,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a0091
 			public const int start_date_display = 2131361937;
 			
-			// aapt resource value: 0x7f0a00d8
-			public const int starting_content = 2131362008;
+			// aapt resource value: 0x7f0a00d7
+			public const int starting_content = 2131362007;
 			
 			// aapt resource value: 0x7f0a00b7
 			public const int status_bar_latest_event_content = 2131361975;
@@ -3196,11 +3196,11 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a00b0
 			public const int toolbar = 2131361968;
 			
-			// aapt resource value: 0x7f0a00dd
-			public const int toolbar_shadow = 2131362013;
-			
 			// aapt resource value: 0x7f0a00dc
-			public const int toolbar_title = 2131362012;
+			public const int toolbar_shadow = 2131362012;
+			
+			// aapt resource value: 0x7f0a00db
+			public const int toolbar_title = 2131362011;
 			
 			// aapt resource value: 0x7f0a0034
 			public const int top = 2131361844;
@@ -3211,11 +3211,11 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a009b
 			public const int touch_outside = 2131361947;
 			
-			// aapt resource value: 0x7f0a00e5
-			public const int txtAddress = 2131362021;
+			// aapt resource value: 0x7f0a00e4
+			public const int txtAddress = 2131362020;
 			
-			// aapt resource value: 0x7f0a00e6
-			public const int txtBusinessPhoneNumber = 2131362022;
+			// aapt resource value: 0x7f0a00e5
+			public const int txtBusinessPhoneNumber = 2131362021;
 			
 			// aapt resource value: 0x7f0a00cd
 			public const int txtCompanyName = 2131361997;
@@ -3223,8 +3223,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a00cf
 			public const int txtDescription = 2131361999;
 			
-			// aapt resource value: 0x7f0a00d6
-			public const int txtEmail = 2131362006;
+			// aapt resource value: 0x7f0a00d5
+			public const int txtEmail = 2131362005;
 			
 			// aapt resource value: 0x7f0a0093
 			public const int txtEndPromotion = 2131361939;
@@ -3232,14 +3232,14 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a00d0
 			public const int txtExpiration = 2131362000;
 			
+			// aapt resource value: 0x7f0a00dd
+			public const int txtFirstName = 2131362013;
+			
 			// aapt resource value: 0x7f0a00de
-			public const int txtFirstName = 2131362014;
+			public const int txtLastName = 2131362014;
 			
-			// aapt resource value: 0x7f0a00df
-			public const int txtLastName = 2131362015;
-			
-			// aapt resource value: 0x7f0a00d7
-			public const int txtPassword = 2131362007;
+			// aapt resource value: 0x7f0a00d6
+			public const int txtPassword = 2131362006;
 			
 			// aapt resource value: 0x7f0a0090
 			public const int txtStartPromotion = 2131361936;
@@ -3262,11 +3262,11 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a0080
 			public const int user_profile_photo = 2131361920;
 			
-			// aapt resource value: 0x7f0a00e7
-			public const int viewPager = 2131362023;
+			// aapt resource value: 0x7f0a00e6
+			public const int viewPager = 2131362022;
 			
-			// aapt resource value: 0x7f0a00da
-			public const int viewPagerCountDots = 2131362010;
+			// aapt resource value: 0x7f0a00d9
+			public const int viewPagerCountDots = 2131362009;
 			
 			// aapt resource value: 0x7f0a000a
 			public const int view_offset_helper = 2131361802;

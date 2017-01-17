@@ -34,9 +34,10 @@ namespace Glimpse.Droid.Views
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
+            
             var view = inflater.Inflate(Resource.Layout.PromotionDialogView, container, false);
 
-                mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
+            mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
                 //Create our layout manager
                 mLayoutManager = new LinearLayoutManager(Application.Context);
