@@ -2530,6 +2530,9 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a009a
 			public const int ContinuePart2Button = 2131361946;
 			
+			// aapt resource value: 0x7f0a00e2
+			public const int ErrorMsg = 2131362018;
+			
 			// aapt resource value: 0x7f0a000c
 			public const int MvvmCrossTagId = 2131361804;
 			
@@ -2887,9 +2890,6 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a0057
 			public const int parentPanel = 2131361879;
 			
-			// aapt resource value: 0x7f0a00e3
-			public const int passwordErrorMsg = 2131362019;
-			
 			// aapt resource value: 0x7f0a0042
 			public const int pin = 2131361858;
 			
@@ -3148,8 +3148,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a00e5
 			public const int txtBusinessPhoneNumber = 2131362021;
 			
-			// aapt resource value: 0x7f0a00e2
-			public const int txtCompanyName = 2131362018;
+			// aapt resource value: 0x7f0a00e3
+			public const int txtCompanyName = 2131362019;
 			
 			// aapt resource value: 0x7f0a00e4
 			public const int txtConfirmPassword = 2131362020;

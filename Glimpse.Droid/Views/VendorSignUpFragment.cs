@@ -16,6 +16,7 @@ using Android.Gms.Location.Places.UI;
 using Android.App;
 using Android.Content;
 using Android.Gms.Maps.Model;
+using Android.Util;
 using Glimpse.Core.Model;
 using Android.Text;
 using Java.Lang;
@@ -24,12 +25,14 @@ namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(Glimpse.Core.ViewModel.LoginMainViewModel), Resource.Id.login_content, true)]
     [Register("glimpse.droid.views.VendorSignUpFragment")]
-    public class VendorSignUpFragment : MvxFragment<VendorSignUpViewModel>, ITextWatcher
+    public class VendorSignUpFragment : MvxFragment<VendorSignUpViewModel>
     {
         private static readonly int PLACE_PICKER_REQUEST = 1;
         private Button _selectBuisinessLocationButton;
         private TextView _addressTextView;
+        private EditText _password;
         private EditText _confirmPassword;
+        private EditText _email;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -46,18 +49,54 @@ namespace Glimpse.Droid.Views
             _selectBuisinessLocationButton = (this.Activity as LoginActivity).FindViewById<Button>(Resource.Id.selectBusinessLocationButton);
             _selectBuisinessLocationButton.Click += OnSelectBuisinessLocationTapped;
 
+            _email = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtEmail);
+            _email.AfterTextChanged += _email_AfterTextChanged;
+
+            _password = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtPassword);
+            _password.AfterTextChanged += _confirmPassword_AfterTextChanged;
+
             _confirmPassword = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtConfirmPassword);
-            _confirmPassword.AddTextChangedListener(this);
+            _confirmPassword.AfterTextChanged += _confirmPassword_AfterTextChanged;
 
 
             //Sends email on click
-            Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
+         /* Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
             acc_Button.Click += delegate
             {
                 OnClick(this.View);
-            };
+            };*/
         }
 
+        private void _email_AfterTextChanged(object sender, AfterTextChangedEventArgs e)
+        {
+            if ((string.IsNullOrEmpty(ViewModel.Email)) || !Patterns.EmailAddress.Matcher(ViewModel.Email).Matches())
+            {
+                _email.Error = "Enter a valid email address";
+                ViewModel.ValidEmail = false;             
+            }
+            else
+            {
+                _email.Error = null;
+                ViewModel.ValidEmail = true;
+            }
+
+        }
+
+        private void _confirmPassword_AfterTextChanged(object sender, AfterTextChangedEventArgs e)
+        {
+            if ((!string.IsNullOrEmpty(ViewModel.Password))  && (!ViewModel.Password.Equals(ViewModel.ConfirmPassword)))
+            {
+                _confirmPassword.Error = "Passwords do not match";
+                ViewModel.ValidPassword = false;
+            }
+            else
+            {
+                _confirmPassword.Error = null;
+                ViewModel.ValidPassword = false;
+            }
+
+
+        }
 
         private void OnSelectBuisinessLocationTapped(object sender, EventArgs eventArgs)
         {
@@ -117,20 +156,56 @@ namespace Glimpse.Droid.Views
             sendMail.SendEmail("New Sign-Up Information", mailBody, "vendor.smtptest@gmail.com");
         }
 
-        public void AfterTextChanged(IEditable s)
+      
+
+        public bool validate()
         {
-            if (!ViewModel.Password.Equals(ViewModel.ConfirmPassword))
-                ViewModel.PasswordErrorMsg = "Passwords do not match";
+            bool valid = true;
+
+
+            if ((string.IsNullOrEmpty(ViewModel.Email))  || !Patterns.EmailAddress.Matcher(_email.Text).Matches())
+            {
+                _email.Error = "Enter a valid email address";
+                valid = false;
+            }
             else
-                ViewModel.PasswordErrorMsg = "";
-        }
+            {
+                _email.SetError("",null);
+            }
 
-        public void BeforeTextChanged(ICharSequence s, int start, int count, int after)
-        {
-        }
+            // String password = _passwordText.getText().toString();
 
-        public void OnTextChanged(ICharSequence s, int start, int before, int count)
-        {
+            /*    if (name.isEmpty() || name.length() < 3)
+                {
+                    _nameText.setError("at least 3 characters");
+                    valid = false;
+                }
+                else
+                {
+                    _nameText.setError(null);
+                }
+
+                if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())
+                {
+                    _emailText.setError("enter a valid email address");
+                    valid = false;
+                }
+                else
+                {
+                    _emailText.setError(null);
+                }
+
+                if (password.isEmpty() || password.length() < 4 || password.length() > 10)
+                {
+                    _passwordText.setError("between 4 and 10 alphanumeric characters");
+                    valid = false;
+                }
+                else
+                {
+                    _passwordText.setError(null);
+                }*/
+
+            return valid;
         }
     }
 }

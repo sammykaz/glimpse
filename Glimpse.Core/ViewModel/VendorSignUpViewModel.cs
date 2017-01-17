@@ -17,6 +17,8 @@ namespace Glimpse.Core.ViewModel
         {
             _vendorDataService = vendorDataService;
             _userDataService = userDataService;
+            _validEmail = false;
+            _validPassword = false;
         }
 
         private string _companyName;
@@ -121,17 +123,20 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        private string _passwordErrorMsg;
-        public string PasswordErrorMsg
+
+        private bool _validEmail;
+        public bool ValidEmail
         {
-            get { return _passwordErrorMsg; }
-            set
-            {
-                _passwordErrorMsg = value;
-                RaisePropertyChanged(() => PasswordErrorMsg);
-            }
+            get { return _validEmail; }
+            set { _validEmail = value; }
         }
 
+        private bool _validPassword;
+        public bool ValidPassword
+        {
+            get { return _validPassword; }
+            set { _validPassword = value; }
+        }
 
         public MvxCommand SignUpCommand
         {
@@ -139,15 +144,21 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
+                    
+                    //Check email validation
+                    if (!ValidEmail)
+                    {
+                        ErrorMessage = "Email is not valid";
+                    }
+                    //Password validation
+                    else if (!ValidPassword)
+                    {
+                        ErrorMessage = "Passwords do not match";
+                    }
                     //Check if email exists in db
-                    if (await _vendorDataService.CheckIfVendorExists(Email))
+                    else if (await _vendorDataService.CheckIfVendorExists(Email))
                     {
                         ErrorMessage = "This email: " + Email + " is already being used by another vendor";
-                    }
-                    //Check that passwords match
-                    else if (Password != ConfirmPassword)
-                    {
-                        ErrorMessage = "";
                     }
                     else
                     {
