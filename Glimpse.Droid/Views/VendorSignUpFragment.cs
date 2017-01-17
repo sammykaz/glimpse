@@ -17,17 +17,19 @@ using Android.App;
 using Android.Content;
 using Android.Gms.Maps.Model;
 using Glimpse.Core.Model;
+using Android.Text;
+using Java.Lang;
 
 namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(Glimpse.Core.ViewModel.LoginMainViewModel), Resource.Id.login_content, true)]
     [Register("glimpse.droid.views.VendorSignUpFragment")]
-    public class VendorSignUpFragment : MvxFragment<VendorSignUpViewModel>
+    public class VendorSignUpFragment : MvxFragment<VendorSignUpViewModel>, ITextWatcher
     {
         private static readonly int PLACE_PICKER_REQUEST = 1;
         private Button _selectBuisinessLocationButton;
         private TextView _addressTextView;
-
+        private EditText _confirmPassword;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -43,6 +45,10 @@ namespace Glimpse.Droid.Views
             _addressTextView = (this.Activity as LoginActivity).FindViewById<TextView>(Resource.Id.txtAddress);
             _selectBuisinessLocationButton = (this.Activity as LoginActivity).FindViewById<Button>(Resource.Id.selectBusinessLocationButton);
             _selectBuisinessLocationButton.Click += OnSelectBuisinessLocationTapped;
+
+            _confirmPassword = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtConfirmPassword);
+            _confirmPassword.AddTextChangedListener(this);
+
 
             //Sends email on click
             Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
@@ -110,6 +116,21 @@ namespace Glimpse.Droid.Views
             mailBody = sendMail.CreateMailBodyForAdmin(_company, _company,"No number!",_email);
             sendMail.SendEmail("New Sign-Up Information", mailBody, "vendor.smtptest@gmail.com");
         }
-        
+
+        public void AfterTextChanged(IEditable s)
+        {
+            if (!ViewModel.Password.Equals(ViewModel.ConfirmPassword))
+                ViewModel.PasswordErrorMsg = "Passwords do not match";
+            else
+                ViewModel.PasswordErrorMsg = "";
+        }
+
+        public void BeforeTextChanged(ICharSequence s, int start, int count, int after)
+        {
+        }
+
+        public void OnTextChanged(ICharSequence s, int start, int before, int count)
+        {
+        }
     }
 }

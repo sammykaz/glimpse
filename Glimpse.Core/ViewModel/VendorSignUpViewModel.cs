@@ -121,6 +121,17 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+        private string _passwordErrorMsg;
+        public string PasswordErrorMsg
+        {
+            get { return _passwordErrorMsg; }
+            set
+            {
+                _passwordErrorMsg = value;
+                RaisePropertyChanged(() => PasswordErrorMsg);
+            }
+        }
+
 
         public MvxCommand SignUpCommand
         {
@@ -136,7 +147,7 @@ namespace Glimpse.Core.ViewModel
                     //Check that passwords match
                     else if (Password != ConfirmPassword)
                     {
-                        ErrorMessage = "Passwords do not match!";
+                        ErrorMessage = "";
                     }
                     else
                     {

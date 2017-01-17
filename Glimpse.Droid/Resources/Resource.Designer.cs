@@ -2758,9 +2758,6 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a0036
 			public const int enterAlwaysCollapsed = 2131361846;
 			
-			// aapt resource value: 0x7f0a00e7
-			public const int errorMsg = 2131362023;
-			
 			// aapt resource value: 0x7f0a0037
 			public const int exitUntilCollapsed = 2131361847;
 			
@@ -2890,6 +2887,9 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a0057
 			public const int parentPanel = 2131361879;
 			
+			// aapt resource value: 0x7f0a00e3
+			public const int passwordErrorMsg = 2131362019;
+			
 			// aapt resource value: 0x7f0a0042
 			public const int pin = 2131361858;
 			
@@ -3013,8 +3013,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a0079
 			public const int search_voice_btn = 2131361913;
 			
-			// aapt resource value: 0x7f0a00e3
-			public const int selectBusinessLocationButton = 2131362019;
+			// aapt resource value: 0x7f0a00e6
+			public const int selectBusinessLocationButton = 2131362022;
 			
 			// aapt resource value: 0x7f0a007a
 			public const int select_dialog_listview = 2131361914;
@@ -3142,8 +3142,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a009b
 			public const int touch_outside = 2131361947;
 			
-			// aapt resource value: 0x7f0a00e4
-			public const int txtAddress = 2131362020;
+			// aapt resource value: 0x7f0a00e7
+			public const int txtAddress = 2131362023;
 			
 			// aapt resource value: 0x7f0a00e5
 			public const int txtBusinessPhoneNumber = 2131362021;
@@ -3151,8 +3151,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a00e2
 			public const int txtCompanyName = 2131362018;
 			
-			// aapt resource value: 0x7f0a00e6
-			public const int txtConfirmPassword = 2131362022;
+			// aapt resource value: 0x7f0a00e4
+			public const int txtConfirmPassword = 2131362020;
 			
 			// aapt resource value: 0x7f0a00d4
 			public const int txtEmail = 2131362004;
