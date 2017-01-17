@@ -12,15 +12,18 @@ namespace Glimpse.Core.ViewModel
     public class MainViewModel : MvxViewModel, IMainViewModel
     {
 
-        private Lazy<ViewPagerViewModel> viewPager; 
+        private Lazy<ViewPagerViewModel> viewPager;
+        private readonly Lazy<MapViewModel> _mapViewModel;
 
+        public MapViewModel MapViewModel => _mapViewModel.Value;
 
         public MainViewModel()
         {
             viewPager = new Lazy<ViewPagerViewModel>(Mvx.IocConstruct<ViewPagerViewModel>);
+            _mapViewModel = new Lazy<MapViewModel>(Mvx.IocConstruct<MapViewModel>);
         }
 
-      
+
 
 
         public void ShowMenu()

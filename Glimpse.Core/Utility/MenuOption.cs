@@ -3,6 +3,7 @@
     public enum MenuOption
     {
         Logout,
+        Map,
         Settings,
         VendorProfile,
         BuyerProfile        

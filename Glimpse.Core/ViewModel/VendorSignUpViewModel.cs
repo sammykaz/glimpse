@@ -128,7 +128,7 @@ namespace Glimpse.Core.ViewModel
 
                         await _vendorDataService.SignUp(newVendor);
 
-                        ShowViewModel<MapViewModel>();
+                        ShowViewModel<VendorProfilePageViewModel>();
                     }
                 });
             }

@@ -26,7 +26,7 @@ namespace Glimpse.Core.ViewModel
 
         public MenuViewModel(IMvxMessenger messenger, ILoginDataService loginDataService, IUserDataService userDataService, IVendorDataService vendorDataService) : base(messenger)
         {
-            MenuItems = new ObservableCollection<MenuItem>();
+            MenuItems = new ObservableCollection<MenuItem>();         
             _loginDataService = loginDataService;
             _userDataService = userDataService;
             _vendorDataService = vendorDataService;
@@ -40,6 +40,14 @@ namespace Glimpse.Core.ViewModel
                 Title = "Logout",
                 ViewModelType = typeof(LoginMainViewModel),
                 Option = MenuOption.Logout,
+                IsSelected = false
+            });
+
+            MenuItems.Add(new MenuItem
+            {
+                Title = "Map",
+                ViewModelType = typeof(MapViewModel),
+                Option = MenuOption.Map,
                 IsSelected = false
             });
 
@@ -83,6 +91,8 @@ namespace Glimpse.Core.ViewModel
 
         private void OnMenuEntrySelect(MenuItem item)
         {
+            Type type = item.ViewModelType;
+
             if (item.Option == MenuOption.Logout)
             {
                 _loginDataService.ClearCredentials();

@@ -34,8 +34,6 @@ namespace Glimpse.Droid.Activities
         Name = "glimpse.droid.activities.MainActivity")]
     public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
-       
-
         private DrawerLayout _drawerLayout;
         private MvxActionBarDrawerToggle _drawerToggle;
         private FragmentManager _fragmentManager;
