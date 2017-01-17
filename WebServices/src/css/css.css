@@ -53,6 +53,7 @@ body {
 .text-center{text-align: center;}
 .analysis-description{height: 100%; display: inline-block; background: white; border-top-right-radius: 8px; border-top-left-radius: 8px; color: #418ac9; text-align: center !important; font-size: 20px;}
 .analysis-pie-description{height: 100%; display: inline-block; background: white; border-top-right-radius: 8px; border-top-left-radius: 8px; color: #418ac9; text-align: center !important; font-size: 20px; padding-top: 20%;}
+.hide {display : none !important}
 
 
 
