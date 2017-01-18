@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Android.OS;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
@@ -47,26 +48,17 @@ namespace Glimpse.Core.Services.Data
             List<Promotion> allPromotions = await promotionRepository.GetPromotions();
             List<Vendor> allVendors = await vendorRepository.GetVendors();
 
-            DateTime now = DateTime.Now;
+            //Get unique vendors
+            var uniqueVendors = allVendors.GroupBy(x => new { x.Location.Lat, x.Location.Lng }).Select(g => g.First()).ToList();
 
-            List<Promotion> activePromotions = allPromotions.Where(e => e.PromotionStartDate.CompareTo(now) <= 0 && e.PromotionEndDate.CompareTo(now) >= 0).ToList();
+            List<Promotion> activePromotions = allPromotions.Where(e => e.PromotionStartDate.CompareTo(DateTime.Now) <= 0 && e.PromotionEndDate.CompareTo(DateTime.Now) >= 0).ToList();
 
-            /*
-            var mapPromotions = allVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,
-                                (e, b) => new
-                                {
-                                    e.CompanyName,
-                                    e.Location,
-                                    b.Title,
-                                    b.Description,
-                                    b.PromotionImage,
-                                    b.PromotionEndDate,
-                                    b.PromotionId
-                                });
-            */
-            var mapPromotions = allVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,
+            
+
+            var mapPromotions = uniqueVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,
                 (e, b) => new PromotionWithLocation
                 {
+                    VendorId = b.VendorId,
                     Title = b.Title,
                     Location = e.Location,
                     Description = b.Description,

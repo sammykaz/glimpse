@@ -137,22 +137,22 @@ namespace Glimpse.Droid.Views
 
             void StartDateSelect_OnClick(object sender, EventArgs eventArgs)
         {
-            DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
+            DatePickerFragment frag = DatePickerFragment.NewInstance(DateTime.Now, delegate (DateTime time)
             {
                 _startDateDisplay.Text = time.ToLongDateString();
             });
            
-            frag.Show(this.Activity.FragmentManager, "dunno ");
+            frag.Show(this.Activity.FragmentManager, "");
         }
 
         void EndDateSelect_OnClick(object sender, EventArgs eventArgs)
         {
-            DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
+            DatePickerFragment frag = DatePickerFragment.NewInstance(ViewModel.PromotionStartDate, delegate (DateTime time)
             {
                 _endDateDisplay.Text = time.ToLongDateString();
             });
 
-            frag.Show(this.Activity.FragmentManager, "dunno ");
+            frag.Show(this.Activity.FragmentManager, "");
         }
 
 

@@ -38,6 +38,7 @@ module.exports = function(config) {
     "Scripts/angular-google-maps.min.js",
     "Scripts/ng-file-upload-shim.min.js",
     "Scripts/ng-file-upload.min.js",
+    "Scripts/cropper.min.js",
     "app.js",
     "src/controllers/*.js",
     "src/services/*.js",

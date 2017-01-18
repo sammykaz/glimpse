@@ -44,7 +44,6 @@ namespace Plugin.RestClient
 
             return taskModels;
         }
-
         public async Task<List<T>> GetWithFilter(string filter)
         {
 
@@ -56,6 +55,7 @@ namespace Plugin.RestClient
 
             return taskModels;
         }
+
 
         public async Task<T> GetByKeyword(string keyword, bool slashRequired = false)
         {
