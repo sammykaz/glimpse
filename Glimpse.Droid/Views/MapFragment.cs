@@ -30,7 +30,7 @@ namespace Glimpse.Droid.Views
     [MvxFragment(typeof(MainViewModel), Resource.Id.viewPager, true)]
     [Register("glimpse.droid.views.MapFragment")]
     public class MapFragment : MvxFragment<MapViewModel>, IOnMapReadyCallback,
-        ClusterManager.IOnClusterItemClickListener, ClusterManager.IOnClusterClickListener, IOnCameraIdleListener
+        ClusterManager.IOnClusterItemClickListener, ClusterManager.IOnClusterClickListener, IOnCameraIdleListener, RadioGroup.IOnCheckedChangeListener 
     {
         private MapView _mapView;
         private GoogleMap map;
@@ -41,6 +41,7 @@ namespace Glimpse.Droid.Views
         private List<PromotionItem> clusterList;
         private List<PromotionWithLocation> activePromotions;
         private IAlgorithm clusterAlgorithm;
+        private RadioGroup _radioGroup;
 
 
         private Dictionary<int, PromotionItem> visibleMarkers = new Dictionary<int, PromotionItem>();
@@ -186,7 +187,7 @@ namespace Glimpse.Droid.Views
             options.SetAlpha(0.7f);
             options.SetIcon(BitmapDescriptorFactory.DefaultMarker(BitmapDescriptorFactory.HueMagenta));
             options.InfoWindowAnchor(0.7f, 0.7f);
-            options.SetSnippet("This is where HARAMBE is hiding!");
+            options.SetSnippet("My position");
 
             currentUserLocation = map.AddMarker(options);
 
@@ -232,6 +233,10 @@ namespace Glimpse.Droid.Views
 
             //Show promotions from vendors
             ShowPromotionsOnMap();
+
+            //setup radiogroup
+            _radioGroup = (RadioGroup)View.FindViewById(Resource.Id.mapfilter_radiogroup);
+            _radioGroup.SetOnCheckedChangeListener(this);
         }
 
         public bool OnClusterClick(ICluster cluster)
@@ -275,6 +280,7 @@ namespace Glimpse.Droid.Views
         private void GenerateCluster()
         {
             clusterManager.AddItems(clusterList);
+            clusterManager.Cluster();
         }
 
 
@@ -283,7 +289,11 @@ namespace Glimpse.Droid.Views
             var viewModel = ViewModel;
             var vendorService = Mvx.Resolve<IVendorDataService>();
 
-            activePromotions = await ViewModel.GetActivePromotions();
+            if (ViewModel.FilteredPromotionList == null)
+                activePromotions = await ViewModel.GetActivePromotions();
+            else
+                activePromotions = ViewModel.FilteredPromotionList;
+
             List<Vendor> allVendors = await vendorService.GetVendors();
 
             var uniqueVendors = allVendors.GroupBy(x => new { x.Location.Lat, x.Location.Lng }).Select(g => g.First()).ToList();
@@ -301,6 +311,24 @@ namespace Glimpse.Droid.Views
                 }
             }
             GenerateCluster();
+        }
+
+        public void OnCheckedChanged(RadioGroup group, int checkedId)
+        {
+            if (checkedId == 1)
+            {
+                ViewModel.SelectedItem = null;
+            }
+            else
+            {
+                int checkedId0BasedIndex = checkedId - 2;
+                Categories category = (Categories)checkedId0BasedIndex;
+                ViewModel.SelectedItem = category;
+            }
+
+            clusterManager.ClearItems();
+            clusterList.Clear();
+            ShowPromotionsOnMap();
         }
 
         /*
