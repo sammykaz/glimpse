@@ -91,8 +91,8 @@
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>modalController should have isCropImageEnable and saveCrop enabled when the cropImage method is called (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
-    <DisplayName>modalController should have isCropImageEnable and saveCrop enabled when the cropImage method is called (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Name>modalController should be able to call cropImage method (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController should be able to call cropImage method (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>

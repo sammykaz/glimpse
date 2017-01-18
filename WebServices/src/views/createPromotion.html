@@ -66,12 +66,12 @@
                     <label>Photo</label>
                     <input type="file" ngf-select ng-model="picFile" accept="image/*" class="btn btn-primary">
                     <div class="pull-right" style="margin-top:10px;">
-                        <button class="btn btn-danger" ng-click="cropImage()" ng-show="!saveCrop" type="button">Crop</button>
+                        <button class="btn btn-danger" ng-click="cropImage()" ng-show="!saveCrop; previewImage" type="button">Crop</button>
                         <button class="btn btn-danger" ng-click="doneCrop()" ng-show="saveCrop" type="button">Save Crop</button>
                         <button class="btn btn-danger" ng-click="cancelCrop()" ng-show="saveCrop" type="button">Cancel Crop</button>
 
                         <div class="dropdown" style="display:inline-block" ng-hide="isCropImageEnable">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" ng-show="previewImage">
                                 {{selectedFilter}}
                                 <span class="caret"></span>
                             </button>
@@ -80,7 +80,7 @@
                                 <li><a href="javascript:void(0)" ng-click="applyFilter('Lomo')">Lomo</a></li>
                                 <li><a href="javascript:void(0)" ng-click="applyFilter('Clarity')">Clarity</a></li>
                                 <li><a href="javascript:void(0)" ng-click="applyFilter('SinCity')">SinCity</a></li>
-                                <li><a href="javascript:void(0)" ng-click="applyFilter('Sunrise')">sunrise</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('Sunrise')">Sunrise</a></li>
                                 <li><a href="javascript:void(0)" ng-click="applyFilter('CrossProcess')">Crossprocess</a></li>
                                 <li><a href="javascript:void(0)" ng-click="applyFilter('OrangePeel')">OrangePeel</a></li>
                                 <li><a href="javascript:void(0)" ng-click="applyFilter('Grungy')">Grungy</a></li>
@@ -96,7 +96,7 @@
                             </ul>
                         </div>
                         <button class="btn btn-warning" ng-click="resetFilter()" ng-show="isResetEnable" type="button">Reset Filter</button>
-                        <button class="btn btn-warning" ng-click="saveFilter()" ng-show="isResetEnable" type="button">Save Filter</button>
+                        <button class="btn btn-success" ng-click="saveFilter()" ng-show="isResetEnable" type="button">Save Filter</button>
                         <button class="btn btn-danger" ng-click="removeImage()" ng-show="previewImage" type="button">Remove</button>
                     </div>
                     <small class="form-text text-muted">Choose a picture to promote</small>

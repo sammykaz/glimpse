@@ -131,7 +131,13 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
 app.controller('modalController', function ($scope, $uibModalInstance, Upload, $timeout, dataService, $http, promotionDetails, $q, edit) {
     $scope.edit = edit;
     $scope.promotionTitle = promotionDetails.Title || '';
-    $scope.category = promotionDetails.Category || undefined;
+    if (promotionDetails.Category == 0) {
+        $scope.category = 0;
+    } else {
+        $scope.category = promotionDetails.Category || '';
+    }
+    
+    
     $scope.description = promotionDetails.Description || '';
     $scope.promotionDescription = promotionDetails.Description || '';
     $scope.startDay = promotionDetails.PromotionStartDate || undefined;
@@ -145,6 +151,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.showImageWarning = false;
     $scope.isResetEnable = false;
     $scope.previewImage = promotionDetails.PromotionImage ? "data:image/JPEG;base64," + promotionDetails.PromotionImage : '';
+    $scope.imageNotEmpty = false;
 
     function getImageData() {
 
@@ -241,6 +248,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             function onEditClick(promotionId, promotion) {
                 var promotionData = {};
                 promotionData["Category"] = promotion.category || '';
+                if (promotionData["Category"] == '')
+                    promotionData["Category"] = 0;
                 promotionData["Description"] = promotion.description || '';
                 promotionData["PromotionEndDate"] = promotion["promotionEndDate"];
                 promotionData["PromotionId"] = promotionId;
@@ -662,6 +671,10 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         });
     }
 
+    $scope.showButtons = function () {
+        $scope.imageNotEmpty = true;
+    }
+
     $scope.upload = function (dataUrl, name) {
         console.log(dataUrl);
         //Upload.upload({
@@ -686,6 +699,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 
 
     $scope.removeImage = function () {
+        $scope.imageNotEmpty = false;
         $scope.picFile = null;
         $scope.croppedDataUrl = null;
         $scope.isCropImageEnable = false;
