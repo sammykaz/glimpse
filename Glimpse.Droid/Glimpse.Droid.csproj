@@ -68,6 +68,10 @@
       <HintPath>..\packages\MimeKit.1.8.0\lib\MonoAndroid10\BouncyCastle.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Faker.Portable, Version=2.5.0.0, Culture=neutral, PublicKeyToken=968d76e55a3a9814, processorArchitecture=MSIL">
+      <HintPath>..\packages\Faker.Net.Portable.2.5.0\lib\portable-net40+sl5+win8+wpa81+wp8\Faker.Portable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="GoogleMapsUtilityBinding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Android.Maps.Utils.0.4.4-beta1\lib\MonoAndroid10\GoogleMapsUtilityBinding.dll</HintPath>
       <Private>True</Private>
@@ -237,6 +241,7 @@
       <HintPath>..\packages\System.Collections.Immutable.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -294,6 +299,10 @@
       <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.24.2.1\lib\MonoAndroid70\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.CardView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.CardView.24.2.1\lib\MonoAndroid70\Xamarin.Android.Support.v7.CardView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.24.2.1\lib\MonoAndroid70\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
       <Private>True</Private>
@@ -332,6 +341,7 @@
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\StartingMapActivity.cs" />
     <Compile Include="Adapter\MvxViewPagerFragmentAdapter .cs" />
+    <Compile Include="Adapter\PromotionDialogRecyclerAdapter.cs" />
     <Compile Include="Adapter\SlidingImageAdapter.cs" />
     <Compile Include="Bootstrap\DownloadCachePluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
@@ -342,6 +352,7 @@
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Extensions\ActivityExtensions.cs" />
     <Compile Include="Extensions\MonoTypeExtensions.cs" />
+    <Compile Include="Helpers\BitmapProcessing.cs" />
     <Compile Include="Helpers\ByteArrayImageValueConverter.cs" />
     <Compile Include="Helpers\LatLngValueConverter.cs" />
     <Compile Include="Helpers\ObjectByteArrayConversion.cs" />
@@ -485,6 +496,25 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ImageSwipeLayout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\Raw\radar.json" />
+    <AndroidResource Include="Resources\layout\PromotionDialogRecyclerViewRow.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\anim\flip.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\anim\slide_left_to_right.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\anim\slide_right_to_left.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\anim\slide_up.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\corner_shape.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Item_Radio.axml">

@@ -1,50 +1,53 @@
+using System.Collections.Generic;
 using Android.App;
 using Android.Graphics;
 using Android.OS;
+using Android.Provider;
+using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using Glimpse.Core.Helpers;
+using Glimpse.Core.Model;
+using Glimpse.Droid.Adapter;
+using Glimpse.Droid.Helpers;
 
 namespace Glimpse.Droid.Views
 {
     public class PromotionDialogFragment : DialogFragment
     {
-        private string title;
-        private string description;
-        private int expirationDate;
-        private string companyName;
+        private readonly string title;
+        private readonly string description;
+        private readonly int expirationDate;
+        private readonly string companyName;
         private Bitmap image;
+
+        private RecyclerView mRecyclerView;
+        private RecyclerView.LayoutManager mLayoutManager;
+        private RecyclerView.Adapter mAdapter;
+        private readonly List<PromotionWithLocation> currentPromotion;
 
         public PromotionDialogFragment(PromotionItem item)
         {
-            this.title = item.Title;
-            this.description = item.Description;
-            this.expirationDate = item.ExpirationDate;
-            this.companyName = item.CompanyName;
-            this.image = item.PromotionImage;
+            currentPromotion = new List<PromotionWithLocation> { item.CurrentPromotion };
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
+            
             var view = inflater.Inflate(Resource.Layout.PromotionDialogView, container, false);
 
-            TextView txtTitle = view.FindViewById<TextView>(Resource.Id.txtPromoDialogTitle);
-            TextView txtDescription = view.FindViewById<TextView>(Resource.Id.txtPromoDialogDescription);
-            TextView txtExpirationDate = view.FindViewById<TextView>(Resource.Id.txtPromoDialogExpirationDate);
-            TextView txtCompanyName = view.FindViewById<TextView>(Resource.Id.txtPromoDialogCompanyName);
-            ImageView promotionImage = view.FindViewById<ImageView>(Resource.Id.imgPromoDialogPicture);
+            mRecyclerView = view.FindViewById<RecyclerView>(Resource.Id.recyclerView);
 
-            txtTitle.Text = title;
-            txtDescription.Text = description;
-            txtExpirationDate.Text = expirationDate.ToString();
-            txtCompanyName.Text = companyName;
-            promotionImage.SetImageBitmap(image);
-
+                //Create our layout manager
+                mLayoutManager = new LinearLayoutManager(Application.Context);
+                mRecyclerView.SetLayoutManager(mLayoutManager);
+                mAdapter = new PromotionDialogRecyclerAdapter(currentPromotion, mRecyclerView, Application.Context);
+                mRecyclerView.SetAdapter(mAdapter);
 
             return view;
         }
 
-
+      
     }
 }

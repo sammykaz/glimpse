@@ -1,8 +1,58 @@
 <?xml version="1.0"?>
 <Tests>
   <Test>
+    <Name>Analysis Controller should have the noPromotionClicked to set as false initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>Analysis Controller should have the noPromotionClicked to set as false initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>Analysis Controller should have the labels to be defined (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>Analysis Controller should have the labels to be defined (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>Analysis Controller should have the series to be defined (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>Analysis Controller should have the series to be defined (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>Analysis Controller should have the seriesTitle to be defined (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>Analysis Controller should have the seriesTitle to be defined (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>Analysis Controller should have the promotionClicks toBeUndefined initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>Analysis Controller should have the promotionClicks toBeUndefined initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
     <Name>DefaultTest Test Variable should be 1 (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
     <DisplayName>DefaultTest Test Variable should be 1 (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>PromotionController should test expired date (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>PromotionController should test expired date (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>PromotionController should have defined editPromotion method (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>PromotionController should have defined editPromotion method (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>PromotionController should have defined deletePromotion method (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>PromotionController should have defined deletePromotion method (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>PromotionController should call deletePromotion method (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>PromotionController should call deletePromotion method (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>PromotionController should call editPromotion method (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>PromotionController should call editPromotion method (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
@@ -11,8 +61,8 @@
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>modalController should have the google maps url initialized (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
-    <DisplayName>modalController should have the google maps url initialized (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Name>modalController should have the google maps zoomed at montreal area (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController should have the google maps zoomed at montreal area (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
@@ -41,8 +91,8 @@
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>modalController should have isCropImageEnable and saveCrop enabled when the cropImage method is called (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
-    <DisplayName>modalController should have isCropImageEnable and saveCrop enabled when the cropImage method is called (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Name>modalController should be able to call cropImage method (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController should be able to call cropImage method (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
@@ -56,13 +106,18 @@
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>modalController should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
-    <DisplayName>modalController should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Name>changeDateModalController should be able to show previous date (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>changeDateModalController should be able to show previous date (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>SignupController should have the user undefined initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
-    <DisplayName>SignupController should have the user undefined initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Name>changeDateModalController should toggle showDateWarning when start date is smaller then end date (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>changeDateModalController should toggle showDateWarning when start date is smaller then end date (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>SignupController should have the user information empty initially (Chrome 55.0.2883 (Windows 10 0.0.0))</Name>
+    <DisplayName>SignupController should have the user information empty initially (Chrome 55.0.2883 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>

@@ -50,5 +50,15 @@ namespace Glimpse.Core.Services.Data
         {
             await _vendorRepository.DeleteVendor(vendor);
         }
+
+        public async Task<bool> CheckIfVendorExists(string email)
+        {
+            Vendor vendor = await SearchVendorByEmail(email);
+
+            if (vendor != null)
+                return true;
+
+            return false;
+        }
     }
 }

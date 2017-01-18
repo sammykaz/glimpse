@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('myApp', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngResource', 'blockUI', 'LocalStorageModule', 'ngMap', 'ngFileUpload', 'uiCropper']);
+var app = angular.module('myApp', ['ui.router', 'ngRoute', 'ui.bootstrap', 'ngResource', 'blockUI', 'LocalStorageModule', 'ngFileUpload', 'uiGmapgoogle-maps', 'chart.js']);
 
 app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationProvider) {
 
@@ -44,12 +44,25 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             controller: 'mapController',
             templateUrl: 'src/views/mapView.html'
         })
+        .state('home.analysis', {
+            url: '/analysis',
+            controller: 'analysisController',
+            templateUrl: 'src/views/analysisView.html'
+        })
+})
+.config(function(uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        key: 'AIzaSyBPfBp5ilCMRWpYhrLdd3tSVawOEznvDB0',
+        v: '3.20', //defaults to latest 3.X anyhow
+        libraries: 'weather,geometry,visualization'
+    });
 })
 .controller('appController', function ($scope) {
     $scope.test = "test";
 })
 .filter('reverse', function() {
-    return function(items) {
+    return function (items) {
+        if (items != undefined)
         return items.slice().reverse();
     };
 })

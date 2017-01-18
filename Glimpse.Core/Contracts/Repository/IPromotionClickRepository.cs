@@ -14,5 +14,7 @@ namespace Glimpse.Core.Contracts.Repository
         Task<List<PromotionClick>> GetPromotionClicks();
 
         Task StorePromotionClick(PromotionClick promotionClick);
+
+        Task DeletePromotionClick(PromotionClick promotionClick);
     }
 }

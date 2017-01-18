@@ -1,7 +1,7 @@
 <div class="animated fadeIn">
     <div class="modal-content">
         <div class="modal-header my-modal-header">
-            <h3 class="modal-title" id="modal-title">Create Promotion</h3>
+            <h3 class="modal-title" id="modal-title">{{ edit == true ? ' Modify Promotion' : 'Create Promotion'}}</h3>
         </div>
         <div class="modal-body ng-scope" id="modal-body">
             <form>
@@ -13,27 +13,27 @@
                     <label>Categories</label>
                     <div class="col-sm-12">
                         <div class="col-sm-4">
-                            <input type="radio" ng-model="category" value=0>
+                            <input type="radio" ng-model="category" ng-value="0">
                             <span class="">Footwear</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="radio" ng-model="category" value=1>
+                            <input type="radio" ng-model="category" ng-value="1">
                             <span class="">Electronics</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="radio" ng-model="category" value=2>
+                            <input type="radio" ng-model="category" ng-value="2">
                             <span class="">Jewellery</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="radio" ng-model="category" value=3>
+                            <input type="radio" ng-model="category" ng-value="3">
                             <span class="">Restaurants</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="radio" ng-model="category" value=4>
+                            <input type="radio" ng-model="category" ng-value="4">
                             <span class="">Services</span>
                         </div>
                         <div class="col-sm-4">
-                            <input type="radio" ng-model="category" value=5>
+                            <input type="radio" ng-model="category" ng-value="5">
                             <span class="">Apparel</span>
                         </div>
                     </div>
@@ -66,36 +66,48 @@
                     <label>Photo</label>
                     <input type="file" ngf-select ng-model="picFile" accept="image/*" class="btn btn-primary">
                     <div class="pull-right" style="margin-top:10px;">
-                        <button class="btn btn-danger" ng-click="cropImage()" ng-show="!saveCrop" type="button">Crop</button>
+                        <button class="btn btn-danger" ng-click="cropImage()" ng-show="!saveCrop; previewImage" type="button">Crop</button>
                         <button class="btn btn-danger" ng-click="doneCrop()" ng-show="saveCrop" type="button">Save Crop</button>
                         <button class="btn btn-danger" ng-click="cancelCrop()" ng-show="saveCrop" type="button">Cancel Crop</button>
 
                         <div class="dropdown" style="display:inline-block" ng-hide="isCropImageEnable">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" ng-show="previewImage">
                                 {{selectedFilter}}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="javascript:void(0)" ng-click="applyFilter('Gamma')">Gamma</a></li>
-                                <li><a href="javascript:void(0)" ng-click="applyFilter('Greyscale')">Greyscale</a></li>
-                                <li><a href="javascript:void(0)" ng-click="applyFilter('Hue')">Hue</a></li>
-                                <li><a href="javascript:void(0)" ng-click="applyFilter('Noise')">Noise</a></li>
-                                <li><a href="javascript:void(0)" ng-click="applyFilter('Saturation')">Saturation</a></li>
-                                <li><a href="javascript:void(0)" ng-click="applyFilter('Invert')">Invert</a></li>
-                                <li><a href="javascript:void(0)" ng-click="applyFilter('Sepia')">Sepia</a></li>
-                                <li><a href="javascript:void(0)" ng-click="applyFilter('Vibrance')">Vibrance</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('Vintage')">Vintage</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('Lomo')">Lomo</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('Clarity')">Clarity</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('SinCity')">SinCity</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('Sunrise')">Sunrise</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('CrossProcess')">Crossprocess</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('OrangePeel')">OrangePeel</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('Grungy')">Grungy</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('Jarques')">Jarques</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('Pinhole')">Pinhole</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('OldBoot')">OldBoot</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('GlowingSun')">GlowingSun</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('HazyDays')">HazyDays</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('Nostalgia')">Nostalgia</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('Hemingway')">Hemingway</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('Concentrate')">Concentrate</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('HerMajesty')">HerMajesty</a></li>
                             </ul>
                         </div>
-                        <button class="btn btn-warning"ng-click="resetFilter()" ng-show="isResetEnable" type="button">Reset Filter</button>
-                        <button class="btn btn-danger" ng-click="removeImage()" ng-show="picFile" type="button">Remove</button>
+                        <button class="btn btn-warning" ng-click="resetFilter()" ng-show="isResetEnable" type="button">Reset Filter</button>
+                        <button class="btn btn-success" ng-click="saveFilter()" ng-show="isResetEnable" type="button">Save Filter</button>
+                        <button class="btn btn-danger" ng-click="removeImage()" ng-show="previewImage" type="button">Remove</button>
                     </div>
                     <small class="form-text text-muted">Choose a picture to promote</small>
 
 
                     <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
-                        <img ngf-src="previewImage" ng-hide="isCropImageEnable" style="height: 100%;width: auto;background-size: contain;background-repeat: no-repeat;" id="previewImage">
-                        <ui-cropper image="previewImage" area-type="rectangle"
-                                    result-image="croppedDataUrl" allow-crop-resize-on-corners="true" ng-show="isCropImageEnable"></ui-cropper>
+                        <!--<img ngf-src="previewImage" ng-hide="isCropImageEnable" style="height: 100%;width: auto;background-size: contain;background-repeat: no-repeat;" id="previewImage">
+    <ui-cropper image="previewImage" area-type="rectangle"
+                result-image="croppedDataUrl" allow-crop-resize-on-corners="true" ng-show="isCropImageEnable"></ui-cropper>-->
+                        <img ngf-src="previewImage" alt="Picture" style="height: 100%;width: auto;background-size: contain;background-repeat: no-repeat;" id="originalImage" class="hide">
+                        <img ngf-src="previewImage" alt="Picture" style="height: 100%;width: auto;background-size: contain;background-repeat: no-repeat;" id="previewImage">
                     </div>
                     <div ng-show="isCropImageEnable">
                         <img ng-show="croppedDataUrl!=null" ng-src="{{croppedDataUrl}}" />
@@ -104,11 +116,23 @@
             </form>
         </div>
         <div class="alert alert-warning" role="alert" ng-show="showDateWarning">
-            <strong>Warning!</strong> Start date cannot start before the end date. <a ng-click="closeWarning()">Close</a>
+            <strong>Warning!</strong> Start date cannot start before the end date. <a ng-click="closeWarning(0)" class="close-warning">Close Warning</a>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="showTitleWarning">
+            <strong>Oh snap!</strong> The promotion must have a title <a ng-click="closeWarning(1)" class="close-warning">Close Warning</a>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="showDescriptionWarning">
+            <strong>Oh snap!</strong> The promotion must have a description <a ng-click="closeWarning(2)" class="close-warning">Close Warning</a>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="showCategorynWarning">
+            <strong>Oh snap!</strong> The promotion must have a category <a ng-click="closeWarning(3)" class="close-warning">Close Warning</a>
+        </div>
+        <div class="alert alert-danger" role="alert" ng-show="showImageWarning">
+            <strong>Oh snap!</strong> The promotion must have a image <a ng-click="closeWarning(4)" class="close-warning">Close Warning</a>
         </div>
         <div class="modal-footer">
             <button class="btn btn-danger" type="button" ng-click="cancel()">Cancel</button>
-            <button class="btn btn-primary" type="button" ng-click="ok()">Create</button>
+            <button class="btn btn-primary" type="button" ng-click="ok()">{{ edit == true ? 'Modify' : 'Create'}}</button>
         </div>
     </div>
 </div>

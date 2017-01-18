@@ -17,5 +17,7 @@ namespace Glimpse.Core.Contracts.Services
         Task<List<Vendor>> GetVendors();
 
         Task DeleteVendor(Vendor vendor);
+
+        Task<bool> CheckIfVendorExists(string email);
     }
 }

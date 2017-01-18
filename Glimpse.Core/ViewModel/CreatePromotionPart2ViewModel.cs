@@ -123,9 +123,8 @@ namespace Glimpse.Core.ViewModel
 
                         await _promotionImageDataService.StorePromotion(promotionImageInstance);
                     }
-
-
-                    ShowViewModel<VendorProfilePageViewModel>();
+                                        
+                    ShowViewModel<VendorProfilePageViewModel>(new { index = 0 });
 
                 });
             }
