@@ -406,6 +406,8 @@
     <Content Include="Scripts\caman.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
+    <Content Include="Scripts\cropper.js" />
+    <Content Include="Scripts\cropper.min.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
@@ -1195,6 +1197,9 @@
     <Content Include="src\controllers\promotionController.js" />
     <Content Include="src\controllers\signupController.js" />
     <Content Include="src\css\animate.css" />
+    <Content Include="src\css\bg.png" />
+    <Content Include="src\css\cropper.css" />
+    <Content Include="src\css\cropper.min.css" />
     <Content Include="src\css\css.css" />
     <Content Include="src\css\ng-img-crop.css" />
     <Content Include="src\css\pbk.jpg" />
