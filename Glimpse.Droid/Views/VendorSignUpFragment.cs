@@ -34,6 +34,8 @@ namespace Glimpse.Droid.Views
         private EditText _confirmPassword;
         private EditText _email;
 
+
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -58,18 +60,20 @@ namespace Glimpse.Droid.Views
             _confirmPassword = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtConfirmPassword);
             _confirmPassword.AfterTextChanged += _confirmPassword_AfterTextChanged;
 
-
             //Sends email on click
-         /* Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
-            acc_Button.Click += delegate
-            {
-                OnClick(this.View);
             };*/
+            /* Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
+               acc_Button.Click += delegate
+               {
+                   OnClick(this.View);
+               };*/
         }
+
+      
 
         private void _email_AfterTextChanged(object sender, AfterTextChangedEventArgs e)
         {
-            if ((string.IsNullOrEmpty(ViewModel.Email)) || !Patterns.EmailAddress.Matcher(ViewModel.Email).Matches())
+            if ((!string.IsNullOrEmpty(ViewModel.Email)) && !Patterns.EmailAddress.Matcher(ViewModel.Email).Matches())
             {
                 _email.Error = "Enter a valid email address";
                 ViewModel.ValidEmail = false;             
@@ -84,10 +88,10 @@ namespace Glimpse.Droid.Views
 
         private void _confirmPassword_AfterTextChanged(object sender, AfterTextChangedEventArgs e)
         {
-            if ((!string.IsNullOrEmpty(ViewModel.Password))  && (!ViewModel.Password.Equals(ViewModel.ConfirmPassword)))
+            if ((!string.IsNullOrEmpty(ViewModel.Password))  && (!string.IsNullOrEmpty(ViewModel.ConfirmPassword)) && (!ViewModel.Password.Equals(ViewModel.ConfirmPassword)))
             {
                 _confirmPassword.Error = "Passwords do not match";
-                ViewModel.ValidPassword = false;
+                ViewModel.ValidPassword = true;
             }
             else
             {
@@ -155,57 +159,6 @@ namespace Glimpse.Droid.Views
             mailBody = sendMail.CreateMailBodyForAdmin(_company, _company,"No number!",_email);
             sendMail.SendEmail("New Sign-Up Information", mailBody, "vendor.smtptest@gmail.com");
         }
-
-      
-
-        public bool validate()
-        {
-            bool valid = true;
-
-
-            if ((string.IsNullOrEmpty(ViewModel.Email))  || !Patterns.EmailAddress.Matcher(_email.Text).Matches())
-            {
-                _email.Error = "Enter a valid email address";
-                valid = false;
-            }
-            else
-            {
-                _email.SetError("",null);
-            }
-
-            // String password = _passwordText.getText().toString();
-
-            /*    if (name.isEmpty() || name.length() < 3)
-                {
-                    _nameText.setError("at least 3 characters");
-                    valid = false;
-                }
-                else
-                {
-                    _nameText.setError(null);
-                }
-
-                if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches())
-                {
-                    _emailText.setError("enter a valid email address");
-                    valid = false;
-                }
-                else
-                {
-                    _emailText.setError(null);
-                }
-
-                if (password.isEmpty() || password.length() < 4 || password.length() > 10)
-                {
-                    _passwordText.setError("between 4 and 10 alphanumeric characters");
-                    valid = false;
-                }
-                else
-                {
-                    _passwordText.setError(null);
-                }*/
-
-            return valid;
-        }
+    
     }
 }

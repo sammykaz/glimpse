@@ -144,9 +144,12 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
-                    
+                    if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(CompanyName) || string.IsNullOrEmpty(Address) || string.IsNullOrEmpty(BusinessPhoneNumber) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(ConfirmPassword))
+                    {
+                        ErrorMessage = "Missing required field";
+                    }
                     //Check email validation
-                    if (!ValidEmail)
+                    else if (!ValidEmail)
                     {
                         ErrorMessage = "Email is not valid";
                     }
@@ -154,11 +157,11 @@ namespace Glimpse.Core.ViewModel
                     else if (!ValidPassword)
                     {
                         ErrorMessage = "Passwords do not match";
-                    }
+                    }                   
                     //Check if email exists in db
                     else if (await _vendorDataService.CheckIfVendorExists(Email))
                     {
-                        ErrorMessage = "This email: " + Email + " is already being used by another vendor";
+                        ErrorMessage = Email + " is already being used";
                     }
                     else
                     {
