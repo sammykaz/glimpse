@@ -23,9 +23,11 @@ namespace Glimpse.Core.ViewModel
         private IPromotionDataService promotionDataService;
         private IPromotionClickDataService promotionClickDataService;
         private Location _userCurrentLocation;
+        private List<PromotionWithLocation> _promotionsStored;
         private IGeolocator locator;
         public delegate void LocationChangedHandler(object sender, LocationChangedHandlerArgs e);
         public event LocationChangedHandler LocationUpdate;
+
 
         public MapViewModel(IMvxMessenger messenger, IVendorDataService vendorDataService, IPromotionDataService promotionDataService, IPromotionClickDataService promotionClickDataService) : base(messenger)
         {
@@ -133,12 +135,61 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public Task<List<PromotionWithLocation>> GetActivePromotions()
+        public async Task<List<PromotionWithLocation>> GetActivePromotions()
         {
-            return promotionDataService.GetActivePromotions();
+            _promotionsStored = await promotionDataService.GetActivePromotions();
+            _filteredpromotions = _promotionsStored;
+            return _promotionsStored;
         }
 
-   
+        //Map filtering section
+
+        private List<PromotionWithLocation> _filteredpromotions;
+        public List<PromotionWithLocation> FilteredPromotionList
+        {
+            get { return _filteredpromotions; }
+            set
+            {
+                _filteredpromotions = value;
+                RaisePropertyChanged(() => FilteredPromotionList);
+            }
+
+        }
+
+        private List<string> _categories;
+        public List<string> Categories
+        {
+            get
+            {
+                List<string> allCategories = new List<string>();
+                allCategories.Add("All");
+                foreach (string name in Enum.GetNames(typeof(Categories)))
+                {
+                    allCategories.Add(name);
+                };
+                return allCategories;
+            }
+            set
+            {
+                _categories = value;
+                RaisePropertyChanged(() => Categories);
+            }
+        }
+
+        private Categories? _selectedItem;
+        public Categories? SelectedItem
+        {
+            get
+            {
+                return _selectedItem;
+            }
+            set
+            {
+                _selectedItem = value;
+                FilteredPromotionList = promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem);
+                RaisePropertyChanged(() => FilteredPromotionList);
+            }
+        }
 
     }
 

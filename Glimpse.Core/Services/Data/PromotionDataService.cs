@@ -38,6 +38,15 @@ namespace Glimpse.Core.Services.Data
             return await promotionRepository.GetPromotionsByCategory(category);
         }
 
+        public List<PromotionWithLocation> FilterPromotionWithLocationList(List<PromotionWithLocation> promoWithLocationList, Categories? category)
+        {
+            if(category == null)
+            {
+                return promoWithLocationList;
+            }
+            return promoWithLocationList.Where(promo => promo.Category == category).ToList();
+        }
+
         public async Task StorePromotion(Promotion promotion)
         {
             await promotionRepository.StorePromotion(promotion);
