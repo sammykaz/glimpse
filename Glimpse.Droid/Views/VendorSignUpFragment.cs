@@ -61,7 +61,6 @@ namespace Glimpse.Droid.Views
             _confirmPassword.AfterTextChanged += _confirmPassword_AfterTextChanged;
 
             //Sends email on click
-            };*/
             /* Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
                acc_Button.Click += delegate
                {
@@ -91,12 +90,12 @@ namespace Glimpse.Droid.Views
             if ((!string.IsNullOrEmpty(ViewModel.Password))  && (!string.IsNullOrEmpty(ViewModel.ConfirmPassword)) && (!ViewModel.Password.Equals(ViewModel.ConfirmPassword)))
             {
                 _confirmPassword.Error = "Passwords do not match";
-                ViewModel.ValidPassword = true;
+                ViewModel.ValidPassword = false;
             }
             else
             {
                 _confirmPassword.Error = null;
-                ViewModel.ValidPassword = false;
+                ViewModel.ValidPassword = true;
             }
 
 
