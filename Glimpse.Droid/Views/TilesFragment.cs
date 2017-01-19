@@ -40,6 +40,8 @@ namespace Glimpse.Droid.Views
 
         public void OnCheckedChanged(RadioGroup group, int checkedId)
         {
+            //the filter on previous page made this checkedID increment by 7...
+            checkedId = checkedId % 7;
             if(checkedId == 1)
             {
                 ViewModel.SelectedItem = null; 
