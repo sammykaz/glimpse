@@ -22,6 +22,8 @@ namespace Glimpse.Core.ViewModel
         private IVendorDataService _vendorDataService;
         private List<PromotionWithLocation> _promotions;
 
+        private List<PromotionWithLocation> _promotionsStored;
+
         private IGeolocator locator;
         private Location _userLocation;
 
@@ -58,6 +60,23 @@ namespace Glimpse.Core.ViewModel
             _userLocation = await GetUserLocation();
 
             PromotionList = await GetPromotionsWithLocation();
+
+            _promotionsStored = PromotionList;
+        }
+
+        private Categories? _selectedItem;
+        public Categories? SelectedItem
+        {
+            get
+            {                
+                return _selectedItem;
+            }
+            set
+            {
+                _selectedItem = value;
+                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem);
+                RaisePropertyChanged(() => PromotionList);
+            }
         }
 
 
@@ -67,6 +86,7 @@ namespace Glimpse.Core.ViewModel
             get
             {
                 List<string> allCategories = new List<string>();
+                allCategories.Add("All");
                 foreach(string name in Enum.GetNames(typeof(Categories)))
                 {
                     allCategories.Add(name);

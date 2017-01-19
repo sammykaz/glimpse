@@ -17,6 +17,8 @@ namespace Glimpse.Core.ViewModel
         {
             _vendorDataService = vendorDataService;
             _userDataService = userDataService;
+            _validEmail = false;
+            _validPassword = false;
         }
 
         private string _companyName;
@@ -97,19 +99,69 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+
+        private string _confirmPassword;
+        public string ConfirmPassword
+        {
+            get { return _confirmPassword; }
+            set
+            {
+                _confirmPassword = value;
+                RaisePropertyChanged(() => ConfirmPassword);
+            }
+        }
+
+
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                _errorMessage = value;
+                RaisePropertyChanged(() => ErrorMessage);
+            }
+        }
+
+
+        private bool _validEmail;
+        public bool ValidEmail
+        {
+            get { return _validEmail; }
+            set { _validEmail = value; }
+        }
+
+        private bool _validPassword;
+        public bool ValidPassword
+        {
+            get { return _validPassword; }
+            set { _validPassword = value; }
+        }
+
         public MvxCommand SignUpCommand
         {
             get
             {
                 return new MvxCommand(async () =>
                 {
-
-                    vendor = await _vendorDataService.SearchVendorByEmail(_email);
-
-                    //Check if email exists in db
-                    if (vendor != null)
+                    if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(CompanyName) || string.IsNullOrEmpty(Address) || string.IsNullOrEmpty(BusinessPhoneNumber) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(ConfirmPassword))
                     {
-                        //TODO Display Error message to user, choose another email
+                        ErrorMessage = "Missing required field";
+                    }
+                    //Check email validation
+                    else if (!ValidEmail)
+                    {
+                        ErrorMessage = "Email is not valid";
+                    }
+                    //Password validation
+                    else if (!ValidPassword)
+                    {
+                        ErrorMessage = "Passwords do not match";
+                    }                   
+                    //Check if email exists in db
+                    else if (await _vendorDataService.CheckIfVendorExists(Email))
+                    {
+                        ErrorMessage = Email + " is already being used";
                     }
                     else
                     {

@@ -16,7 +16,10 @@ using Android.Gms.Location.Places.UI;
 using Android.App;
 using Android.Content;
 using Android.Gms.Maps.Model;
+using Android.Util;
 using Glimpse.Core.Model;
+using Android.Text;
+using Java.Lang;
 
 namespace Glimpse.Droid.Views
 {
@@ -27,6 +30,10 @@ namespace Glimpse.Droid.Views
         private static readonly int PLACE_PICKER_REQUEST = 1;
         private Button _selectBuisinessLocationButton;
         private TextView _addressTextView;
+        private EditText _password;
+        private EditText _confirmPassword;
+        private EditText _email;
+
 
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -41,17 +48,58 @@ namespace Glimpse.Droid.Views
             (this.Activity as LoginActivity).SetCustomTitle("Vendor Sign Up");
 
             _addressTextView = (this.Activity as LoginActivity).FindViewById<TextView>(Resource.Id.txtAddress);
-            _selectBuisinessLocationButton = (this.Activity as LoginActivity).FindViewById<Button>(Resource.Id.selectBuisinessLocationButton);
+            _selectBuisinessLocationButton = (this.Activity as LoginActivity).FindViewById<Button>(Resource.Id.selectBusinessLocationButton);
             _selectBuisinessLocationButton.Click += OnSelectBuisinessLocationTapped;
 
+            _email = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtEmail);
+            _email.AfterTextChanged += _email_AfterTextChanged;
+
+            _password = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtPassword);
+            _password.AfterTextChanged += _confirmPassword_AfterTextChanged;
+
+            _confirmPassword = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtConfirmPassword);
+            _confirmPassword.AfterTextChanged += _confirmPassword_AfterTextChanged;
+
             //Sends email on click
-            Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
-            acc_Button.Click += delegate
-            {
-                OnClick(this.View);
-            };
+            /* Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
+               acc_Button.Click += delegate
+               {
+                   OnClick(this.View);
+               };*/
         }
 
+      
+
+        private void _email_AfterTextChanged(object sender, AfterTextChangedEventArgs e)
+        {
+            if ((!string.IsNullOrEmpty(ViewModel.Email)) && !Patterns.EmailAddress.Matcher(ViewModel.Email).Matches())
+            {
+                _email.Error = "Enter a valid email address";
+                ViewModel.ValidEmail = false;             
+            }
+            else
+            {
+                _email.Error = null;
+                ViewModel.ValidEmail = true;
+            }
+
+        }
+
+        private void _confirmPassword_AfterTextChanged(object sender, AfterTextChangedEventArgs e)
+        {
+            if ((!string.IsNullOrEmpty(ViewModel.Password))  && (!string.IsNullOrEmpty(ViewModel.ConfirmPassword)) && (!ViewModel.Password.Equals(ViewModel.ConfirmPassword)))
+            {
+                _confirmPassword.Error = "Passwords do not match";
+                ViewModel.ValidPassword = false;
+            }
+            else
+            {
+                _confirmPassword.Error = null;
+                ViewModel.ValidPassword = true;
+            }
+
+
+        }
 
         private void OnSelectBuisinessLocationTapped(object sender, EventArgs eventArgs)
         {
@@ -110,6 +158,6 @@ namespace Glimpse.Droid.Views
             mailBody = sendMail.CreateMailBodyForAdmin(_company, _company,"No number!",_email);
             sendMail.SendEmail("New Sign-Up Information", mailBody, "vendor.smtptest@gmail.com");
         }
-        
+    
     }
 }
