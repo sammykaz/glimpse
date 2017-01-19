@@ -274,6 +274,10 @@
     <Compile Include="Migrations\201701130221398_promotionclick.Designer.cs">
       <DependentUpon>201701130221398_promotionclick.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701190017586_charlimitemailv2.cs" />
+    <Compile Include="Migrations\201701190017586_charlimitemailv2.Designer.cs">
+      <DependentUpon>201701190017586_charlimitemailv2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Contexts\GlimpseDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -1288,6 +1292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701130221398_promotionclick.resx">
       <DependentUpon>201701130221398_promotionclick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701190017586_charlimitemailv2.resx">
+      <DependentUpon>201701190017586_charlimitemailv2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
