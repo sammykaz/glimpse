@@ -19,6 +19,8 @@
             android:hint="Title"
             android:paddingLeft="10dp"
             android:textColor="@color/black"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
             local:MvxBind="Text PromotionTitle, Mode=TwoWay" />
         <EditText
             android:layout_below="@id/promotionTitle"
@@ -33,6 +35,8 @@
             local:MvxBind="Text PromotionDescription, Mode=TwoWay"
             android:layout_weight="30"
             android:paddingLeft="10dp"
+            android:imeOptions="actionDone"
+             android:singleLine="true"
             android:layout_marginLeft="20dp" />
         <TextView
             android:text="Categories"

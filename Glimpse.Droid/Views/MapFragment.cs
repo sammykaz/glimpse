@@ -323,6 +323,7 @@ namespace Glimpse.Droid.Views
             if (checkedId == 0)
             {
                 ViewModel.SelectedItem = null;
+                GetAllActivePromotions();         
             }
             else
             {
@@ -336,6 +337,11 @@ namespace Glimpse.Droid.Views
             ShowPromotionsOnMap();
         }
 
+
+        private async void GetAllActivePromotions()
+        {
+            await ViewModel.GetActivePromotions();
+        }
         /*
                 //Note that the type "Items" will be whatever type of object you're adding markers for so you'll
                 //likely want to create a List of whatever type of items you're trying to add to the map and edit this appropriately
