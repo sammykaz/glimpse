@@ -97,7 +97,7 @@
                 android:textStyle="bold"
                 android:text="Promotions"
                 android:layout_alignParentRight="false"
-                android:layout_marginLeft="100dp" />
+                android:layout_marginLeft="70dp" />
             <ImageView
                 android:id="@+id/add"
                 android:layout_width="30dp"
