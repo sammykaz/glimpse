@@ -76,7 +76,8 @@ namespace Glimpse.Core.Services.Data
                     Image = b.PromotionImage,
                     PromotionId = b.PromotionId,
                     PromotionStartDate = b.PromotionStartDate,
-                    PromotionEndDate = b.PromotionEndDate
+                    PromotionEndDate = b.PromotionEndDate,
+                    Category = b.Category
                 });
 
             //Select all promotions excluding those with empty locations
