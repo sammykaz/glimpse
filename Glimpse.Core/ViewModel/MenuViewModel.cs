@@ -51,6 +51,14 @@ namespace Glimpse.Core.ViewModel
                 IsSelected = false
             });
 
+            MenuItems.Add(new MenuItem
+            {
+                Title = "Map",
+                ViewModelType = typeof(ViewPagerViewModel),
+                Option = MenuOption.Logout,
+                IsSelected = false
+            });
+
             _user = await _userDataService.SearchUserByEmail(Settings.Email);
             _vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
 
