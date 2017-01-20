@@ -16,6 +16,8 @@ using Glimpse.Droid.Extensions;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Shared.Attributes;
+using Glimpse.Droid.Helpers;
+using MvvmCross.Binding.BindingContext;
 
 namespace Glimpse.Droid.Views
 {
@@ -23,6 +25,7 @@ namespace Glimpse.Droid.Views
     [Register("glimpse.droid.views.SignInFragment")]
     public class SignInFragment : MvxFragment<SignInViewModel>
     {
+        private BindableProgress _bindableProgress;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -37,6 +40,11 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as LoginActivity).SetCustomTitle("Sign In");
+            _bindableProgress = new BindableProgress(this.Context);
+            _bindableProgress.Title = "Sign up in progress...";
+            var set = this.CreateBindingSet<SignInFragment, SignInViewModel>();
+            set.Bind(_bindableProgress).For(p => p.Visible).To(vm => vm.IsBusy);
+            set.Apply();
         }
     }
 }

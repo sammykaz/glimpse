@@ -150,6 +150,17 @@ namespace Glimpse.Core.ViewModel
             set { _validPassword = value; }
         }
 
+
+        /// <summary>
+        /// Init method so that list is refreshed when show view model is called
+        /// The parameter is required to be able to get this method called since none exist with empty argument...
+        /// </summary>
+        /// <param name="index"></param>
+        public void Init(int index)
+        {
+            ErrorMessage = "";
+        }
+
         public MvxCommand SignUpCommand
         {
             get

@@ -15,7 +15,13 @@ namespace Glimpse.Core.ViewModel
         }
         public MvxCommand ShowVendorSignUp
         {
-            get { return ShowCommand<VendorSignUpViewModel>(); }
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    ShowViewModel<VendorSignUpViewModel>(new { index = 0 });
+                });
+            }
         }
 
         public MvxCommand ShowStartingMap
@@ -30,7 +36,13 @@ namespace Glimpse.Core.ViewModel
 
         public MvxCommand ShowSignIn
         {
-            get { return ShowCommand<SignInViewModel>(); }
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    ShowViewModel<SignInViewModel>(new { index = 0 });
+                });
+             }
         }
     }
 }
