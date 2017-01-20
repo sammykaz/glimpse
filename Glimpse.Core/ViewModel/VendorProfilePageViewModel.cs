@@ -36,10 +36,23 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+        private string _companyName;
+        public string CompanyName
+        {
+            get { return _companyName; }
+            set
+            {
+                _companyName = value;
+                RaisePropertyChanged(() => CompanyName);
+
+            }
+        }
+
         private async Task<List<Promotion>> GetPromotionsForLoggedInVendor()
         {
             List<Promotion> promotionForVendor = await _promotionDataService.GetPromotions();
             Vendor vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
+            CompanyName = vendor.CompanyName;
             return promotionForVendor.Where(c => c.VendorId == vendor.VendorId).ToList();
         }
 

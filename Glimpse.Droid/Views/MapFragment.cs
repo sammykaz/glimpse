@@ -315,14 +315,18 @@ namespace Glimpse.Droid.Views
 
         public void OnCheckedChanged(RadioGroup group, int checkedId)
         {
+            //radio group index is based on 1, making base 0
+            checkedId = checkedId - 1;
+
+            //radio group index seem to be incremented by 7 randomly, might be issue with MvxRadioGroup
             checkedId = checkedId % 7;
-            if (checkedId == 1)
+            if (checkedId == 0)
             {
                 ViewModel.SelectedItem = null;
             }
             else
             {
-                int checkedId0BasedIndex = checkedId - 2;
+                int checkedId0BasedIndex = checkedId - 1;
                 Categories category = (Categories)checkedId0BasedIndex;
                 ViewModel.SelectedItem = category;
             }
