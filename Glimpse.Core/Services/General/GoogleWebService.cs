@@ -105,7 +105,7 @@ namespace Glimpse.Core.Services.General
 
             }
 
-            url = url + key;
+            url = url + "&key=" + key;
 
             return url;             
         }
