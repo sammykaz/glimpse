@@ -321,6 +321,8 @@
     <Content Include="karma.conf.js" />
     <None Include="Properties\PublishProfiles\GlimpseMobile - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\GlimpseMobile - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\glimpseService - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\glimpseService - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseServices - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseServices - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\LocalDeploy.pubxml" />
