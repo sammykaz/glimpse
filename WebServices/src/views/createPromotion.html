@@ -66,7 +66,8 @@
                     <label>Photo</label>
                     <input type="file" ngf-select ng-model="picFile" accept="image/*" class="btn btn-primary">
                     <div class="pull-right" style="margin-top:10px;">
-                        <button class="btn btn-danger" ng-click="cropImage()" ng-show="!saveCrop; previewImage" type="button">Crop</button>
+                        <button class="btn btn-danger" ng-click="saveImage()" ng-show="previewImage" type="button">Add Image to Promotion</button>
+                        <button class="btn btn-danger" ng-click="cropImage()" ng-show="!saveCrop && previewImage" type="button">Crop</button>
                         <button class="btn btn-danger" ng-click="doneCrop()" ng-show="saveCrop" type="button">Save Crop</button>
                         <button class="btn btn-danger" ng-click="cancelCrop()" ng-show="saveCrop" type="button">Cancel Crop</button>
 
@@ -111,6 +112,24 @@
                     </div>
                     <div ng-show="isCropImageEnable">
                         <img ng-show="croppedDataUrl!=null" ng-src="{{croppedDataUrl}}" />
+                    </div>
+                    <div class="container slider">
+                        <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage sliderSize"
+                             ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
+                             ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}">
+
+                        <a class="arrow prev" href="javascript:void(0)" ng-click="nextSlide()"></a>
+                        <a class="arrow next" href="javascript:void(0)" ng-click="prevSlide()"></a>
+                        <nav class="sliderNav">
+                            <div class="wrapper">
+                                <ul class="dots">
+                                    <li class="dot" ng-repeat="slide in slides">
+                                        <a href="javascript:void(0)" ng-class="{'active':isCurrentSlideIndex($index)}"
+                                           ng-click="setCurrentSlideIndex($index);"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
                     </div>
                 </div>
             </form>
