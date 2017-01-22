@@ -1,0 +1,35 @@
+﻿<div class="animated fadeIn">
+    <div class="modal-content">
+        <div class="modal-body ng-scope" id="modal-body">
+            <form>
+                <div class="form-group">
+                    <p style="text-align:center;">{{Title}}</p>
+                </div>
+                <div class="form-group container modal-checkbox">
+                    
+                    <p style="text-align:center;">{{Category}}</p>
+                </div>
+                <div class="form-group">
+                  
+                    <p style="text-align:center;">{{Description}}</p>
+                </div>
+
+
+                <div class="row">
+                    <label>Promotion Duration</label>
+                    <p style="text-align:center;"><span>From</span>: {{PromotionStartDate}}</p>
+                    <p style="text-align:center;"><span>To</span>: {{PromotionEndDate}}</p>
+                </div>
+                <div>
+                    <div class="cropArea">
+                        <img ng-src="{{previewImage}}" alt="Promotion Picture" style="height: 100%;width: auto;background-size:auto;background-repeat: no-repeat;">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">Okay</button>
+        </div>
+    </div>
+</div>
