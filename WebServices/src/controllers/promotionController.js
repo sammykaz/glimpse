@@ -12,6 +12,7 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
 
     var promotionsquery = dataService.getPromotions().query();
     promotionsquery.$promise.then(function (data) {
+        debugger;
         $scope.promotions = data;
     }, function (error) {
         console.log("Error: Could not load promotions");
@@ -152,6 +153,9 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.isResetEnable = false;
     $scope.previewImage = promotionDetails.PromotionImage ? "data:image/JPEG;base64," + promotionDetails.PromotionImage : '';
     $scope.imageNotEmpty = false;
+    debugger;
+    var slides = $scope.slides = promotionDetails["PromotionImages"].length ? promotionDetails["PromotionImages"] : [];
+    var currIndex = 0;
 
     function getImageData() {
 
@@ -170,6 +174,14 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         }
 
         return defer.promise;
+    }
+
+    function getSliderImagesList() {
+        var sliderImages = $scope.slides.length ? $scope.slides : [];
+        var images = [];        sliderImages.forEach(function (element, index) {
+            images.push(element.split(',')[1])
+        });
+        return images
     }
 
     $scope.ok = function () {
@@ -194,11 +206,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 
         else {
             var isEditMode = !(angular.equals({}, promotionDetails));
-            var image = {
-                file: $scope.previewImage
-            };
-            var formdata = new FormData();
-            formdata.append("img", image);
             var sdt = $scope.sdt;
             var edt = $scope.edt;
             var promotionData = {
@@ -218,7 +225,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             if (!!$scope.previewImage) {
                 getImageData().then(function (imageBased64) {
                     promotionData["promotionImage"] = imageBased64.split(",")[1];
-
                     if (isEditMode) {
                         onEditClick(promotionDetails.PromotionId, promotionData);
                     } else {
@@ -255,6 +261,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 promotionData["PromotionId"] = promotionId;
                 promotionData["PromotionStartDate"] = promotion["promotionStartDate"];
                 promotionData["PromotionImage"] = promotion["promotionImage"];
+                debugger;
+                promotionData["PromotionImages"] = getSliderImagesList();
                 promotionData["Title"] = promotion["title"];
                 promotionData["Vendor"] = promotion["vendor"] || null;
                 promotionData["VendorId"] = promotion["vendorId"];
@@ -315,11 +323,13 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.$watch('picFile', function () {
         if (!!$scope.picFile) {
             imageFile = $scope.picFile;
+            $scope.removeImage();
             $scope.previewImage = imageFile;
-            Upload.base64DataUrl($scope.picFile).then(function (urls) {
+            Upload.base64DataUrl(imageFile).then(function (urls) {
+                $('#previewImage').remove();
                 if (!$('#previewImage').length) {
                     var orriginalImag = $('#originalImage').clone();
-                    $(orriginalImag).removeClass('ng-hide')
+                    $(orriginalImag).removeClass('ng-hide');
                     $(orriginalImag).removeClass('hide').attr('id', 'previewImage');
                     $(orriginalImag).attr('src', urls);
                     $('#originalImage').parent().append(orriginalImag);
@@ -327,6 +337,36 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             });
         }
     });
+
+  
+
+    function addSlide (image) {
+        var newWidth = 600 + slides.length + 1;
+        slides.push(image);
+    };
+
+    $scope.direction = 'left';
+    $scope.currentIndex = 0;
+
+    $scope.setCurrentSlideIndex = function (index) {
+        $scope.direction = (index > $scope.currentIndex) ? 'left' : 'right';
+        $scope.currentIndex = index;
+    };
+
+    $scope.isCurrentSlideIndex = function (index) {
+        return $scope.currentIndex === index;
+    };
+
+    $scope.prevSlide = function () {
+        $scope.direction = 'left';
+        $scope.currentIndex = ($scope.currentIndex < $scope.slides.length - 1) ? ++$scope.currentIndex : 0;
+    };
+
+    $scope.nextSlide = function () {
+        $scope.direction = 'right';
+        $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
+    };
+   
 
     var getCategory = function () {
         switch ($scope.promotions.Category) {
@@ -697,6 +737,14 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         aspectRatio: 16 / 9
     };
 
+    /*
+        Save Uploaded Image into slider
+     */
+    $scope.saveImage = function () {
+        getImageData().then(function (imageBased64) {
+            addSlide(imageBased64);
+        });
+    }
 
     $scope.removeImage = function () {
         $scope.imageNotEmpty = false;
@@ -794,6 +842,40 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         return '';
     }
 
+}).animation('.slide-animation', function () {
+    return {
+        beforeAddClass: function (element, className, done) {
+            var scope = element.scope();
+
+            if (className == 'ng-hide') {
+                var finishPoint = element.parent().width();
+                if(scope.direction !== 'right') {
+                    finishPoint = -finishPoint;
+                }
+                TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
+            }
+            else {
+                done();
+            }
+        },
+        removeClass: function (element, className, done) {
+            var scope = element.scope();
+
+            if (className == 'ng-hide') {
+                element.removeClass('ng-hide');
+
+                var startPoint = element.parent().width();
+                if(scope.direction === 'right') {
+                    startPoint = -startPoint;
+                }
+
+                TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
+            }
+            else {
+                done();
+            }
+        }
+    };
 });
 
 app.controller('changeDateModalController', function ($scope, $uibModalInstance, promotionDetails) {
