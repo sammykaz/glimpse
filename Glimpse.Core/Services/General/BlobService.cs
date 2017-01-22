@@ -1,0 +1,172 @@
+﻿using SQLite.Net;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
+using System.Net.Http;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Glimpse.Core.Helpers
+{
+    public class BlobService
+    {
+
+        public static class AzureStorageConstants
+        {
+            public static string Account = "storageglimpse";
+            public static string SharedKeyAuthorizationScheme = "SharedKey";
+            public static string BlobEndPoint = "https://storageglimpse.blob.core.windows.net/";
+            public static string Key = "UTaxV/U+abo8S1ORGCTyAVH4dUoFxl5jonIxMNAK/GUNP5u0IbNxa8WxyJpWbrg2aeUlm6S1NAkph/hW3i69wQ==";
+            public static string ContainerName = "imagestorage";
+            public static string FileLocation = BlobEndPoint + ContainerName;
+        }
+
+
+        private static async Task<bool> DeleteBlob(string blobName)
+        {
+            string containerName = AzureStorageConstants.ContainerName;
+
+            string requestMethod = "DELETE";
+
+            const string blobType = "BlockBlob";
+
+            string urlPath = string.Format("{0}/{1}", containerName, blobName);
+            string msVersion = "2009-09-19";
+            string dateInRfc1123Format = DateTime.UtcNow.ToString("R", CultureInfo.InvariantCulture);
+
+            string canonicalizedHeaders = string.Format("x-ms-blob-type:{0}\nx-ms-date:{1}\nx-ms-version:{2}", blobType, dateInRfc1123Format, msVersion);
+            string canonicalizedResource = string.Format("/{0}/{1}", AzureStorageConstants.Account, urlPath);
+            string stringToSign = string.Format("{0}\n\n\n{1}\n\n\n\n\n\n\n\n\n{2}\n{3}", requestMethod, 0, canonicalizedHeaders, canonicalizedResource);
+
+            string authorizationHeader = CreateAuthorizationHeader(stringToSign);            
+
+            string uri = AzureStorageConstants.BlobEndPoint + urlPath;
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("x-ms-blob-type", blobType);
+            client.DefaultRequestHeaders.Add("x-ms-date", dateInRfc1123Format);
+            client.DefaultRequestHeaders.Add("x-ms-version", msVersion);
+            client.DefaultRequestHeaders.Add("Authorization", authorizationHeader);
+
+           
+            HttpResponseMessage response = await client.DeleteAsync(uri);
+            
+            if (response.IsSuccessStatusCode == true) return true;
+            
+            return false;
+        }
+
+        private static async Task<string> UploadBlob(string blobName, Byte[] blobContent)
+        {
+            string containerName = AzureStorageConstants.ContainerName;
+
+            string requestMethod = "PUT";
+
+            //String content = "The Name of This Band is Talking Heads";
+            //UTF8Encoding utf8Encoding = new UTF8Encoding();
+            //Byte[] blobContent = utf8Encoding.GetBytes(content);
+            int blobLength = blobContent.Length;
+
+            const string blobType = "BlockBlob";
+
+            string urlPath = string.Format("{0}/{1}", containerName, blobName);
+            string msVersion = "2009-09-19";
+            string dateInRfc1123Format = DateTime.UtcNow.ToString("R", CultureInfo.InvariantCulture);
+
+            string canonicalizedHeaders = string.Format("x-ms-blob-type:{0}\nx-ms-date:{1}\nx-ms-version:{2}", blobType, dateInRfc1123Format, msVersion);
+            string canonicalizedResource = string.Format("/{0}/{1}", AzureStorageConstants.Account, urlPath);
+            string stringToSign = string.Format("{0}\n\n\n{1}\n\n\n\n\n\n\n\n\n{2}\n{3}", requestMethod, blobLength, canonicalizedHeaders, canonicalizedResource);          
+            string authorizationHeader = CreateAuthorizationHeader(stringToSign);
+
+            string uri = AzureStorageConstants.BlobEndPoint + urlPath;
+            HttpClient client = new HttpClient();
+
+            client.DefaultRequestHeaders.Add("x-ms-blob-type", blobType);
+            client.DefaultRequestHeaders.Add("x-ms-date", dateInRfc1123Format);
+            client.DefaultRequestHeaders.Add("x-ms-version", msVersion);
+            client.DefaultRequestHeaders.Add("Authorization", authorizationHeader);
+           
+            HttpContent requestContent = new ByteArrayContent(blobContent);
+            HttpResponseMessage response = await client.PutAsync(uri, requestContent);
+         
+            if (response.IsSuccessStatusCode == true)
+            {
+                foreach (var aHeader in response.Headers)
+                {
+                    if (aHeader.Key == "ETag") return aHeader.Value.ElementAt(0);
+                }
+            }           
+            
+            return null;
+        }
+
+
+
+        private static async Task<byte[]> GetBlob(string blobName)
+        {
+            string containerName = AzureStorageConstants.ContainerName;
+            string requestMethod = "GET";
+
+            const string blobType = "BlockBlob";
+
+            string urlPath = string.Format("{0}/{1}", containerName, blobName);
+            string msVersion = "2009-09-19";
+            string dateInRfc1123Format = DateTime.UtcNow.ToString("R", CultureInfo.InvariantCulture);
+
+            string canonicalizedHeaders = string.Format("x-ms-blob-type:{0}\nx-ms-date:{1}\nx-ms-version:{2}", blobType, dateInRfc1123Format, msVersion);
+            string canonicalizedResource = string.Format("/{0}/{1}", AzureStorageConstants.Account, urlPath);
+            string stringToSign = string.Format("{0}\n\n\n\n\n\n\n\n\n\n\n\n{2}\n{3}", requestMethod, 0, canonicalizedHeaders, canonicalizedResource);          
+            string authorizationHeader = CreateAuthorizationHeader(stringToSign);           
+
+            string uri = AzureStorageConstants.BlobEndPoint + urlPath;
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("x-ms-blob-type", blobType);
+            client.DefaultRequestHeaders.Add("x-ms-date", dateInRfc1123Format);
+            client.DefaultRequestHeaders.Add("x-ms-version", msVersion);
+            client.DefaultRequestHeaders.Add("Authorization", authorizationHeader);
+
+            HttpResponseMessage response = await client.GetAsync(uri);
+
+            if (response.IsSuccessStatusCode == true)
+            {
+                return response.Content.ReadAsByteArrayAsync().Result;
+            }
+
+            return null;
+        }
+
+        private static string CreateAuthorizationHeader(string canonicalizedString)
+        {
+            if (string.IsNullOrEmpty(canonicalizedString))
+            {
+                throw new ArgumentNullException("canonicalizedString");
+            }
+
+            string signature = CreateHmacSignature(canonicalizedString, Convert.FromBase64String(AzureStorageConstants.Key));
+            string authorizationHeader = string.Format(CultureInfo.InvariantCulture, "{0} {1}:{2}", AzureStorageConstants.SharedKeyAuthorizationScheme, AzureStorageConstants.Account, signature);
+
+            return authorizationHeader;
+        }
+
+        private static string CreateHmacSignature(string unsignedString, Byte[] key)
+        {
+            if (string.IsNullOrEmpty(unsignedString))
+            {
+                throw new ArgumentNullException("unsignedString");
+            }
+
+            if (key == null)
+            {
+                throw new ArgumentNullException("key");
+            }
+
+            Byte[] dataToHmac = System.Text.Encoding.UTF8.GetBytes(unsignedString);
+            using (HMACSHA256 hmacSha256 = new HMACSHA256(key))
+            {
+                return Convert.ToBase64String(hmacSha256.ComputeHash(dataToHmac));
+            }
+        }   
+    }
+}
