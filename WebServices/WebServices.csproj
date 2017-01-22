@@ -1192,6 +1192,7 @@
     <Content Include="Scripts\respond.min.js" />
     <None Include="Index.cshtml" />
     <Content Include="Scripts\tether.min.js" />
+    <Content Include="Scripts\TweenMax.min.js" />
     <Content Include="Scripts\ui-cropper.js" />
     <Content Include="src\controllers\homeController.js" />
     <Content Include="src\controllers\loginController.js" />
@@ -1202,11 +1203,17 @@
     <Content Include="src\controllers\signupController.js" />
     <Content Include="src\css\animate.css" />
     <Content Include="src\css\bg.png" />
+    <Content Include="src\css\blank.gif" />
     <Content Include="src\css\cropper.css" />
     <Content Include="src\css\cropper.min.css" />
     <Content Include="src\css\css.css" />
     <Content Include="src\css\ng-img-crop.css" />
+    <Content Include="src\css\paddle_next_999.png" />
+    <Content Include="src\css\paddle_next_fff.png" />
+    <Content Include="src\css\paddle_prev_999.png" />
+    <Content Include="src\css\paddle_prev_fff.png" />
     <Content Include="src\css\pbk.jpg" />
+    <Content Include="src\css\slider.css" />
     <Content Include="src\css\ui-cropper.css" />
     <Content Include="src\css\wp.jpg" />
     <Content Include="src\services\authenticationService.js" />
@@ -1219,6 +1226,7 @@
     <Content Include="src\views\mapView.html" />
     <Content Include="src\views\analysisView.html" />
     <Content Include="src\views\profileView.html" />
+    <Content Include="src\views\showPromotion.html" />
     <Content Include="src\views\signupView.html" />
     <Content Include="src\views\viewPromotion.html" />
     <Content Include="TestScripts\DefaultTest.js" />
