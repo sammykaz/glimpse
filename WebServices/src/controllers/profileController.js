@@ -1,10 +1,12 @@
 ﻿'use strict';
 
 app.controller('ProfileController', ['$scope', 'dataService', '$state', 'authenticationService', function ($scope, dataService, $state, authenticationService) {
-
+    var VendorId;
     $scope.data = "";
     $scope.editOn = false;
     dataService.GetAuthorizeData().then(function (data) {
+        debugger;
+        VendorId = data;
         console.log(data);
         $scope.email = localStorage.email;
         $scope.company = localStorage.company;
@@ -21,6 +23,26 @@ app.controller('ProfileController', ['$scope', 'dataService', '$state', 'authent
         } else {
             $scope.editOn = true;
         }
+      
+    }
+    $scope.save = function () {
+        var profileInfo = {
+            "email": $scope.email,
+            "address": $scope.address,
+            "tel": $scope.tel,
+            "company": $scope.company,
+            "id": localStorage.id
+        }
+
+
+        dataService.updateVendorDetails().update({
+            VendorId: VendorId
+        }, profileInfo).$promise.then(function (data) {
+            debugger;
+            console.log(data);
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
 
 }]);
