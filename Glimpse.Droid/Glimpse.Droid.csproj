@@ -335,11 +335,15 @@
       <HintPath>..\packages\Xamarin.GooglePlayServices.Tasks.32.961.0\lib\MonoAndroid70\Xamarin.GooglePlayServices.Tasks.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="XamarinAndroidSwipeableCardStack">
+      <HintPath>..\Components\androidswipeablecardstack-1.0.1\lib\android\XamarinAndroidSwipeableCardStack.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\StartingMapActivity.cs" />
+    <Compile Include="Adapter\CardAdapter.cs" />
     <Compile Include="Adapter\MvxViewPagerFragmentAdapter .cs" />
     <Compile Include="Adapter\PromotionDialogRecyclerAdapter.cs" />
     <Compile Include="Adapter\SlidingImageAdapter.cs" />
@@ -521,6 +525,12 @@
     <AndroidResource Include="Resources\layout\Item_Radio.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\CardSwipeView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Card_Layout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -568,6 +578,10 @@
     <AndroidResource Include="Resources\drawable\btn_enabled.xml" />
   </ItemGroup>
   <ItemGroup>
+    <XamarinComponentReference Include="androidswipeablecardstack">
+      <Visible>False</Visible>
+      <Version>1.0.1</Version>
+    </XamarinComponentReference>
     <XamarinComponentReference Include="googleplayservices-location">
       <Visible>False</Visible>
       <Version>29.0.0.2</Version>
