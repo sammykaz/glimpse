@@ -96,6 +96,7 @@
     <Compile Include="Services\Data\PromotionImageDataService.cs" />
     <Compile Include="Services\Data\VendorDataService.cs" />
     <Compile Include="Services\Data\UserDataService.cs" />
+    <Compile Include="Services\General\BlobService.cs" />
     <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Services\General\GoogleWebService.cs" />
     <Compile Include="Services\General\Settings.cs" />
@@ -132,6 +133,10 @@
     </Reference>
     <Reference Include="AWSSDK.DynamoDBv2, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
       <HintPath>..\packages\AWSSDK.DynamoDBv2.3.3.0.1\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid10+xamarinios10+MonoTouch10\AWSSDK.DynamoDBv2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="bouncy_castle_hmac_sha_pcl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle-PCL.1.0.0.6\lib\bouncy_castle_hmac_sha_pcl.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Mono.Android">
