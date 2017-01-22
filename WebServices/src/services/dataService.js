@@ -8,6 +8,13 @@
     fac.getVendors = function () {
         return $resource('/api/vendors/:vendor', { user: "@vendor" });
     }
+    fac.updateVendorDetails = function () {
+        return $resource('/api/vendors/:VendorId', null, {
+            'update': {
+                method: 'PUT'
+            }
+        });
+    }
     fac.getPromotions = function () {
         return $resource('/api/promotions/:promotion', { user: "@promotion" });
     }
