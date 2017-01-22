@@ -11,7 +11,7 @@ namespace WebServices.Models
         [Key]
         public int PromotionImageId { get; set; }
 
-        public byte[] Image { get; set; }
+        public string ImageURL { get; set; }
 
         public int PromotionId { get; set; }
 
