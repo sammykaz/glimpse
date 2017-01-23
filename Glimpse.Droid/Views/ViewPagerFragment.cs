@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using Android.Support.V4.View;
 using static Android.Support.V4.View.ViewPager;
 using System;
+using Glimpse.Droid.Helpers;
 
 namespace Glimpse.Droid.Views
 {
@@ -19,8 +20,8 @@ namespace Glimpse.Droid.Views
     [Register("glimpse.droid.views.ViewPagerFragment")]
     public class ViewPagerFragment : MvxFragment<ViewPagerViewModel>, IOnPageChangeListener, MainActivity.OnBackPressedListener
     {
-
-        private ViewPager _viewPager;
+        private CustomViewPager _viewPager;
+       // private ViewPager _viewPager;
         private MvxViewPagerFragmentAdapter _adapter;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -51,7 +52,7 @@ namespace Glimpse.Droid.Views
                     }
                   };
 
-            _viewPager = View.FindViewById<ViewPager>(Resource.Id.viewPager);
+            _viewPager = View.FindViewById<CustomViewPager>(Resource.Id.viewPager);
             _adapter = new MvxViewPagerFragmentAdapter(this.Context, ChildFragmentManager, fragments);
             _viewPager.Adapter = _adapter;
             _viewPager.AddOnPageChangeListener(this);

@@ -359,6 +359,7 @@
     <Compile Include="Helpers\BindableProgress.cs" />
     <Compile Include="Helpers\BitmapProcessing.cs" />
     <Compile Include="Helpers\ByteArrayImageValueConverter.cs" />
+    <Compile Include="Helpers\CustomViewPager.cs" />
     <Compile Include="Helpers\LatLngValueConverter.cs" />
     <Compile Include="Helpers\ObjectByteArrayConversion.cs" />
     <Compile Include="Helpers\PromotionItem.cs" />
