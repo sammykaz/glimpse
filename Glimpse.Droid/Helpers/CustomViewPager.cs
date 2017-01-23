@@ -24,7 +24,7 @@ namespace Glimpse.Droid.Helpers
 
         // Call this method in your motion events when you want to disable or enable
         // It should work as desired.
-        public void setSwipeable(bool swipeable)
+        public void SetSwipeable(bool swipeable)
         {
             _swipeable = swipeable;
         }

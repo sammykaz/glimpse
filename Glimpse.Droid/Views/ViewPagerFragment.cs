@@ -40,22 +40,23 @@ namespace Glimpse.Droid.Views
                   {
                     new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
-                      FragmentType = typeof(Views.MapFragment),
+                      FragmentType = typeof(Views.TilesFragment),
                       Title = "Fragment1",
-                      ViewModel = ViewModel.MapViewModel
-                        },
+                      ViewModel = ViewModel.TilesViewModel
+                    },
                     new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
-                      FragmentType = typeof(Views.TilesFragment),
+                      FragmentType = typeof(Views.MapFragment),
                       Title = "Fragment2",
-                      ViewModel = ViewModel.TilesViewModel
-                    }
+                      ViewModel = ViewModel.MapViewModel
+                     }
                   };
 
             _viewPager = View.FindViewById<CustomViewPager>(Resource.Id.viewPager);
             _adapter = new MvxViewPagerFragmentAdapter(this.Context, ChildFragmentManager, fragments);
             _viewPager.Adapter = _adapter;
             _viewPager.AddOnPageChangeListener(this);
+            _viewPager.SetSwipeable(false);
         }
 
         public void OnPageScrollStateChanged(int state)
@@ -65,16 +66,16 @@ namespace Glimpse.Droid.Views
 
         public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
         {
-            //throw new NotImplementedException();
+          
         }
 
         public async void OnPageSelected(int position)
         {
             if (position == 0)
-                (this.Activity as MainActivity).SetCustomTitle("Map");
+                (this.Activity as MainActivity).SetCustomTitle("CardView");
             else if (position == 1)
             {
-                (this.Activity as MainActivity).SetCustomTitle("Tiles");
+                (this.Activity as MainActivity).SetCustomTitle("Map");
                  await ViewModel.TilesViewModel.ReloadAsync();
             }
         }
@@ -92,5 +93,6 @@ namespace Glimpse.Droid.Views
                 (this.Activity as MainActivity).OnBackPressed();
             }
         }
+
     }
 }
