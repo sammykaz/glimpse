@@ -25,7 +25,7 @@ namespace Glimpse.Core.Helpers
         }
 
 
-        private static async Task<bool> DeleteBlob(string blobName)
+        public static async Task<bool> DeleteBlob(string blobName)
         {
             string containerName = AzureStorageConstants.ContainerName;
 
@@ -58,7 +58,7 @@ namespace Glimpse.Core.Helpers
             return false;
         }
 
-        private static async Task<string> UploadBlob(string blobName, Byte[] blobContent)
+        public static async Task<string> UploadBlob(string blobName, Byte[] blobContent)
         {
             string containerName = AzureStorageConstants.ContainerName;
 
@@ -104,7 +104,7 @@ namespace Glimpse.Core.Helpers
 
 
 
-        private static async Task<byte[]> GetBlob(string blobName)
+        public static async Task<byte[]> GetBlob(string blobName)
         {
             string containerName = AzureStorageConstants.ContainerName;
             string requestMethod = "GET";
@@ -136,6 +136,40 @@ namespace Glimpse.Core.Helpers
 
             return null;
         }
+
+
+        public static async Task<List<byte[]>> GetAllBlobs()
+        {
+            string containerName = AzureStorageConstants.ContainerName;
+            string requestMethod = "GET";
+
+           // const string blobType = "BlockBlob";
+
+            string urlPath = string.Format("{0}{1}", containerName, "?restype=container&comp=list");
+            string msVersion = "2009-09-19";
+            string dateInRfc1123Format = DateTime.UtcNow.ToString("R", CultureInfo.InvariantCulture);
+
+            string canonicalizedHeaders = string.Format("x-ms-date:{0}\nx-ms-version:{1}", dateInRfc1123Format, msVersion);
+            string canonicalizedResource = string.Format("/{0}/{1}", AzureStorageConstants.Account, urlPath);
+            string stringToSign = string.Format("{0}\n\n\n\n\n\n\n\n\n\n\n\n{2}\n{3}", requestMethod, 0, canonicalizedHeaders, canonicalizedResource);
+            string authorizationHeader = CreateAuthorizationHeader(stringToSign);
+
+            string uri = AzureStorageConstants.BlobEndPoint + urlPath;
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("x-ms-date", dateInRfc1123Format);
+            client.DefaultRequestHeaders.Add("x-ms-version", msVersion);
+            client.DefaultRequestHeaders.Add("Authorization", authorizationHeader);
+
+            HttpResponseMessage response = await client.GetAsync(uri);
+
+            if (response.IsSuccessStatusCode == true)
+            {
+                return response.Content.ReadAsAsync<List<byte[]>>().Result;
+            }
+
+            return null;
+        }
+
 
         private static string CreateAuthorizationHeader(string canonicalizedString)
         {

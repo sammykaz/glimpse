@@ -9,6 +9,7 @@ using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
 using Glimpse.Core.Services.General;
 using Glimpse.Core.Services.Data;
+using Glimpse.Core.Helpers;
 
 namespace Glimpse.Core.Services.Data
 {
@@ -73,7 +74,7 @@ namespace Glimpse.Core.Services.Data
                     Description = b.Description,
                     CompanyName = e.CompanyName,
                     Duration = 9999,
-                    Image = b.PromotionImage,
+                    ImageURL = b.PromotionImageURL,
                     PromotionId = b.PromotionId,
                     PromotionStartDate = b.PromotionStartDate,
                     PromotionEndDate = b.PromotionEndDate,
@@ -85,6 +86,20 @@ namespace Glimpse.Core.Services.Data
 
             return validatedMapPromotions.ToList();
         }
-    }
 
+        public async Task<List<PromotionWithLocation>> PopulatePromotionWithLocationBlobs(List<PromotionWithLocation> promotionsWithLocation)
+        {
+            foreach(PromotionWithLocation promo in promotionsWithLocation)
+            {
+                if(promo.Image == null)
+                {
+                    promo.Image = await BlobService.GetBlob(promo.ImageURL);
+                }
+            }
+
+            return promotionsWithLocation;
+        }
+
+
+    }
 }

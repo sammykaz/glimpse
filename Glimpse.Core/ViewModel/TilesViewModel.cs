@@ -148,6 +148,8 @@ namespace Glimpse.Core.ViewModel
 
             List<PromotionWithLocation> final = mapPromotions.OrderBy(promotion => promotion.Duration).ToList().FindAll(p => p.Duration != 9999);
 
+            final = await _promotionDataService.PopulatePromotionWithLocationBlobs(final);
+
             return final;
         }
 
