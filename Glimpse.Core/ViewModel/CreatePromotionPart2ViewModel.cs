@@ -101,6 +101,7 @@ namespace Glimpse.Core.ViewModel
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
                         PromotionImage = Bytes,
+                        PromotionImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"] + "/" + "cover",
                         VendorId = vendor.VendorId,
                     };                  
 
@@ -111,17 +112,20 @@ namespace Glimpse.Core.ViewModel
                     //this next line is not actually adding promotions, dont know why, works for all other
                     //await _vendorDataService.EditVendor(vendor.VendorId, vendor);
                     List<Promotion> promotions = await _promotionDataService.GetPromotions();
-                    
 
+                    //index for unique naming the promotion image
+                    int i = 1;
                     foreach(byte[] promotionImage in PromotionImageList)
                     {
                         PromotionImage promotionImageInstance = new PromotionImage()
                         {
                             Image = promotionImage,
-                            PromotionId = promotions[promotions.Count - 1].PromotionId
+                            PromotionId = promotions[promotions.Count - 1].PromotionId,
+                            ImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"] + "/" + "image" + i
                         };
 
                         await _promotionImageDataService.StorePromotion(promotionImageInstance);
+                        i++;
                     }
                                         
                     ShowViewModel<VendorProfilePageViewModel>(new { index = 0 });
