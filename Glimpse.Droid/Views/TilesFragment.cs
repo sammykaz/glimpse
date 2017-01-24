@@ -13,6 +13,11 @@ using Glimpse.Core.Model;
 using System.Collections.Generic;
 using Glimpse.Droid.Adapter;
 using Gemslibe.Xamarin.Droid.UI.SwipeCards;
+using Glimpse.Droid.Helpers;
+using Glimpse.Droid.Controls;
+using Android.Util;
+using Android.Content;
+using System.Threading.Tasks;
 
 namespace Glimpse.Droid.Views
 {
@@ -20,10 +25,12 @@ namespace Glimpse.Droid.Views
     [Register("glimpse.droid.views.TilesFragment")]
     public class TilesFragment : MvxFragment<TilesViewModel>, RadioGroup.IOnCheckedChangeListener
     {
-        RadioGroup _radioGroup;
+        private RadioGroup _radioGroup;
         private CardStack _cardStack;
         private CardAdapter _cardAdapter;
-        
+        private Button _likeButton;
+        private Button _dislikeButton;
+        private readonly int _discardDistancePx;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -37,19 +44,52 @@ namespace Glimpse.Droid.Views
             // (this.Activity as MainActivity).SetCustomTitle("Tiles");
             // _radioGroup = (RadioGroup)view.FindViewById(Resource.Id.filter_radiogroup);
             // _radioGroup.SetOnCheckedChangeListener(this);
-            InitializeImages();
+            
             _cardStack = (this.Activity as MainActivity).FindViewById<CardStack>(Resource.Id.card_stack);
             _cardStack.ContentResource = Resource.Layout.Card_Layout;
-            _cardStack.StackMargin = 20;
+            //Initializing the discard distance in pixels from the origin of the card stack.
+            _cardStack.CardEventListener = new CustomCardView.CardSwipeListener(Dp2Px(this.Context, 100), _cardStack);
+            InitializeImages();
+          
+            
+            _cardAdapter.OnCardSwipeActionEvent += _cardAdapter_OnCardSwipeActionEvent;
             _cardStack.Adapter = _cardAdapter;
+
+            //buttons
+           _likeButton = view.FindViewById<Button>(Resource.Id.btnLike);
+           _likeButton.Click += _likeButton_Click;
+           _dislikeButton = view.FindViewById<Button>(Resource.Id.btnDislike);
+           _dislikeButton.Click += _dislikeButton_Click;
         }
+
+      
+
+        private void _likeButton_Click(object sender, EventArgs e)
+        {
+            Toast.MakeText(this.Context, "Like", ToastLength.Short).Show();
+            (this.Activity as MainActivity).RunOnUiThread(() => _cardStack.DiscardTop(3, 1000));
+        }
+
+
+        private void _dislikeButton_Click(object sender, EventArgs e)
+        {
+            Toast.MakeText(this.Context, "Dislike", ToastLength.Short).Show();
+            (this.Activity as MainActivity).RunOnUiThread(() => _cardStack.DiscardTop(2, 1000));
+        }
+
+
+        private void _cardAdapter_OnCardSwipeActionEvent(string action)
+        {
+            Toast.MakeText(this.Context, action, ToastLength.Short).Show();
+        }
+      
 
         private void InitializeImages()
         {
-            _cardAdapter = new CardAdapter(this.Context, 0);
-            _cardAdapter.Add(Resource.Raw.promociones);
-            _cardAdapter.Add(Resource.Raw.promotion);
-            _cardAdapter.Add(Resource.Raw.promociones);
+            _cardAdapter = new CardAdapter(this.Context, Resource.Layout.Card_Layout);
+            _cardAdapter.Add(new CardModel { ImgResId = Resource.Raw.promociones });
+            _cardAdapter.Add(new CardModel { ImgResId = Resource.Raw.promociones });
+            _cardAdapter.Add(new CardModel { ImgResId = Resource.Raw.promociones });
         }
 
         public void OnCheckedChanged(RadioGroup group, int checkedId)
@@ -68,6 +108,13 @@ namespace Glimpse.Droid.Views
                 Categories category = (Categories)checkedId0BasedIndex;
                 ViewModel.SelectedItem = category;
             }
+        }
+
+  
+        public static int Dp2Px(Context context, int dip)
+        {
+            DisplayMetrics displayMetrics = context.Resources.DisplayMetrics;
+            return (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dip, displayMetrics);
         }
     }
 }

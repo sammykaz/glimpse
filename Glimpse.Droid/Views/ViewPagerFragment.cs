@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using Android.Support.V4.View;
 using static Android.Support.V4.View.ViewPager;
 using System;
-using Glimpse.Droid.Helpers;
+using Glimpse.Droid.Controls;
 
 namespace Glimpse.Droid.Views
 {
@@ -20,7 +20,7 @@ namespace Glimpse.Droid.Views
     [Register("glimpse.droid.views.ViewPagerFragment")]
     public class ViewPagerFragment : MvxFragment<ViewPagerViewModel>, IOnPageChangeListener, MainActivity.OnBackPressedListener
     {
-        private CustomViewPager _viewPager;
+        public static CustomViewPager _viewPager;
        // private ViewPager _viewPager;
         private MvxViewPagerFragmentAdapter _adapter;
 
@@ -57,6 +57,7 @@ namespace Glimpse.Droid.Views
             _viewPager.Adapter = _adapter;
             _viewPager.AddOnPageChangeListener(this);
             _viewPager.SetSwipeable(false);
+
         }
 
         public void OnPageScrollStateChanged(int state)
@@ -66,7 +67,7 @@ namespace Glimpse.Droid.Views
 
         public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
         {
-          
+
         }
 
         public async void OnPageSelected(int position)
