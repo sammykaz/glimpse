@@ -115,7 +115,7 @@ namespace Glimpse.Core.ViewModel
         }
 
 
-        private async Task<List<PromotionWithLocation>> GetPromotionsWithLocation()
+        public async Task<List<PromotionWithLocation>> GetPromotionsWithLocation()
         {
 
 

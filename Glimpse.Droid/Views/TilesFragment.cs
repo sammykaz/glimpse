@@ -18,6 +18,8 @@ using Glimpse.Droid.Controls;
 using Android.Util;
 using Android.Content;
 using System.Threading.Tasks;
+using Android.Graphics;
+using System.Linq;
 
 namespace Glimpse.Droid.Views
 {
@@ -31,6 +33,8 @@ namespace Glimpse.Droid.Views
         private Button _likeButton;
         private Button _dislikeButton;
         private readonly int _discardDistancePx;
+        private List<Bitmap> _ImageResources;
+        private List<byte[]> _byteImages;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -38,31 +42,39 @@ namespace Glimpse.Droid.Views
             return this.BindingInflate(Resource.Layout.CardSwipeView, null);
         }
 
-        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        public override async void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
             // (this.Activity as MainActivity).SetCustomTitle("Tiles");
             // _radioGroup = (RadioGroup)view.FindViewById(Resource.Id.filter_radiogroup);
             // _radioGroup.SetOnCheckedChangeListener(this);
-            
+
             _cardStack = (this.Activity as MainActivity).FindViewById<CardStack>(Resource.Id.card_stack);
             _cardStack.ContentResource = Resource.Layout.Card_Layout;
             //Initializing the discard distance in pixels from the origin of the card stack.
             _cardStack.CardEventListener = new CustomCardView.CardSwipeListener(Dp2Px(this.Context, 100), _cardStack);
-            InitializeImages();
-          
-            
+            await InitializeImages();
+
             _cardAdapter.OnCardSwipeActionEvent += _cardAdapter_OnCardSwipeActionEvent;
             _cardStack.Adapter = _cardAdapter;
 
             //buttons
-           _likeButton = view.FindViewById<Button>(Resource.Id.btnLike);
-           _likeButton.Click += _likeButton_Click;
-           _dislikeButton = view.FindViewById<Button>(Resource.Id.btnDislike);
-           _dislikeButton.Click += _dislikeButton_Click;
+            _likeButton = view.FindViewById<Button>(Resource.Id.btnLike);
+            _likeButton.Click += _likeButton_Click;
+            _dislikeButton = view.FindViewById<Button>(Resource.Id.btnDislike);
+            _dislikeButton.Click += _dislikeButton_Click;
         }
 
-      
+        private async Task InitializeImages()
+        {
+            _byteImages = (await ViewModel.GetPromotionsWithLocation()).Select(p => p.Image).ToList();
+            _cardAdapter = new CardAdapter(this.Context, Resource.Layout.Card_Layout);
+            foreach (byte[] image in _byteImages)
+            {
+                _cardAdapter.Add(new CardModel { Image = image });
+            }    
+        }
+
 
         private void _likeButton_Click(object sender, EventArgs e)
         {
@@ -82,15 +94,9 @@ namespace Glimpse.Droid.Views
         {
             Toast.MakeText(this.Context, action, ToastLength.Short).Show();
         }
-      
 
-        private void InitializeImages()
-        {
-            _cardAdapter = new CardAdapter(this.Context, Resource.Layout.Card_Layout);
-            _cardAdapter.Add(new CardModel { ImgResId = Resource.Raw.promociones });
-            _cardAdapter.Add(new CardModel { ImgResId = Resource.Raw.promociones });
-            _cardAdapter.Add(new CardModel { ImgResId = Resource.Raw.promociones });
-        }
+
+    
 
         public void OnCheckedChanged(RadioGroup group, int checkedId)
         {

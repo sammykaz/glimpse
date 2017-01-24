@@ -12,6 +12,7 @@ using Android.Widget;
 using Gemslibe.Xamarin.Droid.UI.SwipeCards;
 using Glimpse.Core.Model;
 using Glimpse.Droid.Controls;
+using Android.Graphics;
 
 namespace Glimpse.Droid.Adapter
 {
@@ -37,7 +38,7 @@ namespace Glimpse.Droid.Adapter
             var cm = (CardModel)GetItem(position);
             var imgProduct = convertView.FindViewById<ImageView>(Resource.Id.imgProduct);
 
-            imgProduct.SetImageResource(cm.ImgResId);
+            imgProduct.SetImageBitmap(BitmapFactory.DecodeByteArray(cm.Image, 0, cm.Image.Length));
         }
     }
 }

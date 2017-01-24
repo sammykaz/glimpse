@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Glimpse.Core.Model
 {
     public class CardModel
-    {
-        public int ImgResId { get; set; }
+    {    
+        public byte[] Image { get; set; }
     }
 }
