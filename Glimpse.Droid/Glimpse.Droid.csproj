@@ -353,13 +353,14 @@
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
+    <Compile Include="Controls\CustomCardView.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Extensions\ActivityExtensions.cs" />
     <Compile Include="Extensions\MonoTypeExtensions.cs" />
     <Compile Include="Helpers\BindableProgress.cs" />
     <Compile Include="Helpers\BitmapProcessing.cs" />
     <Compile Include="Helpers\ByteArrayImageValueConverter.cs" />
-    <Compile Include="Helpers\CustomViewPager.cs" />
+    <Compile Include="Controls\CustomViewPager.cs" />
     <Compile Include="Helpers\LatLngValueConverter.cs" />
     <Compile Include="Helpers\ObjectByteArrayConversion.cs" />
     <Compile Include="Helpers\PromotionItem.cs" />
@@ -494,7 +495,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\PromotionAndDistanceTemplate.axml" />
-    <AndroidResource Include="Resources\layout\ViewPagerView.axml" />
+    <AndroidResource Include="Resources\layout\ViewPagerView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\PromotionDialogView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
