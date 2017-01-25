@@ -9,5 +9,6 @@ namespace Glimpse.Core.Model
     public class CardModel
     {    
         public byte[] Image { get; set; }
+        public int PromotionId { get; set; }
     }
 }
