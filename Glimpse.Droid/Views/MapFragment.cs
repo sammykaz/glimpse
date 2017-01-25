@@ -315,13 +315,19 @@ namespace Glimpse.Droid.Views
 
         public void OnCheckedChanged(RadioGroup group, int checkedId)
         {
-            if (checkedId == 1)
+            //radio group index is based on 1, making base 0
+            checkedId = checkedId - 1;
+
+            //radio group index seem to be incremented by 7 randomly, might be issue with MvxRadioGroup
+            checkedId = checkedId % 7;
+            if (checkedId == 0)
             {
                 ViewModel.SelectedItem = null;
+                GetAllActivePromotions();         
             }
             else
             {
-                int checkedId0BasedIndex = checkedId - 2;
+                int checkedId0BasedIndex = checkedId - 1;
                 Categories category = (Categories)checkedId0BasedIndex;
                 ViewModel.SelectedItem = category;
             }
@@ -331,6 +337,11 @@ namespace Glimpse.Droid.Views
             ShowPromotionsOnMap();
         }
 
+
+        private async void GetAllActivePromotions()
+        {
+            await ViewModel.GetActivePromotions();
+        }
         /*
                 //Note that the type "Items" will be whatever type of object you're adding markers for so you'll
                 //likely want to create a List of whatever type of items you're trying to add to the map and edit this appropriately

@@ -37,6 +37,8 @@ namespace Glimpse.Core.Model
 
         public byte[] PromotionImage { get; set; }
 
+        public string PromotionImageURL { get; set; }
+
     }
 
     public enum Categories

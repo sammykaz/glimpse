@@ -14,5 +14,6 @@ namespace Glimpse.Core.Model
 
         public int PromotionId { get; set; }
 
+        public string ImageURL { get; set; }
     }
 }

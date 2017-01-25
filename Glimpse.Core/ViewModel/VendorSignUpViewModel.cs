@@ -124,6 +124,18 @@ namespace Glimpse.Core.ViewModel
         }
 
 
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                RaisePropertyChanged(() => IsBusy);
+            }
+        }
+
+
         private bool _validEmail;
         public bool ValidEmail
         {
@@ -138,30 +150,46 @@ namespace Glimpse.Core.ViewModel
             set { _validPassword = value; }
         }
 
+
+        /// <summary>
+        /// Init method so that list is refreshed when show view model is called
+        /// The parameter is required to be able to get this method called since none exist with empty argument...
+        /// </summary>
+        /// <param name="index"></param>
+        public void Init(int index)
+        {
+            ErrorMessage = "";
+        }
+
         public MvxCommand SignUpCommand
         {
             get
             {
                 return new MvxCommand(async () =>
                 {
+                    IsBusy = true;
                     if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(CompanyName) || string.IsNullOrEmpty(Address) || string.IsNullOrEmpty(BusinessPhoneNumber) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(ConfirmPassword))
                     {
                         ErrorMessage = "Missing required field";
+                        IsBusy = false;
                     }
                     //Check email validation
                     else if (!ValidEmail)
                     {
                         ErrorMessage = "Email is not valid";
+                        IsBusy = false;
                     }
                     //Password validation
                     else if (!ValidPassword)
                     {
                         ErrorMessage = "Passwords do not match";
+                        IsBusy = false;
                     }                   
                     //Check if email exists in db
                     else if (await _vendorDataService.CheckIfVendorExists(Email))
                     {
                         ErrorMessage = Email + " is already being used";
+                        IsBusy = false;
                     }
                     else
                     {
@@ -179,6 +207,7 @@ namespace Glimpse.Core.ViewModel
                         Settings.Email = _email;
 
                         await _vendorDataService.SignUp(newVendor);
+                        IsBusy = false;
 
                         ShowViewModel<MapViewModel>();
                     }

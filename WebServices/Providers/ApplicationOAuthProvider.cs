@@ -11,17 +11,20 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using WebServices.Models;
 using Glimpse.Core.Contracts.Services;
-using Plugin.RestClient;
+//using Plugin.RestClient;
 using Glimpse.Core.Services.General;
+using System.Net;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace WebServices.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
-
+        private readonly string WebServiceUrl = "http://glimpsews.azurewebsites.net/api/vendors/";
         private Vendor currentVendor;
-        RestClient<Vendor> restClient = new RestClient<Vendor>();
+        //RestClient<Vendor> restClient = new RestClient<Vendor>();
 
         public ApplicationOAuthProvider(string publicClientId)
         {
@@ -32,11 +35,31 @@ namespace WebServices.Providers
             _publicClientId = publicClientId;
         }
 
+        public async Task<Vendor> GetByKeyword(string keyword, bool slashRequired = false)
+        {
+
+            var httpClient = new HttpClient();
+
+            string request = WebServiceUrl + "Search/" + keyword;
+
+            if (slashRequired)
+                request = request + "/";
+
+            var json = await httpClient.GetStringAsync(request);
+
+            var taskModel = JsonConvert.DeserializeObject<Vendor>(json);
+
+            return taskModel;
+        }
+
+
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            currentVendor = await restClient.GetByKeyword(context.UserName, true);
 
+            //currentVendor = await restClient.GetByKeyword(context.UserName, true);
+
+            currentVendor = await GetByKeyword(context.UserName, true);
             //context.SetError("invalid_grant", currentVendor.Email + "pass: " + context.Password + "encrypted pass: " + currentVendor.Password);
             //return;
             //string password = context.Password;

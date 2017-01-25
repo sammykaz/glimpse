@@ -30,7 +30,10 @@ namespace WebServices.Models
 
         public DateTime PromotionEndDate { get; set; }
  
-        public byte[] PromotionImage { get; set;}
+        public string PromotionImageURL { get; set;}
+
+        [NotMapped]
+        public byte[] PromotionImage { get; set; }
 
         public virtual ICollection<PromotionImage> PromotionImages { get; set; }
 

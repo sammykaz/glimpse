@@ -20,6 +20,8 @@ using Android.Util;
 using Glimpse.Core.Model;
 using Android.Text;
 using Java.Lang;
+using Glimpse.Droid.Helpers;
+using MvvmCross.Binding.BindingContext;
 
 namespace Glimpse.Droid.Views
 {
@@ -33,7 +35,7 @@ namespace Glimpse.Droid.Views
         private EditText _password;
         private EditText _confirmPassword;
         private EditText _email;
-
+        private BindableProgress _bindableProgress;
 
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -59,6 +61,12 @@ namespace Glimpse.Droid.Views
 
             _confirmPassword = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtConfirmPassword);
             _confirmPassword.AfterTextChanged += _confirmPassword_AfterTextChanged;
+
+            _bindableProgress = new BindableProgress(this.Context);
+            _bindableProgress.Title = "Sign up in progress...";
+            var set = this.CreateBindingSet<VendorSignUpFragment, VendorSignUpViewModel>();
+            set.Bind(_bindableProgress) .For(p => p.Visible).To(vm => vm.IsBusy);
+            set.Apply();
 
             //Sends email on click
             /* Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);

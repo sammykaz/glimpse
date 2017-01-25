@@ -56,7 +56,7 @@ namespace WebServices.Migrations
                     Category = GetRandomCategory(),
                     PromotionStartDate = DateTime.Now,
                     PromotionEndDate = GetRandomDate(),
-                    PromotionImage = GetByteArrayOfRandomImage(),
+                    //PromotionImage = GetByteArrayOfRandomImage(),
                     // need to access the vendors i just created
                     VendorId = vendorId                    
                 });

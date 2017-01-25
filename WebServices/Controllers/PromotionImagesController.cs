@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using WebServices.Helpers;
 using WebServices.Models;
 
 namespace WebServices.Controllers
@@ -74,6 +75,9 @@ namespace WebServices.Controllers
         [ResponseType(typeof(PromotionImage))]
         public IHttpActionResult PostPromotionImage(PromotionImage promotionImage)
         {
+            BlobHelper bh = new BlobHelper("storageglimpse", "UTaxV/U+abo8S1ORGCTyAVH4dUoFxl5jonIxMNAK/GUNP5u0IbNxa8WxyJpWbrg2aeUlm6S1NAkph/hW3i69wQ==", "imagestorage");
+            bh.UploadFromByteArray(promotionImage.Image, promotionImage.ImageURL);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

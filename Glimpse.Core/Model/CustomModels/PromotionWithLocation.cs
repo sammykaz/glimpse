@@ -23,6 +23,8 @@ namespace Glimpse.Core.Model
 
         public byte[] Image { get; set; }
 
+        public string ImageURL { get; set; }
+
         public DateTime PromotionStartDate { get; set; }
 
         public DateTime PromotionEndDate { get; set; }

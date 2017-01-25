@@ -1,5 +1,6 @@
 ﻿using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Contracts.Services;
+using Glimpse.Core.Helpers;
 using Glimpse.Core.Model;
 using System;
 using System.Collections.Generic;
@@ -27,8 +28,12 @@ namespace Glimpse.Core.Services.Data
 
         public async Task<List<byte[]>> GetImageListFromPromotionWithLocationId(int id)
         {
-            List<PromotionImage> allPromotionImages = await GetPromotionImages();
-            List<byte[]> listofImages = allPromotionImages.Where(x => (x.PromotionId == id)).Select(x => x.Image).ToList();
+            List<PromotionImage> allPromotionImages = (await GetPromotionImages()).Where(x => (x.PromotionId == id)).ToList();
+            List<byte[]> listofImages = new List<byte[]>();
+            foreach (PromotionImage pi in allPromotionImages)
+            {
+                listofImages.Add(await BlobService.GetBlob(pi.ImageURL));
+            }
 
             return listofImages;
         }
