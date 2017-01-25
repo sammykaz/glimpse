@@ -18,19 +18,29 @@ namespace Glimpse.Droid.Adapter
 {
     public class CardAdapter : CardStackAdapter
     {
-        public CardAdapter(Context context, int resource):base(context,resource)
+        View _parentFragmentView;
+        public CardAdapter(Context context, int resource, View parentFragmentView) :base(context,resource)
         {
+            _parentFragmentView = parentFragmentView;
         }
 
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
+         
             var view = ((CustomCardView)convertView);           
-            view.OnCardSwipeActionEvent += action => { OnCardSwipeActionEvent?.Invoke(action); };
+            //view.OnCardSwipeActionEvent += action => { OnCardSwipeActionEvent?.Invoke(action); };
+            //buttons
+            var likeButton =  _parentFragmentView.FindViewById<Button>(Resource.Id.btnLike);
+            var dislikeButton = _parentFragmentView.FindViewById<Button>(Resource.Id.btnDislike);
+            likeButton.Click += (sender, args) => { OnTapButtonsEvent?.Invoke("Like"); };
+
+            dislikeButton.Click += (sender, args) => { OnTapButtonsEvent?.Invoke("Dislike"); };
+
 
             return convertView;
         }
-       
+        public event Action<string> OnTapButtonsEvent;
         public event Action<string> OnCardSwipeActionEvent;
 
         public override void BindView(int position, View convertView, ViewGroup parent)
