@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using Android.Support.V4.View;
 using static Android.Support.V4.View.ViewPager;
 using System;
+using Glimpse.Droid.Controls;
 
 namespace Glimpse.Droid.Views
 {
@@ -19,8 +20,8 @@ namespace Glimpse.Droid.Views
     [Register("glimpse.droid.views.ViewPagerFragment")]
     public class ViewPagerFragment : MvxFragment<ViewPagerViewModel>, IOnPageChangeListener, MainActivity.OnBackPressedListener
     {
-
-        private ViewPager _viewPager;
+        public static CustomViewPager _viewPager;
+       // private ViewPager _viewPager;
         private MvxViewPagerFragmentAdapter _adapter;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -37,21 +38,21 @@ namespace Glimpse.Droid.Views
 
             var fragments = new List<MvxViewPagerFragmentAdapter.FragmentInfo>
                   {
-                    new MvxViewPagerFragmentAdapter.FragmentInfo
+                     new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
                       FragmentType = typeof(Views.MapFragment),
                       Title = "Fragment1",
                       ViewModel = ViewModel.MapViewModel
-                        },
+                     },
                     new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
                       FragmentType = typeof(Views.TilesFragment),
                       Title = "Fragment2",
                       ViewModel = ViewModel.TilesViewModel
-                    }
+                    },               
                   };
 
-            _viewPager = View.FindViewById<ViewPager>(Resource.Id.viewPager);
+            _viewPager = View.FindViewById<CustomViewPager>(Resource.Id.viewPager);
             _adapter = new MvxViewPagerFragmentAdapter(this.Context, ChildFragmentManager, fragments);
             _viewPager.Adapter = _adapter;
             _viewPager.AddOnPageChangeListener(this);
@@ -64,7 +65,7 @@ namespace Glimpse.Droid.Views
 
         public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
         {
-            //throw new NotImplementedException();
+
         }
 
         public async void OnPageSelected(int position)
@@ -73,7 +74,7 @@ namespace Glimpse.Droid.Views
                 (this.Activity as MainActivity).SetCustomTitle("Map");
             else if (position == 1)
             {
-                (this.Activity as MainActivity).SetCustomTitle("Tiles");
+                (this.Activity as MainActivity).SetCustomTitle("CardView");
                  await ViewModel.TilesViewModel.ReloadAsync();
             }
         }
@@ -91,5 +92,6 @@ namespace Glimpse.Droid.Views
                 (this.Activity as MainActivity).OnBackPressed();
             }
         }
+
     }
 }

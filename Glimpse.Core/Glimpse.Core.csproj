@@ -74,6 +74,7 @@
     <Compile Include="Model\App\MenuItem.cs" />
     <Compile Include="Model\App\SearchParameters.cs" />
     <Compile Include="Model\BaseModel.cs" />
+    <Compile Include="Model\CardModel.cs" />
     <Compile Include="Model\CustomModels\DistanceMatrix.cs" />
     <Compile Include="Model\Promotion.cs" />
     <Compile Include="Model\Location.cs" />
