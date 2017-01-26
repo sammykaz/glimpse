@@ -57,10 +57,7 @@ namespace Glimpse.Droid.Views
 
             _cardAdapter.OnCardSwipeActionEvent += _cardAdapter_OnCardSwipeActionEvent;
             _cardAdapter.OnTapButtonsEvent += _cardAdapter_OnTapButtonsEvent;
-            _cardStack.Adapter = _cardAdapter;
-
-            
-        
+            _cardStack.Adapter = _cardAdapter;      
         }
 
         private async Task InitializeImages()
