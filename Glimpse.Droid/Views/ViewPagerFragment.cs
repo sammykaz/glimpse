@@ -34,22 +34,22 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as MainActivity).setOnBackPressedListener(this);
-            (this.Activity as MainActivity).SetCustomTitle("CardView");
+            (this.Activity as MainActivity).SetCustomTitle("Map");
 
             var fragments = new List<MvxViewPagerFragmentAdapter.FragmentInfo>
                   {
+                     new MvxViewPagerFragmentAdapter.FragmentInfo
+                    {
+                      FragmentType = typeof(Views.MapFragment),
+                      Title = "Fragment1",
+                      ViewModel = ViewModel.MapViewModel
+                     },
                     new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
                       FragmentType = typeof(Views.TilesFragment),
-                      Title = "Fragment1",
-                      ViewModel = ViewModel.TilesViewModel
-                    },
-                    new MvxViewPagerFragmentAdapter.FragmentInfo
-                    {
-                      FragmentType = typeof(Views.MapFragment),
                       Title = "Fragment2",
-                      ViewModel = ViewModel.MapViewModel
-                     }
+                      ViewModel = ViewModel.TilesViewModel
+                    },               
                   };
 
             _viewPager = View.FindViewById<CustomViewPager>(Resource.Id.viewPager);
@@ -71,10 +71,10 @@ namespace Glimpse.Droid.Views
         public async void OnPageSelected(int position)
         {
             if (position == 0)
-                (this.Activity as MainActivity).SetCustomTitle("CardView");
+                (this.Activity as MainActivity).SetCustomTitle("Map");
             else if (position == 1)
             {
-                (this.Activity as MainActivity).SetCustomTitle("Map");
+                (this.Activity as MainActivity).SetCustomTitle("CardView");
                  await ViewModel.TilesViewModel.ReloadAsync();
             }
         }
