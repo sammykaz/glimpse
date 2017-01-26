@@ -34,7 +34,7 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as MainActivity).setOnBackPressedListener(this);
-            (this.Activity as MainActivity).SetCustomTitle("Map");
+            (this.Activity as MainActivity).SetCustomTitle("CardView");
 
             var fragments = new List<MvxViewPagerFragmentAdapter.FragmentInfo>
                   {
@@ -56,8 +56,6 @@ namespace Glimpse.Droid.Views
             _adapter = new MvxViewPagerFragmentAdapter(this.Context, ChildFragmentManager, fragments);
             _viewPager.Adapter = _adapter;
             _viewPager.AddOnPageChangeListener(this);
-            _viewPager.SetSwipeable(false);
-
         }
 
         public void OnPageScrollStateChanged(int state)

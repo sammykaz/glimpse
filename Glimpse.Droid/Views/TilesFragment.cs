@@ -31,11 +31,13 @@ namespace Glimpse.Droid.Views
         private RadioGroup _radioGroup;
         private CardStack _cardStack;
         private CardAdapter _cardAdapter;
+        private CustomViewPager _viewPager;
         private List<PromotionWithLocation> _promotionWithLocationList;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
+            _viewPager = (CustomViewPager)container;
             return this.BindingInflate(Resource.Layout.CardSwipeView, null);
         }
 
@@ -50,7 +52,7 @@ namespace Glimpse.Droid.Views
             _cardStack.ContentResource = Resource.Layout.Card_Layout;
 
             //Initializing the discard distance in pixels from the origin of the card stack.
-            _cardStack.CardEventListener = new CardSwipeListener(DpToPx(this.Context, 100), _cardStack);
+            _cardStack.CardEventListener = new CardSwipeListener(DpToPx(this.Context, 100), _cardStack, _viewPager);
             await InitializeImages();
 
             _cardAdapter.OnCardSwipeActionEvent += _cardAdapter_OnCardSwipeActionEvent;

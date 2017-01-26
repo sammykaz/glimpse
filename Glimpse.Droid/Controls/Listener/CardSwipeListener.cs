@@ -21,12 +21,14 @@ namespace Glimpse.Droid.Controls.Listener
         private readonly int _discardDistancePx;
         private readonly CardStack _cardStack;
         private bool _swipeDiscard;
+        private CustomViewPager _viewPager;
         public event Action<string> OnCardSwipeActionEvent;
 
-        public CardSwipeListener(int discardDistancePx, CardStack cardStack)
+        public CardSwipeListener(int discardDistancePx, CardStack cardStack, CustomViewPager viewPager)
         {
             _discardDistancePx = discardDistancePx;
             _cardStack = cardStack;
+            _viewPager = viewPager;
             _swipeDiscard = false;
         }
 
@@ -39,12 +41,14 @@ namespace Glimpse.Droid.Controls.Listener
             {
                 var action = (x2 < x1) ? "Dislike" : "Like";
                 OnCardSwipeActionEvent?.Invoke(action);
-            }            
+            }
+            _viewPager.SetSwipeable(true);
             return _swipeDiscard;
         }
 
         public bool SwipeStart(int section, float x1, float y1, float x2, float y2)
         {
+            _viewPager.SetSwipeable(false);
             return false;
         }
 
