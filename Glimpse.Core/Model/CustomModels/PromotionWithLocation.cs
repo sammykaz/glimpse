@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite.Net.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Glimpse.Core.Model
 {
     public class PromotionWithLocation
     {
-
+        [PrimaryKey, AutoIncrement]
         public int VendorId { get; set; }
 
         public string Title { get; set; }
@@ -29,6 +30,7 @@ namespace Glimpse.Core.Model
 
         public DateTime PromotionEndDate { get; set; }
 
+        [Ignore]
         public Location Location { get; set; }
 
         public int PromotionId { get; set; }
