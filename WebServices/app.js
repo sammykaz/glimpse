@@ -49,6 +49,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             controller: 'analysisController',
             templateUrl: 'src/views/analysisView.html'
         })
+        .state('home.vendorsPromotions', {
+            url: '/my-promotions',
+            controller: 'vendorsPromotionsController',
+            templateUrl: 'src/views/vendorsPromotionsView.html'
+        })
 })
 /*.config(function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
