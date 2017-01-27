@@ -97,7 +97,7 @@
     <Compile Include="Services\Data\PromotionImageDataService.cs" />
     <Compile Include="Services\Data\VendorDataService.cs" />
     <Compile Include="Services\Data\UserDataService.cs" />
-    <Compile Include="Services\General\BlobService.cs" />
+    <Compile Include="BlobClient\BlobClient.cs" />
     <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Services\General\GoogleWebService.cs" />
     <Compile Include="Services\General\Settings.cs" />

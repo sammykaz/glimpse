@@ -9,11 +9,10 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Glimpse.Core.Helpers
+namespace Glimpse.Core.BlobClient
 {
-    public class BlobService
+    public class BlobClient
     {
-
         public static class AzureStorageConstants
         {
             public static string Account = "storageglimpse";

@@ -32,7 +32,7 @@ namespace Glimpse.Core.Services.Data
             List<byte[]> listofImages = new List<byte[]>();
             foreach (PromotionImage pi in allPromotionImages)
             {
-                listofImages.Add(await BlobService.GetBlob(pi.ImageURL));
+                listofImages.Add(await BlobClient.BlobClient.GetBlob(pi.ImageURL));
             }
 
             return listofImages;
@@ -47,5 +47,7 @@ namespace Glimpse.Core.Services.Data
         {
             await promotionImageRepository.StorePromotionImage(promotionImage);
         }
+
+
     }
 }
