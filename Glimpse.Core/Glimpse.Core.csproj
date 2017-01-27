@@ -77,7 +77,6 @@
     <Compile Include="Model\App\MenuItem.cs" />
     <Compile Include="Model\App\SearchParameters.cs" />
     <Compile Include="Model\BaseModel.cs" />
-    <Compile Include="Model\CardModel.cs" />
     <Compile Include="Model\CustomModels\DistanceMatrix.cs" />
     <Compile Include="Model\Promotion.cs" />
     <Compile Include="Model\Location.cs" />
@@ -102,7 +101,7 @@
     <Compile Include="Services\Data\PromotionImageDataService.cs" />
     <Compile Include="Services\Data\VendorDataService.cs" />
     <Compile Include="Services\Data\UserDataService.cs" />
-    <Compile Include="Services\General\BlobService.cs" />
+    <Compile Include="BlobClient\BlobClient.cs" />
     <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Services\General\GoogleWebService.cs" />
     <Compile Include="Services\General\Settings.cs" />
