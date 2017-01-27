@@ -6,21 +6,20 @@ using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Droid.Support.V4;
 using Glimpse.Core.ViewModel;
 using Glimpse.Droid.Activities;
-using Glimpse.Droid.Extensions;
 using Android.Widget;
-using System;
 using Glimpse.Core.Model;
 using System.Collections.Generic;
 using Glimpse.Droid.Adapter;
 using Gemslibe.Xamarin.Droid.UI.SwipeCards;
-using Glimpse.Droid.Helpers;
 using Glimpse.Droid.Controls;
 using Android.Util;
 using Android.Content;
 using System.Threading.Tasks;
-using Android.Graphics;
-using System.Linq;
 using Glimpse.Droid.Controls.Listener;
+using Glimpse.Core.Contracts.Repository;
+using Glimpse.Core.Repositories;
+using System.IO;
+using SQLite.Net.Platform.XamarinAndroid;
 
 namespace Glimpse.Droid.Views
 {
@@ -33,6 +32,7 @@ namespace Glimpse.Droid.Views
         private CardAdapter _cardAdapter;
         private CustomViewPager _viewPager;
         private List<PromotionWithLocation> _promotionWithLocationList;
+        private LocalPromotionRepository _localPromotionRepository;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -51,16 +51,23 @@ namespace Glimpse.Droid.Views
             _cardStack = (this.Activity as MainActivity).FindViewById<CardStack>(Resource.Id.card_stack);
             _cardStack.ContentResource = Resource.Layout.Card_Layout;
 
+            //initializing the repo to store liked promotions locally to pass to the card swipe listener
+            _localPromotionRepository = new LocalPromotionRepository();
+            var path = GetDbPath();
+            await _localPromotionRepository.InitializeAsync(path, new SQLitePlatformAndroid());
+
             //Initializing the discard distance in pixels from the origin of the card stack.
-            _cardStack.CardEventListener = new CardSwipeListener(DpToPx(this.Context, 100), _cardStack, _viewPager);
+            _cardStack.CardEventListener = new CardSwipeListener(DpToPx(this.Context, 100), _cardStack, _viewPager, _localPromotionRepository);
             await InitializeImages();
 
             _cardAdapter.OnCardSwipeActionEvent += _cardAdapter_OnCardSwipeActionEvent;
             _cardAdapter.OnTapButtonsEvent += _cardAdapter_OnTapButtonsEvent;
             _cardStack.Adapter = _cardAdapter;
 
-            
-        
+
+
+
+
         }
 
         private async Task InitializeImages()
@@ -117,5 +124,12 @@ namespace Glimpse.Droid.Views
             DisplayMetrics displayMetrics = context.Resources.DisplayMetrics;
             return (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, dip, displayMetrics);
         }
+
+        private string GetDbPath()
+        {
+            string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            return Path.Combine(documentsPath, "Todo.db3");
+        }
+
     }
 }
