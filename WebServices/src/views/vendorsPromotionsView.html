@@ -19,17 +19,12 @@
                             <td>{{promotion.Title}}</td>
                             <td>{{promotion.PromotionStartDate  | date : "fullDate"}}</td>
                             <td>{{promotion.PromotionEndDate  | date : "fullDate"}}</td>
-                            <td ><span ng-show="isPromotionExpired(promotion.PromotionEndDate)">Expired</span><span ng-hide="isPromotionExpired(promotion.PromotionEndDate)">Ongoing</span></td>
+                            <td><span ng-show="isPromotionExpired(promotion.PromotionEndDate)">Expired</span><span ng-hide="isPromotionExpired(promotion.PromotionEndDate)">Ongoing</span></td>
                             <th><button type="button" class="btn btn-success" ng-click="editPromotion(promotion)">Edit</button>
                                 <button type="button" class="btn btn-danger" ng-click="deletePromotion(promotion, promotions.indexOf(promotion))">Delete</button>
                                 <button ng-show="isPromotionExpired(promotion.PromotionEndDate)" type="button" class="btn btn-info" ng-click="editPromotionDate(promotion)">Repost</button>
                             </th>
                         </tr>
-
-                        <span ng-show="isPromotionExpired(promotion.PromotionEndDate)" class="promotion-expired pull-right">
-                            <span>Expired</span>
-                            <button type="button" class="btn btn-info" ng-click="editPromotionDate(promotion)">Re-post</button>
-                        </span>
                     </tbody>
                 </table>
             </div>
