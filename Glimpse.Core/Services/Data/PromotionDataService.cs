@@ -7,9 +7,8 @@ using Android.OS;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Contracts.Services;
 using Glimpse.Core.Model;
-using Glimpse.Core.Services.General;
-using Glimpse.Core.Services.Data;
-using Glimpse.Core.Helpers;
+using Glimpse.Core.BlobClient;
+
 
 namespace Glimpse.Core.Services.Data
 {
@@ -93,7 +92,7 @@ namespace Glimpse.Core.Services.Data
             {
                 if(promo.Image == null)
                 {
-                    promo.Image = await BlobService.GetBlob(promo.ImageURL);
+                    promo.Image = await BlobClient.BlobClient.GetBlob(promo.ImageURL);
                 }
             }
 

@@ -13,8 +13,9 @@ using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Glimpse.Core.BlobClient;
 using Glimpse.Core.Model;
-using Glimpse.Droid.Helpers;
+
 
 namespace Glimpse.Droid.Adapter
 {
@@ -24,7 +25,10 @@ namespace Glimpse.Droid.Adapter
         private RecyclerView recyclerView;
         private Context context;
         private int mCurrentPosition = -1;
+        
+        BlobClient _client = new BlobClient();
 
+        
         public PromotionDialogRecyclerAdapter(List<PromotionWithLocation> promotion, RecyclerView recyclerView, Context context)
         {
             this.currentPromotion = new List<PromotionWithLocation>();
@@ -80,13 +84,16 @@ namespace Glimpse.Droid.Adapter
 
         }
 
-        public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+        public override async void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
                 MyView myHolder = holder as MyView;
                 myHolder.CompanyNameTextView.Text = currentPromotion[position].CompanyName;
                 myHolder.TitleTextView.Text = currentPromotion[position].Title;
                 myHolder.DescriptionTextView.Text = currentPromotion[position].Description;
-                myHolder.PromotionImageView.SetImageBitmap(BitmapFactory.DecodeByteArray(currentPromotion[position].Image, 0, currentPromotion[position].Image.Length));
+
+                byte[] promotionImage = await BlobClient.GetBlob(currentPromotion[position].ImageURL);
+
+                myHolder.PromotionImageView.SetImageBitmap(BitmapFactory.DecodeByteArray(promotionImage, 0, promotionImage.Length));
             myHolder.ExpirationDateTextView.Text = "Expiring " + currentPromotion[position].PromotionEndDate.ToString("MMMM dd, yyyy");
 
 
