@@ -11,6 +11,10 @@ using Android.Views;
 using Android.Widget;
 using Gemslibe.Xamarin.Droid.UI.SwipeCards;
 using Glimpse.Droid.Controls;
+using System.IO;
+using Glimpse.Core.Repositories;
+using Glimpse.Core.Contracts.Repository;
+using Glimpse.Core.Model;
 
 namespace Glimpse.Droid.Controls.Listener
 {
@@ -23,14 +27,16 @@ namespace Glimpse.Droid.Controls.Listener
         private bool _swipeDiscard;
         private CustomViewPager _viewPager;
         public event Action<string> OnCardSwipeActionEvent;
+        private LocalPromotionRepository _localPromotionRepository;
 
-        public CardSwipeListener(int discardDistancePx, CardStack cardStack, CustomViewPager viewPager)
+        public CardSwipeListener(int discardDistancePx, CardStack cardStack, CustomViewPager viewPager, LocalPromotionRepository localPromotionRepository)
         {
             _discardDistancePx = discardDistancePx;
             _cardStack = cardStack;
             _viewPager = viewPager;
-            _swipeDiscard = false;
-        }
+            _swipeDiscard = false;   
+            _localPromotionRepository = localPromotionRepository;
+    }
 
         public bool SwipeEnd(int section, float x1, float y1, float x2, float y2)
         {
@@ -74,11 +80,19 @@ namespace Glimpse.Droid.Controls.Listener
                 dosomething(index, direction);
         }
 
-        private void dosomething(int index, int direction)
+        private async void dosomething(int index, int direction)
         {
-            //direction: 2=dislike, 3=like
-           
-            var x = _cardStack.Adapter.GetItem(index);  // to get discarded promotion 
+            CardModel promotionId = (CardModel)_cardStack.Adapter.GetItem(index);  // to get discarded promotion 
+            
+
+            if (index == 3)
+            {
+                await _localPromotionRepository.Insert(promotion);
+            }
+
+            var x = await _localPromotionRepository.GetAllAsync();
+            string test = "";
         }
+
     }
 }
