@@ -13,5 +13,7 @@ namespace Glimpse.Core.Contracts.Repository
 
         Task<PromotionWithLocation> Delete(PromotionWithLocation promotionWithLocation);
 
+        Task<List<PromotionWithLocation>> GetPromotions();
+
     }
 }

@@ -117,8 +117,6 @@ namespace Glimpse.Core.ViewModel
 
         public async Task<List<PromotionWithLocation>> GetPromotionsWithLocation()
         {
-
-
             var mapPromotions = await _promotionDataService.GetActivePromotions();
 
 

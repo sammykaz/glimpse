@@ -9,10 +9,10 @@ namespace Glimpse.Core.Contracts.Services
 {
     public interface ILocalPromotionDataService
     {
-        void Insert(PromotionWithLocation promotionWithLocation);
+        Task Insert(PromotionWithLocation promotionWithLocation);
 
-        void Delete(PromotionWithLocation promotionWithLocation);
+        Task Delete(PromotionWithLocation promotionWithLocation);
 
-        int Count { get; }
+        Task<List<PromotionWithLocation>> GetPromotions();
     }
 }
