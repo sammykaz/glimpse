@@ -66,7 +66,7 @@ namespace Glimpse.Droid.Views
             _cardAdapter = new CardAdapter(this.Context, Resource.Layout.Card_Layout, this.View);
             foreach (PromotionWithLocation promo in _promotionWithLocationList)
             {
-                _cardAdapter.Add(new CardModel { Image = promo.Image, PromotionId = promo.PromotionId });
+                _cardAdapter.Add(promo);
             }
         }
 
