@@ -27,10 +27,6 @@ namespace Glimpse.Droid.Adapter
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-         
-            var view = ((CustomCardView)convertView);           
-            //view.OnCardSwipeActionEvent += action => { OnCardSwipeActionEvent?.Invoke(action); };
-            //buttons
             var likeButton =  _parentFragmentView.FindViewById<Button>(Resource.Id.btnLike);
             var dislikeButton = _parentFragmentView.FindViewById<Button>(Resource.Id.btnDislike);
             likeButton.Click += (sender, args) => { OnTapButtonsEvent?.Invoke("Like"); };
@@ -45,10 +41,10 @@ namespace Glimpse.Droid.Adapter
 
         public override void BindView(int position, View convertView, ViewGroup parent)
         {
-            var cm = (CardModel)GetItem(position);
+            var pwlm = (PromotionWithLocation)GetItem(position);
             var imgProduct = convertView.FindViewById<ImageView>(Resource.Id.imgProduct);
 
-            imgProduct.SetImageBitmap(BitmapFactory.DecodeByteArray(cm.Image, 0, cm.Image.Length));
+            imgProduct.SetImageBitmap(BitmapFactory.DecodeByteArray(pwlm.Image, 0, pwlm.Image.Length));
         }
     }
 }
