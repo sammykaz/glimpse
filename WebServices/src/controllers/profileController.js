@@ -1,4 +1,6 @@
-﻿'use strict';
+﻿
+
+'use strict';
 
 app.controller('ProfileController', ['$scope', 'dataService', '$state', 'authenticationService', function ($scope, dataService, $state, authenticationService) {
     var VendorId;
@@ -34,15 +36,28 @@ app.controller('ProfileController', ['$scope', 'dataService', '$state', 'authent
             "id": localStorage.id
         }
 
+        dataService.getVendors().get({
+            vendor: localStorage.id
+        }).$promise.then(function (data) {
 
-        dataService.updateVendorDetails().update({
-            VendorId: VendorId
-        }, profileInfo).$promise.then(function (data) {
-            debugger;
-            console.log(data);
-        }).catch(function (err) {
-            console.log(err);
-        });
+            var vendorInfo = angular.copy(data);
+            vendorInfo["Email"] = $scope.email;
+            vendorInfo["Address"] = $scope.address;
+            vendorInfo["Telephone"] = $scope.tel;
+
+            dataService.updateVendorDetails().update({
+                VendorId: VendorId
+            }, vendorInfo).$promise.then(function (data) {
+                $scope.editOn = false;
+                localStorage.email = $scope.email;
+                localStorage.address = $scope.address;
+                localStorage.tel = $scope.tel
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }, function (error) {
+            console.log("vendor not found");
+        })
     }
 
 }]);
