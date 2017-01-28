@@ -28,13 +28,7 @@ app.controller('ProfileController', ['$scope', 'dataService', '$state', 'authent
       
     }
     $scope.save = function () {
-        var profileInfo = {
-            "email": $scope.email,
-            "address": $scope.address,
-            "tel": $scope.tel,
-            "company": $scope.company,
-            "id": localStorage.id
-        }
+      
 
         dataService.getVendors().get({
             vendor: localStorage.id
