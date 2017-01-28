@@ -46,7 +46,7 @@ namespace Glimpse.Droid.Views
                      },
                     new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
-                      FragmentType = typeof(Views.TilesFragment),
+                      FragmentType = typeof(Views.CardFragment),
                       Title = "Fragment2",
                       ViewModel = ViewModel.TilesViewModel
                     },               

@@ -21,22 +21,25 @@ using System.Threading.Tasks;
 using Android.Graphics;
 using System.Linq;
 using Glimpse.Droid.Controls.Listener;
+using MvvmCross.Binding.BindingContext;
 
 namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.viewPager, true)]
-    [Register("glimpse.droid.views.TilesFragment")]
-    public class TilesFragment : MvxFragment<TilesViewModel>, RadioGroup.IOnCheckedChangeListener
+    [Register("glimpse.droid.views.CardFragment")]
+    public class CardFragment : MvxFragment<CardViewModel>, RadioGroup.IOnCheckedChangeListener
     {
         private RadioGroup _radioGroup;
         private CardStack _cardStack;
         private CardAdapter _cardAdapter;
         private CustomViewPager _viewPager;
         private List<PromotionWithLocation> _promotionWithLocationList;
+        private BindableProgress _bindableProgress;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
+            //obtaining view pager from parent fragment
             _viewPager = (CustomViewPager)container;
             return this.BindingInflate(Resource.Layout.CardSwipeView, null);
         }
@@ -45,26 +48,36 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             // (this.Activity as MainActivity).SetCustomTitle("Tiles");
-            // _radioGroup = (RadioGroup)view.FindViewById(Resource.Id.filter_radiogroup);
-            // _radioGroup.SetOnCheckedChangeListener(this);
+             _radioGroup = (RadioGroup)view.FindViewById(Resource.Id.filter_radiogroup);
+             _radioGroup.SetOnCheckedChangeListener(this);
 
             _cardStack = (this.Activity as MainActivity).FindViewById<CardStack>(Resource.Id.card_stack);
             _cardStack.ContentResource = Resource.Layout.Card_Layout;
+            _cardAdapter = new CardAdapter(this.Context, Resource.Layout.Card_Layout, this.View);
+
+            //create binding for progress
+            _bindableProgress = new BindableProgress(this.Context);
+            _bindableProgress.Title = "Loading Promotions";
+            var set = this.CreateBindingSet<CardFragment, CardViewModel>();
+            set.Bind(_bindableProgress).For(p => p.Visible).To(vm => vm.IsBusy);
+            set.Apply();
+
 
             //Initializing the discard distance in pixels from the origin of the card stack.
             _cardStack.CardEventListener = new CardSwipeListener(DpToPx(this.Context, 100), _cardStack, _viewPager);
-            await InitializeImages();
+            await ViewModel.InitializeLocationAndPromotionList();
+            InitializeImages();
 
+            //Subscribing to events
             _cardAdapter.OnCardSwipeActionEvent += _cardAdapter_OnCardSwipeActionEvent;
             _cardAdapter.OnTapButtonsEvent += _cardAdapter_OnTapButtonsEvent;
             _cardStack.Adapter = _cardAdapter;      
         }
 
-        private async Task InitializeImages()
-        {
-            _promotionWithLocationList = await ViewModel.GetPromotionsWithLocation();
-            _cardAdapter = new CardAdapter(this.Context, Resource.Layout.Card_Layout, this.View);
-            foreach (PromotionWithLocation promo in _promotionWithLocationList)
+        private void InitializeImages()
+        {   
+            _cardAdapter.Clear();
+            foreach (PromotionWithLocation promo in ViewModel.PromotionList)
             {
                 _cardAdapter.Add(promo);
             }
@@ -106,6 +119,7 @@ namespace Glimpse.Droid.Views
                 Categories category = (Categories)checkedId0BasedIndex;
                 ViewModel.SelectedItem = category;
             }
+            InitializeImages();
         }
 
   
