@@ -41,10 +41,14 @@ namespace Glimpse.Droid.Adapter
 
         public override void BindView(int position, View convertView, ViewGroup parent)
         {
-            var pwlm = (PromotionWithLocation)GetItem(position);
-            var imgProduct = convertView.FindViewById<ImageView>(Resource.Id.imgProduct);
+            var pwl = (PromotionWithLocation)GetItem(position);
+            var cardTitle = convertView.FindViewById<TextView>(Resource.Id.cardTitle);
+            var cardImage = convertView.FindViewById<ImageView>(Resource.Id.cardImage);
+            var cardDescription = convertView.FindViewById<TextView>(Resource.Id.cardDescription);
 
-            imgProduct.SetImageBitmap(BitmapFactory.DecodeByteArray(pwlm.Image, 0, pwlm.Image.Length));
+            cardTitle.Text = pwl.Title;
+            cardImage.SetImageBitmap(BitmapFactory.DecodeByteArray(pwl.Image, 0, pwl.Image.Length));
+            cardDescription.Text = pwl.Description;
         }
     }
 }

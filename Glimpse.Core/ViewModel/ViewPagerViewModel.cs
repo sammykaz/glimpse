@@ -11,13 +11,13 @@ namespace Glimpse.Core.ViewModel
 {
     public class ViewPagerViewModel : BaseViewModel
     {
-        private CardViewModel _tilesViewModel;
+        private CardViewModel _cardViewModel;
         private MapViewModel _mapViewModel;
 
         public ViewPagerViewModel(IMvxMessenger messenger) : base(messenger)
         {
             _mapViewModel = (MapViewModel)Mvx.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<MapViewModel>.GetDefaultRequest(), null);
-            _tilesViewModel = (CardViewModel)Mvx.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<CardViewModel>.GetDefaultRequest(), null);
+            _cardViewModel = (CardViewModel)Mvx.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<CardViewModel>.GetDefaultRequest(), null);
         }
 
         public MapViewModel MapViewModel
@@ -31,14 +31,14 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public CardViewModel TilesViewModel
+        public CardViewModel CardViewModel
         {
             get
             {
-                if(_tilesViewModel == null)
-                    _tilesViewModel = _tilesViewModel = (CardViewModel)Mvx.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<CardViewModel>.GetDefaultRequest(), null);
+                if(_cardViewModel == null)
+                    _cardViewModel = _cardViewModel = (CardViewModel)Mvx.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<CardViewModel>.GetDefaultRequest(), null);
 
-                return _tilesViewModel;
+                return _cardViewModel;
 
             }
         }

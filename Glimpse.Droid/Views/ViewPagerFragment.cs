@@ -48,7 +48,7 @@ namespace Glimpse.Droid.Views
                     {
                       FragmentType = typeof(Views.CardFragment),
                       Title = "Fragment2",
-                      ViewModel = ViewModel.TilesViewModel
+                      ViewModel = ViewModel.CardViewModel
                     },               
                   };
 
@@ -75,7 +75,7 @@ namespace Glimpse.Droid.Views
             else if (position == 1)
             {
                 (this.Activity as MainActivity).SetCustomTitle("CardView");
-                 await ViewModel.TilesViewModel.ReloadAsync();
+                 await ViewModel.CardViewModel.ReloadAsync();
             }
         }
 
