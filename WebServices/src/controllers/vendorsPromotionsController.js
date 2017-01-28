@@ -850,3 +850,104 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         }
     };
 });
+app.controller('changeDateModalController', function ($scope, $uibModalInstance, promotionDetails) {
+
+    $scope.sdt = new Date(promotionDetails.PromotionStartDate);
+    $scope.edt = new Date(promotionDetails.PromotionEndDate);
+    $scope.showDateWarning = false;
+
+    $scope.done = function () {
+
+        if ($scope.sdt > $scope.edt) {
+            $scope.showDateWarning = true;
+
+        } else {
+            $uibModalInstance.close({ startDate: $scope.sdt, endDate: $scope.edt });
+        }
+
+    }
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    }
+
+    $scope.closeWarning = function (warning) {
+        switch (warning) {
+            case 0:
+                $scope.showDateWarning = false;
+                break;
+            case 1:
+                $scope.showTitleWarning = false;
+                break;
+            case 2:
+                $scope.showDescriptionWarning = false;
+                break;
+            case 3:
+                $scope.showCategorynWarning = false;
+                break;
+            case 4:
+                $scope.showImageWarning = false;
+                break;
+            default:
+                break;
+        }
+    }
+
+    $scope.inlineOptions = {
+        customClass: getDayClass,
+        minDate: new Date(),
+        showWeeks: true
+    };
+
+    $scope.startDateOptions = {
+        format: 'dd-MMMM-yyyy',
+        maxDate: new Date(2020, 5, 22),
+        minDate: new Date(),
+        startingDay: 1
+    };
+
+    $scope.endDateOptions = {
+        format: 'dd-MMMM-yyyy',
+        maxDate: new Date(2020, 5, 22),
+        minDate: $scope.sdt,
+        startingDay: 1
+    };
+
+    $scope.openStartDate = function () {
+        $scope.startDate.opened = true;
+    };
+
+    $scope.openEndDate = function () {
+        $scope.endDate.opened = true;
+    };
+
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[0];
+
+    $scope.startDate = {
+        opened: false
+    };
+
+    $scope.endDate = {
+        opened: false
+    };
+
+    function getDayClass(data) {
+        var date = data.date,
+			mode = data.mode;
+        if (mode === 'day') {
+            var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
+
+            for (var i = 0; i < $scope.events.length; i++) {
+                var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
+
+                if (dayToCheck === currentDay) {
+                    return $scope.events[i].status;
+                }
+            }
+        }
+
+        return '';
+    }
+
+});
