@@ -117,7 +117,7 @@
     <Compile Include="ViewModel\ProfilePageViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="ViewModel\SignInViewModel.cs" />
-    <Compile Include="ViewModel\TilesViewModel.cs" />
+    <Compile Include="ViewModel\CardViewModel.cs" />
     <Compile Include="ViewModel\VendorProfilePageViewModel.cs" />
     <Compile Include="ViewModel\UserSignUpViewModel.cs" />
     <Compile Include="ViewModel\VendorSignUpViewModel.cs" />
