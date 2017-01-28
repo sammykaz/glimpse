@@ -70,7 +70,7 @@ app.controller('ShowPromotionController', ['$scope', '$uibModalInstance', 'promo
     var Category = ["Footwear", "Electronics", "Jewellery", "Restaurants", "Services", "Apparel"];
 
     $scope.Title = promotionDetails.Title;
-    $scope.category = Category[promotionDetails.Category];
+    $scope.Category = Category[promotionDetails.Category];
     $scope.Description = promotionDetails.Description;
     $scope.PromotionStartDate = promotionDetails.PromotionStartDate;
     $scope.PromotionEndDate = promotionDetails.PromotionEndDate;

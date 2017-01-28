@@ -3,22 +3,17 @@
         <div class="modal-body ng-scope" id="modal-body">
             <form>
                 <div class="form-group">
-                    <p style="text-align:center;">{{Title}}</p>
-                </div>
-                <div class="form-group container modal-checkbox">
-                    
-                    <p style="text-align:center;">{{Category}}</p>
+                    <p class="promotion-map-title">{{Title}}</p>
                 </div>
                 <div class="form-group">
-                  
-                    <p style="text-align:center;">{{Description}}</p>
+                    <p class="promotion-map-value">{{Description}}</p>
                 </div>
-
-
+                <div class="form-group container">
+                    <p class="promotion-map-value">{{Category}}</p>
+                </div>
                 <div class="row">
-                    <label>Promotion Duration</label>
-                    <p style="text-align:center;"><span>From</span>: {{PromotionStartDate}}</p>
-                    <p style="text-align:center;"><span>To</span>: {{PromotionEndDate}}</p>
+                    <p class="promotion-map-value"><span>From</span>: {{PromotionStartDate | date : "fullDate"}}</p>
+                    <p class="promotion-map-value"><span>To</span>: {{PromotionEndDate | date : "fullDate"}}</p>
                 </div>
                 <div>
                     <div class="cropArea">
