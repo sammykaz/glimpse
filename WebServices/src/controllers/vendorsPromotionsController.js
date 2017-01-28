@@ -125,7 +125,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.previewImage = promotionDetails.PromotionImage ? "data:image/JPEG;base64," + promotionDetails.PromotionImage : '';
     $scope.imageNotEmpty = false;
 
-    var slides = $scope.slides = promotionDetails["PromotionImages"].length ? promotionDetails["PromotionImages"] : [];
+    var slides = $scope.slides = [];//promotionDetails["PromotionImages"].length ? promotionDetails["PromotionImages"] : [];
     var currIndex = 0;
 
     function getImageData() {
@@ -149,7 +149,9 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 
     function getSliderImagesList() {
         var sliderImages = $scope.slides.length ? $scope.slides : [];
-        var images = [];        sliderImages.forEach(function (element, index) {
+        var images = [];
+
+        sliderImages.forEach(function (element, index) {
             images.push(element.split(',')[1])
         });
         return images
