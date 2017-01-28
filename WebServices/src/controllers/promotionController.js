@@ -36,7 +36,7 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
             }
         }).result.then(function (result) {
             //console.log(result);
-            //$scope.promotions.push(result);
+            // $scope.promotions.push(result);
         }, function () {
             console.log("Modal dismissed");
         });
@@ -137,8 +137,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     } else {
         $scope.category = promotionDetails.Category || '';
     }
-    
-    
+
+
     $scope.description = promotionDetails.Description || '';
     $scope.promotionDescription = promotionDetails.Description || '';
     $scope.startDay = promotionDetails.PromotionStartDate || undefined;
@@ -151,10 +151,10 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.showCategorynWarning = false;
     $scope.showImageWarning = false;
     $scope.isResetEnable = false;
+    debugger;
     $scope.previewImage = promotionDetails.PromotionImage ? "data:image/JPEG;base64," + promotionDetails.PromotionImage : '';
     $scope.imageNotEmpty = false;
-    debugger;
-    var slides = $scope.slides = promotionDetails["PromotionImages"].length ? promotionDetails["PromotionImages"] : [];
+    var slides = $scope.slides = [];//promotionDetails["PromotionImages"].length ? promotionDetails["PromotionImages"] : [];
     var currIndex = 0;
 
     function getImageData() {
@@ -176,15 +176,44 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         return defer.promise;
     }
 
+
+    function b64toBlob(b64Data, contentType, sliceSize) {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+
+        var byteCharacters = atob(b64Data);
+        var byteArrays = [];
+
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+            var byteNumbers = new Array(slice.length);
+            for (var i = 0; i < slice.length; i++) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+
+            var byteArray = new Uint8Array(byteNumbers);
+
+            byteArrays.push(byteArray);
+        }
+
+        var blob = new Blob(byteArrays, { type: contentType });
+        return blob;
+    }
+
+
     function getSliderImagesList() {
         var sliderImages = $scope.slides.length ? $scope.slides : [];
-        var images = [];        sliderImages.forEach(function (element, index) {
+        var images = [];
+
+        sliderImages.forEach(function (element, index) {
             images.push(element.split(',')[1])
         });
         return images
     }
 
     $scope.ok = function () {
+        debugger;
         if ($scope.sdt > $scope.edt)
             $scope.showDateWarning = true;
         else if ($scope.promotionTitle.length == 0) {
@@ -240,16 +269,19 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                     onSaveClick();
                 }
             }
-
             function onSaveClick() {
-
+                promotionData["PromotionImageURL"] = promotionData.vendorId + "/" + promotionData["title"] + "/" + "cover" + ".jpeg";
                 dataService.getPromotions().save(promotionData, function (resp, headers) {
                     $uibModalInstance.close(promotionData);
                 },
-                function (err) {
-                });
-
+                    function (err) {
+                        debugger;
+                        console.log(err);
+                    });
             }
+
+
+
 
             function onEditClick(promotionId, promotion) {
                 var promotionData = {};
@@ -279,6 +311,15 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         }
     };
 
+
+    function dataURLtoFile(dataurl, filename) {
+        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1], bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new File([u8arr], filename, { type: mime });
+    }
+
     $scope.arrayBufferToBase64 = function (buffer) {
         var binary = '';
         var bytes = new Uint8Array(buffer);
@@ -288,6 +329,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         }
         return window.btoa(binary);
     }
+
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
@@ -338,9 +380,9 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         }
     });
 
-  
 
-    function addSlide (image) {
+
+    function addSlide(image) {
         var newWidth = 600 + slides.length + 1;
         slides.push(image);
     };
@@ -366,7 +408,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         $scope.direction = 'right';
         $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
     };
-   
+
 
     var getCategory = function () {
         switch ($scope.promotions.Category) {
@@ -405,7 +447,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.doneCrop = function () {
         $scope.isCropImageEnable = false;
         $scope.saveCrop = false;
-        $scope.previewImage = $scope.cropper.getCroppedCanvas().toDataURL('image/jpeg'); 
+        $scope.previewImage = $scope.cropper.getCroppedCanvas().toDataURL('image/jpeg');
         var image = document.getElementById('previewImage');
 
         if ($(image).is('canvas')) {
@@ -755,7 +797,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         var image = document.getElementById('previewImage');
         if ($(image).is('canvas')) {
             $(image).remove();
-            
+
         } else {
             $scope.previewImage = '';
         }
@@ -849,10 +891,10 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 
             if (className == 'ng-hide') {
                 var finishPoint = element.parent().width();
-                if(scope.direction !== 'right') {
+                if (scope.direction !== 'right') {
                     finishPoint = -finishPoint;
                 }
-                TweenMax.to(element, 0.5, {left: finishPoint, onComplete: done });
+                TweenMax.to(element, 0.5, { left: finishPoint, onComplete: done });
             }
             else {
                 done();
@@ -865,11 +907,11 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 element.removeClass('ng-hide');
 
                 var startPoint = element.parent().width();
-                if(scope.direction === 'right') {
+                if (scope.direction === 'right') {
                     startPoint = -startPoint;
                 }
 
-                TweenMax.fromTo(element, 0.5, { left: startPoint }, {left: 0, onComplete: done });
+                TweenMax.fromTo(element, 0.5, { left: startPoint }, { left: 0, onComplete: done });
             }
             else {
                 done();
@@ -877,6 +919,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         }
     };
 });
+
 
 app.controller('changeDateModalController', function ($scope, $uibModalInstance, promotionDetails) {
 
