@@ -335,11 +335,15 @@
       <HintPath>..\packages\Xamarin.GooglePlayServices.Tasks.32.961.0\lib\MonoAndroid70\Xamarin.GooglePlayServices.Tasks.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="XamarinAndroidSwipeableCardStack">
+      <HintPath>..\Components\androidswipeablecardstack-1.0.1\lib\android\XamarinAndroidSwipeableCardStack.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\StartingMapActivity.cs" />
+    <Compile Include="Adapter\CardAdapter.cs" />
     <Compile Include="Adapter\MvxViewPagerFragmentAdapter .cs" />
     <Compile Include="Adapter\PromotionDialogRecyclerAdapter.cs" />
     <Compile Include="Adapter\SlidingImageAdapter.cs" />
@@ -349,12 +353,15 @@
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
+    <Compile Include="Controls\CustomCardView.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Extensions\ActivityExtensions.cs" />
     <Compile Include="Extensions\MonoTypeExtensions.cs" />
     <Compile Include="Helpers\BindableProgress.cs" />
     <Compile Include="Helpers\BitmapProcessing.cs" />
     <Compile Include="Helpers\ByteArrayImageValueConverter.cs" />
+    <Compile Include="Controls\CustomViewPager.cs" />
+    <Compile Include="Controls\Listener\CardSwipeListener.cs" />
     <Compile Include="Helpers\LatLngValueConverter.cs" />
     <Compile Include="Helpers\ObjectByteArrayConversion.cs" />
     <Compile Include="Helpers\PromotionItem.cs" />
@@ -374,7 +381,7 @@
     <Compile Include="Views\MapFragment.cs" />
     <Compile Include="Views\TileDetailsFragment.cs" />
     <Compile Include="Views\ViewPagerFragment.cs" />
-    <Compile Include="Views\TilesFragment.cs" />
+    <Compile Include="Views\CardFragment.cs" />
     <Compile Include="Views\SettingsFragment.cs" />
     <Compile Include="Views\SignInFragment.cs" />
     <Compile Include="Views\VendorProfilePageFragment.cs" />
@@ -489,7 +496,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\PromotionAndDistanceTemplate.axml" />
-    <AndroidResource Include="Resources\layout\ViewPagerView.axml" />
+    <AndroidResource Include="Resources\layout\ViewPagerView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\PromotionDialogView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -519,6 +528,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Item_Radio.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\CardSwipeView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Card_Layout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -568,6 +583,10 @@
     <AndroidResource Include="Resources\drawable\btn_enabled.xml" />
   </ItemGroup>
   <ItemGroup>
+    <XamarinComponentReference Include="androidswipeablecardstack">
+      <Visible>False</Visible>
+      <Version>1.0.1</Version>
+    </XamarinComponentReference>
     <XamarinComponentReference Include="googleplayservices-location">
       <Visible>False</Visible>
       <Version>29.0.0.2</Version>

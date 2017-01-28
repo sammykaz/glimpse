@@ -15,22 +15,18 @@ using System.Windows.Input;
 
 namespace Glimpse.Core.ViewModel
 {
-    public class TilesViewModel : BaseViewModel
-    {
-        private string _currentLanguage;        
+    public class CardViewModel : BaseViewModel
+    {     
         private IPromotionDataService _promotionDataService;
         private IVendorDataService _vendorDataService;
         private List<PromotionWithLocation> _promotions;
-
         private List<PromotionWithLocation> _promotionsStored;
-
         private IGeolocator locator;
         private Location _userLocation;
-
         private GoogleWebService _gwb;
 
 
-        public TilesViewModel(IMvxMessenger messenger, IPromotionDataService promotionDataService, IVendorDataService vendorDataService) : base(messenger)
+        public CardViewModel(IMvxMessenger messenger, IPromotionDataService promotionDataService, IVendorDataService vendorDataService) : base(messenger)
         {
             _promotionDataService = promotionDataService;
             _vendorDataService = vendorDataService;
@@ -49,6 +45,7 @@ namespace Glimpse.Core.ViewModel
 
         protected override async Task InitializeAsync()
         {
+            IsBusy = true;
             //Creates the locator
             locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 5;
@@ -62,6 +59,7 @@ namespace Glimpse.Core.ViewModel
             PromotionList = await GetPromotionsWithLocation();
 
             _promotionsStored = PromotionList;
+            IsBusy = false;
         }
 
         private Categories? _selectedItem;
@@ -114,18 +112,32 @@ namespace Glimpse.Core.ViewModel
             };
         }
 
-
-        private async Task<List<PromotionWithLocation>> GetPromotionsWithLocation()
+        public async Task InitializeLocationAndPromotionList()
         {
+            IsBusy = true;
+            //Creates the locator
+            locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 5;
+
+            //creates the google web service wrapper
+            _gwb = new GoogleWebService();
+
+            //get initial user location
+            _userLocation = await GetUserLocation();
+
+            PromotionList = await GetPromotionsWithLocation();
+
+            _promotionsStored = PromotionList;
+            IsBusy = false;
+        }
 
 
+        public async Task<List<PromotionWithLocation>> GetPromotionsWithLocation()
+        {
             var mapPromotions = await _promotionDataService.GetActivePromotions();
 
-
             List<Location> promotionLocations = mapPromotions.Select(promotionWithLocation => promotionWithLocation.Location).ToList();
-
             List<IEnumerable<Location>> splitPromotionLocation = promotionLocations.Chunk(10).ToList();
-
 
             //index to plug result into mapPromotions list
             int j = 0;
@@ -141,9 +153,7 @@ namespace Glimpse.Core.ViewModel
                         mapPromotions[j].Duration = distanceMatrix.rows[0].elements[i].duration.value;
                     }
                     j++;
-
                 }
-
             }
 
             List<PromotionWithLocation> final = mapPromotions.OrderBy(promotion => promotion.Duration).ToList().FindAll(p => p.Duration != 9999);
@@ -189,7 +199,6 @@ namespace Glimpse.Core.ViewModel
                 _promotions = value;
                 RaisePropertyChanged(() => PromotionList);
             }
-
         }
 
         public ICommand ViewTileDetails
@@ -206,7 +215,20 @@ namespace Glimpse.Core.ViewModel
                 });
             }
         }
+
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                RaisePropertyChanged(() => IsBusy);
+            }
+        }
     }
+
+
 
     public static class EnumerableExtensions
     {

@@ -96,7 +96,7 @@
     <Compile Include="Services\Data\PromotionImageDataService.cs" />
     <Compile Include="Services\Data\VendorDataService.cs" />
     <Compile Include="Services\Data\UserDataService.cs" />
-    <Compile Include="Services\General\BlobService.cs" />
+    <Compile Include="BlobClient\BlobClient.cs" />
     <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Services\General\GoogleWebService.cs" />
     <Compile Include="Services\General\Settings.cs" />
@@ -117,7 +117,7 @@
     <Compile Include="ViewModel\ProfilePageViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="ViewModel\SignInViewModel.cs" />
-    <Compile Include="ViewModel\TilesViewModel.cs" />
+    <Compile Include="ViewModel\CardViewModel.cs" />
     <Compile Include="ViewModel\VendorProfilePageViewModel.cs" />
     <Compile Include="ViewModel\UserSignUpViewModel.cs" />
     <Compile Include="ViewModel\VendorSignUpViewModel.cs" />
