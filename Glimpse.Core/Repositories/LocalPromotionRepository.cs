@@ -50,7 +50,8 @@ namespace Glimpse.Core.Repositories
         {
            // var entities = await _connection.Table<PromotionWithLocation>().ToListAsync();
             var entities = await GetPromotions();
-            return entities.Where(e => e.PromotionStartDate.CompareTo(DateTime.Now) <= 0 && e.PromotionEndDate.CompareTo(DateTime.Now) >= 0).ToList();
+            return entities.Where(e => e.PromotionStartDate.CompareTo(DateTime.Now) <= 0 && e.PromotionEndDate.CompareTo(DateTime.Now) >= 0).GroupBy(p => p.PromotionId).Select(p =>  p.First()).Distinct().ToList();
         }
+
     }
 }
