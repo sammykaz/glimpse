@@ -117,15 +117,13 @@
     <Compile Include="ViewModel\TileDetailsViewModel.cs" />
     <Compile Include="ViewModel\ViewPagerViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
-    <Compile Include="ViewModel\StartingMapViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\ProfilePageViewModel.cs" />
     <Compile Include="ViewModel\MapViewModel.cs" />
     <Compile Include="ViewModel\SignInViewModel.cs" />
-    <Compile Include="ViewModel\TilesViewModel.cs" />
+    <Compile Include="ViewModel\CardViewModel.cs" />
     <Compile Include="ViewModel\VendorProfilePageViewModel.cs" />
-    <Compile Include="ViewModel\UserSignUpViewModel.cs" />
     <Compile Include="ViewModel\VendorSignUpViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

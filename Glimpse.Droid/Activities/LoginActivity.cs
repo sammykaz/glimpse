@@ -29,6 +29,7 @@ namespace Glimpse.Droid.Activities
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            
             if (CheckAuthenticationStatus())
             {
                 SetContentView(Resource.Layout.LoginMainView);
@@ -41,6 +42,7 @@ namespace Glimpse.Droid.Activities
                 StartActivity(typeof(MainActivity));
                 Finish();
             }
+            
         }
 
 

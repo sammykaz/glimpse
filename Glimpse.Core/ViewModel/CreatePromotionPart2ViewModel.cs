@@ -15,7 +15,7 @@ namespace Glimpse.Core.ViewModel
         private readonly IPromotionImageDataService _promotionImageDataService;
         Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
         private Categories selectedCategory;
-
+        private Vendor vendor;
         public CreatePromotionPart2ViewModel(IPromotionDataService promotionDataService, IVendorDataService vendorDataService, IPromotionImageDataService promotionImageDataService)
         {
             _promotionDataService = promotionDataService;
@@ -90,9 +90,11 @@ namespace Glimpse.Core.ViewModel
                     //Calculate DateTime span
                     //TimeSpan promotionLength = _promotionEndDate - _promotionStartDate;
 
-
-                    Vendor vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
-
+                    if (!string.IsNullOrEmpty(Settings.Email))
+                    {
+                        vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
+                    }
+                    
                     Promotion promotion = new Promotion()
                     {
                         Title = dataFromCreatePromotionPart1["PromotionTitle"],
@@ -101,7 +103,7 @@ namespace Glimpse.Core.ViewModel
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
                         PromotionImage = Bytes,
-                        PromotionImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"] + "/" + "cover",
+                        PromotionImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"].Replace(" ", string.Empty) + "/" + "cover",
                         VendorId = vendor.VendorId,
                     };                  
 
@@ -121,7 +123,7 @@ namespace Glimpse.Core.ViewModel
                         {
                             Image = promotionImage,
                             PromotionId = promotions[promotions.Count - 1].PromotionId,
-                            ImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"] + "/" + "image" + i
+                            ImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"].Replace(" ", string.Empty) + "/" + "image" + i
                         };
 
                         await _promotionImageDataService.StorePromotion(promotionImageInstance);

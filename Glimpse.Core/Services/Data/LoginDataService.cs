@@ -38,7 +38,7 @@ namespace Glimpse.Core.Services.Data
                 return false;
             }
         }
-
+/*
         public bool AuthenticateUser(User user, string email, string password)
         {
             string encryptedPassword = Cryptography.EncryptAes(password, user.Salt);
@@ -53,26 +53,16 @@ namespace Glimpse.Core.Services.Data
                 return false;
             }
         }
-
+*/
         public async Task<bool> AuthenticateUserLogin()
         {
-           
-
+          
                 bool isValid = false;
 
                 //Check if user already signed in before
                 if (!string.IsNullOrEmpty(Settings.Email))
                 {
-                try
-                {
-                    //TODO improve this
-                    user = await _userRepository.SearchUserByEmail(Settings.Email);
                     vendor = await _vendorRepository.SearchVendorByEmail(Settings.Email);
-                }
-                catch (Exception e)
-                {
-                    string lol;
-                }
 
                 if (user != null && vendor == null)
                     {

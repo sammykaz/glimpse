@@ -231,12 +231,23 @@ namespace Glimpse.Droid.Views
 
             clusterList = new List<PromotionItem>();
 
+            //Clear Map Promotions
+            clusterManager.ClearItems();
+            clusterList.Clear();
+
             //Show promotions from vendors
             ShowPromotionsOnMap();
 
             //setup radiogroup
             _radioGroup = (RadioGroup)View.FindViewById(Resource.Id.mapfilter_radiogroup);
+
+            //TODO Set the Radiobutton to All Categories by default
+
+            //View allCategoriesFilter = _radioGroup.GetChildAt(0);
+            //_radioGroup.Check(allCategoriesFilter);
+
             _radioGroup.SetOnCheckedChangeListener(this);
+            
         }
 
         public bool OnClusterClick(ICluster cluster)
@@ -317,13 +328,13 @@ namespace Glimpse.Droid.Views
         {
             //radio group index is based on 1, making base 0
             checkedId = checkedId - 1;
-
+            
             //radio group index seem to be incremented by 7 randomly, might be issue with MvxRadioGroup
             checkedId = checkedId % 7;
             if (checkedId == 0)
             {
                 ViewModel.SelectedItem = null;
-                GetAllActivePromotions();         
+                //GetAllActivePromotions();         
             }
             else
             {

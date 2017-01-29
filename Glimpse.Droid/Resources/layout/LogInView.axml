@@ -32,7 +32,7 @@
         android:textSize="17sp"
         android:id="@+id/btnTakeGlimpse"
         android:background="@drawable/HomeButtonTakeGlimpse"
-        local:MvxBind="Click ShowStartingMap" />
+        local:MvxBind="Click ShowMap" />
     <TextView
         android:text="Or"
         android:layout_width="match_parent"
@@ -66,18 +66,6 @@
         android:layout_marginTop="20.0dp"
         android:textSize="10dip"
         android:id="@+id/textViewOr" />
-    <Button
-        local:MvxBind="Click ShowUserSignUp"
-        android:text="Sign up as a buyer"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10.0dp"
-        android:layout_marginBottom="10.0dp"
-        android:id="@+id/btnSignUpBuyer"
-        android:background="@drawable/HomeButtonBuyerSignUp" />
     <Button
         local:MvxBind="Click ShowVendorSignUp"
         android:text="Sign up as a vendor"

@@ -24,14 +24,15 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public MvxCommand ShowStartingMap
+        public MvxCommand ShowMap
         {
-            get { return ShowCommand<StartingMapViewModel>(); }
-        }
-
-        public MvxCommand ShowUserSignUp
-        {
-            get { return ShowCommand<UserSignUpViewModel>(); }
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    ShowViewModel<MapViewModel>(new {index = 0});
+                });
+            }
         }
 
         public MvxCommand ShowSignIn
