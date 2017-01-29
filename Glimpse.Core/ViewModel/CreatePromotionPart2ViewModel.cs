@@ -94,7 +94,7 @@ namespace Glimpse.Core.ViewModel
                     {
                         vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
                     }
-
+                    
                     Promotion promotion = new Promotion()
                     {
                         Title = dataFromCreatePromotionPart1["PromotionTitle"],
@@ -103,7 +103,7 @@ namespace Glimpse.Core.ViewModel
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
                         PromotionImage = Bytes,
-                        PromotionImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"] + "/" + "cover",
+                        PromotionImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"].Replace(" ", string.Empty) + "/" + "cover",
                         VendorId = vendor.VendorId,
                     };                  
 
@@ -123,7 +123,7 @@ namespace Glimpse.Core.ViewModel
                         {
                             Image = promotionImage,
                             PromotionId = promotions[promotions.Count - 1].PromotionId,
-                            ImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"] + "/" + "image" + i
+                            ImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"].Replace(" ", string.Empty) + "/" + "image" + i
                         };
 
                         await _promotionImageDataService.StorePromotion(promotionImageInstance);
