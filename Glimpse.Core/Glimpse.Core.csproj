@@ -111,7 +111,6 @@
     <Compile Include="ViewModel\TileDetailsViewModel.cs" />
     <Compile Include="ViewModel\ViewPagerViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
-    <Compile Include="ViewModel\StartingMapViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\ProfilePageViewModel.cs" />
