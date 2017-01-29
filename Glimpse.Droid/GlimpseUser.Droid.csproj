@@ -373,6 +373,7 @@
     <Compile Include="Views\CreatePromotionFragment.cs" />
     <Compile Include="Views\CreatePromotionPart2Fragment.cs" />
     <Compile Include="Views\DatePickerFragment.cs" />
+    <Compile Include="Views\LikedPromotionsFragment.cs" />
     <Compile Include="Views\LoginFragment.cs" />
     <Compile Include="Views\MenuFragment.cs" />
     <Compile Include="Views\PromotionDialogFragment.cs" />
@@ -483,7 +484,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\item_menu.axml" />
     <AndroidResource Include="Resources\Raw\style_json.json" />
-    <AndroidResource Include="Resources\layout\TilesView.axml">
+    <AndroidResource Include="Resources\layout\LikedPromotionsView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\PromotionAndDistanceTemplate.axml" />
