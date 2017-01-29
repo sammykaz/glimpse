@@ -95,21 +95,10 @@ namespace Glimpse.Core.ViewModel
                     IsBusy = true;
                     if ((!string.IsNullOrEmpty(Email)) && (!string.IsNullOrEmpty(Password)))
                     {
-                        currentUser = await _userDataService.SearchUserByEmail(Email);
                         currentVendor = await _vendorDataService.SearchVendorByEmail(Email);
 
-                        //Currently have no contraints for multiple accounts having the same username
-
-                        if (currentUser != null && currentVendor == null)
-                        {
-                            if (_loginDataService.AuthenticateUser(currentUser, Email, Password))
-                            {
-                                IsBusy = false;
-                                ShowViewModel<MapViewModel>();
-                            }
-                            IsBusy = false;
-                        }
-                        else if (currentVendor != null && currentUser == null)
+                        //Currently have no contraints for multiple accounts having the same email
+                        if (currentVendor != null)
                         {
                             if (_loginDataService.AuthenticateVendor(currentVendor, Email, Password))
                             {

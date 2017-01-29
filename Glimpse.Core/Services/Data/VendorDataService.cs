@@ -53,7 +53,11 @@ namespace Glimpse.Core.Services.Data
 
         public async Task<bool> CheckIfVendorExists(string email)
         {
-            Vendor vendor = await SearchVendorByEmail(email);
+            Vendor vendor = null;
+            if (!string.IsNullOrEmpty(email))
+            {
+                 vendor = await SearchVendorByEmail(email);
+            }
 
             if (vendor != null)
                 return true;

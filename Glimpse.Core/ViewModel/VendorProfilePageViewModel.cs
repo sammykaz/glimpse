@@ -18,6 +18,7 @@ namespace Glimpse.Core.ViewModel
         private IPromotionDataService _promotionDataService;
         private IVendorDataService _vendorDataService;
         public List<Promotion> _myPromotionList;
+        private Vendor vendor;
 
         public VendorProfilePageViewModel(IMvxMessenger messenger, IPromotionDataService promotionDataService, IVendorDataService vendorDataService) : base(messenger)
         {
@@ -51,7 +52,12 @@ namespace Glimpse.Core.ViewModel
         private async Task<List<Promotion>> GetPromotionsForLoggedInVendor()
         {
             List<Promotion> promotionForVendor = await _promotionDataService.GetPromotions();
-            Vendor vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
+
+            if (!string.IsNullOrEmpty(Settings.Email))
+            {
+                vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
+            }
+
             CompanyName = vendor.CompanyName;
             return promotionForVendor.Where(c => c.VendorId == vendor.VendorId).ToList();
         }
