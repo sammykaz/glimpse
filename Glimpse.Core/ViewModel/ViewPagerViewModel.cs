@@ -13,6 +13,7 @@ namespace Glimpse.Core.ViewModel
     {
         private TilesViewModel _tilesViewModel;
         private MapViewModel _mapViewModel;
+        private LikedPromotionsViewModel _likedPromotionsViewModel;
 
         public ViewPagerViewModel(IMvxMessenger messenger) : base(messenger)
         {
@@ -42,7 +43,18 @@ namespace Glimpse.Core.ViewModel
 
             }
         }
-      
+
+        public LikedPromotionsViewModel LikedPromotionsViewModel
+        {
+            get
+            {
+                if (_likedPromotionsViewModel == null)
+                    _likedPromotionsViewModel = (LikedPromotionsViewModel)Mvx.Resolve<IMvxViewModelLoader>().LoadViewModel(MvxViewModelRequest<LikedPromotionsViewModel>.GetDefaultRequest(), null);
+
+                return _likedPromotionsViewModel;
+            }
+        }
+
 
     }
 }

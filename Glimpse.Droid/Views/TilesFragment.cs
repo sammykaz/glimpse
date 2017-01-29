@@ -62,12 +62,7 @@ namespace Glimpse.Droid.Views
 
             _cardAdapter.OnCardSwipeActionEvent += _cardAdapter_OnCardSwipeActionEvent;
             _cardAdapter.OnTapButtonsEvent += _cardAdapter_OnTapButtonsEvent;
-            _cardStack.Adapter = _cardAdapter;
-
-
-
-
-
+            _cardStack.Adapter = _cardAdapter;      
         }
 
         private async Task InitializeImages()
@@ -76,7 +71,7 @@ namespace Glimpse.Droid.Views
             _cardAdapter = new CardAdapter(this.Context, Resource.Layout.Card_Layout, this.View);
             foreach (PromotionWithLocation promo in _promotionWithLocationList)
             {
-                _cardAdapter.Add(new CardModel { Image = promo.Image, PromotionId = promo.PromotionId });
+                _cardAdapter.Add(promo);
             }
         }
 
@@ -128,7 +123,7 @@ namespace Glimpse.Droid.Views
         private string GetDbPath()
         {
             string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            return Path.Combine(documentsPath, "Todo.db3");
+            return Path.Combine(documentsPath, "glimpse.db3");
         }
 
     }

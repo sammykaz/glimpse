@@ -59,7 +59,9 @@ namespace Glimpse.Core.ViewModel
             //get initial user location
             _userLocation = await GetUserLocation();
 
-            PromotionList = await _localPromotionDataService.GetPromotions();
+            //PromotionList = await _localPromotionDataService.GetPromotions();
+
+            //_promotionsStored = PromotionList;
         }
 
 
@@ -147,6 +149,16 @@ namespace Glimpse.Core.ViewModel
             final = await _promotionDataService.PopulatePromotionWithLocationBlobs(final);
 
             return final;
+        }
+
+        public List<PromotionWithLocation> PromotionsStored
+        {
+            get { return _promotionsStored; }
+            set
+            {
+                _promotionsStored = value;
+                RaisePropertyChanged(() => PromotionsStored);
+            }
         }
 
         public List<PromotionWithLocation> PromotionList

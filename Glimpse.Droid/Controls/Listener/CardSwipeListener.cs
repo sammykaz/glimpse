@@ -82,16 +82,13 @@ namespace Glimpse.Droid.Controls.Listener
 
         private async void dosomething(int index, int direction)
         {
-            CardModel promotionId = (CardModel)_cardStack.Adapter.GetItem(index);  // to get discarded promotion 
+            PromotionWithLocation promotionWithLocation = (PromotionWithLocation)_cardStack.Adapter.GetItem(index);  // to get discarded promotion 
             
-
-            if (index == 3)
+            
+            if (direction == 1 || direction == 3)
             {
-                await _localPromotionRepository.Insert(promotion);
+                await _localPromotionRepository.Insert(promotionWithLocation);
             }
-
-            var x = await _localPromotionRepository.GetAllAsync();
-            string test = "";
         }
 
     }

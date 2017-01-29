@@ -1,12 +1,21 @@
-﻿using MvvmCross.Core.ViewModels;
+﻿using System;
+using MvvmCross.Core.ViewModels;
+using SQLite.Net;
 
 namespace Glimpse.Core.Model
 {
-    public class Location : MvxNotifyPropertyChanged
+    public class Location : MvxNotifyPropertyChanged, ISerializable<string>
     {
         public Location()
         {
 
+        }
+
+        public Location(string serializedData) : this()
+        {
+            var stringVals = serializedData.Split(',');
+            Lat = Convert.ToDouble(stringVals[0]);
+            Lng = Convert.ToDouble(stringVals[1]);
         }
 
         public Location(double lat, double lng)
@@ -55,7 +64,12 @@ namespace Glimpse.Core.Model
 
         public override string ToString()
         {
-            return string.Format("{0:0.00000} {1:0.00000}", Lat, Lng);
+            return string.Format("{0},{1}", Lat, Lng);
+        }
+
+        public string Serialize()
+        {
+            return ToString();
         }
     }
 }

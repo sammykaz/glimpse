@@ -10,6 +10,8 @@ namespace Glimpse.Core.Model
     public class PromotionWithLocation
     {
         [PrimaryKey, AutoIncrement]
+        public int PromotionWithLocationId { get; set; }
+                
         public int VendorId { get; set; }
 
         public string Title { get; set; }
@@ -30,7 +32,6 @@ namespace Glimpse.Core.Model
 
         public DateTime PromotionEndDate { get; set; }
 
-        [Ignore]
         public Location Location { get; set; }
 
         public int PromotionId { get; set; }
