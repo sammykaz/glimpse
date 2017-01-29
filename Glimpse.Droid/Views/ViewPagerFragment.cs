@@ -46,9 +46,9 @@ namespace Glimpse.Droid.Views
                      },
                     new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
-                      FragmentType = typeof(Views.TilesFragment),
+                      FragmentType = typeof(Views.CardFragment),
                       Title = "Fragment2",
-                      ViewModel = ViewModel.TilesViewModel
+                      ViewModel = ViewModel.CardViewModel
                     },
                      new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
@@ -81,7 +81,7 @@ namespace Glimpse.Droid.Views
             else if (position == 1)
             {
                 (this.Activity as MainActivity).SetCustomTitle("CardView");
-                 await ViewModel.TilesViewModel.ReloadAsync();
+                 await ViewModel.CardViewModel.ReloadAsync();
             }
         }
 
