@@ -25,7 +25,7 @@ namespace Glimpse.Core.Model
 
         public string Salt { get; set; }
 
-        public Address Address { set; get; }
+        public string Address { set; get; }
 
         public string Telephone { get; set; }
 
