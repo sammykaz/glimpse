@@ -8,50 +8,46 @@ namespace Glimpse.Core.Model
 {
     public class Promotion
     {
-        public Promotion()
-        {
-            Categories = new List<Category>();
-        }
         public int PromotionId { get; set; }
 
-        public string _title;
+       
+        public int VendorId { get; set; }
+
+        public Vendor Vendor { get; set; }
+
+        private string _title;
         public string Title
         {
             get { return _title; }
             set { _title = value; }
         }
 
-        public string _description;
+        private string _description;
         public string Description
         {
             get { return _description; }
             set { _description = value; }
         }
 
-        public int VendorId { get; set; }
+        public Categories Category { get; set; }
 
-        public List<Category> Categories { get; set; }
-/*
-        public string CategoriesList
-        {
-            get { return String.Join(",", Categories); }
-
-            set { Categories = value.Split(',').Select(x => (Category)Enum.Parse(typeof(Category), x)).ToList(); }
-        }
-*/
-        //These dates will be extracted from a calendar UI in the future.
         public DateTime PromotionStartDate { get; set; }
 
         public DateTime PromotionEndDate { get; set; }
 
-        public bool PromotionActive { get; set; }
- 
-        //public MediaFile PromotionImage { get; set;}
+        public byte[] PromotionImage { get; set; }
 
-        //Add images here
-
-        //Any promotion logic below
+        public string PromotionImageURL { get; set; }
 
     }
 
+    public enum Categories
+    {
+        Footwear,
+        Electronics,
+        Jewellery,
+        Restaurants,
+        Services,
+        Apparel
+    }
 }

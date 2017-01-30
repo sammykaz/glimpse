@@ -1,6 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebServices.Models
 {
@@ -8,31 +10,43 @@ namespace WebServices.Models
     {
         public Promotion()
         {
-            Categories = new List<Category>();
+            PromotionImages = new List<PromotionImage>();
         }
 
+        [Key]
         public int PromotionId { get; set; }
 
-        public string Title;       
+        public int VendorId { get; set; }
 
-        public string Description;       
+        public Vendor Vendor { get; set; }
 
-        public int? VendorId { get; set; }
+        public string Title { get; set; }
 
-        public virtual ICollection<Category> Categories { get; set; }     
+        public string Description { get; set; }
 
-        //These dates will be extracted from a calendar UI in the future.
+        public Categories Category { get; set; }
+
         public DateTime PromotionStartDate { get; set; }
 
         public DateTime PromotionEndDate { get; set; }
+ 
+        public string PromotionImageURL { get; set;}
 
-        public bool PromotionActive { get; set; }
+        [NotMapped]
+        public byte[] PromotionImage { get; set; }
 
-
-        //Add images here
-
-        //Any promotion logic below
+        public virtual ICollection<PromotionImage> PromotionImages { get; set; }
 
     }
 
+    public enum Categories
+    {
+        Footwear,
+        Electronics,
+        Jewellery,
+        Restaurants,
+        Services,
+        Apparel
+    }
+   
 }

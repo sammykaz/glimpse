@@ -31,5 +31,12 @@ namespace Glimpse.Core.Repositories
 
             return usersList;
         }
+
+        public async Task DeleteUser(User user)
+        {
+            RestClient<User> restClient = new RestClient<User>();
+
+            await restClient.DeleteAsync(user.UserId, user);            
+        }
     }
 }

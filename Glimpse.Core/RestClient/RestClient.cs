@@ -14,9 +14,14 @@ namespace Plugin.RestClient
     ///     RestClient implements methods for calling CRUD operations
     ///     using HTTP.
     /// </summary>
-    public class RestClient<T>
-    {
-        private readonly string WebServiceUrl = "http://glimpsews.azurewebsites.net/api/" + typeof(T).Name + "s/";
+    public class RestClient<T> {
+
+        //http://glimpsews.azurewebsites.net/api/ 
+        //http://glimpseservices.azurewebsites.net/api/
+        //http://10.0.3.2/Glimpse/api/
+        //http://localhost/Glimpse/api/
+
+        private readonly string WebServiceUrl = "http://10.0.3.2/Glimpse/api/" + typeof(T).Name + "s/";
 
         public async Task<List<T>> GetAsync()
         {
@@ -39,6 +44,18 @@ namespace Plugin.RestClient
 
             return taskModels;
         }
+        public async Task<List<T>> GetWithFilter(string filter)
+        {
+
+            var httpClient = new HttpClient();
+
+            var json = await httpClient.GetStringAsync(WebServiceUrl + "filter/" + filter);
+
+            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+
+            return taskModels;
+        }
+
 
         public async Task<T> GetByKeyword(string keyword, bool slashRequired = false)
         {

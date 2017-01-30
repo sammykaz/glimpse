@@ -7,6 +7,13 @@
     android:minWidth="300dp"
     android:minHeight="400dp"
     android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ErrorMsg"
+        android:gravity="center"
+        android:textColor="#ff0000"
+        local:MvxBind="Text ErrorMessage, Mode=TwoWay" />
     <EditText
         android:id="@+id/txtEmail"
         android:layout_width="match_parent"

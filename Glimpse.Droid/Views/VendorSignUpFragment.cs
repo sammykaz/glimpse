@@ -12,6 +12,16 @@ using Square.TimesSquare;
 using Glimpse.Droid.Activities;
 using Glimpse.Droid;
 using Glimpse.Droid.Views;
+using Android.Gms.Location.Places.UI;
+using Android.App;
+using Android.Content;
+using Android.Gms.Maps.Model;
+using Android.Util;
+using Glimpse.Core.Model;
+using Android.Text;
+using Java.Lang;
+using Glimpse.Droid.Helpers;
+using MvvmCross.Binding.BindingContext;
 
 namespace Glimpse.Droid.Views
 {
@@ -19,9 +29,16 @@ namespace Glimpse.Droid.Views
     [Register("glimpse.droid.views.VendorSignUpFragment")]
     public class VendorSignUpFragment : MvxFragment<VendorSignUpViewModel>
     {
-        
+        private static readonly int PLACE_PICKER_REQUEST = 1;
+        private Button _selectBuisinessLocationButton;
+        private TextView _addressTextView;
+        private EditText _password;
+        private EditText _confirmPassword;
+        private EditText _email;
+        private BindableProgress _bindableProgress;
 
-    public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
             return this.BindingInflate(Resource.Layout.VendorSignUpView, null);
@@ -31,10 +48,102 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as LoginActivity).SetCustomTitle("Vendor Sign Up");
-            Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
-            acc_Button.Click += delegate
+
+            _addressTextView = (this.Activity as LoginActivity).FindViewById<TextView>(Resource.Id.txtAddress);
+            _selectBuisinessLocationButton = (this.Activity as LoginActivity).FindViewById<Button>(Resource.Id.selectBusinessLocationButton);
+            _selectBuisinessLocationButton.Click += OnSelectBuisinessLocationTapped;
+
+            _email = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtEmail);
+            _email.AfterTextChanged += _email_AfterTextChanged;
+
+            _password = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtPassword);
+            _password.AfterTextChanged += _confirmPassword_AfterTextChanged;
+
+            _confirmPassword = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtConfirmPassword);
+            _confirmPassword.AfterTextChanged += _confirmPassword_AfterTextChanged;
+
+            _bindableProgress = new BindableProgress(this.Context);
+            _bindableProgress.Title = "Sign up in progress...";
+            var set = this.CreateBindingSet<VendorSignUpFragment, VendorSignUpViewModel>();
+            set.Bind(_bindableProgress) .For(p => p.Visible).To(vm => vm.IsBusy);
+            set.Apply();
+
+            //Sends email on click
+            /* Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
+               acc_Button.Click += delegate
+               {
+                   OnClick(this.View);
+               };*/
+        }
+
+      
+
+        private void _email_AfterTextChanged(object sender, AfterTextChangedEventArgs e)
+        {
+            if ((!string.IsNullOrEmpty(ViewModel.Email)) && !Patterns.EmailAddress.Matcher(ViewModel.Email).Matches())
             {
-                OnClick(this.View);
+                _email.Error = "Enter a valid email address";
+                ViewModel.ValidEmail = false;             
+            }
+            else
+            {
+                _email.Error = null;
+                ViewModel.ValidEmail = true;
+            }
+
+        }
+
+        private void _confirmPassword_AfterTextChanged(object sender, AfterTextChangedEventArgs e)
+        {
+            if ((!string.IsNullOrEmpty(ViewModel.Password))  && (!string.IsNullOrEmpty(ViewModel.ConfirmPassword)) && (!ViewModel.Password.Equals(ViewModel.ConfirmPassword)))
+            {
+                _confirmPassword.Error = "Passwords do not match";
+                ViewModel.ValidPassword = false;
+            }
+            else
+            {
+                _confirmPassword.Error = null;
+                ViewModel.ValidPassword = true;
+            }
+
+
+        }
+
+        private void OnSelectBuisinessLocationTapped(object sender, EventArgs eventArgs)
+        {
+            PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+            //If the user already picked a location, the place picker will zoom on the previously selected location. Else, it will default to the geolocation
+            if (ViewModel.Location.Lat != 0 && ViewModel.Location.Lng != 0)
+             builder.SetLatLngBounds( new LatLngBounds(new LatLng(ViewModel.Location.Lat-0.002500, ViewModel.Location.Lng - 0.002500), new LatLng(ViewModel.Location.Lat + 0.002500, ViewModel.Location.Lng + 0.002500)));     
+               
+            StartActivityForResult(builder.Build(this.Activity as LoginActivity), PLACE_PICKER_REQUEST);
+        }
+
+
+
+        public override void OnActivityResult(int requestCode, int resultCode, Intent data)
+        {
+            if (requestCode == PLACE_PICKER_REQUEST && resultCode == (int) Result.Ok)
+            {
+                setLocationProperty(data);
+            }
+            base.OnActivityResult(requestCode, resultCode, data);
+        }
+
+  
+        /// <summary>
+        /// This method sets the value of the address text box as well as the view model's location property
+        /// </summary>
+        /// <param name="data"></param>
+        private void setLocationProperty(Intent data)
+        {
+            var placePicked = PlacePicker.GetPlace(this.Context, data);
+            _addressTextView.Text = placePicked?.AddressFormatted?.ToString();
+
+            ViewModel.Location = new Location()
+            {
+                Lat = placePicked.LatLng.Latitude,
+                Lng = placePicked.LatLng.Longitude
             };
         }
 
@@ -44,20 +153,19 @@ namespace Glimpse.Droid.Views
         }
         public void OnClick(View view)
         {
-            string _firstName = view.FindViewById<EditText>(Resource.Id.txtFirstName).Text;
             string _company = view.FindViewById<EditText>(Resource.Id.txtCompanyName).Text;
             string _email = view.FindViewById<EditText>(Resource.Id.txtEmail).Text;
 
             SendMail sendMail = new Glimpse.Droid.Views.SendMail();
 
             //Mail for vendor
-            string mailBody = sendMail.CreateMailBodyForVendor(_firstName);
+            string mailBody = sendMail.CreateMailBodyForVendor(_company);
             sendMail.SendEmail("Account Created", mailBody, _email);
 
             //Mail for Admin
-            mailBody = sendMail.CreateMailBodyForAdmin(_firstName,_company,"No number!",_email);
+            mailBody = sendMail.CreateMailBodyForAdmin(_company, _company,"No number!",_email);
             sendMail.SendEmail("New Sign-Up Information", mailBody, "vendor.smtptest@gmail.com");
         }
-        
+    
     }
 }

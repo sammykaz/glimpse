@@ -1,14 +1,12 @@
-﻿using System;
+﻿using System.Data.Entity;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebServices.Models;
+using WebServices.Helpers;
 
 namespace WebServices.Controllers
 {
@@ -34,6 +32,35 @@ namespace WebServices.Controllers
 
             return Ok(promotion);
         }
+
+        // GET: api/Vendors/5/promotions
+        [ResponseType(typeof(Vendor))]
+        [Route("api/Promotions/{id}/promotionclicks")]
+        public IHttpActionResult GetVendorPromotions(int id)
+        {
+            List<PromotionClick> promotionClicksOfPromotion = db.PromotionClicks.Where(promoClick => promoClick.PromotionId == id).ToList();
+            /*if (vendor == null)
+            {
+                return NotFound();
+            } */
+
+            return Ok(promotionClicksOfPromotion);
+        }
+
+        // GET: api/Vendors/5/promotions
+        [ResponseType(typeof(Vendor))]
+        [Route("api/Promotions/filter/{filterName}")]
+        public IHttpActionResult GetVendorPromotions(Categories filterName)
+        {
+            List<Promotion> promotionsFiltered = db.Promotions.Where(promo => promo.Category == filterName).ToList();
+            /*if (vendor == null)
+            {
+                return NotFound();
+            } */
+
+            return Ok(promotionsFiltered);
+        }
+
 
         // PUT: api/Promotions/5
         [ResponseType(typeof(void))]
@@ -74,6 +101,11 @@ namespace WebServices.Controllers
         [ResponseType(typeof(Promotion))]
         public IHttpActionResult PostPromotion(Promotion promotion)
         {
+
+            BlobHelper bh = new BlobHelper("storageglimpse", "UTaxV/U+abo8S1ORGCTyAVH4dUoFxl5jonIxMNAK/GUNP5u0IbNxa8WxyJpWbrg2aeUlm6S1NAkph/hW3i69wQ==", "imagestorage");
+            bh.UploadFromByteArray(promotion.PromotionImage, promotion.PromotionImageURL);
+
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

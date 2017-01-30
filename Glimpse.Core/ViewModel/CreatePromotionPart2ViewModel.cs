@@ -12,12 +12,16 @@ namespace Glimpse.Core.ViewModel
     {
         private readonly IPromotionDataService _promotionDataService;
         private IVendorDataService _vendorDataService;
+        private readonly IPromotionImageDataService _promotionImageDataService;
         Dictionary<string, string> dataFromCreatePromotionPart1 = new Dictionary<string, string>();
-
-        public CreatePromotionPart2ViewModel(IPromotionDataService promotionDataService, IVendorDataService vendorDataService)
+        private Categories selectedCategory;
+        private Vendor vendor;
+        public CreatePromotionPart2ViewModel(IPromotionDataService promotionDataService, IVendorDataService vendorDataService, IPromotionImageDataService promotionImageDataService)
         {
             _promotionDataService = promotionDataService;
             _vendorDataService = vendorDataService;
+            _promotionImageDataService = promotionImageDataService;
+            _promotionImageList = new List<byte[]>();
         }
 
         protected override void InitFromBundle(IMvxBundle parameters)
@@ -30,6 +34,7 @@ namespace Glimpse.Core.ViewModel
             }
             base.InitFromBundle(parameters);
         }
+
         private DateTime _promotionStartDate;
         public DateTime PromotionStartDate
         {
@@ -42,6 +47,17 @@ namespace Glimpse.Core.ViewModel
         {
             get { return _promotionEndDate; }
             set { _promotionEndDate = value; RaisePropertyChanged(() => PromotionEndDate); }
+        }
+
+        private List<byte[]> _promotionImageList;
+        public List<byte[]> PromotionImageList
+        {
+            get { return _promotionImageList; }
+            set
+            {
+                _promotionImageList = value;
+                RaisePropertyChanged(() => PromotionImageList);
+            }
         }
 
 
@@ -59,54 +75,63 @@ namespace Glimpse.Core.ViewModel
             Bytes = memoryStream.ToArray();
         }
 
-        /* public MvxCommand selectImg
-         {
-             get
-             {
-                 return new MvxCommand(() =>
-                 {
-                     _pictureChooserTask.ChoosePictureFromLibrary(400, 95, OnPicture, () => { });
-                 });
-             }
-         }
-         */
         public MvxCommand createPromotion
         {
             get
             {
                 return new MvxCommand(async () =>
                 {
-
-                    List<Category> promotionCategories = new List<Category> { };
-
                     foreach (string key in dataFromCreatePromotionPart1.Keys)
                     {
                         if (dataFromCreatePromotionPart1[key] == "True")
-                            promotionCategories.Add(new Category((Categories)Enum.Parse(typeof(Categories), key, true)));
+                            selectedCategory = (Categories) Enum.Parse(typeof(Categories), key, true);
                     }
 
                     //Calculate DateTime span
                     //TimeSpan promotionLength = _promotionEndDate - _promotionStartDate;
 
-
+                    if (!string.IsNullOrEmpty(Settings.Email))
+                    {
+                        vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
+                    }
+                    
                     Promotion promotion = new Promotion()
                     {
-                     //   Title = dataFromCreatePromotionPart1["PromotionTitle"],
-                   //     Description = dataFromCreatePromotionPart1["PromotionDescription"],
-                        Categories = promotionCategories,
+                        Title = dataFromCreatePromotionPart1["PromotionTitle"],
+                        Description = dataFromCreatePromotionPart1["PromotionDescription"],
+                        Category = selectedCategory,
                         PromotionStartDate = _promotionStartDate,
                         PromotionEndDate = _promotionEndDate,
-                        //PromotionImage = File,
-                    };
+                        PromotionImage = Bytes,
+                        PromotionImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"].Replace(" ", string.Empty) + "/" + "cover",
+                        VendorId = vendor.VendorId,
+                    };                  
 
-                    Vendor vendor = await _vendorDataService.SearchVendorByEmail( Settings.Email);
+                    vendor.Promotions.Add(promotion);
 
-                    //    vendor.Promotions.Add(promotion);
-                    vendor.CompanyName = "modified ";
+                    await _promotionDataService.StorePromotion(promotion);
 
-                    await _vendorDataService.EditVendor(vendor.VendorId, vendor);
-                   
-                    ShowViewModel<VendorProfilePageViewModel>();
+                    //this next line is not actually adding promotions, dont know why, works for all other
+                    //await _vendorDataService.EditVendor(vendor.VendorId, vendor);
+                    List<Promotion> promotions = await _promotionDataService.GetPromotions();
+
+                    //index for unique naming the promotion image
+                    int i = 1;
+                    foreach(byte[] promotionImage in PromotionImageList)
+                    {
+                        PromotionImage promotionImageInstance = new PromotionImage()
+                        {
+                            Image = promotionImage,
+                            PromotionId = promotions[promotions.Count - 1].PromotionId,
+                            ImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"].Replace(" ", string.Empty) + "/" + "image" + i
+                        };
+
+                        await _promotionImageDataService.StorePromotion(promotionImageInstance);
+                        i++;
+                    }
+                                        
+                    ShowViewModel<VendorProfilePageViewModel>(new { index = 0 });
+
                 });
             }
         }

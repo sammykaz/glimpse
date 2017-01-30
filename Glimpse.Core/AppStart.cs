@@ -17,12 +17,13 @@ namespace Glimpse.Core
             if(Settings.Language == string.Empty)
             Settings.Language = "English";
 
+            
             if (await authenticator.AuthenticateUserLogin())
             {
                 ShowViewModel<MainViewModel>();
             }
             else
-            {
+            { 
                 ShowViewModel<LoginMainViewModel>();
             }
         }

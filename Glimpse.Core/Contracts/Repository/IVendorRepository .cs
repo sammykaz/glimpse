@@ -16,6 +16,7 @@ namespace Glimpse.Core.Contracts.Repository
 
         Task<int> GetVendorId(string username);
 
+        Task DeleteVendor(Vendor vendor);
 
     }
 }

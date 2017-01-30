@@ -51,20 +51,20 @@ namespace Glimpse.Core.ViewModel
                 IsSelected = false
             });
 
-            _user = await _userDataService.SearchUserByEmail(Settings.Email);
-            _vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
-
-            if (_user != null && _vendor == null)
+            MenuItems.Add(new MenuItem
             {
-                MenuItems.Add(new MenuItem
-                {
-                    Title = "Buyer Profile",
-                    ViewModelType = typeof(BuyerProfilePageViewModel),
-                    Option = MenuOption.BuyerProfile,
-                    IsSelected = true
-                });
+                Title = "Map",
+                ViewModelType = typeof(ViewPagerViewModel),
+                Option = MenuOption.Logout,
+                IsSelected = false
+            });
+
+            if (!string.IsNullOrEmpty(Settings.Email))
+            {
+                _vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
             }
-            else if (_user == null && _vendor != null)
+
+            if (_vendor != null)
             {
                 MenuItems.Add(new MenuItem
                 {
@@ -76,7 +76,13 @@ namespace Glimpse.Core.ViewModel
             }
             else
             {
-                //do nothing, no profile for no user
+                MenuItems.Add(new MenuItem
+                {
+                    Title = "Buyer Profile",
+                    ViewModelType = typeof(BuyerProfilePageViewModel),
+                    Option = MenuOption.BuyerProfile,
+                    IsSelected = true
+                });
             }
 
         }

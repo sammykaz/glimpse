@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MvvmCross.Droid.Support.V4.MvxSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refresher"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    local:MvxBind="Refreshing IsRefreshing; RefreshCommand ReloadCommand">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <MvxRadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:orientation="horizontal"
+            android:id="@+id/filter_radiogroup"
+            local:MvxItemTemplate="@layout/item_radio"
+            local:MvxBind="ItemsSource Categories;SelectedItem SelectedItem" />
+        <Mvx.MvxListView
+            android:orientation="vertical"
+            android:layout_height="fill_parent"
+            local:MvxBind="ItemsSource PromotionList; ItemClick ViewTileDetails"
+            local:MvxItemTemplate="@layout/promotionanddistancetemplate"
+            android:layout_width="fill_parent" />
+    </LinearLayout>
+</MvvmCross.Droid.Support.V4.MvxSwipeRefreshLayout>

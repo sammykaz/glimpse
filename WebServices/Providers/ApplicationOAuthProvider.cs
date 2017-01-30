@@ -10,12 +10,21 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using WebServices.Models;
+using Glimpse.Core.Contracts.Services;
+//using Plugin.RestClient;
+using Glimpse.Core.Services.General;
+using System.Net;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace WebServices.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
+        private readonly string WebServiceUrl = "http://glimpsews.azurewebsites.net/api/vendors/";
+        private Vendor currentVendor;
+        //RestClient<Vendor> restClient = new RestClient<Vendor>();
 
         public ApplicationOAuthProvider(string publicClientId)
         {
@@ -23,31 +32,79 @@ namespace WebServices.Providers
             {
                 throw new ArgumentNullException("publicClientId");
             }
-
             _publicClientId = publicClientId;
         }
 
+        public async Task<Vendor> GetByKeyword(string keyword, bool slashRequired = false)
+        {
+
+            var httpClient = new HttpClient();
+
+            string request = WebServiceUrl + "Search/" + keyword;
+
+            if (slashRequired)
+                request = request + "/";
+
+            var json = await httpClient.GetStringAsync(request);
+
+            var taskModel = JsonConvert.DeserializeObject<Vendor>(json);
+
+            return taskModel;
+        }
+
+
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
+            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
-            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+            //currentVendor = await restClient.GetByKeyword(context.UserName, true);
 
-            if (user == null)
+            currentVendor = await GetByKeyword(context.UserName, true);
+            //context.SetError("invalid_grant", currentVendor.Email + "pass: " + context.Password + "encrypted pass: " + currentVendor.Password);
+            //return;
+            //string password = context.Password;
+            //string salt = currentVendor.Salt;
+            //string encryptedPassword = Cryptography.EncryptAes(password, salt);
+
+            if (currentVendor!=null){
+                if (context.Password == currentVendor.Password) {
+                    identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
+                    identity.AddClaim(new Claim("username", "user"));
+                    identity.AddClaim(new Claim(ClaimTypes.Name, ""+ currentVendor.VendorId));
+                    identity.AddClaim(new Claim(ClaimTypes.Sid, ""+ currentVendor.VendorId));
+                    context.Validated(identity);
+                }
+                else
+                {
+                    context.SetError("invalid_grant", "The user name or password is incorrect.");
+                    return;
+                }
+            }
+            else
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-               OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
+            //var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            AuthenticationProperties properties = CreateProperties(user.UserName);
-            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
-            context.Validated(ticket);
-            context.Request.Context.Authentication.SignIn(cookiesIdentity);
+            //ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+
+            //if (user == null)
+            //{
+            //    context.SetError("invalid_grant", "The user name or password is incorrect.");
+            //    return;
+            //}
+
+            //ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
+            //   OAuthDefaults.AuthenticationType);
+            //ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
+            //    CookieAuthenticationDefaults.AuthenticationType);
+
+            //AuthenticationProperties properties = CreateProperties(user.UserName);
+            //AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
+            //context.Validated(ticket);
+            //context.Request.Context.Authentication.SignIn(cookiesIdentity);
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)

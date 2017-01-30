@@ -14,7 +14,7 @@ namespace WebServices.Models
         public int VendorId { get; set; }      
 
         [Index(IsUnique = true)]
-        [MaxLength(20)]
+        [MaxLength(100)]
         public string Email { get; set; }
 
         public string Password { get; set; }

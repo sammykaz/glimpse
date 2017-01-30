@@ -42,9 +42,27 @@ namespace Glimpse.Core.Services.Data
         }
 
         public async Task EditVendor(int id, Vendor vendor)
-        {
-            string test = "";
+        {         
             await _vendorRepository.PutVendor(id, vendor);
+        }
+
+        public async Task DeleteVendor(Vendor vendor)
+        {
+            await _vendorRepository.DeleteVendor(vendor);
+        }
+
+        public async Task<bool> CheckIfVendorExists(string email)
+        {
+            Vendor vendor = null;
+            if (!string.IsNullOrEmpty(email))
+            {
+                 vendor = await SearchVendorByEmail(email);
+            }
+
+            if (vendor != null)
+                return true;
+
+            return false;
         }
     }
 }

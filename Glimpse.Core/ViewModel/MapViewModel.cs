@@ -7,6 +7,8 @@ using Plugin.Geolocator.Abstractions;
 using System.Collections.Generic;
 using System.Linq;
 using Glimpse.Core.Helpers;
+using System.Collections;
+using System;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -16,20 +18,22 @@ namespace Glimpse.Core.ViewModel
         private readonly int _defaultZoom = 18;
         private readonly int _defaultTilt = 65;
         private readonly int _defaultBearing = 155;
-        private List<Vendor> _allVendors;
-        private List<Promotion> _allPromotions = new List<Promotion>();
         private Dictionary<Vendor, List<Promotion>> _vendorData = new Dictionary<Vendor, List<Promotion>>();
-        private IVendorDataService _vendorDataService;
-        private IPromotionDataService _promotionDataService;
+        private IVendorDataService vendorDataService;
+        private IPromotionDataService promotionDataService;
+        private IPromotionClickDataService promotionClickDataService;
         private Location _userCurrentLocation;
+        private List<PromotionWithLocation> _promotionsStored;
         private IGeolocator locator;
         public delegate void LocationChangedHandler(object sender, LocationChangedHandlerArgs e);
         public event LocationChangedHandler LocationUpdate;
 
-        public MapViewModel(IMvxMessenger messenger, IVendorDataService vendorDataService, IPromotionDataService promotionDataService) : base(messenger)
+
+        public MapViewModel(IMvxMessenger messenger, IVendorDataService vendorDataService, IPromotionDataService promotionDataService, IPromotionClickDataService promotionClickDataService) : base(messenger)
         {
-            _vendorDataService = vendorDataService;
-            _promotionDataService = promotionDataService;
+            this.vendorDataService = vendorDataService;
+            this.promotionDataService = promotionDataService;
+            this.promotionClickDataService = promotionClickDataService;
         }
 
         public override async void Start()
@@ -47,6 +51,17 @@ namespace Glimpse.Core.ViewModel
             //Setting up the event and start listening
             locator.PositionChanged += Locator_PositionChanged;
             await locator.StartListeningAsync(minTime: 1, minDistance: 10);
+        }
+
+        public async Task StorePromotionClick(int promotionId)
+        {
+            PromotionClick promotionClick = new PromotionClick
+            {
+                PromotionId = promotionId,
+                Time = DateTime.Now
+            };
+
+            await promotionClickDataService.StorePromotionClick(promotionClick);
         }
 
         public async Task<Location> GetUserLocation()
@@ -77,6 +92,7 @@ namespace Glimpse.Core.ViewModel
             OnLocationUpdate(UserCurrentLocation);
         }
 
+
          private void OnLocationUpdate(Location location)
         {
             if (LocationUpdate != null)
@@ -102,25 +118,6 @@ namespace Glimpse.Core.ViewModel
             get { return _defaultBearing; }
         }
 
-        public List<Vendor> Vendors
-        {
-            get { return _allVendors; }
-            set
-            {
-                _allVendors = value;
-                RaisePropertyChanged(() => Vendors);
-            }
-
-        }
-        public List<Promotion> Promotions
-        {
-            get { return _allPromotions; }
-            set
-            {
-                _allPromotions = value;
-                RaisePropertyChanged(() => Promotions);
-            }
-        }
 
         public Location UserCurrentLocation
         {
@@ -138,9 +135,61 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-   
+        public async Task<List<PromotionWithLocation>> GetActivePromotions()
+        {
+            _promotionsStored = await promotionDataService.GetActivePromotions();
+            _filteredpromotions = _promotionsStored;
+            return _promotionsStored;
+        }
 
+        //Map filtering section
 
+        private List<PromotionWithLocation> _filteredpromotions;
+        public List<PromotionWithLocation> FilteredPromotionList
+        {
+            get { return _filteredpromotions; }
+            set
+            {
+                _filteredpromotions = value;
+                RaisePropertyChanged(() => FilteredPromotionList);
+            }
+
+        }
+
+        private List<string> _categories;
+        public List<string> Categories
+        {
+            get
+            {
+                List<string> allCategories = new List<string>();
+                allCategories.Add("All");
+                foreach (string name in Enum.GetNames(typeof(Categories)))
+                {
+                    allCategories.Add(name);
+                };
+                return allCategories;
+            }
+            set
+            {
+                _categories = value;
+                RaisePropertyChanged(() => Categories);
+            }
+        }
+
+        private Categories? _selectedItem;
+        public Categories? SelectedItem
+        {
+            get
+            {
+                return _selectedItem;
+            }
+            set
+            {
+                _selectedItem = value;
+                FilteredPromotionList = promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem);
+                RaisePropertyChanged(() => FilteredPromotionList);
+            }
+        }
 
     }
 

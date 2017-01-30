@@ -1,175 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:background="#DEDEDC"
+    android:background="#FFFF"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:minWidth="300dp"
     android:minHeight="400dp"
     android:orientation="vertical">
-    <EditText
-        android:id="@+id/txtFirstName"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="@drawable/edit_text_style"
+        android:layout_height="wrap_content"
+        android:id="@+id/ErrorMsg"
+        android:gravity="center"
+        android:textColor="#ff0000"
+        local:MvxBind="Text ErrorMessage, Mode=TwoWay" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtCompanyName"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="Company"
+            android:paddingLeft="10dp"
+            android:textColor="#000"
+            local:MvxBind="Text CompanyName, Mode=TwoWay"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText
+            android:inputType="textEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtEmail"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="Email"
+            android:paddingLeft="10dp"
+            android:textColor="#000"
+            local:MvxBind="Text Email, Mode=TwoWay" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtPassword"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="Password"
+            android:paddingLeft="10dp"
+            android:textColor="#000"
+            local:MvxBind="Text Password, Mode=TwoWay" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+        <EditText
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtConfirmPassword"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="ConfirmPassword"
+            android:paddingLeft="10dp"
+            android:textColor="#000"
+            local:MvxBind="Text ConfirmPassword, Mode=TwoWay" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtBusinessPhoneNumber"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="BusinessPhoneNumber"
+            android:paddingLeft="10dp"
+            android:textColor="#000"
+            local:MvxBind="Text BusinessPhoneNumber, Mode=TwoWay"
+            android:inputType="phone" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/selectBusinessLocationButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Select Business Location" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtAddress"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="First Name"
+        android:layout_marginBottom="24dp"
         android:paddingLeft="10dp"
         android:textColor="#000"
-        local:MvxBind="Text FirstName, Mode=TwoWay"
-        android:inputType="text" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/txtLastName"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Last Name"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text LastName, Mode=TwoWay"
-        android:inputType="text" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/txtCompanyName"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Company"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text CompanyName, Mode=TwoWay"
-        android:inputType="text" />
-    <EditText
-        android:layout_below="@id/txtCompanyName"
-        android:inputType="textEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/txtEmail"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Email"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text Email, Mode=TwoWay" />
-    <EditText
-        android:layout_below="@id/txtEmail"
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/txtPassword"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Password"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text Password, Mode=TwoWay" />
-    <EditText
-        android:layout_below="@id/txtPassword"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/txtCountry"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Country"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text Country, Mode=TwoWay"
-        android:inputType="text" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/txtProvince"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Province"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text Province, Mode=TwoWay"
-        android:inputType="text" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/txtCity"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="City"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text City, Mode=TwoWay"
-        android:inputType="text" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/txtPostalCode"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="PostalCode"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text PostalCode, Mode=TwoWay"
-        android:inputType="text" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/txtStreet"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="Street"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text Street, Mode=TwoWay"
-        android:inputType="text" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/txtStreetNumber"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="StreetNumber"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text StreetNumber, Mode=TwoWay"
-        android:inputType="number" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/txtPersonalPhoneNumber"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="PersonalPhoneNumber"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text PersonalPhoneNumber, Mode=TwoWay"
-        android:inputType="phone" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:id="@+id/txtBusinessPhoneNumber"
-        android:background="@drawable/edit_text_style"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:hint="BusinessPhoneNumber"
-        android:paddingLeft="10dp"
-        android:textColor="#000"
-        local:MvxBind="Text BusinessPhoneNumber, Mode=TwoWay"
-        android:inputType="phone" />
+        local:MvxBind="Text Address, Mode=TwoWay" />
     <Button
         android:text="Sign Up!"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:id="@+id/SignUpButton"
         android:textSize="20dp"
         android:textColor="#fff"

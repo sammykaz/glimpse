@@ -1,6 +1,7 @@
 ﻿using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +16,13 @@ namespace Glimpse.Core.Contracts.Services
         Task<List<Promotion>> GetPromotion(int id);
 
         Task<List<Promotion>> GetPromotions();
+
+        Task<List<PromotionWithLocation>> GetActivePromotions();
+
+        Task<List<Promotion>> GetPromotionsByCategory(Categories category);
+
+        List<PromotionWithLocation> FilterPromotionWithLocationList(List<PromotionWithLocation> promoWithLocationList, Categories? category);
+
+        Task<List<PromotionWithLocation>> PopulatePromotionWithLocationBlobs(List<PromotionWithLocation> promotionsWithLocation);
     }
 }

@@ -52,6 +52,39 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                _errorMessage = value;
+                RaisePropertyChanged(() => ErrorMessage);
+            }
+        }
+
+        private bool _isBusy;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                RaisePropertyChanged(() => IsBusy);
+            }
+        }
+
+
+        /// <summary>
+        /// Init method so that list is refreshed when show view model is called
+        /// The parameter is required to be able to get this method called since none exist with empty argument...
+        /// </summary>
+        /// <param name="index"></param>
+        public void Init(int index)
+        {
+            ErrorMessage = "";
+        }
+
 
         public MvxCommand SignInCommand
         {
@@ -59,29 +92,31 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
-                    currentUser = await _userDataService.SearchUserByEmail(Email);
-                    currentVendor = await _vendorDataService.SearchVendorByEmail(Email);
-
-                    //Currently have no contraints for multiple accounts having the same username
-
-                    if (currentUser != null && currentVendor == null)
+                    IsBusy = true;
+                    if ((!string.IsNullOrEmpty(Email)) && (!string.IsNullOrEmpty(Password)))
                     {
-                        if (_loginDataService.AuthenticateUser(currentUser, Email, Password))
+                        currentVendor = await _vendorDataService.SearchVendorByEmail(Email);
+
+                        //Currently have no contraints for multiple accounts having the same email
+                        if (currentVendor != null)
                         {
-                            ShowViewModel<MapViewModel>();
+                            if (_loginDataService.AuthenticateVendor(currentVendor, Email, Password))
+                            {
+                                IsBusy = false;
+                                ShowViewModel<MapViewModel>();
+                            }
+                            IsBusy = false;
                         }
-                    }
-                    else if (currentVendor != null && currentUser == null)
-                    {
-                        if (_loginDataService.AuthenticateVendor(currentVendor, Email, Password))
+                        else
                         {
-                            ShowViewModel<MapViewModel>();
+                            IsBusy = false;
+                            ErrorMessage = "Incorrect email or password.";
                         }
                     }
                     else
                     {
-                        ShowViewModel<LoginViewModel>();
-                        //TODO if sign in fails, user goes to login page, should give a warning instead
+                        IsBusy = false;
+                        ErrorMessage = "Missing required field.";                        
                     }
 
                 });

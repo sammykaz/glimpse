@@ -15,22 +15,35 @@ namespace Glimpse.Core.ViewModel
         }
         public MvxCommand ShowVendorSignUp
         {
-            get { return ShowCommand<VendorSignUpViewModel>(); }
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    ShowViewModel<VendorSignUpViewModel>(new { index = 0 });
+                });
+            }
         }
 
-        public MvxCommand ShowStartingMap
+        public MvxCommand ShowMap
         {
-            get { return ShowCommand<StartingMapViewModel>(); }
-        }
-
-        public MvxCommand ShowUserSignUp
-        {
-            get { return ShowCommand<UserSignUpViewModel>(); }
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    ShowViewModel<MapViewModel>(new {index = 0});
+                });
+            }
         }
 
         public MvxCommand ShowSignIn
         {
-            get { return ShowCommand<SignInViewModel>(); }
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    ShowViewModel<SignInViewModel>(new { index = 0 });
+                });
+             }
         }
     }
 }
