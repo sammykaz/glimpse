@@ -275,6 +275,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612220544451_fluent.cs" />
+    <Compile Include="Migrations\201612220544451_fluent.Designer.cs">
+      <DependentUpon>201612220544451_fluent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612220657108_location.cs" />
+    <Compile Include="Migrations\201612220657108_location.Designer.cs">
+      <DependentUpon>201612220657108_location.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201612270323003_migration1.cs" />
     <Compile Include="Migrations\201612270323003_migration1.Designer.cs">
       <DependentUpon>201612270323003_migration1.cs</DependentUpon>
@@ -310,6 +318,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Contexts\GlimpseDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LikedPromotion.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Promotion.cs" />
     <Compile Include="Models\PromotionClick.cs" />
@@ -460,6 +469,7 @@
     <Content Include="Scripts\FileAPI.flash.swf" />
     <Content Include="Scripts\FileAPI.js" />
     <Content Include="Scripts\FileAPI.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
@@ -1198,6 +1208,8 @@
     <Content Include="Scripts\jasmine\console.js" />
     <Content Include="Scripts\jasmine\jasmine-html.js" />
     <Content Include="Scripts\jasmine\jasmine.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -1283,13 +1295,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="test-results.testxml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\HelpPage\Views\Help\DisplayTemplates\" />
     <Folder Include="Areas\HelpPage\Views\Shared\" />
     <Folder Include="Utility\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1306,6 +1318,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201612220544451_fluent.resx">
+      <DependentUpon>201612220544451_fluent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612220657108_location.resx">
+      <DependentUpon>201612220657108_location.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612270323003_migration1.resx">
       <DependentUpon>201612270323003_migration1.cs</DependentUpon>
     </EmbeddedResource>
