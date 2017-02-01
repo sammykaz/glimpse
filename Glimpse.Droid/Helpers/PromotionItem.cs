@@ -20,7 +20,6 @@ namespace Glimpse.Core.Helpers
         }
 
         /*
-
         public PromotionItem(double lat, double lng, string title, string description, int expirationDate, string companyName, Bitmap promotionImage, int promotionId)
         {
             Position = new LatLng(lat, lng);

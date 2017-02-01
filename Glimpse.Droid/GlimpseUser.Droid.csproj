@@ -342,7 +342,6 @@
   <ItemGroup>
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
-    <Compile Include="Activities\StartingMapActivity.cs" />
     <Compile Include="Adapter\CardAdapter.cs" />
     <Compile Include="Adapter\MvxViewPagerFragmentAdapter .cs" />
     <Compile Include="Adapter\PromotionDialogRecyclerAdapter.cs" />
@@ -374,6 +373,7 @@
     <Compile Include="Views\CreatePromotionFragment.cs" />
     <Compile Include="Views\CreatePromotionPart2Fragment.cs" />
     <Compile Include="Views\DatePickerFragment.cs" />
+    <Compile Include="Views\LikedPromotionsFragment.cs" />
     <Compile Include="Views\LoginFragment.cs" />
     <Compile Include="Views\MenuFragment.cs" />
     <Compile Include="Views\PromotionDialogFragment.cs" />
@@ -385,12 +385,10 @@
     <Compile Include="Views\SettingsFragment.cs" />
     <Compile Include="Views\SignInFragment.cs" />
     <Compile Include="Views\VendorProfilePageFragment.cs" />
-    <Compile Include="Views\UserSignUpFragment.cs" />
     <Compile Include="Views\VendorSignUpFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="GettingStarted.Xamarin" />
     <None Include="Glimpse.Droid.csproj.bak" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -473,15 +471,9 @@
     <AndroidResource Include="Resources\layout\BuyerProfilePageView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\UserSignUpView.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\drawable\profile_circular_border_imageview.axml" />
     <AndroidResource Include="Resources\layout\SignInView.axml" />
     <AndroidResource Include="Resources\layout\LoginMainView.axml" />
-    <AndroidResource Include="Resources\layout\StartingMapView.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\CreatePromotionPart2View.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -492,7 +484,7 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\item_menu.axml" />
     <AndroidResource Include="Resources\Raw\style_json.json" />
-    <AndroidResource Include="Resources\layout\TilesView.axml">
+    <AndroidResource Include="Resources\layout\LikedPromotionsView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\PromotionAndDistanceTemplate.axml" />
@@ -597,7 +589,9 @@
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\LogInView.axml" />
+    <AndroidResource Include="Resources\layout\LogInView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\HomeButtonBuyerSignUp.xml" />

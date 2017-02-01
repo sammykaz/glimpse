@@ -50,11 +50,13 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="AppStart.cs" />
+    <Compile Include="Contracts\Repository\ILocalPromotionRepository.cs" />
     <Compile Include="Contracts\Repository\IPromotionClickRepository.cs" />
     <Compile Include="Contracts\Repository\IPromotionImageRepository.cs" />
     <Compile Include="Contracts\Repository\IPromotionRepository.cs" />
     <Compile Include="Contracts\Repository\IVendorRepository .cs" />
     <Compile Include="Contracts\Repository\IUserRepository.cs" />
+    <Compile Include="Contracts\Services\ILocalPromotionDataService.cs" />
     <Compile Include="Contracts\Services\ILoginDataService.cs" />
     <Compile Include="Contracts\Services\IPromotionClickDataService.cs" />
     <Compile Include="Contracts\Services\IPromotionDataService.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Helpers\PropValue.cs" />
     <Compile Include="Helpers\LocationChangedHandlerArgs.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Helpers\SQLiteDatabase.cs" />
     <Compile Include="Model\App\MenuItem.cs" />
     <Compile Include="Model\App\SearchParameters.cs" />
     <Compile Include="Model\BaseModel.cs" />
@@ -83,12 +86,14 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\LocalPromotionRepository.cs" />
     <Compile Include="Repositories\PromotionClickRepository.cs" />
     <Compile Include="Repositories\PromotionImageRepository.cs" />
     <Compile Include="Repositories\PromotionRepository.cs" />
     <Compile Include="Repositories\VendorRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="RestClient\RestClient.cs" />
+    <Compile Include="Services\Data\Local\LocalPromotionDataService.cs" />
     <Compile Include="Services\Data\PromotionClickDataService.cs" />
     <Compile Include="Services\Data\FilteringDataService.cs" />
     <Compile Include="Services\Data\PromotionDataService.cs" />
@@ -104,6 +109,7 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BuyerProfilePageViewModel.cs" />
     <Compile Include="ViewModel\CreatePromotionPart2ViewModel.cs" />
+    <Compile Include="ViewModel\LikedPromotionsViewModel.cs" />
     <Compile Include="ViewModel\PromotionDialogViewModel.cs" />
     <Compile Include="ViewModel\CreatePromotionViewModel.cs" />
     <Compile Include="ViewModel\LoginMainViewModel.cs" />
@@ -111,7 +117,6 @@
     <Compile Include="ViewModel\TileDetailsViewModel.cs" />
     <Compile Include="ViewModel\ViewPagerViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
-    <Compile Include="ViewModel\StartingMapViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\ProfilePageViewModel.cs" />
@@ -119,7 +124,6 @@
     <Compile Include="ViewModel\SignInViewModel.cs" />
     <Compile Include="ViewModel\CardViewModel.cs" />
     <Compile Include="ViewModel\VendorProfilePageViewModel.cs" />
-    <Compile Include="ViewModel\UserSignUpViewModel.cs" />
     <Compile Include="ViewModel\VendorSignUpViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

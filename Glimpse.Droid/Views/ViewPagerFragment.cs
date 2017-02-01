@@ -49,7 +49,13 @@ namespace Glimpse.Droid.Views
                       FragmentType = typeof(Views.CardFragment),
                       Title = "Fragment2",
                       ViewModel = ViewModel.CardViewModel
-                    },               
+                    },
+                     new MvxViewPagerFragmentAdapter.FragmentInfo
+                    {
+                      FragmentType = typeof(Views.LikedPromotionsFragment),
+                      Title = "Fragment3",
+                      ViewModel = ViewModel.LikedPromotionsViewModel
+                    }
                   };
 
             _viewPager = View.FindViewById<CustomViewPager>(Resource.Id.viewPager);
