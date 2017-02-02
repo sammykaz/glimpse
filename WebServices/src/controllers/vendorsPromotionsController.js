@@ -182,13 +182,19 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             var sdt = $scope.sdt;
             var edt = $scope.edt;
             var promotionTitleForPicture = $scope.promotionDescription.split(' ').join('');
+            var PromotionImages = [{
+                ImageURL: localStorage.id + "/" + promotionTitleForPicture + "/" + "image1.jpeg",
+                Image: PromotionImages, // <- Need to apply same manipulations as we applied on cover picture
+                PromotionId: 1262
+            }];
             var promotionData = {
                 title: $scope.promotionTitle,
                 description: $scope.promotionDescription,
                 category: $scope.category,
                 promotionStartDate: sdt,
                 promotionEndDate: edt,
-                PromotionImageURL: localStorage.id + "/" + promotionTitleForPicture + "/" + "cover"
+                promotionImages: PromotionImages,
+                promotionImageURL: localStorage.id + "/" + promotionTitleForPicture + "/" + "cover"
             }
 
             if (isEditMode) {
@@ -200,6 +206,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             if (!!$scope.previewImage) {
                 getImageData().then(function (imageBased64) {
                     promotionData["promotionImage"] = imageBased64.split(",")[1];
+                    
                     if (isEditMode) {
                         onEditClick(promotionDetails.PromotionId, promotionData);
                     } else {
@@ -386,9 +393,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             $scope.cropper.destroy();
         }
     }
-
-
-
 
     $scope.selectedFilter = 'Apply Filters';
     $scope.applyFilter = function (filterType) {
@@ -812,8 +816,10 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 app.controller('changeDateModalController', function ($scope, $uibModalInstance, promotionDetails) {
 
     $scope.sdt = new Date(promotionDetails.PromotionStartDate);
-    $scope.sdt.setDate($scope.sdt.getDate() + 1);
+    console.log($scope.sdt);
+    $scope.sdt.setHours($scope.sdt.getHours() + 5);
     $scope.edt = new Date(promotionDetails.PromotionEndDate);
+    $scope.edt.setHours($scope.edt.getHours() + 5);
     $scope.showDateWarning = false;
 
     $scope.done = function () {

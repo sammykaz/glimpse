@@ -12,7 +12,7 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
 
     var promotionsquery = dataService.getPromotions().query();
     promotionsquery.$promise.then(function (data) {
-        debugger;
+        //debugger;
         $scope.promotions = data;
     }, function (error) {
         console.log("Error: Could not load promotions");
@@ -101,28 +101,4 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
         });
     }
 
-    var convertCategory = function () {
-        switch ($scope.promotions.Category) {
-            case 0:
-                $scope.promotions.Category = "Footwear"
-                break;
-            case 1:
-                $scope.promotions.Category = "Electronics"
-                break;
-            case 2:
-                $scope.promotions.Category = "Jewellery"
-                break;
-            case 3:
-                $scope.promotions.Category = "Restaurants"
-                break;
-            case 4:
-                $scope.promotions.Category = "Services"
-                break;
-            case 5:
-                $scope.promotions.Category = "Apparel"
-                break;
-            default:
-                break;
-        }
-    }
 }]);
