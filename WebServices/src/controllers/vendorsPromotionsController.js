@@ -46,9 +46,9 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
                 edit: true
             }
         }).result.then(function (updatedPromotionData) {
-            $scope.promotions.forEach(function (element, index) {
+            $scope.mypromotions.forEach(function (element, index) {
                 if (element.PromotionId === promotion.PromotionId) {
-                    $scope.promotions[index] = updatedPromotionData;
+                    $scope.mypromotions[index] = updatedPromotionData;
                 }
             });
         }, function () {
@@ -60,7 +60,7 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
         dataService.deletePromotion().delete({
             promotion: promotion.PromotionId
         }).$promise.then(function () {
-            $scope.promotions.splice(index, 1);
+            $scope.mypromotions.splice(index, 1);
         });
     }
 
@@ -88,10 +88,10 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
             dataService.updatePromotion().update({
                 promotion: promotion.PromotionId
             }, promotion).$promise.then(function (user) {
-                $scope.promotions.forEach(function (element, index) {
+                $scope.mypromotions.forEach(function (element, index) {
                     if (element.PromotionId === promotion.PromotionId) {
-                        $scope.promotions[index].PromotionStartDate = result.startDate;
-                        $scope.promotions[index].PromotionEndDate = result.endDate;
+                        $scope.mypromotions[index].PromotionStartDate = result.startDate;
+                        $scope.mypromotions[index].PromotionEndDate = result.endDate;
                     }
                 });
             });
@@ -181,12 +181,14 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             var isEditMode = !(angular.equals({}, promotionDetails));
             var sdt = $scope.sdt;
             var edt = $scope.edt;
+            var promotionTitleForPicture = $scope.promotionDescription.split(' ').join('');
             var promotionData = {
                 title: $scope.promotionTitle,
                 description: $scope.promotionDescription,
                 category: $scope.category,
                 promotionStartDate: sdt,
-                promotionEndDate: edt
+                promotionEndDate: edt,
+                PromotionImageURL: localStorage.id + "/" + promotionTitleForPicture + "/" + "cover"
             }
 
             if (isEditMode) {
@@ -340,31 +342,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.slides.length - 1;
     };
 
-
-    var getCategory = function () {
-        switch ($scope.promotions.Category) {
-            case 0:
-                $scope.promotions.Category = "Footwear"
-                break;
-            case 1:
-                $scope.promotions.Category = "Electronics"
-                break;
-            case 2:
-                $scope.promotions.Category = "Jewellery"
-                break;
-            case 3:
-                $scope.promotions.Category = "Restaurants"
-                break;
-            case 4:
-                $scope.promotions.Category = "Services"
-                break;
-            case 5:
-                $scope.promotions.Category = "Apparel"
-                break;
-            default:
-                break;
-        }
-    }
     $scope.cropImage = function () {
         $scope.isCropImageEnable = true;
         $scope.saveCrop = true;
@@ -688,24 +665,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         $scope.imageNotEmpty = true;
     }
 
-    $scope.upload = function (dataUrl, name) {
-        console.log(dataUrl);
-        //Upload.upload({
-        //    url: '',
-        //    data: {
-        //        file: Upload.dataUrltoBlob(dataUrl, name)
-        //    },
-        //}).then(function (response) {
-        //    $timeout(function () {
-        //        $scope.result = response.data;
-        //    });
-        //}, function (response) {
-        //    if (response.status > 0) $scope.errorMsg = response.status
-        //        + ': ' + response.data;
-        //}, function (evt) {
-        //    $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
-        //});
-    }
     var options = {
         aspectRatio: 16 / 9
     };
@@ -853,6 +812,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 app.controller('changeDateModalController', function ($scope, $uibModalInstance, promotionDetails) {
 
     $scope.sdt = new Date(promotionDetails.PromotionStartDate);
+    $scope.sdt.setDate($scope.sdt.getDate() + 1);
     $scope.edt = new Date(promotionDetails.PromotionEndDate);
     $scope.showDateWarning = false;
 
