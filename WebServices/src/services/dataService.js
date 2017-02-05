@@ -18,6 +18,9 @@
     fac.getPromotions = function () {
         return $resource('/api/promotions/:promotion', { user: "@promotion" });
     }
+    fac.savePromotionImages = function (imageInfo) {
+        return $http.post('/api/PromotionImages', imageInfo);
+    }
     fac.updatePromotion = function () {
         return $resource('/api/promotions/:promotion', null, {
             'update': {

@@ -122,7 +122,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.showCategorynWarning = false;
     $scope.showImageWarning = false;
     $scope.isResetEnable = false;
-    $scope.previewImage = promotionDetails.PromotionImage ? "data:image/JPEG;base64," + promotionDetails.PromotionImage : '';
+    $scope.previewImage = promotionDetails.PromotionImageURL ? "https://storageglimpse.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';
     $scope.imageNotEmpty = false;
 
     var slides = $scope.slides = [];//promotionDetails["PromotionImages"].length ? promotionDetails["PromotionImages"] : [];
@@ -182,19 +182,15 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             var sdt = $scope.sdt;
             var edt = $scope.edt;
             var promotionTitleForPicture = $scope.promotionDescription.split(' ').join('');
-            var PromotionImages = [{
-                ImageURL: localStorage.id + "/" + promotionTitleForPicture + "/" + "image1.jpeg",
-                Image: PromotionImages, // <- Need to apply same manipulations as we applied on cover picture
-                PromotionId: 1262
-            }];
+            var PromotionImages = [];
             var promotionData = {
                 title: $scope.promotionTitle,
                 description: $scope.promotionDescription,
                 category: $scope.category,
                 promotionStartDate: sdt,
                 promotionEndDate: edt,
-                promotionImages: PromotionImages,
-                promotionImageURL: localStorage.id + "/" + promotionTitleForPicture + "/" + "cover"
+                promotionImages: PromotionImages
+                //promotionImageURL: localStorage.id + "/" + promotionTitleForPicture + "/" + "cover"
             }
 
             if (isEditMode) {
@@ -206,10 +202,11 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             if (!!$scope.previewImage) {
                 getImageData().then(function (imageBased64) {
                     promotionData["promotionImage"] = imageBased64.split(",")[1];
-                    
+
                     if (isEditMode) {
                         onEditClick(promotionDetails.PromotionId, promotionData);
                     } else {
+                        debugger;
                         onSaveClick();
                     }
 
@@ -223,16 +220,51 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 }
             }
 
-            function onSaveClick() {
+           /* function generateUUID() {
+                var d = new Date().getTime();
+                if (window.performance && typeof window.performance.now === "function") {
+                    d += performance.now(); //use high-precision timer if available
+                }
+                var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                    var r = (d + Math.random() * 16) % 16 | 0;
+                    d = Math.floor(d / 16);
+                    return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+                });
+                return uuid;
+            }*/
 
-                dataService.getPromotions().save(promotionData, function (resp, headers) {
-                    $uibModalInstance.close(promotionData);
-                },
-                function (err) {
+            function onSaveClick() {
+                promotionData["PromotionImageURL"] = promotionData.vendorId + "/" + promotionData["title"] + "/" + "cover.jpeg";
+                var promotionImages = getSliderImagesList();
+                var promises = [];
+                var promotionsImagesURL = [];
+
+
+                var promotionImageInfo = {};
+               // var imageUniqueId;
+
+                promotionImages.forEach(function (imageBase64, index) {
+                    //imageUniqueId = generateUUID();
+                    promotionImageInfo["Image"] = imageBase64;
+                    promotionImageInfo["ImageURL"] = promotionData.vendorId + "/" + promotionData.title + "/" + "image" + index + ".jpeg";
+                    promotionImageInfo["PromotionImageId"] = promotionData.vendorId + index;
+                    promotionImageInfo["PromotionId"] = promotionData.vendorId;
+                    promotionImageInfo["Promotion"] = promotionData;
+                    promotionsImagesURL.push(promotionImageInfo["ImageURL"]);
+                    promises.push(dataService.savePromotionImages(promotionImageInfo));
                 });
 
-            }
+                promotionData["ImageURL"] = promotionsImagesURL;
 
+                $q.all(promises).then(function (result) {
+                    dataService.getPromotions().save(promotionData, function (resp, headers) {
+                        $uibModalInstance.close(promotionData);
+                    },
+                    function (err) { });
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
             function onEditClick(promotionId, promotion) {
                 var promotionData = {};
                 promotionData["Category"] = promotion.category || '';
