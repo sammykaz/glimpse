@@ -32,7 +32,8 @@ namespace WebServices.Models
  
         public string PromotionImageURL { get; set;}
 
-        
+        [NotMapped]
+        public bool RequestFromWeb { get; set; }
 
         [NotMapped]
         public byte[] PromotionImage { get; set; }

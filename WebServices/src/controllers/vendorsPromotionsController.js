@@ -143,7 +143,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             imageData = $scope.previewImage;
             defer.resolve(imageData);
         }
-
         return defer.promise;
     }
 
@@ -184,13 +183,14 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             var promotionTitleForPicture = $scope.promotionDescription.split(' ').join('');
             var PromotionImages = [];
             var promotionData = {
+                RequestFromWeb : true,
                 title: $scope.promotionTitle,
                 description: $scope.promotionDescription,
                 category: $scope.category,
                 promotionStartDate: sdt,
                 promotionEndDate: edt,
-                promotionImages: PromotionImages
-                //promotionImageURL: localStorage.id + "/" + promotionTitleForPicture + "/" + "cover"
+                promotionImages: PromotionImages,
+                promotionImageURL: localStorage.id + "/" + promotionTitleForPicture + "/" + "cover"
             }
 
             if (isEditMode) {
@@ -209,8 +209,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                         debugger;
                         onSaveClick();
                     }
-
                 });
+
             } else {
                 promotionData["promotionImage"] = null;
                 if (isEditMode) {
@@ -220,42 +220,24 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 }
             }
 
-           /* function generateUUID() {
-                var d = new Date().getTime();
-                if (window.performance && typeof window.performance.now === "function") {
-                    d += performance.now(); //use high-precision timer if available
-                }
-                var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                    var r = (d + Math.random() * 16) % 16 | 0;
-                    d = Math.floor(d / 16);
-                    return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-                });
-                return uuid;
-            }*/
-
             function onSaveClick() {
-                promotionData["PromotionImageURL"] = promotionData.vendorId + "/" + promotionData["title"] + "/" + "cover.jpeg";
                 var promotionImages = getSliderImagesList();
                 var promises = [];
                 var promotionsImagesURL = [];
 
 
-                var promotionImageInfo = {};
-               // var imageUniqueId;
+                var promotionImageInfo = [];
 
                 promotionImages.forEach(function (imageBase64, index) {
-                    //imageUniqueId = generateUUID();
-                    promotionImageInfo["Image"] = imageBase64;
-                    promotionImageInfo["ImageURL"] = promotionData.vendorId + "/" + promotionData.title + "/" + "image" + index + ".jpeg";
-                    promotionImageInfo["PromotionImageId"] = promotionData.vendorId + index;
-                    promotionImageInfo["PromotionId"] = promotionData.vendorId;
-                    promotionImageInfo["Promotion"] = promotionData;
-                    promotionsImagesURL.push(promotionImageInfo["ImageURL"]);
-                    promises.push(dataService.savePromotionImages(promotionImageInfo));
+                    var extraImage = {
+                        Image : imageBase64,
+                        ImageURL : promotionData.vendorId + "/" + promotionData.title + "/" + "image" + index
+                    }
+                    promotionImageInfo.push(extraImage);
                 });
 
-                promotionData["ImageURL"] = promotionsImagesURL;
-
+                promotionData['promotionImages'] = promotionImageInfo;
+                console.log(promotionData);
                 $q.all(promises).then(function (result) {
                     dataService.getPromotions().save(promotionData, function (resp, headers) {
                         $uibModalInstance.close(promotionData);
