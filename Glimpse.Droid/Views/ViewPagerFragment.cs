@@ -13,6 +13,7 @@ using Android.Support.V4.View;
 using static Android.Support.V4.View.ViewPager;
 using System;
 using Glimpse.Droid.Controls;
+using Android.Support.Design.Widget;
 
 namespace Glimpse.Droid.Views
 {
@@ -20,9 +21,10 @@ namespace Glimpse.Droid.Views
     [Register("glimpse.droid.views.ViewPagerFragment")]
     public class ViewPagerFragment : MvxFragment<ViewPagerViewModel>, IOnPageChangeListener, MainActivity.OnBackPressedListener
     {
-        public static CustomViewPager _viewPager;
-       // private ViewPager _viewPager;
+        private CustomViewPager _viewPager;
+        private TabLayout _tabLayout;
         private MvxViewPagerFragmentAdapter _adapter;
+        private int[] _tabIcons = { Android.Resource.Drawable.IcMediaPause, Android.Resource.Drawable.IcMediaPause, Android.Resource.Drawable.IcMediaPause };
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -41,13 +43,11 @@ namespace Glimpse.Droid.Views
                      new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
                       FragmentType = typeof(Views.MapFragment),
-                      Title = "Fragment1",
                       ViewModel = ViewModel.MapViewModel
                      },
                     new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
                       FragmentType = typeof(Views.CardFragment),
-                      Title = "Fragment2",
                       ViewModel = ViewModel.CardViewModel
                     },               
                   };
@@ -56,6 +56,11 @@ namespace Glimpse.Droid.Views
             _adapter = new MvxViewPagerFragmentAdapter(this.Context, ChildFragmentManager, fragments);
             _viewPager.Adapter = _adapter;
             _viewPager.AddOnPageChangeListener(this);
+            _tabLayout = View.FindViewById<TabLayout>(Resource.Id.tabs);
+            _tabLayout.SetupWithViewPager(_viewPager);
+
+            _tabLayout.GetTabAt(0).SetIcon(_tabIcons[0]);
+            _tabLayout.GetTabAt(1).SetIcon(_tabIcons[1]);
         }
 
         public void OnPageScrollStateChanged(int state)
