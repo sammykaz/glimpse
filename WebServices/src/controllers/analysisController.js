@@ -2,6 +2,7 @@
 app.controller('analysisController', ['$scope', 'dataService', function ($scope, dataService) {
 
     $scope.data = [];
+    $scope.dataHours = [];
     $scope.totalClicked = [];
     $scope.vendorPromotionsClicked = [];
     $scope.series = [];
@@ -54,6 +55,8 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
                 if (serie == elementClicked.PromotionId) {
                     var newDate = new Date(elementClicked.Time);
                     var date = newDate.getDate();
+                    var time = newDate.getHours();
+                    $scope.dataHours[indexSerie][time]++;
                     switch(date) {
                         case $scope.labels[0]:
                             $scope.data[indexSerie][0]++;
@@ -92,12 +95,14 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
 
     var today = new Date();
     $scope.labels = [today.getDate() - 6, today.getDate() - 5, today.getDate() - 4, today.getDate() - 3, today.getDate() - 2, today.getDate() - 1, today.getDate()];
-
+    $scope.labelHours = ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"]
     var initializeData = function () {
+        
         angular.forEach($scope.series, function (serie, indexSerie) {
             $scope.data[indexSerie] = [0, 0, 0, 0, 0, 0, 0]
+            $scope.dataHours[indexSerie] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             $scope.totalClicked[indexSerie] = 0;
-        })
+        });
     }
 
     $scope.onClick = function (points, evt) {
