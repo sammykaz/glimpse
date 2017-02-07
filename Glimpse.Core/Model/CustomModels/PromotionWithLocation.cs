@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite.Net.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,9 @@ namespace Glimpse.Core.Model
 {
     public class PromotionWithLocation
     {
-
+        [PrimaryKey, AutoIncrement]
+        public int PromotionWithLocationId { get; set; }
+                
         public int VendorId { get; set; }
 
         public string Title { get; set; }
