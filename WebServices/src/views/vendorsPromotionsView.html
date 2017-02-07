@@ -14,7 +14,7 @@
                             <th><button ng-click="showCreatePromotion()" class="btn btn-success pull-right">New Promotion</button></th>
                         </tr>
                     </thead>
-                    <tbody ng-repeat="promotion in mypromotions">
+                    <tbody ng-repeat="promotion in mypromotions | reverse">
                         <tr>
                             <td>{{promotion.Title}}</td>
                             <td>{{promotion.PromotionStartDate  | date : "fullDate"}}</td>

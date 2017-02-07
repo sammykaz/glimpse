@@ -55,13 +55,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $qProvider, $locationPr
             templateUrl: 'src/views/vendorsPromotionsView.html'
         })
 })
-/*.config(function(uiGmapGoogleMapApiProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyBPfBp5ilCMRWpYhrLdd3tSVawOEznvDB0',
-        v: '3.20', //defaults to latest 3.X anyhow
-        libraries: 'weather,geometry,visualization'
-    });
-})*/
 .controller('appController', function ($scope) {
     $scope.test = "test";
 })

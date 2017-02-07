@@ -55,7 +55,7 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
                 if (serie == elementClicked.PromotionId) {
                     var newDate = new Date(elementClicked.Time);
                     var date = newDate.getDate();
-                    var time = newDate.getHours();
+                    var time = newDate.getHours() + 5;
                     $scope.dataHours[indexSerie][time]++;
                     switch(date) {
                         case $scope.labels[0]:
