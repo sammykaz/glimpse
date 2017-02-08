@@ -2,6 +2,11 @@
 
 body {
   background: url("wp.jpg");
+  /*background: #f3f3f4 !important;*/
+}
+.signature{
+    background: url("10721229.jpg");
+    height:200px;
 }
 .login-form{width:390px; background: rgba(0, 0, 0, 0.38); padding-bottom: 30px; border-style: double; border-radius: 25px; color: white!important; padding-top: 15px;}
 .login-form-padding{padding-top: 250px;}
