@@ -122,7 +122,26 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.showCategorynWarning = false;
     $scope.showImageWarning = false;
     $scope.isResetEnable = false;
+    $scope.isSilderFilterEnable = false;
     $scope.previewImage = promotionDetails.PromotionImageURL ? "https://storageglimpse.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';
+    var imageUrl = promotionDetails.PromotionImageURL ? "https://storageglimpse.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';
+
+    if (imageUrl) {
+        getBase64FromImageUrl(imageUrl).then(function (base64Image) {
+            $scope.removeImage();
+            resetSliderFilter();
+            $scope.isSilderFilterEnable = true;
+            $scope.previewImage = base64Image;
+            $('#previewImage').remove();
+            if (!$('#previewImage').length) {
+                var orriginalImag = $('#originalImage').clone();
+                $(orriginalImag).removeClass('ng-hide');
+                $(orriginalImag).removeClass('hide').attr('id', 'previewImage');
+                $(orriginalImag).attr('src', base64Image);
+                $('#originalImage').parent().append(orriginalImag);
+            }
+        });
+    }
     $scope.imageNotEmpty = false;
 
     var slides = $scope.slides = [];//promotionDetails["PromotionImages"].length ? promotionDetails["PromotionImages"] : [];
@@ -144,6 +163,30 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             defer.resolve(imageData);
         }
         return defer.promise;
+    }
+
+    function getBase64FromImageUrl(url) {
+        return $q(function (resolve, reject) {
+            var img = new Image();
+
+            img.setAttribute('crossOrigin', 'anonymous');
+
+            img.onload = function () {
+                var canvas = document.createElement("canvas");
+                canvas.width = this.width;
+                canvas.height = this.height;
+
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(this, 0, 0);
+
+                var dataURL = canvas.toDataURL("image/jpeg");
+                resolve(dataURL);
+
+                var url = dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+            };
+
+            img.src = url;
+        });
     }
 
     function getSliderImagesList() {
@@ -258,9 +301,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 promotionData["PromotionEndDate"] = promotion["promotionEndDate"];
                 promotionData["PromotionId"] = promotionId;
                 promotionData["PromotionStartDate"] = promotion["promotionStartDate"];
-               
-                promotionData["PromotionImage"] = promotionDetails.PromotionImageURL ? "https://storageglimpse.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';;
-                debugger;
+              
+                promotionData["PromotionImage"] = promotionDetails.PromotionImageURL ? "https://storageglimpse.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';;           
                 promotionData["PromotionImages"] = getSliderImagesList();
                 promotionData["Title"] = promotion["title"];
                 promotionData["Vendor"] = promotion["vendor"] || null;
@@ -318,7 +360,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.isCropImageEnable = false;
     $scope.saveCrop = false;
     var imageFile = '';
-    $scope.isSilderFilterEnable = false;
 
     $scope.$watch('picFile', function () {
         if (!!$scope.picFile) {
