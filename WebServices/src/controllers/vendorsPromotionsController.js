@@ -180,7 +180,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             var isEditMode = !(angular.equals({}, promotionDetails));
             var sdt = $scope.sdt;
             var edt = $scope.edt;
-            var promotionTitleForPicture = $scope.promotionDescription.split(' ').join('');
+            var promotionTitleForPicture = $scope.promotionTitle.split(' ').join('');
             var PromotionImages = [];
             var promotionData = {
                 RequestFromWeb : true,
@@ -231,7 +231,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 promotionImages.forEach(function (imageBase64, index) {
                     var extraImage = {
                         Image : imageBase64,
-                        ImageURL : promotionData.vendorId + "/" + promotionData.title + "/" + "image" + index
+                        ImageURL : promotionData.vendorId + "/" + promotionData.title.split(' ').join('') + "/" + "image" + index
                     }
                     promotionImageInfo.push(extraImage);
                 });
