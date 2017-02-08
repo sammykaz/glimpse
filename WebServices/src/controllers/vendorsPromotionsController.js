@@ -245,7 +245,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             if (!!$scope.previewImage) {
                 getImageData().then(function (imageBased64) {
                     promotionData["promotionImage"] = imageBased64.split(",")[1];
-
+                    debugger;
                     if (isEditMode) {
                         onEditClick(promotionDetails.PromotionId, promotionData);
                     } else {
@@ -301,9 +301,9 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 promotionData["PromotionEndDate"] = promotion["promotionEndDate"];
                 promotionData["PromotionId"] = promotionId;
                 promotionData["PromotionStartDate"] = promotion["promotionStartDate"];
-              
-                promotionData["PromotionImage"] = promotionDetails.PromotionImageURL ? "https://storageglimpse.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';;           
-                promotionData["PromotionImages"] = getSliderImagesList();
+                //promotionData["PromotionImageURL"] =  promotionDetails.PromotionImageURL;
+                promotionData["PromotionImageURL"] = promotion.promotionImageURL || '';
+                promotionData["PromotionImage"] = promotion.promotionImage;
                 promotionData["Title"] = promotion["title"];
                 promotionData["Vendor"] = promotion["vendor"] || null;
                 promotionData["VendorId"] = promotion["vendorId"];
