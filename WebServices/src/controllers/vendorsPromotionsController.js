@@ -28,7 +28,6 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
                 edit: false
             }
         }).result.then(function (result) {
-            //console.log(result);
             //$scope.promotions.push(result);
         }, function () {
             console.log("Modal dismissed");
@@ -245,11 +244,9 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             if (!!$scope.previewImage) {
                 getImageData().then(function (imageBased64) {
                     promotionData["promotionImage"] = imageBased64.split(",")[1];
-                    debugger;
                     if (isEditMode) {
                         onEditClick(promotionDetails.PromotionId, promotionData);
                     } else {
-                        debugger;
                         onSaveClick();
                     }
                 });
@@ -301,7 +298,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 promotionData["PromotionEndDate"] = promotion["promotionEndDate"];
                 promotionData["PromotionId"] = promotionId;
                 promotionData["PromotionStartDate"] = promotion["promotionStartDate"];
-                //promotionData["PromotionImageURL"] =  promotionDetails.PromotionImageURL;
                 promotionData["PromotionImageURL"] = promotion.promotionImageURL || '';
                 promotionData["PromotionImage"] = promotion.promotionImage;
                 promotionData["Title"] = promotion["title"];
