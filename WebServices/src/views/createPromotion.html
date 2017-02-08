@@ -104,16 +104,69 @@
 
 
                     <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
-                        <!--<img ngf-src="previewImage" ng-hide="isCropImageEnable" style="height: 100%;width: auto;background-size: contain;background-repeat: no-repeat;" id="previewImage">
-    <ui-cropper image="previewImage" area-type="rectangle"
-                result-image="croppedDataUrl" allow-crop-resize-on-corners="true" ng-show="isCropImageEnable"></ui-cropper>-->
+                   
                         <img ngf-src="previewImage" alt="Picture" style="height: 100%;width: auto;background-size: contain;background-repeat: no-repeat;" id="originalImage" class="hide">
                         <img ngf-src="previewImage" alt="Picture" style="height: 100%;width: auto;background-size: contain;background-repeat: no-repeat;" id="previewImage">
                     </div>
                     <div ng-show="isCropImageEnable">
                         <img ng-show="croppedDataUrl!=null" ng-src="{{croppedDataUrl}}" />
                     </div>
-                    <div class="container slider">
+                    <div ng-show="isSilderFilterEnable">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>brightness</label>
+                                <rzslider rz-slider-model="brightness.value" rz-slider-options="brightness.options"></rzslider>
+                            </div>
+                            <div class="col-md-4">
+                                <label>contrast</label>
+                                <rzslider rz-slider-model="contrast.value" rz-slider-options="contrast.options"></rzslider>
+                            </div>
+                            <div class="col-md-4">
+                                <label>vibrance</label>
+                                <rzslider rz-slider-model="vibrance.value" rz-slider-options="vibrance.options"></rzslider>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>saturation</label>
+                                <rzslider rz-slider-model="saturation.value" rz-slider-options="saturation.options"></rzslider>
+                            </div>
+                            <div class="col-md-4">
+                                <label>hue</label>
+                                <rzslider rz-slider-model="hue.value" rz-slider-options="hue.options"></rzslider>
+                            </div>
+                            <div class="col-md-4">
+                                <label>exposure</label>
+                                <rzslider rz-slider-model="exposure.value" rz-slider-options="exposure.options"></rzslider>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="">sharpen</label>
+                                <rzslider rz-slider-model="sharpen.value" rz-slider-options="sharpen.options"></rzslider>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">sepia</label>
+                                <rzslider rz-slider-model="sepia.value" rz-slider-options="sepia.options"></rzslider>
+                            </div>
+                            <div class="col-md-4">
+                                <label>clip</label>
+                                <rzslider rz-slider-model="clip.value" rz-slider-options="clip.options"></rzslider>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>noise</label>
+                                <rzslider rz-slider-model="noise.value" rz-slider-options="noise.options"></rzslider>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="">stackblur</label>
+                                <rzslider rz-slider-model="stackblur.value" rz-slider-options="stackblur.options"></rzslider>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="container slider" ng-show="slides.length">
                         <img ng-repeat="slide in slides" class="slide slide-animation nonDraggableImage sliderSize"
                              ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()"
                              ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide}}">

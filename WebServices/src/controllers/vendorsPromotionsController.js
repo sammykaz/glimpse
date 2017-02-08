@@ -230,6 +230,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 
                 promotionImages.forEach(function (imageBase64, index) {
                     var extraImage = {
+                        //PromotionId: promotionData.vendorId,
+                        //PromotionImageId: promotionData.vendorId + index,
                         Image : imageBase64,
                         ImageURL : promotionData.vendorId + "/" + promotionData.title.split(' ').join('') + "/" + "image" + index
                     }
@@ -256,7 +258,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 promotionData["PromotionEndDate"] = promotion["promotionEndDate"];
                 promotionData["PromotionId"] = promotionId;
                 promotionData["PromotionStartDate"] = promotion["promotionStartDate"];
-                promotionData["PromotionImage"] = promotion["promotionImage"];
+               
+                promotionData["PromotionImage"] = promotionDetails.PromotionImageURL ? "https://storageglimpse.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';;
                 debugger;
                 promotionData["PromotionImages"] = getSliderImagesList();
                 promotionData["Title"] = promotion["title"];
@@ -315,11 +318,14 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.isCropImageEnable = false;
     $scope.saveCrop = false;
     var imageFile = '';
+    $scope.isSilderFilterEnable = false;
 
     $scope.$watch('picFile', function () {
         if (!!$scope.picFile) {
             imageFile = $scope.picFile;
             $scope.removeImage();
+            resetSliderFilter();
+            $scope.isSilderFilterEnable = true;
             $scope.previewImage = imageFile;
             Upload.base64DataUrl(imageFile).then(function (urls) {
                 $('#previewImage').remove();
@@ -679,6 +685,165 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         });
     }
 
+    $scope.applySilderFilter = function () {
+        Caman("#previewImage", function () {
+
+            this.brightness($scope.brightness.value)
+                .contrast($scope.contrast.value)
+                .sepia($scope.sepia.value)
+                .saturation($scope.saturation.value)
+                .noise($scope.noise.value)
+                .clip($scope.clip.value)
+                .exposure($scope.exposure.value)
+                .hue($scope.hue.value)
+                .vibrance($scope.vibrance.value)
+                .sharpen($scope.sharpen.value)
+                .stackBlur($scope.stackblur.value)
+                .render();
+
+            $('#previewImage').css({
+                height: '100%',
+                width: 'auto'
+            });
+        });
+    }
+
+    function resetSliderFilter() {
+        $scope.brightness.value = 0;
+        $scope.contrast.value = 0;
+        $scope.vibrance.value = 0;
+        $scope.saturation.value = 0;
+        $scope.hue.value = 0;
+        $scope.exposure.value = 0;
+        $scope.sepia.value = 0;
+        $scope.clip.value = 0;
+        $scope.noise.value = 0;
+        $scope.stackblur.value = 0;
+        $scope.sharpen.value = 0;
+    }
+
+    $scope.brightness = {
+        value: 0,
+        options: {
+            floor: 0,
+            ceil: 100,
+            onEnd: function () {
+                $scope.applySilderFilter();
+            }
+        }
+    }
+    $scope.contrast = {
+        value: 0,
+        options: {
+            floor: 0,
+            ceil: 100,
+            onEnd: function () {
+                $scope.applySilderFilter();
+            }
+        }
+    }
+    $scope.vibrance = {
+        value: 0,
+        options: {
+            floor: 0,
+            ceil: 100,
+            onEnd: function () {
+                $scope.applySilderFilter();
+            }
+        }
+    }
+    $scope.saturation = {
+        value: 0,
+        options: {
+            floor: 0,
+            ceil: 100,
+            onEnd: function () {
+                $scope.applySilderFilter();
+            }
+        }
+    }
+    $scope.hue = {
+        value: 0,
+        options: {
+            floor: 0,
+            ceil: 100,
+            onEnd: function () {
+                $scope.applySilderFilter();
+            }
+        }
+    }
+    $scope.exposure = {
+        value: 0,
+        options: {
+            floor: 0,
+            ceil: 100,
+            onEnd: function () {
+                $scope.applySilderFilter();
+            }
+        }
+    }
+    $scope.gamma = {
+        value: 0,
+        options: {
+            floor: 0,
+            ceil: 100,
+            onEnd: function () {
+                $scope.applySilderFilter();
+            }
+        }
+    }
+    $scope.sepia = {
+        value: 0,
+        options: {
+            floor: 0,
+            ceil: 100,
+            onEnd: function () {
+                $scope.applySilderFilter();
+            }
+        }
+    }
+    $scope.clip = {
+        value: 0,
+        options: {
+            floor: 0,
+            ceil: 100,
+            onEnd: function () {
+                $scope.applySilderFilter();
+            }
+        }
+    }
+    $scope.noise = {
+        value: 0,
+        options: {
+            floor: 0,
+            ceil: 100,
+            onEnd: function () {
+                $scope.applySilderFilter();
+            }
+        }
+    }
+    $scope.stackblur = {
+        value: 0,
+        options: {
+            floor: 0,
+            ceil: 100,
+            onEnd: function () {
+                $scope.applySilderFilter();
+            }
+        }
+    }
+    $scope.sharpen = {
+        value: 0,
+        options: {
+            floor: 0,
+            ceil: 100,
+            onEnd: function () {
+                $scope.applySilderFilter();
+            }
+        }
+    }
+
+
     $scope.showButtons = function () {
         $scope.imageNotEmpty = true;
     }
@@ -699,15 +864,17 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.removeImage = function () {
         $scope.imageNotEmpty = false;
         $scope.picFile = null;
+        $scope.isSilderFilterEnable = false;
         $scope.croppedDataUrl = null;
         $scope.isCropImageEnable = false;
-        $scope.previewImage = null;
+        $scope.previewImage = "";
         var image = document.getElementById('previewImage');
         if ($(image).is('canvas')) {
             $(image).remove();
 
         } else {
             $scope.previewImage = '';
+            $('#previewImage').attr('src', '' );
         }
         $('#originalImage').attr('src', '');
         $scope.selectedFilter = 'Apply Filters';
@@ -721,6 +888,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     }
     $scope.saveFilter = function () {
         $scope.isResetEnable = false;
+        $scope.isSilderFilterEnable = false;
         Caman("#previewImage", function () {
             var imageBase64data = this.toBase64('jpeg');
             $scope.$apply(function () {

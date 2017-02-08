@@ -74,7 +74,7 @@ app.controller('ShowPromotionController', ['$scope', '$uibModalInstance', 'promo
     $scope.Description = promotionDetails.Description;
     $scope.PromotionStartDate = promotionDetails.PromotionStartDate;
     $scope.PromotionEndDate = promotionDetails.PromotionEndDate;
-    $scope.previewImage = promotionDetails.PromotionImage ? "data:image/JPEG;base64," + promotionDetails.PromotionImage : '';
+    $scope.previewImage = promotionDetails.PromotionImageURL ? "https://storageglimpse.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';
 
     $scope.ok = function () {
         $uibModalInstance.close();
