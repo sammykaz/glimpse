@@ -115,29 +115,65 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
     $scope.onClick = function (points, evt) {
         console.log(points, evt);
     };
-    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
-    $scope.chartLineOptions = {
+    $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { xAxisID: 'x-axis-1' }];
+    $scope.chartLineDatesOptions = {
         scales: {
             yAxes: [
               {
                   id: 'y-axis-1',
+                  scaleLabel: {
+                      display: true,
+                      labelString: 'Number of Views'
+                  },
                   type: 'linear',
                   display: true,
-                  position: 'left'
-              }
-            ]
+                  position: 'left',
+                  ticks: {
+                      min: 0,
+                      isoWeekday: true,
+                      stepSize: 1
+                  }
+              },
+            ],
+            //xAxes: [
+            //    {
+            //        id: 'x-axis-1',
+            //        type: 'time',
+            //        time: {
+            //            displayFormats: {
+            //                quarter: 'MMM YYYY'
+            //            }
+            //        }
+            //    }
+            //],
         },
         legend: {display: true}
     };
 
-    $scope.chartPieOptions = {
-        legend: {
-            display: true,
-            position: 'right',
-            labels: {
-                boxWidth: 40,
-            }
-        }
-       
+    $scope.chartLineDaysOptions = {
+        scales: {
+            yAxes: [
+              {
+                  id: 'y-axis-1',
+                  scaleLabel: {
+                      display: true,
+                      labelString: 'Number of Views'
+                  },
+                  type: 'linear',
+                  display: true,
+                  position: 'left',
+                  ticks: {
+                      min: 0,
+                      stepSize: 1
+                  }
+              }
+            ]
+        },
+        legend: { display: true }
     };
+
+    $scope.chartPieOptions = {
+        legend: { display: true }
+    };
+
 }]);

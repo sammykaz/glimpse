@@ -2,38 +2,39 @@
     <div class="container profile-form col-sm-10 offset-sm-1">
         <h2 class="profile-title">- Analysis -</h2>
         <div class="panel panel-default signup-form-panel" ng-hide="noPromotionClicked">
-            <div class="panel-body">
+            <div class="panel-body promotion-background">
                 <div class="col-sm-12">
+                <div class="col-sm-12 chart-padding">
                     <div class="col-sm-12 promotion-table-b4-title">Line Chart </div>
                     <div class="col-sm-6">
                         <div class="col-sm-12 analysis-description">Number of views during the last days</div>
                         <canvas id="line" class="chart chart-line" chart-data="data"
-                                chart-labels="labels" chart-series="seriesTitle" chart-options="chartLineOptions"
+                                chart-labels="labels" chart-series="seriesTitle" chart-options="chartLineDatesOptions"
                                 chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
                         <div class="col-sm-12 analysis-description">
                             Days of the month
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="col-sm-12 analysis-description">Wondering at what time is your promotion viewed the most?</div>
+                        <div class="col-sm-12 analysis-description">Representing day of the week </div>
                         <canvas id="line" class="chart chart-line" chart-data="dataDays"
-                                chart-labels="labelDays" chart-series="seriesTitle" chart-options="chartLineOptions"
+                                chart-labels="labelDays" chart-series="seriesTitle" chart-options="chartLineDaysOptions"
                                 chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
                         <div class="col-sm-12 analysis-description">
-                            Hour of the day
+                            Day of the week
                         </div>
                     </div>
+                </div>
+                <div class="col-sm-12">
                     <div class="col-sm-12">
                         <div class="col-sm-12 analysis-description">Wondering at what time is your promotion viewed the most?</div>
                         <canvas id="line" class="chart chart-line" chart-data="dataHours"
-                                chart-labels="labelHours" chart-series="seriesTitle" chart-options="chartLineOptions"
+                                chart-labels="labelHours" chart-series="seriesTitle" chart-options="chartLineDaysOptions"
                                 chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
                         <div class="col-sm-12 analysis-description">
-                            Hour of the day
+                            Time of the day
                         </div>
                     </div>
-                   
-                    
                 </div>
                 <div class="col-sm-12">
                     <div class="col-sm-12 promotion-table-b4-title signup-form-padding">Pie Chart </div>

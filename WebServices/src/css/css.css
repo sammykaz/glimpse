@@ -6,6 +6,7 @@ body {
 }
 .signature{
     background: url("10721229.jpg");
+    background-repeat: no-repeat;
     height:200px;
 }
 .login-form{width:390px; background: rgba(0, 0, 0, 0.38); padding-bottom: 30px; border-style: double; border-radius: 25px; color: white!important; padding-top: 15px;}
@@ -62,7 +63,8 @@ body {
 .text-center{text-align: center;}
 .analysis-description{height: 100%; display: inline-block; background: white; border-top-right-radius: 8px; border-top-left-radius: 8px; color: #418ac9; text-align: center !important; font-size: 20px;}
 .analysis-pie-description{height: 100%; display: inline-block; background: white; border-top-right-radius: 8px; border-top-left-radius: 8px; color: #418ac9; text-align: center !important; font-size: 20px; padding-top: 20%;}
-.hide {display : none !important}
+.hide{display : none !important}
+.chart-padding{padding-bottom: 35px;}
 
 
 
