@@ -44,7 +44,7 @@ namespace Glimpse.Core.ViewModel
         }
 
         protected override async Task InitializeAsync()
-        {
+        {/*
             IsBusy = true;
             //Creates the locator
             locator = CrossGeolocator.Current;
@@ -59,7 +59,7 @@ namespace Glimpse.Core.ViewModel
             PromotionList = await GetPromotionsWithLocation();
 
             _promotionsStored = PromotionList;
-            IsBusy = false;
+            IsBusy = false;*/
         }
 
         private Categories? _selectedItem;

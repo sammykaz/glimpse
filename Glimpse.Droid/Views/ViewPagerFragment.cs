@@ -42,12 +42,7 @@ namespace Glimpse.Droid.Views
             (this.Activity as MainActivity).SetCustomTitle("Map");
 
             var fragments = new List<MvxViewPagerFragmentAdapter.FragmentInfo>
-                  {
-                     new MvxViewPagerFragmentAdapter.FragmentInfo
-                    {
-                      FragmentType = typeof(Views.MapFragment),
-                      ViewModel = ViewModel.MapViewModel
-                     },
+                  {                   
                     new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
                       FragmentType = typeof(Views.CardFragment),
@@ -57,7 +52,12 @@ namespace Glimpse.Droid.Views
                     {
                       FragmentType = typeof(Views.LikedPromotionsFragment),
                       ViewModel = ViewModel.LikedPromotionsViewModel
-                    }
+                    },
+                     new MvxViewPagerFragmentAdapter.FragmentInfo
+                    {
+                      FragmentType = typeof(Views.MapFragment),
+                      ViewModel = ViewModel.MapViewModel
+                     }
                   };
 
             _viewPager = View.FindViewById<CustomViewPager>(Resource.Id.viewPager);

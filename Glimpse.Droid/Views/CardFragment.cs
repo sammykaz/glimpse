@@ -70,8 +70,8 @@ namespace Glimpse.Droid.Views
 
             //Initializing the discard distance in pixels from the origin of the card stack.
             _cardStack.CardEventListener = new CardSwipeListener(DpToPx(this.Context, 100), _cardStack, _viewPager, _localPromotionRepository);
-            //await ViewModel.InitializeLocationAndPromotionList();
-           // InitializeImages();
+            await ViewModel.InitializeLocationAndPromotionList();
+            InitializeImages();
 
             //Subscribing to events
             _cardAdapter.OnCardSwipeActionEvent += _cardAdapter_OnCardSwipeActionEvent;
