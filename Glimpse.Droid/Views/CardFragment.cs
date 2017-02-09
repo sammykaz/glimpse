@@ -49,8 +49,8 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             // (this.Activity as MainActivity).SetCustomTitle("Tiles");
-             _radioGroup = (RadioGroup)view.FindViewById(Resource.Id.filter_radiogroup);
-             _radioGroup.SetOnCheckedChangeListener(this);
+            _radioGroup = (RadioGroup)view.FindViewById(Resource.Id.filter_radiogroup);
+            _radioGroup.SetOnCheckedChangeListener(this);
 
             _cardStack = (this.Activity as MainActivity).FindViewById<CardStack>(Resource.Id.card_stack);
             _cardStack.ContentResource = Resource.Layout.Card_Layout;
@@ -76,11 +76,11 @@ namespace Glimpse.Droid.Views
             //Subscribing to events
             _cardAdapter.OnCardSwipeActionEvent += _cardAdapter_OnCardSwipeActionEvent;
             _cardAdapter.OnTapButtonsEvent += _cardAdapter_OnTapButtonsEvent;
-            _cardStack.Adapter = _cardAdapter;      
+            _cardStack.Adapter = _cardAdapter;
         }
 
         private void InitializeImages()
-        {   
+        {
             _cardAdapter.Clear();
             foreach (PromotionWithLocation promo in ViewModel.PromotionList)
             {
@@ -107,16 +107,16 @@ namespace Glimpse.Droid.Views
             Toast.MakeText(this.Context, action, ToastLength.Short).Show();
         }
 
-  
+
         public void OnCheckedChanged(RadioGroup group, int checkedId)
         {
             //radio group index is based on 1, making base 0
             checkedId = checkedId - 1;
             //the filter on previous page made this checkedID increment by 7...
             checkedId = checkedId % 7;
-            if(checkedId == 0)
+            if (checkedId == 0)
             {
-                ViewModel.SelectedItem = null; 
+                ViewModel.SelectedItem = null;
             }
             else
             {
@@ -127,7 +127,7 @@ namespace Glimpse.Droid.Views
             InitializeImages();
         }
 
-  
+
         public int DpToPx(Context context, int dip)
         {
             DisplayMetrics displayMetrics = context.Resources.DisplayMetrics;
