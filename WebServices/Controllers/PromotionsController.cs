@@ -71,6 +71,11 @@ namespace WebServices.Controllers
                 return BadRequest(ModelState);
             }
 
+            BlobHelper bh = new BlobHelper("storageglimpse", "UTaxV/U+abo8S1ORGCTyAVH4dUoFxl5jonIxMNAK/GUNP5u0IbNxa8WxyJpWbrg2aeUlm6S1NAkph/hW3i69wQ==", "imagestorage");
+            bh.UploadFromByteArray(promotion.PromotionImage, promotion.PromotionImageURL);
+
+         
+
             if (id != promotion.PromotionId)
             {
                 return BadRequest();
