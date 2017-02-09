@@ -14,6 +14,7 @@ using static Android.Support.V4.View.ViewPager;
 using System;
 using Glimpse.Droid.Controls;
 using Android.Support.Design.Widget;
+using Android.Graphics.Drawables;
 
 namespace Glimpse.Droid.Views
 {
@@ -24,7 +25,9 @@ namespace Glimpse.Droid.Views
         private CustomViewPager _viewPager;
         private TabLayout _tabLayout;
         private MvxViewPagerFragmentAdapter _adapter;
-        private int[] _tabIcons = { Android.Resource.Drawable.IcMediaPause, Android.Resource.Drawable.IcMediaPause, Android.Resource.Drawable.IcMediaPause };
+        private int[] _tabIconsGrey = { Resource.Drawable.ic_thumbs_up_down_dark_grey, Resource.Drawable.ic_thumb_up_dark_grey, Resource.Drawable.ic_location_dark_grey };
+        private int[] _tabIconsGreen = { Resource.Drawable.ic_thumbs_up_down_green, Resource.Drawable.ic_thumb_up_green, Resource.Drawable.ic_location_green };
+
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -50,10 +53,9 @@ namespace Glimpse.Droid.Views
                       FragmentType = typeof(Views.CardFragment),
                       ViewModel = ViewModel.CardViewModel
                     },
-                     new MvxViewPagerFragmentAdapter.FragmentInfo
+                    new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
                       FragmentType = typeof(Views.LikedPromotionsFragment),
-                      Title = "Fragment3",
                       ViewModel = ViewModel.LikedPromotionsViewModel
                     }
                   };
@@ -65,8 +67,9 @@ namespace Glimpse.Droid.Views
             _tabLayout = View.FindViewById<TabLayout>(Resource.Id.tabs);
             _tabLayout.SetupWithViewPager(_viewPager);
 
-            _tabLayout.GetTabAt(0).SetIcon(_tabIcons[0]);
-            _tabLayout.GetTabAt(1).SetIcon(_tabIcons[1]);
+            _tabLayout.GetTabAt(0).SetIcon(_tabIconsGreen[0]);
+            _tabLayout.GetTabAt(1).SetIcon(_tabIconsGrey[1]);
+            _tabLayout.GetTabAt(2).SetIcon(_tabIconsGrey[2]);
         }
 
         public void OnPageScrollStateChanged(int state)
@@ -81,13 +84,11 @@ namespace Glimpse.Droid.Views
 
         public async void OnPageSelected(int position)
         {
-            if (position == 0)
-                (this.Activity as MainActivity).SetCustomTitle("Map");
-            else if (position == 1)
+            for (int i = 0; i < _tabIconsGrey.Length; i++)
             {
-                (this.Activity as MainActivity).SetCustomTitle("CardView");
-                 await ViewModel.CardViewModel.ReloadAsync();
+                _tabLayout.GetTabAt(i).SetIcon(_tabIconsGrey[i]);
             }
+            _tabLayout.GetTabAt(position).SetIcon(_tabIconsGreen[position]); 
         }
 
         public void doBack()
