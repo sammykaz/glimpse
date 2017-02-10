@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using WebServices.Models;
 using WebServices.Helpers;
+using System;
 
 namespace WebServices.Controllers
 {
@@ -15,9 +16,20 @@ namespace WebServices.Controllers
         private GlimpseDbContext db = new GlimpseDbContext();
 
         // GET: api/Promotions
-        public IQueryable<Promotion> GetPromotions()
+        public IQueryable<Promotion> GetPromotions(bool active = false, string keyword = "")
         {
-            return db.Promotions;
+            IQueryable<Promotion> listOfPromos = db.Promotions;
+            if (active)
+            {
+                listOfPromos = listOfPromos.Where(e => e.PromotionStartDate.CompareTo(DateTime.Now) <= 0 && e.PromotionEndDate.CompareTo(DateTime.Now) >= 0);
+            }
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                listOfPromos = listOfPromos.Where(promo => promo.Title.Contains(keyword) || promo.Description.Contains(keyword));
+            }
+
+            return listOfPromos;
         }
 
         // GET: api/Promotions/5
@@ -57,6 +69,16 @@ namespace WebServices.Controllers
             {
                 return NotFound();
             } */
+
+            return Ok(promotionsFiltered);
+        }
+
+        // GET: api/Vendors/5/promotions
+        [ResponseType(typeof(Vendor))]
+        //[Route("api/Promotions/Search/{filterName}")]
+        public IHttpActionResult Search(string keyword)
+        {
+            List<Promotion> promotionsFiltered = db.Promotions.Where(promo => promo.Title.Contains(keyword) || promo.Description.Contains(keyword)).ToList();
 
             return Ok(promotionsFiltered);
         }
