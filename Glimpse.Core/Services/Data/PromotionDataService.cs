@@ -52,16 +52,18 @@ namespace Glimpse.Core.Services.Data
             await promotionRepository.StorePromotion(promotion);
         }
 
+        public async Task<List<Promotion>> SearchActivePromotions(string keyword)
+        {
+            return await promotionRepository.GetPromotions(true, keyword);
+        }
+
         public async Task<List<PromotionWithLocation>> GetActivePromotions()
         {
-            List<Promotion> allPromotions = await promotionRepository.GetPromotions();
+            List<Promotion> activePromotions = await promotionRepository.GetPromotions(true);
             List<Vendor> allVendors = await vendorRepository.GetVendors();
 
             //Get unique vendors
-            var uniqueVendors = allVendors.GroupBy(x => new { x.Location.Lat, x.Location.Lng }).Select(g => g.First()).ToList();
-
-            List<Promotion> activePromotions = allPromotions.Where(e => e.PromotionStartDate.CompareTo(DateTime.Now) <= 0 && e.PromotionEndDate.CompareTo(DateTime.Now) >= 0).ToList();
-
+            var uniqueVendors = allVendors.GroupBy(x => new { x.Location.Lat, x.Location.Lng }).Select(g => g.First()).ToList();          
             
 
             var mapPromotions = uniqueVendors.Join(activePromotions, e => e.VendorId, b => b.VendorId,

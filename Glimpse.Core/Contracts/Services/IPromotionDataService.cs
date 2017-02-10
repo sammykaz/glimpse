@@ -24,5 +24,7 @@ namespace Glimpse.Core.Contracts.Services
         List<PromotionWithLocation> FilterPromotionWithLocationList(List<PromotionWithLocation> promoWithLocationList, Categories? category);
 
         Task<List<PromotionWithLocation>> PopulatePromotionWithLocationBlobs(List<PromotionWithLocation> promotionsWithLocation);
+
+        Task<List<Promotion>> SearchActivePromotions(string keyword);
     }
 }
