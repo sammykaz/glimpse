@@ -22,6 +22,9 @@ using System.IO;
 using SQLite.Net.Platform.XamarinAndroid;
 using MvvmCross.Binding.BindingContext;
 using Glimpse.Droid.Helpers;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform.Droid.WeakSubscription;
+using MvvmCross.Platform.WeakSubscription;
 
 namespace Glimpse.Droid.Views
 {
@@ -36,6 +39,7 @@ namespace Glimpse.Droid.Views
         private List<PromotionWithLocation> _promotionWithLocationList;
         private BindableProgress _bindableProgress;
         private LocalPromotionRepository _localPromotionRepository;
+        private SearchView _searchView;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -73,10 +77,24 @@ namespace Glimpse.Droid.Views
             await ViewModel.InitializeLocationAndPromotionList();
             InitializeImages();
 
+
+            IMvxNotifyPropertyChanged viewModel = ViewModel as IMvxNotifyPropertyChanged;
+            viewModel.WeakSubscribe(PropertyChanged);
+            _searchView = (SearchView)view.FindViewById(Resource.Id.card_searchview);
+
+
             //Subscribing to events
             _cardAdapter.OnCardSwipeActionEvent += _cardAdapter_OnCardSwipeActionEvent;
             _cardAdapter.OnTapButtonsEvent += _cardAdapter_OnTapButtonsEvent;
             _cardStack.Adapter = _cardAdapter;      
+        }
+
+        private void PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Query" || e.PropertyName == "SelectedItem")
+            {
+                InitializeImages();
+            }
         }
 
         private void InitializeImages()
