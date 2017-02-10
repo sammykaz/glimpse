@@ -40,6 +40,24 @@ namespace Glimpse.Core.UnitTests.Tests.Services
         }
 
         [TestMethod]
+        public async Task SearchActivePromotions_Returns_Valid()
+        {
+            //arrange
+            string keyword = "p";
+
+            //act
+            List<Promotion> activePromos = await _pds.SearchActivePromotions(keyword);
+            //assert
+
+            foreach (Promotion promo in activePromos)
+            {
+                Assert.IsTrue(promo.PromotionStartDate < DateTime.Now && promo.PromotionEndDate > DateTime.Now);
+                Assert.IsTrue(promo.Title.ToLower().Contains(keyword) || promo.Description.ToLower().Contains(keyword));
+            }
+
+        }
+
+        [TestMethod]
         public async Task GetPromotionsByCategory_Returns_GoodCategory()
         {
             //arrange
