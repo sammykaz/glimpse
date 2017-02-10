@@ -60,6 +60,7 @@ namespace Glimpse.Core.ViewModel
 
             _promotionsStored = PromotionList;
             IsBusy = false;
+            Query = "";          
         }
 
         private Categories? _selectedItem;
@@ -72,11 +73,25 @@ namespace Glimpse.Core.ViewModel
             set
             {
                 _selectedItem = value;
-                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem);
+                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem, Query);
                 RaisePropertyChanged(() => PromotionList);
             }
         }
 
+        private string _query;
+        public string Query
+        {
+            get
+            {
+                return _query;
+            }
+            set
+            {
+                _query = value;
+                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, SelectedItem, _query);
+                RaisePropertyChanged(() => Query);
+            }
+        }        
 
         private List<string> _categories;
         public List<string> Categories
