@@ -121,7 +121,7 @@ namespace Glimpse.Core.UnitTests.Tests.Services
             }
 
             //act
-            List<PromotionWithLocation> categoryPromos =  _pds.FilterPromotionWithLocationList(promosWithLocation, category);
+            List<PromotionWithLocation> categoryPromos =  _pds.FilterPromotionWithLocationList(promosWithLocation, category, "");
             //assert
 
             foreach (PromotionWithLocation promo in categoryPromos)
@@ -180,7 +180,7 @@ namespace Glimpse.Core.UnitTests.Tests.Services
             }
 
             //act
-            List<PromotionWithLocation> categoryPromos = _pds.FilterPromotionWithLocationList(promosWithLocation, null);
+            List<PromotionWithLocation> categoryPromos = _pds.FilterPromotionWithLocationList(promosWithLocation, null, "");
             //assert
 
             foreach (PromotionWithLocation promo in categoryPromos)

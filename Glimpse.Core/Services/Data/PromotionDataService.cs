@@ -38,13 +38,13 @@ namespace Glimpse.Core.Services.Data
             return await promotionRepository.GetPromotionsByCategory(category);
         }
 
-        public List<PromotionWithLocation> FilterPromotionWithLocationList(List<PromotionWithLocation> promoWithLocationList, Categories? category)
+        public List<PromotionWithLocation> FilterPromotionWithLocationList(List<PromotionWithLocation> promoWithLocationList, Categories? category, string query)
         {
             if(category == null)
             {
-                return promoWithLocationList;
+                return promoWithLocationList.Where(promo => (promo.Title.Contains(query) || promo.Description.Contains(query) || promo.CompanyName.Contains(query))).ToList();
             }
-            return promoWithLocationList.Where(promo => promo.Category == category).ToList();
+            return promoWithLocationList.Where(promo => (promo.Title.Contains(query) || promo.Description.Contains(query) || promo.CompanyName.Contains(query)) && promo.Category == category).ToList();           
         }
 
         public async Task StorePromotion(Promotion promotion)
@@ -55,6 +55,33 @@ namespace Glimpse.Core.Services.Data
         public async Task<List<Promotion>> SearchActivePromotions(string keyword)
         {
             return await promotionRepository.GetPromotions(true, keyword);
+        }
+
+        public async Task<List<PromotionWithLocation>> JoinPromotionWithLocation(List<Promotion> promos)
+        {
+            List<Vendor> allVendors = await vendorRepository.GetVendors();
+
+            //Get unique vendors
+            var uniqueVendors = allVendors.GroupBy(x => new { x.Location.Lat, x.Location.Lng }).Select(g => g.First()).ToList();
+
+
+            var promotionsWithLocations = uniqueVendors.Join(promos, e => e.VendorId, b => b.VendorId,
+                (e, b) => new PromotionWithLocation
+                {
+                    VendorId = b.VendorId,
+                    Title = b.Title,
+                    Location = e.Location,
+                    Description = b.Description,
+                    CompanyName = e.CompanyName,
+                    Duration = 9999,
+                    ImageURL = b.PromotionImageURL,
+                    PromotionId = b.PromotionId,
+                    PromotionStartDate = b.PromotionStartDate,
+                    PromotionEndDate = b.PromotionEndDate,
+                    Category = b.Category
+                });
+
+            return promotionsWithLocations.ToList();
         }
 
         public async Task<List<PromotionWithLocation>> GetActivePromotions()
