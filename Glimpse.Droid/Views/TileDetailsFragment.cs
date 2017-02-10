@@ -51,7 +51,7 @@ namespace Glimpse.Droid.Views
             _title.Text = ViewModel.PromotionTitle;
 
             _duration = view.FindViewById<TextView>(Resource.Id.detailViewDuration);
-            _duration.Text = ViewModel.PromotionDuration + " minutes away!";
+            _duration.Text = ViewModel.PromotionDuration;
 
             _description = view.FindViewById<TextView>(Resource.Id.detailViewDescription);
             _description.Text = ViewModel.PromotionDescription;

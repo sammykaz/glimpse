@@ -59,7 +59,7 @@ namespace Glimpse.Core.ViewModel
                 if (_promotionDuration == null)
                     _promotionDuration = "";
 
-                return _promotionDuration;
+                return ConvertSecondsToMinutes(_promotionDuration);
             }
         }
 
@@ -99,18 +99,34 @@ namespace Glimpse.Core.ViewModel
             return _images;
         }
 
-       /* public override async void Start()
+        private string ConvertSecondsToMinutes(string value)
         {
-            base.Start();
-            await ReloadDataAsync();
-        }
 
-        protected override Task InitializeAsync()
-        {
-            return Task.Run(async () =>
-            {
-               
-            });
-        }*/
-    }
+            TimeSpan timespan = TimeSpan.FromSeconds(Convert.ToInt32(value));
+            int totalMins = (int)timespan.TotalMinutes;
+            string displayTime = Convert.ToString(totalMins);
+
+            if (totalMins == 1)
+                displayTime = displayTime + " minute away!";
+            else
+                displayTime = displayTime + " minutes away!";
+
+            return displayTime;
+        }
+    
+
+    /* public override async void Start()
+     {
+         base.Start();
+         await ReloadDataAsync();
+     }
+
+     protected override Task InitializeAsync()
+     {
+         return Task.Run(async () =>
+         {
+
+         });
+     }*/
+}
 }
