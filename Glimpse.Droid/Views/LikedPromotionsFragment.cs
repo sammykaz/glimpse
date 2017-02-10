@@ -14,15 +14,17 @@ using System.IO;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Repositories;
 using SQLite.Net.Platform.XamarinAndroid;
+using System.Threading.Tasks;
 
 namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.viewPager, true)]
     [Register("glimpse.droid.views.LikedPromotionsFragment")]
-    public class LikedPromotionsFragment : MvxFragment<LikedPromotionsViewModel>, RadioGroup.IOnCheckedChangeListener
+    public class LikedPromotionsFragment : MvxFragment<LikedPromotionsViewModel>, RadioGroup.IOnCheckedChangeListener, SearchView.IOnQueryTextListener
     {
         private LocalPromotionRepository _localPromotionRepository;
         private RadioGroup _radioGroup;
+        private SearchView _searchView;
 
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -49,6 +51,11 @@ namespace Glimpse.Droid.Views
 
              _radioGroup = (RadioGroup)View.FindViewById(Resource.Id.filter_radiogroup);
              _radioGroup.SetOnCheckedChangeListener(this);
+
+            _searchView = (SearchView)View.FindViewById(Resource.Id.searchview);
+            _searchView.SetOnQueryTextListener(this);
+            _searchView.SetIconifiedByDefault(true);
+
         }
 
         public void OnCheckedChanged(RadioGroup group, int checkedId)
@@ -74,6 +81,19 @@ namespace Glimpse.Droid.Views
             string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             return Path.Combine(documentsPath, "glimpse.db3");
         }
+
+        public bool OnQueryTextChange(string newText)
+        {
+            if(newText.Length == 0) 
+                ViewModel.PromotionList = ViewModel.PromotionsStored;
+            return true;
+        }
+
+        public bool OnQueryTextSubmit(string query)
+        {
+            ViewModel.PromotionList = ViewModel.PromotionsStored.FindAll(promo => promo.Title.Contains(query) || promo.Description.Contains(query));
+            return true;
+        }  
 
     }
 }
