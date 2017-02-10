@@ -14,7 +14,10 @@ namespace Glimpse.Core.ViewModel
     {
         private List<byte[]> _images;
         private readonly IPromotionImageDataService _promotionImageDataService;
-        private int _promotionId; 
+        private int _promotionId;
+        private string _promotionTitle;
+        private string _promotionDuration;
+        private string _promotionDescription;
 
         public TileDetailsViewModel(IMvxMessenger messenger, IPromotionImageDataService promotionImageDataService)
         {
@@ -24,13 +27,56 @@ namespace Glimpse.Core.ViewModel
         protected override void InitFromBundle(IMvxBundle parameters)
         {
             if (parameters.Data.ContainsKey("PromotionID"))
-            {
                 _promotionId = Convert.ToInt32((parameters.Data["PromotionID"]));
-            }
+
+            if (parameters.Data.ContainsKey("PromotionTitle"))
+                _promotionTitle = (parameters.Data["PromotionTitle"]);
+
+            if (parameters.Data.ContainsKey("PromotionDuration"))
+                _promotionDuration = (parameters.Data["PromotionDuration"]);
+
+            if (parameters.Data.ContainsKey("PromotionDescription"))
+                _promotionDescription = (parameters.Data["PromotionDescription"]);
 
 
             base.InitFromBundle(parameters);
         }
+
+        public string PromotionTitle
+        {
+            get
+            {
+                if (_promotionTitle == null)
+                    _promotionTitle = "";
+
+                return _promotionTitle;
+            }
+        }
+        public string PromotionDuration
+        {
+            get
+            {
+                if (_promotionDuration == null)
+                    _promotionDuration = "";
+
+                return _promotionDuration;
+            }
+        }
+
+        public string PromotionDescription
+        {
+            get
+            {
+                if (_promotionDescription == null)
+                    _promotionDescription = "";
+
+                return _promotionDescription;
+            }
+        }
+
+
+
+
 
         public List<byte[]> Images
         {
