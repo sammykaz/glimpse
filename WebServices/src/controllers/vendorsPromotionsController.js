@@ -129,7 +129,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         getBase64FromImageUrl(imageUrl).then(function (base64Image) {
             $scope.removeImage();
             resetSliderFilter();
-            $scope.isSilderFilterEnable = true;
+            //$scope.isSilderFilterEnable = true;
             $scope.previewImage = base64Image;
             $('#previewImage').remove();
             if (!$('#previewImage').length) {
@@ -362,7 +362,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             imageFile = $scope.picFile;
             $scope.removeImage();
             resetSliderFilter();
-            $scope.isSilderFilterEnable = true;
+            //$scope.isSilderFilterEnable = true;
             $scope.previewImage = imageFile;
             Upload.base64DataUrl(imageFile).then(function (urls) {
                 $('#previewImage').remove();
@@ -454,6 +454,15 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.selectedFilter = 'Apply Filters';
     $scope.applyFilter = function (filterType) {
         $scope.selectedFilter = filterType || 'Apply Filters';
+        if (filterType === "Custom Filter") {
+            resetSliderFilter();
+            $scope.isSilderFilterEnable = true;
+            return;
+        } else {
+            $scope.isSilderFilterEnable = false;
+        }
+
+
         Caman("#previewImage", function () {
             if ($scope.isResetEnable) {
                 this.reset(function () { });
@@ -725,6 +734,9 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.applySilderFilter = function () {
         Caman("#previewImage", function () {
 
+            if ($scope.isResetEnable) {
+                this.reset(function () { });
+            }
             this.brightness($scope.brightness.value)
                 .contrast($scope.contrast.value)
                 .sepia($scope.sepia.value)
@@ -736,7 +748,11 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 .vibrance($scope.vibrance.value)
                 .sharpen($scope.sharpen.value)
                 .stackBlur($scope.stackblur.value)
-                .render();
+                .render(function () {
+                    $scope.$apply(function () {
+                        $scope.isResetEnable = true;
+                    });
+                });
 
             $('#previewImage').css({
                 height: '100%',
@@ -918,6 +934,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     }
     $scope.resetFilter = function () {
         $scope.isResetEnable = false;
+        $scope.isSilderFilterEnable = false;
         $scope.selectedFilter = 'Apply Filters';
         Caman("#previewImage", function () {
             this.reset();
@@ -930,6 +947,14 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             var imageBase64data = this.toBase64('jpeg');
             $scope.$apply(function () {
                 $scope.previewImage = imageBase64data;
+                $('#previewImage').remove();
+                if (!$('#previewImage').length) {
+                    var orriginalImag = $('#originalImage').clone();
+                    $(orriginalImag).removeClass('ng-hide');
+                    $(orriginalImag).removeClass('hide').attr('id', 'previewImage');
+                    $(orriginalImag).attr('src', imageBase64data);
+                    $('#originalImage').parent().append(orriginalImag);
+                }
             });
         });
     }
