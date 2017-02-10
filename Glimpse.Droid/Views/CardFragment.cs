@@ -69,7 +69,7 @@ namespace Glimpse.Droid.Views
             await _localPromotionRepository.InitializeAsync(path, new SQLitePlatformAndroid());
 
             //Initializing the discard distance in pixels from the origin of the card stack.
-            _cardStack.CardEventListener = new CardSwipeListener(DpToPx(this.Context, 100), _cardStack, _viewPager, _localPromotionRepository);
+            _cardStack.CardEventListener = new CardSwipeListener(DpToPx(this.Context, 100), _cardStack, _viewPager, _localPromotionRepository, (CardViewModel)ViewModel );
             await ViewModel.InitializeLocationAndPromotionList();
             InitializeImages();
 

@@ -1,23 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
     <android.support.v4.view.ViewPager
+        android:layout_marginTop="5dp"
         android:id="@+id/imagesViewPager"
         android:layout_width="match_parent"
-        android:layout_height="400dp" />
+        android:layout_height="200dp"
+        android:gravity="center" />
     <RelativeLayout
+        android:id="@+id/dotsRelativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="5dp"
-        android:gravity="center">
+        android:layout_below="@+id/imagesViewPager"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
         <LinearLayout
             android:id="@+id/viewPagerCountDots"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:orientation="horizontal" />
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/detailViewTitle"
+        android:layout_below="@+id/dotsRelativeLayout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="20dp"
+        android:textColor="#000"
+        android:layout_height="25dp"
+        android:layout_marginTop="5dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/detailViewDuration"
+        android:layout_below="@+id/detailViewTitle"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="10dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="5dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/detailViewDescriptionTitle"
+        android:layout_below="@+id/detailViewDuration"
+        android:text="Description"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="20dp"
+        android:textColor="#000"
+        android:layout_height="25dp"
+        android:layout_marginTop="10dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/detailViewDescription"
+        android:layout_below="@+id/detailViewDescriptionTitle"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="13dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
 </RelativeLayout>

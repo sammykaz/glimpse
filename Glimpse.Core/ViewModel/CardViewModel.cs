@@ -201,19 +201,16 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public ICommand ViewTileDetails
+        public void ShowDetailPage(string promotionId, string promotionTitle, string promotionDuration, string promotionDescription )
         {
-            get
-            {
-                return new MvxCommand<PromotionWithLocation>(item =>
-                {
-                    var desc = new Dictionary<string, string> {
-                        {"PromotionID", Convert.ToString(item.PromotionId)} };
+            var desc = new Dictionary<string, string> {
+                        {"PromotionID", promotionId},
+                        {"PromotionTitle", promotionTitle},
+                        {"PromotionDuration", promotionDuration},
+                        {"PromotionDescription", promotionDescription},
+            };
 
-                    ShowViewModel<TileDetailsViewModel>(desc);
-
-                });
-            }
+            ShowViewModel<TileDetailsViewModel>(desc);
         }
 
         private bool _isBusy;

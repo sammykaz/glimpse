@@ -30,6 +30,10 @@ namespace Glimpse.Droid.Views
         private SlidingImageAdapter _adapter;
         private List<Bitmap> _ImageResources;
         private List<byte[]> _byteImages;
+        private TextView _description;
+        private TextView _duration;
+        private TextView _title;
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -43,6 +47,16 @@ namespace Glimpse.Droid.Views
             await LoadImageList();
             SetupViewPagerAndAdapter();
             SetupDotsControl();
+            _title = view.FindViewById<TextView>(Resource.Id.detailViewTitle);
+            _title.Text = ViewModel.PromotionTitle;
+
+            _duration = view.FindViewById<TextView>(Resource.Id.detailViewDuration);
+            _duration.Text = ViewModel.PromotionDuration;
+
+            _description = view.FindViewById<TextView>(Resource.Id.detailViewDescription);
+            _description.Text = ViewModel.PromotionDescription;
+            
+
         }
 
         public override async void OnStart()
