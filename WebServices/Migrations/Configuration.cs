@@ -1,6 +1,7 @@
 namespace WebServices.Migrations
 {
     using Glimpse.Core.Services.General;
+    using Helpers;
     using Models;
     using System;
     using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace WebServices.Migrations
     using System.Drawing.Imaging;
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
 
     internal sealed class Configuration : DbMigrationsConfiguration<WebServices.Models.GlimpseDbContext>
     {
@@ -23,7 +25,7 @@ namespace WebServices.Migrations
 
           IList<Vendor> vendors = generateVendors();
 
-         IList<Promotion> promotions = GeneratePromotions(50, context.Vendors.Select(vendor => vendor.VendorId).ToList());
+         IList<Promotion> promotions = GeneratePromotions(5, context.Vendors.Select(vendor => vendor.VendorId).ToList());
 
             
 
@@ -33,36 +35,51 @@ namespace WebServices.Migrations
        //         context.Vendors.Add(vendor);
 
 
-        //  foreach (Promotion promotion in promotions)
-         //       context.Promotions.Add(promotion);
+          foreach (Promotion promotion in promotions)
+                context.Promotions.Add(promotion);
             
 
             base.Seed(context); 
         }
 
-        private List<Promotion> GeneratePromotions(int numberOfPromotions, List<int> vendorIds)
+        private  List<Promotion> GeneratePromotions(int numberOfPromotions, List<int> vendorIds)
         {
             List<Promotion> promotions = new List<Promotion>();
+            BlobHelper bh = new BlobHelper("storageglimpse", "UTaxV/U+abo8S1ORGCTyAVH4dUoFxl5jonIxMNAK/GUNP5u0IbNxa8WxyJpWbrg2aeUlm6S1NAkph/hW3i69wQ==", "imagestorage");
 
-            for(int i = 0; i < numberOfPromotions; i++)
+            for (int i = 0; i < numberOfPromotions; i++)
             {
                 //get random vendorid
                 int vendorId = vendorIds[random.Next(0, vendorIds.Count)];
+                string title = Faker.Lorem.Sentence(1);
 
-                promotions.Add(new Promotion()
+                Promotion promo = new Promotion()
                 {
-                    Title = Faker.Lorem.Sentence(1),
+                    Title = title,
                     Description = Faker.Lorem.Sentence(3),
                     Category = GetRandomCategory(),
                     PromotionStartDate = DateTime.Now,
                     PromotionEndDate = GetRandomDate(),
-                    //PromotionImage = GetByteArrayOfRandomImage(),
+                    PromotionImage = GetByteArrayOfRandomImage(),
+                    PromotionImageURL = vendorId + "/" + "test".Replace(" ", string.Empty).Replace(".", string.Empty) + "/" + "cover",
                     // need to access the vendors i just created
-                    VendorId = vendorId                    
-                });
+                    VendorId = vendorId
+                };
+
+                promotions.Add(promo);     
+
             }
 
-            return promotions;  
+            Parallel.ForEach(promotions, (promo) =>
+            {
+
+                bh.UploadFromByteArray(promo.PromotionImage, promo.PromotionImageURL).Wait();
+
+
+                //close lambda expression and method invocation
+            });
+
+            return promotions;
         }
 
         private byte[] GetByteArrayOfRandomImage()
