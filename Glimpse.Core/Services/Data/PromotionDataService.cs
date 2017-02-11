@@ -40,11 +40,12 @@ namespace Glimpse.Core.Services.Data
 
         public List<PromotionWithLocation> FilterPromotionWithLocationList(List<PromotionWithLocation> promoWithLocationList, Categories? category, string query)
         {
+            query = query.ToLower();
             if(category == null)
             {
                 return promoWithLocationList.Where(promo => (promo.Title.Contains(query) || promo.Description.Contains(query) || promo.CompanyName.Contains(query))).ToList();
             }
-            return promoWithLocationList.Where(promo => (promo.Title.Contains(query) || promo.Description.Contains(query) || promo.CompanyName.Contains(query)) && promo.Category == category).ToList();           
+            return promoWithLocationList.Where(promo => (promo.Title.ToLower().Contains(query) || promo.Description.ToLower().Contains(query) || promo.CompanyName.ToLower().Contains(query)) && promo.Category == category).ToList();           
         }
 
         public async Task StorePromotion(Promotion promotion)
