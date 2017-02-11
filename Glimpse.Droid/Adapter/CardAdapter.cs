@@ -21,7 +21,6 @@ namespace Glimpse.Droid.Adapter
 
         public CardAdapter(Context context, int resource) :base(context,resource)
         {
-
         }
 
 
@@ -29,8 +28,6 @@ namespace Glimpse.Droid.Adapter
         {
             return convertView;
         }
-        public event Action<string> OnTapButtonsEvent;
-        public event Action<string> OnCardSwipeActionEvent;
 
         public override void BindView(int position, View convertView, ViewGroup parent)
         {

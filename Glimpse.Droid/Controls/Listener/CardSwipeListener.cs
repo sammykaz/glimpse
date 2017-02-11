@@ -78,14 +78,14 @@ namespace Glimpse.Droid.Controls.Listener
         {
             if (_swipeDiscard)
             {
-                dosomething(index - 1, direction);
+                saveLikedPromo(index - 1, direction);
                 _swipeDiscard = false;
             }
             else
-                dosomething(index, direction);
+                saveLikedPromo(index, direction);
         }
 
-        private async void dosomething(int index, int direction)
+        private async void saveLikedPromo(int index, int direction)
         {
             PromotionWithLocation promotionWithLocation = (PromotionWithLocation)_cardStack.Adapter.GetItem(index);  // to get discarded promotion 
             
