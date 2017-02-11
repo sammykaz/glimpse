@@ -12,8 +12,8 @@
         android:layout_height="match_parent">
       <SearchView     
         android:layout_width="wrap_content" 
-        android:layout_height="wrap_content" 
-        android:queryHint="test" 
+        android:layout_height="wrap_content"
+        local:MvxBind="Query Query"
         android:id ="@+id/searchview"
          />
         <MvxRadioGroup

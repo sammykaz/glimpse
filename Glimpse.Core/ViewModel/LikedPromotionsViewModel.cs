@@ -59,6 +59,7 @@ namespace Glimpse.Core.ViewModel
             //get initial user location
             _userLocation = await GetUserLocation();
 
+            Query = "";
             //PromotionList = await _localPromotionDataService.GetPromotions();
 
             //_promotionsStored = PromotionList;
@@ -75,8 +76,23 @@ namespace Glimpse.Core.ViewModel
             set
             {
                 _selectedItem = value;
-                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem);
+                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem, Query);
                 RaisePropertyChanged(() => PromotionList);
+            }
+        }
+
+        private string _query;
+        public string Query
+        {
+            get
+            {
+                return _query;
+            }
+            set
+            {
+                _query = value;
+                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, SelectedItem, _query);
+                RaisePropertyChanged(() => Query);
             }
         }
 
