@@ -69,13 +69,13 @@ namespace Glimpse.Droid.Views
             //initializing the repo to store liked promotions locally to pass to the card swipe listener
             _localPromotionRepository = new LocalPromotionRepository();
             var path = GetDbPath();
-            await _localPromotionRepository.InitializeAsync(path, new SQLitePlatformAndroid());
+           // await _localPromotionRepository.InitializeAsync(path, new SQLitePlatformAndroid());
 
             //Initializing the discard distance in pixels from the origin of the card stack.
             _cardSwipeListener = new CardSwipeListener(DpToPx(this.Context, 100), _cardStack, _viewPager, _localPromotionRepository, (CardViewModel)ViewModel);
             _cardStack.CardEventListener = _cardSwipeListener;
-            await ViewModel.InitializeLocationAndPromotionList();
-            InitializeImages();
+          //  await ViewModel.InitializeLocationAndPromotionList();
+          //  InitializeImages();
 
             //Subscribing to events
             _likeButton = view.FindViewById<Button>(Resource.Id.btnLike);
