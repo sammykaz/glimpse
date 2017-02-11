@@ -122,8 +122,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.showImageWarning = false;
     $scope.isResetEnable = false;
     $scope.isSilderFilterEnable = false;
-    $scope.previewImage = promotionDetails.PromotionImageURL ? "https://storageglimpse.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';
-    var imageUrl = promotionDetails.PromotionImageURL ? "https://storageglimpse.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';
+    $scope.previewImage = promotionDetails.PromotionImageURL ? "https://glimpseimages.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';
+    var imageUrl = promotionDetails.PromotionImageURL ? "https://glimpseimages.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';
 
     if (imageUrl) {
         getBase64FromImageUrl(imageUrl).then(function (base64Image) {
