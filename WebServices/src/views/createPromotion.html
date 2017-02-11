@@ -94,9 +94,11 @@
                                 <li><a href="javascript:void(0)" ng-click="applyFilter('Hemingway')">Hemingway</a></li>
                                 <li><a href="javascript:void(0)" ng-click="applyFilter('Concentrate')">Concentrate</a></li>
                                 <li><a href="javascript:void(0)" ng-click="applyFilter('HerMajesty')">HerMajesty</a></li>
+                                <li><a href="javascript:void(0)" ng-click="applyFilter('Custom Filter')">Custom Filter</a></li>
+
                             </ul>
                         </div>
-                        <button class="btn btn-warning" ng-click="resetFilter()" ng-show="isResetEnable" type="button">Reset Filter</button>
+                        <button class="btn btn-warning" ng-click="resetFilter()" ng-show="isResetEnable && selectedFilter !== 'Custom Filter'" type="button">Reset Filter</button>
                         <button class="btn btn-success" ng-click="saveFilter()" ng-show="isResetEnable" type="button">Save Filter</button>
                         <button class="btn btn-danger" ng-click="removeImage()" ng-show="previewImage" type="button">Remove</button>
                     </div>
