@@ -53,10 +53,10 @@ body {
 .promotion-info{vertical-align: middle; text-align:center; line-height: 100px; background: #a4c7db; font-weight: bold; font-family: 'Exo';}
 .promotion-value{vertical-align: middle; line-height: 100px; background:white !important; font-family: 'Exo'; font-weight: initial;}
 .promotion-map-value{vertical-align: middle; text-align:center; background:white !important; font-family: 'Exo'; font-weight: initial;}
-.promotion-image{height:300px; padding-left:0px!important; padding-right:0px !important;}
+.promotion-image{height: 300px; padding-left:0px!important; padding-right:0px !important; position: relative !important;}
 .promotion-height{height:300px; background: white !important; margin-bottom: 25px;}
 .promotion-background{background: rgba(0, 98, 184, 0.1); padding-top:25px;}
-.img-middle{top:0%}
+.img-middle {max-height: 100%; max-width: 100%; width: auto !important; height: auto !important; position: absolute !important; top: 0; bottom: 0; left: 0; right: 0; margin: auto;}
 .promotion-table-b4-title{height: 100%; display: inline-block; background: white; border-top-right-radius: 8px; border-top-left-radius: 8px; color: #418ac9; text-align: center !important; font-size: 50px;}
 .angular-google-map-container {height: 600px;}
 .close-warning{color: #014c8c !important; text-decoration: underline !important;}
