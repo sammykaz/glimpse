@@ -51,10 +51,15 @@ namespace WebServices
 
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
-            Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File("log.txt",
-                outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}",
-                shared: true)
-                .CreateLogger();
+            using (var log = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File(AppDomain.CurrentDomain.BaseDirectory + "\\logs\\log-{Date}.log",
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}",
+                    shared: true)
+                    .CreateLogger()) ;
+
+               /* Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File(AppDomain.CurrentDomain.BaseDirectory + "\\logs\\log-{Date}.log",
+                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}",
+                    shared: true)
+                    .CreateLogger();*/
 
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
