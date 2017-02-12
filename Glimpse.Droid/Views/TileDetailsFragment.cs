@@ -48,15 +48,16 @@ namespace Glimpse.Droid.Views
             SetupViewPagerAndAdapter();
             SetupDotsControl();
             _title = view.FindViewById<TextView>(Resource.Id.detailViewTitle);
-            _title.Text = ViewModel.PromotionTitle;
+            if(ViewModel.PromotionTitle != null)
+                _title.Text = ViewModel.PromotionTitle;
 
             _duration = view.FindViewById<TextView>(Resource.Id.detailViewDuration);
-            _duration.Text = ViewModel.PromotionDuration;
+            if (ViewModel.PromotionDuration != null)
+                _duration.Text = ViewModel.PromotionDuration;
 
             _description = view.FindViewById<TextView>(Resource.Id.detailViewDescription);
-            _description.Text = ViewModel.PromotionDescription;
-            
-
+            if (ViewModel.PromotionDescription != null)
+                _description.Text = ViewModel.PromotionDescription;
         }
 
         public override async void OnStart()
@@ -90,7 +91,8 @@ namespace Glimpse.Droid.Views
             _ImageResources = new List<Bitmap> ();
             foreach (byte[] image in _byteImages)
             {
-                _ImageResources.Add(BitmapFactory.DecodeByteArray(image, 0, image.Length));
+                if(image != null)
+                    _ImageResources.Add(BitmapFactory.DecodeByteArray(image, 0, image.Length));
             }
 
             _adapter = new SlidingImageAdapter(this.Context, _ImageResources);
