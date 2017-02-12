@@ -77,17 +77,17 @@ namespace WebServices.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutVendor(int id, Vendor vendor)
         {
-            Log.Information("Attempting to update Vendor: {@vendor} with id {@id}", vendor.CompanyName,id);
+            Log.Information("Attempting to update vendor: {@vendor} with id {@id}", vendor.CompanyName,id);
             if (!ModelState.IsValid)
             {
-                Log.Error("Invalid model state for Vendor: {@vendor} with id: {@id}", vendor.CompanyName, id);
+                Log.Error("Invalid model state for vendor: {@vendor} with id: {@id}", vendor.CompanyName, id);
                 return BadRequest(ModelState);
             }
 
 
             if (id != vendor.VendorId)
             {
-                Log.Error("Id: {@id} is the incorrect id for Vendor {@vendor}", id, vendor.CompanyName);
+                Log.Error("Id: {@id} is the incorrect id for vendor {@vendor}", id, vendor.CompanyName);
                 return BadRequest();
             }
 
@@ -107,7 +107,7 @@ namespace WebServices.Controllers
                 }
                 else
                 {
-                    Log.Error("Put Operation has failed for id: {@id}", id);
+                    Log.Error("Update Operation has failed for vendor id: {@id}", id);
                     throw;
                 }
             }
@@ -195,6 +195,7 @@ namespace WebServices.Controllers
 
             db.Vendors.Remove(vendor);
             db.SaveChanges();
+
             Log.Information("Vendor with id: {@id} has been deleted.", id);
             return Ok(vendor);
         }
