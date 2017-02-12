@@ -36,7 +36,6 @@ namespace Glimpse.Droid.Views
         private CardStack _cardStack;
         private CardAdapter _cardAdapter;
         private CustomViewPager _viewPager;
-        private List<PromotionWithLocation> _promotionWithLocationList;
         private BindableProgress _bindableProgress;
         private LocalPromotionRepository _localPromotionRepository;
         private SearchView _searchView;
@@ -78,8 +77,11 @@ namespace Glimpse.Droid.Views
             //Initializing the discard distance in pixels from the origin of the card stack.
             _cardSwipeListener = new CardSwipeListener(DpToPx(this.Context, 100), _cardStack, _viewPager, _localPromotionRepository, (CardViewModel)ViewModel);
             _cardStack.CardEventListener = _cardSwipeListener;
-            await ViewModel.InitializeLocationAndPromotionList();
-            InitializeImages();
+            if (ViewModel.PromotionList == null)
+            {
+                await ViewModel.InitializeLocationAndPromotionList();
+            }
+                InitializeImages();
 
 
             IMvxNotifyPropertyChanged viewModel = ViewModel as IMvxNotifyPropertyChanged;
@@ -92,6 +94,7 @@ namespace Glimpse.Droid.Views
             _dislikeButton = view.FindViewById<Button>(Resource.Id.btnDislike);
             _likeButton.Click += LikeButton_Click;      
             _dislikeButton.Click += DislikeButton_Click;
+            _cardSwipeListener.OnCardSwipeActionEvent += _cardSwipeListener_OnCardSwipeActionEvent;
 
              
             _cardStack.Adapter = _cardAdapter;
@@ -115,10 +118,19 @@ namespace Glimpse.Droid.Views
         }
 
 
+        private void _cardSwipeListener_OnCardSwipeActionEvent(string action)
+        {
+            PromotionWithLocation promotionWithLocation = (PromotionWithLocation)_cardStack.Adapter.GetItem(_cardStack.CurrIndex);
+            ViewModel.PromotionList.Remove(promotionWithLocation);
+            Toast.MakeText(this.Context, action , ToastLength.Short).Show();
+        }
+
         private void LikeButton_Click(object sender, System.EventArgs e)
         {
             if (_cardStack.TopView != null)
             {
+                PromotionWithLocation promotionWithLocation = (PromotionWithLocation)_cardStack.Adapter.GetItem(_cardStack.CurrIndex);
+                ViewModel.PromotionList.Remove(promotionWithLocation);
                 Toast.MakeText(this.Context, "Like", ToastLength.Short).Show();
                 var direction = 3;
                 Task.Delay(250).ContinueWith(o => { (this.Activity as MainActivity).RunOnUiThread(() => _cardStack.DiscardTop(direction, 700)); });
@@ -131,6 +143,9 @@ namespace Glimpse.Droid.Views
         {
             if (_cardStack.TopView != null)
             {
+                PromotionWithLocation promotionWithLocation = (PromotionWithLocation)_cardStack.Adapter.GetItem(_cardStack.CurrIndex);
+                ViewModel.PromotionList.Remove(promotionWithLocation);
+                _cardAdapter.Remove(_cardStack.CurrIndex);
                 Toast.MakeText(this.Context, "Dislike", ToastLength.Short).Show();
                 var direction = 2;
                 Task.Delay(250).ContinueWith(o => { (this.Activity as MainActivity).RunOnUiThread(() => _cardStack.DiscardTop(direction, 700)); });
