@@ -15,6 +15,7 @@ using System.IO;
 using Glimpse.Core.Repositories;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Model;
+using Glimpse.Core.ViewModel;
 
 namespace Glimpse.Droid.Controls.Listener
 {
@@ -26,16 +27,18 @@ namespace Glimpse.Droid.Controls.Listener
         private readonly CardStack _cardStack;
         private bool _swipeDiscard;
         private CustomViewPager _viewPager;
+        private CardViewModel _cardViewModel;
         public event Action<string> OnCardSwipeActionEvent;
         private LocalPromotionRepository _localPromotionRepository;
 
-        public CardSwipeListener(int discardDistancePx, CardStack cardStack, CustomViewPager viewPager, LocalPromotionRepository localPromotionRepository)
+        public CardSwipeListener(int discardDistancePx, CardStack cardStack, CustomViewPager viewPager, LocalPromotionRepository localPromotionRepository,  CardViewModel cardViewModel)
         {
             _discardDistancePx = discardDistancePx;
             _cardStack = cardStack;
             _viewPager = viewPager;
             _swipeDiscard = false;   
             _localPromotionRepository = localPromotionRepository;
+            _cardViewModel = cardViewModel;
     }
 
         public bool SwipeEnd(int section, float x1, float y1, float x2, float y2)
@@ -65,6 +68,8 @@ namespace Glimpse.Droid.Controls.Listener
 
         public void TopCardTapped()
         {
+            PromotionWithLocation promotionWithLocation = (PromotionWithLocation)_cardStack.Adapter.GetItem(_cardStack.CurrIndex);
+            _cardViewModel.ShowDetailPage(Convert.ToString(promotionWithLocation.PromotionId), promotionWithLocation.Title, Convert.ToString(promotionWithLocation.Duration),promotionWithLocation.Description);
         }
 
        //for some reason discarding the card by swiping returns index+1.therefore this is my current solution for thios issue.
@@ -73,14 +78,14 @@ namespace Glimpse.Droid.Controls.Listener
         {
             if (_swipeDiscard)
             {
-                dosomething(index - 1, direction);
+                saveLikedPromo(index - 1, direction);
                 _swipeDiscard = false;
             }
             else
-                dosomething(index, direction);
+                saveLikedPromo(index, direction);
         }
 
-        private async void dosomething(int index, int direction)
+        private async void saveLikedPromo(int index, int direction)
         {
             PromotionWithLocation promotionWithLocation = (PromotionWithLocation)_cardStack.Adapter.GetItem(index);  // to get discarded promotion 
             

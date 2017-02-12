@@ -15,10 +15,10 @@ namespace Glimpse.Core.BlobClient
     {
         public static class AzureStorageConstants
         {
-            public static string Account = "storageglimpse";
+            public static string Account = "glimpseimages";
             public static string SharedKeyAuthorizationScheme = "SharedKey";
-            public static string BlobEndPoint = "https://storageglimpse.blob.core.windows.net/";
-            public static string Key = "UTaxV/U+abo8S1ORGCTyAVH4dUoFxl5jonIxMNAK/GUNP5u0IbNxa8WxyJpWbrg2aeUlm6S1NAkph/hW3i69wQ==";
+            public static string BlobEndPoint = "https://glimpseimages.blob.core.windows.net/";
+            public static string Key = "XHIr8SaKFci88NT8Z+abpJaH1FeLC4Zq6ZRaIkaAJQc+N/1nwTqGPzDLdNZXGqcLNg+mK7ugGW3PyJsYU2gB7w==";
             public static string ContainerName = "imagestorage";
             public static string FileLocation = BlobEndPoint + ContainerName;
         }

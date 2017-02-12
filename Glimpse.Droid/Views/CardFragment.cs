@@ -33,9 +33,11 @@ namespace Glimpse.Droid.Views
         private CardStack _cardStack;
         private CardAdapter _cardAdapter;
         private CustomViewPager _viewPager;
-        private List<PromotionWithLocation> _promotionWithLocationList;
         private BindableProgress _bindableProgress;
         private LocalPromotionRepository _localPromotionRepository;
+        private Button _likeButton;
+        private Button _dislikeButton;
+        private CardSwipeListener _cardSwipeListener;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -49,12 +51,12 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             // (this.Activity as MainActivity).SetCustomTitle("Tiles");
-             _radioGroup = (RadioGroup)view.FindViewById(Resource.Id.filter_radiogroup);
-             _radioGroup.SetOnCheckedChangeListener(this);
+            _radioGroup = (RadioGroup)view.FindViewById(Resource.Id.filter_radiogroup);
+            _radioGroup.SetOnCheckedChangeListener(this);
 
             _cardStack = (this.Activity as MainActivity).FindViewById<CardStack>(Resource.Id.card_stack);
             _cardStack.ContentResource = Resource.Layout.Card_Layout;
-            _cardAdapter = new CardAdapter(this.Context, Resource.Layout.Card_Layout, this.View);
+            _cardAdapter = new CardAdapter(this.Context, Resource.Layout.Card_Layout);
 
             //create binding for progress
             _bindableProgress = new BindableProgress(this.Context);
@@ -69,18 +71,29 @@ namespace Glimpse.Droid.Views
             await _localPromotionRepository.InitializeAsync(path, new SQLitePlatformAndroid());
 
             //Initializing the discard distance in pixels from the origin of the card stack.
-            _cardStack.CardEventListener = new CardSwipeListener(DpToPx(this.Context, 100), _cardStack, _viewPager, _localPromotionRepository);
-            await ViewModel.InitializeLocationAndPromotionList();
-            InitializeImages();
+            _cardSwipeListener = new CardSwipeListener(DpToPx(this.Context, 100), _cardStack, _viewPager, _localPromotionRepository, (CardViewModel)ViewModel);
+            _cardStack.CardEventListener = _cardSwipeListener;
+            if (ViewModel.PromotionList == null)
+            {
+                await ViewModel.InitializeLocationAndPromotionList();
+            }
+                InitializeImages();
+
 
             //Subscribing to events
-            _cardAdapter.OnCardSwipeActionEvent += _cardAdapter_OnCardSwipeActionEvent;
-            _cardAdapter.OnTapButtonsEvent += _cardAdapter_OnTapButtonsEvent;
-            _cardStack.Adapter = _cardAdapter;      
+            _likeButton = view.FindViewById<Button>(Resource.Id.btnLike);
+            _dislikeButton = view.FindViewById<Button>(Resource.Id.btnDislike);
+            _likeButton.Click += LikeButton_Click;      
+            _dislikeButton.Click += DislikeButton_Click;
+            _cardSwipeListener.OnCardSwipeActionEvent += _cardSwipeListener_OnCardSwipeActionEvent;
+
+             
+            _cardStack.Adapter = _cardAdapter;
         }
 
+
         private void InitializeImages()
-        {   
+        {
             _cardAdapter.Clear();
             foreach (PromotionWithLocation promo in ViewModel.PromotionList)
             {
@@ -89,34 +102,51 @@ namespace Glimpse.Droid.Views
         }
 
 
-        private void _cardAdapter_OnTapButtonsEvent(string action)
+        private void _cardSwipeListener_OnCardSwipeActionEvent(string action)
+        {
+            PromotionWithLocation promotionWithLocation = (PromotionWithLocation)_cardStack.Adapter.GetItem(_cardStack.CurrIndex);
+            ViewModel.PromotionList.Remove(promotionWithLocation);
+            Toast.MakeText(this.Context, action , ToastLength.Short).Show();
+        }
+
+        private void LikeButton_Click(object sender, System.EventArgs e)
         {
             if (_cardStack.TopView != null)
             {
-                Toast.MakeText(this.Context, action, ToastLength.Short).Show();
-                var direction = (action == "Like") ? 3 : 2;
+                PromotionWithLocation promotionWithLocation = (PromotionWithLocation)_cardStack.Adapter.GetItem(_cardStack.CurrIndex);
+                ViewModel.PromotionList.Remove(promotionWithLocation);
+                Toast.MakeText(this.Context, "Like", ToastLength.Short).Show();
+                var direction = 3;
                 Task.Delay(250).ContinueWith(o => { (this.Activity as MainActivity).RunOnUiThread(() => _cardStack.DiscardTop(direction, 700)); });
             }
             else
                 Toast.MakeText(this.Context, "No cards available", ToastLength.Short).Show();
         }
 
-
-        private void _cardAdapter_OnCardSwipeActionEvent(string action)
+        private void DislikeButton_Click(object sender, System.EventArgs e)
         {
-            Toast.MakeText(this.Context, action, ToastLength.Short).Show();
+            if (_cardStack.TopView != null)
+            {
+                PromotionWithLocation promotionWithLocation = (PromotionWithLocation)_cardStack.Adapter.GetItem(_cardStack.CurrIndex);
+                ViewModel.PromotionList.Remove(promotionWithLocation);
+                _cardAdapter.Remove(_cardStack.CurrIndex);
+                Toast.MakeText(this.Context, "Dislike", ToastLength.Short).Show();
+                var direction = 2;
+                Task.Delay(250).ContinueWith(o => { (this.Activity as MainActivity).RunOnUiThread(() => _cardStack.DiscardTop(direction, 700)); });
+            }
+            else
+                Toast.MakeText(this.Context, "No cards available", ToastLength.Short).Show();
         }
 
-  
         public void OnCheckedChanged(RadioGroup group, int checkedId)
         {
             //radio group index is based on 1, making base 0
             checkedId = checkedId - 1;
             //the filter on previous page made this checkedID increment by 7...
             checkedId = checkedId % 7;
-            if(checkedId == 0)
+            if (checkedId == 0)
             {
-                ViewModel.SelectedItem = null; 
+                ViewModel.SelectedItem = null;
             }
             else
             {
@@ -127,7 +157,7 @@ namespace Glimpse.Droid.Views
             InitializeImages();
         }
 
-  
+
         public int DpToPx(Context context, int dip)
         {
             DisplayMetrics displayMetrics = context.Resources.DisplayMetrics;

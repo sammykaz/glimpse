@@ -17,8 +17,6 @@ namespace WebServices.Controllers
     {
         private GlimpseDbContext db = new GlimpseDbContext();
 
-        private readonly BlobHelper bh = new BlobHelper("glimpseimages", "XHIr8SaKFci88NT8Z+abpJaH1FeLC4Zq6ZRaIkaAJQc+N/1nwTqGPzDLdNZXGqcLNg+mK7ugGW3PyJsYU2gB7w==", "imagestorage");
-
         // GET: api/PromotionImages
         public IQueryable<PromotionImage> GetPromotionImages()
         {
@@ -77,6 +75,7 @@ namespace WebServices.Controllers
         [ResponseType(typeof(PromotionImage))]
         public IHttpActionResult PostPromotionImage(PromotionImage promotionImage)
         {
+            BlobHelper bh = new BlobHelper("glimpseimages", "XHIr8SaKFci88NT8Z+abpJaH1FeLC4Zq6ZRaIkaAJQc+N/1nwTqGPzDLdNZXGqcLNg+mK7ugGW3PyJsYU2gB7w==", "imagestorage");
             bh.UploadFromByteArray(promotionImage.Image, promotionImage.ImageURL);
 
             if (!ModelState.IsValid)
