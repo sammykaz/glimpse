@@ -33,11 +33,11 @@ namespace WebServices.Controllers
             PromotionImage promotionImage = db.PromotionImages.Find(id);
             if (promotionImage == null)
             {
-                Log.Error("Could not find log image with id: {@id}", id);
+                Log.Error("Could not find promotion image with id: {@id}", id);
                 return NotFound();
             }
 
-            Log.Information("Found log image with id: {@id}", id);
+            Log.Information("Found promotion image with id: {@id}", id);
             return Ok(promotionImage);
         }
 
@@ -45,7 +45,7 @@ namespace WebServices.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPromotionImage(int id, PromotionImage promotionImage)
         {
-            Log.Information("Attempting to update promotion image with id {@id}", id);
+            Log.Information("Attempting to update promotion image with id: {@id}", id);
             if (!ModelState.IsValid)
             {
                 Log.Error("Invalid model state for promotion image with id: {@id}", id);
