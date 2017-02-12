@@ -220,7 +220,11 @@ namespace Glimpse.Core.ViewModel
                 return new MvxCommand<PromotionWithLocation>(item =>
                 {
                     var desc = new Dictionary<string, string> {
-                        {"PromotionID", Convert.ToString(item.PromotionId)} };
+                        {"PromotionID", Convert.ToString(item.PromotionId)},
+                        {"PromotionTitle", item.Title},
+                        {"PromotionDuration", Convert.ToString(item.Duration)},
+                        {"PromotionDescription", item.Description},
+                    };
 
                     ShowViewModel<TileDetailsViewModel>(desc);
 

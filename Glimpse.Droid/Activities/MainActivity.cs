@@ -42,7 +42,6 @@ namespace Glimpse.Droid.Activities
         internal DrawerLayout DrawerLayout { get { return _drawerLayout; } }
 
         public static readonly int PickImageId = 1000;
-        private ImageView _imageView;
 
         private static MainActivity mainActivity;
 
@@ -70,18 +69,13 @@ namespace Glimpse.Droid.Activities
                     SetContentView(Resource.Layout.MainView);
                     mainActivity = this;
 
-                    var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-                    SetSupportActionBar(toolbar);
+ 
 
                     _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
                     _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int) GravityFlags.Start);
-                    _drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout, Resource.String.drawer_open,
-                        Resource.String.drawer_close);
+                    _drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout, Resource.String.drawer_open, Resource.String.drawer_close);
                     _drawerToggle.DrawerClosed += _drawerToggle_DrawerClosed;
                     _drawerToggle.DrawerOpened += _drawerToggle_DrawerOpened;
-
-                    SupportActionBar.SetDisplayShowTitleEnabled(false);
-                    SupportActionBar.SetDisplayHomeAsUpEnabled(true);
                     _drawerToggle.DrawerIndicatorEnabled = true;
                     _drawerLayout.SetDrawerListener(_drawerToggle);
 

@@ -13,7 +13,6 @@ namespace Glimpse.Droid.Adapter
         {
             public class FragmentInfo
             {
-                public string Title { get; set; }
                 public Type FragmentType { get; set; }
                 public IMvxViewModel ViewModel { get; set; }
             }
@@ -51,6 +50,6 @@ namespace Glimpse.Droid.Adapter
                 return namespaceText + fragmentType.Name;
             }
 
-            public override Java.Lang.ICharSequence GetPageTitleFormatted(int p0) { return new Java.Lang.String(Fragments.ElementAt(p0).Title); }
+            public override Java.Lang.ICharSequence GetPageTitleFormatted(int position) { return null; }
         }
     }

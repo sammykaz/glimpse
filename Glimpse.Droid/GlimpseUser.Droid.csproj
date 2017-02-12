@@ -635,6 +635,12 @@
     <AndroidResource Include="Resources\drawable\btn_round_semitransperant.xml" />
     <AndroidResource Include="Resources\Raw\promotion.png" />
     <AndroidResource Include="Resources\Raw\promociones.jpg" />
+    <AndroidResource Include="Resources\drawable\ic_thumbs_up_down_green.xml" />
+    <AndroidResource Include="Resources\drawable\ic_thumbs_up_down_dark_grey.xml" />
+    <AndroidResource Include="Resources\drawable\ic_thumb_up_green.xml" />
+    <AndroidResource Include="Resources\drawable\ic_thumb_up_dark_grey.xml" />
+    <AndroidResource Include="Resources\drawable\ic_location_green.xml" />
+    <AndroidResource Include="Resources\drawable\ic_location_dark_grey.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
