@@ -37,7 +37,7 @@ namespace Glimpse.Droid.Adapter
             var cardDescription = convertView.FindViewById<TextView>(Resource.Id.cardDescription);
 
             cardTitle.Text = pwl.Title;
-            cardImage.SetImageBitmap(BitmapFactory.DecodeByteArray(pwl.Image, 0, pwl.Image.Length));
+          //  cardImage.SetImageBitmap(BitmapFactory.DecodeByteArray(pwl.Image, 0, pwl.Image.Length));
             cardDescription.Text = pwl.Description;
         }
     }
