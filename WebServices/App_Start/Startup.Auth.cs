@@ -12,8 +12,6 @@ using WebServices.Providers;
 using WebServices.Models;
 using System.Web.Http;
 using Glimpse.Core.Contracts.Services;
-using Serilog;
-using Serilog.Sinks;
 
 namespace WebServices
 {
@@ -51,16 +49,7 @@ namespace WebServices
 
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
-            using (var log = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File(AppDomain.CurrentDomain.BaseDirectory + "\\logs\\log-{Date}.log",
-                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}",
-                    shared: true)
-                    .CreateLogger()) ;
-
-               /* Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File(AppDomain.CurrentDomain.BaseDirectory + "\\logs\\log-{Date}.log",
-                    outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}",
-                    shared: true)
-                    .CreateLogger();*/
-
+       
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
             //    clientId: "",
