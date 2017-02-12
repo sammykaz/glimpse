@@ -42,14 +42,14 @@ namespace WebServices.Controllers
         [Route("api/Promotions/{id}/promotionclicks")]
         public IHttpActionResult GetVendorPromotions(int id)
         {
-            Log.Information("Attemping to get vendor promotion(s) by id: {@id}", id);
+            Log.Information("Attemping to get vendor promotion(s) with id: {@id}", id);
             List<PromotionClick> promotionClicksOfPromotion = db.PromotionClicks.Where(promoClick => promoClick.PromotionId == id).ToList();
             /*if (vendor == null)
             {
                 return NotFound();
             } */
 
-            Log.Information("Returning vendor promotions that was found by id: {@id}", id);
+            Log.Information("Returning vendor promotions found with id: {@id}", id);
             return Ok(promotionClicksOfPromotion);
         }
 
@@ -83,7 +83,7 @@ namespace WebServices.Controllers
 
             if (id != promotion.PromotionId)
             {
-                Log.Error("Id: {@id} is the incorrect id for promotion {@promotion}", id, promotion.Title);
+                Log.Error("Id: {@id} is the incorrect id for promotion: {@promotion}", id, promotion.Title);
                 return BadRequest();
             }
 
@@ -102,7 +102,7 @@ namespace WebServices.Controllers
                 }
                 else
                 {
-                    Log.Error("Update Operation has failed for promtion with id: {@id}", id);
+                    Log.Error("Update operation has failed for promotion with id: {@id}", id);
                     throw;
                 }
             }

@@ -72,7 +72,7 @@ namespace WebServices.Controllers
 
             if (id != user.UserId)
             {
-                Log.Error("Id: {@id} is the incorrect id for user {@user}", id, user);
+                Log.Error("Id: {@id} is the incorrect id for user id: {@user}", id, user);
                 return BadRequest();
             }
 
@@ -91,7 +91,7 @@ namespace WebServices.Controllers
                 }
                 else
                 {
-                    Log.Error("Update Operation has failed for user with id: {@id}", id);
+                    Log.Error("Update operation has failed for user with id: {@id}", id);
                     throw;
                 }
             }

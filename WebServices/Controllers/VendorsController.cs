@@ -87,7 +87,7 @@ namespace WebServices.Controllers
 
             if (id != vendor.VendorId)
             {
-                Log.Error("Id: {@id} is the incorrect id for vendor {@vendor}", id, vendor.CompanyName);
+                Log.Error("Id: {@id} is the incorrect id for vendor id: {@vendor}", id, vendor.CompanyName);
                 return BadRequest();
             }
 
@@ -107,7 +107,7 @@ namespace WebServices.Controllers
                 }
                 else
                 {
-                    Log.Error("Update Operation has failed for vendor with id: {@id}", id);
+                    Log.Error("Update operation has failed for vendor with id: {@id}", id);
                     throw;
                 }
             }
@@ -168,7 +168,7 @@ namespace WebServices.Controllers
         [ResponseType(typeof(Vendor))]
         public IHttpActionResult PostVendor(Vendor vendor)
         {
-            Log.Information("Attempting to add Vendor: {@Vendor}",vendor.CompanyName);
+            Log.Information("Attempting to add vendor: {@vendor}",vendor.CompanyName);
             if (!ModelState.IsValid)
             {
                 Log.Error("Invalid model state for vendor: {@vendor}", vendor.CompanyName);
@@ -177,6 +177,7 @@ namespace WebServices.Controllers
 
             db.Vendors.Add(vendor);
             db.SaveChanges();
+
             Log.Information("Vendor: {@vendor} has been added to the database!",vendor.CompanyName);
             return CreatedAtRoute("DefaultApi", new { id = vendor.VendorId }, vendor);
         }
