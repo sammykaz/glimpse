@@ -86,8 +86,8 @@ namespace WebServices.Controllers
         [ResponseType(typeof(PromotionImage))]
         public IHttpActionResult PostPromotionImage(PromotionImage promotionImage)
         {
+            BlobHelper bh = new BlobHelper("glimpseimages", "XHIr8SaKFci88NT8Z+abpJaH1FeLC4Zq6ZRaIkaAJQc+N/1nwTqGPzDLdNZXGqcLNg+mK7ugGW3PyJsYU2gB7w==", "imagestorage");
             Log.Information("Attempting to add promotion image with id: {@promotionImage}", promotionImage.PromotionImageId);
-            BlobHelper bh = new BlobHelper("storageglimpse", "UTaxV/U+abo8S1ORGCTyAVH4dUoFxl5jonIxMNAK/GUNP5u0IbNxa8WxyJpWbrg2aeUlm6S1NAkph/hW3i69wQ==", "imagestorage");
             bh.UploadFromByteArray(promotionImage.Image, promotionImage.ImageURL);
 
             if (!ModelState.IsValid)
