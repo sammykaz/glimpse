@@ -76,6 +76,6 @@ label input[type="radio"]:checked ~ i.fa.fa-dot-circle-o{color: #7AA3CC; display
 label:hover input[type="radio"] ~ i.fa {color: #7AA3CC;}
 .text-align-init{text-align: initial !important;}
 .categories-size{font-size:18px}
-
+.map-promo-image{height: 300px; width: 100% !important; text-align: center; background: white !important;}
 
 
