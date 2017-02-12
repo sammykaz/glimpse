@@ -106,7 +106,6 @@ namespace WebServices.Controllers
         public IHttpActionResult PostPromotion(Promotion promotion)
         {
 
-            BlobHelper bh = new BlobHelper("glimpseimages", "XHIr8SaKFci88NT8Z+abpJaH1FeLC4Zq6ZRaIkaAJQc+N/1nwTqGPzDLdNZXGqcLNg+mK7ugGW3PyJsYU2gB7w==", "imagestorage");
             bh.UploadFromByteArray(promotion.PromotionImage, promotion.PromotionImageURL);
 
             if(promotion.RequestFromWeb == true)
