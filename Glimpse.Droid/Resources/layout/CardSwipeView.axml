@@ -4,14 +4,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-  <MvxRadioGroup
-           android:layout_width="fill_parent"
-           android:layout_height="wrap_content"
-           android:textSize="20dp"
-           android:orientation="horizontal"
-           android:id="@+id/filter_radiogroup"
-           local:MvxItemTemplate="@layout/item_radio"
-           local:MvxBind="ItemsSource Categories;SelectedItem SelectedItem" />
+    <SearchView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_searchview"
+        local:MvxBind="Query Query" />
+    <MvxRadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:orientation="horizontal"
+        android:id="@+id/filter_radiogroup"
+        local:MvxItemTemplate="@layout/item_radio"
+        local:MvxBind="ItemsSource Categories;SelectedItem SelectedItem" />
     <gemslibe.xamarin.droid.ui.swipecards.CardStack
         android:id="@+id/card_stack"
         android:padding="20dp"

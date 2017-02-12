@@ -23,11 +23,34 @@ namespace Plugin.RestClient
 
         private readonly string WebServiceUrl = "http://10.0.3.2/Glimpse/api/" + typeof(T).Name + "s/";
 
-        public async Task<List<T>> GetAsync()
+        /// <summary>
+        /// get request
+        /// </summary>
+        /// <param name="parameters">Dictionary is used to pass parameter, first string is name of parameter, second is the value</param>
+        /// <returns></returns>
+        public async Task<List<T>> GetAsync(Dictionary<string,string> parameters = null)
         {
-                var httpClient = new HttpClient();
-                var json = await httpClient.GetStringAsync(WebServiceUrl);
-                 var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+            var httpClient = new HttpClient();
+            string request = WebServiceUrl;
+            bool firstParam = false;
+            if(parameters != null)
+            {
+                foreach (KeyValuePair<string, string> entry in parameters)
+                {
+                    if (!firstParam)
+                    {
+                        request = request.Remove(request.Length - 1) + "?";
+                        firstParam = true;
+                    }                      
+                    else
+                        request = request + "&";
+
+                    request = request +entry.Key + "=" + entry.Value;
+                }
+            }            
+
+            var json = await httpClient.GetStringAsync(request);
+            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
             return taskModels;
         }
 

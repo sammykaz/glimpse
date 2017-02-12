@@ -28,11 +28,14 @@ namespace Glimpse.Core.Repositories
             return promotion;
         }
 
-        public async Task<List<Promotion>> GetPromotions()
+        public async Task<List<Promotion>> GetPromotions(bool active = false, string keyword = "")
         {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("active", active.ToString());
+            parameters.Add("keyword", keyword);
             RestClient<Promotion> restClient = new RestClient<Promotion>();
 
-            var promotions = await restClient.GetAsync();
+            var promotions = await restClient.GetAsync(parameters);
 
             return promotions;
         }
