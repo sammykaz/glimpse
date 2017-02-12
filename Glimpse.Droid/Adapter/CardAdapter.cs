@@ -21,7 +21,6 @@ namespace Glimpse.Droid.Adapter
 
         public CardAdapter(Context context, int resource) :base(context,resource)
         {
-
         }
 
 
@@ -29,8 +28,6 @@ namespace Glimpse.Droid.Adapter
         {
             return convertView;
         }
-        public event Action<string> OnTapButtonsEvent;
-        public event Action<string> OnCardSwipeActionEvent;
 
         public override void BindView(int position, View convertView, ViewGroup parent)
         {
@@ -39,9 +36,14 @@ namespace Glimpse.Droid.Adapter
             var cardImage = convertView.FindViewById<ImageView>(Resource.Id.cardImage);
             var cardDescription = convertView.FindViewById<TextView>(Resource.Id.cardDescription);
 
+            if(pwl.Title!= null)
             cardTitle.Text = pwl.Title;
-            cardImage.SetImageBitmap(BitmapFactory.DecodeByteArray(pwl.Image, 0, pwl.Image.Length));
+                 
+            if(pwl.Description != null)     
             cardDescription.Text = pwl.Description;
+
+            if(pwl.Image != null)
+            cardImage.SetImageBitmap(BitmapFactory.DecodeByteArray(pwl.Image, 0, pwl.Image.Length));
         }
     }
 }

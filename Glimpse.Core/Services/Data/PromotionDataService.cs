@@ -43,7 +43,7 @@ namespace Glimpse.Core.Services.Data
             query = query.ToLower();
             if(category == null)
             {
-                return promoWithLocationList.Where(promo => (promo.Title.Contains(query) || promo.Description.Contains(query) || promo.CompanyName.Contains(query))).ToList();
+                return promoWithLocationList.Where(promo => (promo.Title.ToLower().Contains(query) || promo.Description.ToLower().Contains(query) || promo.CompanyName.ToLower().Contains(query))).ToList();
             }
             return promoWithLocationList.Where(promo => (promo.Title.ToLower().Contains(query) || promo.Description.ToLower().Contains(query) || promo.CompanyName.ToLower().Contains(query)) && promo.Category == category).ToList();           
         }
