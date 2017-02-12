@@ -15,6 +15,8 @@ namespace WebServices.Controllers
     {
         private GlimpseDbContext db = new GlimpseDbContext();
 
+        private readonly BlobHelper bh = new BlobHelper("glimpseimages", "XHIr8SaKFci88NT8Z+abpJaH1FeLC4Zq6ZRaIkaAJQc+N/1nwTqGPzDLdNZXGqcLNg+mK7ugGW3PyJsYU2gB7w==", "imagestorage");
+
         // GET: api/Promotions
         public IQueryable<Promotion> GetPromotions()
         {
@@ -81,6 +83,8 @@ namespace WebServices.Controllers
                 return BadRequest(ModelState);
             }
 
+            bh.UploadFromByteArray(promotion.PromotionImage, promotion.PromotionImageURL);
+
             if (id != promotion.PromotionId)
             {
                 Log.Error("Id: {@id} is the incorrect id for promotion: {@promotion}", id, promotion.Title);
@@ -119,6 +123,14 @@ namespace WebServices.Controllers
             Log.Information("Attempting to add promotion: {@promotion}", promotion.Title);
             bh.UploadFromByteArray(promotion.PromotionImage, promotion.PromotionImageURL);
 
+            if(promotion.RequestFromWeb == true)
+            {
+                int size = promotion.PromotionImages.Count;
+                for (int i = 0; i < size; i++)
+                {
+                    string response = bh.UploadFromByteArray(promotion.PromotionImages.ElementAt(i).Image, promotion.PromotionImages.ElementAt(i).ImageURL);
+                }
+            }
 
             if (!ModelState.IsValid)
             {
