@@ -55,7 +55,7 @@ body {
 .promotion-map-value{vertical-align: middle; text-align:center; background:white !important; font-family: 'Exo'; font-weight: initial;}
 .promotion-image{height:300px; padding-left:0px!important; padding-right:0px !important;}
 .promotion-height{height:300px; background: white !important; margin-bottom: 25px;}
-.promotion-background{background: rgba(0, 98, 184, 0.1);}
+.promotion-background{background: rgba(0, 98, 184, 0.1); padding-top:25px;}
 .img-middle{top:0%}
 .promotion-table-b4-title{height: 100%; display: inline-block; background: white; border-top-right-radius: 8px; border-top-left-radius: 8px; color: #418ac9; text-align: center !important; font-size: 50px;}
 .angular-google-map-container {height: 600px;}
