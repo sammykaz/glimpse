@@ -107,7 +107,7 @@ namespace WebServices.Controllers
                 }
                 else
                 {
-                    Log.Error("Update Operation has failed for vendor id: {@id}", id);
+                    Log.Error("Update Operation has failed for vendor with id: {@id}", id);
                     throw;
                 }
             }

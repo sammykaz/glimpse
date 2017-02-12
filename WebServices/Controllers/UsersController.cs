@@ -91,7 +91,7 @@ namespace WebServices.Controllers
                 }
                 else
                 {
-                    Log.Error("Update Operation has failed for user id: {@id}", id);
+                    Log.Error("Update Operation has failed for user with id: {@id}", id);
                     throw;
                 }
             }
