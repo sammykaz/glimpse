@@ -1262,6 +1262,7 @@
     <Content Include="src\services\userService.js" />
     <Content Include="src\views\createPromotion.html" />
     <Content Include="src\views\homeView.html" />
+    <Content Include="src\views\imageFullSizeView.html" />
     <Content Include="src\views\loginView.html" />
     <Content Include="src\views\changePromotionDate.html" />
     <Content Include="src\views\mapView.html" />

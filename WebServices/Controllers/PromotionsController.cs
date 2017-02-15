@@ -49,6 +49,20 @@ namespace WebServices.Controllers
             return Ok(promotionClicksOfPromotion);
         }
 
+        // GET: api/Promotions/5/promotionimages
+        [ResponseType(typeof(Vendor))]
+        [Route("api/Promotions/{id}/promotionimages")]
+        public IHttpActionResult GetVendorPromotionsImages(int id)
+        {
+            List<PromotionImage> promotionImagesOfPromotion = db.PromotionImages.Where(promoImage => promoImage.PromotionId == id).ToList();
+            /*if (vendor == null)
+            {
+                return NotFound();
+            } */
+
+            return Ok(promotionImagesOfPromotion);
+        }
+
         // GET: api/Vendors/5/promotions
         [ResponseType(typeof(Vendor))]
         [Route("api/Promotions/filter/{filterName}")]

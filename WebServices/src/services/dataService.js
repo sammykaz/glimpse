@@ -41,5 +41,8 @@
     fac.getPromotionClicks = function () {
         return $resource('/api/promotionclicks', { user: "@promotionclicks" })
     }
+    fac.getPromotionImagesFromSpecificPromotion = function (promoId) {
+        return $resource('/api/Promotions/'+promoId+'/promotionimages', { user: "@promotionimages" })
+    }
     return fac;
 }])
