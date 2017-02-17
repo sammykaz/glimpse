@@ -1,5 +1,14 @@
-﻿<div class="animated fadeIn">
-    <div ng-repeat="image in images" style="height: 500px;">
-        <img ng-src="https://glimpseimages.blob.core.windows.net/imagestorage/{{image}}" class="map-image">
-    </div>
+﻿<div class="container slider">
+    <img ng-repeat="slide in images" class="slide slide-animation nonDraggableImage sliderSize" ng-swipe-right="nextSlide()" ng-swipe-left="prevSlide()" ng-hide="!isCurrentSlideIndex($index)" ng-src="https://glimpseimages.blob.core.windows.net/imagestorage/{{slide}}">
+    <a class="arrow prev" href="javascript:void(0)" ng-click="nextSlide()"></a>
+    <a class="arrow next" href="javascript:void(0)" ng-click="prevSlide()"></a>
+    <nav class="sliderNav">
+        <div class="wrapper">
+            <ul class="dots">
+                <li class="dot" ng-repeat="slide in images">
+                    <a href="javascript:void(0)" ng-class="{'active':isCurrentSlideIndex($index)}" ng-click="setCurrentSlideIndex($index);"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </div>
