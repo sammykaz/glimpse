@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebServices.Models;
+using Serilog;
 
 namespace WebServices.Controllers
 {
@@ -19,6 +20,7 @@ namespace WebServices.Controllers
         // GET: api/Vendors
         public IQueryable<Vendor> GetVendors()
         {
+            Log.Information("Getting all vendors");
             return db.Vendors;
         }
 
@@ -26,11 +28,14 @@ namespace WebServices.Controllers
         [ResponseType(typeof(Vendor))]
         public IHttpActionResult GetVendor(int id)
         {
+            Log.Information("Attemping to get vendor with id: {@id}", id);
             Vendor vendor = db.Vendors.Find(id);
             if (vendor == null)
             {
+                Log.Error("Could not find vendor with id: {@id}", id);
                 return NotFound();
             }
+            Log.Information("Found vendor with id: {@id}", id);
             return Ok(vendor);
         }
 
@@ -41,13 +46,15 @@ namespace WebServices.Controllers
         [ResponseType(typeof(Vendor))]
         public IHttpActionResult GetVendor(string email)
         {
+            Log.Information("Attemping to get vendor with email: {@email}", email);
             //for most email providers, upper case is the same as lower
             Vendor vendor = db.Vendors.FirstOrDefault(e => e.Email.ToLower().Equals(email.ToLower()));
             if (vendor == null)
             {
+                Log.Error("Could not find vendor with email: {@email}", email);
                 return Ok();
             }
-
+            Log.Information("Found vendor with email: {@email}", email);
             return Ok(vendor);
         }
 
@@ -56,12 +63,13 @@ namespace WebServices.Controllers
         [Route("api/Vendors/{id}/promotions")]
         public IHttpActionResult GetVendorPromotions(int id)
         {
+            Log.Information("Getting vendor promotions from vendor id: {@id}", id);
             List<Promotion> promosOfVendor = db.Promotions.Where(promo => promo.VendorId == id).ToList();
             /*if (vendor == null)
             {
                 return NotFound();
             } */
-
+            Log.Information("Returning vendor promotions from vendor id: {@id}", id);
             return Ok(promosOfVendor);
         }
 
@@ -69,15 +77,20 @@ namespace WebServices.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutVendor(int id, Vendor vendor)
         {
+            Log.Information("Attempting to update vendor: {@vendor} with id {@id}", vendor.CompanyName,id);
             if (!ModelState.IsValid)
             {
+                Log.Error("Invalid model state for vendor: {@vendor} with id: {@id}", vendor.CompanyName, id);
                 return BadRequest(ModelState);
             }
 
+
             if (id != vendor.VendorId)
             {
+                Log.Error("Id: {@id} is the incorrect id for vendor id: {@vendor}", id, vendor.CompanyName);
                 return BadRequest();
             }
+
 
             db.Entry(vendor).State = EntityState.Modified;
 
@@ -89,14 +102,17 @@ namespace WebServices.Controllers
             {
                 if (!VendorExists(id))
                 {
+                    Log.Error("Vendor with id: {@id} does not exist!", id);
                     return NotFound();
                 }
                 else
                 {
+                    Log.Error("Update operation has failed for vendor with id: {@id}", id);
                     throw;
                 }
             }
 
+            Log.Information("Vendor with id: {@id} has been updated!", id);
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -152,14 +168,17 @@ namespace WebServices.Controllers
         [ResponseType(typeof(Vendor))]
         public IHttpActionResult PostVendor(Vendor vendor)
         {
+            Log.Information("Attempting to add vendor: {@vendor}",vendor.CompanyName);
             if (!ModelState.IsValid)
             {
+                Log.Error("Invalid model state for vendor: {@vendor}", vendor.CompanyName);
                 return BadRequest(ModelState);
             }
 
             db.Vendors.Add(vendor);
             db.SaveChanges();
 
+            Log.Information("Vendor: {@vendor} has been added to the database!",vendor.CompanyName);
             return CreatedAtRoute("DefaultApi", new { id = vendor.VendorId }, vendor);
         }
 
@@ -167,15 +186,18 @@ namespace WebServices.Controllers
         [ResponseType(typeof(Vendor))]
         public IHttpActionResult DeleteVendor(int id)
         {
+            Log.Information("Attemping to delete vendor with id: {@id}", id);
             Vendor vendor = db.Vendors.Find(id);
             if (vendor == null)
             {
+                Log.Error("Vendor with id: {@id} does not exist!", id);
                 return NotFound();
             }
 
             db.Vendors.Remove(vendor);
             db.SaveChanges();
 
+            Log.Information("Vendor with id: {@id} has been deleted.", id);
             return Ok(vendor);
         }
 
