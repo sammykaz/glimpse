@@ -125,10 +125,13 @@ namespace WebServices.Controllers
 
             if(promotion.RequestFromWeb == true)
             {
+                Log.Information("Attemping to post web promotion {@promotion}", promotion.PromotionId);
                 int size = promotion.PromotionImages.Count;
+                Log.Information("Size of Promotion Images: {@size}", size);
                 for (int i = 0; i < size; i++)
                 {
                     string response = bh.UploadFromByteArray(promotion.PromotionImages.ElementAt(i).Image, promotion.PromotionImages.ElementAt(i).ImageURL);
+                    Log.Information("Testing this inside web loop for images");
                 }
             }
 

@@ -13,16 +13,14 @@ namespace WebServices
     {
        public Startup()
         {
-          Log.Logger = new LoggerConfiguration()
-            .MinimumLevel.Debug()
-            .WriteTo.File(AppDomain.CurrentDomain.BaseDirectory + "\\logs\\log-{Date}.log", outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] {Message}{NewLine}{Exception}", shared: true)
-            .CreateLogger();
+            Log.Logger = new LoggerConfiguration()
+               .MinimumLevel.Debug()
+               .WriteTo.File(AppDomain.CurrentDomain.BaseDirectory + "\\logs\\logs.log", outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message}{NewLine}{Exception}",shared:true)
+               .CreateLogger();
         }
 
-        public void Configuration(IAppBuilder app, ILoggerFactory loggerFactory)
+        public void Configuration(IAppBuilder app)
         {
-            //Specifying dispose: true closes and flushes the Serilog `Log` class when the app shuts down.
-            loggerFactory.AddSerilog(dispose: true);
             ConfigureAuth(app);
         }
     }
