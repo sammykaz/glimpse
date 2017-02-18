@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using WebServices.Models;
 using WebServices.Helpers;
+using System;
 using Serilog;
 
 namespace WebServices.Controllers
@@ -18,10 +19,23 @@ namespace WebServices.Controllers
         private readonly BlobHelper bh = new BlobHelper("glimpseimages", "XHIr8SaKFci88NT8Z+abpJaH1FeLC4Zq6ZRaIkaAJQc+N/1nwTqGPzDLdNZXGqcLNg+mK7ugGW3PyJsYU2gB7w==", "imagestorage");
 
         // GET: api/Promotions
-        public IQueryable<Promotion> GetPromotions()
+        public IQueryable<Promotion> GetPromotions(bool active = false, string keyword = "")
         {
-            Log.Information("Getting all promotions");
-            return db.Promotions;
+            IQueryable<Promotion> listOfPromos = db.Promotions;
+            if (active)
+            {
+                Log.Information("Attempting to get all active promotions");
+                listOfPromos = listOfPromos.Where(e => e.PromotionStartDate.CompareTo(DateTime.Now) <= 0 && e.PromotionEndDate.CompareTo(DateTime.Now) >= 0);
+            }
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                Log.Information("Getting all promotions with keyword: {@keyword} in title or description: " + keyword);
+                listOfPromos = listOfPromos.Where(promo => promo.Title.Contains(keyword) || promo.Description.Contains(keyword));
+            }
+
+            Log.Information("Returning list of promotions");
+            return listOfPromos;
         }
 
         // GET: api/Promotions/5
@@ -68,6 +82,16 @@ namespace WebServices.Controllers
             } */
 
             Log.Information("Returning vendor promotions that was found by cateogory: {@filterName}", filterName);
+            return Ok(promotionsFiltered);
+        }
+
+        // GET: api/Vendors/5/promotions
+        [ResponseType(typeof(Vendor))]
+        //[Route("api/Promotions/Search/{filterName}")]
+        public IHttpActionResult Search(string keyword)
+        {
+            List<Promotion> promotionsFiltered = db.Promotions.Where(promo => promo.Title.Contains(keyword) || promo.Description.Contains(keyword)).ToList();
+
             return Ok(promotionsFiltered);
         }
 
