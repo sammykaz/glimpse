@@ -186,8 +186,23 @@ namespace Glimpse.Core.ViewModel
             set
             {
                 _selectedItem = value;
-                FilteredPromotionList = promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem);
+                FilteredPromotionList = promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem, Query);
                 RaisePropertyChanged(() => FilteredPromotionList);
+            }
+        }
+
+        private string _query;
+        public string Query
+        {
+            get
+            {
+                return _query;
+            }
+            set
+            {
+                _query = value;
+                FilteredPromotionList = promotionDataService.FilterPromotionWithLocationList(_promotionsStored, SelectedItem, _query);
+                RaisePropertyChanged(() => Query);
             }
         }
 
