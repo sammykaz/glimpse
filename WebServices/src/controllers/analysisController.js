@@ -137,7 +137,8 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
                   display: true,
                   position: 'left',
                   ticks: {
-                      min: 0
+                      beginAtZero: true,
+                      callback: function (value) { if (value % 1 === 0) { return value; } }
                   }
               },
             ]
@@ -158,7 +159,8 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
                   display: true,
                   position: 'left',
                   ticks: {
-                      min: 0
+                      beginAtZero: true,
+                      callback: function (value) { if (value % 1 === 0) { return value; } }
                   }
               }
             ]
