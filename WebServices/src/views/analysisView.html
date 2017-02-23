@@ -1,11 +1,11 @@
 ﻿<div class="signup-form-padding animated fadeIn">
     <div class="container profile-form col-sm-10 offset-sm-1">
-        <h2 class="profile-title">- Analysis -</h2>
+        <h2 class="profile-title">- Analytics -</h2>
         <table class="table">
             <thead class="thead-inverse">
                 <tr>
                     <th>Title</th>
-                    <th>Number of views</th>
+                    <th>Total umber of views</th>
                 </tr>
             </thead>
             <tbody ng-repeat="promotion in promotions | reverse">
@@ -19,7 +19,6 @@
             <div class="panel-body promotion-background">
                 <div class="col-sm-12">
                     <div class="col-sm-12 chart-padding">
-                        <div class="col-sm-12 promotion-table-b4-title">Line Chart </div>
                         <div class="col-sm-6">
                             <div class="col-sm-12 analysis-description">Number of views during the last days</div>
                             <canvas id="line" class="chart chart-line" chart-data="data"
