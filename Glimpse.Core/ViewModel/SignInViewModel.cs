@@ -17,17 +17,15 @@ namespace Glimpse.Core.ViewModel
     public class SignInViewModel : BaseViewModel
     {
         private readonly IVendorDataService _vendorDataService;
-        private readonly IUserDataService _userDataService;
+
         private readonly ILoginDataService _loginDataService;
         private string _email;
         private string _password;
-        private User currentUser;
         private Vendor currentVendor;
 
-        public SignInViewModel(IMvxMessenger messenger, IUserDataService userDataService, IVendorDataService vendorDataService, ILoginDataService loginDataService) : base(messenger)
+        public SignInViewModel(IMvxMessenger messenger, IVendorDataService vendorDataService, ILoginDataService loginDataService) : base(messenger)
         {
-            _vendorDataService = vendorDataService;
-            _userDataService = userDataService;
+            _vendorDataService = vendorDataService;         
             _loginDataService = loginDataService;
         }
 
@@ -97,10 +95,9 @@ namespace Glimpse.Core.ViewModel
                     {
                         currentVendor = await _vendorDataService.SearchVendorByEmail(Email);
 
-                        //Currently have no contraints for multiple accounts having the same email
                         if (currentVendor != null)
                         {
-                            if (_loginDataService.AuthenticateVendor(currentVendor, Email, Password))
+                            if (await _loginDataService.AuthenticateVendor(Email, Password))
                             {
                                 IsBusy = false;
                                 ShowViewModel<MapViewModel>();
