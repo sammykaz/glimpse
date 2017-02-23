@@ -22,6 +22,9 @@ using System.IO;
 using SQLite.Net.Platform.XamarinAndroid;
 using MvvmCross.Binding.BindingContext;
 using Glimpse.Droid.Helpers;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform.Droid.WeakSubscription;
+using MvvmCross.Platform.WeakSubscription;
 
 namespace Glimpse.Droid.Views
 {
@@ -35,6 +38,7 @@ namespace Glimpse.Droid.Views
         private CustomViewPager _viewPager;
         private BindableProgress _bindableProgress;
         private LocalPromotionRepository _localPromotionRepository;
+        private SearchView _searchView;
         private Button _likeButton;
         private Button _dislikeButton;
         private CardSwipeListener _cardSwipeListener;
@@ -80,6 +84,11 @@ namespace Glimpse.Droid.Views
                 InitializeImages();
 
 
+            IMvxNotifyPropertyChanged viewModel = ViewModel as IMvxNotifyPropertyChanged;
+            viewModel.WeakSubscribe(PropertyChanged);
+            _searchView = (SearchView)view.FindViewById(Resource.Id.card_searchview);
+
+
             //Subscribing to events
             _likeButton = view.FindViewById<Button>(Resource.Id.btnLike);
             _dislikeButton = view.FindViewById<Button>(Resource.Id.btnDislike);
@@ -91,6 +100,13 @@ namespace Glimpse.Droid.Views
             _cardStack.Adapter = _cardAdapter;
         }
 
+        private void PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Query" || e.PropertyName == "SelectedItem")
+            {
+                InitializeImages();
+            }
+        }
 
         private void InitializeImages()
         {

@@ -30,7 +30,7 @@ namespace Glimpse.Core.Services.Data
 
         public async Task SignUp(User user)
         {
-            var cryptoTuple = Cryptography.EncryptAes(user.Password);
+            var cryptoTuple = Cryptography.HashPassword(user.Password);
             user.Password = cryptoTuple.Item1;
             user.Salt = cryptoTuple.Item2;
             await _userRepository.PostUser(user);

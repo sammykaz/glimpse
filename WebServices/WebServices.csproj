@@ -69,6 +69,10 @@
       <HintPath>..\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.0.0\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.WindowsAzure.Storage, Version=8.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAzure.Storage.8.0.1\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
       <Private>True</Private>
@@ -116,6 +120,18 @@
     </Reference>
     <Reference Include="Protractor, Version=0.10.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Protractor.0.10.1\lib\net40\Protractor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.2.4.0\lib\net45\Serilog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Serilog.Extensions.Logging, Version=1.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Extensions.Logging.1.3.1\lib\net45\Serilog.Extensions.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.File.3.2.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SQLite.Net, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -272,6 +288,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BlobHelper.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JasmineController.cs" />
     <Compile Include="Controllers\PromotionClicksController.cs" />
@@ -314,6 +331,26 @@
     <Compile Include="Migrations\201701222305569_imagerework.cs" />
     <Compile Include="Migrations\201701222305569_imagerework.Designer.cs">
       <DependentUpon>201701222305569_imagerework.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702072147292_pendingerror.cs" />
+    <Compile Include="Migrations\201702072147292_pendingerror.Designer.cs">
+      <DependentUpon>201702072147292_pendingerror.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702072203396_seedingdataazure.cs" />
+    <Compile Include="Migrations\201702072203396_seedingdataazure.Designer.cs">
+      <DependentUpon>201702072203396_seedingdataazure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702072220347_seedingdataazure1.cs" />
+    <Compile Include="Migrations\201702072220347_seedingdataazure1.Designer.cs">
+      <DependentUpon>201702072220347_seedingdataazure1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702072231512_seedingdataazure2.cs" />
+    <Compile Include="Migrations\201702072231512_seedingdataazure2.Designer.cs">
+      <DependentUpon>201702072231512_seedingdataazure2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702072238251_seedingdataazure3.cs" />
+    <Compile Include="Migrations\201702072238251_seedingdataazure3.Designer.cs">
+      <DependentUpon>201702072238251_seedingdataazure3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Contexts\GlimpseDbContext.cs" />
@@ -1352,6 +1389,21 @@
     <EmbeddedResource Include="Migrations\201701222305569_imagerework.resx">
       <DependentUpon>201701222305569_imagerework.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702072147292_pendingerror.resx">
+      <DependentUpon>201702072147292_pendingerror.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702072203396_seedingdataazure.resx">
+      <DependentUpon>201702072203396_seedingdataazure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702072220347_seedingdataazure1.resx">
+      <DependentUpon>201702072220347_seedingdataazure1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702072231512_seedingdataazure2.resx">
+      <DependentUpon>201702072231512_seedingdataazure2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702072238251_seedingdataazure3.resx">
+      <DependentUpon>201702072238251_seedingdataazure3.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -1374,11 +1426,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55709</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:8080/</IISUrl>
+          <IISUrl>http://localhost:55709/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

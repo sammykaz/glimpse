@@ -25,7 +25,7 @@ namespace Glimpse.Core.Services.Data
 
         public async Task SignUp(Vendor vendor)
         {
-            var cryptoTuple = Cryptography.EncryptAes(vendor.Password);
+            var cryptoTuple = Cryptography.HashPassword(vendor.Password);
             vendor.Password = cryptoTuple.Item1;
             vendor.Salt = cryptoTuple.Item2;
             await _vendorRepository.PostVendor(vendor);
