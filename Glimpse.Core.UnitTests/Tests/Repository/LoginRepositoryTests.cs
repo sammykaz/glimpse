@@ -67,7 +67,7 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
         public async Task TestUserAuthenticationDuringSignUp()
         {
    
-            string encryptedPassword = Cryptography.EncryptAes("tester", "mYScjcVi47Q=");
+            string encryptedPassword = Cryptography.HashPassword("tester", "mYScjcVi47Q=");
 
             if (encryptedPassword == "l2hEf8hOUBdRx6yKrxd0Og==")
             {
@@ -84,7 +84,7 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
         public async Task TestVendorAuthenticationDuringSignUp()
         {
 
-            string encryptedPassword = Cryptography.EncryptAes("joe", "GMwdUfpALjA=");
+            string encryptedPassword = Cryptography.HashPassword("joe", "GMwdUfpALjA=");
 
             if (encryptedPassword == "OH1faGXvoUSx1E2ClKFN6A==")
             {
