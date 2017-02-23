@@ -53,7 +53,7 @@ body {
 .promotion-info{vertical-align: middle; text-align:center; line-height: 100px; background: #a4c7db; font-weight: bold; font-family: 'Exo';}
 .promotion-value{vertical-align: middle; padding-top: 10px; background:white !important; font-family: 'Exo'; font-weight: initial;}
 .promotion-map-value{vertical-align: middle; text-align:center; background:white !important; font-family: 'Exo'; font-weight: initial;}
-.promotion-image{height: 250px; padding-left:0px!important; padding-right:0px !important; position: relative !important;}
+.promotion-image{height: 250px; padding-left:0px!important; padding-right:0px !important; position: relative !important; cursor: pointer;}
 .promotion-height{overflow: hidden; height: 250px; background: white !important; margin-bottom: 25px;}
 .promotion-background{background: rgba(0, 98, 184, 0.1); padding-top:25px;}
 .img-middle {max-width: 100%; width: auto !important; height: auto !important; position: absolute !important; top: 0; bottom: 0; left: 0; right: 0; margin: auto;}
