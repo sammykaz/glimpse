@@ -31,6 +31,11 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
         angular.forEach($scope.promotions, function (element, index) {
             angular.forEach($scope.promotionClicks, function(element1, index1){
                 if (element.PromotionId == element1.PromotionId) {
+                    if (element.clicks == undefined)
+                        element.clicks = 0;
+                    else {
+                        element.clicks++;
+                    }
                     element1.title = element.Title;
                     $scope.vendorPromotionsClicked.push(element1);
                     var newDate = new Date(element1.Time);
@@ -135,17 +140,6 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
                   }
               },
             ],
-            //xAxes: [
-            //    {
-            //        id: 'x-axis-1',
-            //        type: 'time',
-            //        time: {
-            //            displayFormats: {
-            //                quarter: 'MMM YYYY'
-            //            }
-            //        }
-            //    }
-            //],
         },
         legend: {display: true}
     };
@@ -171,9 +165,4 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
         },
         legend: { display: true }
     };
-
-    $scope.chartPieOptions = {
-        legend: { display: true }
-    };
-
 }]);
