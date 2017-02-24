@@ -1,5 +1,7 @@
 ﻿cls
 
+# Comment to test commit
+
 # '[p]sake' is the same as 'psake' but $Error is not polluted
 remove-module [p]sake
 
