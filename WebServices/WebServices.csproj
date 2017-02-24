@@ -370,6 +370,7 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utility\Cryptography.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.js" />
@@ -1347,7 +1348,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\HelpPage\Views\Help\DisplayTemplates\" />
     <Folder Include="Areas\HelpPage\Views\Shared\" />
-    <Folder Include="Utility\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>

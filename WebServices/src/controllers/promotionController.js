@@ -54,7 +54,6 @@ app.controller('modalImageController', function ($scope, $timeout, dataService, 
     var promotionsquery = dataService.getPromotionImagesFromSpecificPromotion(promotionDetails.PromotionId).query();
     promotionsquery.$promise.then(function (data) {
         $scope.promotionImages = data;
-        console.log($scope.promotionImages);
         getImages();
     }, function (error) {})
 
@@ -84,6 +83,5 @@ app.controller('modalImageController', function ($scope, $timeout, dataService, 
         $scope.direction = 'right';
         $scope.currentIndex = ($scope.currentIndex > 0) ? --$scope.currentIndex : $scope.images.length - 1;
     };
-    console.log(promotionDetails);
 
 });
