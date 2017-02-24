@@ -6,7 +6,7 @@
         <div class="wrapper">
             <ul class="dots">
                 <li class="dot" ng-repeat="slide in images">
-                    <a href="javascript:void(0)" ng-class="{'active':isCurrentSlideIndex($index)}" ng-click="setCurrentSlideIndex($index);"></a>
+                    <a ng-class="{'active':isCurrentSlideIndex($index)}" ng-click="setCurrentSlideIndex($index);"></a>
                 </li>
             </ul>
         </div>
