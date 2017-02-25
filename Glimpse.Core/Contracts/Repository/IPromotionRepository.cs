@@ -13,7 +13,7 @@ namespace Glimpse.Core.Contracts.Repository
     {
         Task<List<Promotion>> GetPromotion(int id);
 
-        Task<List<Promotion>> GetPromotions();
+        Task<List<Promotion>> GetPromotions(bool active = false, string keyword = "");
 
         Task<List<Promotion>> GetPromotionsByCategory(Categories category);
 

@@ -14,79 +14,35 @@ namespace Glimpse.Core.Services.Data
     public class LoginDataService : ILoginDataService
     {
         private readonly IVendorRepository _vendorRepository;
-        private readonly IUserRepository _userRepository;
-        private User user;
         private Vendor vendor;
 
-        public LoginDataService(IUserRepository userRepository, IVendorRepository vendorRepository)
+        public LoginDataService(IVendorRepository vendorRepository)
         {
-            _userRepository = userRepository;
             _vendorRepository = vendorRepository;
         }
 
-        public bool AuthenticateVendor(Vendor vendor, string email, string password)
+        public async Task<bool> AuthenticateVendor(string email, string enteredPassword)
         {
-            string encryptedPassword = Cryptography.EncryptAes(password, vendor.Salt);
+            Vendor vendor = new Vendor { Email = email, Password = enteredPassword };
 
-            if (email == vendor.Email && encryptedPassword == vendor.Password)
-            {
-                SaveEmailPasswordInSettings(email, encryptedPassword);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            RestClient<Vendor> restclient = new RestClient<Vendor>();
+
+            var response = await restclient.Authenticate(vendor);
+
+             if (response)
+             {
+                 SaveEmailPasswordInSettings(email, enteredPassword);
+                 return true;
+             }
+             else
+             {
+                 return false;
+             }
         }
-/*
-        public bool AuthenticateUser(User user, string email, string password)
+
+        public bool AuthenticateUserLogin()
         {
-            string encryptedPassword = Cryptography.EncryptAes(password, user.Salt);
-
-            if (email == user.Email && encryptedPassword == user.Password)
-            {
-                SaveEmailPasswordInSettings(email, encryptedPassword);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-*/
-        public async Task<bool> AuthenticateUserLogin()
-        {
-          
-                bool isValid = false;
-
-                //Check if user already signed in before
-                if (!string.IsNullOrEmpty(Settings.Email))
-                {
-                    vendor = await _vendorRepository.SearchVendorByEmail(Settings.Email);
-
-                if (user != null && vendor == null)
-                    {
-                        if (Settings.Email == user.Email && Settings.Password == user.Password)
-                        {
-                            isValid = true;
-                        }
-
-                    }
-                    else if (user == null && vendor != null)
-                    {
-                        if (Settings.Email == vendor.Email && Settings.Password == vendor.Password)
-                        {
-                            isValid = true;
-                        }
-                    }
-                    else
-                    {
-                        isValid = false;
-                    }
-                }
-                return isValid;
-            
-
+            return !string.IsNullOrEmpty(Settings.Email);
         }
 
         public void SaveEmailPasswordInSettings(string email, string hashedPassword)

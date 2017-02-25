@@ -78,10 +78,7 @@ namespace Glimpse.Droid.Adapter
                     ExpirationDateTextView = txtExpiration,
                     PromotionImageView = imageViewPromotion
                 };
-                return view;
-            
-
-
+                return view;            
         }
 
         public override async void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)

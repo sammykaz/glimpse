@@ -14,6 +14,7 @@ using System.IO;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Repositories;
 using SQLite.Net.Platform.XamarinAndroid;
+using System.Threading.Tasks;
 
 namespace Glimpse.Droid.Views
 {
@@ -23,6 +24,7 @@ namespace Glimpse.Droid.Views
     {
         private LocalPromotionRepository _localPromotionRepository;
         private RadioGroup _radioGroup;
+        private SearchView _searchView;
 
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -49,6 +51,10 @@ namespace Glimpse.Droid.Views
 
              _radioGroup = (RadioGroup)View.FindViewById(Resource.Id.filter_radiogroup);
              _radioGroup.SetOnCheckedChangeListener(this);
+
+            _searchView = (SearchView)View.FindViewById(Resource.Id.searchview);           
+            _searchView.SetIconifiedByDefault(true);
+
         }
 
         public void OnCheckedChanged(RadioGroup group, int checkedId)
@@ -57,6 +63,9 @@ namespace Glimpse.Droid.Views
             checkedId = checkedId - 1;
             //the filter on previous page made this checkedID increment by 7...
             checkedId = checkedId % 7;
+            if (checkedId < 0)
+                checkedId = checkedId + 7;
+
             if (checkedId == 0)
             {
                 ViewModel.SelectedItem = null;
@@ -74,6 +83,5 @@ namespace Glimpse.Droid.Views
             string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             return Path.Combine(documentsPath, "glimpse.db3");
         }
-
     }
 }
