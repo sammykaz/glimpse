@@ -21,6 +21,7 @@ namespace Plugin.RestClient
         //http://10.0.3.2/Glimpse/api/
         //http://localhost/Glimpse/api/
 
+
         private readonly string WebServiceUrl = "http://10.0.3.2/Glimpse/api/" + typeof(T).Name + "s/";
 
         /// <summary>
@@ -48,7 +49,6 @@ namespace Plugin.RestClient
                     request = request +entry.Key + "=" + entry.Value;
                 }
             }            
-
             var json = await httpClient.GetStringAsync(request);
             var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
             return taskModels;
@@ -57,16 +57,15 @@ namespace Plugin.RestClient
 
         public async Task<List<T>> GetByIdAsync(int id)
         {
+            var httpClient = new HttpClient();
 
-                var httpClient = new HttpClient();
+            var json = await httpClient.GetStringAsync(WebServiceUrl + id);
 
-                var json = await httpClient.GetStringAsync(WebServiceUrl + id);
-
-                var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
-            
+            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);            
 
             return taskModels;
         }
+
         public async Task<List<T>> GetWithFilter(string filter)
         {
 
@@ -95,21 +94,6 @@ namespace Plugin.RestClient
             var taskModel = JsonConvert.DeserializeObject<T>(json);
 
             return taskModel;
-        }
-
-
-        //TO REMOVE
-        public async Task<T> GetUserByEmailAsync(string email)
-        {
-
-            var httpClient = new HttpClient();
-
-            var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + email + "/");
-
-            var taskModel = JsonConvert.DeserializeObject<T>(json);
-
-            return taskModel;
-
         }
 
         public async Task<bool> PostAsync(T t)
@@ -163,5 +147,26 @@ namespace Plugin.RestClient
                 var  obj = list.FirstOrDefault();
                 return (int)obj["Id"];
         }
+
+        public async Task<bool> Authenticate(T t)
+        {
+            string request = WebServiceUrl.Substring(0, WebServiceUrl.IndexOf("api")) + "authenticate";
+            //string request = "http://localhost/Glimpse/authenticate/";
+
+            var httpClient = new HttpClient();
+
+            var json = JsonConvert.SerializeObject(t);
+
+            HttpContent httpContent = new StringContent(json);
+
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");            
+           
+            var result = await httpClient.PostAsync(request, httpContent);
+
+            return result.IsSuccessStatusCode;                  
+
+        }
+
+
     }
 }

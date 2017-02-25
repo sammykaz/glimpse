@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using PCLCrypto;
+using System.Security.Cryptography;
 using System;
 
 namespace Glimpse.Core.Services.General
@@ -40,14 +41,13 @@ namespace Glimpse.Core.Services.General
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        public static Tuple<string,string> EncryptAes(string password)
+        public static Tuple<string,string> HashPassword(string password)
         {
             byte[] salt = CreateSalt();
-            byte[] key = CreateDerivedKey(password, salt);
+            byte[] key = CreateDerivedKey(password, salt);            
 
-            ISymmetricKeyAlgorithmProvider aes = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
-            ICryptographicKey symetricKey = aes.CreateSymmetricKey(key);
-            var bytes = WinRTCrypto.CryptographicEngine.Encrypt(symetricKey, Encoding.UTF8.GetBytes(password));
+            IHashAlgorithmProvider sha = WinRTCrypto.HashAlgorithmProvider.OpenAlgorithm(HashAlgorithm.Sha1);             
+            var bytes = sha.HashData(key);
 
             //convert digested password and salt into base64 string for storage into DB
             var digest = Convert.ToBase64String(bytes);
@@ -62,13 +62,12 @@ namespace Glimpse.Core.Services.General
         /// <param name="password"></param>
         /// <param name="salt"></param>
         /// <returns></returns>
-        public static string EncryptAes(string password, string salt)
+        public static string HashPassword(string password, string salt)
         {
             byte[] key = CreateDerivedKey(password, Convert.FromBase64String(salt));
 
-            ISymmetricKeyAlgorithmProvider aes = WinRTCrypto.SymmetricKeyAlgorithmProvider.OpenAlgorithm(SymmetricAlgorithm.AesCbcPkcs7);
-            ICryptographicKey symetricKey = aes.CreateSymmetricKey(key);
-            var bytes = WinRTCrypto.CryptographicEngine.Encrypt(symetricKey, Encoding.UTF8.GetBytes(password));
+            IHashAlgorithmProvider sha = WinRTCrypto.HashAlgorithmProvider.OpenAlgorithm(HashAlgorithm.Sha1);
+            var bytes = sha.HashData(key);
             var digest = Convert.ToBase64String(bytes);
             return digest;
         }

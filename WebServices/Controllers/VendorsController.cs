@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebServices.Models;
 using Serilog;
+using WebServices.Utilities;
+using System.Net.Mail;
 
 namespace WebServices.Controllers
 {
@@ -21,7 +21,14 @@ namespace WebServices.Controllers
         public IQueryable<Vendor> GetVendors()
         {
             Log.Information("Getting all vendors");
-            return db.Vendors;
+            DbSet<Vendor> vendors = db.Vendors;
+            //hiding password and salt from API
+            foreach(var vendor in vendors)
+            {
+                vendor.Password = null;
+                vendor.Salt = null;
+            }
+            return vendors;
         }
 
         // GET: api/Vendors/5
@@ -29,12 +36,18 @@ namespace WebServices.Controllers
         public IHttpActionResult GetVendor(int id)
         {
             Log.Information("Attemping to get vendor with id: {@id}", id);
-            Vendor vendor = db.Vendors.Find(id);
+            Vendor vendor = db.Vendors.Find(id);           
+
             if (vendor == null)
             {
                 Log.Error("Could not find vendor with id: {@id}", id);
                 return NotFound();
             }
+
+            //hiding password and salt from API
+            vendor.Password = null;
+            vendor.Salt = null;
+
             Log.Information("Found vendor with id: {@id}", id);
             return Ok(vendor);
         }
@@ -55,6 +68,10 @@ namespace WebServices.Controllers
                 return Ok();
             }
             Log.Information("Found vendor with email: {@email}", email);
+            //hiding password and salt from API
+            vendor.Password = null;
+            vendor.Salt = null;
+
             return Ok(vendor);
         }
 
@@ -177,6 +194,8 @@ namespace WebServices.Controllers
 
             db.Vendors.Add(vendor);
             db.SaveChanges();
+
+            Mail.SendEmail(vendor);
 
             Log.Information("Vendor: {@vendor} has been added to the database!",vendor.CompanyName);
             return CreatedAtRoute("DefaultApi", new { id = vendor.VendorId }, vendor);

@@ -48,19 +48,36 @@ namespace Glimpse.Core.UnitTests.Tests.Services
         }
 
         [TestMethod]
-        public void EncryptAes_SamePasswordIsDifferentEncrypted()
+        public void HashPassword_SamePasswordIsDifferentHash()
         {
             //arrange
             string passwordToUse = "password";
 
             //act
             //the same password encrypted twice should not be equal
-            var firstActual = Cryptography.EncryptAes(passwordToUse);
-            var secondActual = Cryptography.EncryptAes(passwordToUse);
+            var firstActual = Cryptography.HashPassword(passwordToUse);
+            var secondActual = Cryptography.HashPassword(passwordToUse);
 
             //assert
             Assert.AreNotEqual(firstActual.Item1, secondActual.Item1);
             Assert.AreNotEqual(firstActual.Item2, secondActual.Item2);
+        }
+
+        [TestMethod]
+        public void HashPassword_HashingWithSaltReturnsCorrectHash()
+        {
+            //arrange
+            string passwordToUse = "password";
+
+            //act
+            //the same password encrypted twice should not be equal
+            var firstActual = Cryptography.HashPassword(passwordToUse);
+
+            string resultWithSalt = Cryptography.HashPassword(passwordToUse, firstActual.Item2);
+
+            //assert
+            Assert.AreEqual(firstActual.Item1, resultWithSalt);
+           
         }
     }
 }

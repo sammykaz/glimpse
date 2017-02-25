@@ -18,7 +18,7 @@ namespace Glimpse.Core
             Settings.Language = "English";
 
             
-            if (await authenticator.AuthenticateUserLogin())
+            if (authenticator.AuthenticateUserLogin())
             {
                 ShowViewModel<MainViewModel>();
             }
