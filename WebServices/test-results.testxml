@@ -31,28 +31,28 @@
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>PromotionController should test expired date (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
-    <DisplayName>PromotionController should test expired date (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Name>vendorsPromotionsController should test expired date (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>vendorsPromotionsController should test expired date (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>PromotionController should have defined editPromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
-    <DisplayName>PromotionController should have defined editPromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Name>vendorsPromotionsController should have defined editPromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>vendorsPromotionsController should have defined editPromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>PromotionController should have defined deletePromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
-    <DisplayName>PromotionController should have defined deletePromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Name>vendorsPromotionsController should have defined deletePromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>vendorsPromotionsController should have defined deletePromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>PromotionController should call deletePromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
-    <DisplayName>PromotionController should call deletePromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Name>vendorsPromotionsController should call deletePromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>vendorsPromotionsController should call deletePromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>PromotionController should call editPromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
-    <DisplayName>PromotionController should call editPromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Name>vendorsPromotionsController should call editPromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>vendorsPromotionsController should call editPromotion method (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
