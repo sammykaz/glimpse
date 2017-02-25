@@ -18,7 +18,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -375,7 +375,6 @@
     <Compile Include="Views\LoginFragment.cs" />
     <Compile Include="Views\MenuFragment.cs" />
     <Compile Include="Views\PromotionDialogFragment.cs" />
-    <Compile Include="Views\SendMail.cs" />
     <Compile Include="Views\MapFragment.cs" />
     <Compile Include="Views\TileDetailsFragment.cs" />
     <Compile Include="Views\ViewPagerFragment.cs" />

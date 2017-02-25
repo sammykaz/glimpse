@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebServices.Models;
 using Serilog;
+using WebServices.Utilities;
+using System.Net.Mail;
 
 namespace WebServices.Controllers
 {
@@ -194,6 +194,8 @@ namespace WebServices.Controllers
 
             db.Vendors.Add(vendor);
             db.SaveChanges();
+
+            Mail.SendEmail(vendor);
 
             Log.Information("Vendor: {@vendor} has been added to the database!",vendor.CompanyName);
             return CreatedAtRoute("DefaultApi", new { id = vendor.VendorId }, vendor);
