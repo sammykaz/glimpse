@@ -377,7 +377,6 @@
     <Compile Include="Views\LoginFragment.cs" />
     <Compile Include="Views\MenuFragment.cs" />
     <Compile Include="Views\PromotionDialogFragment.cs" />
-    <Compile Include="Views\SendMail.cs" />
     <Compile Include="Views\MapFragment.cs" />
     <Compile Include="Views\TileDetailsFragment.cs" />
     <Compile Include="Views\ViewPagerFragment.cs" />
