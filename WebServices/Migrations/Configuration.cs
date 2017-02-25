@@ -73,7 +73,7 @@ namespace WebServices.Migrations
             Parallel.ForEach(promotions, (promo) =>
             {
 
-                bh.UploadFromByteArray(promo.PromotionImage, promo.PromotionImageURL);
+               // bh.UploadFromByteArray(promo.PromotionImage, promo.PromotionImageURL).Wait();
 
 
                 //close lambda expression and method invocation
