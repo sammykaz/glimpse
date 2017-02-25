@@ -46,6 +46,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\apk.ps1">
+      <Link>apk.ps1</Link>
+    </None>
     <None Include="..\build.ps1">
       <Link>build.ps1</Link>
     </None>
