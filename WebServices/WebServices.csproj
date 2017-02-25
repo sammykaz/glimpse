@@ -1312,7 +1312,7 @@
     <Content Include="src\views\vendorsPromotionsView.html" />
     <Content Include="src\views\viewPromotion.html" />
     <Content Include="TestScripts\DefaultTest.js" />
-    <Content Include="TestScripts\e2e\loginE2E.js" />
+    <Content Include="TestScripts\e2e\signupE2E.js" />
     <Content Include="TestScripts\ExpiredTest.js" />
     <Content Include="TestScripts\HomeControllerTest.js" />
     <Content Include="TestScripts\AnalysisTest.js" />
