@@ -41,6 +41,7 @@ module.exports = function(config) {
     "Scripts/rzslider.min.js",
     "Scripts/TweenMax.min.js",
     "Scripts/cropper.min.js",
+    "Scripts/moment.min.js",
     "app.js",
     "src/controllers/*.js",
     "src/services/*.js",
