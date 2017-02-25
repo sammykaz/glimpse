@@ -6,16 +6,6 @@
     <members>
         <member name="T:PInvoke.NCrypt">
             <content>
-            Contains the <see cref="T:PInvoke.NCrypt.NCryptEnumStorageProvidersFlags"/> nested type.
-            </content>
-            <content>
-            Contains the <see cref="T:PInvoke.NCrypt.NCryptProviderName"/> nested type.
-            </content>
-            <content>
-            Exported functions from the NCrypt.dll Windows library
-            that are available to Desktop apps only.
-            </content>
-            <content>
             Methods and nested types that are not strictly P/Invokes but provide
             a slightly higher level of functionality to ease calling into native code.
             </content>
@@ -129,10 +119,6 @@
             Contains the <see cref="T:PInvoke.NCrypt.SymmetricKeyBlobTypes"/> nested type.
             </content>
             <content>
-            Exported functions from the NCrypt.dll Windows library
-            that are available to Desktop apps only.
-            </content>
-            <content>
             Methods and nested types that are not strictly P/Invokes but provide
             a slightly higher level of functionality to ease calling into native code.
             </content>
@@ -152,65 +138,6 @@
             <content>
             Contains the <see cref = "T:PInvoke.NCrypt.NCryptBufferDesc"/> nested type.
             </content>
-        </member>
-        <member name="T:PInvoke.NCrypt.NCryptEnumStorageProvidersFlags">
-            <summary>
-            The flags that may be passed to the <see cref="M:PInvoke.NCrypt.NCryptEnumStorageProviders(System.Int32@,PInvoke.NCrypt.NCryptProviderName*@,PInvoke.NCrypt.NCryptEnumStorageProvidersFlags)"/> method.
-            </summary>
-        </member>
-        <member name="F:PInvoke.NCrypt.NCryptEnumStorageProvidersFlags.None">
-            <summary>
-            No flags.
-            </summary>
-        </member>
-        <member name="F:PInvoke.NCrypt.NCryptEnumStorageProvidersFlags.NCRYPT_SILENT_FLAG">
-            <summary>
-            Requests that the key service provider (KSP) not display any user interface. If the provider must display the UI to operate, the call fails and the KSP should set the NTE_SILENT_CONTEXT error code as the last error.
-            </summary>
-        </member>
-        <member name="T:PInvoke.NCrypt.NCryptProviderName">
-            <summary>
-            Contains the name of a CNG key storage provider. This structure is used with the <see cref="M:PInvoke.NCrypt.NCryptEnumStorageProviders(System.Int32@,PInvoke.NCrypt.NCryptProviderName*@,PInvoke.NCrypt.NCryptEnumStorageProvidersFlags)"/> function to return the names of the registered CNG key storage providers.
-            </summary>
-        </member>
-        <member name="F:PInvoke.NCrypt.NCryptProviderName.pszName">
-            <summary>
-            A pointer to a null-terminated Unicode string that contains the name of the provider.
-            </summary>
-        </member>
-        <member name="F:PInvoke.NCrypt.NCryptProviderName.pszComment">
-            <summary>
-            A pointer to a null-terminated Unicode string that contains optional text for the provider.
-            </summary>
-        </member>
-        <member name="P:PInvoke.NCrypt.NCryptProviderName.Name">
-            <summary>
-            Gets the name of the provider.
-            </summary>
-        </member>
-        <member name="P:PInvoke.NCrypt.NCryptProviderName.Comment">
-            <summary>
-            Gets optional text for the provider.
-            </summary>
-        </member>
-        <member name="M:PInvoke.NCrypt.NCryptEnumStorageProviders(System.Int32@,PInvoke.NCrypt.NCryptProviderName*@,PInvoke.NCrypt.NCryptEnumStorageProvidersFlags)">
-            <summary>
-            Obtains the names of the registered key storage providers.
-            </summary>
-            <param name="pdwProviderCount">The address of a DWORD to receive the number of elements in the <paramref name="ppProviderList"/> array.</param>
-            <param name="ppProviderList">
-            The address of an <see cref="T:PInvoke.NCrypt.NCryptProviderName"/> structure pointer to receive an array of the registered key storage provider names. The variable pointed to by the <paramref name="pdwProviderCount"/> parameter receives the number of elements in this array.
-            When this memory is no longer needed, free it by passing this pointer to the <see cref="M:PInvoke.NCrypt.NCryptFreeBuffer(System.Void*)"/> function.
-            </param>
-            <param name="dwFlags">Flags that modify function behavior.</param>
-            <returns>Returns a status code that indicates the success or failure of the function.</returns>
-        </member>
-        <member name="M:PInvoke.NCrypt.NCryptIsKeyHandle(System.IntPtr)">
-            <summary>
-            Determines if the specified handle is a CNG key handle.
-            </summary>
-            <param name="hKey">The handle of the key to test.</param>
-            <returns>Returns a nonzero value if the handle is a key handle or zero otherwise.</returns>
         </member>
         <member name="M:PInvoke.NCrypt.NCryptOpenStorageProvider(System.String,PInvoke.NCrypt.NCryptOpenStorageProviderFlags)">
             <summary>
@@ -2156,18 +2083,6 @@
             Suppresses generation of a public default constructor.
             </remarks>
         </member>
-        <member name="M:PInvoke.NCrypt.NCryptEnumStorageProviders(System.Int32@,System.IntPtr@,PInvoke.NCrypt.NCryptEnumStorageProvidersFlags)">
-            <summary>
-            Obtains the names of the registered key storage providers.
-            </summary>
-            <param name = "pdwProviderCount">The address of a DWORD to receive the number of elements in the <paramref name = "ppProviderList"/> array.</param>
-            <param name = "ppProviderList">
-            The address of an <see cref = "T:PInvoke.NCrypt.NCryptProviderName"/> structure pointer to receive an array of the registered key storage provider names. The variable pointed to by the <paramref name = "pdwProviderCount"/> parameter receives the number of elements in this array.
-            When this memory is no longer needed, free it by passing this pointer to the <see cref = "M:PInvoke.NCrypt.NCryptFreeBuffer(System.Void*)"/> function.
-            </param>
-            <param name = "dwFlags">Flags that modify function behavior.</param>
-            <returns>Returns a status code that indicates the success or failure of the function.</returns>
-        </member>
         <member name="M:PInvoke.NCrypt.NCryptExportKey(PInvoke.NCrypt.SafeKeyHandle,PInvoke.NCrypt.SafeKeyHandle,System.String,System.IntPtr,PInvoke.NCrypt.NCryptExportKeyFlags)">
             <summary>
             The NCryptExportKey function exports a CNG key to a memory BLOB.
@@ -2987,14 +2902,6 @@
             <param name="status">The error code leading to this exception.</param>
             <param name="message">The customized message for the exception.</param>
             <param name="inner">The inner exception.</param>
-        </member>
-        <member name="M:PInvoke.SecurityStatusException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:PInvoke.SecurityStatusException"/> class
-            for deserialization.
-            </summary>
-            <param name="info">Serialization information.</param>
-            <param name="context">Streaming context.</param>
         </member>
         <member name="P:PInvoke.SecurityStatusException.NativeErrorCode">
             <summary>

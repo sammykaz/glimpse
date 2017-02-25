@@ -6,13 +6,6 @@
     <members>
         <member name="T:PInvoke.BCrypt">
             <content>
-            Exported functions from the BCrypt.dll Windows library
-            that are available to Desktop apps only.
-            </content>
-            <content>
-            Contains the <see cref="T:PInvoke.BCrypt.ChainingModes"/> nested class.
-            </content>
-            <content>
             Contains the <see cref="T:PInvoke.BCrypt.AlgorithmIdentifiers"/> nested class.
             </content>
             <content>
@@ -183,10 +176,6 @@
             that are available to Desktop and Store apps.
             </summary>
             <content>
-            Exported functions from the BCrypt.dll Windows library
-            that are available to Desktop apps only.
-            </content>
-            <content>
             The <see cref = "T:PInvoke.BCrypt.BCryptBuffer"/> nested class.
             </content>
             <content>
@@ -217,35 +206,6 @@
             <summary>
             Exported functions from the BCrypt.dll Windows library
             that are available to Desktop and Store apps.
-            </summary>
-        </member>
-        <member name="M:PInvoke.BCrypt.BCryptAddContextFunction(PInvoke.BCrypt.ConfigurationTable,System.String,PInvoke.BCrypt.InterfaceIdentifiers,System.String,System.UInt32)">
-            <summary>
-            The BCryptAddContextFunction function adds a cryptographic function to the list of functions that are supported by an existing CNG context.
-            </summary>
-            <param name="dwTable">Identifies the configuration table that the context exists in.</param>
-            <param name="pszContext">A pointer to a null-terminated Unicode string that contains the identifier of the context to add the function to.</param>
-            <param name="dwInterface">Identifies the cryptographic interface to add the function to.</param>
-            <param name="pszFunction">A pointer to a null-terminated Unicode string that contains the identifier of the cryptographic function to add.</param>
-            <param name="dwPosition">Specifies the position in the list at which to insert this function. The function is inserted at this position ahead of any existing functions. The <see cref="F:PInvoke.BCrypt.CRYPT_PRIORITY_TOP"/> value is used to insert the function at the top of the list. The <see cref="F:PInvoke.BCrypt.CRYPT_PRIORITY_BOTTOM"/> value is used to insert the function at the end of the list.</param>
-            <returns>Returns a status code that indicates the success or failure of the function.</returns>
-            <remarks>
-            If the function added is already in the list, it will be removed and inserted at the new position.
-            </remarks>
-        </member>
-        <member name="T:PInvoke.BCrypt.ConfigurationTable">
-            <summary>
-            Possible values for the <see cref="M:PInvoke.BCrypt.BCryptAddContextFunction(PInvoke.BCrypt.ConfigurationTable,System.String,PInvoke.BCrypt.InterfaceIdentifiers,System.String,System.UInt32)"/>
-            </summary>
-        </member>
-        <member name="F:PInvoke.BCrypt.ConfigurationTable.CRYPT_LOCAL">
-            <summary>
-            The context exists in the local-machine configuration table.
-            </summary>
-        </member>
-        <member name="F:PInvoke.BCrypt.ConfigurationTable.CRYPT_DOMAIN">
-            <summary>
-            This value is not available for use.
             </summary>
         </member>
         <member name="T:PInvoke.BCrypt.AlgorithmIdentifiers">
