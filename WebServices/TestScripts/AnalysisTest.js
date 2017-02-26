@@ -1,7 +1,12 @@
 ﻿
 describe('Analysis Controller', function () {
-    var $controller, $rootScope, $q, dataService, $scope, getDeferred, getAuthorizedataDeferred, updateDeferred, httpBackend;
+    var $controller, $rootScope, $q, dataService, $scope, getDeferred, getAuthorizedataDeferred, updateDeferred;
 
+    var mockPromotionResponse = [{
+        "PromotionClickId": 469,
+        "PromotionId": 2128,
+        "Time": "2017-02-21T21:15:47.66"
+    }];
     dataService = {
         GetAuthorizeData: function () {
             getAuthorizedataDeferred = $q.defer();
@@ -12,7 +17,7 @@ describe('Analysis Controller', function () {
                 get: function () {
                     getDeferred = $q.defer();
                     return {
-                        $promise: getDeferred.promise
+                        $promise: queryDeferred.promise
                     };
                 }
             }
@@ -20,20 +25,11 @@ describe('Analysis Controller', function () {
     };
     beforeEach(angular.mock.module('myApp'));
 
-
-    beforeEach(angular.mock.inject(function (_$controller_, _$rootScope_, _$q_, $httpBackend) {
-        httpBackend = $httpBackend;
+    beforeEach(angular.mock.inject(function (_$controller_, _$rootScope_, _$q_) {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $q = _$q_;
     }));
-
-    afterEach(function () {
-        httpBackend.verifyNoOutstandingExpectation();
-        httpBackend.verifyNoOutstandingRequest();
-    });
-
-   
 
     beforeEach(angular.mock.inject(function ($controller) {
         $scope = $rootScope.$new();
@@ -55,26 +51,6 @@ describe('Analysis Controller', function () {
         expect(scope.noPromotionClicked).toBe(false);
     });
 
-    it('should run the Test to get the link data from the go backend', function () {
-        var scope = $rootScope.$new();
-        var controller = $controller('analysisController', { $scope: scope });
-        scope.urlToScrape = 'success.com';
-
-        httpBackend.expect('GET', '/api/promotionclicks')
-            .respond({
-                "success": true
-            });
-
-        // have to use $apply to trigger the $digest which will
-        // take care of the HTTP request
-        scope.$apply(function () {
-        });
-
-        httpBackend.flush();
-
-    });
-
-
     describe('GetAuthorizeData.query', function () {
 
         it('should call the GetAuthorizeData method', function () {
@@ -82,6 +58,9 @@ describe('Analysis Controller', function () {
         });
     });
 
+    it('should call the getPromotionClicks', function () {
+        expect(dataService.getPromotionClicks).toHaveBeenCalled();
+    });
 
     it('should have the labels to be defined', function () {
         var scope = $rootScope.$new();
