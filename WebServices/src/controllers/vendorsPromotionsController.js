@@ -9,14 +9,15 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
         alert("You have been logged out due to session timeout");
     })
 
-    var promotionsquery = dataService.getAllPromotionFromSpecificVendor(localStorage.id).query();
-    promotionsquery.$promise.then(function (data) {
-        $scope.mypromotions = data;
-        console.log($scope.mypromotions);
-    }, function (error) {
-        console.log("Error: Could not load promotions");
-    })
-  
+    var getVendorsPromotion = function () {
+        var promotionsquery = dataService.getAllPromotionFromSpecificVendor(localStorage.id).query();
+        promotionsquery.$promise.then(function (data) {
+            $scope.mypromotions = data;
+        }, function (error) {
+            console.log("Error: Could not load promotions");
+        })
+    }
+    getVendorsPromotion();
     $scope.showCreatePromotion = function () {
         $uibModal.open({
             templateUrl: '/src/views/createPromotion.html',
@@ -28,7 +29,7 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
                 edit: false
             }
         }).result.then(function (result) {
-            //$scope.promotions.push(result);
+            getVendorsPromotion();
         }, function () {
             console.log("Modal dismissed");
         });
@@ -262,7 +263,6 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 
             function onSaveClick() {
                 var promotionImages = getSliderImagesList();
-                var promises = [];
                 var promotionsImagesURL = [];
 
 
@@ -280,13 +280,12 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
 
                 promotionData['promotionImages'] = promotionImageInfo;
                 console.log(promotionData);
-                $q.all(promises).then(function (result) {
-                    dataService.getPromotions().save(promotionData, function (resp, headers) {
+                dataService.getPromotions().save(promotionData, function (resp, headers) {
+                    $uibModalInstance.close(promotionData);
+                },
+                function (err) {
+                    if (err.status == 500)
                         $uibModalInstance.close(promotionData);
-                    },
-                    function (err) { });
-                }).catch(function (error) {
-                    console.log(error);
                 });
             }
             function onEditClick(promotionId, promotion) {

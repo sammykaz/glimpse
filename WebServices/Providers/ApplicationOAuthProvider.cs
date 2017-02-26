@@ -16,6 +16,7 @@ using Glimpse.Core.Services.General;
 using System.Net;
 using Newtonsoft.Json;
 using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace WebServices.Providers
 {
@@ -52,22 +53,50 @@ namespace WebServices.Providers
             return taskModel;
         }
 
+        public async Task<bool> Authenticate(Vendor t)
+        {
+            string request = WebServiceUrl.Substring(0, WebServiceUrl.IndexOf("api")) + "authenticate";
+            //string request = "http://localhost/Glimpse/authenticate/";
+
+            var httpClient = new HttpClient();
+
+            var json = JsonConvert.SerializeObject(t);
+
+            HttpContent httpContent = new StringContent(json);
+
+            httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            var result = await httpClient.PostAsync(request, httpContent);
+
+            return result.IsSuccessStatusCode;
+
+        }
+
+        public async Task<bool> AuthenticateVendor(string email, string enteredPassword)
+        {
+            Vendor vendor = new Vendor { Email = email, Password = enteredPassword };
+
+            var response = await Authenticate(vendor);
+
+            if (response)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
-            //currentVendor = await restClient.GetByKeyword(context.UserName, true);
-
             currentVendor = await GetByKeyword(context.UserName, true);
-            //context.SetError("invalid_grant", currentVendor.Email + "pass: " + context.Password + "encrypted pass: " + currentVendor.Password);
-            //return;
-            //string password = context.Password;
-            //string salt = currentVendor.Salt;
-            //string encryptedPassword = Cryptography.EncryptAes(password, salt);
-
             if (currentVendor!=null){
-                if (context.Password == currentVendor.Password) {
+                bool response = await AuthenticateVendor(context.UserName, context.Password);
+                if (response) {
                     identity.AddClaim(new Claim(ClaimTypes.Role, "user"));
                     identity.AddClaim(new Claim("username", "user"));
                     identity.AddClaim(new Claim(ClaimTypes.Name, ""+ currentVendor.VendorId));
@@ -86,25 +115,6 @@ namespace WebServices.Providers
                 return;
             }
 
-            //var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
-
-            //ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
-
-            //if (user == null)
-            //{
-            //    context.SetError("invalid_grant", "The user name or password is incorrect.");
-            //    return;
-            //}
-
-            //ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-            //   OAuthDefaults.AuthenticationType);
-            //ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-            //    CookieAuthenticationDefaults.AuthenticationType);
-
-            //AuthenticationProperties properties = CreateProperties(user.UserName);
-            //AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
-            //context.Validated(ticket);
-            //context.Request.Context.Authentication.SignIn(cookiesIdentity);
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)

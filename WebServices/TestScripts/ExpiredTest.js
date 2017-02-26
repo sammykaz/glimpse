@@ -1,4 +1,4 @@
-﻿describe('PromotionController', function () {
+﻿describe('vendorsPromotionsController', function () {
     var $controller, $rootScope, $httpBackend, dataService;
 
 
@@ -17,7 +17,7 @@
 
     it('should test expired date', function () {
         var scope = $rootScope.$new();
-        var controller = $controller('PromotionController', {
+        var controller = $controller('vendorsPromotionsController', {
             $scope: scope,
             $state: {},
             $uibModal: {}
@@ -31,7 +31,7 @@
 
     it('should have defined editPromotion method', function () {
         var scope = $rootScope.$new();
-        var controller = $controller('PromotionController', {
+        var controller = $controller('vendorsPromotionsController', {
             $scope: scope,
             $state: {},
             $uibModal: {}
@@ -41,7 +41,7 @@
 
     it('should have defined deletePromotion method', function () {
         var scope = $rootScope.$new();
-        var controller = $controller('PromotionController', {
+        var controller = $controller('vendorsPromotionsController', {
             $scope: scope,
             $state: {},
             $uibModal: {}
@@ -51,7 +51,7 @@
 
     it('should call deletePromotion method', function () {
         var scope = $rootScope.$new();
-        var controller = $controller('PromotionController', {
+        var controller = $controller('vendorsPromotionsController', {
             $scope: scope,
             $state: {},
             $uibModal: {}
@@ -67,7 +67,7 @@
 
     it('should call editPromotion method', function () {
         var scope = $rootScope.$new();
-        var controller = $controller('PromotionController', {
+        var controller = $controller('vendorsPromotionsController', {
             $scope: scope,
             $state: {},
             $uibModal: {}
