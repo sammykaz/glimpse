@@ -53,6 +53,7 @@
       <Link>build.ps1</Link>
     </None>
     <None Include="default.ps1" />
+    <None Include="helpers.ps1" />
     <None Include="MSBuild\MSBuildTest.targets" />
     <None Include="packages.config" />
   </ItemGroup>

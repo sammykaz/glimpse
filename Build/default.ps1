@@ -1,13 +1,27 @@
-﻿properties {
+﻿Include ".\helpers.ps1"
+
+properties {
   	$cleanMessage = 'Executed Clean!'
 	$testMessage = 'Executed Test!'
   
 	$solutionDirectory = (Get-Item $solutionFile).DirectoryName
 	$outputDirectory= "$solutionDirectory\.build"
 	$temporaryOutputDirectory = "$outputDirectory\temp"
+
+	# Find Test Projects
+	$publishedMSTestTestsDirectory = "$temporaryOutputDirectory\_PublishedMSTestTests"
+	$testResultsDirectory = "$outputDirectory\TestResults"
+
+	#Place Test Results in this directory
+	$MSTestTestResultsDirectory = "$testResultsDirectory\MSTest"
+
 	$buildConfiguration = "Debug"
 	$buildPlatform = "Any CPU"
 
+	$packagesPath = "$solutionDirectory\packages"
+
+	#Using vsTest Runner
+	$vsTestExe = (Get-ChildItem ("C:\Program Files (x86)\Microsoft Visual Studio*\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe")).FullName | Sort-Object $_ | select -last 1
 }
 
 FormatTaskName "`r`n`r`n-------- Executing {0} Task --------"
@@ -23,6 +37,10 @@ task Init `
 
 	Assert ("x86", "x64", "Any CPU" -contains $buildPlatform) `
 		   "Invalid build platform '$buildPlatform'. Valid values are 'x86', 'x64' or 'Any CPU'"
+
+	# Check that all tools are available
+	Write-Host "Checking that all required tools are available"
+	Assert (Test-Path $vsTestExe) "VSTest Console could not be found"
 
 
 	# Remove previous build results
@@ -50,10 +68,39 @@ task Compile `
 	}
 }
 
-task Clean -description "Remove temporary files" { 
+#MSBuild Test Task depends on the compile task and will run the MSTest tests
+
+
+task TestMSTest `
+	-depends Compile `
+	-description "Run MSTest tests" `
+	-precondition { return Test-Path $publishedMSTestTestsDirectory } `
+	-requiredVariable publishedMSTestTestsDirectory, MSTestTestResultsDirectory `
+{
+	$testAssemblies = Prepare-Tests -testRunnerName "MSTest" `
+									-publishedTestsDirectory $publishedMSTestTestsDirectory `
+									-testResultsDirectory $MSTestTestResultsDirectory
+
+	# vstest console doesn't have any option to change the output directory
+	# so we need to change the working directory
+	Push-Location $MSTestTestResultsDirectory
+	Exec { &$vsTestExe $testAssemblies /Logger:trx }
+	Pop-Location
+
+	# move the .trx file back to $MSTestTestResultsDirectory
+	Move-Item -path $MSTestTestResultsDirectory\TestResults\*.trx -destination $MSTestTestResultsDirectory\MSTest.trx
+
+	Remove-Item $MSTestTestResultsDirectory\TestResults
+}
+
+task Clean -description "Remove temporary files" 
+{ 
   	Write-Host $cleanMessage
 }
  
-task Test -depends Compile, Clean -description "Run unit tests" { 
-  	Write-Host $testMessage
+task Test `
+	 -depends Compile, TestMSTest `
+	 -description "Run unit tests" 
+{ 
+	Write-Host $testMessage
 }
