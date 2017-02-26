@@ -258,12 +258,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Glimpse.Localization\Glimpse.Localization.csproj">
-      <Project>{d9032fc3-4f9d-4117-8ac1-c14c46b78a79}</Project>
-      <Name>Glimpse.Localization</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="bin\Debug\" />
     <Folder Include="Messages\" />
   </ItemGroup>
