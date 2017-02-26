@@ -191,7 +191,12 @@ namespace WebServices.Controllers
                 Log.Error("Invalid model state for vendor: {@vendor}", vendor.CompanyName);
                 return BadRequest(ModelState);
             }
-
+            if (vendor.RequestFromWeb == true)
+            {
+                var cryptoTuple = Utility.Cryptography.HashPassword(vendor.Password);
+                vendor.Password = cryptoTuple.Item1;
+                vendor.Salt = cryptoTuple.Item2;
+            }
             db.Vendors.Add(vendor);
             db.SaveChanges();
 

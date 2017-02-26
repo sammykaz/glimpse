@@ -342,6 +342,7 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utility\Mail.cs" />
+    <Compile Include="Utility\Cryptography.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.js" />
@@ -1229,6 +1230,7 @@
     <Content Include="Scripts\lodash.js" />
     <Content Include="Scripts\lodash.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\ng-file-upload-all.js" />
     <Content Include="Scripts\ng-file-upload-all.min.js" />
     <Content Include="Scripts\ng-file-upload-shim.js" />
@@ -1262,6 +1264,7 @@
     <Content Include="src\services\userService.js" />
     <Content Include="src\views\createPromotion.html" />
     <Content Include="src\views\homeView.html" />
+    <Content Include="src\views\imageFullSizeView.html" />
     <Content Include="src\views\loginView.html" />
     <Content Include="src\views\changePromotionDate.html" />
     <Content Include="src\views\mapView.html" />
@@ -1270,6 +1273,7 @@
     <Content Include="src\views\signupView.html" />
     <Content Include="src\views\viewPromotion.html" />
     <Content Include="TestScripts\DefaultTest.js" />
+    <Content Include="TestScripts\e2e\signupE2E.js" />
     <Content Include="TestScripts\ExpiredTest.js" />
     <Content Include="TestScripts\HomeControllerTest.js" />
     <Content Include="TestScripts\AnalysisTest.js" />
