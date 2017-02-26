@@ -545,10 +545,6 @@
       <Project>{a429b66b-b938-4bec-9254-c27bba173d90}</Project>
       <Name>Glimpse.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Glimpse.Localization\Glimpse.Localization.csproj">
-      <Project>{d9032fc3-4f9d-4117-8ac1-c14c46b78a79}</Project>
-      <Name>Glimpse.Localization</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\drawer_shadow_light.9.png" />
