@@ -93,6 +93,38 @@ namespace Glimpse.Core.UnitTests.Tests.Services
             await _vds.DeleteVendor(vendor);
         }
 
+        [TestMethod]
+        public async Task CheckIfPasswordAndSalt_AreNull()
+        {
+            //arrange
+            Vendor vendor = new Vendor
+            {
+                Email = _testEmail,
+                Password = _testPassword,
+                CompanyName = "UnitTestCompany",
+                Address = "Unit Test Address",
+                Telephone = "543-535-5353",
+                Location = new Location
+                {
+                    Lat = 54.434,
+                    Lng = 53.656,
+                },
+            };
+
+            //act
+            await _vds.SignUp(vendor);
+
+            //assert
+            Vendor vendorFromDb = await _vds.SearchVendorByEmail(_testEmail);
+            Assert.IsTrue(await _vds.CheckIfVendorExists(_testEmail));
+            Assert.IsNull(vendorFromDb.Password);
+            Assert.IsNull(vendorFromDb.Salt);
+
+            //clean up
+
+            await _vds.DeleteVendor(vendor);
+        }
+
 
 
     }
