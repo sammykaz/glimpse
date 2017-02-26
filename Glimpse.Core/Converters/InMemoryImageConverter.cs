@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MvvmCross.Platform.Converters;
 using System.Globalization;
 using System.IO;
 using Android.Graphics;
-using Android.Media;
 
 namespace Glimpse.Core.Converters
 {

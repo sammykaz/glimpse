@@ -3,7 +3,7 @@ using Owin;
 using WebServices;
 using Serilog;
 using System;
-using Microsoft.Extensions.Logging;
+
 
 [assembly: OwinStartup(typeof(Startup))]
 
@@ -15,7 +15,7 @@ namespace WebServices
         {
             Log.Logger = new LoggerConfiguration()
                .MinimumLevel.Debug()
-               .WriteTo.File(AppDomain.CurrentDomain.BaseDirectory + "\\logs\\logs.log", outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message}{NewLine}{Exception}",shared:true)
+               .WriteTo.File(AppDomain.CurrentDomain.BaseDirectory + "\\logs\\logs--"+ string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now) + ".log", outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level}] {Message}{NewLine}{Exception}",shared:true)
                .CreateLogger();
         }
 

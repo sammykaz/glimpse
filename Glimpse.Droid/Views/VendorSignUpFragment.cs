@@ -66,14 +66,7 @@ namespace Glimpse.Droid.Views
             _bindableProgress.Title = "Sign up in progress...";
             var set = this.CreateBindingSet<VendorSignUpFragment, VendorSignUpViewModel>();
             set.Bind(_bindableProgress) .For(p => p.Visible).To(vm => vm.IsBusy);
-            set.Apply();
-
-            //Sends email on click
-            /* Button acc_Button = view.FindViewById<Button>(Resource.Id.SignUpButton);
-               acc_Button.Click += delegate
-               {
-                   OnClick(this.View);
-               };*/
+            set.Apply();            
         }
 
       
@@ -150,22 +143,7 @@ namespace Glimpse.Droid.Views
         public override void OnStart()
         {
             base.OnStart();
-        }
-        public void OnClick(View view)
-        {
-            string _company = view.FindViewById<EditText>(Resource.Id.txtCompanyName).Text;
-            string _email = view.FindViewById<EditText>(Resource.Id.txtEmail).Text;
-
-            SendMail sendMail = new Glimpse.Droid.Views.SendMail();
-
-            //Mail for vendor
-            string mailBody = sendMail.CreateMailBodyForVendor(_company);
-            sendMail.SendEmail("Account Created", mailBody, _email);
-
-            //Mail for Admin
-            mailBody = sendMail.CreateMailBodyForAdmin(_company, _company,"No number!",_email);
-            sendMail.SendEmail("New Sign-Up Information", mailBody, "vendor.smtptest@gmail.com");
-        }
+        }       
     
     }
 }
