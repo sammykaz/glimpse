@@ -25,12 +25,12 @@ namespace Glimpse.Core.UnitTests.Tests.Services
         }      
 
         [TestMethod]
-        public async Task testing_authentication()
+        public async Task ValidAuthetication_ReturnTrue()
         {
             Vendor vendor = new Vendor
             {
                 Email = "hash@gmail.com",
-                Password = Core.Services.General.Cryptography.HashPassword("hash", "Qdx920HVAbg=")
+                Password = "hash"
             };
 
             RestClient<Vendor> restclient = new RestClient<Vendor>();
