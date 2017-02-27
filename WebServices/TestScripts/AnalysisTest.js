@@ -58,10 +58,6 @@ describe('Analysis Controller', function () {
         });
     });
 
-    it('should call the getPromotionClicks', function () {
-        expect(dataService.getPromotionClicks).toHaveBeenCalled();
-    });
-
     it('should have the labels to be defined', function () {
         var scope = $rootScope.$new();
         var controller = $controller('analysisController', { $scope: scope });
