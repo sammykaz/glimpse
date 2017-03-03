@@ -6,19 +6,14 @@
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>Analysis Controller,GetAuthorizeData.query should call the GetAuthorizeData method (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
-    <DisplayName>Analysis Controller,GetAuthorizeData.query should call the GetAuthorizeData method (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Name>Analysis Controller,getAllPromotionFromSpecificVendor.query should call the getAllPromotionFromSpecificVendor (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>Analysis Controller,getAllPromotionFromSpecificVendor.query should call the getAllPromotionFromSpecificVendor (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>Analysis Controller should call the getPromotionClicks (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
-    <DisplayName>Analysis Controller should call the getPromotionClicks (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
-    <Outcome>Failed</Outcome>
-    <ErrorStackTrace>Expected spy getPromotionClicks to have been called.
-    at Object.&lt;anonymous&gt; (C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/TestScripts/AnalysisTest.js:62:48)
-
-
-</ErrorStackTrace>
+    <Name>Analysis Controller,getPromotionClicks.query should call the getPromotionClicks (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>Analysis Controller,getPromotionClicks.query should call the getPromotionClicks (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
   </Test>
   <Test>
     <Name>Analysis Controller should have the labels to be defined (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
@@ -73,6 +68,101 @@
   <Test>
     <Name>HomeController Data should be empty initially (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
     <DisplayName>HomeController Data should be empty initially (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,getPromotionImagesFromSpecificPromotion.query should call the getPromotionImagesFromSpecificPromotion (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,getPromotionImagesFromSpecificPromotion.query should call the getPromotionImagesFromSpecificPromotion (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,getPromotionImagesFromSpecificPromotion.query should able to assign image list to promotionImages (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,getPromotionImagesFromSpecificPromotion.query should able to assign image list to promotionImages (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,getPromotionImagesFromSpecificPromotion.query should have length of image 4 (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,getPromotionImagesFromSpecificPromotion.query should have length of image 4 (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Slider Logic should able to set direction right when index is lesser then current index (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Slider Logic should able to set direction right when index is lesser then current index (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Slider Logic should able to set direction left when index is lesser then current index (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Slider Logic should able to set direction left when index is lesser then current index (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Slider Logic should able check whether current index is equal or not (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Slider Logic should able check whether current index is equal or not (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Slider Logic should able navigate to prev image (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Slider Logic should able navigate to prev image (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Slider Logic should able navigate to next image (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Slider Logic should able navigate to next image (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Should defined all scope variable should have the promotionImageURL defined (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Should defined all scope variable should have the promotionImageURL defined (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Should defined all scope variable should have the promotionImages defined (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Should defined all scope variable should have the promotionImages defined (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Should defined all scope variable should have the promotionImages defined (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Should defined all scope variable should have the promotionImages defined (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Should defined all scope variable should have the promotionImages defined (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Should defined all scope variable should have the promotionImages defined (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Should defined all scope variable should have the direction defined (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Should defined all scope variable should have the direction defined (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Should defined all scope variable should have the currentIndex defined (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Should defined all scope variable should have the currentIndex defined (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Should able to set initial scope variable should able to assign promotionImageURL value (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Should able to set initial scope variable should able to assign promotionImageURL value (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Should able to set initial scope variable should have the promotionImages length 0 (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Should able to set initial scope variable should have the promotionImages length 0 (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Should able to set initial scope variable should have the images length 1 (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Should able to set initial scope variable should have the images length 1 (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Should able to set initial scope variable should have the direction default value left (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Should able to set initial scope variable should have the direction default value left (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalImageController Controller,Should able to set initial scope variable should have the currentIndex default value (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalImageController Controller,Should able to set initial scope variable should have the currentIndex default value (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
@@ -209,6 +299,19 @@
     <Name>vendorsPromotionsController,In Delete Promotion Test should able to delete promotion from promotion list (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
     <DisplayName>vendorsPromotionsController,In Delete Promotion Test should able to delete promotion from promotion list (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>vendorsPromotionsController,In Delete Promotion Test should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>vendorsPromotionsController,In Delete Promotion Test should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Failed</Outcome>
+    <ErrorStackTrace>Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.
+
+
+TypeError: Cannot read property &apos;$new&apos; of undefined
+    at Object.&lt;anonymous&gt; (C:/Users/Abdulla Daoud/Documents/G/glimpse/WebServices/TestScripts/VendorPromotionControllerTest.js:170:43)
+
+
+</ErrorStackTrace>
   </Test>
   <Test>
     <Name>vendorsPromotionsController,Edit Promotion should call $uibModal.open method (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
