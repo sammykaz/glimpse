@@ -42,6 +42,7 @@ module.exports = function(config) {
     "Scripts/TweenMax.min.js",
     "Scripts/cropper.min.js",
     "Scripts/moment.min.js",
+    "Scripts/caman.full.pack.js",
     "app.js",
     "src/controllers/*.js",
     "src/services/*.js",
