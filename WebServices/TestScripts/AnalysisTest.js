@@ -53,7 +53,7 @@
         expect($scope.noPromotionClicked).toBe(false);
     });
 
-describe('getAllPromotionFromSpecificVendor.query', function () {
+    describe('getAllPromotionFromSpecificVendor.query', function () {
         beforeEach(function () {
             queryDeferred.resolve({});
             $rootScope.$apply();
@@ -65,30 +65,31 @@ describe('getAllPromotionFromSpecificVendor.query', function () {
     });
 
 
-describe('getPromotionClicks.query', function () {
+    describe('getPromotionClicks.query', function () {
         beforeEach(function () {
             queryDeferred.resolve({});
             $rootScope.$apply();
         });
 
-    it('should call the getPromotionClicks', function () {
-        expect(dataService.getPromotionClicks).toHaveBeenCalled();
-    });
+        it('should call the getPromotionClicks', function () {
+            expect(dataService.getPromotionClicks).toHaveBeenCalled();
+        });
 
-    it('should have the labels to be defined', function () {
-        expect($scope.labels).toBeDefined();
-    });
+        it('should have the labels to be defined', function () {
+            expect($scope.labels).toBeDefined();
+        });
 
-    it('should have the series to be defined', function () {
-        expect($scope.series).toBeDefined();
-    });
+        it('should have the series to be defined', function () {
+            expect($scope.series).toBeDefined();
+        });
 
-    it('should have the seriesTitle to be defined', function () {
-        expect($scope.seriesTitle).toBeDefined();
-    });
+        it('should have the seriesTitle to be defined', function () {
+            expect($scope.seriesTitle).toBeDefined();
+        });
 
-    it('should have the promotionClicks toBeUndefined initially', function () {
-        expect($scope.promotionClicks).toBeUndefined();
-    });
+        it('should have the promotionClicks toBeUndefined initially', function () {
+            expect($scope.promotionClicks).toBeUndefined();
+        });
 
+    });
 });
