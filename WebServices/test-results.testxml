@@ -191,6 +191,136 @@
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
+    <Name>modalController,Filter Logic should able to have default selectedFilter value (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to have default selectedFilter value (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply Vintage filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply Vintage filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should have slider filter disable when filter applied (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should have slider filter disable when filter applied (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply Lomo filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply Lomo filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply Clarity filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply Clarity filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply SinCity filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply SinCity filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply Sunrise filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply Sunrise filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply CrossProcess filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply CrossProcess filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply OrangePeel filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply OrangePeel filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply Grungy filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply Grungy filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply Jarques filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply Jarques filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply Pinhole filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply Pinhole filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply OldBoot filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply OldBoot filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply GlowingSun filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply GlowingSun filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply HazyDays filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply HazyDays filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply Nostalgia filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply Nostalgia filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply Hemingway filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply Hemingway filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply Concentrate filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply Concentrate filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to apply HerMajesty filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to apply HerMajesty filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should have slider filter disable when filter applied (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should have slider filter disable when filter applied (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Filter Logic should able to reset filter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Filter Logic should able to reset filter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Slider Logic should able to set direction right when index is lesser then current index (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Slider Logic should able to set direction right when index is lesser then current index (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Slider Logic should able to set direction left when index is lesser then current index (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Slider Logic should able to set direction left when index is lesser then current index (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Slider Logic should able check whether current index is equal or not (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Slider Logic should able check whether current index is equal or not (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Slider Logic should able navigate to prev image (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Slider Logic should able navigate to prev image (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
+    <Name>modalController,Slider Logic should able navigate to next image (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
+    <DisplayName>modalController,Slider Logic should able navigate to next image (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
+    <Outcome>Passed</Outcome>
+  </Test>
+  <Test>
     <Name>ProfileController,GetAuthorizeData.query should call the GetAuthorizeData method (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
     <DisplayName>ProfileController,GetAuthorizeData.query should call the GetAuthorizeData method (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
@@ -299,19 +429,6 @@
     <Name>vendorsPromotionsController,In Delete Promotion Test should able to delete promotion from promotion list (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
     <DisplayName>vendorsPromotionsController,In Delete Promotion Test should able to delete promotion from promotion list (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
-  </Test>
-  <Test>
-    <Name>vendorsPromotionsController,In Delete Promotion Test should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
-    <DisplayName>vendorsPromotionsController,In Delete Promotion Test should have apply filter initially set to selectedFilter and when calling applyfilter its value should change to the selected parameter (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
-    <Outcome>Failed</Outcome>
-    <ErrorStackTrace>Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.
-
-
-TypeError: Cannot read property &apos;$new&apos; of undefined
-    at Object.&lt;anonymous&gt; (C:/Users/Abdulla Daoud/Documents/G/glimpse/WebServices/TestScripts/VendorPromotionControllerTest.js:170:43)
-
-
-</ErrorStackTrace>
   </Test>
   <Test>
     <Name>vendorsPromotionsController,Edit Promotion should call $uibModal.open method (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
