@@ -110,10 +110,10 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
     var initializeData = function () {
         
         angular.forEach($scope.series, function (serie, indexSerie) {
-            $scope.data[indexSerie] = [0, 0, 0, 0, 0, 0, 0];
-            $scope.dataHours[indexSerie] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-            $scope.dataDays[indexSerie] = [0, 0, 0, 0, 0, 0, 0];
-            $scope.totalClicked[indexSerie] = 0;
+            $scope.data[indexSerie] = [0, 0, 15, 3, 6, 15, 25];
+            $scope.dataHours[indexSerie] = [0, 0, 1, 0, 0, 0, 0, 5, 0, 0, 0, 2, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0];
+            $scope.dataDays[indexSerie] = [0, 0, 0, 3, 0, 2, 0];
+            $scope.totalClicked[indexSerie] = 10;
         });
     }
 
