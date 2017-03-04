@@ -11,16 +11,6 @@
     <Outcome>Passed</Outcome>
   </Test>
   <Test>
-    <Name>Analysis Controller should call the getPromotionClicks (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
-    <DisplayName>Analysis Controller should call the getPromotionClicks (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
-    <Outcome>Failed</Outcome>
-    <ErrorStackTrace>Expected spy getPromotionClicks to have been called.
-    at Object.&lt;anonymous&gt; (C:/Users/Computer/Documents/Visual Studio 2015/Projects/glimpse/WebServices/TestScripts/AnalysisTest.js:62:48)
-
-
-</ErrorStackTrace>
-  </Test>
-  <Test>
     <Name>Analysis Controller should have the labels to be defined (Chrome 56.0.2924 (Windows 10 0.0.0))</Name>
     <DisplayName>Analysis Controller should have the labels to be defined (Chrome 56.0.2924 (Windows 10 0.0.0))</DisplayName>
     <Outcome>Passed</Outcome>
