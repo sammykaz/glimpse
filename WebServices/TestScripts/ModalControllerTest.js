@@ -2,6 +2,10 @@
     var $controller, $rootScope, $q, dataService, $scope, queryDeferred, updateDeferred, uibModal, uibModalDeferred, actualOptions, modalOptions;
     var $timeout, $http;
 
+    Caman = function () {
+
+    };
+
     var promotionDetails = {
         "PromotionId": 2085,
         "VendorId": 153,
