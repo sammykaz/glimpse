@@ -11,7 +11,7 @@ namespace Glimpse.Core.Contracts.Services
 {
     public interface IPromotionDataService
     {
-        Task StorePromotion(Promotion promotion);
+        Task<bool> StorePromotion(Promotion promotion);
 
         Task<List<Promotion>> GetPromotion(int id);
 
