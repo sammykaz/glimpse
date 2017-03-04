@@ -15,7 +15,7 @@ namespace Glimpse.Core.UnitTests.Tests.Services
     {
         private VendorDataService _vds;
 
-        private readonly string _testEmail = "tip92@gmail.com";
+        private readonly string _testEmail = "unitTestEmail@gmail.com";
         private readonly string _testPassword = "unitTestPassword";
         
         [TestInitialize]
@@ -122,7 +122,7 @@ namespace Glimpse.Core.UnitTests.Tests.Services
 
             //clean up
 
-            await _vds.DeleteVendor(vendor);
+            await _vds.DeleteVendor(vendorFromDb);
         }
 
 
