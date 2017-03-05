@@ -21,7 +21,8 @@ namespace GlimpseUser.Droid.UITests
             // and select the app projects that should be tested.
             app = ConfigureApp
                 .Android
-                .ApkFile ("../../../Glimpse.Droid/bin/Release/Glimpse.Droid.Glimpse.Droid-x86-Signed.apk")
+                .ApkFile("../../../Glimpse.Droid/bin/Release/Glimpse.Droid.Glimpse.Droid-x86-Signed.apk")
+                .EnableLocalScreenshots()
                 .StartApp();
         }
 
@@ -32,27 +33,27 @@ namespace GlimpseUser.Droid.UITests
         }
 
         [Test]
-        public void NewTest()
+        public void TestSwipeThroughNearbyPromotions()
         {
+            //Arrange scenario condition(sign in)
             app.Tap(x => x.Id("btnSignIn"));
             app.Tap(x => x.Id("txtEmail"));
-            app.EnterText(x => x.Id("txtEmail"), "e9@gmail.com");
+            app.EnterText(x => x.Id("txtEmail"), "e5@gmail.com");
             app.Tap(x => x.Id("txtPassword"));
-            app.EnterText(x => x.Id("txtPassword"), "e9");
+            app.EnterText(x => x.Id("txtPassword"), "e5");
             app.Tap(x => x.Id("btnSignIn"));
+
+            //Act
+
+            app.SwipeLeftToRight();
+            app.Screenshot("Swiping Top Card");
             app.SwipeRightToLeft();
-            app.SwipeLeftToRight();
-            app.Tap(x => x.Text("Footwear"));
-            app.Tap(x => x.Text("Electronics"));
-            app.Tap(x => x.Class("AppCompatImageView").Index(1));
-            app.Tap(x => x.Class("AppCompatImageView").Index(2));
-            app.ScrollUp();
-            app.SwipeLeftToRight();
-            app.SwipeRightToLeft();
-            app.Tap(x => x.Marked("Google Map"));
-            app.SwipeLeftToRight();
-            app.SwipeLeftToRight();
+            app.Screenshot("Third Top Card");
         }
+
+
+        
+        
 
     }
 }
