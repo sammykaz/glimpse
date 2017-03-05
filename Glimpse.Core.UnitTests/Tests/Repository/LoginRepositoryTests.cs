@@ -61,39 +61,6 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
                 TestSettingsMock.LoginStatus = false;
             }
             Assert.AreNotEqual(true, TestSettingsMock.LoginStatus);
-        }
-
-        [TestMethod]
-        public async Task TestUserAuthenticationDuringSignUp()
-        {
-   
-            string encryptedPassword = Cryptography.HashPassword("tester", "mYScjcVi47Q=");
-
-            if (encryptedPassword == "l2hEf8hOUBdRx6yKrxd0Og==")
-            {
-                TestSettingsMock.UserName = "tester";
-                TestSettingsMock.Password = encryptedPassword;
-                TestSettingsMock.LoginStatus = true;
-            }
-
-            Assert.AreEqual(encryptedPassword, "l2hEf8hOUBdRx6yKrxd0Og==");
-
-        }
-
-        [TestMethod]
-        public async Task TestVendorAuthenticationDuringSignUp()
-        {
-
-            string encryptedPassword = Cryptography.HashPassword("joe", "GMwdUfpALjA=");
-
-            if (encryptedPassword == "OH1faGXvoUSx1E2ClKFN6A==")
-            {
-                TestSettingsMock.UserName = "joe";
-                TestSettingsMock.Password = encryptedPassword;
-                TestSettingsMock.LoginStatus = true;
-            }
-
-            Assert.AreEqual(encryptedPassword, "OH1faGXvoUSx1E2ClKFN6A==");
-        }
+        }       
     }
 }

@@ -23,12 +23,12 @@ namespace Glimpse.Core.Services.Data
             return await _vendorRepository.SearchVendorByEmail(email);
         }
 
-        public async Task SignUp(Vendor vendor)
+        public async Task<bool> SignUp(Vendor vendor)
         {
             var cryptoTuple = Cryptography.HashPassword(vendor.Password);
             vendor.Password = cryptoTuple.Item1;
             vendor.Salt = cryptoTuple.Item2;
-            await _vendorRepository.PostVendor(vendor);
+            return await _vendorRepository.PostVendor(vendor);
         }
 
         public async Task<List<Vendor>> GetVendors()

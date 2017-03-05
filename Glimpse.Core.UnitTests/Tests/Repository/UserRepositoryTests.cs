@@ -36,7 +36,7 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             var usersCountBefore = usersBefore.Count;
             User user = new User
             {               
-                Email = "jojo@gmail.com",
+                Email = "unittest@gmail.com",
                 Password = "mypassword",
                 Salt = "salt",
             };
@@ -49,7 +49,12 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             var usersCountAfter = usersAfter.Count;
 
             var difference = usersCountAfter - usersCountBefore;
+
             Assert.IsTrue(difference == 1);
+
+            //cleanup
+            await repository.DeleteUser(usersAfter[usersAfter.Count - 1]);
+
         }
     }
 }

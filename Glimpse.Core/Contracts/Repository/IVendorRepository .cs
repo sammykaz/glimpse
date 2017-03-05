@@ -8,7 +8,7 @@ namespace Glimpse.Core.Contracts.Repository
     {
         Task<Vendor> SearchVendorByEmail(string email);
 
-        Task PostVendor(Vendor vendor);
+        Task<bool> PostVendor(Vendor vendor);
 
         Task PutVendor(int id, Vendor vendor);
 
