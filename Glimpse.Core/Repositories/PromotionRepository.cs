@@ -50,5 +50,12 @@ namespace Glimpse.Core.Repositories
 
             return promotions;
         }
+
+        public async Task DeletePromotion(Promotion promotion)
+        {
+            RestClient<Promotion> restClient = new RestClient<Promotion>();
+
+            await restClient.DeleteAsync(promotion.PromotionId, promotion);
+        }
     }
 }

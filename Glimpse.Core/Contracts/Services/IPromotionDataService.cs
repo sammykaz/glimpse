@@ -28,5 +28,7 @@ namespace Glimpse.Core.Contracts.Services
         Task<List<Promotion>> SearchActivePromotions(string keyword);
 
         Task<List<PromotionWithLocation>> JoinPromotionWithLocation(List<Promotion> promos);
+
+        Task DeletePromotion(Promotion promotion);
     }
 }

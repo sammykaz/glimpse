@@ -129,6 +129,10 @@ namespace Glimpse.Core.Services.Data
             return promotionsWithLocation;
         }
 
+        public async Task DeletePromotion(Promotion promotion)
+        {
+            await promotionRepository.DeletePromotion(promotion);
+        }
 
     }
 }
