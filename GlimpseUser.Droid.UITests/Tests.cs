@@ -72,12 +72,34 @@ namespace GlimpseUser.Droid.UITests
             app.Back();
         }
 
-        
+        [Test]
+        public void TestNavigateToTheMapViewAndViewPromotions()
+        {
+            app.Tap(x => x.Id("btnSignIn"));
+            app.Tap(x => x.Id("txtEmail"));
+            app.EnterText(x => x.Id("txtEmail"), "e5@gmail.com");
+            app.Tap(x => x.Id("txtPassword"));
+            app.EnterText(x => x.Id("txtPassword"), "e5");
+            app.Tap(x => x.Id("btnSignIn"));
+            app.Tap(x => x.Class("AppCompatImageView").Index(2));
+            app.ScrollUp();
+            app.ScrollUp();
+            app.Tap(x => x.Marked("Google Map"));
+            app.Tap(x => x.Marked("Zoom out"));
+            app.Tap(x => x.Marked("Zoom out"));
+            app.Tap(x => x.Marked("Zoom out"));
+            app.Tap(x => x.Marked("Zoom out"));
+            app.Tap(x => x.Marked("Zoom out"));
+            app.Screenshot("Promos with no Cluster");
+            app.Tap(x => x.Marked("Zoom out"));
+            app.Tap(x => x.Marked("Zoom out"));
+            app.Screenshot("Promos with  Cluster");
+        }
 
 
 
-        
-        
+
+
 
     }
 }
