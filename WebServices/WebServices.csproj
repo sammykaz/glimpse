@@ -1273,6 +1273,8 @@
     <Content Include="src\views\signupView.html" />
     <Content Include="src\views\viewPromotion.html" />
     <Content Include="TestScripts\DefaultTest.js" />
+    <Content Include="TestScripts\e2e\MapE2E.js" />
+    <Content Include="TestScripts\e2e\PromoSearchE2E.js" />
     <Content Include="TestScripts\e2e\signupE2E.js" />
     <Content Include="TestScripts\ExpiredTest.js" />
     <Content Include="TestScripts\HomeControllerTest.js" />

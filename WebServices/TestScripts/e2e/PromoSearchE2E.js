@@ -36,6 +36,11 @@
         promotionsElmCount.then(function (count) {
             expect(count).toEqual(2);
         });
+
+        var promotionsElmCount = element.all(by.repeater('(key, promotion) in promotions | reverse | filter:searchPromotionText | filter:{Category: selectVal}'));
+        for (var i = 0; i < promotionsElmCount.length; i++) {
+            expect(promotionsElmCount[i].Category).toEqual(1);
+        }
     });
 
 });
