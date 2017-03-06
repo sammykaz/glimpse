@@ -48,9 +48,9 @@ namespace Glimpse.Core.Services.Data
             return promoWithLocationList.Where(promo => (promo.Title.ToLower().Contains(query) || promo.Description.ToLower().Contains(query) || promo.CompanyName.ToLower().Contains(query)) && promo.Category == category).ToList();           
         }
 
-        public async Task StorePromotion(Promotion promotion)
+        public async Task<bool> StorePromotion(Promotion promotion)
         {
-            await promotionRepository.StorePromotion(promotion);
+            return await promotionRepository.StorePromotion(promotion);
         }
 
         public async Task<List<Promotion>> SearchActivePromotions(string keyword)
@@ -129,6 +129,10 @@ namespace Glimpse.Core.Services.Data
             return promotionsWithLocation;
         }
 
+        public async Task DeletePromotion(Promotion promotion)
+        {
+            await promotionRepository.DeletePromotion(promotion);
+        }
 
     }
 }
