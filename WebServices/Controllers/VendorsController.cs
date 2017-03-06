@@ -208,6 +208,8 @@ namespace WebServices.Controllers
 
         // DELETE: api/Vendors/5
         [ResponseType(typeof(Vendor))]
+        [HttpDelete]
+        [Route("api/Vendors/{id}")]
         public IHttpActionResult DeleteVendor(int id)
         {
             Log.Information("Attemping to delete vendor with id: {@id}", id);

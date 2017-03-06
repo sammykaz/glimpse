@@ -32,7 +32,7 @@ namespace Glimpse.Core.UnitTests.Tests.Services
         {
             //arrange
             List<PromotionWithLocation> activePromos = await _pds.GetActivePromotions();
-            int activePromoID = activePromos[1].PromotionId;
+            int activePromoID = activePromos[0].PromotionId;
            
             //act
             List<byte[]> imageListFromActivePromoId = await _pids.GetImageListFromPromotionWithLocationId(activePromoID);

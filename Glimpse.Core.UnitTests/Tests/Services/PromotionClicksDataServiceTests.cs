@@ -14,21 +14,31 @@ namespace Glimpse.Core.UnitTests.Tests.Services
     public class PromotionClicksDataServiceTests
     {
         private PromotionClickDataService _pcds;
+        private PromotionDataService _pds;
 
         [TestInitialize]
         public void Initialize()
         {
             PromotionClickRepository promoClickRepo = new PromotionClickRepository();
             _pcds = new PromotionClickDataService(promoClickRepo);
+
+            PromotionRepository promotionRepo = new PromotionRepository();
+            VendorRepository vendorRepo = new VendorRepository();
+            _pds = new PromotionDataService(promotionRepo, vendorRepo);
         }
 
         [TestMethod]
         public async Task CreatePromotionClick_Successful()
         {
             //arrange
+
+            //getting a promotion to attach too
+            List<Promotion> promos = await _pds.GetPromotions();
+            int promoId = promos[0].PromotionId;
+
             PromotionClick promoClick = new PromotionClick
             {
-                PromotionId = 1132,
+                PromotionId = promoId,
                 Time = DateTime.Now
             };
 

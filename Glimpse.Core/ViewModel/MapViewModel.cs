@@ -51,6 +51,7 @@ namespace Glimpse.Core.ViewModel
             //Setting up the event and start listening
             locator.PositionChanged += Locator_PositionChanged;
             await locator.StartListeningAsync(minTime: 1, minDistance: 10);
+            Query = "";
         }
 
         public async Task StorePromotionClick(int promotionId)
