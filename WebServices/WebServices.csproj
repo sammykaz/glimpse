@@ -332,6 +332,12 @@
     <Compile Include="Models\PromotionImage.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vendor.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -346,6 +352,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="bin\WebServices.dll" />
+    <Content Include="bin\WebServices.pdb" />
+    <Content Include="conf.js" />
     <Content Include="Content\angular-block-ui.css" />
     <Content Include="Content\angular-block-ui.min.css" />
     <Content Include="Content\bootstrap-flex.css" />
@@ -366,6 +375,9 @@
     <Content Include="Global.asax" />
     <Content Include="Gruntfile.js" />
     <Content Include="karma.conf.js" />
+    <Content Include="logs\logs--2017-03-04_05-22-30-PM.log" />
+    <Content Include="logs\logs--2017-03-04_06-02-01-PM.log" />
+    <Content Include="logs\logs--2017-03-04_06-16-50-PM.log" />
     <None Include="Properties\PublishProfiles\GlimpseMobile - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\GlimpseMobile - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseService - FTP.pubxml" />
@@ -478,6 +490,7 @@
     <Content Include="Scripts\FileAPI.flash.swf" />
     <Content Include="Scripts\FileAPI.js" />
     <Content Include="Scripts\FileAPI.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />
@@ -1216,6 +1229,8 @@
     <Content Include="Scripts\jasmine\console.js" />
     <Content Include="Scripts\jasmine\jasmine-html.js" />
     <Content Include="Scripts\jasmine\jasmine.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -1237,11 +1252,15 @@
     <Content Include="Scripts\ng-file-upload-shim.min.js" />
     <Content Include="Scripts\ng-file-upload.js" />
     <Content Include="Scripts\ng-file-upload.min.js" />
+    <Content Include="Scripts\ng-img-crop.js" />
     <Content Include="Scripts\ng-map.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Index.cshtml" />
+    <Content Include="Scripts\rzslider.js" />
+    <Content Include="Scripts\rzslider.min.js" />
     <Content Include="Scripts\tether.min.js" />
+    <Content Include="Scripts\TweenMax.min.js" />
     <Content Include="Scripts\ui-cropper.js" />
     <Content Include="src\controllers\homeController.js" />
     <Content Include="src\controllers\loginController.js" />
@@ -1250,13 +1269,22 @@
     <Content Include="src\controllers\profileController.js" />
     <Content Include="src\controllers\promotionController.js" />
     <Content Include="src\controllers\signupController.js" />
+    <Content Include="src\controllers\vendorsPromotionsController.js" />
+    <Content Include="src\css\10721229.jpg" />
     <Content Include="src\css\animate.css" />
     <Content Include="src\css\bg.png" />
+    <Content Include="src\css\blank.gif" />
     <Content Include="src\css\cropper.css" />
     <Content Include="src\css\cropper.min.css" />
     <Content Include="src\css\css.css" />
     <Content Include="src\css\ng-img-crop.css" />
+    <Content Include="src\css\paddle_next_999.png" />
+    <Content Include="src\css\paddle_next_fff.png" />
+    <Content Include="src\css\paddle_prev_999.png" />
+    <Content Include="src\css\paddle_prev_fff.png" />
     <Content Include="src\css\pbk.jpg" />
+    <Content Include="src\css\rzslider.min.css" />
+    <Content Include="src\css\slider.css" />
     <Content Include="src\css\ui-cropper.css" />
     <Content Include="src\css\wp.jpg" />
     <Content Include="src\services\authenticationService.js" />
@@ -1270,7 +1298,9 @@
     <Content Include="src\views\mapView.html" />
     <Content Include="src\views\analysisView.html" />
     <Content Include="src\views\profileView.html" />
+    <Content Include="src\views\showPromotion.html" />
     <Content Include="src\views\signupView.html" />
+    <Content Include="src\views\vendorsPromotionsView.html" />
     <Content Include="src\views\viewPromotion.html" />
     <Content Include="TestScripts\DefaultTest.js" />
     <Content Include="TestScripts\e2e\signupE2E.js" />
@@ -1282,6 +1312,7 @@
     <Content Include="TestScripts\PromoTest.js" />
     <Content Include="TestScripts\RePostTest.js" />
     <Content Include="TestScripts\SignUpTest.js" />
+    <Content Include="TestScripts\VendorPromotionControllerTest.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1304,8 +1335,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="test-results.testxml" />
+    <Content Include="Scripts\version.json" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".bin\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\HelpPage\Views\Help\DisplayTemplates\" />
     <Folder Include="Areas\HelpPage\Views\Shared\" />

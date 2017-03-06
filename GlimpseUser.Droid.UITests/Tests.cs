@@ -21,7 +21,7 @@ namespace GlimpseUser.Droid.UITests
             // and select the app projects that should be tested.
             app = ConfigureApp
                 .Android
-                .ApkFile("../../../Glimpse.Droid/bin/Release/Glimpse.Droid.Glimpse.Droid-x86-Signed.apk")
+                .ApkFile("./Glimpse.Droid/bin/Release/Glimpse.Droid.Glimpse.Droid-x86-Signed.apk")
                 .EnableLocalScreenshots()
                 .StartApp();
         }
