@@ -44,8 +44,7 @@ namespace GlimpseUser.Droid.UITests
             app.Tap(x => x.Id("btnSignIn"));
 
             //Act
-
-            app.SwipeLeftToRight();
+            app.SwipeRightToLeft();
             app.Screenshot("Swiping Top Card");
             app.SwipeRightToLeft();
             app.Screenshot("Second Top Card");
@@ -54,12 +53,15 @@ namespace GlimpseUser.Droid.UITests
         [Test]
         public void TestNavigateThroughAllTheAppPages()
         {
+            //Arrange scenario condition(sign in)
             app.Tap(x => x.Id("btnSignIn"));
             app.Tap(x => x.Id("txtEmail"));
             app.EnterText(x => x.Id("txtEmail"), "e5@gmail.com");
             app.Tap(x => x.Id("txtPassword"));
             app.EnterText(x => x.Id("txtPassword"), "e5");
             app.Tap(x => x.Id("btnSignIn"));
+
+            //Act
             app.Tap(x => x.Id("cardImage").Index(3));
             app.Screenshot("Detail view");
             app.Back();
@@ -75,12 +77,15 @@ namespace GlimpseUser.Droid.UITests
         [Test]
         public void TestNavigateToTheMapViewAndViewPromotions()
         {
+            //Arrange scenario condition(sign in)
             app.Tap(x => x.Id("btnSignIn"));
             app.Tap(x => x.Id("txtEmail"));
             app.EnterText(x => x.Id("txtEmail"), "e5@gmail.com");
             app.Tap(x => x.Id("txtPassword"));
             app.EnterText(x => x.Id("txtPassword"), "e5");
             app.Tap(x => x.Id("btnSignIn"));
+
+            //Act
             app.Tap(x => x.Class("AppCompatImageView").Index(2));
             app.ScrollUp();
             app.ScrollUp();
