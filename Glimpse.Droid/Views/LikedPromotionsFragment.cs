@@ -20,13 +20,15 @@ namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.viewPager, true)]
     [Register("glimpse.droid.views.LikedPromotionsFragment")]
-    public class LikedPromotionsFragment : MvxFragment<LikedPromotionsViewModel>, RadioGroup.IOnCheckedChangeListener
+    public class LikedPromotionsFragment : MvxFragment<LikedPromotionsViewModel>, RadioGroup.IOnCheckedChangeListener, ListView.IOnScrollListener
     {
         private LocalPromotionRepository _localPromotionRepository;
         private RadioGroup _radioGroup;
         private SearchView _searchView;
+        private ListView _listView;
+        private bool _scrollEnabled;
 
-
+        private MvxSwipeRefreshLayout _swipeRefreshLayout;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -36,8 +38,14 @@ namespace Glimpse.Droid.Views
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
-            (this.Activity as MainActivity).SetCustomTitle("Settings");
+            _swipeRefreshLayout = (MvxSwipeRefreshLayout)view.FindViewById(Resource.Id.refresher);
+            _listView = (ListView)view.FindViewById(Resource.Id.listView_LikedItems);
+            _listView.SetOnScrollListener(this);
+        }
 
+        private AbsListView.IOnScrollListener OnScroll()
+        {
+            throw new NotImplementedException();
         }
 
         public override async void OnResume()
@@ -88,6 +96,23 @@ namespace Glimpse.Droid.Views
         {
             string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             return Path.Combine(documentsPath, "glimpse.db3");
+        }
+
+        public void OnScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
+        {
+            int topRow= (_listView == null || _listView.ChildCount == 0) ? 0 : _listView.GetChildAt(0).Top;
+            bool newScrollEnabled = (firstVisibleItem == 0 && topRow >= 0) ? true:false;
+
+            if (null != _swipeRefreshLayout && _scrollEnabled != newScrollEnabled)
+            {
+                _swipeRefreshLayout.SetEnabled(newScrollEnabled);
+                _scrollEnabled = newScrollEnabled;        
+            }
+        }
+
+        public void OnScrollStateChanged(AbsListView view, [GeneratedEnum] ScrollState scrollState)
+        {
+  
         }
     }
 }
