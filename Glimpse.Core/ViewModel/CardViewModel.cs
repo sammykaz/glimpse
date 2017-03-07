@@ -126,7 +126,7 @@ namespace Glimpse.Core.ViewModel
             };
         }
 
-        public async Task InitializeLocationAndPromotionList()
+        public async Task InitializeLocationAndPromotionList(List<PromotionWithLocation> alreadyLikedPromotions)
         {
             IsBusy = true;
             //Creates the locator
@@ -139,7 +139,11 @@ namespace Glimpse.Core.ViewModel
             //get initial user location
             _userLocation = await GetUserLocation();
 
-            PromotionList = await GetPromotionsWithLocation();
+            List<PromotionWithLocation> promotionListIncludingLiked = await GetPromotionsWithLocation();
+
+            promotionListIncludingLiked.RemoveAll(promo => alreadyLikedPromotions.Any(likedPromo => likedPromo.PromotionId == promo.PromotionId));
+
+            PromotionList = promotionListIncludingLiked;
 
             _promotionsStored = PromotionList;
             IsBusy = false;
