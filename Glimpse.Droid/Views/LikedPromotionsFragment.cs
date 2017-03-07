@@ -43,11 +43,6 @@ namespace Glimpse.Droid.Views
             _listView.SetOnScrollListener(this);
         }
 
-        private AbsListView.IOnScrollListener OnScroll()
-        {
-            throw new NotImplementedException();
-        }
-
         public override async void OnResume()
         {
             base.OnResume();
