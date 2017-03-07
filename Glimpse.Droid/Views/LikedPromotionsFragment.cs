@@ -43,11 +43,6 @@ namespace Glimpse.Droid.Views
         public override async void OnResume()
         {
             base.OnResume();
-            _localPromotionRepository = new LocalPromotionRepository();
-            var path = GetDbPath();
-            await _localPromotionRepository.InitializeAsync(path, new SQLitePlatformAndroid());
-            ViewModel.PromotionList = await _localPromotionRepository.GetActivePromotions();
-            ViewModel.PromotionsStored = ViewModel.PromotionList;
 
              _radioGroup = (RadioGroup)View.FindViewById(Resource.Id.filter_radiogroup);
              _radioGroup.SetOnCheckedChangeListener(this);
@@ -56,6 +51,17 @@ namespace Glimpse.Droid.Views
             _searchView.SetIconifiedByDefault(true);
 
         }
+
+        public async void ReloadPromotions()
+        {           
+            _localPromotionRepository = new LocalPromotionRepository();
+            var path = GetDbPath();
+            await _localPromotionRepository.InitializeAsync(path, new SQLitePlatformAndroid());
+            ViewModel.PromotionList = await _localPromotionRepository.GetActivePromotions();
+            ViewModel.PromotionsStored = ViewModel.PromotionList;
+           
+        }
+
 
         public void OnCheckedChanged(RadioGroup group, int checkedId)
         {
