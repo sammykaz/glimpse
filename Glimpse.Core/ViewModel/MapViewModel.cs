@@ -135,7 +135,7 @@ namespace Glimpse.Core.ViewModel
                 RaisePropertyChanged(() => VendorData);
             }
         }
-
+        
         public async Task<List<PromotionWithLocation>> GetActivePromotions()
         {
             _promotionsStored = await promotionDataService.GetActivePromotions();
@@ -192,7 +192,7 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        private string _query;
+        private string _query=" ";
         public string Query
         {
             get

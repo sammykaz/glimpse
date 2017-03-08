@@ -68,6 +68,10 @@
       <Project>{A429B66B-B938-4BEC-9254-C27BBA173D90}</Project>
       <Name>Glimpse.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Glimpse.Droid\GlimpseUser.Droid.csproj">
+      <Project>{d92cb6cf-6878-465d-ac54-8fd588ede792}</Project>
+      <Name>GlimpseUser.Droid</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
