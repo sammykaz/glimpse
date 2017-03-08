@@ -5,6 +5,8 @@ using NUnit.Framework;
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 using Xamarin.UITest.Android;
+using Glimpse.Core.Model;
+using System.Collections.Generic;
 
 namespace GlimpseUser.Droid.UITests
 {
@@ -12,13 +14,12 @@ namespace GlimpseUser.Droid.UITests
     public class Tests
     {
         AndroidApp app;
+        private readonly string _testEmail = "e5@gmail.com";
+        private readonly string _testPassword = "e5";
 
         [SetUp]
         public void BeforeEachTest()
         {
-            // TODO: If the Android app being tested is included in the solution then open
-            // the Unit Tests window, right click Test Apps, select Add App Project
-            // and select the app projects that should be tested.
             app = ConfigureApp
                 .Android
                 .ApkFile("../../../Glimpse.Droid/bin/Release/Glimpse.Droid.Glimpse.Droid-x86-Signed.apk")
@@ -35,43 +36,89 @@ namespace GlimpseUser.Droid.UITests
         [Test]
         public void TestSwipeThroughNearbyPromotions()
         {
-            //Arrange scenario condition(sign in)
+  
+
+            //Arrange scenario condition
             app.Tap(x => x.Id("btnSignIn"));
             app.Tap(x => x.Id("txtEmail"));
-            app.EnterText(x => x.Id("txtEmail"), "e5@gmail.com");
+            app.EnterText(x => x.Id("txtEmail"), _testEmail);
             app.Tap(x => x.Id("txtPassword"));
-            app.EnterText(x => x.Id("txtPassword"), "e5");
+            app.EnterText(x => x.Id("txtPassword"), _testPassword);
             app.Tap(x => x.Id("btnSignIn"));
+            app.WaitForElement("cardImage");
 
             //Act
+            var initialCardStack = app.Query(x => x.Id("cardImage"));
             app.SwipeRightToLeft();
             app.Screenshot("Swiping Top Card");
             app.SwipeRightToLeft();
             app.Screenshot("Second Top Card");
+            app.SwipeLeftToRight();
+            var initialInde = app.Query(x => x.Id("cardImage"));
+            var cardStackAfterSwipes = app.Query(x => x.Id("cardImage"));
+
+            //Assert
+            Assert.IsTrue((initialCardStack.Length -3 )== cardStackAfterSwipes.Length);
+
+            
         }
 
         [Test]
         public void TestNavigateThroughAllTheAppPages()
         {
-            //Arrange scenario condition(sign in)
+
+            //Arrange scenario condition
             app.Tap(x => x.Id("btnSignIn"));
             app.Tap(x => x.Id("txtEmail"));
-            app.EnterText(x => x.Id("txtEmail"), "e5@gmail.com");
+            app.EnterText(x => x.Id("txtEmail"), _testEmail);
             app.Tap(x => x.Id("txtPassword"));
-            app.EnterText(x => x.Id("txtPassword"), "e5");
+            app.EnterText(x => x.Id("txtPassword"), _testPassword);
             app.Tap(x => x.Id("btnSignIn"));
+            app.WaitForElement("cardImage");
+            app.SwipeLeftToRight();
 
-            //Act
-            app.Tap(x => x.Id("cardImage").Index(3));
+
+
+
+            //Act 
+
+            //retrieving specific cardview element
+            var cardViewElement = app.Query(x => x.Id("cardImage")).GetValue(0);            
+            app.Tap(x => x.Id("cardImage"));
+
+            //retrieving specific detail view element + screenshot of view
             app.Screenshot("Detail view");
+            var detailViewElement = app.Query(x => x.Id("detailViewTitle")).GetValue(0);
             app.Back();
+
+            //retrieving specific card view element + screenshot of view
             app.Screenshot("Card View");
+            cardViewElement = app.Query(x => x.Id("cardImage"));
             app.Tap(x => x.Class("AppCompatImageView").Index(1));
-            app.Screenshot("LikedView");
+
+            //retrieving specific like promotion view element + screenshot of view
+            app.Screenshot("Like Promotion View");
+            var likedPromotionViewElement = app.Query(x => x.Id("promotion_picture")).GetValue(0);
+            app.Tap(x => x.Id("promotion_picture"));
+
+            //retrieving specific detail view element + screenshot of view
+            app.Screenshot("Detail view2");
+            detailViewElement = app.Query(x => x.Id("detailViewTitle"));
+            app.Back();
+
+            //retrieving specific like promotion view element + screen shot
+            app.Screenshot("LikedView2");
+            likedPromotionViewElement = app.Query(x => x.Id("promotion_picture")).GetValue(0);
+
+            //retrieving specific like promotion view element + screen shot
             app.Tap(x => x.Class("AppCompatImageView").Index(2));
             app.Screenshot("MapView");
-            app.Tap(x => x.Marked("Google Map"));
-            app.Back();
+            var mapViewElement = app.Query(x => x.Id("map")).GetValue(0) ;
+
+            //Assert
+            //if the elements are not null, then the above views exist
+            Assert.IsTrue(cardViewElement != null && detailViewElement != null && likedPromotionViewElement != null && mapViewElement != null);
+
         }
 
         [Test]
@@ -101,6 +148,26 @@ namespace GlimpseUser.Droid.UITests
             app.Screenshot("Promos with  Cluster");
         }
 
+        [Test]
+        public void NewTest()
+        {
+
+            app.Tap(x => x.Id("btnSignIn"));
+            app.Tap(x => x.Id("txtEmail"));
+            app.EnterText(x => x.Id("txtEmail"), "e5@gmail.com");
+            app.EnterText(x => x.Id("txtPassword"), "e5");
+            app.Tap(x => x.Id("btnSignIn"));
+            var MapView = app.Query("map");
+
+        }
+
+        [Test]
+        public void NewTest1()
+        {
+
+        }
+
+    
 
 
 
