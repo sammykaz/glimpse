@@ -4,6 +4,7 @@ using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Model;
 using Glimpse.Core.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace Glimpse.Core.UnitTests.Tests.Repository
 {
@@ -11,6 +12,8 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
     public class VendorRepositoryTests
     {
         IVendorRepository repository;
+        private readonly string _testEmail = "unitTestEmail@gmail.com";
+        private readonly string _testPassword = "unitTestPassword";
 
         [TestInitialize]
         public void Initialize()
@@ -34,38 +37,37 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             //arrange
             var vendorsBefore = await repository.GetVendors();
             var vendorsCountBefore = vendorsBefore.Count;
-            Address address = new Address();
-            address.Country = "Canada";
-            address.Province = "Quebec";
-            address.City = "Montreal";
-            address.StreetNumber = "104";
-            address.Street = "Kingston";
-            address.PostalCode = "h3z4k1";           
-            string telephone = "5145436363";
-
-
-            Location location = new Location(50.0, -150);
 
             Vendor vendor = new Vendor
             {               
-                Email = "gege@gmail.com",
-                Password = "gepass",
-                Address = address,
-                Telephone = telephone,
-                CompanyName = "ge1231",
-                Salt = "geosalt",
-                Location = location
+                Email = _testEmail,
+                Password = _testPassword,
+                CompanyName = "UnitTestCompany",
+                Address = "Unit Test Address",
+                Telephone = "543-535-5353",
+                Location = new Location
+                {
+                    Lat = 54.434,
+                    Lng = 53.656,
+                },
             };
 
             //act 
-            await repository.PostVendor(vendor);
+            bool signUpSuccess = await repository.PostVendor(vendor);
 
             //Assert
             var vendorsAfter = await repository.GetVendors();
             var vendorsCountAfter = vendorsAfter.Count;
 
             var difference = vendorsCountAfter - vendorsCountBefore;
+
+
             Assert.IsTrue(difference == 1);
+            Assert.IsTrue(signUpSuccess);
+
+            //clean up
+            List<Vendor> vendorWithTestEmail = vendorsAfter.FindAll(v => v.Email == _testEmail);
+            await repository.DeleteVendor(vendorWithTestEmail[0]);
         }
     }
 }
