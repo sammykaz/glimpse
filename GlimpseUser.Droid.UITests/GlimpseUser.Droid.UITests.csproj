@@ -47,5 +47,15 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Glimpse.Core\Glimpse.Core.csproj">
+      <Project>{A429B66B-B938-4BEC-9254-C27BBA173D90}</Project>
+      <Name>Glimpse.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Glimpse.Droid\GlimpseUser.Droid.csproj">
+      <Project>{d92cb6cf-6878-465d-ac54-8fd588ede792}</Project>
+      <Name>GlimpseUser.Droid</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,21 +1,27 @@
-﻿
-describe('Analysis Controller', function () {
-    var $controller, $rootScope, $q, dataService, $scope, getDeferred, getAuthorizedataDeferred, updateDeferred;
+﻿describe('Analysis Controller', function () {
+    var $controller, $rootScope, $q, dataService, $scope, queryDeferred, updateDeferred;
 
     var mockPromotionResponse = [{
         "PromotionClickId": 469,
         "PromotionId": 2128,
         "Time": "2017-02-21T21:15:47.66"
     }];
+
     dataService = {
-        GetAuthorizeData: function () {
-            getAuthorizedataDeferred = $q.defer();
-            return getAuthorizedataDeferred.promise;
-        },
         getPromotionClicks: function () {
             return {
-                get: function () {
-                    getDeferred = $q.defer();
+                query: function () {
+                    queryDeferred = $q.defer();
+                    return {
+                        $promise: queryDeferred.promise
+                    };
+                }
+            }
+        },
+        getAllPromotionFromSpecificVendor: function () {
+            return {
+                query: function () {
+                    queryDeferred = $q.defer();
                     return {
                         $promise: queryDeferred.promise
                     };
@@ -29,57 +35,61 @@ describe('Analysis Controller', function () {
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $q = _$q_;
-    }));
 
-    beforeEach(angular.mock.inject(function ($controller) {
         $scope = $rootScope.$new();
 
-        spyOn(dataService, 'GetAuthorizeData').and.callThrough();
         spyOn(dataService, 'getPromotionClicks').and.callThrough();
+        spyOn(dataService, 'getAllPromotionFromSpecificVendor').and.callThrough();
 
-        $controller('ProfileController', {
+
+        $controller('analysisController', {
             '$scope': $scope,
-            'dataService': dataService,
-            '$state': {},
-            'authenticationService': {}
+            'dataService': dataService
         });
+
     }));
 
     it('should have the noPromotionClicked to set as false initially', function () {
-        var scope = $rootScope.$new();
-        var controller = $controller('analysisController', { $scope: scope });
-        expect(scope.noPromotionClicked).toBe(false);
+        expect($scope.noPromotionClicked).toBe(false);
     });
 
-    describe('GetAuthorizeData.query', function () {
+    describe('getAllPromotionFromSpecificVendor.query', function () {
+        beforeEach(function () {
+            queryDeferred.resolve({});
+            $rootScope.$apply();
+        });
 
-        it('should call the GetAuthorizeData method', function () {
-            expect(dataService.GetAuthorizeData).toHaveBeenCalled();
+        it('should call the getAllPromotionFromSpecificVendor', function () {
+            expect(dataService.getAllPromotionFromSpecificVendor).toHaveBeenCalled();
         });
     });
 
-    it('should have the labels to be defined', function () {
-        var scope = $rootScope.$new();
-        var controller = $controller('analysisController', { $scope: scope });
-        expect(scope.labels).toBeDefined();
-    });
 
-    it('should have the series to be defined', function () {
-        var scope = $rootScope.$new();
-        var controller = $controller('analysisController', { $scope: scope });
-        expect(scope.series).toBeDefined();
-    });
+    describe('getPromotionClicks.query', function () {
+        beforeEach(function () {
+            queryDeferred.resolve({});
+            $rootScope.$apply();
+        });
 
-    it('should have the seriesTitle to be defined', function () {
-        var scope = $rootScope.$new();
-        var controller = $controller('analysisController', { $scope: scope });
-        expect(scope.seriesTitle).toBeDefined();
-    });
+        it('should call the getPromotionClicks', function () {
+            expect(dataService.getPromotionClicks).toHaveBeenCalled();
+        });
 
-    it('should have the promotionClicks toBeUndefined initially', function () {
-        var scope = $rootScope.$new();
-        var controller = $controller('analysisController', { $scope: scope });
-        expect(scope.promotionClicks).toBeUndefined();
-    });
+        it('should have the labels to be defined', function () {
+            expect($scope.labels).toBeDefined();
+        });
 
+        it('should have the series to be defined', function () {
+            expect($scope.series).toBeDefined();
+        });
+
+        it('should have the seriesTitle to be defined', function () {
+            expect($scope.seriesTitle).toBeDefined();
+        });
+
+        it('should have the promotionClicks toBeUndefined initially', function () {
+            expect($scope.promotionClicks).toBeUndefined();
+        });
+
+    });
 });

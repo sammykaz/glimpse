@@ -82,13 +82,19 @@ namespace Glimpse.Droid.Views
 
         }
 
-        public async void OnPageSelected(int position)
+        public void OnPageSelected(int position)
         {
             for (int i = 0; i < _tabIconsGrey.Length; i++)
             {
                 _tabLayout.GetTabAt(i).SetIcon(_tabIconsGrey[i]);
             }
             _tabLayout.GetTabAt(position).SetIcon(_tabIconsGreen[position]); 
+
+            if(position == 1)
+            {
+                var pagerliked = (LikedPromotionsFragment)_adapter.GetItem(1);
+                pagerliked.ReloadPromotions();
+            }            
         }
 
         public void doBack()
