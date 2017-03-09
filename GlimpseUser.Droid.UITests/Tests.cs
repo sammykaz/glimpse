@@ -78,10 +78,7 @@ namespace GlimpseUser.Droid.UITests
             app.SwipeLeftToRight();
 
 
-
-
             //Act 
-
             //retrieving specific cardview element
             var cardViewElement = app.Query(x => x.Id("cardImage")).GetValue(0);            
             app.Tap(x => x.Id("cardImage"));
@@ -127,9 +124,9 @@ namespace GlimpseUser.Droid.UITests
             //Arrange scenario condition(sign in)
             app.Tap(x => x.Id("btnSignIn"));
             app.Tap(x => x.Id("txtEmail"));
-            app.EnterText(x => x.Id("txtEmail"), "e5@gmail.com");
+            app.EnterText(x => x.Id("txtEmail"), _testEmail);
             app.Tap(x => x.Id("txtPassword"));
-            app.EnterText(x => x.Id("txtPassword"), "e5");
+            app.EnterText(x => x.Id("txtPassword"), _testPassword);
             app.Tap(x => x.Id("btnSignIn"));
 
             //Act
@@ -151,22 +148,60 @@ namespace GlimpseUser.Droid.UITests
         [Test]
         public void NewTest()
         {
-
+            //Arrange scenario condition(sign in)
             app.Tap(x => x.Id("btnSignIn"));
             app.Tap(x => x.Id("txtEmail"));
-            app.EnterText(x => x.Id("txtEmail"), "e5@gmail.com");
-            app.EnterText(x => x.Id("txtPassword"), "e5");
+            app.EnterText(x => x.Id("txtEmail"), _testEmail);
+            app.Tap(x => x.Id("txtPassword"));
+            app.EnterText(x => x.Id("txtPassword"), _testPassword);
             app.Tap(x => x.Id("btnSignIn"));
-            var MapView = app.Query("map");
+            app.WaitForElement("cardImage");
+
+
+            //Act
+            //acting on cardview
+            app.Tap(x => x.Text("Apparel"));           
+            var cardContainsWord = app.Query("cardTitle").First(result => result.Text.ToLower().Contains("apparel"));    
+            app.Tap(x => x.Text("All"));
+            app.Tap(x => x.Id("search_button"));
+            app.EnterText(x => x.Id("search_src_text"), "apparel");
+            cardContainsWord = app.Query("cardTitle").First(result => result.Text.ToLower().Contains("apparel"));
+            app.SwipeLeftToRight();
+
+            //acting on like view text1
+            app.Tap(x => x.Id("search_close_btn"));
+            app.ClearText(x => x.Id("search_src_text"));
+            app.Tap(x => x.Class("AppCompatImageView").Index(1));
+            app.Tap(x => x.Text("Apparel"));
+            var elementContainsWord = app.Query("text1").First(result => result.Text.ToLower().Contains("apparel"));
+            app.Tap(x => x.Text("All"));
+            app.Tap(x => x.Id("search_button"));
+            app.EnterText(x => x.Id("search_src_text"), "apparel");
+            elementContainsWord = app.Query("text1").First(result => result.Text.ToLower().Contains("apparel"));
+            app.Tap(x => x.Id("search_close_btn"));
+            app.ClearText(x => x.Id("search_src_text"));
+
+            //acting on map view
+            app.Tap(x => x.Class("AppCompatImageView").Index(2));
+            app.WaitForElement(x => x.Marked("Google Map"));
+            app.Screenshot("All promotions");
+            app.Tap(x => x.Text("Apparel"));
+            app.Screenshot("apparel promotions");
+            app.Tap(x => x.Text("All"));
+            app.Screenshot("All promotions2");
+            app.Tap(x => x.Id("search_button"));
+            app.EnterText(x => x.Id("search_src_text"), "apparel");
+            app.Screenshot("apparel promotions2");
+            app.Tap(x => x.Id("search_close_btn"));
+            app.ClearText(x => x.Id("search_src_text"));
+
+            //assert for cardview and likeview
+            Assert.IsTrue(cardContainsWord != null && elementContainsWord != null);
 
         }
 
-        [Test]
-        public void NewTest1()
-        {
-
-        }
-
+        
+     
     
 
 
