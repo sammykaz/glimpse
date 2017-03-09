@@ -11,6 +11,7 @@ namespace GlimpseUser.Droid.UITests
     [TestFixture]
     public class Tests
     {
+        //android app
         AndroidApp app;
 
         [SetUp]
