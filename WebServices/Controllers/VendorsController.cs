@@ -32,6 +32,7 @@ namespace WebServices.Controllers
         }
 
         // GET: api/Vendors/5
+        [Route("api/Vendors/{id}")]
         [ResponseType(typeof(Vendor))]
         public IHttpActionResult GetVendor(int id)
         {
