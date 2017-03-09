@@ -36,8 +36,6 @@ namespace GlimpseUser.Droid.UITests
         [Test]
         public void TestSwipeThroughNearbyPromotions()
         {
-
-
             //Arrange scenario condition
             app.Tap(x => x.Id("btnSignIn"));
             app.Tap(x => x.Id("txtEmail"));
@@ -66,7 +64,6 @@ namespace GlimpseUser.Droid.UITests
         [Test]
         public void TestNavigateThroughAllTheAppPages()
         {
-
             //Arrange scenario condition and like card
             app.Tap(x => x.Id("btnSignIn"));
             app.Tap(x => x.Id("txtEmail"));
@@ -77,45 +74,50 @@ namespace GlimpseUser.Droid.UITests
             app.WaitForElement("cardImage");
             app.SwipeLeftToRight();
 
-
             //Act 
             //retrieving specific cardview element
+            app.Screenshot("Card View1");
             var cardViewElement = app.Query(x => x.Id("cardImage")).GetValue(0);
             app.Tap(x => x.Id("cardImage"));
 
             //retrieving specific detail view element + screenshot of view
+            app.WaitForElement("detailViewTitle");
             app.Screenshot("Detail view");
             var detailViewElement = app.Query(x => x.Id("detailViewTitle")).GetValue(0);
             app.Back();
 
             //retrieving specific card view element + screenshot of view
-            app.Screenshot("Card View");
+            app.WaitForElement("cardImage");
+            app.Screenshot("Card View2");
             cardViewElement = app.Query(x => x.Id("cardImage"));
             app.Tap(x => x.Class("AppCompatImageView").Index(1));
 
             //retrieving specific like promotion view element + screenshot of view
+            app.WaitForElement("promotion_picture");
             app.Screenshot("Like Promotion View");
             var likedPromotionViewElement = app.Query(x => x.Id("promotion_picture")).GetValue(0);
             app.Tap(x => x.Id("promotion_picture"));
 
             //retrieving specific detail view element + screenshot of view
+            app.WaitForElement("detailViewTitle");
             app.Screenshot("Detail view2");
             detailViewElement = app.Query(x => x.Id("detailViewTitle"));
             app.Back();
 
             //retrieving specific like promotion view element + screen shot
+            app.WaitForElement("promotion_picture");
             app.Screenshot("LikedView2");
             likedPromotionViewElement = app.Query(x => x.Id("promotion_picture")).GetValue(0);
+            app.Tap(x => x.Class("AppCompatImageView").Index(2));
 
             //retrieving specific like promotion view element + screen shot
-            app.Tap(x => x.Class("AppCompatImageView").Index(2));
+            app.WaitForElement("map");
             app.Screenshot("MapView");
             var mapViewElement = app.Query(x => x.Id("map")).GetValue(0);
 
             //Assert
             //if the elements are not null, then the above views exist
             Assert.IsTrue(cardViewElement != null && detailViewElement != null && likedPromotionViewElement != null && mapViewElement != null);
-
         }
 
         [Test]
@@ -128,9 +130,11 @@ namespace GlimpseUser.Droid.UITests
             app.Tap(x => x.Id("txtPassword"));
             app.EnterText(x => x.Id("txtPassword"), _testPassword);
             app.Tap(x => x.Id("btnSignIn"));
+            app.WaitForElement("cardImage");
 
             //Act
             app.Tap(x => x.Class("AppCompatImageView").Index(2));
+            app.WaitForElement("map");
             app.ScrollUp();
             app.ScrollUp();
             app.Tap(x => x.Marked("Google Map"));
@@ -155,10 +159,9 @@ namespace GlimpseUser.Droid.UITests
             app.Tap(x => x.Id("txtPassword"));
             app.EnterText(x => x.Id("txtPassword"), _testPassword);
             app.Tap(x => x.Id("btnSignIn"));
-            app.WaitForElement("cardImage");
 
             //Act
-            //acting on cardview
+            app.WaitForElement("cardImage");
             app.Tap(x => x.Text("Apparel"));
             var cardContainsWord = app.Query("cardTitle").First(result => result.Text.ToLower().Contains("apparel"));
             app.Tap(x => x.Text("All"));
@@ -166,11 +169,12 @@ namespace GlimpseUser.Droid.UITests
             app.EnterText(x => x.Id("search_src_text"), "apparel");
             cardContainsWord = app.Query("cardTitle").First(result => result.Text.ToLower().Contains("apparel"));
             app.SwipeLeftToRight();
-
-            //acting on like view 
             app.Tap(x => x.Id("search_close_btn"));
             app.ClearText(x => x.Id("search_src_text"));
             app.Tap(x => x.Class("AppCompatImageView").Index(1));
+
+            //acting on like view 
+            app.WaitForElement("promotionTitle");
             app.Tap(x => x.Text("Apparel"));
             var elementContainsWord = app.Query("promotionTitle").First(result => result.Text.ToLower().Contains("apparel"));
             app.Tap(x => x.Text("All"));
@@ -179,10 +183,10 @@ namespace GlimpseUser.Droid.UITests
             elementContainsWord = app.Query("promotionTitle").First(result => result.Text.ToLower().Contains("apparel"));
             app.Tap(x => x.Id("search_close_btn"));
             app.ClearText(x => x.Id("search_src_text"));
+            app.Tap(x => x.Class("AppCompatImageView").Index(2));
 
             //acting on map view
-            app.Tap(x => x.Class("AppCompatImageView").Index(2));
-            app.WaitForElement(x => x.Marked("Google Map"));
+            app.WaitForElement("map");
             app.Screenshot("All promotions");
             app.Tap(x => x.Text("Apparel"));
             app.Screenshot("apparel promotions");
@@ -213,24 +217,26 @@ namespace GlimpseUser.Droid.UITests
             app.Tap(x => x.Id("txtPassword"));
             app.EnterText(x => x.Id("txtPassword"), _testPassword);
             app.Tap(x => x.Id("btnSignIn"));
-            app.WaitForElement("cardImage");
-
 
             //acting on cardview
+            app.WaitForElement("cardImage");
             app.Tap(x => x.Text("Electronics"));
+
             //saving title of first promo
             promo1 = app.Query("cardTitle").First().Text;
             app.SwipeLeftToRight();
             app.Tap(x => x.Id("search_button"));
             app.EnterText(x => x.Id("search_src_text"), "electronics");
+
             //saving title of second promo
             promo2 = app.Query("cardTitle").First().Text;
             app.SwipeLeftToRight();           
             app.Tap(x => x.Id("search_close_btn"));
-
-            //acting on like view 
             app.ClearText(x => x.Id("search_src_text"));
             app.Tap(x => x.Class("AppCompatImageView").Index(1));
+
+            //acting on like view 
+            app.WaitForElement("promotionTitle");
             app.Tap(x => x.Text("Electronics"));
             List<string> allElectronicDeals = app.Query("promotionTitle").Select(x => x.Text).ToList();
 
