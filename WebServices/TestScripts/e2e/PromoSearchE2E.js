@@ -17,7 +17,7 @@
     });
 
     it('should able to search promotions', function () {
-        element(by.model('searchPromotionText')).sendKeys('boat');
+        element(by.model('searchPromotionText')).sendKeys('more!');
         browser.sleep(5000);
 
         var promotionsElmCount = element.all(by.repeater('(key, promotion) in promotions | reverse | filter:searchPromotionText | filter:{Category: selectVal}')).count();
@@ -32,14 +32,9 @@
         element(by.id('electronics')).click();
         browser.sleep(5000);
 
-        var promotionsElmCount = element.all(by.repeater('(key, promotion) in promotions | reverse | filter:searchPromotionText | filter:{Category: selectVal}')).count();
-        promotionsElmCount.then(function (count) {
-            expect(count).toEqual(2);
-        });
-
-        var promotionsElmCount = element.all(by.repeater('(key, promotion) in promotions | reverse | filter:searchPromotionText | filter:{Category: selectVal}'));
-        for (var i = 0; i < promotionsElmCount.length; i++) {
-            expect(promotionsElmCount[i].Category).toEqual(1);
+        var promotionsElm = element.all(by.repeater('(key, promotion) in promotions | reverse | filter:searchPromotionText | filter:{Category: selectVal}'));
+        for (var i = 0; i < promotionsElm.length; i++) {
+            expect(promotionsElm[i].Category).toEqual(1);
         }
     });
 
