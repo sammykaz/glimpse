@@ -45,7 +45,7 @@ namespace Glimpse.Droid.Controls.Listener
         {
             //Discard card only if user moves card to Right or Left
             _swipeDiscard = Math.Abs(x2 - x1) > _discardDistancePx;
-            var cardView = _cardStack.TopView as CustomCardView;
+
             if (_swipeDiscard)
             {
                 var action = (x2 < x1) ? "Dislike" : "Like";
