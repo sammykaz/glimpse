@@ -18,6 +18,12 @@ properties {
 	$MSTestTestResultsDirectory = "$testResultsDirectory\MSTest"
 	$NUnitTestResultsDirectory = "$testResultsDirectory\NUnit"
 
+	$testCoverageDirectory = "$outputDirectory\TestCoverage"
+	$testCoverageReportPath = "$testCoverageDirectory\OpenCover.xml"
+	$testCoverageFilter = "+[*]* -[xunit.*]* -[*.NUnitTests]* -[*.Tests]* -[*.xUnitTests]*"
+	$testCoverageExcludeByAttribute = "*.ExcludeFromCodeCoverage*"
+	#$testCoverageExcludeByFile = "*\*Designer.cs;*\*.g.cs;*\*.g.i.cs"
+
 	$buildConfiguration = "Debug"
 	$buildPlatform = "Any CPU"
 
@@ -29,6 +35,11 @@ properties {
 	#Using Nunit Runner
 	$NUnitExe = (Find-PackagePath $packagesPath "NUnit.ConsoleRunner" ) + "\tools\nunit3-console.exe"
 
+	#Find OpenCoverExe
+	$openCoverExe = (Find-PackagePath $packagesPath "OpenCover") + "\Tools\OpenCover.Console.exe"
+
+	#Report Generator
+	$reportGeneratorExe = (Find-PackagePath $packagesPath "ReportGenerator") + "\Tools\ReportGenerator.exe"
 }
 
 FormatTaskName "`r`n`r`n-------- Executing {0} Task --------"
@@ -48,10 +59,11 @@ task Init `
 	# Check that all tools are available
 	Write-Host "Checking that all required tools are available"
 
-	Write-Host "PATH IS $NUnitExe"
-
 	Assert (Test-Path $vsTestExe) "VSTest Console could not be found"
 	Assert (Test-Path $NUnitExe) "NUnit Console could not be found"
+	Assert (Test-Path $openCoverExe) "OpenCover Console could not be found"
+	Assert (Test-Path $reportGeneratorExe) "ReportGenerator Console could not be found"
+
 
 	# Remove previous build results
 	if (Test-Path $outputDirectory) 
@@ -87,9 +99,19 @@ task TestNUnit `
 {
 	$testAssemblies = Prepare-Tests -testRunnerName "NUnit" `
 									-publishedTestsDirectory $publishedNUnitTestsDirectory `
-									-testResultsDirectory $NUnitTestResultsDirectory
+									-testResultsDirectory $NUnitTestResultsDirectory `
+									-testCoverageDirectory $testCoverageDirectory
 
-	Exec { &$nunitExe $testAssemblies /xml:$NUnitTestResultsDirectory\NUnit.xml /nologo /noshadow }
+	$targetArgs = "$testAssemblies /xml:`"`"$NUnitTestResultsDirectory\NUnit.xml`"`" /nologo /noshadow"
+
+	# Run OpenCover, which in turn will run NUnit	
+	Run-Tests -openCoverExe $openCoverExe `
+			  -targetExe $nunitExe `
+			  -targetArgs $targetArgs `
+			  -coveragePath $testCoverageReportPath `
+			  -filter $testCoverageFilter `
+			  -excludebyattribute:$testCoverageExcludeByAttribute
+			  #-excludebyfile: $testCoverageExcludeByFile
 }
 
 
@@ -102,12 +124,24 @@ task TestMSTest `
 {
 	$testAssemblies = Prepare-Tests -testRunnerName "MSTest" `
 									-publishedTestsDirectory $publishedMSTestTestsDirectory `
-									-testResultsDirectory $MSTestTestResultsDirectory
+									-testResultsDirectory $MSTestTestResultsDirectory `
+									-testCoverageDirectory $testCoverageDirectory
+
+	$targetArgs = "$testAssemblies /Logger:trx"
 
 	# vstest console doesn't have any option to change the output directory
 	# so we need to change the working directory
 	Push-Location $MSTestTestResultsDirectory
-	Exec { &$vsTestExe $testAssemblies /Logger:trx }
+	
+	# Run OpenCover, which in turn will run VSTest	
+	Run-Tests -openCoverExe $openCoverExe `
+			  -targetExe $vsTestExe `
+			  -targetArgs $targetArgs `
+			  -coveragePath $testCoverageReportPath `
+			  -filter $testCoverageFilter `
+			  -excludebyattribute:$testCoverageExcludeByAttribute
+			  #-excludebyfile: $testCoverageExcludeByFile
+
 	Pop-Location
 
 	# move the .trx file back to $MSTestTestResultsDirectory
@@ -116,14 +150,53 @@ task TestMSTest `
 	Remove-Item $MSTestTestResultsDirectory\TestResults
 }
 
+task Test `
+	-depends Compile, TestNUnit, TestMSTest `
+	-description "Run unit tests and test coverage" `
+	-requiredVariables testCoverageDirectory, testCoverageReportPath `
+{
+	# parse OpenCover results to extract summary
+	if (Test-Path $testCoverageReportPath)
+	{
+		Write-Host "Parsing OpenCover results"
+
+		# Load the coverage report as XML
+		$coverage = [xml](Get-Content -Path $testCoverageReportPath)
+
+		$coverageSummary = $coverage.CoverageSession.Summary
+
+		# Write class coverage
+		Write-Host "##teamcity[buildStatisticValue key='CodeCoverageAbsCCovered' value='$($coverageSummary.visitedClasses)']"
+		Write-Host "##teamcity[buildStatisticValue key='CodeCoverageAbsCTotal' value='$($coverageSummary.numClasses)']"
+		Write-Host ("##teamcity[buildStatisticValue key='CodeCoverageC' value='{0:N2}']" -f (($coverageSummary.visitedClasses / $coverageSummary.numClasses)*100))
+
+		# Report method coverage
+		Write-Host "##teamcity[buildStatisticValue key='CodeCoverageAbsMCovered' value='$($coverageSummary.visitedMethods)']"
+		Write-Host "##teamcity[buildStatisticValue key='CodeCoverageAbsMTotal' value='$($coverageSummary.numMethods)']"
+		Write-Host ("##teamcity[buildStatisticValue key='CodeCoverageM' value='{0:N2}']" -f (($coverageSummary.visitedMethods / $coverageSummary.numMethods)*100))
+		
+		# Report branch coverage
+		Write-Host "##teamcity[buildStatisticValue key='CodeCoverageAbsBCovered' value='$($coverageSummary.visitedBranchPoints)']"
+		Write-Host "##teamcity[buildStatisticValue key='CodeCoverageAbsBTotal' value='$($coverageSummary.numBranchPoints)']"
+		Write-Host "##teamcity[buildStatisticValue key='CodeCoverageB' value='$($coverageSummary.branchCoverage)']"
+
+		# Report statement coverage
+		Write-Host "##teamcity[buildStatisticValue key='CodeCoverageAbsSCovered' value='$($coverageSummary.visitedSequencePoints)']"
+		Write-Host "##teamcity[buildStatisticValue key='CodeCoverageAbsSTotal' value='$($coverageSummary.numSequencePoints)']"
+		Write-Host "##teamcity[buildStatisticValue key='CodeCoverageS' value='$($coverageSummary.sequenceCoverage)']"
+
+		# Generate HTML test coverage report
+		Write-Host "`r`nGenerating HTML test coverage report"
+		Exec { &$reportGeneratorExe $testCoverageReportPath $testCoverageDirectory }
+	}
+	else
+	{
+		Write-Host "No coverage file found at: $testCoverageReportPath"
+	}
+}
+
+
 task Clean -description "Remove temporary files" 
 { 
   	Write-Host $cleanMessage
-}
- 
-task Test `
-	 -depends Compile, TestMSTest `
-	 -description "Run unit tests" 
-{ 
-	Write-Host $testMessage
 }
