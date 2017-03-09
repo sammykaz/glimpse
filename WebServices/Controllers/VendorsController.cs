@@ -201,7 +201,7 @@ namespace WebServices.Controllers
             db.Vendors.Add(vendor);
             db.SaveChanges();
 
-            Mail.SendEmail(vendor);
+            //Mail.SendEmail(vendor);
 
             Log.Information("Vendor: {@vendor} has been added to the database!",vendor.CompanyName);
             return CreatedAtRoute("DefaultApi", new { id = vendor.VendorId }, vendor);

@@ -18,7 +18,8 @@ app.controller('SignupController', ['$scope', '$http', 'dataService', '$state', 
             password: $scope.user.password,
             address: $scope.address,
             telephone: $scope.user.personalphone,
-            Location: location
+            Location: location,
+            RequestFromWeb : true
         }
         if ($scope.address != false) {
             $scope.passConfirmation = false;

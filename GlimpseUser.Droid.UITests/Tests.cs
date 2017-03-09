@@ -13,6 +13,7 @@ namespace GlimpseUser.Droid.UITests
     [TestFixture]
     public class Tests
     {
+        //android app
         AndroidApp app;
         private readonly string _testEmail = "e5@gmail.com";
         private readonly string _testPassword = "e5";
@@ -21,10 +22,10 @@ namespace GlimpseUser.Droid.UITests
         public void BeforeEachTest()
         {
             app = ConfigureApp
-                .Android
-                .ApkFile("../../../Glimpse.Droid/bin/Release/Glimpse.Droid.Glimpse.Droid-x86-Signed.apk")
-                .EnableLocalScreenshots()
-                .StartApp();
+              .Android
+              .ApkFile("C:/Users/Sammy/Desktop/CapstoneProject/glimpse/Glimpse.Droid/bin/Release/Glimpse.Droid.Glimpse.Droid-x86-Signed.apk")
+              .EnableLocalScreenshots()
+              .StartApp();
         }
 
         [Test]

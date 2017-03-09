@@ -56,14 +56,14 @@ namespace Glimpse.Core.UnitTests.Tests.Services
             List<Vendor> allVendors = await _vds.GetVendors();
             List<Vendor> vendorWithTestEmail = allVendors.FindAll(v => v.Email == _testEmail);
 
+            //clean up
+            await _vds.DeleteVendor(vendorWithTestEmail[0]);
+
             Assert.IsTrue(firstSignUpSuccess);
             Assert.IsFalse(secondSignUpSuccess);
             Assert.IsTrue(vendorWithTestEmail.Count == 1);
 
 
-            //clean up
-
-            await _vds.DeleteVendor(vendorWithTestEmail[0]);
         }
 
 
