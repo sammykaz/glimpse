@@ -200,6 +200,8 @@ namespace GlimpseUser.Droid.UITests
 
             //assert for cardview and likeview
             Assert.IsTrue(cardContainsWord != null && elementContainsWord != null);
+
+
         }
 
         [Test]
