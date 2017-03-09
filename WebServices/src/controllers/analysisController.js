@@ -32,7 +32,7 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
             angular.forEach($scope.promotionClicks, function(element1, index1){
                 if (element.PromotionId == element1.PromotionId) {
                     if (element.clicks == undefined)
-                        element.clicks = 0;
+                        element.clicks = 1;
                     else {
                         element.clicks++;
                     }
@@ -61,11 +61,11 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
                 if (serie == elementClicked.PromotionId) {
                     var newDate = new Date(elementClicked.Time);
                     var date = newDate.getDate();
-                    var time = newDate.getHours() + 5;
+                    var time = newDate.getHours();
                     var day = newDate.getDay() - 1;
                     $scope.dataHours[indexSerie][time]++;
                     $scope.dataDays[indexSerie][day]++;
-                    switch(date) {
+                    switch (moment(newDate).format('MMM Do')) {
                         case $scope.labels[0]:
                             $scope.data[indexSerie][0]++;
                             break;
@@ -110,10 +110,10 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
     var initializeData = function () {
         
         angular.forEach($scope.series, function (serie, indexSerie) {
-            $scope.data[indexSerie] = [0, 0, 15, 3, 6, 15, 25];
-            $scope.dataHours[indexSerie] = [0, 0, 1, 0, 0, 0, 0, 5, 0, 0, 0, 2, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0];
-            $scope.dataDays[indexSerie] = [0, 0, 0, 3, 0, 2, 0];
-            $scope.totalClicked[indexSerie] = 10;
+            $scope.data[indexSerie] = [0, 0, 0, 0, 0, 0, 0];
+            $scope.dataHours[indexSerie] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            $scope.dataDays[indexSerie] = [0, 0, 0, 0, 0, 0, 0];
+            $scope.totalClicked[indexSerie] = 0;
         });
     }
 
