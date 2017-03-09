@@ -131,9 +131,9 @@ namespace GlimpseUser.Droid.UITests
             app.EnterText(x => x.Id("txtPassword"), _testPassword);
             app.Tap(x => x.Id("btnSignIn"));
             app.WaitForElement("cardImage");
+            app.Tap(x => x.Class("AppCompatImageView").Index(2));
 
             //Act
-            app.Tap(x => x.Class("AppCompatImageView").Index(2));
             app.WaitForElement("map");
             app.ScrollUp();
             app.ScrollUp();
