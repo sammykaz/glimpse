@@ -10,18 +10,25 @@ properties {
 
 	# Find Test Projects
 	$publishedMSTestTestsDirectory = "$temporaryOutputDirectory\_PublishedMSTestTests"
+	$publishedNUnitTestsDirectory = "$temporaryOutputDirectory\_PublishedNUnitTests"
+
 	$testResultsDirectory = "$outputDirectory\TestResults"
 
 	#Place Test Results in this directory
 	$MSTestTestResultsDirectory = "$testResultsDirectory\MSTest"
+	$NUnitTestResultsDirectory = "$testResultsDirectory\NUnit"
 
 	$buildConfiguration = "Debug"
 	$buildPlatform = "Any CPU"
 
 	$packagesPath = "$solutionDirectory\packages"
-
+	
 	#Using vsTest Runner
 	$vsTestExe = (Get-ChildItem ("C:\Program Files (x86)\Microsoft Visual Studio*\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe")).FullName | Sort-Object $_ | select -last 1
+	
+	#Using Nunit Runner
+	$NUnitExe = (Find-PackagePath $packagesPath "NUnit.ConsoleRunner" ) + "\tools\nunit3-console.exe"
+
 }
 
 FormatTaskName "`r`n`r`n-------- Executing {0} Task --------"
@@ -40,8 +47,11 @@ task Init `
 
 	# Check that all tools are available
 	Write-Host "Checking that all required tools are available"
-	Assert (Test-Path $vsTestExe) "VSTest Console could not be found"
 
+	Write-Host "PATH IS $NUnitExe"
+
+	Assert (Test-Path $vsTestExe) "VSTest Console could not be found"
+	Assert (Test-Path $NUnitExe) "NUnit Console could not be found"
 
 	# Remove previous build results
 	if (Test-Path $outputDirectory) 
@@ -68,9 +78,22 @@ task Compile `
 	}
 }
 
+#NUnit Test Task
+task TestNUnit `
+	-depends Compile `
+	-description "Run NUnit tests" `
+	-precondition { return Test-Path $publishedNUnitTestsDirectory } `
+	-requiredVariable publishedNUnitTestsDirectory, NUnitTestResultsDirectory `
+{
+	$testAssemblies = Prepare-Tests -testRunnerName "NUnit" `
+									-publishedTestsDirectory $publishedNUnitTestsDirectory `
+									-testResultsDirectory $NUnitTestResultsDirectory
+
+	Exec { &$nunitExe $testAssemblies /xml:$NUnitTestResultsDirectory\NUnit.xml /nologo /noshadow }
+}
+
+
 #MSBuild Test Task depends on the compile task and will run the MSTest tests
-
-
 task TestMSTest `
 	-depends Compile `
 	-description "Run MSTest tests" `

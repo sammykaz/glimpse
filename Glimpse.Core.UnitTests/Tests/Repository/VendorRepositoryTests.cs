@@ -69,5 +69,7 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             List<Vendor> vendorWithTestEmail = vendorsAfter.FindAll(v => v.Email == _testEmail);
             await repository.DeleteVendor(vendorWithTestEmail[0]);
         }
+
     }
+    
 }
