@@ -67,7 +67,7 @@ namespace GlimpseUser.Droid.UITests
         public void TestNavigateThroughAllTheAppPages()
         {
 
-            //Arrange scenario condition
+            //Arrange scenario condition and like card
             app.Tap(x => x.Id("btnSignIn"));
             app.Tap(x => x.Id("txtEmail"));
             app.EnterText(x => x.Id("txtEmail"), _testEmail);
@@ -146,7 +146,7 @@ namespace GlimpseUser.Droid.UITests
         }
 
         [Test]
-        public void NewTest()
+        public void TestNavigateThroughTheAppAndViewApparelPromos()
         {
             //Arrange scenario condition(sign in)
             app.Tap(x => x.Id("btnSignIn"));
@@ -155,8 +155,7 @@ namespace GlimpseUser.Droid.UITests
             app.Tap(x => x.Id("txtPassword"));
             app.EnterText(x => x.Id("txtPassword"), _testPassword);
             app.Tap(x => x.Id("btnSignIn"));
-            app.WaitForElement("cardImage");
-
+           app.WaitForElement("cardImage");
 
             //Act
             //acting on cardview
@@ -197,7 +196,6 @@ namespace GlimpseUser.Droid.UITests
 
             //assert for cardview and likeview
             Assert.IsTrue(cardContainsWord != null && elementContainsWord != null);
-
         }
 
         
