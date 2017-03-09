@@ -13,6 +13,8 @@ using Android.Support.V4.View;
 using static Android.Support.V4.View.ViewPager;
 using System;
 using Glimpse.Droid.Controls;
+using Android.Support.Design.Widget;
+using Android.Graphics.Drawables;
 
 namespace Glimpse.Droid.Views
 {
@@ -20,9 +22,12 @@ namespace Glimpse.Droid.Views
     [Register("glimpse.droid.views.ViewPagerFragment")]
     public class ViewPagerFragment : MvxFragment<ViewPagerViewModel>, IOnPageChangeListener, MainActivity.OnBackPressedListener
     {
-        public static CustomViewPager _viewPager;
-       // private ViewPager _viewPager;
+        private CustomViewPager _viewPager;
+        private TabLayout _tabLayout;
         private MvxViewPagerFragmentAdapter _adapter;
+        private int[] _tabIconsGrey = { Resource.Drawable.ic_thumbs_up_down_dark_grey, Resource.Drawable.ic_thumb_up_dark_grey, Resource.Drawable.ic_location_dark_grey };
+        private int[] _tabIconsGreen = { Resource.Drawable.ic_thumbs_up_down_green, Resource.Drawable.ic_thumb_up_green, Resource.Drawable.ic_location_green };
+
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -37,31 +42,34 @@ namespace Glimpse.Droid.Views
             (this.Activity as MainActivity).SetCustomTitle("Map");
 
             var fragments = new List<MvxViewPagerFragmentAdapter.FragmentInfo>
-                  {
-                     new MvxViewPagerFragmentAdapter.FragmentInfo
-                    {
-                      FragmentType = typeof(Views.MapFragment),
-                      Title = "Fragment1",
-                      ViewModel = ViewModel.MapViewModel
-                     },
+                  {                   
                     new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
                       FragmentType = typeof(Views.CardFragment),
-                      Title = "Fragment2",
                       ViewModel = ViewModel.CardViewModel
+                    },
+                    new MvxViewPagerFragmentAdapter.FragmentInfo
+                    {
+                      FragmentType = typeof(Views.LikedPromotionsFragment),
+                      ViewModel = ViewModel.LikedPromotionsViewModel
                     },
                      new MvxViewPagerFragmentAdapter.FragmentInfo
                     {
-                      FragmentType = typeof(Views.LikedPromotionsFragment),
-                      Title = "Fragment3",
-                      ViewModel = ViewModel.LikedPromotionsViewModel
-                    }
+                      FragmentType = typeof(Views.MapFragment),
+                      ViewModel = ViewModel.MapViewModel
+                     }
                   };
 
             _viewPager = View.FindViewById<CustomViewPager>(Resource.Id.viewPager);
             _adapter = new MvxViewPagerFragmentAdapter(this.Context, ChildFragmentManager, fragments);
             _viewPager.Adapter = _adapter;
             _viewPager.AddOnPageChangeListener(this);
+            _tabLayout = View.FindViewById<TabLayout>(Resource.Id.tabs);
+            _tabLayout.SetupWithViewPager(_viewPager);
+
+            _tabLayout.GetTabAt(0).SetIcon(_tabIconsGreen[0]);
+            _tabLayout.GetTabAt(1).SetIcon(_tabIconsGrey[1]);
+            _tabLayout.GetTabAt(2).SetIcon(_tabIconsGrey[2]);
         }
 
         public void OnPageScrollStateChanged(int state)
@@ -74,15 +82,19 @@ namespace Glimpse.Droid.Views
 
         }
 
-        public async void OnPageSelected(int position)
+        public void OnPageSelected(int position)
         {
-            if (position == 0)
-                (this.Activity as MainActivity).SetCustomTitle("Map");
-            else if (position == 1)
+            for (int i = 0; i < _tabIconsGrey.Length; i++)
             {
-                (this.Activity as MainActivity).SetCustomTitle("CardView");
-                 await ViewModel.CardViewModel.ReloadAsync();
+                _tabLayout.GetTabAt(i).SetIcon(_tabIconsGrey[i]);
             }
+            _tabLayout.GetTabAt(position).SetIcon(_tabIconsGreen[position]); 
+
+            if(position == 1)
+            {
+                var pagerliked = (LikedPromotionsFragment)_adapter.GetItem(1);
+                pagerliked.ReloadPromotions();
+            }            
         }
 
         public void doBack()

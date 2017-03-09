@@ -15,7 +15,7 @@ namespace Glimpse.Core.UnitTests.Tests.Services
     {
         private VendorDataService _vds;
 
-        private readonly string _testEmail = "tip92@gmail.com";
+        private readonly string _testEmail = "unitTestEmail@gmail.com";
         private readonly string _testPassword = "unitTestPassword";
         
         [TestInitialize]
@@ -45,10 +45,10 @@ namespace Glimpse.Core.UnitTests.Tests.Services
 
 
             //act
-            await _vds.SignUp(vendor);
+            bool firstSignUpSuccess = await _vds.SignUp(vendor);
 
             //signup twice
-            await _vds.SignUp(vendor);
+            bool secondSignUpSuccess = await _vds.SignUp(vendor);
 
             //assert
             //check that 2 user with same email were not created
@@ -56,7 +56,10 @@ namespace Glimpse.Core.UnitTests.Tests.Services
             List<Vendor> allVendors = await _vds.GetVendors();
             List<Vendor> vendorWithTestEmail = allVendors.FindAll(v => v.Email == _testEmail);
 
+            Assert.IsTrue(firstSignUpSuccess);
+            Assert.IsFalse(secondSignUpSuccess);
             Assert.IsTrue(vendorWithTestEmail.Count == 1);
+
 
             //clean up
 
@@ -91,6 +94,38 @@ namespace Glimpse.Core.UnitTests.Tests.Services
             //clean up
 
             await _vds.DeleteVendor(vendor);
+        }
+
+        [TestMethod]
+        public async Task CheckIfPasswordAndSalt_AreNull()
+        {
+            //arrange
+            Vendor vendor = new Vendor
+            {
+                Email = _testEmail,
+                Password = _testPassword,
+                CompanyName = "UnitTestCompany",
+                Address = "Unit Test Address",
+                Telephone = "543-535-5353",
+                Location = new Location
+                {
+                    Lat = 54.434,
+                    Lng = 53.656,
+                },
+            };
+
+            //act
+            await _vds.SignUp(vendor);
+
+            //assert
+            Vendor vendorFromDb = await _vds.SearchVendorByEmail(_testEmail);
+            Assert.IsTrue(await _vds.CheckIfVendorExists(_testEmail));
+            Assert.IsNull(vendorFromDb.Password);
+            Assert.IsNull(vendorFromDb.Salt);
+
+            //clean up
+
+            await _vds.DeleteVendor(vendorFromDb);
         }
 
 

@@ -24,6 +24,9 @@ using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Droid.Support.V4;
 using MvvmCross.Platform;
 using static Android.Gms.Maps.GoogleMap;
+using MvvmCross.Core.ViewModels;
+using MvvmCross.Platform.Droid.WeakSubscription;
+using MvvmCross.Platform.WeakSubscription;
 
 namespace Glimpse.Droid.Views
 {
@@ -63,6 +66,18 @@ namespace Glimpse.Droid.Views
             base.OnActivityCreated(p0);
             // (this.Activity as MainActivity).SetCustomTitle("MapView");
             MapsInitializer.Initialize(Activity);
+            IMvxNotifyPropertyChanged viewModel = ViewModel as IMvxNotifyPropertyChanged;
+            viewModel.WeakSubscribe(PropertyChanged);
+        }
+
+        private void PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Query" /*|| e.PropertyName == "SelectedItem"*/)
+            {
+                clusterManager.ClearItems();
+                clusterList.Clear();
+                ShowPromotionsOnMap();
+            }
         }
 
 

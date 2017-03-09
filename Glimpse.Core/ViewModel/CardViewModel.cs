@@ -44,7 +44,7 @@ namespace Glimpse.Core.ViewModel
         }
 
         protected override async Task InitializeAsync()
-        {
+        {/*
             IsBusy = true;
             //Creates the locator
             locator = CrossGeolocator.Current;
@@ -59,7 +59,7 @@ namespace Glimpse.Core.ViewModel
             PromotionList = await GetPromotionsWithLocation();
 
             _promotionsStored = PromotionList;
-            IsBusy = false;
+            IsBusy = false;*/
         }
 
         private Categories? _selectedItem;
@@ -72,11 +72,25 @@ namespace Glimpse.Core.ViewModel
             set
             {
                 _selectedItem = value;
-                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem);
+                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem, Query);
                 RaisePropertyChanged(() => PromotionList);
             }
         }
 
+        private string _query=" ";
+        public string Query
+        {
+            get
+            {
+                return _query;
+            }
+            set
+            {
+                _query = value;
+                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, SelectedItem, _query);
+                RaisePropertyChanged(() => Query);
+            }
+        }        
 
         private List<string> _categories;
         public List<string> Categories
@@ -112,7 +126,7 @@ namespace Glimpse.Core.ViewModel
             };
         }
 
-        public async Task InitializeLocationAndPromotionList()
+        public async Task InitializeLocationAndPromotionList(List<PromotionWithLocation> alreadyLikedPromotions)
         {
             IsBusy = true;
             //Creates the locator
@@ -125,10 +139,15 @@ namespace Glimpse.Core.ViewModel
             //get initial user location
             _userLocation = await GetUserLocation();
 
-            PromotionList = await GetPromotionsWithLocation();
+            List<PromotionWithLocation> promotionListIncludingLiked = await GetPromotionsWithLocation();
+
+            promotionListIncludingLiked.RemoveAll(promo => alreadyLikedPromotions.Any(likedPromo => likedPromo.PromotionId == promo.PromotionId));
+
+            PromotionList = promotionListIncludingLiked;
 
             _promotionsStored = PromotionList;
             IsBusy = false;
+            Query = "";
         }
 
 
@@ -201,19 +220,16 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public ICommand ViewTileDetails
+        public void ShowDetailPage(string promotionId, string promotionTitle, string promotionDuration, string promotionDescription )
         {
-            get
-            {
-                return new MvxCommand<PromotionWithLocation>(item =>
-                {
-                    var desc = new Dictionary<string, string> {
-                        {"PromotionID", Convert.ToString(item.PromotionId)} };
+            var desc = new Dictionary<string, string> {
+                        {"PromotionID", promotionId},
+                        {"PromotionTitle", promotionTitle},
+                        {"PromotionDuration", promotionDuration},
+                        {"PromotionDescription", promotionDescription},
+            };
 
-                    ShowViewModel<TileDetailsViewModel>(desc);
-
-                });
-            }
+            ShowViewModel<TileDetailsViewModel>(desc);
         }
 
         private bool _isBusy;

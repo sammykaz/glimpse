@@ -53,5 +53,12 @@ namespace Glimpse.Core.Repositories
             return entities.Where(e => e.PromotionStartDate.CompareTo(DateTime.Now) <= 0 && e.PromotionEndDate.CompareTo(DateTime.Now) >= 0).GroupBy(p => p.PromotionId).Select(p =>  p.First()).Distinct().ToList();
         }
 
+        public async Task<List<PromotionWithLocation>> SearchActivePromotions(string keyword)
+        {
+            // var entities = await _connection.Table<PromotionWithLocation>().ToListAsync();
+            var entities = await GetActivePromotions();
+            return entities.Where(promo => promo.Title.Contains(keyword) || promo.Description.Contains(keyword)).ToList();
+        }
+
     }
 }

@@ -51,6 +51,7 @@ namespace Glimpse.Core.ViewModel
             //Setting up the event and start listening
             locator.PositionChanged += Locator_PositionChanged;
             await locator.StartListeningAsync(minTime: 1, minDistance: 10);
+            Query = "";
         }
 
         public async Task StorePromotionClick(int promotionId)
@@ -134,7 +135,7 @@ namespace Glimpse.Core.ViewModel
                 RaisePropertyChanged(() => VendorData);
             }
         }
-
+        
         public async Task<List<PromotionWithLocation>> GetActivePromotions()
         {
             _promotionsStored = await promotionDataService.GetActivePromotions();
@@ -186,8 +187,23 @@ namespace Glimpse.Core.ViewModel
             set
             {
                 _selectedItem = value;
-                FilteredPromotionList = promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem);
+                FilteredPromotionList = promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem, Query);
                 RaisePropertyChanged(() => FilteredPromotionList);
+            }
+        }
+
+        private string _query=" ";
+        public string Query
+        {
+            get
+            {
+                return _query;
+            }
+            set
+            {
+                _query = value;
+                FilteredPromotionList = promotionDataService.FilterPromotionWithLocationList(_promotionsStored, SelectedItem, _query);
+                RaisePropertyChanged(() => Query);
             }
         }
 

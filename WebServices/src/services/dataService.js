@@ -8,8 +8,18 @@
     fac.getVendors = function () {
         return $resource('/api/vendors/:vendor', { user: "@vendor" });
     }
+    fac.updateVendorDetails = function () {
+        return $resource('/api/vendors/:VendorId', null, {
+            'update': {
+                method: 'PUT'
+            }
+        });
+    }
     fac.getPromotions = function () {
         return $resource('/api/promotions/:promotion', { user: "@promotion" });
+    }
+    fac.savePromotionImages = function (imageInfo) {
+        return $http.post('/api/PromotionImages', imageInfo);
     }
     fac.updatePromotion = function () {
         return $resource('/api/promotions/:promotion', null, {
@@ -30,6 +40,9 @@
     }
     fac.getPromotionClicks = function () {
         return $resource('/api/promotionclicks', { user: "@promotionclicks" })
+    }
+    fac.getPromotionImagesFromSpecificPromotion = function (promoId) {
+        return $resource('/api/Promotions/'+promoId+'/promotionimages', { user: "@promotionimages" })
     }
     return fac;
 }])

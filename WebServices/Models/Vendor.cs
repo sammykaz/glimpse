@@ -27,6 +27,9 @@ namespace WebServices.Models
 
         public string Telephone { get; set; }
 
+        [NotMapped]
+        public bool RequestFromWeb { get; set; }
+
         public Location Location { get; set; }
 
         public virtual ICollection<Promotion> Promotions { get; set; }

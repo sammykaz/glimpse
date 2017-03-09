@@ -12,11 +12,11 @@ namespace Glimpse.Core.Repositories
     class PromotionRepository : IPromotionRepository
     {
 
-        public async Task StorePromotion(Promotion promotion)
+        public async Task<bool> StorePromotion(Promotion promotion)
         {
             RestClient<Promotion> restClient = new RestClient<Promotion>();
 
-            await restClient.PostAsync(promotion);
+            return await restClient.PostAsync(promotion);
         }
 
         public async Task<List<Promotion>> GetPromotion(int id)
@@ -28,11 +28,14 @@ namespace Glimpse.Core.Repositories
             return promotion;
         }
 
-        public async Task<List<Promotion>> GetPromotions()
+        public async Task<List<Promotion>> GetPromotions(bool active = false, string keyword = "")
         {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("active", active.ToString());
+            parameters.Add("keyword", keyword);
             RestClient<Promotion> restClient = new RestClient<Promotion>();
 
-            var promotions = await restClient.GetAsync();
+            var promotions = await restClient.GetAsync(parameters);
 
             return promotions;
         }
@@ -46,6 +49,13 @@ namespace Glimpse.Core.Repositories
             var promotions = await restClient.GetWithFilter(enumAsString);
 
             return promotions;
+        }
+
+        public async Task DeletePromotion(Promotion promotion)
+        {
+            RestClient<Promotion> restClient = new RestClient<Promotion>();
+
+            await restClient.DeleteAsync(promotion.PromotionId, promotion);
         }
     }
 }

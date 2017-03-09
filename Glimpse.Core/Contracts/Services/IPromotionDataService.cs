@@ -11,7 +11,7 @@ namespace Glimpse.Core.Contracts.Services
 {
     public interface IPromotionDataService
     {
-        Task StorePromotion(Promotion promotion);
+        Task<bool> StorePromotion(Promotion promotion);
 
         Task<List<Promotion>> GetPromotion(int id);
 
@@ -21,8 +21,14 @@ namespace Glimpse.Core.Contracts.Services
 
         Task<List<Promotion>> GetPromotionsByCategory(Categories category);
 
-        List<PromotionWithLocation> FilterPromotionWithLocationList(List<PromotionWithLocation> promoWithLocationList, Categories? category);
+        List<PromotionWithLocation> FilterPromotionWithLocationList(List<PromotionWithLocation> promoWithLocationList, Categories? category, string query);
 
         Task<List<PromotionWithLocation>> PopulatePromotionWithLocationBlobs(List<PromotionWithLocation> promotionsWithLocation);
+
+        Task<List<Promotion>> SearchActivePromotions(string keyword);
+
+        Task<List<PromotionWithLocation>> JoinPromotionWithLocation(List<Promotion> promos);
+
+        Task DeletePromotion(Promotion promotion);
     }
 }

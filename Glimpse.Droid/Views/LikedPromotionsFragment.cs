@@ -14,17 +14,21 @@ using System.IO;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Repositories;
 using SQLite.Net.Platform.XamarinAndroid;
+using System.Threading.Tasks;
 
 namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.viewPager, true)]
     [Register("glimpse.droid.views.LikedPromotionsFragment")]
-    public class LikedPromotionsFragment : MvxFragment<LikedPromotionsViewModel>, RadioGroup.IOnCheckedChangeListener
+    public class LikedPromotionsFragment : MvxFragment<LikedPromotionsViewModel>, RadioGroup.IOnCheckedChangeListener, ListView.IOnScrollListener
     {
         private LocalPromotionRepository _localPromotionRepository;
         private RadioGroup _radioGroup;
+        private SearchView _searchView;
+        private ListView _listView;
+        private bool _scrollEnabled;
 
-
+        private MvxSwipeRefreshLayout _swipeRefreshLayout;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
@@ -34,22 +38,33 @@ namespace Glimpse.Droid.Views
         public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
             base.OnViewCreated(view, savedInstanceState);
-            (this.Activity as MainActivity).SetCustomTitle("Settings");
-
+            _swipeRefreshLayout = (MvxSwipeRefreshLayout)view.FindViewById(Resource.Id.refresher);
+            _listView = (ListView)view.FindViewById(Resource.Id.listView_LikedItems);
+            _listView.SetOnScrollListener(this);
         }
 
         public override async void OnResume()
         {
             base.OnResume();
+
+             _radioGroup = (RadioGroup)View.FindViewById(Resource.Id.filter_radiogroup);
+             _radioGroup.SetOnCheckedChangeListener(this);
+
+            _searchView = (SearchView)View.FindViewById(Resource.Id.searchview);           
+            _searchView.SetIconifiedByDefault(true);
+
+        }
+
+        public async void ReloadPromotions()
+        {           
             _localPromotionRepository = new LocalPromotionRepository();
             var path = GetDbPath();
             await _localPromotionRepository.InitializeAsync(path, new SQLitePlatformAndroid());
             ViewModel.PromotionList = await _localPromotionRepository.GetActivePromotions();
             ViewModel.PromotionsStored = ViewModel.PromotionList;
-
-             _radioGroup = (RadioGroup)View.FindViewById(Resource.Id.filter_radiogroup);
-             _radioGroup.SetOnCheckedChangeListener(this);
+           
         }
+
 
         public void OnCheckedChanged(RadioGroup group, int checkedId)
         {
@@ -57,6 +72,9 @@ namespace Glimpse.Droid.Views
             checkedId = checkedId - 1;
             //the filter on previous page made this checkedID increment by 7...
             checkedId = checkedId % 7;
+            if (checkedId < 0)
+                checkedId = checkedId + 7;
+
             if (checkedId == 0)
             {
                 ViewModel.SelectedItem = null;
@@ -75,5 +93,21 @@ namespace Glimpse.Droid.Views
             return Path.Combine(documentsPath, "glimpse.db3");
         }
 
+        public void OnScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
+        {
+            int topRow= (_listView == null || _listView.ChildCount == 0) ? 0 : _listView.GetChildAt(0).Top;
+            bool newScrollEnabled = (firstVisibleItem == 0 && topRow >= 0) ? true:false;
+
+            if (null != _swipeRefreshLayout && _scrollEnabled != newScrollEnabled)
+            {
+                _swipeRefreshLayout.SetEnabled(newScrollEnabled);
+                _scrollEnabled = newScrollEnabled;        
+            }
+        }
+
+        public void OnScrollStateChanged(AbsListView view, [GeneratedEnum] ScrollState scrollState)
+        {
+  
+        }
     }
 }
