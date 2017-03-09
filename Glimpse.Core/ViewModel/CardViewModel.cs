@@ -77,7 +77,7 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        private string _query;
+        private string _query=" ";
         public string Query
         {
             get
