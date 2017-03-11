@@ -91,5 +91,5 @@ label:hover input[type="radio"] ~ i.fa {color: #7AA3CC;}
 .chart-x-axis-orange{color:  #f0ac3f !important; text-align: center !important; font-size: 20px;}
 .promotions-dashboard{background-color: #373a3c !important; color: white !important; font-size: 20px; height:100vh;}
 .promotions-dashboard-corner{background-color: #373a3c !important; height:48px; text-align: center; color:white; padding-top: 5px;}
-.promotions-dashboard-buttons{width: 100%; height:75px; border-radius: 35px !important; font-size: large !important; margin-bottom:13px}
+.promotions-dashboard-buttons{width: 100%; height:50px; border-radius: 35px !important; font-size: large !important; margin-bottom:13px}
 .promotions-dashboard-table-thead{display: table-header-group; vertical-align: middle; border-color: inherit; color:white; background-color: #7ca279;}

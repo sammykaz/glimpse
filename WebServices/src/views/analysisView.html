@@ -15,31 +15,31 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="chart-title bkg-teal">Number of views during the past few day</div>
+            <div class="chart-title bkg-dark-gray">Number of views during the past few day</div>
             <div class="bkg-white">
                 <canvas id="line" class="chart chart-line" chart-data="data"
                         chart-labels="labels" chart-series="seriesTitle" chart-options="chartLineDatesOptions"
                         chart-colors="colors" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
-                <div class="chart-x-axis-teal">Days of the month</div>
+                <div class="chart-x-axis-dark-gray">Days of the month</div>
 
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="chart-title bkg-red">Number of views based on the day of the week</div>
+            <div class="chart-title bkg-dark-gray">Number of views based on the day of the week</div>
             <div class="bkg-white">
                 <canvas id="line" class="chart chart-line" chart-data="dataDays"
                         chart-labels="labelDays" chart-series="seriesTitle" chart-options="chartLineDaysOptions"
                         chart-colors="colors" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
-                <div class="chart-x-axis-red">Day of the week</div>
+                <div class="chart-x-axis-dark-gray">Day of the week</div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="chart-title bkg-orange">Number of views based on the time of the day</div>
+        <div class="col-sm-12">
+            <div class="chart-title bkg-dark-gray">Number of views based on the time of the day</div>
             <div class="bkg-white">
                 <canvas id="line" class="chart chart-line" chart-data="dataHours"
                         chart-labels="labelHours" chart-series="seriesTitle" chart-options="chartLineDaysOptions"
                         chart-colors="colors" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
-                <div class="chart-x-axis-orange">Time of the day</div>
+                <div class="chart-x-axis-dark-gray">Time of the day</div>
             </div>
         </div>
         <div ng-show="noPromotionClicked">
