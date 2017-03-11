@@ -62,8 +62,7 @@ body {
 .close-warning{color: #014c8c !important; text-decoration: underline !important;}
 .promotion-expired{color: red; font-size: 25px;}
 .text-center{text-align: center;}
-.analysis-description{height: 100%; display: inline-block; background: white; border-top-right-radius: 8px; border-top-left-radius: 8px; color: #418ac9; text-align: center !important; font-size: 20px;}
-.analysis-pie-description{height: 100%; display: inline-block; background: white; border-top-right-radius: 8px; border-top-left-radius: 8px; color: #418ac9; text-align: center !important; font-size: 20px; padding-top: 20%;}
+.analysis-pie-description{}
 .hide{display : none !important}
 .chart-padding{padding-bottom: 35px;}
 .search-categories{border-radius: 10px !important; border: 1px solid #2187dc !important;}
@@ -78,4 +77,13 @@ label:hover input[type="radio"] ~ i.fa {color: #7AA3CC;}
 .categories-size{font-size:18px}
 .map-promo-image{width: 100% !important; height: 400px; overflow: hidden; position: relative; background: #e6e6e6; border: 20px solid #FFF; margin-top: 20px; text-align: center;}
 .categories-radio-button{display: none !important;}
-
+.bkg-white{background: white !important; margin-bottom: 16px;}
+.bkg-dark-gray{background-color: #373a3c !important;}
+.bkg-teal{background-color: #33C9DC !important;}
+.bkg-red{background-color: rgb(244,67,54);}
+.bkg-orange{background-color: #f0ac3f;}
+.chart-title{padding: .75rem; vertical-align: top; border-top: 1px solid #eceeef; color: #fff; vertical-align: bottom; border-bottom: 2px solid #eceeef; font-weight: bold;}
+.chart-x-axis-dark-gray{color: #373a3c !important; text-align: center !important; font-size: 20px;}
+.chart-x-axis-teal{color: #33C9DC !important; text-align: center !important; font-size: 20px;}
+.chart-x-axis-red{color:  rgb(244,67,54) !important; text-align: center !important; font-size: 20px;}
+.chart-x-axis-orange{color:  #f0ac3f !important; text-align: center !important; font-size: 20px;}
