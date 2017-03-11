@@ -29,13 +29,12 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
     
     var getVendorPromotionsClicked = function () {
         angular.forEach($scope.promotions, function (element, index) {
-            angular.forEach($scope.promotionClicks, function(element1, index1){
+            angular.forEach($scope.promotionClicks, function (element1, index1) {
+                if (element.clicks == undefined) {
+                    element.clicks = 0;
+                }
                 if (element.PromotionId == element1.PromotionId) {
-                    if (element.clicks == undefined)
-                        element.clicks = 1;
-                    else {
-                        element.clicks++;
-                    }
+                    element.clicks++;
                     element1.title = element.Title;
                     $scope.vendorPromotionsClicked.push(element1);
                     var newDate = new Date(element1.Time);
@@ -122,7 +121,7 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
     };
     moment().format('MMMM Do YYYY, h:mm:ss a');
     moment().format('MMMM Do YYYY, h:mm:ss a')
-
+    $scope.colors = ['#72C02C', '#3498DB', '#717984', '#F1C40F'];
     $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
     $scope.chartLineDatesOptions = {
         scales: {
