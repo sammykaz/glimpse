@@ -72,6 +72,22 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
         $scope.removeOn = false;
     }
 
+    $scope.removePromotion = function (promotion, index) {
+        $uibModal.open({
+            templateUrl: '/src/views/deletePromotionConfirmation.html',
+            controller: 'deletePromotionModalController',
+            size: 'lg',
+            scope: $scope
+        }).result.then(function (result) {
+            dataService.deletePromotion().delete({
+                promotion: promotion.PromotionId
+            }).$promise.then(function () {
+                $scope.mypromotions.splice(index, 1);
+            });
+        }, function () {
+            console.log("Modal dismissed");
+        });
+    }
     $scope.deletePromotion = function (promotion, index) {
         dataService.deletePromotion().delete({
             promotion: promotion.PromotionId
@@ -1175,4 +1191,15 @@ app.controller('changeDateModalController', function ($scope, $uibModalInstance,
         return '';
     }
 
+});
+
+app.controller('deletePromotionModalController', function ($scope, $uibModalInstance) {
+
+    $scope.confirm = function () {
+        $uibModalInstance.close('Confirmed');
+    }
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    }
 });

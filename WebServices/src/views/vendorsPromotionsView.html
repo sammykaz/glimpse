@@ -24,7 +24,7 @@
                         <td>{{promotion.PromotionEndDate  | date : "fullDate"}}</td>
                         <td><span ng-show="isPromotionExpired(promotion.PromotionEndDate)">Expired</span><span ng-hide="isPromotionExpired(promotion.PromotionEndDate)">Ongoing</span></td>
                         <th><button type="button" class="btn btn-outline-info" ng-click="editPromotion(promotion)" ng-show="editOn">Edit</button>
-                            <button type="button" class="btn btn-outline-danger" ng-click="deletePromotion(promotion, mypromotions.indexOf(promotion))" ng-show="removeOn">Remove</button>
+                            <button type="button" class="btn btn-outline-danger" ng-click="removePromotion(promotion, mypromotions.indexOf(promotion))" ng-show="removeOn">Remove</button>
                             <button ng-show="isPromotionExpired(promotion.PromotionEndDate)" type="button" class="btn btn-outline-info" ng-click="editPromotionDate(promotion)">Repost</button>
                         </th>
                     </tr>
