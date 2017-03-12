@@ -75,6 +75,7 @@ label input[type="radio"] ~ i.fa.fa-dot-circle-o{display: none;}
 label input[type="radio"]:checked ~ i.fa.fa-circle-o{display: none;}
 label input[type="radio"]:checked ~ i.fa.fa-dot-circle-o{color: #7AA3CC; display: inline;}
 label:hover input[type="radio"] ~ i.fa {color: #7AA3CC;}
+.div-center{width:100% !important; text-align:center !important;}
 .text-align-init{text-align: initial !important;}
 .categories-size{font-size:18px}
 .map-promo-image{width: 100% !important; height: 400px; overflow: hidden; position: relative; background: #e6e6e6; border: 20px solid #FFF; margin-top: 20px; text-align: center;}
@@ -93,9 +94,16 @@ label:hover input[type="radio"] ~ i.fa {color: #7AA3CC;}
 .chart-x-axis-orange{color:  #f0ac3f !important; text-align: center !important; font-size: 20px;}
 .promotions-dashboard{background-color: #373a3c !important; color: white !important; font-size: 20px; height:100vh;}
 .promotions-dashboard-corner{background-color: #373a3c !important; height:48px; text-align: center; color:white; padding-top: 5px;}
-.promotions-dashboard-buttons{height:40px; border-radius: 35px !important; font-size: large !important; margin-bottom:13px; margin-top:13px;background-color: #46c37b; color:white;}
+.promotions-dashboard-buttons{height:40px; border-radius: 35px !important; font-size: large !important; margin-bottom:13px; margin-top:13px;background-color: #46c37b !important; color:white;}
 .promotions-dashboard-table-thead{display: table-header-group; vertical-align: middle; border-color: inherit; color:white; background-color: #7ca279;}
+.label-categories{padding-top: 10px;}
+.label{border-top: 1px solid #f0f0f0; display: inline; padding: .2em .6em .3em; font-size: 91%; line-height: 1; color: #fff; text-align: center; white-space: nowrap; vertical-align: baseline; border-radius: .25em;}
 .label-active{ background-color: #46c37b;}
-.label{border-top: 1px solid #f0f0f0; display: inline; padding: .2em .6em .3em; font-size: 75%; font-weight: 700; line-height: 1; color: #fff; text-align: center; white-space: nowrap; vertical-align: baseline; border-radius: .25em;}
 .label-inactive{background-color: rgb(210, 106, 92);}
 .clickable{cursor: pointer;}
+.label-footwear{background-color:rgb(112, 185, 235);}
+.label-electronics{background-color:rgb(243, 183, 96);}
+.label-jewellery{background-color:rgb(210, 106, 92);}
+.label-restaurants{background-color:rgb(92, 144, 210);}
+.label-services{background-color:rgb(70, 195, 123);}
+.label-apparel{background-color:rgb(128, 112, 235);}
