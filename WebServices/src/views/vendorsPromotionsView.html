@@ -12,8 +12,8 @@
                         <th class="border-zero">Start Date</th>
                         <th class="border-zero">End Date</th>
                         <th class="border-zero">Status</th>
-                        <th class="border-zero">Actions</th>
-                        <th class="border-zero"><button type="button" class="btn btn-outline-secondary" ng-click="turnOff()" ng-show="editOn || removeOn">X</button></th>
+                        <th class="border-zero">Edit</th>
+                        <th class="border-zero"></th>
                     </tr>
                 </thead>
                 <tbody ng-repeat="promotion in mypromotions | reverse">
@@ -24,7 +24,7 @@
                         <td><span ng-show="isPromotionExpired(promotion.PromotionEndDate)" class="label label-inactive">Expired</span><span ng-hide="isPromotionExpired(promotion.PromotionEndDate)" class="label label-active">Ongoing</span></td>
                         <td>
                             <span class="fa fa-edit icon-signup clickable" ng-click="editPromotion(promotion)"></span>
-                            <span class="fa fa-remove icon-signup clickable" ng-click="removePromotion(promotion, mypromotions.indexOf(promotion))"></span>
+                            <span class="fa fa-remove icon-signup clickable x-icon" ng-click="removePromotion(promotion, mypromotions.indexOf(promotion))"></span>
                         </td>
 
                         <th><button type="button" class="btn btn-outline-info" ng-click="editPromotion(promotion)" ng-show="editOn">Edit</button>

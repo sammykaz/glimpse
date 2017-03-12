@@ -66,6 +66,7 @@ body {
 .promotion-expired{color: red; font-size: 25px;}
 .text-center{text-align: center;}
 .hide{display : none !important}
+.clickable{cursor: pointer;}
 .chart-padding{padding-bottom: 35px;}
 .search-categories{border-radius: 10px !important; border: 1px solid #2187dc !important;}
 .search-div{padding-top: 20px; font-size: 20px;}
@@ -96,11 +97,11 @@ label:hover input[type="radio"] ~ i.fa {color: #7AA3CC;}
 .promotions-dashboard-corner{background-color: #373a3c !important; height:48px; text-align: center; color:white; padding-top: 5px;}
 .promotions-dashboard-buttons{height:40px; border-radius: 35px !important; font-size: large !important; margin-bottom:13px; margin-top:13px;background-color: #46c37b !important; color:white;}
 .promotions-dashboard-table-thead{display: table-header-group; vertical-align: middle; border-color: inherit; color:white; background-color: #7ca279;}
+.x-icon{margin-left: 15px !important;}
 .label-categories{padding-top: 10px;}
 .label{border-top: 1px solid #f0f0f0; display: inline; padding: .2em .6em .3em; font-size: 91%; line-height: 1; color: #fff; text-align: center; white-space: nowrap; vertical-align: baseline; border-radius: .25em;}
 .label-active{ background-color: #46c37b;}
 .label-inactive{background-color: rgb(210, 106, 92);}
-.clickable{cursor: pointer;}
 .label-footwear{background-color:rgb(112, 185, 235);}
 .label-electronics{background-color:rgb(243, 183, 96);}
 .label-jewellery{background-color:rgb(210, 106, 92);}
