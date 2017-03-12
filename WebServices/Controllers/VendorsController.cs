@@ -32,6 +32,7 @@ namespace WebServices.Controllers
         }
 
         // GET: api/Vendors/5
+        [Route("api/Vendors/{id}")]
         [ResponseType(typeof(Vendor))]
         public IHttpActionResult GetVendor(int id)
         {
@@ -191,11 +192,16 @@ namespace WebServices.Controllers
                 Log.Error("Invalid model state for vendor: {@vendor}", vendor.CompanyName);
                 return BadRequest(ModelState);
             }
-
+            if (vendor.RequestFromWeb == true)
+            {
+                var cryptoTuple = Utility.Cryptography.HashPassword(vendor.Password);
+                vendor.Password = cryptoTuple.Item1;
+                vendor.Salt = cryptoTuple.Item2;
+            }
             db.Vendors.Add(vendor);
             db.SaveChanges();
 
-            Mail.SendEmail(vendor);
+            //Mail.SendEmail(vendor);
 
             Log.Information("Vendor: {@vendor} has been added to the database!",vendor.CompanyName);
             return CreatedAtRoute("DefaultApi", new { id = vendor.VendorId }, vendor);
@@ -203,6 +209,8 @@ namespace WebServices.Controllers
 
         // DELETE: api/Vendors/5
         [ResponseType(typeof(Vendor))]
+        [HttpDelete]
+        [Route("api/Vendors/{id}")]
         public IHttpActionResult DeleteVendor(int id)
         {
             Log.Information("Attemping to delete vendor with id: {@id}", id);

@@ -3,7 +3,7 @@ using Owin;
 using WebServices;
 using Serilog;
 using System;
-using Microsoft.Extensions.Logging;
+
 
 [assembly: OwinStartup(typeof(Startup))]
 

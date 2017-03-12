@@ -11,13 +11,15 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
     [TestClass]
     public class PromotionRepositoryTests
     {
-        /*
+        
         IPromotionRepository repository;
+        IVendorRepository vendorRepository;
 
         [TestInitialize]
         public void Initialize()
         {
             repository = new PromotionRepository();
+            vendorRepository = new VendorRepository();
         }
 
         [TestMethod]
@@ -37,43 +39,42 @@ namespace Glimpse.Core.UnitTests.Tests.Repository
             //arrange
             var promotionsBefore = await repository.GetPromotions();
             var promotionsCountBefore = promotionsBefore.Count;
+            var unitTestByteArray = new byte[3000];
+            for (int i = 0; i < unitTestByteArray.Length; i++)
+            {
+                unitTestByteArray[i] = 0x20;
+            }
 
-            List<Category> promotionCategories = new List<Category> { };
-            promotionCategories.Add(Category.Electronics);
+            //getting a vendor to attach promotion too, promo will be deleted after
+            List<Vendor> vendors = await vendorRepository.GetVendors();
+            int vendorId = vendors[0].VendorId;
+
             Promotion promotion = new Promotion()
             {
                 Title = "TestPromotion",
                 Description = "PromotionDescription",
-                Categories = promotionCategories,
-                PromotionStartDate = "02/04",
-                PromotionEndDate = "24/24",
-                VendorId = 0,
-                PromotionActive = true,
-                PromotionLength = "2",
+                Category = Categories.Apparel,
+                PromotionStartDate = DateTime.Now,
+                PromotionEndDate = DateTime.Now.AddDays(4),
+                VendorId = vendorId,
+                PromotionImage = unitTestByteArray,
+                PromotionImageURL = "unitTest",
             };
 
             //act 
-            await repository.StorePromotion(promotion);
+            bool promotionCreated = await repository.StorePromotion(promotion);
 
             //Assert
-            var promotonsAfter = await repository.GetPromotions();
-            var promotionsCountAfter = promotonsAfter.Count;
+            var promotionsAfter = await repository.GetPromotions();
+            var promotionsCountAfter = promotionsAfter.Count;
 
             var difference = promotionsCountAfter - promotionsCountBefore;
             Assert.IsTrue(difference == 1);
-        }
 
+            //cleanup
+            await repository.DeletePromotion(promotionsAfter[promotionsAfter.Count - 1]);
 
-        [TestMethod]
-        public async Task Test_Categories_Match_Selected_Categories()
-        {
-            //Act
-            var promotions = await repository.GetPromotions();
-
-            //Assert
-            Assert.AreNotEqual(0, promotions.Count);
-            Assert.AreEqual(promotions[9].CategoriesList, "Footwear");
-        }
-        */
+        }       
+        
     }
 }

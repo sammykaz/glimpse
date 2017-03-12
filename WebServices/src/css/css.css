@@ -53,7 +53,7 @@ body {
 .promotion-info{vertical-align: middle; text-align:center; line-height: 100px; background: #a4c7db; font-weight: bold; font-family: 'Exo';}
 .promotion-value{vertical-align: middle; padding-top: 10px; background:white !important; font-family: 'Exo'; font-weight: initial;}
 .promotion-map-value{vertical-align: middle; text-align:center; background:white !important; font-family: 'Exo'; font-weight: initial;}
-.promotion-image{height: 250px; padding-left:0px!important; padding-right:0px !important; position: relative !important;}
+.promotion-image{height: 250px; padding-left:0px!important; padding-right:0px !important; position: relative !important; cursor: pointer;}
 .promotion-height{overflow: hidden; height: 250px; background: white !important; margin-bottom: 25px;}
 .promotion-background{background: rgba(0, 98, 184, 0.1); padding-top:25px;}
 .img-middle {max-width: 100%; width: auto !important; height: auto !important; position: absolute !important; top: 0; bottom: 0; left: 0; right: 0; margin: auto;}
@@ -76,6 +76,6 @@ label input[type="radio"]:checked ~ i.fa.fa-dot-circle-o{color: #7AA3CC; display
 label:hover input[type="radio"] ~ i.fa {color: #7AA3CC;}
 .text-align-init{text-align: initial !important;}
 .categories-size{font-size:18px}
-.map-promo-image{height: 300px; width: 100% !important; text-align: center; background: white !important;}
-
+.map-promo-image{width: 100% !important; height: 400px; overflow: hidden; position: relative; background: #e6e6e6; border: 20px solid #FFF; margin-top: 20px; text-align: center;}
+.categories-radio-button{display: none !important;}
 

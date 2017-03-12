@@ -8,7 +8,7 @@ namespace Glimpse.Core.Contracts.Services
     {
         Task<Vendor> SearchVendorByEmail(string email);
 
-        Task SignUp(Vendor vendor);
+        Task<bool> SignUp(Vendor vendor);
 
         Task EditVendor(int id, Vendor vendor);
 

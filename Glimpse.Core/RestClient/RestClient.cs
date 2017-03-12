@@ -23,7 +23,7 @@ namespace Plugin.RestClient
         //http://localhost/Glimpse/api/
 
 
-        private readonly string WebServiceUrl = "http://10.0.3.2/Glimpse/api/" + typeof(T).Name + "s/";
+        private readonly string WebServiceUrl = "http://glimpsews.azurewebsites.net/api/" + typeof(T).Name + "s/";
 
         /// <summary>
         /// get request

@@ -3,7 +3,6 @@ using MvvmCross.Localization;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 using Glimpse.Core.Utility;
-using Glimpse.Localization;
 
 namespace Glimpse.Core
 {

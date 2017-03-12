@@ -59,6 +59,9 @@ namespace WebServices.DataGenerator
             return data;
         }
 
+        /**
+         * Generate random number of promotions with random list of vendor Ids
+         **/
         public static List<Promotion> GeneratePromotions(int numberOfPromotions, List<int> vendorIds)
         {
             List<Promotion> promotions = new List<Promotion>();
