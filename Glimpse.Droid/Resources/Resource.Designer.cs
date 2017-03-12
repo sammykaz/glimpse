@@ -1299,35 +1299,35 @@ namespace Glimpse.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f06006c
-			public const int abc_background_cache_hint_selector_material_dark = 2131099756;
-			
 			// aapt resource value: 0x7f06006d
-			public const int abc_background_cache_hint_selector_material_light = 2131099757;
+			public const int abc_background_cache_hint_selector_material_dark = 2131099757;
 			
 			// aapt resource value: 0x7f06006e
-			public const int abc_btn_colored_borderless_text_material = 2131099758;
+			public const int abc_background_cache_hint_selector_material_light = 2131099758;
 			
 			// aapt resource value: 0x7f06006f
-			public const int abc_color_highlight_material = 2131099759;
+			public const int abc_btn_colored_borderless_text_material = 2131099759;
+			
+			// aapt resource value: 0x7f060070
+			public const int abc_color_highlight_material = 2131099760;
 			
 			// aapt resource value: 0x7f060012
 			public const int abc_input_method_navigation_guard = 2131099666;
 			
-			// aapt resource value: 0x7f060070
-			public const int abc_primary_text_disable_only_material_dark = 2131099760;
-			
 			// aapt resource value: 0x7f060071
-			public const int abc_primary_text_disable_only_material_light = 2131099761;
+			public const int abc_primary_text_disable_only_material_dark = 2131099761;
 			
 			// aapt resource value: 0x7f060072
-			public const int abc_primary_text_material_dark = 2131099762;
+			public const int abc_primary_text_disable_only_material_light = 2131099762;
 			
 			// aapt resource value: 0x7f060073
-			public const int abc_primary_text_material_light = 2131099763;
+			public const int abc_primary_text_material_dark = 2131099763;
 			
 			// aapt resource value: 0x7f060074
-			public const int abc_search_url_text = 2131099764;
+			public const int abc_primary_text_material_light = 2131099764;
+			
+			// aapt resource value: 0x7f060075
+			public const int abc_search_url_text = 2131099765;
 			
 			// aapt resource value: 0x7f060013
 			public const int abc_search_url_text_normal = 2131099667;
@@ -1338,32 +1338,32 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f060015
 			public const int abc_search_url_text_selected = 2131099669;
 			
-			// aapt resource value: 0x7f060075
-			public const int abc_secondary_text_material_dark = 2131099765;
-			
 			// aapt resource value: 0x7f060076
-			public const int abc_secondary_text_material_light = 2131099766;
+			public const int abc_secondary_text_material_dark = 2131099766;
 			
 			// aapt resource value: 0x7f060077
-			public const int abc_tint_btn_checkable = 2131099767;
+			public const int abc_secondary_text_material_light = 2131099767;
 			
 			// aapt resource value: 0x7f060078
-			public const int abc_tint_default = 2131099768;
+			public const int abc_tint_btn_checkable = 2131099768;
 			
 			// aapt resource value: 0x7f060079
-			public const int abc_tint_edittext = 2131099769;
+			public const int abc_tint_default = 2131099769;
 			
 			// aapt resource value: 0x7f06007a
-			public const int abc_tint_seek_thumb = 2131099770;
+			public const int abc_tint_edittext = 2131099770;
 			
 			// aapt resource value: 0x7f06007b
-			public const int abc_tint_spinner = 2131099771;
+			public const int abc_tint_seek_thumb = 2131099771;
 			
 			// aapt resource value: 0x7f06007c
-			public const int abc_tint_switch_thumb = 2131099772;
+			public const int abc_tint_spinner = 2131099772;
 			
 			// aapt resource value: 0x7f06007d
-			public const int abc_tint_switch_track = 2131099773;
+			public const int abc_tint_switch_thumb = 2131099773;
+			
+			// aapt resource value: 0x7f06007e
+			public const int abc_tint_switch_track = 2131099774;
 			
 			// aapt resource value: 0x7f060066
 			public const int accent = 2131099750;
@@ -1449,8 +1449,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f060060
 			public const int calendar_text_selected = 2131099744;
 			
-			// aapt resource value: 0x7f06007e
-			public const int calendar_text_selector = 2131099774;
+			// aapt resource value: 0x7f06007f
+			public const int calendar_text_selector = 2131099775;
 			
 			// aapt resource value: 0x7f060061
 			public const int calendar_text_unselectable = 2131099745;
@@ -1467,8 +1467,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f060011
 			public const int cardview_shadow_start_color = 2131099665;
 			
-			// aapt resource value: 0x7f06007f
-			public const int common_google_signin_btn_text_dark = 2131099775;
+			// aapt resource value: 0x7f060080
+			public const int common_google_signin_btn_text_dark = 2131099776;
 			
 			// aapt resource value: 0x7f060006
 			public const int common_google_signin_btn_text_dark_default = 2131099654;
@@ -1482,8 +1482,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f060009
 			public const int common_google_signin_btn_text_dark_pressed = 2131099657;
 			
-			// aapt resource value: 0x7f060080
-			public const int common_google_signin_btn_text_light = 2131099776;
+			// aapt resource value: 0x7f060081
+			public const int common_google_signin_btn_text_light = 2131099777;
 			
 			// aapt resource value: 0x7f06000a
 			public const int common_google_signin_btn_text_light_default = 2131099658;
@@ -1500,8 +1500,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f060068
 			public const int darkGray = 2131099752;
 			
-			// aapt resource value: 0x7f060081
-			public const int design_error = 2131099777;
+			// aapt resource value: 0x7f060082
+			public const int design_error = 2131099778;
 			
 			// aapt resource value: 0x7f06004c
 			public const int design_fab_shadow_end_color = 2131099724;
@@ -1533,8 +1533,8 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f060055
 			public const int design_textinput_error_color_light = 2131099733;
 			
-			// aapt resource value: 0x7f060082
-			public const int design_tint_password_toggle = 2131099778;
+			// aapt resource value: 0x7f060083
+			public const int design_tint_password_toggle = 2131099779;
 			
 			// aapt resource value: 0x7f060024
 			public const int dim_foreground_disabled_material_dark = 2131099684;
@@ -1553,6 +1553,9 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f060029
 			public const int foreground_material_light = 2131099689;
+			
+			// aapt resource value: 0x7f06006c
+			public const int glimpseColor = 2131099756;
 			
 			// aapt resource value: 0x7f06002a
 			public const int highlighted_text_material_dark = 2131099690;
@@ -1680,11 +1683,11 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f060049
 			public const int switch_thumb_disabled_material_light = 2131099721;
 			
-			// aapt resource value: 0x7f060083
-			public const int switch_thumb_material_dark = 2131099779;
-			
 			// aapt resource value: 0x7f060084
-			public const int switch_thumb_material_light = 2131099780;
+			public const int switch_thumb_material_dark = 2131099780;
+			
+			// aapt resource value: 0x7f060085
+			public const int switch_thumb_material_light = 2131099781;
 			
 			// aapt resource value: 0x7f06004a
 			public const int switch_thumb_normal_material_dark = 2131099722;
