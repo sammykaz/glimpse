@@ -13,9 +13,7 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
     var promotionsquery = dataService.getPromotions().query();
     promotionsquery.$promise.then(function (data) {
         for (var i = 0; i < data.length; i++) {
-            if (data[i].PromotionImageURL.indexOf("%") != -1) {
-                data[i].PromotionImageURL = data[i].PromotionImageURL.split("%").join("%25");
-            }
+            data[i].PromotionImageURL = encodeURIComponent(data[i].PromotionImageURL)
         }
         $scope.promotions = data;
     }, function (error) {

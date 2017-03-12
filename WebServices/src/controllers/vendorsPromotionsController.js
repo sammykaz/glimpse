@@ -88,13 +88,6 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
             console.log("Modal dismissed");
         });
     }
-    $scope.deletePromotion = function (promotion, index) {
-        dataService.deletePromotion().delete({
-            promotion: promotion.PromotionId
-        }).$promise.then(function () {
-            $scope.mypromotions.splice(index, 1);
-        });
-    }
 
     $scope.isPromotionExpired = function (promotionEndDate) {
         var currentDate = new Date();
