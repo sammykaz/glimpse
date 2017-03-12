@@ -1,12 +1,8 @@
 ﻿<div class="animated fadeIn">
-    <div class="col-sm-2 promotions-dashboard padding-zero">
-        <div class="promotions-dashboard-corner">Options</div>
-        <button ng-click="showCreatePromotion()" class="btn btn-outline-success promotions-dashboard-buttons">Create New Promotion</button>
-        <button type="button" class="btn btn-outline-info promotions-dashboard-buttons" ng-click="turnEditOn()">Edit a Promotion</button>
-        <button type="button" class="btn btn-outline-danger promotions-dashboard-buttons" ng-click="turnRemoveOn()">Remove a Promotion</button>
-    </div>
-    <div class="container col-sm-10 padding-zero2">
+
+    <div class="container col-sm-10 offset-sm-1 padding-zero2">
         <div class="panel-body">
+            <button ng-click="showCreatePromotion()" class="btn promotions-dashboard-buttons pull-right">Create New Promotion</button>
             <table class="table bkg-white">
                 <thead class="promotions-dashboard-table-thead">
                     <tr class="">
@@ -14,6 +10,7 @@
                         <th class="border-zero">Start Date</th>
                         <th class="border-zero">End Date</th>
                         <th class="border-zero">Status</th>
+                        <th class="border-zero">Actions</th>
                         <th class="border-zero"><button type="button" class="btn btn-outline-secondary" ng-click="turnOff()" ng-show="editOn || removeOn">X</button></th>
                     </tr>
                 </thead>
@@ -22,7 +19,12 @@
                         <td>{{promotion.Title}}</td>
                         <td>{{promotion.PromotionStartDate  | date : "fullDate"}}</td>
                         <td>{{promotion.PromotionEndDate  | date : "fullDate"}}</td>
-                        <td><span ng-show="isPromotionExpired(promotion.PromotionEndDate)">Expired</span><span ng-hide="isPromotionExpired(promotion.PromotionEndDate)">Ongoing</span></td>
+                        <td><span ng-show="isPromotionExpired(promotion.PromotionEndDate)" class="label label-inactive">Expired</span><span ng-hide="isPromotionExpired(promotion.PromotionEndDate)" class="label label-active">Ongoing</span></td>
+                        <td>
+                            <span class="fa fa-edit icon-signup clickable" ng-click="editPromotion(promotion)"></span>
+                            <span class="fa fa-remove icon-signup clickable" ng-click="removePromotion(promotion, mypromotions.indexOf(promotion))"></span>
+                        </td>
+
                         <th><button type="button" class="btn btn-outline-info" ng-click="editPromotion(promotion)" ng-show="editOn">Edit</button>
                             <button type="button" class="btn btn-outline-danger" ng-click="removePromotion(promotion, mypromotions.indexOf(promotion))" ng-show="removeOn">Remove</button>
                             <button ng-show="isPromotionExpired(promotion.PromotionEndDate)" type="button" class="btn btn-outline-info" ng-click="editPromotionDate(promotion)">Repost</button>

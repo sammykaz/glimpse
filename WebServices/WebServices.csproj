@@ -1291,6 +1291,7 @@
     <Content Include="src\services\dataService.js" />
     <Content Include="src\services\userService.js" />
     <Content Include="src\views\createPromotion.html" />
+    <Content Include="src\views\deletePromotionConfirmation.html" />
     <Content Include="src\views\homeView.html" />
     <Content Include="src\views\imageFullSizeView.html" />
     <Content Include="src\views\loginView.html" />

@@ -4,7 +4,7 @@
             <table class="table bkg-white">
                 <thead class="thead-inverse">
                     <tr>
-                        <th>Total number of views</th>
+                        <th>Number of views so far</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -22,6 +22,20 @@
                         chart-colors="colors" chart-dataset-override="datasetOverride" chart-click="onClick"></canvas>
                 <div class="chart-x-axis-dark-gray">Days of the month</div>
 
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="chart-title bkg-dark-gray">Total number of views</div>
+            <div class="bkg-white col-sm-12 text-center">
+                <span class="fa fa-line-chart icon-signup analytics-chart-icon"></span>
+                <span class="analytics-solo-info">{{totalSum}}</span>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="chart-title bkg-dark-gray">Total number of views today</div>
+            <div class="bkg-white col-sm-12 text-center">
+                <span class="fa fa-bar-chart icon-signup analytics-chart-icon"></span>
+                <span class="analytics-solo-info">{{todaySum}}</span>
             </div>
         </div>
         <div class="col-sm-6">

@@ -84,6 +84,8 @@ label:hover input[type="radio"] ~ i.fa {color: #7AA3CC;}
 .bkg-teal{background-color: #33C9DC !important;}
 .bkg-red{background-color: rgb(244,67,54);}
 .bkg-orange{background-color: #f0ac3f;}
+.analytics-solo-info{font-size: 50px; padding-left: 10px;}
+.analytics-chart-icon{padding-top: 20px !important; font-size: 40px !important;}
 .chart-title{padding: .75rem; vertical-align: top; border-top: 1px solid #eceeef; color: #fff; vertical-align: bottom; border-bottom: 2px solid #eceeef; font-weight: bold;}
 .chart-x-axis-dark-gray{color: #373a3c !important; text-align: center !important; font-size: 20px;}
 .chart-x-axis-teal{color: #33C9DC !important; text-align: center !important; font-size: 20px;}
@@ -91,5 +93,9 @@ label:hover input[type="radio"] ~ i.fa {color: #7AA3CC;}
 .chart-x-axis-orange{color:  #f0ac3f !important; text-align: center !important; font-size: 20px;}
 .promotions-dashboard{background-color: #373a3c !important; color: white !important; font-size: 20px; height:100vh;}
 .promotions-dashboard-corner{background-color: #373a3c !important; height:48px; text-align: center; color:white; padding-top: 5px;}
-.promotions-dashboard-buttons{width: 100%; height:50px; border-radius: 35px !important; font-size: large !important; margin-bottom:13px}
+.promotions-dashboard-buttons{height:40px; border-radius: 35px !important; font-size: large !important; margin-bottom:13px; margin-top:13px;background-color: #46c37b; color:white;}
 .promotions-dashboard-table-thead{display: table-header-group; vertical-align: middle; border-color: inherit; color:white; background-color: #7ca279;}
+.label-active{ background-color: #46c37b;}
+.label{border-top: 1px solid #f0f0f0; display: inline; padding: .2em .6em .3em; font-size: 75%; font-weight: 700; line-height: 1; color: #fff; text-align: center; white-space: nowrap; vertical-align: baseline; border-radius: .25em;}
+.label-inactive{background-color: rgb(210, 106, 92);}
+.clickable{cursor: pointer;}

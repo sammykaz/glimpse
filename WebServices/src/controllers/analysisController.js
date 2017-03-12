@@ -2,6 +2,8 @@
 app.controller('analysisController', ['$scope', 'dataService', function ($scope, dataService) {
 
     $scope.data = [];
+    $scope.totalSum = 0;
+    $scope.todaySum = 0;
     $scope.dataHours = [];
     $scope.dataDays = [];
     $scope.totalClicked = [];
@@ -35,6 +37,7 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
                 }
                 if (element.PromotionId == element1.PromotionId) {
                     element.clicks++;
+                    $scope.totalSum++;
                     element1.title = element.Title;
                     $scope.vendorPromotionsClicked.push(element1);
                     var newDate = new Date(element1.Time);
@@ -85,6 +88,7 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
                             break;
                         case $scope.labels[6]:
                             $scope.data[indexSerie][6]++;
+                            $scope.todaySum++;
                             break;
                         default:
                             break;
@@ -165,5 +169,7 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
         },
         legend: { display: true }
     };
+
+    var get
 
 }]);
