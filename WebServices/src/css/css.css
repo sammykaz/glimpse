@@ -80,7 +80,7 @@ label:hover input[type="radio"] ~ i.fa {color: #7AA3CC;}
 .map-promo-image{width: 100% !important; height: 400px; overflow: hidden; position: relative; background: #e6e6e6; border: 20px solid #FFF; margin-top: 20px; text-align: center;}
 .categories-radio-button{display: none !important;}
 .bkg-white{background: white !important; margin-bottom: 16px;}
-.bkg-dark-gray{background-color: #373a3c !important;}
+.bkg-dark-gray{background-color: #373a3c !important;  color:white;}
 .bkg-teal{background-color: #33C9DC !important;}
 .bkg-red{background-color: rgb(244,67,54);}
 .bkg-orange{background-color: #f0ac3f;}
