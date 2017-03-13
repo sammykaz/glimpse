@@ -11,7 +11,7 @@
         android:padding="3dp"
         android:gravity="center"
         android:textColor="#000000"
-        local:MvxBind="Text CompanyName" />
+        local:MvxBind="Text Item.CompanyName" />
     <TextView
         android:textSize="17dp"
         android:layout_width="fill_parent"
@@ -21,7 +21,7 @@
         android:textColor="#000000"
         android:textStyle="bold"
         android:gravity="center"
-        local:MvxBind="Text Title" />
+        local:MvxBind="Text Item.Title" />
     <TextView
         android:textSize="17dp"
         android:layout_width="fill_parent"
@@ -29,7 +29,7 @@
         android:padding="3dp"
         android:gravity="center"
         android:textColor="#000000"
-        local:MvxBind="Text Description" />
+        local:MvxBind="Text Item.Description" />
     <TextView
         android:textSize="17dp"
         android:layout_width="fill_parent"
@@ -37,11 +37,20 @@
         android:padding="3dp"
         android:gravity="center"
         android:textColor="#000000"
-        local:MvxBind="Text SecondsToMinute(Duration)" />
+        local:MvxBind="Text SecondsToMinute(Item.Duration)" />
     <Mvx.MvxImageView
         android:src="@android:drawable/ic_menu_gallery"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/promotion_picture"
-        local:MvxBind="Bitmap ByteArrayImage(Image)" />
+        local:MvxBind="Bitmap ByteArrayImage(Item.Image)" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="70dip"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_gravity="right|center_vertical"
+        android:text="see map"
+        local:MvxBind="Click OrderClick" />
 </LinearLayout>

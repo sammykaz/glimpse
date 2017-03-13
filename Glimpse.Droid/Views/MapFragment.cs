@@ -78,6 +78,10 @@ namespace Glimpse.Droid.Views
                 clusterList.Clear();
                 ShowPromotionsOnMap();
             }
+            else if(e.PropertyName == "Location")
+            {
+                ChangeMapFocus(ViewModel.Location.Lat, ViewModel.Location.Lng);
+            }
         }
 
 
@@ -169,12 +173,11 @@ namespace Glimpse.Droid.Views
             network_enabled = locMgr.IsProviderEnabled(LocationManager.NetworkProvider);
 
             return gps_enabled || network_enabled;
-        }
+        }    
 
-
-        private void ViewModel_LocationUpdate(object sender, LocationChangedHandlerArgs e)
+        private void ChangeMapFocus(double lat, double lng)
         {
-            var latLng = new LatLng(e.Location.Lat, e.Location.Lng);
+            var latLng = new LatLng(lat, lng);
             var cameraUpdate = CameraUpdateFactory.NewLatLng(latLng);
             map.AnimateCamera(cameraUpdate);
         }
@@ -222,7 +225,6 @@ namespace Glimpse.Droid.Views
                 .To(vm => vm.UserCurrentLocation)
                 .WithConversion(new LatLngValueConverter(), null).TwoWay();
             set.Apply();
-            ViewModel.LocationUpdate += ViewModel_LocationUpdate;
 
             //map settings
             map.UiSettings.MapToolbarEnabled = true;
