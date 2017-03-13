@@ -41,51 +41,7 @@ namespace Glimpse.Core.ViewModel
         {
             _localPromotionDataService = localPromotionDataService;
             _promotionDataService = promotionDataService;
-        }
-
-        public void btnClick(PromotionWithLocation promo)
-        {
-            OnLocationUpdate(promo.Location);
-        }
-
-        private void OnLocationUpdate(Location location)
-        {
-            if (LocationUpdate != null)
-            {
-                LocationChangedHandlerArgs args = new LocationChangedHandlerArgs(location);
-                LocationUpdate.Invoke(this, args);
-            }
-        }
-
-        public override async void Start()
-        {
-            base.Start();
-            await ReloadDataAsync();
-        }
-
-        public async Task ReloadAsync()
-        {
-            await ReloadDataAsync();
-        }
-
-        protected override async Task InitializeAsync()
-        {
-            //Creates the locator
-            locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 5;
-
-            //creates the google web service wrapper
-            _gwb = new GoogleWebService();
-
-            //get initial user location
-            _userLocation = await GetUserLocation();
-
-            Query = "";
-            //PromotionList = await _localPromotionDataService.GetPromotions();
-
-            //_promotionsStored = PromotionList;
-        }
-
+        }     
 
         private Categories? _selectedItem;
         public Categories? SelectedItem
@@ -140,6 +96,66 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+        public List<PromotionWithLocation> PromotionsStored
+        {
+            get { return _promotionsStored; }
+            set
+            {
+                _promotionsStored = value;
+                RaisePropertyChanged(() => PromotionsStored);
+            }
+        }
+
+        public List<LikedItemWrap> PromotionList
+        {
+            get { return _promotions; }
+            set
+            {
+                _promotions = value;
+                RaisePropertyChanged(() => PromotionList);
+            }
+        }
+
+        private bool _isRefreshing;
+        public virtual bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                RaisePropertyChanged(() => IsRefreshing);
+            }
+        }
+
+        public override async void Start()
+        {
+            base.Start();
+            await ReloadDataAsync();
+        }
+
+        public async Task ReloadAsync()
+        {
+            await ReloadDataAsync();
+        }
+
+        protected override async Task InitializeAsync()
+        {
+            //Creates the locator
+            locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 5;
+
+            //creates the google web service wrapper
+            _gwb = new GoogleWebService();
+
+            //get initial user location
+            _userLocation = await GetUserLocation();
+
+            Query = "";
+            //PromotionList = await _localPromotionDataService.GetPromotions();
+
+            //_promotionsStored = PromotionList;
+        }
+
 
         public async Task<Location> GetUserLocation()
         {
@@ -190,25 +206,20 @@ namespace Glimpse.Core.ViewModel
             return final;
         }
 
-        public List<PromotionWithLocation> PromotionsStored
+        public void btnClick(PromotionWithLocation promo)
         {
-            get { return _promotionsStored; }
-            set
-            {
-                _promotionsStored = value;
-                RaisePropertyChanged(() => PromotionsStored);
-            }
+            OnLocationUpdate(promo.Location);
         }
 
-        public List<LikedItemWrap> PromotionList
+        private void OnLocationUpdate(Location location)
         {
-            get { return _promotions; }
-            set
+            if (LocationUpdate != null)
             {
-                _promotions = value;
-                RaisePropertyChanged(() => PromotionList);
+                LocationChangedHandlerArgs args = new LocationChangedHandlerArgs(location);
+                LocationUpdate.Invoke(this, args);
             }
         }
+       
 
         public List<LikedItemWrap> PromotionWithLocationToLikedItemWrap(List<PromotionWithLocation> promoList)
         {
@@ -232,18 +243,7 @@ namespace Glimpse.Core.ViewModel
             }
 
             return result;
-        }
-
-        private bool _isRefreshing;
-        public virtual bool IsRefreshing
-        {
-            get { return _isRefreshing; }
-            set
-            {
-                _isRefreshing = value;
-                RaisePropertyChanged(() => IsRefreshing);
-            }
-        }
+        }       
 
         public MvxCommand ReloadCommand
         {
