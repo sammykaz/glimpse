@@ -1,4 +1,5 @@
 ﻿using Glimpse.Core.Contracts.Services;
+using Glimpse.Core.Helpers;
 using Glimpse.Core.Model;
 using Glimpse.Core.Model.CustomModels;
 using Glimpse.Core.Services.General;
@@ -20,7 +21,10 @@ namespace Glimpse.Core.ViewModel
 
         private ILocalPromotionDataService _localPromotionDataService;
         private IPromotionDataService _promotionDataService;
-        private List<PromotionWithLocation> _promotions;
+
+       
+
+        private List<LikedItemWrap> _promotions;
 
         private List<PromotionWithLocation> _promotionsStored;
 
@@ -29,11 +33,28 @@ namespace Glimpse.Core.ViewModel
 
         private GoogleWebService _gwb;
 
+        public delegate void LocationChangedHandler(object sender, LocationChangedHandlerArgs e);
+        public event LocationChangedHandler LocationUpdate;
+
 
         public LikedPromotionsViewModel(IMvxMessenger messenger, ILocalPromotionDataService localPromotionDataService, IPromotionDataService promotionDataService) : base(messenger)
         {
             _localPromotionDataService = localPromotionDataService;
             _promotionDataService = promotionDataService;
+        }
+
+        public void btnClick(PromotionWithLocation promo)
+        {
+            OnLocationUpdate(promo.Location);
+        }
+
+        private void OnLocationUpdate(Location location)
+        {
+            if (LocationUpdate != null)
+            {
+                LocationChangedHandlerArgs args = new LocationChangedHandlerArgs(location);
+                LocationUpdate.Invoke(this, args);
+            }
         }
 
         public override async void Start()
@@ -76,7 +97,8 @@ namespace Glimpse.Core.ViewModel
             set
             {
                 _selectedItem = value;
-                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem, Query);
+                List<PromotionWithLocation> filteredPromos = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem, Query);
+                PromotionList = PromotionWithLocationToLikedItemWrap(filteredPromos);
                 RaisePropertyChanged(() => PromotionList);
             }
         }
@@ -91,7 +113,8 @@ namespace Glimpse.Core.ViewModel
             set
             {
                 _query = value;
-                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, SelectedItem, _query);
+                List<PromotionWithLocation> filteredPromos = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, SelectedItem, _query);
+                PromotionList = PromotionWithLocationToLikedItemWrap(filteredPromos);
                 RaisePropertyChanged(() => Query);
             }
         }
@@ -134,7 +157,7 @@ namespace Glimpse.Core.ViewModel
 
         public async Task<List<PromotionWithLocation>> GetPromotionsWithLocation()
         {
-            var mapPromotions = PromotionList;
+            var mapPromotions = LikedItemWrapToPromotionWithLocation(PromotionList);
 
             List<Location> promotionLocations = mapPromotions.Select(promotionWithLocation => promotionWithLocation.Location).ToList();
 
@@ -177,7 +200,7 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public List<PromotionWithLocation> PromotionList
+        public List<LikedItemWrap> PromotionList
         {
             get { return _promotions; }
             set
@@ -185,6 +208,30 @@ namespace Glimpse.Core.ViewModel
                 _promotions = value;
                 RaisePropertyChanged(() => PromotionList);
             }
+        }
+
+        public List<LikedItemWrap> PromotionWithLocationToLikedItemWrap(List<PromotionWithLocation> promoList)
+        {
+            List<LikedItemWrap> result = new List<LikedItemWrap>();
+
+            foreach(PromotionWithLocation promo in promoList)
+            {
+                result.Add(new LikedItemWrap(promo, this));
+            }
+
+            return result;
+        }
+
+        public List<PromotionWithLocation> LikedItemWrapToPromotionWithLocation(List<LikedItemWrap> promoList)
+        {
+            List<PromotionWithLocation> result = new List<PromotionWithLocation>();
+
+            foreach (LikedItemWrap promo in promoList)
+            {
+                result.Add(promo.Item);
+            }
+
+            return result;
         }
 
         private bool _isRefreshing;
