@@ -104,19 +104,8 @@ namespace Glimpse.Core.ViewModel
             {
                 Lat = e.Position.Latitude,
                 Lng = e.Position.Longitude
-            };
-            OnLocationUpdate(UserCurrentLocation);
-        }
-
-
-         private void OnLocationUpdate(Location location)
-        {
-            if (LocationUpdate != null)
-            {
-                LocationChangedHandlerArgs args = new LocationChangedHandlerArgs(location);
-                LocationUpdate.Invoke(this, args);
-            }
-        }
+            };           
+        }    
 
         public int DefaulZoom
         {
