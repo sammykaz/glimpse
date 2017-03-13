@@ -78,6 +78,11 @@ namespace Glimpse.Droid.Views
                 clusterList.Clear();
                 ShowPromotionsOnMap();
             }
+            else if(e.PropertyName == "Location")
+            {
+                //ChangeMapFocus(ViewModel.Location.Lat, ViewModel.Location.Lng);
+                ChangeMapFocus(50, 50);
+            }
         }
 
 
@@ -175,6 +180,13 @@ namespace Glimpse.Droid.Views
         private void ViewModel_LocationUpdate(object sender, LocationChangedHandlerArgs e)
         {
             var latLng = new LatLng(e.Location.Lat, e.Location.Lng);
+            var cameraUpdate = CameraUpdateFactory.NewLatLng(latLng);
+            map.AnimateCamera(cameraUpdate);
+        }
+
+        private void ChangeMapFocus(double lat, double lng)
+        {
+            var latLng = new LatLng(lat, lng);
             var cameraUpdate = CameraUpdateFactory.NewLatLng(latLng);
             map.AnimateCamera(cameraUpdate);
         }

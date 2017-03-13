@@ -40,7 +40,22 @@ namespace Glimpse.Core.ViewModel
         {
             base.Start();
             await ReloadDataAsync();
+        }     
+
+        private Location _location;
+        public Location Location
+        {
+            get
+            {               
+                return _location;
+            }
+            set
+            {
+                _location = value;
+                RaisePropertyChanged(() => Location);
+            }
         }
+
 
         protected override async Task InitializeAsync()
         {
