@@ -110,6 +110,7 @@
     <Compile Include="Services\General\GoogleWebService.cs" />
     <Compile Include="Services\General\Settings.cs" />
     <Compile Include="Utility\MenuOption.cs" />
+    <Compile Include="Utility\ResxTextProvider.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BuyerProfilePageViewModel.cs" />
     <Compile Include="ViewModel\CreatePromotionPart2ViewModel.cs" />
@@ -261,7 +262,12 @@
     <Folder Include="bin\Debug\" />
     <Folder Include="Messages\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Glimpse.Localization\Glimpse.Localization.csproj">
+      <Project>{d9032fc3-4f9d-4117-8ac1-c14c46b78a79}</Project>
+      <Name>Glimpse.Localization</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
