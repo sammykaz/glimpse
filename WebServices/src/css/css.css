@@ -103,12 +103,18 @@ label:hover input[type="radio"] ~ i.fa {color: #7AA3CC;}
 .chart-x-axis-orange{color:  #f0ac3f !important; text-align: center !important; font-size: 20px;}
 .promotions-dashboard{background-color: #373a3c !important; color: white !important; font-size: 20px; height:100vh;}
 .promotions-dashboard-corner{background-color: #373a3c !important; height:48px; text-align: center; color:white; padding-top: 5px;}
-.promotions-dashboard-buttons{height:40px; border-radius: 35px !important; font-size: large !important; margin-bottom:13px; margin-top:13px;background-color: #46c37b !important; color:white;}
+.promotions-dashboard-buttons{height:40px; border-radius: 35px !important; font-size: large !important; margin-bottom:13px; margin-top:13px; color:white;}
+.m-btn-success{background-color: #46c37b !important;}
+.m-btn-success:hover{background-color: #4dde8a !important}
+.m-btn-danger{background-color: rgb(210, 106, 92) !important;}
+.m-btn-danger:hover{background-color:rgb(244, 134, 119) !important;}
+.m-btn-primary{background-color: rgb(92, 144, 210) !important; height:40px; border-radius: 35px !important; font-size: large !important; margin-bottom:13px; margin-top:13px; color:white;}
+.m-btn-primary:hover{background-color:rgb(115, 176, 255) !important;}
 .promotions-dashboard-table-thead{display: table-header-group; vertical-align: middle; border-color: inherit; color:white; background-color: #7ca279;}
 .x-icon{margin-left: 15px !important;}
 .label-categories{padding-top: 10px;}
 .label{border-top: 1px solid #f0f0f0; display: inline; padding: .2em .6em .3em; font-size: 91%; line-height: 1; color: #fff; text-align: center; white-space: nowrap; vertical-align: baseline; border-radius: .25em;}
-.label-active{ background-color: #46c37b;}
+.label-active{background-color: #46c37b;}
 .label-inactive{background-color: rgb(210, 106, 92);}
 .label-footwear{background-color:rgb(112, 185, 235);}
 .label-electronics{background-color:rgb(243, 183, 96);}
@@ -125,6 +131,9 @@ label:hover input[type="radio"] ~ i.fa {color: #7AA3CC;}
 .v-promo-t-b{border: 1px solid #cecece;}
 .panel-shadow{box-shadow: 0px 3px 2px #aab2bd;}
 .a-panel{margin-bottom:22px}
+
+.dash-btn-success{background-color: #46c37b;}
+.dash-btn-success:hover{color: #fff; background-color: #5cb85c; border-color: #5cb85c;}
 
 
 
