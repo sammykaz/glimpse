@@ -56,7 +56,8 @@ namespace Plugin.RestClient
             var json = await httpClient.GetStringAsync(request);
             var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
 
-            Log.Info("Returning: " + taskModels.ToList());
+            if (taskModels != null)
+                Log.Info("Returning: " + taskModels.ToList());
 
             return taskModels;
         }
@@ -72,7 +73,8 @@ namespace Plugin.RestClient
 
             var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
 
-            Log.Info(string.Format("Returning: {0}", taskModels.ToList()));      
+            if (taskModels != null)
+                Log.Info(string.Format("Returning: {0}", taskModels.ToList()));      
 
             return taskModels;
         }
@@ -87,7 +89,8 @@ namespace Plugin.RestClient
 
             var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
 
-            Log.Info(string.Format("Returning: {0}", taskModels.ToList()));
+            if (taskModels != null)
+                Log.Info(string.Format("Returning: {0}", taskModels.ToList()));
 
             return taskModels;
         }
@@ -106,7 +109,10 @@ namespace Plugin.RestClient
             var json = await httpClient.GetStringAsync(request);
 
             var taskModel = JsonConvert.DeserializeObject<T>(json);
-            Log.Info(string.Format("Returning: {0}", taskModel.ToString()));
+
+            if (taskModel != null)
+                  Log.Info(string.Format("Returning: {0}", taskModel.ToString()));
+
             return taskModel;
         }
 
