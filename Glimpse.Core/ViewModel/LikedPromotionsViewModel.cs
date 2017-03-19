@@ -264,13 +264,13 @@ namespace Glimpse.Core.ViewModel
         {
             get
             {
-                return new MvxCommand<PromotionWithLocation>(item =>
+                return new MvxCommand<LikedItemWrap>(item =>
                 {
                     var desc = new Dictionary<string, string> {
-                        {"PromotionID", Convert.ToString(item.PromotionId)},
-                        {"PromotionTitle", item.Title},
-                        {"PromotionDuration", Convert.ToString(item.Duration)},
-                        {"PromotionDescription", item.Description},
+                        {"PromotionID", Convert.ToString(item.Item.PromotionId)},
+                        {"PromotionTitle", item.Item.Title},
+                        {"PromotionDuration", Convert.ToString(item.Item.Duration)},
+                        {"PromotionDescription", item.Item.Description},
                     };
 
                     ShowViewModel<TileDetailsViewModel>(desc);
