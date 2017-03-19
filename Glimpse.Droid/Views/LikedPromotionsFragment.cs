@@ -15,6 +15,7 @@ using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Repositories;
 using SQLite.Net.Platform.XamarinAndroid;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Glimpse.Droid.Views
 {
@@ -60,8 +61,9 @@ namespace Glimpse.Droid.Views
             _localPromotionRepository = new LocalPromotionRepository();
             var path = GetDbPath();
             await _localPromotionRepository.InitializeAsync(path, new SQLitePlatformAndroid());
-            ViewModel.PromotionList = await _localPromotionRepository.GetActivePromotions();
-            ViewModel.PromotionsStored = ViewModel.PromotionList;
+            List<PromotionWithLocation> activePromos = await _localPromotionRepository.GetActivePromotions();
+            ViewModel.PromotionList = ViewModel.PromotionWithLocationToLikedItemWrap(activePromos);
+            ViewModel.PromotionsStored = activePromos;
            
         }
 

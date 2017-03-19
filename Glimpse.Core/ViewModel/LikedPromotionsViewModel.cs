@@ -1,4 +1,5 @@
 ﻿using Glimpse.Core.Contracts.Services;
+using Glimpse.Core.Helpers;
 using Glimpse.Core.Model;
 using Glimpse.Core.Model.CustomModels;
 using Glimpse.Core.Services.General;
@@ -20,7 +21,10 @@ namespace Glimpse.Core.ViewModel
 
         private ILocalPromotionDataService _localPromotionDataService;
         private IPromotionDataService _promotionDataService;
-        private List<PromotionWithLocation> _promotions;
+
+       
+
+        private List<LikedItemWrap> _promotions;
 
         private List<PromotionWithLocation> _promotionsStored;
 
@@ -29,11 +33,98 @@ namespace Glimpse.Core.ViewModel
 
         private GoogleWebService _gwb;
 
+        public delegate void LocationChangedHandler(object sender, LocationChangedHandlerArgs e);
+        public event LocationChangedHandler LocationUpdate;
+
 
         public LikedPromotionsViewModel(IMvxMessenger messenger, ILocalPromotionDataService localPromotionDataService, IPromotionDataService promotionDataService) : base(messenger)
         {
             _localPromotionDataService = localPromotionDataService;
             _promotionDataService = promotionDataService;
+        }     
+
+        private Categories? _selectedItem;
+        public Categories? SelectedItem
+        {
+            get
+            {
+                return _selectedItem;
+            }
+            set
+            {
+                _selectedItem = value;
+                List<PromotionWithLocation> filteredPromos = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem, Query);
+                PromotionList = PromotionWithLocationToLikedItemWrap(filteredPromos);
+                RaisePropertyChanged(() => PromotionList);
+            }
+        }
+
+        private string _query=" ";
+        public string Query
+        {
+            get
+            {
+                return _query;
+            }
+            set
+            {
+                _query = value;
+                List<PromotionWithLocation> filteredPromos = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, SelectedItem, _query);
+                PromotionList = PromotionWithLocationToLikedItemWrap(filteredPromos);
+                RaisePropertyChanged(() => Query);
+            }
+        }
+
+
+        private List<string> _categories;
+        public List<string> Categories
+        {
+            get
+            {
+                List<string> allCategories = new List<string>();
+                allCategories.Add("All");
+                foreach (string name in Enum.GetNames(typeof(Categories)))
+                {
+                    allCategories.Add(name);
+                };
+                return allCategories;
+            }
+            set
+            {
+                _categories = value;
+                RaisePropertyChanged(() => Categories);
+            }
+        }
+
+        public List<PromotionWithLocation> PromotionsStored
+        {
+            get { return _promotionsStored; }
+            set
+            {
+                _promotionsStored = value;
+                RaisePropertyChanged(() => PromotionsStored);
+            }
+        }
+
+        public List<LikedItemWrap> PromotionList
+        {
+            get { return _promotions; }
+            set
+            {
+                _promotions = value;
+                RaisePropertyChanged(() => PromotionList);
+            }
+        }
+
+        private bool _isRefreshing;
+        public virtual bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                RaisePropertyChanged(() => IsRefreshing);
+            }
         }
 
         public override async void Start()
@@ -66,58 +157,6 @@ namespace Glimpse.Core.ViewModel
         }
 
 
-        private Categories? _selectedItem;
-        public Categories? SelectedItem
-        {
-            get
-            {
-                return _selectedItem;
-            }
-            set
-            {
-                _selectedItem = value;
-                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, _selectedItem, Query);
-                RaisePropertyChanged(() => PromotionList);
-            }
-        }
-
-        private string _query=" ";
-        public string Query
-        {
-            get
-            {
-                return _query;
-            }
-            set
-            {
-                _query = value;
-                PromotionList = _promotionDataService.FilterPromotionWithLocationList(_promotionsStored, SelectedItem, _query);
-                RaisePropertyChanged(() => Query);
-            }
-        }
-
-
-        private List<string> _categories;
-        public List<string> Categories
-        {
-            get
-            {
-                List<string> allCategories = new List<string>();
-                allCategories.Add("All");
-                foreach (string name in Enum.GetNames(typeof(Categories)))
-                {
-                    allCategories.Add(name);
-                };
-                return allCategories;
-            }
-            set
-            {
-                _categories = value;
-                RaisePropertyChanged(() => Categories);
-            }
-        }
-
-
         public async Task<Location> GetUserLocation()
         {
             //Get the current location            
@@ -134,7 +173,7 @@ namespace Glimpse.Core.ViewModel
 
         public async Task<List<PromotionWithLocation>> GetPromotionsWithLocation()
         {
-            var mapPromotions = PromotionList;
+            var mapPromotions = LikedItemWrapToPromotionWithLocation(PromotionList);
 
             List<Location> promotionLocations = mapPromotions.Select(promotionWithLocation => promotionWithLocation.Location).ToList();
 
@@ -167,36 +206,44 @@ namespace Glimpse.Core.ViewModel
             return final;
         }
 
-        public List<PromotionWithLocation> PromotionsStored
+        public void btnClick(PromotionWithLocation promo)
         {
-            get { return _promotionsStored; }
-            set
-            {
-                _promotionsStored = value;
-                RaisePropertyChanged(() => PromotionsStored);
-            }
+            OnLocationUpdate(promo.Location);
         }
 
-        public List<PromotionWithLocation> PromotionList
+        private void OnLocationUpdate(Location location)
         {
-            get { return _promotions; }
-            set
+            if (LocationUpdate != null)
             {
-                _promotions = value;
-                RaisePropertyChanged(() => PromotionList);
+                LocationChangedHandlerArgs args = new LocationChangedHandlerArgs(location);
+                LocationUpdate.Invoke(this, args);
             }
+        }
+       
+
+        public List<LikedItemWrap> PromotionWithLocationToLikedItemWrap(List<PromotionWithLocation> promoList)
+        {
+            List<LikedItemWrap> result = new List<LikedItemWrap>();
+
+            foreach(PromotionWithLocation promo in promoList)
+            {
+                result.Add(new LikedItemWrap(promo, this));
+            }
+
+            return result;
         }
 
-        private bool _isRefreshing;
-        public virtual bool IsRefreshing
+        public List<PromotionWithLocation> LikedItemWrapToPromotionWithLocation(List<LikedItemWrap> promoList)
         {
-            get { return _isRefreshing; }
-            set
+            List<PromotionWithLocation> result = new List<PromotionWithLocation>();
+
+            foreach (LikedItemWrap promo in promoList)
             {
-                _isRefreshing = value;
-                RaisePropertyChanged(() => IsRefreshing);
+                result.Add(promo.Item);
             }
-        }
+
+            return result;
+        }       
 
         public MvxCommand ReloadCommand
         {
