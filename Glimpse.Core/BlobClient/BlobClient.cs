@@ -136,6 +136,40 @@ namespace Glimpse.Core.BlobClient
             return null;
         }
 
+        //If you need to wait for the result, use this method
+        public static byte[] GetBlobSynchronous(string blobName)
+        {
+            string containerName = AzureStorageConstants.ContainerName;
+            string requestMethod = "GET";
+
+            const string blobType = "BlockBlob";
+
+            string urlPath = string.Format("{0}/{1}", containerName, blobName);
+            string msVersion = "2009-09-19";
+            string dateInRfc1123Format = DateTime.UtcNow.ToString("R", CultureInfo.InvariantCulture);
+
+            string canonicalizedHeaders = string.Format("x-ms-blob-type:{0}\nx-ms-date:{1}\nx-ms-version:{2}", blobType, dateInRfc1123Format, msVersion);
+            string canonicalizedResource = string.Format("/{0}/{1}", AzureStorageConstants.Account, urlPath);
+            string stringToSign = string.Format("{0}\n\n\n\n\n\n\n\n\n\n\n\n{2}\n{3}", requestMethod, 0, canonicalizedHeaders, canonicalizedResource);
+            string authorizationHeader = CreateAuthorizationHeader(stringToSign);
+
+            string uri = AzureStorageConstants.BlobEndPoint + urlPath;
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("x-ms-blob-type", blobType);
+            client.DefaultRequestHeaders.Add("x-ms-date", dateInRfc1123Format);
+            client.DefaultRequestHeaders.Add("x-ms-version", msVersion);
+            client.DefaultRequestHeaders.Add("Authorization", authorizationHeader);
+
+            HttpResponseMessage response = client.GetAsync(uri).Result;
+
+            if (response.IsSuccessStatusCode == true)
+            {
+                return response.Content.ReadAsByteArrayAsync().Result;
+            }
+
+            return null;
+        }
+
 
         public static async Task<List<byte[]>> GetAllBlobs()
         {
