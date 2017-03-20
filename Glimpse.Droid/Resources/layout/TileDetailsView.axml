@@ -60,19 +60,44 @@
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
                     android:orientation="horizontal" />
-            </RelativeLayout>       -->   
-            
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/detailViewTitle"
-                android:layout_below="@+id/dotsRelativeLayout"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:textColor="#000"
-                android:layout_height="25dp"
-                android:layout_marginTop="5dp"
-                local:MvxBind="Text PromotionTitle"/>
+            </RelativeLayout>               
+          
+       -->   
+       
+         <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginTop="0dp"
+                  android:orientation="horizontal">
+
+                  <View
+                      android:layout_width="40dp"
+                      android:layout_height="1dp"
+                      android:background="#000"
+                      android:layout_gravity="center_vertical"
+                      android:layout_weight="1"/>
+
+                  <Button
+                      android:layout_width="20dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1"
+                      android:background="@null"
+                       local:MvxBind="Text PromotionTitle"
+                      android:clickable="false"
+                      android:textColor="#000" />
+
+                  <View
+                      android:layout_width="40dp"
+                      android:layout_height="1dp"
+                      android:background="#000"
+                      android:layout_gravity="center_vertical"
+                      android:layout_weight="1"/>
+
+              </LinearLayout>         
+
+
             <TextView
                 android:layout_width="match_parent"
                 android:id="@+id/detailViewDuration"
