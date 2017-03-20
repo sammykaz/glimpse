@@ -6,6 +6,7 @@ using MvvmCross.Plugins.Messenger;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Glimpse.Core.ViewModel
@@ -20,6 +21,11 @@ namespace Glimpse.Core.ViewModel
         private string _promotionDescription;
         private byte[] _promotionImage;
         private string _promotionImageURL;
+        private string _locationAndDistanceText;
+        private string _category;
+        private string _startAndEndDate;
+        private DateTime _startDate;
+        private DateTime _endDate;
 
         public TileDetailsViewModel(IMvxMessenger messenger, IPromotionImageDataService promotionImageDataService)
         {
@@ -46,8 +52,39 @@ namespace Glimpse.Core.ViewModel
             if (parameters.Data.ContainsKey("PromotionDescription"))
                 _promotionDescription = (parameters.Data["PromotionDescription"]);
 
+            if (parameters.Data.ContainsKey("Category"))
+                _category = (parameters.Data["Category"]);
+
+            if (parameters.Data.ContainsKey("StartDate"))
+                _startDate = new DateTime(Convert.ToInt64(parameters.Data["StartDate"]));
+
+            if (parameters.Data.ContainsKey("EndDate"))
+                _endDate = new DateTime(Convert.ToInt64(parameters.Data["EndDate"]));
+
+            LocationAndDistanceText = BuildLocationAndDistanceString();
+            StartAndEndDate = BuildStartAndEndDateString();
 
             base.InitFromBundle(parameters);
+        }        
+
+        public string StartAndEndDate
+        {
+            get { return _startAndEndDate; }
+            set
+            {
+                _startAndEndDate = value;
+                RaisePropertyChanged(() => StartAndEndDate);
+            }
+        }
+
+        public string LocationAndDistanceText
+        {
+            get { return _locationAndDistanceText; }
+            set
+            {
+                _locationAndDistanceText = value;
+                RaisePropertyChanged(() => LocationAndDistanceText);
+            }
         }
 
         public string PromotionImageURL
@@ -102,10 +139,6 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-
-
-
-
         public List<byte[]> Images
         {
             get
@@ -126,6 +159,27 @@ namespace Glimpse.Core.ViewModel
             return _images;
         }
 
+        //builds the string for the text view 
+        public string BuildLocationAndDistanceString()
+        {
+            Random random = new Random();
+            int randomNumber = random.Next(0, 500);
+
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(randomNumber);
+            stringBuilder.Append("+Bought \u2022 ").Append(_category).Append(" \u2022 ").Append(ConvertSecondsToMinutes(_promotionDuration));
+
+            return stringBuilder.ToString();            
+        }
+
+
+        private string BuildStartAndEndDateString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(_startDate.ToString("MMM dd, yyyy")).Append(" - ").Append(_endDate.ToString("MMM dd, yyyy"));
+            return stringBuilder.ToString();
+        }
+
         public async Task<byte[]> GetCoverImage()
         {
             //getting images for promotion
@@ -135,15 +189,14 @@ namespace Glimpse.Core.ViewModel
        
         private string ConvertSecondsToMinutes(string value)
         {
-
-            TimeSpan timespan = TimeSpan.FromSeconds(Convert.ToInt32(value));
+            TimeSpan timespan = TimeSpan.FromMinutes(Convert.ToInt32(value));
             int totalMins = (int)timespan.TotalMinutes;
             string displayTime = Convert.ToString(totalMins);
 
             if (totalMins == 1)
-                displayTime = displayTime + " minute away!";
+                displayTime = displayTime + " minute";
             else
-                displayTime = displayTime + " minutes away!";
+                displayTime = displayTime + " minutes";
 
             return displayTime;
         }

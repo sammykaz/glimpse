@@ -3,11 +3,12 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+  android:background="@color/white">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="300px"
+        android:layout_height="650px"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:fitsSystemWindows="true">
       
@@ -85,6 +86,8 @@
                       android:layout_weight="1"
                       android:background="@null"
                        local:MvxBind="Text PromotionTitle"
+                      android:textStyle="bold"
+                      android:textSize="20dp"
                       android:clickable="false"
                       android:textColor="#000" />
 
@@ -95,208 +98,129 @@
                       android:layout_gravity="center_vertical"
                       android:layout_weight="1"/>
 
-              </LinearLayout>         
-
-
+              </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:id="@+id/detailViewDuration"
                 android:layout_below="@+id/detailViewTitle"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                local:MvxBind="Text PromotionDuration"
-                android:textSize="10dp"
-                android:layout_height="15dp"
+                android:gravity="center"
+                android:textColor="#000" 
+                local:MvxBind="Text LocationAndDistanceText"
+                android:textSize="15dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp" />
             <TextView
                 android:layout_width="match_parent"
-                android:id="@+id/detailViewDescriptionTitle"
-                android:layout_below="@+id/detailViewDuration"
-                android:text="Description"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:textColor="#000"
-                android:layout_height="25dp"
-                android:layout_marginTop="10dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/detailViewDescription"
-                android:layout_below="@+id/detailViewDescriptionTitle"                
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="13dp"
+                android:id="@+id/detailViewDuration1"
+                android:layout_below="@+id/detailViewTitle"
+                android:gravity="center"
+                android:textColor="#000" 
+                local:MvxBind="Text StartAndEndDate"
+                android:textSize="15dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                local:MvxBind="Text PromotionDescription"/>
-          <TextView
+                android:layout_marginTop="5dp" />
+       
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:id="@+id/detailViewDescriptionTitle"
-                android:layout_below="@+id/detailViewDuration"
-                android:text="Description"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:textColor="#000"
-                android:layout_height="25dp"
-                android:layout_marginTop="10dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/detailViewDescription"
-                android:layout_below="@+id/detailViewDescriptionTitle"                
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="13dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                local:MvxBind="Text PromotionDescription"/>
-  <TextView
+                android:layout_margin="16dp">
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="About this deal"
+                        android:textStyle="bold"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        local:MvxBind="Text PromotionDescription"
+                        android:textColor="#000" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+       
+         <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:id="@+id/detailViewDescriptionTitle"
-                android:layout_below="@+id/detailViewDuration"
-                android:text="Description"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:textColor="#000"
-                android:layout_height="25dp"
-                android:layout_marginTop="10dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/detailViewDescription"
-                android:layout_below="@+id/detailViewDescriptionTitle"                
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="13dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                local:MvxBind="Text PromotionDescription"/>
-          <TextView
+                android:layout_margin="16dp">
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="About this deal"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        local:MvxBind="Text PromotionDescription" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+       
+     <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:id="@+id/detailViewDescriptionTitle"
-                android:layout_below="@+id/detailViewDuration"
-                android:text="Description"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:textColor="#000"
-                android:layout_height="25dp"
-                android:layout_marginTop="10dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/detailViewDescription"
-                android:layout_below="@+id/detailViewDescriptionTitle"                
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="13dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                local:MvxBind="Text PromotionDescription"/>
-                  <TextView
+                android:layout_margin="16dp">
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="About this deal"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        local:MvxBind="Text PromotionDescription" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+<android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:id="@+id/detailViewDescriptionTitle"
-                android:layout_below="@+id/detailViewDuration"
-                android:text="Description"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:textColor="#000"
-                android:layout_height="25dp"
-                android:layout_marginTop="10dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/detailViewDescription"
-                android:layout_below="@+id/detailViewDescriptionTitle"                
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="13dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                local:MvxBind="Text PromotionDescription"/>
-          <TextView
+                android:layout_margin="16dp">
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="About this deal"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        local:MvxBind="Text PromotionDescription" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+       
+     <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:id="@+id/detailViewDescriptionTitle"
-                android:layout_below="@+id/detailViewDuration"
-                android:text="Description"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:textColor="#000"
-                android:layout_height="25dp"
-                android:layout_marginTop="10dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/detailViewDescription"
-                android:layout_below="@+id/detailViewDescriptionTitle"                
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="13dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                local:MvxBind="Text PromotionDescription"/>
-          <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/detailViewDescriptionTitle"
-                android:layout_below="@+id/detailViewDuration"
-                android:text="Description"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:textColor="#000"
-                android:layout_height="25dp"
-                android:layout_marginTop="10dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/detailViewDescription"
-                android:layout_below="@+id/detailViewDescriptionTitle"                
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="13dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                local:MvxBind="Text PromotionDescription"/>
-          <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/detailViewDescriptionTitle"
-                android:layout_below="@+id/detailViewDuration"
-                android:text="Description"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:textColor="#000"
-                android:layout_height="25dp"
-                android:layout_marginTop="10dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/detailViewDescription"
-                android:layout_below="@+id/detailViewDescriptionTitle"                
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="13dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                local:MvxBind="Text PromotionDescription"/>
-          <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/detailViewDescriptionTitle"
-                android:layout_below="@+id/detailViewDuration"
-                android:text="Description"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:textColor="#000"
-                android:layout_height="25dp"
-                android:layout_marginTop="10dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:id="@+id/detailViewDescription"
-                android:layout_below="@+id/detailViewDescriptionTitle"                
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="13dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                local:MvxBind="Text PromotionDescription"/>
+                android:layout_margin="16dp">
+                <LinearLayout
+                    style="@style/Widget.CardContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="About this deal"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        local:MvxBind="Text PromotionDescription" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.design.widget.CoordinatorLayout>
