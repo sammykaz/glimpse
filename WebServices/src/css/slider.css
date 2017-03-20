@@ -30,14 +30,14 @@
 }
 
 .arrow.prev {
-    opacity: 0.2;
+    opacity: 0.6;
     left: 20px;
     background-image: url(../css/paddle_prev_999.png);
     transition: 0.2s linear all;
 }
 
 .arrow.next {
-    opacity: 0.2;
+    opacity: 0.6;
     right: 20px;
     background-image: url(../css/paddle_next_999.png);
     transition: 0.2s linear all;
@@ -45,12 +45,12 @@
 
 .arrow.prev:hover {
     opacity: 1;
-    background-image: url(../css/paddle_prev_fff.png);
+    background-image: url(../css/paddle_prev_999.png);
 }
 
 .arrow.next:hover {
     opacity: 1;
-    background-image: url(../css/paddle_next_fff.png);
+    background-image: url(../css/paddle_next_999.png);
 }
 
 

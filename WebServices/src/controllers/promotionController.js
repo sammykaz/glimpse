@@ -48,6 +48,13 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
 
 app.controller('modalImageController', function ($scope, $timeout, dataService, promotionDetails) {
     
+    var Category = ["Footwear", "Electronics", "Jewellery", "Restaurants", "Services", "Apparel"];
+    $scope.Title = promotionDetails.Title;
+    $scope.Category = Category[promotionDetails.Category];
+    $scope.Description = promotionDetails.Description;
+    $scope.PromotionStartDate = promotionDetails.PromotionStartDate;
+    $scope.PromotionEndDate = promotionDetails.PromotionEndDate;
+
     $scope.promotionImageURL = promotionDetails.PromotionImageURL;
     $scope.promotionImages = [];
     $scope.images = [];

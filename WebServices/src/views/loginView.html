@@ -1,36 +1,40 @@
-<div class="landing-background col-sm-12 padding-zero">
-    <div class="col-sm-6 padding-zero">
-        <div class="landing-pic"></div>
-    </div>
-    <div class="login-form-padding animated fadeIn col-sm-6">
-        <div class="col-sm-8 offset-sm-2 landing-title">
-            Glimpse
+<div class="landing-background container">
+    <div class="col-sm-12">
+        <div class="col-sm-6">
+            <div class="padding-zero" style="margin-left:130px">
+                <div class="landing-pic"></div>
+            </div>
         </div>
-        <div class="col-sm-8 offset-sm-2 landing-desc">
-            Stack offers a clean and contemporary look to suit a range of purposes from corporate, tech startup, marketing site to digital storefront.
-        </div>
+        <div class="login-form-padding animated fadeIn col-sm-6">
+            <div class="col-sm-10 offset-sm-2 landing-title glimpse-color">
+                Glimpse
+            </div>
+            <div class="col-sm-10 offset-sm-2 landing-desc">
+                Glimpse offers a clean and contemporary look to suit a range of purposes from corporate, tech startup, marketing site to digital storefront.
+            </div>
 
-        <div class="container login-form col-sm-8 offset-sm-2">
-            <h2 class="login-landing-title">- Please Login -</h2>
-            <div class="panel panel-default login-form-panel col-sm-10 offset-sm-1">
-                <div class="panel-body">
-                    <form>
-                        <div class="input-group login-userinput">
-                            <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                            <input id="txtUser" type="text" class="form-control login-input-fields" name="username" placeholder="Email" ng-model="user.username">
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="fa fa-lock"></span></span>
-                            <input id="txtPassword" type="password" class="form-control login-input-fields" name="password" placeholder="Password" ng-model="user.password">
-                        </div>
-                        <div class="input-form-padding col-sm-12 has-danger" ng-show="incorrect">
-                            <p class="form-control-feedback">Incorrect username or password <br />Please Try Again Shortly</p>
-                        </div>
-                        <button class="btn btn-primary btn-block login-button" ng-click="login()" ng-disabled="preventLogin"><i class="fa fa-sign-in"></i> Login</button>
-                        <div class="col-sm-12">
-                            <a class="login-new-account pull-right" ui-sref="signup">Create new Account</a>
-                        </div>
-                    </form>
+            <div class="container login-form col-sm-10 offset-sm-2">
+                <h2 class="login-landing-title glimpse-color">- Please Login -</h2>
+                <div class="panel panel-default login-form-panel col-sm-10 offset-sm-1">
+                    <div class="panel-body">
+                        <form>
+                            <div class="input-group login-userinput">
+                                <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                                <input id="txtUser" type="text" class="form-control login-input-fields" name="username" placeholder="Email" ng-model="user.username">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><span class="fa fa-lock"></span></span>
+                                <input id="txtPassword" type="password" class="form-control login-input-fields" name="password" placeholder="Password" ng-model="user.password">
+                            </div>
+                            <div class="input-form-padding col-sm-12 has-danger" ng-show="incorrect">
+                                <p class="form-control-feedback">Incorrect username or password <br />Please Try Again Shortly</p>
+                            </div>
+                            <button class="btn btn-glimpse btn-block login-button" ng-click="login()" ng-disabled="preventLogin"><i class="fa fa-sign-in"></i> Login</button>
+                            <div class="col-sm-12">
+                                <a class="login-new-account pull-right" ui-sref="signup">Create new Account</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

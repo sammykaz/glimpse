@@ -1271,6 +1271,7 @@
     <Content Include="src\css\cropper.css" />
     <Content Include="src\css\cropper.min.css" />
     <Content Include="src\css\css.css" />
+    <Content Include="src\css\glimpse.png" />
     <Content Include="src\css\landingpage1.jpg" />
     <Content Include="src\css\ng-img-crop.css" />
     <Content Include="src\css\paddle_next_999.png" />

@@ -2,7 +2,7 @@
     <div class="container signup-form col-sm-8 offset-sm-2">
         <div class="col-sm-10 offset-sm-1 form-top">
             <div class="col-sm-8">
-                <h3 class="signup-title">Sign up</h3>
+                <h3 class="signup-title glimpse-color">Sign up</h3>
                 <p class="signup-desc">Fill in the form below to get a vendor account:</p>
             </div>
             <div class="col-sm-4">
@@ -29,7 +29,7 @@
                             <p ng-show="userForm.password.$error.minlength" class="form-control-feedback">Password is too short.</p>
                         </div>
                         <div class="input-form-padding col-sm-12">
-                            <input id="txtPassword" type="password" class="form-control login-input-fields" placeholder="Confirm Password"  name="confirmpassword"  ng-model="user.confirmpassword" ng-minlength="5" ng-class="{ 'input-has-error' : userForm.confirmpassword.$invalid && !userForm.confirmpassword.$pristine}" required>
+                            <input id="txtPassword" type="password" class="form-control" placeholder="Confirm Password"  name="confirmpassword"  ng-model="user.confirmpassword" ng-minlength="5" ng-class="{ 'input-has-error' : userForm.confirmpassword.$invalid && !userForm.confirmpassword.$pristine}" required>
                         </div>
                     </div>
                     <div class="input-group login-userinput col-sm-12">
@@ -60,13 +60,13 @@
                             <p ng-show="userForm.personalphone.$invalid && !userForm.personalphone.$pristine" class="form-control-feedback">Only numbers are allowed</p>
                         </div>
                         <div class="signup-form-btn col-sm-12" ng-class="{ 'has-danger' : userForm.$invalid}">
-                            <button id="signupBtn" class="btn btn-primary btn-block login-button" ng-disabled="userForm.$invalid" ng-click="validateAddress()">Sign Up</button>
+                            <button id="signupBtn" class="btn btn-glimpse btn-block" ng-disabled="userForm.$invalid" ng-click="validateAddress()">Sign Up</button>
                             <p ng-show="userForm.$invalid" class="form-control-feedback">Some fields are missing</p>
                             <p ng-show="passConfirmation" class="error-warning">Password does not match Password</p>
                             <p ng-hide="addressIsValid" class="error-warning">The Address entered is invalid</p>
                         </div>
                         <div class="col-sm-12 padding-zero">
-                            <a ui-sref="login" class="login-forgot">Back to login</a>
+                            <a ui-sref="login" class="login-new-account">Back to login</a>
                         </div>
                     </div>
                 </form>

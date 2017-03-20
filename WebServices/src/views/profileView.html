@@ -1,8 +1,8 @@
-﻿<div class="signup-h animated fadeIn col-sm-12">
-    <div class="container signup-form col-sm-8 offset-sm-2">
+﻿<div class="signup-h col-sm-12 animated fadeIn">
+    <div class="signup-form container">
         <div class="col-sm-10 offset-sm-1 form-top">
             <div class="col-sm-8">
-                <h3 class="signup-title">Profile</h3>
+                <h3 class="signup-title default-color">Profile</h3>
             </div>
             <div class="col-sm-4">
                 <i class="fa fa-user signup-icon pull-right"></i>
@@ -15,9 +15,9 @@
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <div class="col-sm-4">
-                                <h3 class="profile-company">{{company}}</h3>
+                                <h3 class="profile-company glimpse-color">{{company}}</h3>
                             </div>
-                            <button type="submit" class="btn promotions-dashboard-buttons m-btn-primary pull-right" ng-click="edit()" ng-hide="editOn">Edit</button>
+                            <button type="submit" class="btn promotions-dashboard-buttons btn-glimpse pull-right" ng-click="edit()" ng-hide="editOn">Edit</button>
                         </div>
                     </div>
                     <div class="col-sm-12">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn promotions-dashboard-buttons m-btn-success pull-right" ng-click="save()" ng-show="editOn">Save</button>
+                        <button type="submit" class="btn promotions-dashboard-buttons btn-glimpse pull-right" ng-click="save()" ng-show="editOn">Save</button>
                         <button type="submit" class="btn promotions-dashboard-buttons m-btn-danger pull-right" ng-click="edit()" ng-show="editOn">Cancel</button>
                     </div>
                 </form>

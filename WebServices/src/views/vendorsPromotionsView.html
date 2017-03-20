@@ -1,19 +1,18 @@
-﻿<div class="animated fadeIn">
-
-    <div class="container col-sm-10 offset-sm-1 padding-zero2">
+﻿<div class="animated fadeIn col-sm-12">
+    <div class="padding-zero2">
         <div class="panel-body">
             <div class="div-center">
-                <button ng-click="showCreatePromotion()" class="btn promotions-dashboard-buttons m-btn-success">Create New Promotion</button>
+                <button ng-click="showCreatePromotion()" class="btn promotions-dashboard-buttons btn-glimpse">Create New Promotion</button>
             </div>
             <table class="table bkg-white v-promo-t-b">
                 <thead class="">
                     <tr class="">
-                        <th class="border-zero">Promotion</th>
-                        <th class="border-zero">Start Date</th>
-                        <th class="border-zero">End Date</th>
-                        <th class="border-zero">Status</th>
-                        <th class="border-zero">Edit</th>
-                        <th class="border-zero"></th>
+                        <th class="border-zero default-color">Promotion</th>
+                        <th class="border-zero default-color">Start Date</th>
+                        <th class="border-zero default-color">End Date</th>
+                        <th class="border-zero default-color">Status</th>
+                        <th class="border-zero default-color">Edit</th>
+                        <th class="border-zero default-color"></th>
                     </tr>
                 </thead>
                 <tbody ng-repeat="promotion in mypromotions | reverse">
