@@ -475,7 +475,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\profile_circular_border_imageview.axml" />
-    <AndroidResource Include="Resources\layout\SignInView.axml" />
+    <AndroidResource Include="Resources\layout\SignInView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\LoginMainView.axml" />
     <AndroidResource Include="Resources\layout\CreatePromotionPart2View.axml">
       <SubType>Designer</SubType>
@@ -529,6 +531,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Card_Layout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\rounded_shape_button.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -637,6 +642,10 @@
     <AndroidResource Include="Resources\drawable\ic_thumb_up_dark_grey.xml" />
     <AndroidResource Include="Resources\drawable\ic_location_green.xml" />
     <AndroidResource Include="Resources\drawable\ic_location_dark_grey.xml" />
+    <AndroidResource Include="Resources\drawable-mdpi\glimpse_splash.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\glimpse_splash.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\glimpse_splash.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\glimpse_splash.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
