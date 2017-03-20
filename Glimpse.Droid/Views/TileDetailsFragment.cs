@@ -15,6 +15,9 @@ using System.IO;
 using System.Collections.Generic;
 using Android.Graphics;
 using Android.App;
+using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Support.V7.App;
+using Android.Support.Design.Widget;
 
 namespace Glimpse.Droid.Views
 {
@@ -44,20 +47,22 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as MainActivity).SetCustomTitle("Details");
+
+/*            SupportToolbar toolbar = View.FindViewById<SupportToolbar>(Resource.Id.toolbar);
+            (this.Activity as AppCompatActivity).SetSupportActionBar(toolbar);
+            (this.Activity as AppCompatActivity).SupportActionBar.SetDisplayHomeAsUpEnabled(true); 
+            
+            string promotionName = ViewModel.PromotionTitle;
+
+            CollapsingToolbarLayout collapsingToolbar = View.FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
+            collapsingToolbar.Title = promotionName; 
+            */
             await LoadImageList();
-            SetupViewPagerAndAdapter();
-            SetupDotsControl();
-            _title = view.FindViewById<TextView>(Resource.Id.detailViewTitle);
-            if(ViewModel.PromotionTitle != null)
-                _title.Text = ViewModel.PromotionTitle;
+           // SetupViewPagerAndAdapter();
+            //SetupDotsControl();
 
-            _duration = view.FindViewById<TextView>(Resource.Id.detailViewDuration);
-            if (ViewModel.PromotionDuration != null)
-                _duration.Text = ViewModel.PromotionDuration;
 
-            _description = view.FindViewById<TextView>(Resource.Id.detailViewDescription);
-            if (ViewModel.PromotionDescription != null)
-                _description.Text = ViewModel.PromotionDescription;
+           
         }
 
         public override async void OnStart()
@@ -86,7 +91,7 @@ namespace Glimpse.Droid.Views
             pr.Hide();
         }
 
-        public void SetupViewPagerAndAdapter()
+       /* public void SetupViewPagerAndAdapter()
         {
             _ImageResources = new List<Bitmap> ();
             foreach (byte[] image in _byteImages)
@@ -119,7 +124,7 @@ namespace Glimpse.Droid.Views
                 }
                 _dots[0].SetImageDrawable(Resources.GetDrawable(Resource.Drawable.selecteditem_dot));
             }
-        }
+        } */
         private async void  LoadImagesIfNeeded()
         {
             //Create a progress dialog for loading

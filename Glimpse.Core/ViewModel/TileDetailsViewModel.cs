@@ -18,16 +18,24 @@ namespace Glimpse.Core.ViewModel
         private string _promotionTitle;
         private string _promotionDuration;
         private string _promotionDescription;
+        private byte[] _promotionImage;
+        private string _promotionImageURL;
 
         public TileDetailsViewModel(IMvxMessenger messenger, IPromotionImageDataService promotionImageDataService)
         {
             _promotionImageDataService = promotionImageDataService;
         }
 
-        protected override void InitFromBundle(IMvxBundle parameters)
+        protected override  void InitFromBundle(IMvxBundle parameters)
         {
             if (parameters.Data.ContainsKey("PromotionID"))
                 _promotionId = Convert.ToInt32((parameters.Data["PromotionID"]));
+
+            if (parameters.Data.ContainsKey("ImageURL"))
+            {
+                _promotionImageURL = (parameters.Data["ImageURL"]);//use blob client im at putting image in the detail
+                _promotionImage = BlobClient.BlobClient.GetBlobSynchronous(_promotionImageURL) ;
+            }
 
             if (parameters.Data.ContainsKey("PromotionTitle"))
                 _promotionTitle = (parameters.Data["PromotionTitle"]);
@@ -40,6 +48,26 @@ namespace Glimpse.Core.ViewModel
 
 
             base.InitFromBundle(parameters);
+        }
+
+        public string PromotionImageURL
+        {
+            get { return _promotionImageURL; }
+            set
+            {
+                _promotionImageURL = value;
+                RaisePropertyChanged(() => PromotionImageURL);
+            }
+        }
+
+        public byte[] PromotionImage
+        {
+            get { return _promotionImage; }
+            set
+            {
+                _promotionImage = value;
+                RaisePropertyChanged(() => PromotionImage);
+            }
         }
 
         public string PromotionTitle
@@ -94,11 +122,17 @@ namespace Glimpse.Core.ViewModel
         public async Task<List<byte[]>> GetImageList()
         {
             //getting images for promotion
-            _images = await _promotionImageDataService.GetImageListFromPromotionWithLocationId(_promotionId);
-
+            _images = await _promotionImageDataService.GetImageListFromPromotionWithLocationId(_promotionId);           
             return _images;
         }
 
+        public async Task<byte[]> GetCoverImage()
+        {
+            //getting images for promotion
+            _promotionImage = await BlobClient.BlobClient.GetBlob(_promotionImageURL);
+            return _promotionImage;
+        }
+       
         private string ConvertSecondsToMinutes(string value)
         {
 

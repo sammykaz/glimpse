@@ -271,6 +271,7 @@ namespace Glimpse.Core.ViewModel
                         {"PromotionTitle", item.Item.Title},
                         {"PromotionDuration", Convert.ToString(item.Item.Duration)},
                         {"PromotionDescription", item.Item.Description},
+                        {"ImageURL", item.Item.ImageURL }
                     };
 
                     ShowViewModel<TileDetailsViewModel>(desc);
