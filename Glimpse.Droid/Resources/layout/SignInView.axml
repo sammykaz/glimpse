@@ -38,7 +38,7 @@
             android:layout_marginTop="25dp"
             android:hint="Email"
             android:paddingLeft="10dp"
-            android:textColor="#000"
+            android:textColor="#707070"
             local:MvxBind="Text Email, Mode=TwoWay" />
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
@@ -57,7 +57,7 @@
             android:layout_marginTop="25dp"
             android:hint="Password"
             android:paddingLeft="10dp"
-            android:textColor="#000"
+            android:textColor="#707070"
             local:MvxBind="Text Password, Mode=TwoWay" />
     </android.support.design.widget.TextInputLayout>
   <RelativeLayout
