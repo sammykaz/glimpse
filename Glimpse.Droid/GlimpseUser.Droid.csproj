@@ -628,7 +628,6 @@
     <AndroidResource Include="Resources\drawable\plus.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Adapter\glimpse_splash_500x500.png" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <AndroidResource Include="Resources\drawable\promotions\lb_sale_accessories_1-2.jpg" />
