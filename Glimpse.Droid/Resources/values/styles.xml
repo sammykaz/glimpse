@@ -19,4 +19,8 @@
     <item name="android:paddingBottom">14dp</item>
     <item name="android:orientation">vertical</item>
   </style>
+
+  <style name="AppTheme.RoundedCornerMaterialButton" parent="Widget.AppCompat.Button.Colored">
+    <item name="android:background">@drawable/rounded_shape_button</item>
+  </style>
 </resources>

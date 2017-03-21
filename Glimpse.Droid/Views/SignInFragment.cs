@@ -18,6 +18,7 @@ using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Shared.Attributes;
 using Glimpse.Droid.Helpers;
 using MvvmCross.Binding.BindingContext;
+using Android.Text.Method;
 
 namespace Glimpse.Droid.Views
 {
@@ -26,7 +27,7 @@ namespace Glimpse.Droid.Views
     public class SignInFragment : MvxFragment<SignInViewModel>
     {
         private BindableProgress _bindableProgress;
-
+        private EditText _password;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Use this to return your custom view for this Fragment
@@ -45,6 +46,18 @@ namespace Glimpse.Droid.Views
             var set = this.CreateBindingSet<SignInFragment, SignInViewModel>();
             set.Bind(_bindableProgress).For(p => p.Visible).To(vm => vm.IsBusy);
             set.Apply();
+
+            _password = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtPassword);
+            _password.TextChanged += _password_TextChanged;
         }
+
+        private void _password_TextChanged(object sender, Android.Text.TextChangedEventArgs e)
+        {
+            _password.TransformationMethod=PasswordTransformationMethod.Instance;
+            _password.SetSelection(_password.Text.Length);
+            _password.TextChanged -= _password_TextChanged;
+
+        }
+
     }
 }
