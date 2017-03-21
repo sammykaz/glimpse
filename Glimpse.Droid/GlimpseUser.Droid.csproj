@@ -361,7 +361,7 @@
     <Compile Include="Extensions\ActivityExtensions.cs" />
     <Compile Include="Extensions\MonoTypeExtensions.cs" />
     <Compile Include="Helpers\BindableProgress.cs" />
-    <Compile Include="Helpers\BitmapProcessing.cs" />
+    <Compile Include="Helpers\ImageProcessing.cs" />
     <Compile Include="Helpers\ByteArrayImageValueConverter.cs" />
     <Compile Include="Controls\CustomViewPager.cs" />
     <Compile Include="Controls\Listener\CardSwipeListener.cs" />
