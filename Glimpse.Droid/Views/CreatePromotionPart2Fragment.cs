@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -9,16 +8,16 @@ using Glimpse.Core.ViewModel;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Support.V4;
 using Glimpse.Droid.Extensions;
-using Square.TimesSquare;
-using Glimpse.Droid.Activities;
-using Glimpse.Droid;
-using Glimpse.Droid.Views;
 using Android.Content;
-using System.Text;
 using Android.App;
-using MvvmCross.Binding.BindingContext;
+using Glimpse.Droid.Activities;
+using Glimpse.Droid.Helpers;
+using System.Threading.Tasks;
 using Android.Graphics;
-using Android.Util;
+using System.IO;
+using static Android.Graphics.BitmapFactory;
+using Android.Database;
+using Android.Provider;
 
 namespace Glimpse.Droid.Views
 {
@@ -85,7 +84,7 @@ namespace Glimpse.Droid.Views
             _imageViewImage3.Click += ButtonOnClick;
         }
 
-
+        //Add Picture button
         private void ButtonOnClick(object sender, EventArgs eventArgs)
         {           
             Intent intent = new Intent();
@@ -97,45 +96,48 @@ namespace Glimpse.Droid.Views
             StartActivityForResult(Intent.CreateChooser(intent, "Select Picture"), (int)view.Tag);
         }
 
-        public override void OnActivityResult(int requestCode, int resultCode, Intent data)
+        public override async void OnActivityResult(int requestCode, int resultCode, Intent data)
         {
             if ((resultCode == (int)Result.Ok) && (data != null))
             {
                 var viewModel = (CreatePromotionPart2ViewModel)ViewModel;
 
                 if (requestCode == PickCoverImage)
-                    viewModel.Bytes = GetImageSelection(_imageViewCover, data);
+                    viewModel.Bytes = await GetImageSelection(_imageViewCover, data);
                 else if (requestCode == PickRegularImage1)
-                    viewModel.PromotionImageList.Add(GetImageSelection(_imageViewImage1, data));
+                    viewModel.PromotionImageList.Add(await GetImageSelection(_imageViewImage1, data));
                 else if (requestCode == PickRegularImage2)
-                    viewModel.PromotionImageList.Add(GetImageSelection(_imageViewImage2, data));
+                    viewModel.PromotionImageList.Add(await GetImageSelection(_imageViewImage2, data));
                 else if (requestCode == PickRegularImage3)
-                    viewModel.PromotionImageList.Add(GetImageSelection(_imageViewImage3, data)); 
+                    viewModel.PromotionImageList.Add(await GetImageSelection(_imageViewImage3, data));
 
             }
         }
 
-        private byte[] GetImageSelection(ImageView view, Intent data)
+        private async Task<byte[]> GetImageSelection(ImageView view, Intent data)
         {
             Android.Net.Uri uri = data.Data;
-                        
             view.SetImageURI(uri);
             view.BuildDrawingCache(true);
             Bitmap bmap = view.GetDrawingCache(true);
-            view.SetImageBitmap(bmap);
             Bitmap b = Bitmap.CreateBitmap(view.GetDrawingCache(true));
 
             var stream = new MemoryStream();
-
             b.Compress(Bitmap.CompressFormat.Png, 100, stream);
+
+            //Adjust any images uploaded by vendor to approx 500x500 resolution
+            Bitmap bitmapToDisplay = await ImageProcessing.DecodeBitmapFromStream(Activity.ApplicationContext, data.Data, 500, 500);
+
+            view.SetImageBitmap(bitmapToDisplay);
 
             var viewModel = (CreatePromotionPart2ViewModel)ViewModel;
 
             return stream.ToArray();
+
         }
 
 
-            void StartDateSelect_OnClick(object sender, EventArgs eventArgs)
+        void StartDateSelect_OnClick(object sender, EventArgs eventArgs)
         {
             DatePickerFragment frag = DatePickerFragment.NewInstance(DateTime.Now, delegate (DateTime time)
             {

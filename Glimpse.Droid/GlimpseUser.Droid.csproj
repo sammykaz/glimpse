@@ -361,7 +361,7 @@
     <Compile Include="Extensions\ActivityExtensions.cs" />
     <Compile Include="Extensions\MonoTypeExtensions.cs" />
     <Compile Include="Helpers\BindableProgress.cs" />
-    <Compile Include="Helpers\BitmapProcessing.cs" />
+    <Compile Include="Helpers\ImageProcessing.cs" />
     <Compile Include="Helpers\ByteArrayImageValueConverter.cs" />
     <Compile Include="Controls\CustomViewPager.cs" />
     <Compile Include="Controls\Listener\CardSwipeListener.cs" />
@@ -408,7 +408,7 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\values\colors.xml">
-      <SubType>AndroidResource</SubType>
+      <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\fragment_menu.axml">
       <SubType>Designer</SubType>
@@ -487,7 +487,9 @@
     <AndroidResource Include="Resources\layout\PromotionItemTemplate.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\item_menu.axml" />
+    <AndroidResource Include="Resources\layout\item_menu.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\Raw\style_json.json" />
     <AndroidResource Include="Resources\layout\LikedPromotionsView.axml">
       <SubType>Designer</SubType>
@@ -598,7 +600,9 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\HomeButtonBuyerSignUp.xml" />
+    <AndroidResource Include="Resources\drawable\HomeButtonBuyerSignUp.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\HomeButtonSignIn.xml" />
