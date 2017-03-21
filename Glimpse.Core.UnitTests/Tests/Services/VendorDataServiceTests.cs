@@ -128,7 +128,52 @@ namespace Glimpse.Core.UnitTests.Tests.Services
             await _vds.DeleteVendor(vendorFromDb);
         }
 
+        [TestMethod]
+        public async Task TestVendorLocation_IsUnique()
+        {
+            //Create first vendor
+            Vendor vendor1 = new Vendor
+            {
+                Email = _testEmail,
+                Password = _testPassword,
+                CompanyName = "UnitTestCompany",
+                Address = "Unit Test Address",
+                Telephone = "543-535-5353",
+                Location = new Location
+                {
+                    Lat = 54.434,
+                    Lng = 53.656,
+                },
+            };
 
+            //Sign the first vendor
+            await _vds.SignUp(vendor1);
+
+            //Create second vendor
+            Vendor vendor2 = new Vendor
+            {
+                Email = _testEmail,
+                Password = _testPassword,
+                CompanyName = "UnitTestCompany",
+                Address = "Unit Test Address",
+                Telephone = "543-535-5353",
+                Location = new Location
+                {
+                    Lat = 54.434,
+                    Lng = 53.656,
+                },
+            };
+
+            //Sign up the second vendor
+            //This should fail due to exact duplicate of location coordinates Lat Lng
+            Assert.IsFalse(await _vds.SignUp(vendor2));
+            Assert.IsTrue(vendor1.Location.Lat == vendor2.Location.Lat && vendor2.Location.Lng == vendor1.Location.Lng);
+
+            //clean up
+            await _vds.DeleteVendor(vendor1);
+            await _vds.DeleteVendor(vendor2);
+
+        }
 
     }
 }
