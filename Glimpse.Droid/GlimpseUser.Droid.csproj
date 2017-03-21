@@ -494,7 +494,9 @@
     <AndroidResource Include="Resources\layout\LikedPromotionsView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\PromotionAndDistanceTemplate.axml" />
+    <AndroidResource Include="Resources\layout\PromotionAndDistanceTemplate.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\ViewPagerView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
