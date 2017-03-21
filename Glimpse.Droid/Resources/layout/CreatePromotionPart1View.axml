@@ -26,6 +26,8 @@
             android:layout_below="@id/promotionTitle"
             android:layout_width="match_parent"
             android:layout_height="35dp"
+            android:lines="8"
+            android:inputType="textMultiLine"
             android:id="@+id/promotionDescription"
             android:background="@drawable/edit_text_style"
             android:layout_marginBottom="10dp"
@@ -36,7 +38,6 @@
             android:layout_weight="30"
             android:paddingLeft="10dp"
             android:imeOptions="actionDone"
-             android:singleLine="true"
             android:layout_marginLeft="20dp" />
         <TextView
             android:text="Categories"
