@@ -1,17 +1,29 @@
 <div class="animated fadeIn">
     <div class="modal-content">
-        <div class="modal-header my-modal-header">
+        <!--<div class="modal-header">
             <h3 class="modal-title" id="modal-title">{{ edit == true ? ' Modify Promotion' : 'Create Promotion'}}</h3>
+
+        </div>-->
+        <div class="col-sm-12 form-top">
+            <div class="col-sm-8">
+                <h3 class="signup-title">{{ edit == true ? ' Modify Promotion' : 'Create Promotion'}}</h3>
+                <p class="signup-desc">Fill in the form below with the information of your promotion</p>
+            </div>
+            <div class="col-sm-4">
+                <i class="fa fa-ticket signup-icon pull-right"></i>
+            </div>
+            <div class="col-sm-12 signup-line"></div>
         </div>
-        <div class="modal-body ng-scope" id="modal-body">
-            <form>
+
+        <div class="modal-body ng-scope col-sm-12" id="modal-body">
+            <form class="col-sm-12">
                 <div class="form-group">
                     <label>Promotion Title</label>
                     <input type="text" class="form-control" placeholder="Enter Title" ng-model="promotionTitle">
                 </div>
                 <div class="form-group container modal-checkbox">
                     <label>Categories</label>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 padding-zero">
                         <div class="col-sm-4">
                             <input type="radio" ng-model="category" ng-value="0">
                             <span class="">Footwear</span>
@@ -63,8 +75,12 @@
                     </div>
                 </div>
                 <div>
-                    <label>Photo</label>
-                    <input type="file" ngf-select ng-model="picFile" accept="image/*" class="btn btn-primary">
+                    <label class="padding-zero2">Photo</label>
+                    <small class="form-text text-muted text-m">This will be your promotion cover picture. <u>(Required)</u></small>
+                    <div class="upload-pic">
+                        <div class="fa fa-upload signup-cat-icons icon-signup"></div>
+                        <input type="file" ngf-select ng-model="picFile" accept="image/*" class="btn btn-primary">
+                    </div>
                     <div class="pull-right" style="margin-top:10px;">
                         <button class="btn btn-danger" ng-click="saveImage()" ng-show="previewImage" type="button">Add Image to Promotion</button>
                         <button class="btn btn-danger" ng-click="cropImage()" ng-show="!saveCrop && previewImage" type="button">Crop</button>
@@ -102,7 +118,6 @@
                         <button class="btn btn-success" ng-click="saveFilter()" ng-show="isResetEnable" type="button">Save Filter</button>
                         <button class="btn btn-danger" ng-click="removeImage()" ng-show="previewImage" type="button">Remove</button>
                     </div>
-                    <small class="form-text text-muted">Choose a picture to promote</small>
 
 
                     <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">

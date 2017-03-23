@@ -1,25 +1,31 @@
-<nav class="navbar navbar-dark  bg-faded nav-bar-background-color">
-    <a class="navbar-brand" href="#">Glimpse</a>
-    <ul class="nav navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" ui-sref=".viewPromotion">Promotions</a>
-        </li>
-        <li class="nav-item">
-            <a id="map" class="nav-link" ui-sref=".map">Map</a>
-        </li>
-        <li class="nav-item float-xs-right">
-            <a class="nav-link" ng-click="logout()" href="">Logout</a>
-        </li>
-        <li class="nav-item float-xs-right">
-            <a class="nav-link" ui-sref=".profile">Profile</a>
-        </li>
-        <li class="nav-item float-xs-right">
-            <a class="nav-link" ui-sref=".analysis">Analytics</a>
-        </li>
-        <li class="nav-item float-xs-right">
-            <a class="nav-link" ui-sref=".mypromotions">My Promotions</a>
-        </li>
-    </ul>
+<nav class="navbar bg-faded nav-bar">
+    <div class="container">
+        <div class="col-sm-12">
+            <a class="navbar-brand nav-section" ui-sref=".viewPromotion">Glimpse</a>
+            <ul class="nav navbar-nav">
+                <li class="nav-item">
+                    <div class="nav-link nav-section" ui-sref=".viewPromotion">Promotions</div>
+                </li>
+                <li class="nav-item">
+                    <div id="map" class="nav-link nav-section" ui-sref=".map">Map</div>
+                </li>
+                <li class="nav-item float-xs-right">
+                    <div class="nav-link nav-section" ng-click="logout()" href="">Logout</div>
+                </li>
+                <li class="nav-item float-xs-right">
+                    <div class="nav-link nav-section" ui-sref=".profile">Profile</div>
+                </li>
+                <li class="nav-item float-xs-right">
+                    <div class="nav-link nav-section" ui-sref=".analysis">Analytics</div>
+                </li>
+                <li class="nav-item float-xs-right">
+                    <div class="nav-link nav-section" ui-sref=".mypromotions">My Promotions</div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
 
-<div ui-view></div>
+<div class="container">
+    <div ui-view></div>
+</div>

@@ -12,7 +12,9 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
 
     var promotionsquery = dataService.getPromotions().query();
     promotionsquery.$promise.then(function (data) {
-        //debugger;
+        for (var i = 0; i < data.length; i++) {
+            data[i].PromotionImageURL = encodeURIComponent(data[i].PromotionImageURL)
+        }
         $scope.promotions = data;
     }, function (error) {
         console.log("Error: Could not load promotions");
@@ -46,6 +48,13 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
 
 app.controller('modalImageController', function ($scope, $timeout, dataService, promotionDetails) {
     
+    var Category = ["Footwear", "Electronics", "Jewellery", "Restaurants", "Services", "Apparel"];
+    $scope.Title = promotionDetails.Title;
+    $scope.Category = Category[promotionDetails.Category];
+    $scope.Description = promotionDetails.Description;
+    $scope.PromotionStartDate = promotionDetails.PromotionStartDate;
+    $scope.PromotionEndDate = promotionDetails.PromotionEndDate;
+
     $scope.promotionImageURL = promotionDetails.PromotionImageURL;
     $scope.promotionImages = [];
     $scope.images = [];

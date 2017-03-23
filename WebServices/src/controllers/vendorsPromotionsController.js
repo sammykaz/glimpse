@@ -1,7 +1,8 @@
 ﻿'use strict';
 
 app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state', '$uibModal', function ($scope, dataService, $state, $uibModal) {
-
+    $scope.editOn = false;
+    $scope.removeOn = false;
     dataService.GetAuthorizeData().then(function (data) {
         console.log("Authorized");
     }, function (error) {
@@ -56,11 +57,35 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
         });
     }
 
-    $scope.deletePromotion = function (promotion, index) {
-        dataService.deletePromotion().delete({
-            promotion: promotion.PromotionId
-        }).$promise.then(function () {
-            $scope.mypromotions.splice(index, 1);
+    $scope.turnEditOn = function () {
+        $scope.editOn = true;
+        $scope.removeOn = false;
+    }
+
+    $scope.turnRemoveOn = function () {
+        $scope.editOn = false;
+        $scope.removeOn = true;
+    }
+
+    $scope.turnOff = function () {
+        $scope.editOn = false;
+        $scope.removeOn = false;
+    }
+
+    $scope.removePromotion = function (promotion, index) {
+        $uibModal.open({
+            templateUrl: '/src/views/deletePromotionConfirmation.html',
+            controller: 'deletePromotionModalController',
+            size: 'lg',
+            scope: $scope
+        }).result.then(function (result) {
+            dataService.deletePromotion().delete({
+                promotion: promotion.PromotionId
+            }).$promise.then(function () {
+                $scope.mypromotions.splice(index, 1);
+            });
+        }, function () {
+            console.log("Modal dismissed");
         });
     }
 
@@ -1159,4 +1184,15 @@ app.controller('changeDateModalController', function ($scope, $uibModalInstance,
         return '';
     }
 
+});
+
+app.controller('deletePromotionModalController', function ($scope, $uibModalInstance) {
+
+    $scope.confirm = function () {
+        $uibModalInstance.close('Confirmed');
+    }
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    }
 });

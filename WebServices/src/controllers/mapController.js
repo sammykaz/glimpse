@@ -10,6 +10,9 @@ app.controller("mapController", ['$scope', 'dataService', '$q', '$uibModal', fun
     var promotionsquery = dataService.getPromotions().query().$promise.then(function (promotions) {
 
         // Store all promotions 
+        for (var i = 0; i < promotions.length; i++) {
+            promotions[i].PromotionImageURL = encodeURIComponent(promotions[i].PromotionImageURL)
+        }
         promotionsList = promotions;
         var promisesList = [];
 

@@ -1,34 +1,38 @@
-﻿<div class="signup-form-padding animated fadeIn">
-    <div class="container profile-form col-sm-10 offset-sm-1">
-        <h2 class="profile-title">- Promotions -</h2>
-        <div class="panel panel-default signup-form-panel">
-            <div class="panel-body">
-                
-                <table class="table">
-                    <thead class="thead-inverse">
-                        <tr>
-                            <th>Title</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>Status</th>
-                            <th><button ng-click="showCreatePromotion()" class="btn btn-success pull-right">New Promotion</button></th>
-                        </tr>
-                    </thead>
-                    <tbody ng-repeat="promotion in mypromotions | reverse">
-                        <tr>
-                            <td>{{promotion.Title}}</td>
-                            <td>{{promotion.PromotionStartDate  | date : "fullDate"}}</td>
-                            <td>{{promotion.PromotionEndDate  | date : "fullDate"}}</td>
-                            <td><span ng-show="isPromotionExpired(promotion.PromotionEndDate)">Expired</span><span ng-hide="isPromotionExpired(promotion.PromotionEndDate)">Ongoing</span></td>
-                            <th><button type="button" class="btn btn-success" ng-click="editPromotion(promotion)">Edit</button>
-                                <button type="button" class="btn btn-danger" ng-click="deletePromotion(promotion, mypromotions.indexOf(promotion))">Delete</button>
-                                <button ng-show="isPromotionExpired(promotion.PromotionEndDate)" type="button" class="btn btn-info" ng-click="editPromotionDate(promotion)">Repost</button>
-                            </th>
-                        </tr>
-                    </tbody>
-                </table>
+﻿<div class="animated fadeIn col-sm-12">
+    <div class="padding-zero2">
+        <div class="panel-body">
+            <div class="div-center">
+                <button ng-click="showCreatePromotion()" class="btn promotions-dashboard-buttons btn-glimpse">Create New Promotion</button>
             </div>
-        </div>
+            <table class="table bkg-white v-promo-t-b">
+                <thead class="">
+                    <tr class="">
+                        <th class="border-zero default-color">Promotion</th>
+                        <th class="border-zero default-color">Start Date</th>
+                        <th class="border-zero default-color">End Date</th>
+                        <th class="border-zero default-color">Status</th>
+                        <th class="border-zero default-color">Edit</th>
+                        <th class="border-zero default-color"></th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="promotion in mypromotions | reverse">
+                    <tr>
+                        <td>{{promotion.Title}}</td>
+                        <td>{{promotion.PromotionStartDate  | date : "fullDate"}}</td>
+                        <td>{{promotion.PromotionEndDate  | date : "fullDate"}}</td>
+                        <td><span ng-show="isPromotionExpired(promotion.PromotionEndDate)" class="label label-inactive">Expired</span><span ng-hide="isPromotionExpired(promotion.PromotionEndDate)" class="label label-active">Ongoing</span></td>
+                        <td>
+                            <span class="fa fa-edit icon-signup clickable" ng-click="editPromotion(promotion)"></span>
+                            <span class="fa fa-remove icon-signup clickable x-icon" ng-click="removePromotion(promotion, mypromotions.indexOf(promotion))"></span>
+                        </td>
 
+                        <th><button type="button" class="btn btn-outline-info" ng-click="editPromotion(promotion)" ng-show="editOn">Edit</button>
+                            <button type="button" class="btn btn-outline-danger" ng-click="removePromotion(promotion, mypromotions.indexOf(promotion))" ng-show="removeOn">Remove</button>
+                            <button ng-show="isPromotionExpired(promotion.PromotionEndDate)" type="button" class="btn btn-outline-info" ng-click="editPromotionDate(promotion)">Repost</button>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
