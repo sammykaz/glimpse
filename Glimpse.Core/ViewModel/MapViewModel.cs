@@ -40,7 +40,22 @@ namespace Glimpse.Core.ViewModel
         {
             base.Start();
             await ReloadDataAsync();
+        }     
+
+        private Location _location;
+        public Location Location
+        {
+            get
+            {               
+                return _location;
+            }
+            set
+            {
+                _location = value;
+                RaisePropertyChanged(() => Location);
+            }
         }
+
 
         protected override async Task InitializeAsync()
         {
@@ -89,19 +104,8 @@ namespace Glimpse.Core.ViewModel
             {
                 Lat = e.Position.Latitude,
                 Lng = e.Position.Longitude
-            };
-            OnLocationUpdate(UserCurrentLocation);
-        }
-
-
-         private void OnLocationUpdate(Location location)
-        {
-            if (LocationUpdate != null)
-            {
-                LocationChangedHandlerArgs args = new LocationChangedHandlerArgs(location);
-                LocationUpdate.Invoke(this, args);
-            }
-        }
+            };           
+        }    
 
         public int DefaulZoom
         {

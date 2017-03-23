@@ -70,6 +70,14 @@ namespace Glimpse.Droid.Views
             _tabLayout.GetTabAt(0).SetIcon(_tabIconsGreen[0]);
             _tabLayout.GetTabAt(1).SetIcon(_tabIconsGrey[1]);
             _tabLayout.GetTabAt(2).SetIcon(_tabIconsGrey[2]);
+
+            ViewModel.LikedPromotionsViewModel.LocationUpdate += LikedPromotionsViewModel_LocationUpdate;
+        }
+
+        private void LikedPromotionsViewModel_LocationUpdate(object sender, Core.Helpers.LocationChangedHandlerArgs e)
+        {
+            _viewPager.SetCurrentItem(2, true);
+            ViewModel.MapViewModel.Location = e.Location;
         }
 
         public void OnPageScrollStateChanged(int state)

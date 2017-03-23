@@ -29,21 +29,24 @@ namespace Glimpse.Droid.Adapter
             return convertView;
         }
 
-        public override void BindView(int position, View convertView, ViewGroup parent)
+        public override async void BindView(int position, View convertView, ViewGroup parent)
         {
             var pwl = (PromotionWithLocation)GetItem(position);
             var cardTitle = convertView.FindViewById<TextView>(Resource.Id.cardTitle);
+
+
             var cardImage = convertView.FindViewById<ImageView>(Resource.Id.cardImage);
+
             var cardDescription = convertView.FindViewById<TextView>(Resource.Id.cardDescription);
 
-            if(pwl.Title!= null)
-            cardTitle.Text = pwl.Title;
-                 
-            if(pwl.Description != null)     
-            cardDescription.Text = pwl.Description;
+            if (pwl.Title != null)
+                cardTitle.Text = pwl.Title;
 
-            if(pwl.Image != null)
-            cardImage.SetImageBitmap(BitmapFactory.DecodeByteArray(pwl.Image, 0, pwl.Image.Length));
+            if (pwl.Description != null)
+                cardDescription.Text = pwl.Description;
+
+            if (pwl.Image != null)
+                cardImage.SetImageBitmap(BitmapFactory.DecodeByteArray(pwl.Image, 0, pwl.Image.Length));
         }
     }
 }

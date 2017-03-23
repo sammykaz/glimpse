@@ -30,6 +30,7 @@ namespace WebServices.Models
         [NotMapped]
         public bool RequestFromWeb { get; set; }
 
+        [Index(IsUnique = true)]
         public Location Location { get; set; }
    
         public virtual ICollection<Promotion> Promotions { get; set; }

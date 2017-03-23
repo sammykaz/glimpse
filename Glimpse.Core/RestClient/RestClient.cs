@@ -4,9 +4,6 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Linq;
-using System;
-using System.Diagnostics;
-using System.Net;
 using Glimpse.Core.Services.General;
 
 namespace Plugin.RestClient
@@ -17,12 +14,12 @@ namespace Plugin.RestClient
     /// </summary>
     public class RestClient<T> {
 
-        //http://glimpsews.azurewebsites.net/api/ 
+        //http://glimpsews.azurewebsites.net/api/
         //http://glimpseservices.azurewebsites.net/api/
         //http://10.0.3.2/Glimpse/api/
         //http://localhost/Glimpse/api/
 
-
+        
         private readonly string WebServiceUrl = "http://glimpsews.azurewebsites.net/api/" + typeof(T).Name + "s/";
 
         /// <summary>
@@ -51,12 +48,13 @@ namespace Plugin.RestClient
                 }
             }
 
-            Log.Info(string.Format("Request: " + request.ToString()));
+           // Log.Info(string.Format("Request: " + request.ToString()));
 
             var json = await httpClient.GetStringAsync(request);
             var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
 
-            Log.Info("Returning: " + taskModels.ToList());
+           // if (taskModels != null)
+           //     Log.Info("Returning: " + taskModels.ToList());
 
             return taskModels;
         }
@@ -64,7 +62,7 @@ namespace Plugin.RestClient
 
         public async Task<List<T>> GetByIdAsync(int id)
         {
-            Log.Info(string.Format("Getting by id: {0}", id));
+            //Log.Info(string.Format("Getting by id: {0}", id));
 
             var httpClient = new HttpClient();
 
@@ -72,14 +70,15 @@ namespace Plugin.RestClient
 
             var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
 
-            Log.Info(string.Format("Returning: {0}", taskModels.ToList()));      
+           // if (taskModels != null)
+           //     Log.Info(string.Format("Returning: {0}", taskModels.ToList()));      
 
             return taskModels;
         }
 
         public async Task<List<T>> GetWithFilter(string filter)
         {
-            Log.Info(string.Format("Attemping to get by filter: {0}", filter));
+            //Log.Info(string.Format("Attemping to get by filter: {0}", filter));
 
             var httpClient = new HttpClient();
 
@@ -87,7 +86,8 @@ namespace Plugin.RestClient
 
             var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
 
-            Log.Info(string.Format("Returning: {0}", taskModels.ToList()));
+           // if (taskModels != null)
+            //    Log.Info(string.Format("Returning: {0}", taskModels.ToList()));
 
             return taskModels;
         }
@@ -95,24 +95,27 @@ namespace Plugin.RestClient
 
         public async Task<T> GetByKeyword(string keyword, bool slashRequired = false)
         {
-            Log.Info(string.Format("Attemping to get by keyword: {0}", keyword));
+            //Log.Info(string.Format("Attemping to get by keyword: {0}", keyword));
             var httpClient = new HttpClient();
 
             string request = WebServiceUrl + "Search/" + keyword;
 
             if (slashRequired)
                 request = request + "/";
-            Log.Info(string.Format("With request: {0}", request));
+           // Log.Info(string.Format("With request: {0}", request));
             var json = await httpClient.GetStringAsync(request);
 
             var taskModel = JsonConvert.DeserializeObject<T>(json);
-            Log.Info(string.Format("Returning: {0}", taskModel.ToString()));
+
+           // if (taskModel != null)
+           //       Log.Info(string.Format("Returning: {0}", taskModel.ToString()));
+
             return taskModel;
         }
 
         public async Task<bool> PostAsync(T t)
         {
-            Log.Info(string.Format("Attemping to post into database: {0}", t.ToString()));
+            //Log.Info(string.Format("Attemping to post into database: {0}", t.ToString()));
 
             var httpClient = new HttpClient();
 
@@ -124,19 +127,19 @@ namespace Plugin.RestClient
 
             var result = await httpClient.PostAsync(WebServiceUrl, httpContent);
 
-            if (!result.IsSuccessStatusCode)
+           /* if (!result.IsSuccessStatusCode)
                 Log.Error("Posting was unsuccessful");
             else
             {
                 Log.Info("Posting was succesful");
             }
-           
+           */
             return result.IsSuccessStatusCode;
         }
 
         public async Task<bool> PutAsync(int id, T t)
         {
-            Log.Info(string.Format("Attemping to update {0} db with id: {1}",t.ToString(),id));
+            //Log.Info(string.Format("Attemping to update {0} db with id: {1}",t.ToString(),id));
 
             var httpClient = new HttpClient();
 
@@ -148,41 +151,41 @@ namespace Plugin.RestClient
 
             var result = await httpClient.PutAsync(WebServiceUrl + id, httpContent);
 
-            if (!result.IsSuccessStatusCode)
+            /*if (!result.IsSuccessStatusCode)
                 Log.Error("Update was unsuccessful");
             else
             {
                 Log.Info("Update was succesful");
             }
-
+            */
             return result.IsSuccessStatusCode;
         }
 
         public async Task<bool> DeleteAsync(int id, T t)
         {
-            Log.Info(string.Format("Attemping to delete {0} db with id: {1}", t.ToString(), id));
+            //Log.Info(string.Format("Attemping to delete {0} db with id: {1}", t.ToString(), id));
 
             var httpClient = new HttpClient();
 
             var response = await httpClient.DeleteAsync(WebServiceUrl + id);
 
-            if (!response.IsSuccessStatusCode)
+           /* if (!response.IsSuccessStatusCode)
                 Log.Error("Deletion was unsuccessful");
             else
             {
                 Log.Info("Deletion was succesful");
             }
-
+            */
             return response.IsSuccessStatusCode;
         }
 
         public async Task<int> GetIdAsync(string email)
         {
-            Log.Info(string.Format("Getting by email: {0}", email));
+            //Log.Info(string.Format("Getting by email: {0}", email));
 
             var httpClient = new HttpClient();
 
-            Log.Info("Web Service URL: " + WebServiceUrl + "Search/" + email + "/"); 
+            //Log.Info("Web Service URL: " + WebServiceUrl + "Search/" + email + "/"); 
              
             var json = await httpClient.GetStringAsync(WebServiceUrl + "Search/" + email + "/");
 
@@ -190,7 +193,7 @@ namespace Plugin.RestClient
 
             var  obj = list.FirstOrDefault();
 
-            Log.Info("Returning: " + obj["Id"]);
+            //Log.Info("Returning: " + obj["Id"]);
 
             return (int)obj["Id"];
         }
@@ -200,7 +203,7 @@ namespace Plugin.RestClient
             string request = WebServiceUrl.Substring(0, WebServiceUrl.IndexOf("api")) + "authenticate";
             //string request = "http://localhost/Glimpse/authenticate/";
 
-            Log.Info("Request: " + request.ToString());
+            //Log.Info("Request: " + request.ToString());
 
             var httpClient = new HttpClient();
 
@@ -212,12 +215,12 @@ namespace Plugin.RestClient
            
             var result = await httpClient.PostAsync(request, httpContent);
 
-            if (!result.IsSuccessStatusCode)
+            /*if (!result.IsSuccessStatusCode)
                 Log.Error("Authentication was unsuccessful");
             else
             {
                 Log.Info("Authentication was succesful");
-            }
+            }*/
 
             return result.IsSuccessStatusCode;                  
 
