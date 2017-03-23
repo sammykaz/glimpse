@@ -7,7 +7,6 @@ app.controller('ProfileController', ['$scope', 'dataService', '$state', 'authent
     $scope.data = "";
     $scope.editOn = false;
     dataService.GetAuthorizeData().then(function (data) {
-        debugger;
         VendorId = data;
         console.log(data);
         $scope.email = localStorage.email;

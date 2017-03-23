@@ -7,32 +7,101 @@
             <div class="col-sm-12 search-div">
                 <input class="col-sm-12 search-categories" type="text" ng-model="searchPromotionText" placeholder="Search">
             </div>
-            <div class="col-sm-12 filter-label">
-                <div class="col-sm-12">Filter Promotions by Categories </div>
-                <div class="btn-group col-sm-12" >
-                    <label class="btn text-align-init padding-zero col-sm-3 categories-h">
-                        <input class="categories-radio-button" type="radio" name='all' value="" ng-model="selectVal"><i class="fa fa-circle-o "></i><i class="fa fa-dot-circle-o "></i> <span id="all" class="categories-size">All</span>
-                    </label>
-                    <label class="btn text-align-init padding-zero col-sm-3 categories-h">
-                        <input class="categories-radio-button" type="radio" name='footwear' value="0" ng-model="selectVal"><i class="fa fa-circle-o "></i><i class="fa fa-dot-circle-o "></i> <span id="footwear" class="categories-size">Footwear</span>
-                    </label>
-                    <label class="btn text-align-init padding-zero col-sm-3 categories-h">
-                        <input class="categories-radio-button" type="radio" name='electronics' value="1" ng-model="selectVal"><i class="fa fa-circle-o "></i><i class="fa fa-dot-circle-o "></i> <span id="electronics" class="categories-size">Electronics</span>
-                    </label>
-                    <label class="btn text-align-init padding-zero col-sm-3 categories-h">
-                        <input class="categories-radio-button" type="radio" name='jewellery' value="2" ng-model="selectVal"><i class="fa fa-circle-o "></i><i class="fa fa-dot-circle-o "></i> <span id="jewellery" class="categories-size">Jewellery</span>
-                    </label>
-                    <label class="btn text-align-init padding-zero col-sm-3 categories-h">
-                        <input class="categories-radio-button" type="radio" name='restaurants' value="3" ng-model="selectVal"><i class="fa fa-circle-o "></i><i class="fa fa-dot-circle-o "></i> <span id="restaurants" class="categories-size">Restaurants</span>
-                    </label>
-                    <label class="btn text-align-init padding-zero col-sm-3 categories-h">
-                        <input class="categories-radio-button" type="radio" name='services' value="4" ng-model="selectVal"><i class="fa fa-circle-o "></i><i class="fa fa-dot-circle-o "></i> <span id="services" class="categories-size">Services</span>
-                    </label>
-                    <label class="btn text-align-init padding-zero col-sm-3 categories-h">
-                        <input class="categories-radio-button" type="radio" name='apparel' value="5" ng-model="selectVal"><i class="fa fa-circle-o "></i><i class="fa fa-dot-circle-o "></i> <span id="apparel" class="categories-size">Apparel</span>
-                    </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="masonry">
+                <div class="masonry-filter-container">
+                    <span>Category:</span>
+                    <div class="masonry-filter-holder">
+                        <div class="masonry__filters" data-filter-all-text="All Categories"><ul><li class="active" data-masonry-filter="*">All Categories</li><li data-masonry-filter="accessories" class="">Accessories</li><li data-masonry-filter="audio" class="">Audio</li><li data-masonry-filter="computing" class="">Computing</li><li data-masonry-filter="creative" class="">Creative</li></ul></div>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="masonry__container masonry--active" style="position: relative; height: 965px;">
+                        <div class="masonry__item col-sm-6 col-md-3" style="position: absolute; left: 0px; top: 0px;"></div>
+
+                        <div class="masonry__item col-sm-6 col-md-3 filter-computing" ng-click="showImage(promotion)" ng-repeat="(key, promotion) in promotions | limitTo:4 | reverse | filter:searchPromotionText | filter:{Category: selectVal}">
+
+                            <div class="" data-masonry-filter="Computing" style="position: absolute; top: 0px;">
+                                <div class="product">
+                                    <a ng-click="showImage(promotion)">
+                                        <img style="width: 262.5px; height: 199px; "alt="Image" ng-src="https://glimpseimages.blob.core.windows.net/imagestorage/{{promotion.PromotionImageURL}}">
+                                    </a>
+                                    <a class="block">
+                                        <div>
+                                            <div class="col-sm-12" style="text-align:center"><h5>{{promotion.Title}}</h5></div>
+                                            <span>{{promotion.Description}}</span>
+                                        </div>
+                                        <div>
+                                            <span class="h4 inline-block type--strikethrough">$899</span>
+                                            <span class="h4 inline-block">$799</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="masonry__item col-sm-6 col-md-3 filter-audio" data-masonry-filter="Audio" style="position: absolute; left: 0px; top: 313px;">
+                            <div class="product">
+                                <a href="#">
+                                    <img alt="Image" src="https://glimpseimages.blob.core.windows.net/imagestorage/688%2Fyoooo%2Fcover">
+                                </a>
+                                <a class="block" href="#">
+                                    <div>
+                                        <h5>DALI Xensor 2</h5>
+                                        <span> Desktop Speaker</span>
+                                    </div>
+                                    <div>
+                                        <span class="h4 inline-block">$269</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!--end item-->
+                        <div class="masonry__item col-sm-6 col-md-3 filter-audio" data-masonry-filter="Audio" style="position: absolute; left: 292px; top: 313px;">
+                            <div class="product">
+                                <a href="#">
+                                    <img alt="Image" src="https://glimpseimages.blob.core.windows.net/imagestorage/688%2Fyoooo%2Fcover">
+                                </a>
+                                <a class="block" href="#">
+                                    <div>
+                                        <h5>Tivoli M1</h5>
+                                        <span> Digital Radio</span>
+                                    </div>
+                                    <div>
+                                        <span class="h4 inline-block type--strikethrough">$479</span>
+                                        <span class="h4 inline-block">$399</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!--end item-->
+                        <div class="masonry__item col-sm-6 col-md-3 filter-computing" data-masonry-filter="Computing" style="position: absolute; left: 585px; top: 313px;">
+                            <div class="product">
+                                <a href="#">
+                                    <img alt="Image" src="https://glimpseimages.blob.core.windows.net/imagestorage/688%2Fyoooo%2Fcover">
+                                </a>
+                                <a class="block" href="#">
+                                    <div>
+                                        <h5>Microsoft Surface</h5>
+                                        <span> 256GB Core i7</span>
+                                    </div>
+                                    <div>
+                                        <span class="h4 inline-block">$1399</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!--end item-->
+                    </div>
+                    <!--end masonry container-->
+                </div>
+                <!--end of row-->
             </div>
+            <!--end masonry-->
         </div>
     </div>
 

@@ -1,31 +1,56 @@
 <nav class="navbar bg-faded nav-bar">
-    <div class="container">
-        <div class="col-sm-12">
-            <a class="navbar-brand nav-section" ui-sref=".viewPromotion">Glimpse</a>
-            <ul class="nav navbar-nav">
-                <li class="nav-item">
-                    <div class="nav-link nav-section" ui-sref=".viewPromotion">Promotions</div>
-                </li>
-                <li class="nav-item">
-                    <div id="map" class="nav-link nav-section" ui-sref=".map">Map</div>
-                </li>
-                <li class="nav-item float-xs-right">
-                    <div class="nav-link nav-section" ng-click="logout()" href="">Logout</div>
-                </li>
-                <li class="nav-item float-xs-right">
-                    <div class="nav-link nav-section" ui-sref=".profile">Profile</div>
-                </li>
-                <li class="nav-item float-xs-right">
-                    <div class="nav-link nav-section" ui-sref=".analysis">Analytics</div>
-                </li>
-                <li class="nav-item float-xs-right">
-                    <div class="nav-link nav-section" ui-sref=".mypromotions">My Promotions</div>
-                </li>
-            </ul>
+    <div class="nav-container">
+        <div class="via-1490285327908" via="via-1490285327908" vio="k">
+            <div class="bar bar--sm visible-xs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-2">
+                            <a href="index.html"> <img class="logo logo-dark" alt="logo" src="img/logo-dark.png"> <img class="logo logo-light" alt="logo" src="img/logo-light.png"> </a>
+                        </div>
+                        <div class="col-xs-9 col-sm-10 text-right">
+                            <a href="#" class="hamburger-toggle" data-toggle-class="#menu1;hidden-xs hidden-sm"> <i class="icon icon--sm stack-interface stack-menu"></i> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav id="menu1" class="bar bar-1 hidden-xs">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-1 col-sm-2 hidden-xs">
+                            <div class="bar__module">
+                                <a class="navbar-brand nav-section" ui-sref=".viewPromotion">Glimpse</a>
+                            </div>
+                        </div>
+                        <div class="col-md-11 col-sm-12 text-right text-left-xs text-left-sm">
+                            <div class="bar__module">
+                                <ul class="menu-horizontal text-left">
+                                    <li>
+                                        <a ui-sref=".viewPromotion">Promotions</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a id="map" ui-sref=".map">Map</a>
+                                    </li>
+                                    <li class="nav-item float-xs-right">
+                                        <a ui-sref=".analysis">Analytics</a>
+                                    </li>
+                                    <li class="nav-item float-xs-right">
+                                        <a ui-sref=".mypromotions">My Promotions</a>
+                                    </li>
+                                    <li class="nav-item float-xs-right">
+                                        <a ui-sref=".profile">Profile</a>
+                                    </li>
+                                    <li class="nav-item float-xs-right">
+                                        <a ng-click="logout()" href="">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </div>
     </div>
 </nav>
-
 <div class="container">
     <div ui-view></div>
 </div>
