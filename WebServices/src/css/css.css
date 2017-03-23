@@ -18,7 +18,7 @@ body {
 .login-form-panel{padding-top: 10px;}
 .signup-title{color: black; font-weight: 300; font-size: 27px;}
 .signup-desc{color: black; font-weight: 300;}
-.signup-form{background: #fcfcfc; border: 1px solid #cecece; margin-bottom: 50px; margin-top:50px;} 
+.signup-form{background: #fcfcfc; margin-bottom: 50px; margin-top:50px;} 
 .signup-form-panel{padding-bottom: 15px; padding-top: 10px;}
 .signup-form-input{display: block; width: 100%; padding: .5rem .75rem; font-size: 1rem; background: gainsboro; line-height: 1.25; background-color: rgba(12, 35, 46, 0) !important; border: 1px solid rgb(255, 255, 255); border-radius: .25rem;}
 .signup-icon{font-size: 56px !important; color:#2FD4AD !important;}
