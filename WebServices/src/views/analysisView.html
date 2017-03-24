@@ -3,14 +3,14 @@
         <div class="col-sm-6">
             <div class="panel-shadow">
                 <table class="table bkg-white">
-                    <thead class="">
+                    <thead style="background: #4C8577; color:white;">
                         <tr>
-                            <th style="font-weight: 500 !important">Number of views so far</th>
+                            <th style="font-weight: 500 !important;">Number of views so far</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody ng-repeat="promotion in promotions | reverse">
-                        <tr>
+                        <tr class="table-row">
                             <td>{{promotion.Title}}</td>
                             <td>{{promotion.clicks}}</td>
                         </tr>
