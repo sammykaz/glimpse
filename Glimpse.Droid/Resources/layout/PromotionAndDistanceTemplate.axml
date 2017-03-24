@@ -1,57 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
-    <TextView
-        android:textSize="17dp"
-        android:layout_width="fill_parent"
+  
+    <com.makeramen.roundedimageview.RoundedImageView        
+        android:id="@+id/promotion_picture"
+        local:MvxBind="Bitmap ByteArrayImage(Item.Image)"
+        android:scaleType="centerCrop"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:gravity="center"
-        android:textColor="#000000"
-        local:MvxBind="Text Item.CompanyName" />
+        local:riv_corner_radius="35dip"
+        local:riv_mutate_background="true"
+        local:riv_tile_mode="repeat"
+        local:riv_oval="false"  />
+   
+  
+
     <TextView
         android:textSize="17dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/promotionTitle"
+                android:layout_toRightOf="@+id/promotion_picture" 
+         android:layout_toLeftOf="@+id/seemapbutton"
         android:padding="3dp"
         android:textColor="#000000"
         android:textStyle="bold"
         android:gravity="center"
         local:MvxBind="Text Item.Title" />
-    <TextView
+      
+     <TextView
         android:textSize="17dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/promotion_picture" 
+         android:layout_toLeftOf="@+id/seemapbutton"
+        android:layout_below="@id/promotionTitle"
         android:padding="3dp"
         android:gravity="center"
         android:textColor="#000000"
-        local:MvxBind="Text Item.Description" />
-    <TextView
-        android:textSize="17dp"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:gravity="center"
-        android:textColor="#000000"
-        local:MvxBind="Text SecondsToMinute(Item.Duration)" />
-    <Mvx.MvxImageView
-        android:src="@android:drawable/ic_menu_gallery"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/promotion_picture"
-        local:MvxBind="Bitmap ByteArrayImage(Item.Image)" />
+        local:MvxBind="Text Item.CompanyName" />  
+  
+  
     <Button
         android:focusable="false"
+        android:id="@+id/seemapbutton"
+        android:layout_alignParentRight="true"
+                
         android:layout_width="wrap_content"
         android:layout_height="70dip"
-        android:layout_alignParentRight="true"
         android:layout_marginTop="20dip"
-        android:layout_marginRight="20dip"
+        android:layout_marginRight="2dip"
         android:layout_gravity="right|center_vertical"
         android:text="see map"
         local:MvxBind="Click OrderClick" />
-</LinearLayout>
+</RelativeLayout>
+
+
+
+  <!-- <refractored.controls.CircleImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/promotion_picture"
+        local:MvxBind="Bitmap ByteArrayImage(Item.Image)"/>
+    <TextView
+        android:textSize="17dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:gravity="center"
+        android:textColor="#000000"
+        local:MvxBind="Text SecondsToMinute(Item.Duration)" />        
+
+-->  
