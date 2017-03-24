@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LoginViewModel.SignInButton" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
   <data name="SignInViewModel.SignInButton" xml:space="preserve">
-    <value>Sign inee</value>
+    <value>a</value>
   </data>
 </root>

@@ -2,10 +2,13 @@
 using MvvmCross.Plugins.Messenger;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
+using MvvmCross.Localization;
+using Glimpse.Core.Utility;
+using Glimpse.Localization;
 
 namespace Glimpse.Core.ViewModel
 {
-    public class LoginMainViewModel : MvxViewModel
+    public class LoginMainViewModel : BaseViewModel
     {
         private readonly Lazy<VendorSignUpViewModel> _signupVendorViewModel;
         private readonly Lazy<MapViewModel> _mapViewModel;
@@ -25,6 +28,7 @@ namespace Glimpse.Core.ViewModel
 
         public void ShowLoginPage()
         {
+
             ShowViewModel<LoginViewModel>();
         }
 
@@ -32,3 +36,4 @@ namespace Glimpse.Core.ViewModel
 }
 
 
+//var re = Mvx.GetSingleton<IMvxTextProvider>();

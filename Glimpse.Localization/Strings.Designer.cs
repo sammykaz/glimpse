@@ -62,7 +62,16 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign inee.
+        ///   Looks up a localized string similar to Sign in.
+        /// </summary>
+        public static string LoginViewModel_SignInButton {
+            get {
+                return ResourceManager.GetString("LoginViewModel.SignInButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to a.
         /// </summary>
         public static string SignInViewModel_SignInButton {
             get {

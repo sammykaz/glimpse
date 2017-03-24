@@ -6,7 +6,7 @@ namespace Glimpse.Core.Utility
 {
     public class ResxTextProvider : IMvxTextProvider
     {
-        private readonly ResourceManager _resourceManager;
+        public ResourceManager _resourceManager;
 
         public ResxTextProvider(ResourceManager resourceManager)
         {

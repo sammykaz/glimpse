@@ -4,6 +4,9 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using Glimpse.Core.Model.App;
 using Glimpse.Core.Utility;
+using Glimpse.Localization;
+using MvvmCross.Localization;
+using MvvmCross.Platform;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -41,6 +44,8 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(() =>
                 {
+                    var re = Mvx.GetSingleton<IMvxTextProvider>();
+                    ((ResxTextProvider)re)._resourceManager = Strings.ResourceManager;
                     ShowViewModel<SignInViewModel>(new { index = 0 });
                 });
              }
