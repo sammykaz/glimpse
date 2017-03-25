@@ -7,10 +7,12 @@
     <com.makeramen.roundedimageview.RoundedImageView        
         android:id="@+id/promotion_picture"
         local:MvxBind="Bitmap ByteArrayImage(Item.Image)"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        local:riv_corner_radius="35dip"
+        android:layout_marginTop="-10dip"
+    android:layout_marginBottom="-10dip"
+        local:riv_corner_radius="400dip"
         local:riv_mutate_background="true"
         local:riv_tile_mode="repeat"
         local:riv_oval="false"  />
@@ -18,42 +20,44 @@
   
 
     <TextView
-        android:textSize="17dp"
+        android:textSize="16dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/promotionTitle"
                 android:layout_toRightOf="@+id/promotion_picture" 
          android:layout_toLeftOf="@+id/seemapbutton"
         android:padding="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:textColor="#000000"
-        android:textStyle="bold"
-        android:gravity="center"
+        android:gravity="left"
         local:MvxBind="Text Item.Title" />
       
      <TextView
-        android:textSize="17dp"
+        android:textSize="14dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/promotion_picture" 
          android:layout_toLeftOf="@+id/seemapbutton"
         android:layout_below="@id/promotionTitle"
         android:padding="3dp"
-        android:gravity="center"
-        android:textColor="#000000"
+        android:layout_marginLeft="10dp"
+        android:gravity="left"
+        android:textColor="#636363"
         local:MvxBind="Text Item.CompanyName" />  
   
   
-    <Button
+    <ImageButton
         android:focusable="false"
         android:id="@+id/seemapbutton"
         android:layout_alignParentRight="true"
-                
+        android:src="@drawable/ic_map_black_36dp"
         android:layout_width="wrap_content"
         android:layout_height="70dip"
-        android:layout_marginTop="20dip"
-        android:layout_marginRight="2dip"
+        android:layout_marginTop="5dip"
+        android:background="@null"
+        android:layout_marginRight="50dip"
         android:layout_gravity="right|center_vertical"
-        android:text="see map"
         local:MvxBind="Click OrderClick" />
 </RelativeLayout>
 

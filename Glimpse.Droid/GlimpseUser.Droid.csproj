@@ -673,6 +673,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\glimpse_splash.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\glimpse_splash.png" />
     <AndroidResource Include="Resources\drawable\glimpse_splash.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_map_black_36dp.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
