@@ -41,7 +41,7 @@
             
             <div class="col-sm-12 padding-zero promotion-background">
                     <div class="col-sm-3 promotion-height" ng-click="showImage(promotion)" ng-repeat="(key, promotion) in promotions | reverse | filter:searchPromotionText | filter:{Category: selectVal}">
-                        <div class="col-sm-12 padding-zero bkg-white promotion-height2">
+                        <div class="col-sm-12 padding-zero bkg-default promotion-height2">
                             <div class="col-sm-12 label-categories" ng-switch={{promotion.Category}}>
                                 <span class="label label-footwear pull-right" ng-switch-when=0>Footwear</span>
                                 <span class="label label-electronics pull-right" ng-switch-when=1>Electronics</span>

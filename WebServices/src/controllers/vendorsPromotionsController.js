@@ -3,6 +3,8 @@
 app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state', '$uibModal', function ($scope, dataService, $state, $uibModal) {
     $scope.editOn = false;
     $scope.removeOn = false;
+    $scope.maxPage = 0;
+    $scope.currentPage = 1;
     dataService.GetAuthorizeData().then(function (data) {
         console.log("Authorized");
     }, function (error) {
@@ -14,9 +16,27 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
         var promotionsquery = dataService.getAllPromotionFromSpecificVendor(localStorage.id).query();
         promotionsquery.$promise.then(function (data) {
             $scope.mypromotions = data;
+            $scope.maxPage = Math.ceil(data.length / 5);
         }, function (error) {
             console.log("Error: Could not load promotions");
         })
+    }
+    $scope.getNumber = function (num) {
+        return new Array(num);
+    }
+    $scope.setCurrentPage = function (currentPage) {
+        $scope.currentPage = currentPage;
+        console.log($scope.currentPage);
+    }
+    $scope.setCurrentPageToNext = function () {
+        if ($scope.currentPage + 1 <= $scope.maxPage)
+            $scope.currentPage++;
+        console.log($scope.currentPage);
+    }
+    $scope.setCurrentPageToPrev = function () {
+        if ($scope.currentPage - 1 > 0)
+            $scope.currentPage--;
+        console.log($scope.currentPage);
     }
     getVendorsPromotion();
     $scope.showCreatePromotion = function () {
@@ -35,6 +55,7 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
             console.log("Modal dismissed");
         });
     }
+
 
     $scope.editPromotion = function (promotion) {
         $uibModal.open({
