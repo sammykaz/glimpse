@@ -141,5 +141,59 @@ namespace Glimpse.Localization {
                 return ResourceManager.GetString("SignInViewModel.SignInButton", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Est déjà utilisé.
+        /// </summary>
+        public static string VendorSignUpViewModel_ErrorEmailExistsMsg {
+            get {
+                return ResourceManager.GetString("VendorSignUpViewModel.ErrorEmailExistsMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to L&apos;email n&apos;est pas valide.
+        /// </summary>
+        public static string VendorSignUpViewModel_ErrorEmailIsNotValidMsg {
+            get {
+                return ResourceManager.GetString("VendorSignUpViewModel.ErrorEmailIsNotValidMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Champ obligatoire manquant.
+        /// </summary>
+        public static string VendorSignUpViewModel_ErrorMissingFieldMsg {
+            get {
+                return ResourceManager.GetString("VendorSignUpViewModel.ErrorMissingFieldMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Les mots de passe ne correspondent pas.
+        /// </summary>
+        public static string VendorSignUpViewModel_ErrorPasswordMatchMsg {
+            get {
+                return ResourceManager.GetString("VendorSignUpViewModel.ErrorPasswordMatchMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choisissez un lieu.
+        /// </summary>
+        public static string VendorSignUpViewModel_LocationButton {
+            get {
+                return ResourceManager.GetString("VendorSignUpViewModel.LocationButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S&apos;inscrire.
+        /// </summary>
+        public static string VendorSignUpViewModel_SignUp {
+            get {
+                return ResourceManager.GetString("VendorSignUpViewModel.SignUp", resourceCulture);
+            }
+        }
     }
 }

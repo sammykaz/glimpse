@@ -1,5 +1,9 @@
 ﻿using Glimpse.Core.Services.General;
+using Glimpse.Core.Utility;
+using Glimpse.Localization;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Localization;
+using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -75,6 +79,17 @@ namespace Glimpse.Core.ViewModel
                 return new MvxCommand(async () =>
                 {
                     Settings.Language = CurrentLanguage;
+                    if (CurrentLanguage == "Français")
+                    {
+                        var re = Mvx.GetSingleton<IMvxTextProvider>();
+                        ((ResxTextProvider)re)._resourceManager = Strings_Fr.ResourceManager;
+                    }
+                    else if (CurrentLanguage == "English")
+                    {
+                        var re = Mvx.GetSingleton<IMvxTextProvider>();
+                        ((ResxTextProvider)re)._resourceManager = Strings.ResourceManager;
+                    }
+
                 });
             }
         }

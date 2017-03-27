@@ -144,4 +144,22 @@
   <data name="SignInViewModel.SignInButton" xml:space="preserve">
     <value>Se connecter</value>
   </data>
+  <data name="VendorSignUpViewModel.ErrorEmailExistsMsg" xml:space="preserve">
+    <value>Est déjà utilisé</value>
+  </data>
+  <data name="VendorSignUpViewModel.ErrorEmailIsNotValidMsg" xml:space="preserve">
+    <value>L'email n'est pas valide</value>
+  </data>
+  <data name="VendorSignUpViewModel.ErrorMissingFieldMsg" xml:space="preserve">
+    <value>Champ obligatoire manquant</value>
+  </data>
+  <data name="VendorSignUpViewModel.ErrorPasswordMatchMsg" xml:space="preserve">
+    <value>Les mots de passe ne correspondent pas</value>
+  </data>
+  <data name="VendorSignUpViewModel.LocationButton" xml:space="preserve">
+    <value>Choisissez un lieu</value>
+  </data>
+  <data name="VendorSignUpViewModel.SignUp" xml:space="preserve">
+    <value>S'inscrire</value>
+  </data>
 </root>

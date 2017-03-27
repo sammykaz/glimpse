@@ -144,4 +144,22 @@
   <data name="SignInViewModel.SignInButton" xml:space="preserve">
     <value>Sing in</value>
   </data>
+  <data name="VendorSignUpViewModel.ErrorEmailExistsMsg" xml:space="preserve">
+    <value>is already being used</value>
+  </data>
+  <data name="VendorSignUpViewModel.ErrorEmailIsNotValidMsg" xml:space="preserve">
+    <value>Email is not valid</value>
+  </data>
+  <data name="VendorSignUpViewModel.ErrorMissingFieldMsg" xml:space="preserve">
+    <value>Missing required field</value>
+  </data>
+  <data name="VendorSignUpViewModel.ErrorPasswordMatchMsg" xml:space="preserve">
+    <value>Passwords do not match</value>
+  </data>
+  <data name="VendorSignUpViewModel.LocationButton" xml:space="preserve">
+    <value>Choose a Location</value>
+  </data>
+  <data name="VendorSignUpViewModel.SignUp" xml:space="preserve">
+    <value>Sign Up</value>
+  </data>
 </root>
