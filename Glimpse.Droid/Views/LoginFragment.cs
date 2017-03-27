@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -16,6 +15,8 @@ using Glimpse.Droid.Extensions;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Droid.Support.V4;
+using Android.Graphics;
+using Glimpse.Droid.Controls;
 
 namespace Glimpse.Droid.Views
 {
@@ -23,7 +24,6 @@ namespace Glimpse.Droid.Views
     [Register("glimpse.droid.views.LoginFragment")]
     public class LoginFragment : MvxFragment<LoginViewModel>
     {
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Use this to return your custom view for this Fragment
@@ -36,6 +36,13 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as LoginActivity).SetCustomTitle("Login");
+            
+
+            //Adding Custom Fonts
+            TextView welcomeLabel = view.FindViewById<TextView>(Resource.Id.lblWelcomeGlimpse);
+            Typeface tf = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Light.otf");
+            welcomeLabel.SetTypeface(tf, TypefaceStyle.Normal);
+
         }
     }
 }

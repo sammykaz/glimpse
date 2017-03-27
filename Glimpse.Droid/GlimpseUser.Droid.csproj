@@ -560,6 +560,23 @@
     <AndroidResource Include="Resources\drawable\rounded_shape_button.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidAsset Include="Assets\Avenir-Heavy.otf" />
+    <AndroidAsset Include="Assets\Avenir-Black.otf" />
+    <AndroidAsset Include="Assets\Avenir-Book.otf" />
+    <AndroidAsset Include="Assets\Avenir-Light.otf" />
+    <AndroidAsset Include="Assets\AvenirLTStd-Roman.otf" />
+    <AndroidAsset Include="Assets\Avenir LT 45 Book.ttf" />
+    <AndroidAsset Include="Assets\Avenir LT 65 Medium.ttf" />
+    <AndroidAsset Include="Assets\Avenir-Medium.otf" />
+    <AndroidAsset Include="Assets\Avenir-Roman.otf" />
+    <AndroidAsset Include="Assets\AvenirLTStd-Black.otf" />
+    <AndroidAsset Include="Assets\AvenirLTStd-Book.otf" />
+    <AndroidAsset Include="Assets\AvenirLTStd-Heavy.otf" />
+    <AndroidAsset Include="Assets\AvenirLTStd-Light.otf" />
+    <AndroidAsset Include="Assets\AvenirLTStd-Medium.otf" />
+    <AndroidResource Include="Resources\layout\temp.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -674,6 +691,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\glimpse_splash.png" />
     <AndroidResource Include="Resources\drawable\glimpse_splash.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_map_black_36dp.png" />
+    <AndroidResource Include="Resources\drawable\Logo.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />

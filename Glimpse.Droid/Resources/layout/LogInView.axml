@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
+    android:background="@android:color/white"
     android:weightSum="100"
     android:minWidth="25px"
     android:minHeight="25px"
@@ -17,10 +17,10 @@
         android:layout_weight="15"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textColor="@android:color/background_light"
+        android:textColor="#2FD4AD"
         android:textStyle="bold"
         android:textSize="30dip"
-        android:id="@+id/textViewLogin" />
+        android:id="@+id/lblWelcomeGlimpse" />
     <Button
         android:text="Take a Glimpse"
         android:layout_width="match_parent"
@@ -29,10 +29,11 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10.0dp"
-        android:textSize="17sp"
+        android:textSize="20dip"
         android:id="@+id/btnTakeGlimpse"
         android:background="@drawable/HomeButtonTakeGlimpse"
-        local:MvxBind="Click ShowMap" />
+        android:textAllCaps="false"
+        local:MvxBind="Click ShowCard"/>
     <TextView
         android:text="Or"
         android:layout_width="match_parent"
@@ -54,6 +55,7 @@
         android:layout_marginBottom="10.0dp"
         android:id="@+id/btnSignIn"
         android:background="@drawable/HomeButtonSignIn"
+        android:textAllCaps="false"
         local:MvxBind="Click ShowSignIn" />
     <TextView
         android:text="Don't have an account yet?"
@@ -67,8 +69,7 @@
         android:textSize="10dip"
         android:id="@+id/textViewOr" />
     <Button
-        local:MvxBind="Click ShowVendorSignUp"
-        android:text="Sign up as a vendor"
+        android:text="Register as Merchant"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
@@ -77,21 +78,8 @@
         android:layout_marginTop="10.0dp"
         android:layout_marginBottom="10.0dp"
         android:id="@+id/btnSignUpVendor"
-        android:background="@drawable/HomeButtonVendorSignUp" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_weight="15"
-        android:minWidth="25px"
-        android:minHeight="25px">
-        <Button
-            android:text="I have an vendor Account"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:id="@+id/btnVendorSignIn"
-            android:background="@android:color/background_dark" />
-    </RelativeLayout>
+        android:background="@drawable/HomeButtonVendorSignUp"
+        android:textAllCaps="false"
+        local:MvxBind="Click ShowVendorSignUp"
+        />
 </LinearLayout>
