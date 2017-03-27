@@ -10,6 +10,7 @@ namespace Glimpse.Core.ViewModel
         private readonly Lazy<VendorSignUpViewModel> _signupVendorViewModel;
         private readonly Lazy<MapViewModel> _mapViewModel;
         private readonly Lazy<SignInViewModel> _signInViewModel;
+        private readonly Lazy<LoginSettingsViewModel> _settingsViewModel;
 
         public VendorSignUpViewModel VendorSignUpViewModel => _signupVendorViewModel.Value;
 
@@ -18,6 +19,7 @@ namespace Glimpse.Core.ViewModel
  
         public LoginMainViewModel(IMvxMessenger messenger)
         {
+            _settingsViewModel = new Lazy<LoginSettingsViewModel>(Mvx.IocConstruct<LoginSettingsViewModel>);
             _mapViewModel = new Lazy<MapViewModel>(Mvx.IocConstruct<MapViewModel>);
             _signupVendorViewModel = new Lazy<VendorSignUpViewModel>(Mvx.IocConstruct<VendorSignUpViewModel>);
             _signInViewModel = new Lazy<SignInViewModel>(Mvx.IocConstruct<SignInViewModel>);

@@ -68,7 +68,7 @@
         android:id="@+id/textViewOr" />
     <Button
         local:MvxBind="Click ShowVendorSignUp"
-         local:MvxLang="Text VendorSignUpButton"
+        local:MvxLang="Text VendorSignUpButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
@@ -78,6 +78,13 @@
         android:layout_marginBottom="10.0dp"
         android:id="@+id/btnSignUpVendor"
         android:background="@drawable/HomeButtonVendorSignUp" />
+         <Button
+            android:text="Language/Langue"
+            local:MvxBind="Click ShowSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="10dp"

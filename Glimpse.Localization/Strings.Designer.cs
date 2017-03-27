@@ -62,6 +62,24 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About Content.
+        /// </summary>
+        public static string LoginSettingsViewModel_AboutContentMsg {
+            get {
+                return ResourceManager.GetString("LoginSettingsViewModel.AboutContentMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the language for the app.
+        /// </summary>
+        public static string LoginSettingsViewModel_SelectLanguageMsg {
+            get {
+                return ResourceManager.GetString("LoginSettingsViewModel.SelectLanguageMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t have an account yet?.
         /// </summary>
         public static string LoginViewModel_NoAccountMsg {

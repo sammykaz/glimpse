@@ -117,6 +117,7 @@
     <Compile Include="ViewModel\BuyerProfilePageViewModel.cs" />
     <Compile Include="ViewModel\CreatePromotionPart2ViewModel.cs" />
     <Compile Include="ViewModel\LikedPromotionsViewModel.cs" />
+    <Compile Include="ViewModel\LoginSettingsViewModel.cs" />
     <Compile Include="ViewModel\PromotionDialogViewModel.cs" />
     <Compile Include="ViewModel\CreatePromotionViewModel.cs" />
     <Compile Include="ViewModel\LoginMainViewModel.cs" />

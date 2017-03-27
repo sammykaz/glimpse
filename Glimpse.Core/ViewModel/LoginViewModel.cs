@@ -48,5 +48,16 @@ namespace Glimpse.Core.ViewModel
                 });
              }
         }
+
+        public MvxCommand ShowSettings
+        {
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    ShowViewModel<LoginSettingsViewModel>(new { index = 0 });
+                });
+            }
+        }
     }
 }
