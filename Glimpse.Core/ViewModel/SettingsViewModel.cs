@@ -44,8 +44,19 @@ namespace Glimpse.Core.ViewModel
             }
             set
             {
-                _currentLanguage = value;
+                _currentLanguage = value;                              
                 RaisePropertyChanged(() => CurrentLanguage);
+                Settings.Language = _currentLanguage;
+                if (_currentLanguage == "Français")
+                {
+                    var re = Mvx.GetSingleton<IMvxTextProvider>();
+                    ((ResxTextProvider)re)._resourceManager = Strings_Fr.ResourceManager;
+                }
+                else if (_currentLanguage == "English")
+                {
+                    var re = Mvx.GetSingleton<IMvxTextProvider>();
+                    ((ResxTextProvider)re)._resourceManager = Strings.ResourceManager;
+                }
             }
         }
 
@@ -60,8 +71,10 @@ namespace Glimpse.Core.ViewModel
         {
             return Task.Run(() =>
             {
+                //adding the current language in the settings to the list of languages first
                 CurrentLanguage = Settings.Language;
                 Languages = new List<string> { CurrentLanguage };
+                // adding the remaining language
                 if (CurrentLanguage == "English")
                     _languages.Add("Français");
                 else if (CurrentLanguage == "Français")
@@ -78,18 +91,7 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
-                    Settings.Language = CurrentLanguage;
-                    if (CurrentLanguage == "Français")
-                    {
-                        var re = Mvx.GetSingleton<IMvxTextProvider>();
-                        ((ResxTextProvider)re)._resourceManager = Strings_Fr.ResourceManager;
-                    }
-                    else if (CurrentLanguage == "English")
-                    {
-                        var re = Mvx.GetSingleton<IMvxTextProvider>();
-                        ((ResxTextProvider)re)._resourceManager = Strings.ResourceManager;
-                    }
-
+                   
                 });
             }
         }
