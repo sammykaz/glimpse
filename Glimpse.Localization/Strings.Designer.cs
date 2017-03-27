@@ -62,6 +62,15 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to See Map.
+        /// </summary>
+        public static string LikedPromotionsViewModel_SeeMap {
+            get {
+                return ResourceManager.GetString("LikedPromotionsViewModel.SeeMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About Content.
         /// </summary>
         public static string LoginSettingsViewModel_AboutContentMsg {
@@ -166,6 +175,15 @@ namespace Glimpse.Localization {
         public static string SettingsViewModel_SelectLanguageMsg {
             get {
                 return ResourceManager.GetString("SettingsViewModel.SelectLanguageMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot your password?.
+        /// </summary>
+        public static string SignInViewModel_ForgotPasswordMsg {
+            get {
+                return ResourceManager.GetString("SignInViewModel.ForgotPasswordMsg", resourceCulture);
             }
         }
         
