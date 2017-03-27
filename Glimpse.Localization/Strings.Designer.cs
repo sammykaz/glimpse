@@ -116,6 +116,24 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About this deal.
+        /// </summary>
+        public static string PromoDetailsViewModel_AboutThisDeal {
+            get {
+                return ResourceManager.GetString("PromoDetailsViewModel.AboutThisDeal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to + Bought.
+        /// </summary>
+        public static string PromoDetailsViewModel_Bought {
+            get {
+                return ResourceManager.GetString("PromoDetailsViewModel.Bought", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Incorrect email or password..
         /// </summary>
         public static string SignInViewModel_IncorrectInputMsg {

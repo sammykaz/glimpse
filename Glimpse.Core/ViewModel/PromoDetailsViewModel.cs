@@ -167,7 +167,7 @@ namespace Glimpse.Core.ViewModel
 
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(randomNumber);
-            stringBuilder.Append("+Bought \u2022 ").Append(_category).Append(" \u2022 ").Append(ConvertSecondsToMinutes(_promotionDuration));
+            stringBuilder.Append(TextSource.GetText("Bought")).Append(" \u2022 ").Append(_category).Append(" \u2022 ").Append(ConvertSecondsToMinutes(_promotionDuration));
 
             return stringBuilder.ToString();            
         }

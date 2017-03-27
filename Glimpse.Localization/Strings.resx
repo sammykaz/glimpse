@@ -135,6 +135,12 @@
   <data name="LoginViewModel.WelcomeMsg" xml:space="preserve">
     <value>Welcome To Glimpse</value>
   </data>
+  <data name="PromoDetailsViewModel.AboutThisDeal" xml:space="preserve">
+    <value>About this deal</value>
+  </data>
+  <data name="PromoDetailsViewModel.Bought" xml:space="preserve">
+    <value>+ Bought</value>
+  </data>
   <data name="SignInViewModel.IncorrectInputMsg" xml:space="preserve">
     <value>Incorrect email or password.</value>
   </data>
