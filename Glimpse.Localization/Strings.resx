@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CardViewModel.Progress" xml:space="preserve">
+    <value>Loading Promotions</value>
+  </data>
   <data name="LikedPromotionsViewModel.SeeMap" xml:space="preserve">
     <value>See Map</value>
   </data>
@@ -144,11 +147,26 @@
   <data name="LoginViewModel.WelcomeMsg" xml:space="preserve">
     <value>Welcome To Glimpse</value>
   </data>
+  <data name="MenuViewModel.Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="MenuViewModel.Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="MenuViewModel.Promotions" xml:space="preserve">
+    <value>Promotions</value>
+  </data>
+  <data name="MenuViewModel.Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="PromoDetailsViewModel.AboutThisDeal" xml:space="preserve">
     <value>About this deal</value>
   </data>
   <data name="PromoDetailsViewModel.Bought" xml:space="preserve">
     <value>+ Bought</value>
+  </data>
+  <data name="PromoDetailsViewModel.Progress" xml:space="preserve">
+    <value>Loading Images</value>
   </data>
   <data name="SettingsViewModel.AboutContentMsg" xml:space="preserve">
     <value>About Content</value>
@@ -164,6 +182,9 @@
   </data>
   <data name="SignInViewModel.MissingField" xml:space="preserve">
     <value>Missing required field.</value>
+  </data>
+  <data name="SignInViewModel.Progress" xml:space="preserve">
+    <value>Authenticating...</value>
   </data>
   <data name="SignInViewModel.SignInButton" xml:space="preserve">
     <value>Sing in</value>
@@ -182,6 +203,9 @@
   </data>
   <data name="VendorSignUpViewModel.LocationButton" xml:space="preserve">
     <value>Choose a Location</value>
+  </data>
+  <data name="VendorSignUpViewModel.Progress" xml:space="preserve">
+    <value>Sign up in progress...</value>
   </data>
   <data name="VendorSignUpViewModel.SignUp" xml:space="preserve">
     <value>Sign Up</value>

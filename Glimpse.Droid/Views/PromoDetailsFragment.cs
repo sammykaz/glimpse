@@ -81,7 +81,7 @@ namespace Glimpse.Droid.Views
         {
             //Create a progress dialog for loading
             ProgressDialog pr = new ProgressDialog(this.Context);
-            pr.SetMessage("Loading Images");
+            pr.SetMessage(ViewModel.TextSource.GetText("Progress"));
             pr.SetCancelable(false);
 
             var viewModel = (PromoDetailsViewModel)ViewModel;
@@ -129,7 +129,7 @@ namespace Glimpse.Droid.Views
         {
             //Create a progress dialog for loading
             ProgressDialog pr = new ProgressDialog(this.Context);
-            pr.SetMessage("Loading Images");
+            pr.SetMessage(ViewModel.TextSource.GetText("Progress"));
             pr.SetCancelable(false);
 
             var viewModel = (PromoDetailsViewModel)ViewModel;

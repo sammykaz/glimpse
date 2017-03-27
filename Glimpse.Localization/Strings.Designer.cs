@@ -62,6 +62,15 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading Promotions.
+        /// </summary>
+        public static string CardViewModel_Progress {
+            get {
+                return ResourceManager.GetString("CardViewModel.Progress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to See Map.
         /// </summary>
         public static string LikedPromotionsViewModel_SeeMap {
@@ -143,6 +152,42 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string MenuViewModel_Logout {
+            get {
+                return ResourceManager.GetString("MenuViewModel.Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        public static string MenuViewModel_Profile {
+            get {
+                return ResourceManager.GetString("MenuViewModel.Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promotions.
+        /// </summary>
+        public static string MenuViewModel_Promotions {
+            get {
+                return ResourceManager.GetString("MenuViewModel.Promotions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string MenuViewModel_Settings {
+            get {
+                return ResourceManager.GetString("MenuViewModel.Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About this deal.
         /// </summary>
         public static string PromoDetailsViewModel_AboutThisDeal {
@@ -157,6 +202,15 @@ namespace Glimpse.Localization {
         public static string PromoDetailsViewModel_Bought {
             get {
                 return ResourceManager.GetString("PromoDetailsViewModel.Bought", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading Images.
+        /// </summary>
+        public static string PromoDetailsViewModel_Progress {
+            get {
+                return ResourceManager.GetString("PromoDetailsViewModel.Progress", resourceCulture);
             }
         }
         
@@ -202,6 +256,15 @@ namespace Glimpse.Localization {
         public static string SignInViewModel_MissingField {
             get {
                 return ResourceManager.GetString("SignInViewModel.MissingField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authenticating....
+        /// </summary>
+        public static string SignInViewModel_Progress {
+            get {
+                return ResourceManager.GetString("SignInViewModel.Progress", resourceCulture);
             }
         }
         
@@ -256,6 +319,15 @@ namespace Glimpse.Localization {
         public static string VendorSignUpViewModel_LocationButton {
             get {
                 return ResourceManager.GetString("VendorSignUpViewModel.LocationButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign up in progress....
+        /// </summary>
+        public static string VendorSignUpViewModel_Progress {
+            get {
+                return ResourceManager.GetString("VendorSignUpViewModel.Progress", resourceCulture);
             }
         }
         
