@@ -107,7 +107,7 @@ body {
 .promotion-value{vertical-align: middle; padding-top: 10px; color:#666666; font-weight: initial; text-align:center; white-space: nowrap; overflow:hidden !important; text-overflow: ellipsis;}
 .promotion-map-value{vertical-align: middle; text-align:center; background:white !important; font-family: 'Exo'; font-weight: initial;}
 .promotion-image{height: 200px; padding-left:0px!important; padding-right:0px !important; position: relative !important; cursor: pointer; margin-top: 10px;}
-.promotion-height{overflow: hidden; height: 320px; margin-bottom: 25px; padding-right: 5px !important; padding-left: 5px !important; top: 0; transition: 0.4s ease; -webkit-transform: translateZ(0);}
+.promotion-height{overflow: hidden; height: 320px; margin-bottom: 25px; padding-right: 5px !important; padding-left: 5px !important; top: 0; transition: 0.1s ease; -webkit-transform: translateZ(0);}
 .promotion-height:hover{top:-10px; transition: 0.4s ease; -webkit-transform: translateZ(0);}
 .promotion-height2{height: 320px;}
 .promotion-background{background: white; padding-top:25px;}

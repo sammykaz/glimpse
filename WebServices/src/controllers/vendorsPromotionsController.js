@@ -256,12 +256,15 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             $scope.showTitleWarning = false;
             $scope.showDescriptionWarning = true;
         }
-        else if ($scope.category == undefined) {
+        else if ($scope.category == undefined || $scope.category == "") {
             $scope.showDescriptionWarning = false;
+            $scope.showTitleWarning = false;
             $scope.showCategorynWarning = true;
         }
         else if ($scope.previewImage == null || $scope.previewImage.length == 0) {
             $scope.showCategorynWarning = false;
+            $scope.showDescriptionWarning = false;
+            $scope.showTitleWarning = false;
             $scope.showImageWarning = true;
         }
 

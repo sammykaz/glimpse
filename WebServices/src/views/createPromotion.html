@@ -203,21 +203,23 @@
                     </div>
                 </div>
             </form>
-        </div>
-        <div class="alert alert-warning" role="alert" ng-show="showDateWarning">
-            <strong>Warning!</strong> Start date cannot start before the end date. <a ng-click="closeWarning(0)" class="close-warning">Close Warning</a>
-        </div>
-        <div class="alert alert-danger" role="alert" ng-show="showTitleWarning">
-            <strong>Oh snap!</strong> The promotion must have a title <a ng-click="closeWarning(1)" class="close-warning">Close Warning</a>
-        </div>
-        <div class="alert alert-danger" role="alert" ng-show="showDescriptionWarning">
-            <strong>Oh snap!</strong> The promotion must have a description <a ng-click="closeWarning(2)" class="close-warning">Close Warning</a>
-        </div>
-        <div class="alert alert-danger" role="alert" ng-show="showCategorynWarning">
-            <strong>Oh snap!</strong> The promotion must have a category <a ng-click="closeWarning(3)" class="close-warning">Close Warning</a>
-        </div>
-        <div class="alert alert-danger" role="alert" ng-show="showImageWarning">
-            <strong>Oh snap!</strong> The promotion must have a image <a ng-click="closeWarning(4)" class="close-warning">Close Warning</a>
+            <div class="col-sm-12" style="margin-top:10px;">
+                <div class="alert alert-warning" role="alert" ng-show="showDateWarning">
+                    <strong>Warning!</strong> Start date cannot start before the end date. <a ng-click="closeWarning(0)" class="close-warning">Close Warning</a>
+                </div>
+                <div class="alert alert-danger" role="alert" ng-show="showTitleWarning">
+                    <strong>Oh snap!</strong> The promotion must have a title <a ng-click="closeWarning(1)" class="close-warning">Close Warning</a>
+                </div>
+                <div class="alert alert-danger" role="alert" ng-show="showDescriptionWarning">
+                    <strong>Oh snap!</strong> The promotion must have a description <a ng-click="closeWarning(2)" class="close-warning">Close Warning</a>
+                </div>
+                <div class="alert alert-danger" role="alert" ng-show="showCategorynWarning">
+                    <strong>Oh snap!</strong> The promotion must have a category <a ng-click="closeWarning(3)" class="close-warning">Close Warning</a>
+                </div>
+                <div class="alert alert-danger" role="alert" ng-show="showImageWarning">
+                    <strong>Oh snap!</strong> The promotion must have a image <a ng-click="closeWarning(4)" class="close-warning">Close Warning</a>
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <button class="btn btn-danger" type="button" ng-click="cancel()">Cancel</button>
