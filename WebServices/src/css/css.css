@@ -11,6 +11,45 @@ body {
     background-repeat: no-repeat;
     height:200px;
 }
+.goog-logo-link {
+   color: gray !important;
+   font-size:11px !important;
+   font-weight: 200 !important;    
+} 
+
+.goog-te-gadget{
+   color: gray !important;
+   font-size:11px !important;
+   font-weight: 200 !important;
+}
+.goog-te-combo{
+    background-color: #fff;
+    border-color: #ccc;
+    display: inline-block;
+    font-weight: 400 !important;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    padding: .5rem .5rem;
+    border-radius: .25rem;
+    color: #252525;
+    opacity: .5;
+    cursor: pointer;
+    font-size: 12px !important;
+    line-height: 2.166666666666667em;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: .5px;
+    transition: 0.3s ease;
+}
+.goog-te-combo:hover{
+    color:#2FD4AD !important; opacity: 0.9;
+}
+.nav-item {
+    margin-left: 1rem;
+}
 .padding-left{padding-left: 5px;}
 .login-form{background: #fcfcfc; padding-bottom: 30px; border-style: double; border-radius: 6px; color: white!important; padding-top: 15px; border: 1px solid #ececec;}
 .login-form-padding{padding-top: 250px;}
