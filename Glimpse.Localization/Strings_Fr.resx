@@ -117,8 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LoginViewModel.NoAccountMsg" xml:space="preserve">
+    <value>Pas de compte?</value>
+  </data>
+  <data name="LoginViewModel.OrMsg" xml:space="preserve">
+    <value>Ou</value>
+  </data>
   <data name="LoginViewModel.SignInButton" xml:space="preserve">
     <value>Se Connecter</value>
+  </data>
+  <data name="LoginViewModel.TakeAGlimpse" xml:space="preserve">
+    <value>Faites un Apeçu</value>
+  </data>
+  <data name="LoginViewModel.VendorSignUpButton" xml:space="preserve">
+    <value>Inscrivez-vous comme fournisseur</value>
+  </data>
+  <data name="LoginViewModel.WelcomeMsg" xml:space="preserve">
+    <value>Bienvenu a Glimpse</value>
+  </data>
+  <data name="SignInViewModel.IncorrectInputMsg" xml:space="preserve">
+    <value>Email ou mot de passe incorrect.</value>
+  </data>
+  <data name="SignInViewModel.MissingField" xml:space="preserve">
+    <value>Champ obligatoire manquant.</value>
   </data>
   <data name="SignInViewModel.SignInButton" xml:space="preserve">
     <value>Se connecter</value>

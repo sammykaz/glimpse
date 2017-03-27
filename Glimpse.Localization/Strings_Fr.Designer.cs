@@ -62,11 +62,74 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pas de compte?.
+        /// </summary>
+        public static string LoginViewModel_NoAccountMsg {
+            get {
+                return ResourceManager.GetString("LoginViewModel.NoAccountMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ou.
+        /// </summary>
+        public static string LoginViewModel_OrMsg {
+            get {
+                return ResourceManager.GetString("LoginViewModel.OrMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Se Connecter.
         /// </summary>
         public static string LoginViewModel_SignInButton {
             get {
                 return ResourceManager.GetString("LoginViewModel.SignInButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Faites un Apeçu.
+        /// </summary>
+        public static string LoginViewModel_TakeAGlimpse {
+            get {
+                return ResourceManager.GetString("LoginViewModel.TakeAGlimpse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inscrivez-vous comme fournisseur.
+        /// </summary>
+        public static string LoginViewModel_VendorSignUpButton {
+            get {
+                return ResourceManager.GetString("LoginViewModel.VendorSignUpButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bienvenu a Glimpse.
+        /// </summary>
+        public static string LoginViewModel_WelcomeMsg {
+            get {
+                return ResourceManager.GetString("LoginViewModel.WelcomeMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email ou mot de passe incorrect..
+        /// </summary>
+        public static string SignInViewModel_IncorrectInputMsg {
+            get {
+                return ResourceManager.GetString("SignInViewModel.IncorrectInputMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Champ obligatoire manquant..
+        /// </summary>
+        public static string SignInViewModel_MissingField {
+            get {
+                return ResourceManager.GetString("SignInViewModel.MissingField", resourceCulture);
             }
         }
         

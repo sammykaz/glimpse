@@ -44,8 +44,6 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(() =>
                 {
-                    var re = Mvx.GetSingleton<IMvxTextProvider>();
-                    ((ResxTextProvider)re)._resourceManager = Strings.ResourceManager;
                     ShowViewModel<SignInViewModel>(new { index = 0 });
                 });
              }

@@ -117,10 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LoginViewModel.NoAccountMsg" xml:space="preserve">
+    <value>Don't have an account yet?</value>
+  </data>
+  <data name="LoginViewModel.OrMsg" xml:space="preserve">
+    <value>Or</value>
+  </data>
   <data name="LoginViewModel.SignInButton" xml:space="preserve">
     <value>Sign in</value>
   </data>
+  <data name="LoginViewModel.TakeAGlimpse" xml:space="preserve">
+    <value>Take A Glimpse</value>
+  </data>
+  <data name="LoginViewModel.VendorSignUpButton" xml:space="preserve">
+    <value>Sign Up as a Vendor</value>
+  </data>
+  <data name="LoginViewModel.WelcomeMsg" xml:space="preserve">
+    <value>Welcome To Glimpse</value>
+  </data>
+  <data name="SignInViewModel.IncorrectInputMsg" xml:space="preserve">
+    <value>Incorrect email or password.</value>
+  </data>
+  <data name="SignInViewModel.MissingField" xml:space="preserve">
+    <value>Missing required field.</value>
+  </data>
   <data name="SignInViewModel.SignInButton" xml:space="preserve">
-    <value>a</value>
+    <value>Sing in</value>
   </data>
 </root>
