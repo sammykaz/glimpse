@@ -42,7 +42,7 @@ namespace Glimpse.Droid.Views
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as LoginActivity).SetCustomTitle("Sign In");
             _bindableProgress = new BindableProgress(this.Context);
-            _bindableProgress.Title = "Authenticating...";
+            _bindableProgress.Title = ViewModel.TextSource.GetText("Progress");
             var set = this.CreateBindingSet<SignInFragment, SignInViewModel>();
             set.Bind(_bindableProgress).For(p => p.Visible).To(vm => vm.IsBusy);
             set.Apply();

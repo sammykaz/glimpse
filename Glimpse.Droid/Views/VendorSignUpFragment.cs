@@ -63,7 +63,7 @@ namespace Glimpse.Droid.Views
             _confirmPassword.AfterTextChanged += _confirmPassword_AfterTextChanged;
 
             _bindableProgress = new BindableProgress(this.Context);
-            _bindableProgress.Title = "Sign up in progress...";
+            _bindableProgress.Title = ViewModel.TextSource.GetText("Progress");
             var set = this.CreateBindingSet<VendorSignUpFragment, VendorSignUpViewModel>();
             set.Bind(_bindableProgress) .For(p => p.Visible).To(vm => vm.IsBusy);
             set.Apply();            
@@ -75,7 +75,10 @@ namespace Glimpse.Droid.Views
         {
             if ((!string.IsNullOrEmpty(ViewModel.Email)) && !Patterns.EmailAddress.Matcher(ViewModel.Email).Matches())
             {
-                _email.Error = "Enter a valid email address";
+                if (Glimpse.Core.Services.General.Settings.Language == "Français")
+                    _email.Error = "Entrez un courriel valide";
+                else
+                    _email.Error = "Enter a valid email address";
                 ViewModel.ValidEmail = false;             
             }
             else
@@ -90,7 +93,10 @@ namespace Glimpse.Droid.Views
         {
             if ((!string.IsNullOrEmpty(ViewModel.Password))  && (!string.IsNullOrEmpty(ViewModel.ConfirmPassword)) && (!ViewModel.Password.Equals(ViewModel.ConfirmPassword)))
             {
-                _confirmPassword.Error = "Passwords do not match";
+                if (Glimpse.Core.Services.General.Settings.Language == "Français")
+                    _confirmPassword.Error = "Les mots de passe ne correspondent pas";
+                else
+                    _confirmPassword.Error = "Passwords do not match";
                 ViewModel.ValidPassword = false;
             }
             else

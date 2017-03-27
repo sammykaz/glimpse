@@ -36,7 +36,7 @@ namespace Glimpse.Core.ViewModel
         public void ShowImageSlider()
 
         {
-            ShowViewModel<TileDetailsViewModel>();
+            ShowViewModel<PromoDetailsViewModel>();
         }
 
     }

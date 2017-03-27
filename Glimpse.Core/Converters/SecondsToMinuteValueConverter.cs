@@ -14,7 +14,13 @@ namespace Glimpse.Core.Converters
         {
             TimeSpan timespan = TimeSpan.FromSeconds(value);
             int totalMins = (int)timespan.TotalMinutes;
-            string displayTime = "Driving time to promotion : " + totalMins;
+            string displayTime;
+            if (Glimpse.Core.Services.General.Settings.Language == "Français")
+            {
+                displayTime ="Le temps de conduite à la promotion : "+ totalMins;
+            }
+            else
+                displayTime = "Driving time to promotion : " + totalMins;
 
             if (totalMins == 1)
                 displayTime = displayTime + " minute";

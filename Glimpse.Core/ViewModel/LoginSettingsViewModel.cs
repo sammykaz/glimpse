@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 
 namespace Glimpse.Core.ViewModel
 {
-    public class SettingsViewModel : BaseViewModel
+    public class LoginSettingsViewModel : BaseViewModel
     {
         private string _currentLanguage;
         private List<string> _languages;
 
-        public SettingsViewModel(IMvxMessenger messenger) : base(messenger)
+        public LoginSettingsViewModel(IMvxMessenger messenger) : base(messenger)
         {
-          
+
         }
 
-        
+
         public List<string> Languages
         {
             get
@@ -44,7 +44,7 @@ namespace Glimpse.Core.ViewModel
             }
             set
             {
-                _currentLanguage = value;                              
+                _currentLanguage = value;
                 RaisePropertyChanged(() => CurrentLanguage);
                 Settings.Language = _currentLanguage;
                 if (_currentLanguage == "Français")
@@ -58,8 +58,8 @@ namespace Glimpse.Core.ViewModel
                     ((ResxTextProvider)re).ResourceManager = Strings.ResourceManager;
                 }
                 SelectLanguageMessage = TextSource.GetText("SelectLanguageMsg");
-               AboutMessage = TextSource.GetText("AboutContentMsg");
-               
+                AboutMessage = TextSource.GetText("AboutContentMsg");
+
             }
         }
 
@@ -116,7 +116,7 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
-                   
+
                 });
             }
         }

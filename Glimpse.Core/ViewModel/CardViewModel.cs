@@ -98,10 +98,39 @@ namespace Glimpse.Core.ViewModel
             get
             {
                 List<string> allCategories = new List<string>();
-                allCategories.Add("All");
+                if (Settings.Language == "Français")
+                    allCategories.Add("Tout");
+                else
+                    allCategories.Add("All");
                 foreach(string name in Enum.GetNames(typeof(Categories)))
                 {
-                    allCategories.Add(name);
+                    if (Settings.Language == "Français")
+                    {
+                        switch (name)
+                        {
+                            case "Footwear":
+                                allCategories.Add("Chaussure");
+                                break;
+                            case "Electronics":
+                                allCategories.Add("Électronique");
+                                break;
+                            case "Jewellery":
+                                allCategories.Add("Bijoux");
+                                break;
+                            case "Restaurants":
+                                allCategories.Add("Restaurants");
+                                break;
+                            case "Services":
+                                allCategories.Add("Services");
+                                break;
+                            case "Apparel":
+                                allCategories.Add("Vêtements");
+                                break;
+                        }
+                    }
+
+                    else
+                        allCategories.Add(name);
                 };
                 return allCategories;
             }
@@ -229,7 +258,7 @@ namespace Glimpse.Core.ViewModel
                         {"PromotionDescription", promotionDescription},
             };
 
-            ShowViewModel<TileDetailsViewModel>(desc);
+            ShowViewModel<PromoDetailsViewModel>(desc);
         }
 
         private bool _isBusy;

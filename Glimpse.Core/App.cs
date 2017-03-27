@@ -24,7 +24,7 @@ namespace Glimpse.Core
                 .RegisterAsLazySingleton();
 
             Mvx.RegisterSingleton<IMvxTextProvider>
-                (new ResxTextProvider(Strings_Fr.ResourceManager));     
+                (new ResxTextProvider(Strings.ResourceManager));     
 
             RegisterAppStart(new AppStart());
         }
