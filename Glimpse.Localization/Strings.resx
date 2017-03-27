@@ -141,6 +141,12 @@
   <data name="PromoDetailsViewModel.Bought" xml:space="preserve">
     <value>+ Bought</value>
   </data>
+  <data name="SettingsViewModel.AboutContentMsg" xml:space="preserve">
+    <value>About Content</value>
+  </data>
+  <data name="SettingsViewModel.SelectLanguageMsg" xml:space="preserve">
+    <value>Select the language for the app</value>
+  </data>
   <data name="SignInViewModel.IncorrectInputMsg" xml:space="preserve">
     <value>Incorrect email or password.</value>
   </data>

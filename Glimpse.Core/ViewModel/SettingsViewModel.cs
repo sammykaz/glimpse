@@ -57,6 +57,31 @@ namespace Glimpse.Core.ViewModel
                     var re = Mvx.GetSingleton<IMvxTextProvider>();
                     ((ResxTextProvider)re)._resourceManager = Strings.ResourceManager;
                 }
+                SelectLanguageMessage = TextSource.GetText("SelectLanguageMsg");
+               AboutMessage = TextSource.GetText("AboutContentMsg");
+               
+            }
+        }
+
+        private string _selectLanguageMessage;
+        public string SelectLanguageMessage
+        {
+            get { return _selectLanguageMessage; }
+            set
+            {
+                _selectLanguageMessage = value;
+                RaisePropertyChanged(() => SelectLanguageMessage);
+            }
+        }
+
+        private string _aboutMessage;
+        public string AboutMessage
+        {
+            get { return _aboutMessage; }
+            set
+            {
+                _aboutMessage = value;
+                RaisePropertyChanged(() => AboutMessage);
             }
         }
 
