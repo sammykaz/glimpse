@@ -6,16 +6,26 @@ namespace Glimpse.Core.Utility
 {
     public class ResxTextProvider : IMvxTextProvider
     {
-        public ResourceManager _resourceManager;
+        private ResourceManager _resourceManager;
 
         public ResxTextProvider(ResourceManager resourceManager)
         {
             _resourceManager = resourceManager;
-            CurrentLanguage = new CultureInfo("en-US");
+            CurrentLanguage = new CultureInfo("");
         }
 
         public CultureInfo CurrentLanguage { get; set; }
-
+        public ResourceManager ResourceManager
+        {
+            get
+            {
+                return _resourceManager;
+            }
+            set
+            {
+                _resourceManager = value;
+            }
+        }
         public string GetText(string namespaceKey,
             string typeKey, string name)
         {

@@ -50,12 +50,12 @@ namespace Glimpse.Core.ViewModel
                 if (_currentLanguage == "Français")
                 {
                     var re = Mvx.GetSingleton<IMvxTextProvider>();
-                    ((ResxTextProvider)re)._resourceManager = Strings_Fr.ResourceManager;
+                    ((ResxTextProvider)re).ResourceManager = Strings_Fr.ResourceManager;
                 }
                 else if (_currentLanguage == "English")
                 {
                     var re = Mvx.GetSingleton<IMvxTextProvider>();
-                    ((ResxTextProvider)re)._resourceManager = Strings.ResourceManager;
+                    ((ResxTextProvider)re).ResourceManager = Strings.ResourceManager;
                 }
                 SelectLanguageMessage = TextSource.GetText("SelectLanguageMsg");
                AboutMessage = TextSource.GetText("AboutContentMsg");

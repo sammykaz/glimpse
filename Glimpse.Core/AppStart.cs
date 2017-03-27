@@ -22,7 +22,7 @@ namespace Glimpse.Core
             else if(Settings.Language == "Français")
               {
                 var re = Mvx.GetSingleton<IMvxTextProvider>();
-                ((ResxTextProvider)re)._resourceManager = Strings_Fr.ResourceManager;
+                ((ResxTextProvider)re).ResourceManager = Strings_Fr.ResourceManager;
               }
 
             
