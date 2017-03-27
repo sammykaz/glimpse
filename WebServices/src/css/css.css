@@ -77,7 +77,7 @@ body {
 .icon-signup{padding-left:3px;}
 .home-panel-background{background: rgba(0, 0, 0, 0.58); border-style: double; padding-bottom: 50px;}
 .nav-bar{background-color: white!important;}
-.nav-section{color: #252525; opacity: .5; cursor: pointer; font-size: 12px;; line-height: 2.166666666666667em; text-transform: uppercase; font-weight: 600; letter-spacing: .5px; transition: 0.3s ease;}
+.nav-section{color: #373737; opacity: .5; cursor: pointer; font-size: 12px;; line-height: 2.166666666666667em; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; transition: 0.3s ease;}
 .nav-section:hover{color:#2FD4AD !important; opacity: 0.9;}
 .map-container{position: relative; top: 5em; border: 1px solid #eee; border-radius: 5px; height:600px;}
 .promotion-list{background: white; padding: 10px; border-radius: 8px;}
