@@ -229,7 +229,7 @@ namespace Glimpse.Core.ViewModel
                         {"PromotionDescription", promotionDescription},
             };
 
-            ShowViewModel<TileDetailsViewModel>(desc);
+            ShowViewModel<PromoDetailsViewModel>(desc);
         }
 
         private bool _isBusy;

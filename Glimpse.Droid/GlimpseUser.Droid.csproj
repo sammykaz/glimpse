@@ -382,7 +382,7 @@
     <Compile Include="Views\MenuFragment.cs" />
     <Compile Include="Views\PromotionDialogFragment.cs" />
     <Compile Include="Views\MapFragment.cs" />
-    <Compile Include="Views\TileDetailsFragment.cs" />
+    <Compile Include="Views\PromoDetailsFragment.cs" />
     <Compile Include="Views\ViewPagerFragment.cs" />
     <Compile Include="Views\CardFragment.cs" />
     <Compile Include="Views\SettingsFragment.cs" />
@@ -503,7 +503,7 @@
     <AndroidResource Include="Resources\layout\PromotionDialogView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\TileDetailsView.axml">
+    <AndroidResource Include="Resources\layout\PromoDetailsView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ImageSwipeLayout.axml">

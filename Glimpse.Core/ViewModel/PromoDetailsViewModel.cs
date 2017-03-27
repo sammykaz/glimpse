@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Glimpse.Core.ViewModel
 {
-    public class TileDetailsViewModel : BaseViewModel
+    public class PromoDetailsViewModel : BaseViewModel
     {
         private List<byte[]> _images;
         private readonly IPromotionImageDataService _promotionImageDataService;
@@ -27,7 +27,7 @@ namespace Glimpse.Core.ViewModel
         private DateTime _startDate;
         private DateTime _endDate;
 
-        public TileDetailsViewModel(IMvxMessenger messenger, IPromotionImageDataService promotionImageDataService)
+        public PromoDetailsViewModel(IMvxMessenger messenger, IPromotionImageDataService promotionImageDataService)
         {
             _promotionImageDataService = promotionImageDataService;
         }

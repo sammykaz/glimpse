@@ -277,7 +277,7 @@ namespace Glimpse.Core.ViewModel
                         {"EndDate", item.Item.PromotionEndDate.Ticks.ToString() }
                     };
 
-                    ShowViewModel<TileDetailsViewModel>(desc);
+                    ShowViewModel<PromoDetailsViewModel>(desc);
 
                 });
             }
