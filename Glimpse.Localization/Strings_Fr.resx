@@ -135,6 +135,12 @@
   <data name="CreatePromotionPart2ViewModel.EndDateMsg" xml:space="preserve">
     <value>Fin de la promotion:</value>
   </data>
+  <data name="CreatePromotionPart2ViewModel.ErrorMissingField" xml:space="preserve">
+    <value>Champ obligatoire manquant</value>
+  </data>
+  <data name="CreatePromotionPart2ViewModel.Progress" xml:space="preserve">
+    <value>Promotion en cours...</value>
+  </data>
   <data name="CreatePromotionPart2ViewModel.StartDateMsg" xml:space="preserve">
     <value>Début de la promotion: </value>
   </data>
@@ -152,6 +158,9 @@
   </data>
   <data name="CreatePromotionViewModel.ElectronicsRadio" xml:space="preserve">
     <value>Électronique</value>
+  </data>
+  <data name="CreatePromotionViewModel.ErrorMissingField" xml:space="preserve">
+    <value>Champ obligatoire manquant</value>
   </data>
   <data name="CreatePromotionViewModel.FootwearRadio" xml:space="preserve">
     <value>Chaussure</value>

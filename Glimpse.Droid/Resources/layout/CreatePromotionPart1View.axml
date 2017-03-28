@@ -7,6 +7,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white">
+        <TextView
+            android:id="@+id/ErrorMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#ff0000"
+            local:MvxBind="Text ErrorMessage, Mode=TwoWay" />
         <EditText
             android:id="@+id/promotionTitle"
             android:layout_width="match_parent"
@@ -92,12 +99,12 @@
                     local:MvxLang="Text JewelleryRadio"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
-                    local:MvxBind="Checked JewelleryIsChecked" />
+                    local:MvxBind="Checked JewlleryIsChecked" />
                 <RadioButton
                     android:id="@+id/checkbox_restaurants"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                     local:MvxLang="Text RestaurantsRadio"
+                    local:MvxLang="Text RestaurantsRadio"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
                     local:MvxBind="Checked RestaurantsIsChecked"
