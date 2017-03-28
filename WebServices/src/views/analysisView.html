@@ -1,5 +1,5 @@
 ﻿<div class="signup-form-padding animated fadeIn">
-    <div class=""  style="padding-bottom: 50px; margin-top: 50px;">
+    <div class=""  style="padding-bottom: 50px; margin-top: 50px;" ng-hide="noPromotionClicked">
         <div class="col-sm-6">
             <div class="panel-shadow">
                 <table class="table bkg-white">
@@ -67,11 +67,13 @@
                     <div class="chart-x-axis-dark-gray">Time of the day</div>
                 </div>
             </div>
-            <div ng-show="noPromotionClicked">
-                <div class="alert alert-warning text-center" role="alert">
-                    <strong>Sorry!</strong> You do not have any promotions or No one clicked on your promotion yet.. Give it a little time!
-                </div>
-            </div>
+
+        </div>
+       
+    </div>
+    <div ng-show="noPromotionClicked" class="col-sm-12">
+        <div class="alert alert-warning text-center" role="alert">
+            <strong>Sorry!</strong> You do not have any promotions or no one clicked on your promotion yet.. Give it a little time!
         </div>
     </div>
 </div>
