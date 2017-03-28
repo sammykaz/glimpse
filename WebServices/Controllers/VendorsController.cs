@@ -93,6 +93,8 @@ namespace WebServices.Controllers
 
         // PUT: api/Vendors/5
         [ResponseType(typeof(void))]
+        [HttpPut]
+        [Route("api/Vendors/{id}")]
         public IHttpActionResult PutVendor(int id, Vendor vendor)
         {
             Log.Information("Attempting to update vendor: {@vendor} with id {@id}", vendor.CompanyName,id);
@@ -102,16 +104,30 @@ namespace WebServices.Controllers
                 return BadRequest(ModelState);
             }
 
-
+            //Log.Error("Check id vs vendor.id -> [" + id + "::" + vendor.VendorId + "]" , id, vendor.CompanyName);
             if (id != vendor.VendorId)
             {
                 Log.Error("Id: {@id} is the incorrect id for vendor id: {@vendor}", id, vendor.CompanyName);
                 return BadRequest();
             }
+            //Vendor tempVendor = db.Vendors.Find(vendor.VendorId);
 
+            //vendor.Password = tempVendor.Password;
+            //vendor.Salt = tempVendor.Salt;
 
             db.Entry(vendor).State = EntityState.Modified;
-
+            //try
+            //{
+            //    Log.Error("BEFORE: Checking pass :  " + vendor.Password + " <-- --> salt :  " + vendor.Salt, "");
+            //    Vendor tempVendor = db.Vendors.Find(vendor.VendorId);
+            //    vendor.Password = tempVendor.Password;
+            //    vendor.Salt = tempVendor.Salt;
+            //    Log.Error("AFTER: Checking pass :  " + vendor.Password + " <-- --> salt :  " + vendor.Salt + "db context find id -> " + tempVendor.VendorId + "  db context find id  password -> " + tempVendor.Password + " salt: "+  tempVendor.Salt, "");
+            //}
+            //catch (System.Exception e)
+            //{
+            //    Log.Error("try  Vendor tempVendor = db.Vendors.Find(vendor.VendorId) -> catch :: " + e,"", "");
+            //}
             try
             {
                 db.SaveChanges();

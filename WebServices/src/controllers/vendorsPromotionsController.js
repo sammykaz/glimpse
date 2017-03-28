@@ -16,7 +16,7 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
         var promotionsquery = dataService.getAllPromotionFromSpecificVendor(localStorage.id).query();
         promotionsquery.$promise.then(function (data) {
             $scope.mypromotions = data;
-            $scope.maxPage = Math.ceil(data.length / 5);
+            $scope.maxPage = Math.ceil(data.length / 7);
         }, function (error) {
             console.log("Error: Could not load promotions");
         })
