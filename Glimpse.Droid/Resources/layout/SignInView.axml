@@ -29,6 +29,7 @@
         android:layout_marginBottom="8dp">
         <EditText
             android:id="@+id/txtEmail"
+            local:MvxLang="Hint EmailHint"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:textSize="15dp"
@@ -36,7 +37,6 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="25dp"
-            android:hint="Email"
             android:paddingLeft="10dp"
             android:textColor="#707070"
             local:MvxBind="Text Email, Mode=TwoWay" />
@@ -48,14 +48,14 @@
         android:layout_marginBottom="8dp">
         <EditText
             android:id="@+id/txtPassword"
+            local:MvxLang="Hint PasswordHint"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:textSize="15dp"
             android:textStyle="bold"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="25dp"
-            android:hint="Password"
+            android:layout_marginTop="25dp"            
             android:paddingLeft="10dp"
             android:textColor="#707070"
             local:MvxBind="Text Password, Mode=TwoWay" />
