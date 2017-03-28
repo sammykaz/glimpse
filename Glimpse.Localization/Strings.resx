@@ -120,6 +120,54 @@
   <data name="CardViewModel.Progress" xml:space="preserve">
     <value>Loading Promotions</value>
   </data>
+  <data name="CreatePromotionPart2ViewModel.ChangeDateMsg" xml:space="preserve">
+    <value>Change Date</value>
+  </data>
+  <data name="CreatePromotionPart2ViewModel.ChooseAdditionalPicMsg" xml:space="preserve">
+    <value>Choose your additional pictures! (optional)</value>
+  </data>
+  <data name="CreatePromotionPart2ViewModel.ChoosePicMsg" xml:space="preserve">
+    <value>Choose your cover picture!</value>
+  </data>
+  <data name="CreatePromotionPart2ViewModel.CreatePromoBtn" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="CreatePromotionPart2ViewModel.EndDateMsg" xml:space="preserve">
+    <value>Promotion End Date: </value>
+  </data>
+  <data name="CreatePromotionPart2ViewModel.StartDateMsg" xml:space="preserve">
+    <value>Promotion Start Date:</value>
+  </data>
+  <data name="CreatePromotionViewModel.ApparelRadio" xml:space="preserve">
+    <value>Apparel</value>
+  </data>
+  <data name="CreatePromotionViewModel.CategoriesMsg" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="CreatePromotionViewModel.ContinueBtn" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="CreatePromotionViewModel.DescriptionHint" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="CreatePromotionViewModel.ElectronicsRadio" xml:space="preserve">
+    <value>Electronics</value>
+  </data>
+  <data name="CreatePromotionViewModel.FootwearRadio" xml:space="preserve">
+    <value>Footwear</value>
+  </data>
+  <data name="CreatePromotionViewModel.JewelleryRadio" xml:space="preserve">
+    <value>Jewellery</value>
+  </data>
+  <data name="CreatePromotionViewModel.RestaurantsRadio" xml:space="preserve">
+    <value>Restaurants</value>
+  </data>
+  <data name="CreatePromotionViewModel.ServicesRadio" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="CreatePromotionViewModel.TitleHint" xml:space="preserve">
+    <value>Title</value>
+  </data>
   <data name="LikedPromotionsViewModel.SeeMap" xml:space="preserve">
     <value>See Map</value>
   </data>
@@ -174,6 +222,9 @@
   <data name="SettingsViewModel.SelectLanguageMsg" xml:space="preserve">
     <value>Select the language for the app</value>
   </data>
+  <data name="SignInViewModel.EmailHint" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
   <data name="SignInViewModel.ForgotPasswordMsg" xml:space="preserve">
     <value>Forgot your password?</value>
   </data>
@@ -183,11 +234,26 @@
   <data name="SignInViewModel.MissingField" xml:space="preserve">
     <value>Missing required field.</value>
   </data>
+  <data name="SignInViewModel.PasswordHint" xml:space="preserve">
+    <value>Password</value>
+  </data>
   <data name="SignInViewModel.Progress" xml:space="preserve">
     <value>Authenticating...</value>
   </data>
   <data name="SignInViewModel.SignInButton" xml:space="preserve">
     <value>Sing in</value>
+  </data>
+  <data name="VendorSignUpViewModel.BusinessPhoneNumberHint" xml:space="preserve">
+    <value>Business Phone Number</value>
+  </data>
+  <data name="VendorSignUpViewModel.CompanyHint" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="VendorSignUpViewModel.ConfirmPasswordHint" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="VendorSignUpViewModel.EmailHint" xml:space="preserve">
+    <value>E-Mail</value>
   </data>
   <data name="VendorSignUpViewModel.ErrorEmailExistsMsg" xml:space="preserve">
     <value>is already being used</value>
@@ -203,6 +269,9 @@
   </data>
   <data name="VendorSignUpViewModel.LocationButton" xml:space="preserve">
     <value>Choose a Location</value>
+  </data>
+  <data name="VendorSignUpViewModel.PasswordHint" xml:space="preserve">
+    <value>Password</value>
   </data>
   <data name="VendorSignUpViewModel.Progress" xml:space="preserve">
     <value>Sign up in progress...</value>
