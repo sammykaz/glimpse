@@ -71,6 +71,150 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Date.
+        /// </summary>
+        public static string CreatePromotionPart2ViewModel_ChangeDateMsg {
+            get {
+                return ResourceManager.GetString("CreatePromotionPart2ViewModel.ChangeDateMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose your additional pictures! (optional).
+        /// </summary>
+        public static string CreatePromotionPart2ViewModel_ChooseAdditionalPicMsg {
+            get {
+                return ResourceManager.GetString("CreatePromotionPart2ViewModel.ChooseAdditionalPicMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose your cover picture!.
+        /// </summary>
+        public static string CreatePromotionPart2ViewModel_ChoosePicMsg {
+            get {
+                return ResourceManager.GetString("CreatePromotionPart2ViewModel.ChoosePicMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        public static string CreatePromotionPart2ViewModel_CreatePromoBtn {
+            get {
+                return ResourceManager.GetString("CreatePromotionPart2ViewModel.CreatePromoBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promotion End Date: .
+        /// </summary>
+        public static string CreatePromotionPart2ViewModel_EndDateMsg {
+            get {
+                return ResourceManager.GetString("CreatePromotionPart2ViewModel.EndDateMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promotion Start Date:.
+        /// </summary>
+        public static string CreatePromotionPart2ViewModel_StartDateMsg {
+            get {
+                return ResourceManager.GetString("CreatePromotionPart2ViewModel.StartDateMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apparel.
+        /// </summary>
+        public static string CreatePromotionViewModel_ApparelRadio {
+            get {
+                return ResourceManager.GetString("CreatePromotionViewModel.ApparelRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        public static string CreatePromotionViewModel_CategoriesMsg {
+            get {
+                return ResourceManager.GetString("CreatePromotionViewModel.CategoriesMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        public static string CreatePromotionViewModel_ContinueBtn {
+            get {
+                return ResourceManager.GetString("CreatePromotionViewModel.ContinueBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string CreatePromotionViewModel_DescriptionHint {
+            get {
+                return ResourceManager.GetString("CreatePromotionViewModel.DescriptionHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Electronics.
+        /// </summary>
+        public static string CreatePromotionViewModel_ElectronicsRadio {
+            get {
+                return ResourceManager.GetString("CreatePromotionViewModel.ElectronicsRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Footwear.
+        /// </summary>
+        public static string CreatePromotionViewModel_FootwearRadio {
+            get {
+                return ResourceManager.GetString("CreatePromotionViewModel.FootwearRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jewellery.
+        /// </summary>
+        public static string CreatePromotionViewModel_JewelleryRadio {
+            get {
+                return ResourceManager.GetString("CreatePromotionViewModel.JewelleryRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restaurants.
+        /// </summary>
+        public static string CreatePromotionViewModel_RestaurantsRadio {
+            get {
+                return ResourceManager.GetString("CreatePromotionViewModel.RestaurantsRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Services.
+        /// </summary>
+        public static string CreatePromotionViewModel_ServicesRadio {
+            get {
+                return ResourceManager.GetString("CreatePromotionViewModel.ServicesRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string CreatePromotionViewModel_TitleHint {
+            get {
+                return ResourceManager.GetString("CreatePromotionViewModel.TitleHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to See Map.
         /// </summary>
         public static string LikedPromotionsViewModel_SeeMap {
@@ -233,6 +377,15 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-Mail.
+        /// </summary>
+        public static string SignInViewModel_EmailHint {
+            get {
+                return ResourceManager.GetString("SignInViewModel.EmailHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Forgot your password?.
         /// </summary>
         public static string SignInViewModel_ForgotPasswordMsg {
@@ -260,6 +413,15 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string SignInViewModel_PasswordHint {
+            get {
+                return ResourceManager.GetString("SignInViewModel.PasswordHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authenticating....
         /// </summary>
         public static string SignInViewModel_Progress {
@@ -274,6 +436,42 @@ namespace Glimpse.Localization {
         public static string SignInViewModel_SignInButton {
             get {
                 return ResourceManager.GetString("SignInViewModel.SignInButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Business Phone Number.
+        /// </summary>
+        public static string VendorSignUpViewModel_BusinessPhoneNumberHint {
+            get {
+                return ResourceManager.GetString("VendorSignUpViewModel.BusinessPhoneNumberHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company.
+        /// </summary>
+        public static string VendorSignUpViewModel_CompanyHint {
+            get {
+                return ResourceManager.GetString("VendorSignUpViewModel.CompanyHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm Password.
+        /// </summary>
+        public static string VendorSignUpViewModel_ConfirmPasswordHint {
+            get {
+                return ResourceManager.GetString("VendorSignUpViewModel.ConfirmPasswordHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-Mail.
+        /// </summary>
+        public static string VendorSignUpViewModel_EmailHint {
+            get {
+                return ResourceManager.GetString("VendorSignUpViewModel.EmailHint", resourceCulture);
             }
         }
         
@@ -319,6 +517,15 @@ namespace Glimpse.Localization {
         public static string VendorSignUpViewModel_LocationButton {
             get {
                 return ResourceManager.GetString("VendorSignUpViewModel.LocationButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string VendorSignUpViewModel_PasswordHint {
+            get {
+                return ResourceManager.GetString("VendorSignUpViewModel.PasswordHint", resourceCulture);
             }
         }
         

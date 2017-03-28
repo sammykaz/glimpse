@@ -120,6 +120,54 @@
   <data name="CardViewModel.Progress" xml:space="preserve">
     <value>Chargement des promotions</value>
   </data>
+  <data name="CreatePromotionPart2ViewModel.ChangeDateMsg" xml:space="preserve">
+    <value>Modifier la Date</value>
+  </data>
+  <data name="CreatePromotionPart2ViewModel.ChooseAdditionalPicMsg" xml:space="preserve">
+    <value>Choisissez vos photos supplémentaires! (optionnel)</value>
+  </data>
+  <data name="CreatePromotionPart2ViewModel.ChoosePicMsg" xml:space="preserve">
+    <value>Choisissez votre photo de couverture!</value>
+  </data>
+  <data name="CreatePromotionPart2ViewModel.CreatePromoBtn" xml:space="preserve">
+    <value>Continuer</value>
+  </data>
+  <data name="CreatePromotionPart2ViewModel.EndDateMsg" xml:space="preserve">
+    <value>Fin de la promotion:</value>
+  </data>
+  <data name="CreatePromotionPart2ViewModel.StartDateMsg" xml:space="preserve">
+    <value>Début de la promotion: </value>
+  </data>
+  <data name="CreatePromotionViewModel.ApparelRadio" xml:space="preserve">
+    <value>Vêtements</value>
+  </data>
+  <data name="CreatePromotionViewModel.CategoriesMsg" xml:space="preserve">
+    <value>Catégories</value>
+  </data>
+  <data name="CreatePromotionViewModel.ContinueBtn" xml:space="preserve">
+    <value>Continuer</value>
+  </data>
+  <data name="CreatePromotionViewModel.DescriptionHint" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="CreatePromotionViewModel.ElectronicsRadio" xml:space="preserve">
+    <value>Électronique</value>
+  </data>
+  <data name="CreatePromotionViewModel.FootwearRadio" xml:space="preserve">
+    <value>Chaussure</value>
+  </data>
+  <data name="CreatePromotionViewModel.JewelleryRadio" xml:space="preserve">
+    <value>Bijoux</value>
+  </data>
+  <data name="CreatePromotionViewModel.RestaurantsRadio" xml:space="preserve">
+    <value>Restaurants</value>
+  </data>
+  <data name="CreatePromotionViewModel.ServicesRadio" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="CreatePromotionViewModel.TitleHint" xml:space="preserve">
+    <value>Titre</value>
+  </data>
   <data name="LikedPromotionsViewModel.SeeMap" xml:space="preserve">
     <value>Voir la carte</value>
   </data>
@@ -174,6 +222,9 @@
   <data name="SettingsViewModel.SelectLanguageMsg" xml:space="preserve">
     <value>Sélectionnez la langue de l'application</value>
   </data>
+  <data name="SignInViewModel.EmailHint" xml:space="preserve">
+    <value>Courriel</value>
+  </data>
   <data name="SignInViewModel.ForgotPasswordMsg" xml:space="preserve">
     <value>Mot de passe oublié?</value>
   </data>
@@ -183,11 +234,26 @@
   <data name="SignInViewModel.MissingField" xml:space="preserve">
     <value>Champ obligatoire manquant.</value>
   </data>
+  <data name="SignInViewModel.PasswordHint" xml:space="preserve">
+    <value>Mot de Passe</value>
+  </data>
   <data name="SignInViewModel.Progress" xml:space="preserve">
     <value>Authentification ...</value>
   </data>
   <data name="SignInViewModel.SignInButton" xml:space="preserve">
     <value>Se connecter</value>
+  </data>
+  <data name="VendorSignUpViewModel.BusinessPhoneNumberHint" xml:space="preserve">
+    <value>Numéro de téléphone de l'entreprise</value>
+  </data>
+  <data name="VendorSignUpViewModel.CompanyHint" xml:space="preserve">
+    <value>Compagnie</value>
+  </data>
+  <data name="VendorSignUpViewModel.ConfirmPasswordHint" xml:space="preserve">
+    <value>Confirmez le mot de passe</value>
+  </data>
+  <data name="VendorSignUpViewModel.EmailHint" xml:space="preserve">
+    <value>Courriel</value>
   </data>
   <data name="VendorSignUpViewModel.ErrorEmailExistsMsg" xml:space="preserve">
     <value>Est déjà utilisé</value>
@@ -203,6 +269,9 @@
   </data>
   <data name="VendorSignUpViewModel.LocationButton" xml:space="preserve">
     <value>Choisissez un lieu</value>
+  </data>
+  <data name="VendorSignUpViewModel.PasswordHint" xml:space="preserve">
+    <value>Mot de Passe</value>
   </data>
   <data name="VendorSignUpViewModel.Progress" xml:space="preserve">
     <value>Inscription en cours ...</value>

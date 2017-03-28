@@ -16,7 +16,7 @@
                 android:id="@+id/txtStartPromotion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Promotion Start Date: " />
+                local:MvxLang="Text StartDateMsg"/>
             <TextView
                 android:id="@+id/start_date_display"
                 android:layout_width="wrap_content"
@@ -28,7 +28,7 @@
             android:id="@+id/btnChangeStartDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Change Date" />
+            local:MvxLang="Text ChangeDateMsg" />
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                 android:id="@+id/txtEndPromotion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Promotion End Date: " />
+                local:MvxLang="Text EndDateMsg"  />
             <TextView
                 android:id="@+id/end_date_display"
                 android:layout_width="wrap_content"
@@ -50,7 +50,7 @@
             android:id="@+id/btnChangeEndDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Change Date" />
+            local:MvxLang="Text ChangeDateMsg" />
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="20dp"
-                android:text="Choose your cover picture!" />
+                local:MvxLang="Text ChoosePicMsg" />
             <Mvx.MvxImageView
                 android:src="@drawable/plus"
                 android:layout_width="100dp"
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="20dp"
-                android:text="Choose your additional pictures! (optional)" />
+                local:MvxLang="Text ChooseAdditionalPicMsg" />
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -114,7 +114,7 @@
             android:layout_width="wrap_content"
             android:weightSum="50" />
         <Button
-            android:text="Continue"
+            local:MvxLang="Text CreatePromoBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ContinuePart2Button"
