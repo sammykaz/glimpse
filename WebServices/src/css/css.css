@@ -45,7 +45,7 @@ body {
     transition: 0.3s ease;
 }
 .goog-te-combo:hover{
-    color:#2FD4AD !important; opacity: 0.9;
+    border-color:#2FD4AD !important; opacity: 0.9;
 }
 .nav-item {
     margin-left: 1rem;
