@@ -116,6 +116,15 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Champ obligatoire manquant.
+        /// </summary>
+        public static string CreatePromotionPart2ViewModel_ErrorMissingField {
+            get {
+                return ResourceManager.GetString("CreatePromotionPart2ViewModel.ErrorMissingField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Début de la promotion: .
         /// </summary>
         public static string CreatePromotionPart2ViewModel_StartDateMsg {
@@ -166,6 +175,15 @@ namespace Glimpse.Localization {
         public static string CreatePromotionViewModel_ElectronicsRadio {
             get {
                 return ResourceManager.GetString("CreatePromotionViewModel.ElectronicsRadio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Champ obligatoire manquant.
+        /// </summary>
+        public static string CreatePromotionViewModel_ErrorMissingField {
+            get {
+                return ResourceManager.GetString("CreatePromotionViewModel.ErrorMissingField", resourceCulture);
             }
         }
         

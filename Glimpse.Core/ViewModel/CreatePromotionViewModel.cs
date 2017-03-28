@@ -26,11 +26,19 @@ namespace Glimpse.Core.ViewModel
                 {
                     var desc = new Dictionary<string, string> {
                         {"PromotionTitle", PromotionTitle},{"PromotionDescription", PromotionDescription}, {"Footwear", FootwearIsChecked.ToString()},
-                        {"Electronics", ElectronicIsChecked.ToString() },  {"Jewllery", JewlleryIsChecked.ToString() }, {"Restaurants", RestaurantsIsChecked.ToString() },
+                        {"Electronics", ElectronicIsChecked.ToString() },  {"Jewllery", JewelleryIsChecked.ToString() }, {"Restaurants", RestaurantsIsChecked.ToString() },
                         {"Services", ServicesIsChecked.ToString() }, {"Apparel", ApparelIsChecked.ToString()}
                     };
-                                     
-                    ShowViewModel<CreatePromotionPart2ViewModel>(desc);
+
+                    if (string.IsNullOrEmpty(PromotionTitle) || string.IsNullOrEmpty(PromotionDescription))
+                        ErrorMessage = TextSource.GetText("ErrorMissingField");
+                    else if (FootwearIsChecked==false && ElectronicIsChecked == false && JewelleryIsChecked == false && RestaurantsIsChecked == false && ServicesIsChecked == false && ApparelIsChecked == false)
+                        ErrorMessage = TextSource.GetText("ErrorMissingField");
+                    else
+                    {
+                        ErrorMessage = "";
+                        ShowViewModel<CreatePromotionPart2ViewModel>(desc);
+                    }
                 });
                 
             }
@@ -59,7 +67,7 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        private bool _footwearIsChecked;
+        private bool _footwearIsChecked = false;
         public bool FootwearIsChecked
         {
             get { return _footwearIsChecked; }
@@ -69,7 +77,7 @@ namespace Glimpse.Core.ViewModel
                 RaisePropertyChanged(() => FootwearIsChecked);
             }
         }
-        private bool _electronicIsChecked;
+        private bool _electronicIsChecked = false;
         public bool ElectronicIsChecked
         {
             get { return _electronicIsChecked; }
@@ -79,17 +87,17 @@ namespace Glimpse.Core.ViewModel
                 RaisePropertyChanged(() => ElectronicIsChecked);
             }
         }
-        private bool _jewelleryIsChecked;
-        public bool JewlleryIsChecked
+        private bool _jewelleryIsChecked = false;
+        public bool JewelleryIsChecked
         {
             get { return _jewelleryIsChecked; }
             set
             {
                 _jewelleryIsChecked = value;
-                RaisePropertyChanged(() => JewlleryIsChecked);
+                RaisePropertyChanged(() => JewelleryIsChecked);
             }
         }
-        private bool _restaurantsIsChecked;
+        private bool _restaurantsIsChecked = false;
         public bool RestaurantsIsChecked
         {
             get { return _restaurantsIsChecked; }
@@ -99,7 +107,7 @@ namespace Glimpse.Core.ViewModel
                 RaisePropertyChanged(() => RestaurantsIsChecked);
             }
         }
-        private bool _servicesIsChecked;
+        private bool _servicesIsChecked = false;
         public bool ServicesIsChecked
         {
             get { return _servicesIsChecked; }
@@ -109,7 +117,7 @@ namespace Glimpse.Core.ViewModel
                 RaisePropertyChanged(() => ServicesIsChecked);
             }
         }
-        private bool _apparelIsChecked;
+        private bool _apparelIsChecked = false;
         public bool ApparelIsChecked
         {
             get { return _apparelIsChecked; }
@@ -120,6 +128,16 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                _errorMessage = value;
+                RaisePropertyChanged(() => ErrorMessage);
+            }
+        }
 
     }
 }

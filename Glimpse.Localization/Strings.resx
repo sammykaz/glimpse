@@ -135,6 +135,9 @@
   <data name="CreatePromotionPart2ViewModel.EndDateMsg" xml:space="preserve">
     <value>Promotion End Date: </value>
   </data>
+  <data name="CreatePromotionPart2ViewModel.ErrorMissingField" xml:space="preserve">
+    <value>Missing Required Field</value>
+  </data>
   <data name="CreatePromotionPart2ViewModel.StartDateMsg" xml:space="preserve">
     <value>Promotion Start Date:</value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="CreatePromotionViewModel.ElectronicsRadio" xml:space="preserve">
     <value>Electronics</value>
+  </data>
+  <data name="CreatePromotionViewModel.ErrorMissingField" xml:space="preserve">
+    <value>Missing Required Field</value>
   </data>
   <data name="CreatePromotionViewModel.FootwearRadio" xml:space="preserve">
     <value>Footwear</value>
