@@ -125,6 +125,15 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creating Promotion....
+        /// </summary>
+        public static string CreatePromotionPart2ViewModel_Progress {
+            get {
+                return ResourceManager.GetString("CreatePromotionPart2ViewModel.Progress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Promotion Start Date:.
         /// </summary>
         public static string CreatePromotionPart2ViewModel_StartDateMsg {

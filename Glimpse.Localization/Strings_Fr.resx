@@ -138,6 +138,9 @@
   <data name="CreatePromotionPart2ViewModel.ErrorMissingField" xml:space="preserve">
     <value>Champ obligatoire manquant</value>
   </data>
+  <data name="CreatePromotionPart2ViewModel.Progress" xml:space="preserve">
+    <value>Promotion en cours...</value>
+  </data>
   <data name="CreatePromotionPart2ViewModel.StartDateMsg" xml:space="preserve">
     <value>Début de la promotion: </value>
   </data>

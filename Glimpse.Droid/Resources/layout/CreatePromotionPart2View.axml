@@ -6,7 +6,14 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white">
+        android:background="@android:color/white"> 
+      <TextView
+            android:id="@+id/ErrorMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#ff0000"
+            local:MvxBind="Text ErrorMessage, Mode=TwoWay" />
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -16,7 +23,7 @@
                 android:id="@+id/txtStartPromotion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                local:MvxLang="Text StartDateMsg"/>
+                local:MvxLang="Text StartDateMsg" />
             <TextView
                 android:id="@+id/start_date_display"
                 android:layout_width="wrap_content"
@@ -38,7 +45,7 @@
                 android:id="@+id/txtEndPromotion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                local:MvxLang="Text EndDateMsg"  />
+                local:MvxLang="Text EndDateMsg" />
             <TextView
                 android:id="@+id/end_date_display"
                 android:layout_width="wrap_content"

@@ -138,6 +138,9 @@
   <data name="CreatePromotionPart2ViewModel.ErrorMissingField" xml:space="preserve">
     <value>Missing Required Field</value>
   </data>
+  <data name="CreatePromotionPart2ViewModel.Progress" xml:space="preserve">
+    <value>Creating Promotion...</value>
+  </data>
   <data name="CreatePromotionPart2ViewModel.StartDateMsg" xml:space="preserve">
     <value>Promotion Start Date:</value>
   </data>

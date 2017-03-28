@@ -26,13 +26,13 @@ namespace Glimpse.Core.ViewModel
                 {
                     var desc = new Dictionary<string, string> {
                         {"PromotionTitle", PromotionTitle},{"PromotionDescription", PromotionDescription}, {"Footwear", FootwearIsChecked.ToString()},
-                        {"Electronics", ElectronicIsChecked.ToString() },  {"Jewllery", JewelleryIsChecked.ToString() }, {"Restaurants", RestaurantsIsChecked.ToString() },
+                        {"Electronics", ElectronicIsChecked.ToString() },  {"Jewellery", JewlleryIsChecked.ToString() }, {"Restaurants", RestaurantsIsChecked.ToString() },
                         {"Services", ServicesIsChecked.ToString() }, {"Apparel", ApparelIsChecked.ToString()}
                     };
 
                     if (string.IsNullOrEmpty(PromotionTitle) || string.IsNullOrEmpty(PromotionDescription))
                         ErrorMessage = TextSource.GetText("ErrorMissingField");
-                    else if (FootwearIsChecked==false && ElectronicIsChecked == false && JewelleryIsChecked == false && RestaurantsIsChecked == false && ServicesIsChecked == false && ApparelIsChecked == false)
+                    else if (FootwearIsChecked==false && ElectronicIsChecked == false && JewlleryIsChecked == false && RestaurantsIsChecked == false && ServicesIsChecked == false && ApparelIsChecked == false)
                         ErrorMessage = TextSource.GetText("ErrorMissingField");
                     else
                     {
@@ -88,13 +88,13 @@ namespace Glimpse.Core.ViewModel
             }
         }
         private bool _jewelleryIsChecked = false;
-        public bool JewelleryIsChecked
+        public bool JewlleryIsChecked
         {
             get { return _jewelleryIsChecked; }
             set
             {
                 _jewelleryIsChecked = value;
-                RaisePropertyChanged(() => JewelleryIsChecked);
+                RaisePropertyChanged(() => JewlleryIsChecked);
             }
         }
         private bool _restaurantsIsChecked = false;
