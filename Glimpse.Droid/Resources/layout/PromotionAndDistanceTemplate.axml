@@ -2,12 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-  
+    android:layout_height="wrap_content"
+   android:descendantFocusability="blocksDescendants">
+   
     <com.makeramen.roundedimageview.RoundedImageView        
         android:id="@+id/promotion_picture"
         local:MvxBind="Bitmap ByteArrayImage(Item.Image)"
         android:scaleType="fitXY"
+        android:focusable="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="-10dip"
@@ -20,6 +22,7 @@
   
 
     <TextView
+        android:textIsSelectable="false"
         android:textSize="16dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -34,6 +37,7 @@
         local:MvxBind="Text Item.Title" />
       
      <TextView
+       android:textIsSelectable="false"
         android:textSize="14dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -49,6 +53,8 @@
   
     <ImageButton
         android:focusable="false"
+        android:clickable="false" 
+        android:focusableInTouchMode="false"
         android:id="@+id/seemapbutton"
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_map_black_36dp"
