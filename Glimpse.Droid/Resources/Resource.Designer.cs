@@ -3027,6 +3027,9 @@ namespace Glimpse.Droid
 			// aapt resource value: 0x7f0a001b
 			public const int light = 2131361819;
 			
+			// aapt resource value: 0x7f0a00b4
+			public const int liked_searchview = 2131361972;
+			
 			// aapt resource value: 0x7f0a00ca
 			public const int line1 = 2131361994;
 			
@@ -3227,9 +3230,6 @@ namespace Glimpse.Droid
 			
 			// aapt resource value: 0x7f0a007c
 			public const int search_voice_btn = 2131361916;
-			
-			// aapt resource value: 0x7f0a00b4
-			public const int searchview = 2131361972;
 			
 			// aapt resource value: 0x7f0a00e1
 			public const int seemapbutton = 2131362017;
