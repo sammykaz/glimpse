@@ -61,7 +61,7 @@
                                 <div class="input-group login-userinput col-sm-12">
                                     <span class="fa fa-phone signup-cat-icons icon-signup"></span>
                                     <div class="input-form-padding col-sm-12" ng-class="{ 'has-danger' : userForm.personalphone.$invalid && !userForm.personalphone.$pristine}">
-                                        <input id="txtUser" type="text" class="form-control" placeholder="Personal Phone Number" name="personalphone" ng-model="user.personalphone" pattern="[0-9]+" ng-pattern-restric ng-minlength="7" ng-class="{ 'input-has-error' : userForm.personalphone.$invalid && !userForm.personalphone.$pristine}" required>
+                                        <input id="txtUser" type="text" class="form-control" placeholder="Personal Phone Number" name="personalphone" ng-model="user.personalphone" pattern="[0-9]+" ng-pattern-restric ng-minlength="5" ng-class="{ 'input-has-error' : userForm.personalphone.$invalid && !userForm.personalphone.$pristine}" required>
                                         <p ng-show="userForm.personalphone.$invalid && !userForm.personalphone.$pristine" class="form-control-feedback">Only numbers are allowed</p>
                                     </div>
                                     <div class="signup-form-btn col-sm-12" ng-class="{ 'has-danger' : userForm.$invalid}">

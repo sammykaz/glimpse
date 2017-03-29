@@ -104,30 +104,17 @@ namespace WebServices.Controllers
                 return BadRequest(ModelState);
             }
 
-            //Log.Error("Check id vs vendor.id -> [" + id + "::" + vendor.VendorId + "]" , id, vendor.CompanyName);
             if (id != vendor.VendorId)
             {
                 Log.Error("Id: {@id} is the incorrect id for vendor id: {@vendor}", id, vendor.CompanyName);
                 return BadRequest();
             }
-            //Vendor tempVendor = db.Vendors.Find(vendor.VendorId);
 
-            //vendor.Password = tempVendor.Password;
-            //vendor.Salt = tempVendor.Salt;
-
-            db.Entry(vendor).State = EntityState.Modified;
-            //try
-            //{
-            //    Log.Error("BEFORE: Checking pass :  " + vendor.Password + " <-- --> salt :  " + vendor.Salt, "");
-            //    Vendor tempVendor = db.Vendors.Find(vendor.VendorId);
-            //    vendor.Password = tempVendor.Password;
-            //    vendor.Salt = tempVendor.Salt;
-            //    Log.Error("AFTER: Checking pass :  " + vendor.Password + " <-- --> salt :  " + vendor.Salt + "db context find id -> " + tempVendor.VendorId + "  db context find id  password -> " + tempVendor.Password + " salt: "+  tempVendor.Salt, "");
-            //}
-            //catch (System.Exception e)
-            //{
-            //    Log.Error("try  Vendor tempVendor = db.Vendors.Find(vendor.VendorId) -> catch :: " + e,"", "");
-            //}
+            Vendor updateVendor = db.Vendors.FirstOrDefault(e => e.VendorId == (vendor.VendorId));
+            updateVendor.Email = vendor.Email;
+            updateVendor.Address = vendor.Address;
+            updateVendor.Telephone = vendor.Telephone;
+            updateVendor.Location = vendor.Location;
             try
             {
                 db.SaveChanges();
