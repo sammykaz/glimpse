@@ -11,7 +11,7 @@
     android:minHeight="25px"
     android:gravity="top">
     <TextView
-        android:text="Welcome to Glimpse"
+        local:MvxLang="Text WelcomeMsg"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_weight="15"
@@ -22,7 +22,7 @@
         android:textSize="30dip"
         android:id="@+id/textViewLogin" />
     <Button
-        android:text="Take a Glimpse"
+        local:MvxLang="Text TakeAGlimpse"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="25"
@@ -34,7 +34,7 @@
         android:background="@drawable/HomeButtonTakeGlimpse"
         local:MvxBind="Click ShowMap" />
     <TextView
-        android:text="Or"
+        local:MvxLang="Text OrMsg"
         android:layout_width="match_parent"
         android:layout_weight="5"
         android:layout_height="0dp"
@@ -44,7 +44,7 @@
         android:textSize="15dip"
         android:id="@+id/textViewOr" />
     <Button
-        android:text="Sign In"
+        local:MvxLang="Text SignInButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="15"
@@ -56,7 +56,7 @@
         android:background="@drawable/HomeButtonSignIn"
         local:MvxBind="Click ShowSignIn" />
     <TextView
-        android:text="Don't have an account yet?"
+        local:MvxLang="Text NoAccountMsg"
         android:layout_width="match_parent"
         android:layout_weight="5"
         android:layout_height="0dp"
@@ -68,7 +68,7 @@
         android:id="@+id/textViewOr" />
     <Button
         local:MvxBind="Click ShowVendorSignUp"
-        android:text="Sign up as a vendor"
+        local:MvxLang="Text VendorSignUpButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
@@ -78,6 +78,13 @@
         android:layout_marginBottom="10.0dp"
         android:id="@+id/btnSignUpVendor"
         android:background="@drawable/HomeButtonVendorSignUp" />
+         <Button
+            android:text="Language/Langue"
+            local:MvxBind="Click ShowSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="10dp"

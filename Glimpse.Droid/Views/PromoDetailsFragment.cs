@@ -22,8 +22,8 @@ using Android.Support.Design.Widget;
 namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame, true)]
-    [Register("glimpse.droid.views.TileDetailsFragment")]
-    public class TileDetailsFragment : MvxFragment<TileDetailsViewModel>, ViewPager.IOnPageChangeListener
+    [Register("glimpse.droid.views.PromoDetailsFragment")]
+    public class PromoDetailsFragment : MvxFragment<PromoDetailsViewModel>, ViewPager.IOnPageChangeListener
     { 
         protected View _view;
         private int _dotsCount;
@@ -40,7 +40,7 @@ namespace Glimpse.Droid.Views
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
-            return this.BindingInflate(Resource.Layout.TileDetailsView, null);
+            return this.BindingInflate(Resource.Layout.PromoDetailsView, null);
         }
 
         public override async void OnViewCreated(View view, Bundle savedInstanceState)
@@ -81,10 +81,10 @@ namespace Glimpse.Droid.Views
         {
             //Create a progress dialog for loading
             ProgressDialog pr = new ProgressDialog(this.Context);
-            pr.SetMessage("Loading Images");
+            pr.SetMessage(ViewModel.TextSource.GetText("Progress"));
             pr.SetCancelable(false);
 
-            var viewModel = (TileDetailsViewModel)ViewModel;
+            var viewModel = (PromoDetailsViewModel)ViewModel;
             pr.Show();
             //Get the images
             _byteImages = await viewModel.GetImageList();
@@ -129,10 +129,10 @@ namespace Glimpse.Droid.Views
         {
             //Create a progress dialog for loading
             ProgressDialog pr = new ProgressDialog(this.Context);
-            pr.SetMessage("Loading Images");
+            pr.SetMessage(ViewModel.TextSource.GetText("Progress"));
             pr.SetCancelable(false);
 
-            var viewModel = (TileDetailsViewModel)ViewModel;
+            var viewModel = (PromoDetailsViewModel)ViewModel;
             pr.Show();
             //Get the images
             _byteImages = await viewModel.GetImageList();

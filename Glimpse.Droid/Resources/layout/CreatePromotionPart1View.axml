@@ -7,6 +7,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white">
+        <TextView
+            android:id="@+id/ErrorMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#ff0000"
+            local:MvxBind="Text ErrorMessage, Mode=TwoWay" />
         <EditText
             android:id="@+id/promotionTitle"
             android:layout_width="match_parent"
@@ -16,30 +23,35 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="25dp"
-            android:hint="Title"
+            local:MvxLang="Hint TitleHint"
             android:paddingLeft="10dp"
             android:textColor="@color/black"
             android:imeOptions="actionDone"
             android:singleLine="true"
             local:MvxBind="Text PromotionTitle, Mode=TwoWay" />
         <EditText
+            android:background="@drawable/edit_text_style"
             android:layout_below="@id/promotionTitle"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
             android:id="@+id/promotionDescription"
-            android:background="@drawable/edit_text_style"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="20dp"
-            android:hint="Description"
+            android:layout_weight="30"
+            android:imeOptions="actionDone"
+            android:layout_marginLeft="20dp"
+            android:paddingLeft="10dp"
+            local:MvxLang="Hint DescriptionHint"
             android:textColor="@color/black"
             local:MvxBind="Text PromotionDescription, Mode=TwoWay"
-            android:layout_weight="30"
-            android:paddingLeft="10dp"
-            android:imeOptions="actionDone"
-             android:singleLine="true"
-            android:layout_marginLeft="20dp" />
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:minLines="6"
+            android:gravity="top|left"
+            android:maxLines="10"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
         <TextView
-            android:text="Categories"
+            local:MvxLang="Text CategoriesMsg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView1"
@@ -70,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
-                    android:text="Footwear"
+                    local:MvxLang="Text FootwearRadio"
                     local:MvxBind="Checked FootwearIsChecked" />
                 <RadioButton
                     android:id="@+id/checkbox_electronic"
@@ -78,21 +90,21 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
-                    android:text="Electronic"
+                    local:MvxLang="Text ElectronicsRadio"
                     local:MvxBind="Checked ElectronicIsChecked" />
                 <RadioButton
                     android:id="@+id/checkbox_jewellery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jewellery"
+                    local:MvxLang="Text JewelleryRadio"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
-                    local:MvxBind="Checked JewelleryIsChecked" />
+                    local:MvxBind="Checked JewlleryIsChecked" />
                 <RadioButton
                     android:id="@+id/checkbox_restaurants"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Restaurants"
+                    local:MvxLang="Text RestaurantsRadio"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
                     local:MvxBind="Checked RestaurantsIsChecked"
@@ -101,7 +113,7 @@
                     android:id="@+id/checkbox_services"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Services"
+                    local:MvxLang="Text ServicesRadio"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
                     local:MvxBind="Checked ServicesIsChecked"
@@ -111,14 +123,14 @@
                     android:id="@+id/checkbox_apparel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Apparel"
+                    local:MvxLang="Text ApparelRadio"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
                     local:MvxBind="Checked ApparelIsChecked" />
             </RadioGroup>
         </LinearLayout>
         <Button
-            android:text="Continue"
+            local:MvxLang="Text ContinueBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ContinuePart1Button"

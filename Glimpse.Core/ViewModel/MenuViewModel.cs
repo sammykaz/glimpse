@@ -37,7 +37,7 @@ namespace Glimpse.Core.ViewModel
         {
             MenuItems.Add(new MenuItem
             {
-                Title = "Logout",
+                Title = TextSource.GetText("Logout"),
                 ViewModelType = typeof(LoginMainViewModel),
                 Option = MenuOption.Logout,
                 IsSelected = false
@@ -45,7 +45,7 @@ namespace Glimpse.Core.ViewModel
 
             MenuItems.Add(new MenuItem
             {
-                Title = "Settings",
+                Title = TextSource.GetText("Settings"),
                 ViewModelType = typeof(SettingsViewModel),
                 Option = MenuOption.Settings,
                 IsSelected = false
@@ -53,7 +53,7 @@ namespace Glimpse.Core.ViewModel
 
             MenuItems.Add(new MenuItem
             {
-                Title = "Map",
+                Title = TextSource.GetText("Promotions"),
                 ViewModelType = typeof(ViewPagerViewModel),
                 Option = MenuOption.Logout,
                 IsSelected = false
@@ -68,7 +68,7 @@ namespace Glimpse.Core.ViewModel
             {
                 MenuItems.Add(new MenuItem
                 {
-                    Title = "Vendor Profile",
+                    Title = TextSource.GetText("Profile"),
                     ViewModelType = typeof(VendorProfilePageViewModel),
                     Option = MenuOption.VendorProfile,
                     IsSelected = false

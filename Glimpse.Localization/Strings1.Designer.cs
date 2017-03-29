@@ -23,14 +23,14 @@ namespace Glimpse.Localization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Strings_Fr {
+    public class Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Strings_Fr() {
+        internal Strings() {
         }
         
         /// <summary>
@@ -40,7 +40,7 @@ namespace Glimpse.Localization {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Glimpse.Localization.Strings_Fr", typeof(Strings_Fr).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Glimpse.Localization.Strings", typeof(Strings).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,7 +62,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chargement des promotions.
+        ///   Looks up a localized string similar to Loading Promotions.
         /// </summary>
         public static string CardViewModel_Progress {
             get {
@@ -71,7 +71,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Modifier la Date.
+        ///   Looks up a localized string similar to Change Date.
         /// </summary>
         public static string CreatePromotionPart2ViewModel_ChangeDateMsg {
             get {
@@ -80,7 +80,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choisissez vos photos supplémentaires! (optionnel).
+        ///   Looks up a localized string similar to Choose your additional pictures! (optional).
         /// </summary>
         public static string CreatePromotionPart2ViewModel_ChooseAdditionalPicMsg {
             get {
@@ -89,7 +89,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choisissez votre photo de couverture!.
+        ///   Looks up a localized string similar to Choose your cover picture!.
         /// </summary>
         public static string CreatePromotionPart2ViewModel_ChoosePicMsg {
             get {
@@ -98,7 +98,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Continuer.
+        ///   Looks up a localized string similar to Continue.
         /// </summary>
         public static string CreatePromotionPart2ViewModel_CreatePromoBtn {
             get {
@@ -107,7 +107,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fin de la promotion:.
+        ///   Looks up a localized string similar to Promotion End Date: .
         /// </summary>
         public static string CreatePromotionPart2ViewModel_EndDateMsg {
             get {
@@ -116,7 +116,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Champ obligatoire manquant.
+        ///   Looks up a localized string similar to Missing Required Field.
         /// </summary>
         public static string CreatePromotionPart2ViewModel_ErrorMissingField {
             get {
@@ -125,7 +125,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Promotion en cours....
+        ///   Looks up a localized string similar to Creating Promotion....
         /// </summary>
         public static string CreatePromotionPart2ViewModel_Progress {
             get {
@@ -134,7 +134,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Début de la promotion: .
+        ///   Looks up a localized string similar to Promotion Start Date:.
         /// </summary>
         public static string CreatePromotionPart2ViewModel_StartDateMsg {
             get {
@@ -143,7 +143,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vêtements.
+        ///   Looks up a localized string similar to Apparel.
         /// </summary>
         public static string CreatePromotionViewModel_ApparelRadio {
             get {
@@ -152,7 +152,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Catégories.
+        ///   Looks up a localized string similar to Categories.
         /// </summary>
         public static string CreatePromotionViewModel_CategoriesMsg {
             get {
@@ -161,7 +161,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Continuer.
+        ///   Looks up a localized string similar to Continue.
         /// </summary>
         public static string CreatePromotionViewModel_ContinueBtn {
             get {
@@ -179,7 +179,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Électronique.
+        ///   Looks up a localized string similar to Electronics.
         /// </summary>
         public static string CreatePromotionViewModel_ElectronicsRadio {
             get {
@@ -188,7 +188,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Champ obligatoire manquant.
+        ///   Looks up a localized string similar to Missing Required Field.
         /// </summary>
         public static string CreatePromotionViewModel_ErrorMissingField {
             get {
@@ -197,7 +197,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chaussure.
+        ///   Looks up a localized string similar to Footwear.
         /// </summary>
         public static string CreatePromotionViewModel_FootwearRadio {
             get {
@@ -206,7 +206,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bijoux.
+        ///   Looks up a localized string similar to Jewellery.
         /// </summary>
         public static string CreatePromotionViewModel_JewelleryRadio {
             get {
@@ -233,7 +233,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Titre.
+        ///   Looks up a localized string similar to Title.
         /// </summary>
         public static string CreatePromotionViewModel_TitleHint {
             get {
@@ -242,7 +242,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Voir la carte.
+        ///   Looks up a localized string similar to See Map.
         /// </summary>
         public static string LikedPromotionsViewModel_SeeMap {
             get {
@@ -251,7 +251,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to À propos du contenu.
+        ///   Looks up a localized string similar to About Content.
         /// </summary>
         public static string LoginSettingsViewModel_AboutContentMsg {
             get {
@@ -260,7 +260,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sélectionnez la langue de l&apos;application.
+        ///   Looks up a localized string similar to Select the language for the app.
         /// </summary>
         public static string LoginSettingsViewModel_SelectLanguageMsg {
             get {
@@ -269,7 +269,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pas de compte?.
+        ///   Looks up a localized string similar to Don&apos;t have an account yet?.
         /// </summary>
         public static string LoginViewModel_NoAccountMsg {
             get {
@@ -278,7 +278,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ou.
+        ///   Looks up a localized string similar to Or.
         /// </summary>
         public static string LoginViewModel_OrMsg {
             get {
@@ -287,7 +287,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Se Connecter.
+        ///   Looks up a localized string similar to Sign in.
         /// </summary>
         public static string LoginViewModel_SignInButton {
             get {
@@ -296,7 +296,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Faites un Apeçu.
+        ///   Looks up a localized string similar to Take A Glimpse.
         /// </summary>
         public static string LoginViewModel_TakeAGlimpse {
             get {
@@ -305,7 +305,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inscrivez-vous comme fournisseur.
+        ///   Looks up a localized string similar to Sign Up as a Vendor.
         /// </summary>
         public static string LoginViewModel_VendorSignUpButton {
             get {
@@ -314,7 +314,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bienvenu a Glimpse.
+        ///   Looks up a localized string similar to Welcome To Glimpse.
         /// </summary>
         public static string LoginViewModel_WelcomeMsg {
             get {
@@ -323,7 +323,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Se déconnecter.
+        ///   Looks up a localized string similar to Logout.
         /// </summary>
         public static string MenuViewModel_Logout {
             get {
@@ -332,7 +332,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Profil.
+        ///   Looks up a localized string similar to Profile.
         /// </summary>
         public static string MenuViewModel_Profile {
             get {
@@ -350,7 +350,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Paramètres.
+        ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string MenuViewModel_Settings {
             get {
@@ -359,7 +359,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to À propos de cette offre.
+        ///   Looks up a localized string similar to About this deal.
         /// </summary>
         public static string PromoDetailsViewModel_AboutThisDeal {
             get {
@@ -368,7 +368,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to + Acheté.
+        ///   Looks up a localized string similar to + Bought.
         /// </summary>
         public static string PromoDetailsViewModel_Bought {
             get {
@@ -377,7 +377,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chargement des images.
+        ///   Looks up a localized string similar to Loading Images.
         /// </summary>
         public static string PromoDetailsViewModel_Progress {
             get {
@@ -386,7 +386,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to À propos du contenu.
+        ///   Looks up a localized string similar to About Content.
         /// </summary>
         public static string SettingsViewModel_AboutContentMsg {
             get {
@@ -395,7 +395,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sélectionnez la langue de l&apos;application.
+        ///   Looks up a localized string similar to Select the language for the app.
         /// </summary>
         public static string SettingsViewModel_SelectLanguageMsg {
             get {
@@ -404,7 +404,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Courriel.
+        ///   Looks up a localized string similar to E-Mail.
         /// </summary>
         public static string SignInViewModel_EmailHint {
             get {
@@ -413,7 +413,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mot de passe oublié?.
+        ///   Looks up a localized string similar to Forgot your password?.
         /// </summary>
         public static string SignInViewModel_ForgotPasswordMsg {
             get {
@@ -422,7 +422,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email ou mot de passe incorrect..
+        ///   Looks up a localized string similar to Incorrect email or password..
         /// </summary>
         public static string SignInViewModel_IncorrectInputMsg {
             get {
@@ -431,7 +431,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Champ obligatoire manquant..
+        ///   Looks up a localized string similar to Missing required field..
         /// </summary>
         public static string SignInViewModel_MissingField {
             get {
@@ -440,7 +440,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mot de Passe.
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string SignInViewModel_PasswordHint {
             get {
@@ -449,7 +449,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Authentification ....
+        ///   Looks up a localized string similar to Authenticating....
         /// </summary>
         public static string SignInViewModel_Progress {
             get {
@@ -458,7 +458,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Se connecter.
+        ///   Looks up a localized string similar to Sing in.
         /// </summary>
         public static string SignInViewModel_SignInButton {
             get {
@@ -467,7 +467,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Numéro de téléphone de l&apos;entreprise.
+        ///   Looks up a localized string similar to Business Phone Number.
         /// </summary>
         public static string VendorSignUpViewModel_BusinessPhoneNumberHint {
             get {
@@ -476,7 +476,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Compagnie.
+        ///   Looks up a localized string similar to Company.
         /// </summary>
         public static string VendorSignUpViewModel_CompanyHint {
             get {
@@ -485,7 +485,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Confirmez le mot de passe.
+        ///   Looks up a localized string similar to Confirm Password.
         /// </summary>
         public static string VendorSignUpViewModel_ConfirmPasswordHint {
             get {
@@ -494,7 +494,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Courriel.
+        ///   Looks up a localized string similar to E-Mail.
         /// </summary>
         public static string VendorSignUpViewModel_EmailHint {
             get {
@@ -503,7 +503,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Est déjà utilisé.
+        ///   Looks up a localized string similar to is already being used.
         /// </summary>
         public static string VendorSignUpViewModel_ErrorEmailExistsMsg {
             get {
@@ -512,7 +512,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to L&apos;email n&apos;est pas valide.
+        ///   Looks up a localized string similar to Email is not valid.
         /// </summary>
         public static string VendorSignUpViewModel_ErrorEmailIsNotValidMsg {
             get {
@@ -521,7 +521,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Champ obligatoire manquant.
+        ///   Looks up a localized string similar to Missing required field.
         /// </summary>
         public static string VendorSignUpViewModel_ErrorMissingFieldMsg {
             get {
@@ -530,7 +530,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Les mots de passe ne correspondent pas.
+        ///   Looks up a localized string similar to Passwords do not match.
         /// </summary>
         public static string VendorSignUpViewModel_ErrorPasswordMatchMsg {
             get {
@@ -539,7 +539,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Choisissez un lieu.
+        ///   Looks up a localized string similar to Choose a Location.
         /// </summary>
         public static string VendorSignUpViewModel_LocationButton {
             get {
@@ -548,7 +548,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mot de Passe.
+        ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string VendorSignUpViewModel_PasswordHint {
             get {
@@ -557,7 +557,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inscription en cours ....
+        ///   Looks up a localized string similar to Sign up in progress....
         /// </summary>
         public static string VendorSignUpViewModel_Progress {
             get {
@@ -566,7 +566,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to S&apos;inscrire.
+        ///   Looks up a localized string similar to Sign Up.
         /// </summary>
         public static string VendorSignUpViewModel_SignUp {
             get {

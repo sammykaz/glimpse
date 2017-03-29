@@ -64,7 +64,7 @@ namespace Glimpse.Droid.Views
 
             //create binding for progress
             _bindableProgress = new BindableProgress(this.Context);
-            _bindableProgress.Title = "Loading Promotions";
+            _bindableProgress.Title = ViewModel.TextSource.GetText("Progress");
             var set = this.CreateBindingSet<CardFragment, CardViewModel>();
             set.Bind(_bindableProgress).For(p => p.Visible).To(vm => vm.IsBusy);
             set.Apply();
