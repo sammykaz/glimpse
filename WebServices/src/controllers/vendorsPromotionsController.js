@@ -256,7 +256,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             $scope.showTitleWarning = false;
             $scope.showDescriptionWarning = true;
         }
-        else if ($scope.category == undefined || $scope.category == "") {
+        else if ($scope.category == undefined || $scope.category === "") {
             $scope.showDescriptionWarning = false;
             $scope.showTitleWarning = false;
             $scope.showCategorynWarning = true;
