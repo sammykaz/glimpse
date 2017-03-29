@@ -191,6 +191,8 @@ label:hover input[type="radio"] ~ i.fa {color: #2FD4AD;}
 .table-row:hover{background: #fafafa;}
 .table-pages{color: #4C8577 !important; border: 1px solid #4C8577 !important; cursor: pointer;}
 .table-pages:hover{color: white !important; border: 1px solid #4C8577 !important; background: #4C8577 !important;}
+.table-anal-pages{color: #4C8577 !important; border: 1px solid #4C8577 !important; cursor: pointer;}
+.table-anal-pages:hover{color: white !important; border: 1px solid #4C8577 !important; background: #71c7b2 !important;}
 .fade.ng-hide {
   opacity: 0;
 }

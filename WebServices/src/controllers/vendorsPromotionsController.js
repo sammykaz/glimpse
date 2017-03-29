@@ -26,17 +26,14 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
     }
     $scope.setCurrentPage = function (currentPage) {
         $scope.currentPage = currentPage;
-        console.log($scope.currentPage);
     }
     $scope.setCurrentPageToNext = function () {
         if ($scope.currentPage + 1 <= $scope.maxPage)
             $scope.currentPage++;
-        console.log($scope.currentPage);
     }
     $scope.setCurrentPageToPrev = function () {
         if ($scope.currentPage - 1 > 0)
             $scope.currentPage--;
-        console.log($scope.currentPage);
     }
     getVendorsPromotion();
     $scope.showCreatePromotion = function () {
