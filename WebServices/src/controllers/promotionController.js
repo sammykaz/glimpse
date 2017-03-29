@@ -48,9 +48,11 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
 
 app.controller('modalImageController', function ($scope, $timeout, dataService, promotionDetails) {
     
-    var Category = ["Footwear", "Electronics", "Jewellery", "Restaurants", "Services", "Apparel"];
+    //var Category = ["Footwear", "Electronics", "Jewellery", "Restaurants", "Services", "Apparel"];
+    $scope.showArrows = false;
     $scope.Title = promotionDetails.Title;
-    $scope.Category = Category[promotionDetails.Category];
+    //$scope.Category = Category[promotionDetails.Category];
+    $scope.Category = promotionDetails.Category;
     $scope.Description = promotionDetails.Description;
     $scope.PromotionStartDate = promotionDetails.PromotionStartDate;
     $scope.PromotionEndDate = promotionDetails.PromotionEndDate;
@@ -70,6 +72,8 @@ app.controller('modalImageController', function ($scope, $timeout, dataService, 
         for (var i = 0; i < $scope.promotionImages.length; i++) {
             $scope.images.push($scope.promotionImages[i].ImageURL);
         }
+        if ($scope.promotionImages.length > 1)
+            $scope.showArrows = true;
     }
     $scope.direction = 'left';
     $scope.currentIndex = 0;
