@@ -113,6 +113,8 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
     $scope.isPromotionExpired = function (promotionEndDate) {
         var currentDate = new Date();
         var promotionEndDate = new Date(promotionEndDate);
+        promotionEndDate.setHours(0, 0, 0, 0);
+        currentDate.setHours(0, 0, 0, 0);
         return currentDate.getTime() > promotionEndDate.getTime();
     }
 
@@ -274,6 +276,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             var edt = $scope.edt;
             var promotionTitleForPicture = $scope.promotionTitle.split(' ').join('');
             var PromotionImages = [];
+            sdt.setHours(0, 0, 0, 0);
+            edt.setHours(0, 0, 0, 0);
             var promotionData = {
                 RequestFromWeb : true,
                 title: $scope.promotionTitle,
@@ -351,7 +355,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 promotionData["Title"] = promotion["title"];
                 promotionData["Vendor"] = promotion["vendor"] || null;
                 promotionData["VendorId"] = promotion["vendorId"];
-
+                promotionData["PromotionEndDate"].setHours(0, 0, 0, 0);
+                promotionData["PromotionStartDate"].setHours(0, 0, 0, 0);
                 dataService.updatePromotion().update({
                     promotion: promotionId
                 }, promotionData).$promise.then(function () {
