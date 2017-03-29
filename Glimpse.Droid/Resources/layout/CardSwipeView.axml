@@ -12,6 +12,7 @@
     <MvxRadioGroup
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:textSize="20dp"
         android:orientation="horizontal"
         android:id="@+id/filter_radiogroup"
