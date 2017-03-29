@@ -98,8 +98,16 @@ namespace Glimpse.Droid.Views
             _likeButton.Click += LikeButton_Click;      
             _dislikeButton.Click += DislikeButton_Click;
             _cardSwipeListener.OnCardSwipeActionEvent += _cardSwipeListener_OnCardSwipeActionEvent;
+            _searchView.SearchClick += delegate
+            {
+                _radioGroup.Visibility = ViewStates.Visible;
+            };
 
-             
+            //done this weird way because of issue clearing the focus of the search view
+            var listener = new MySearchViewOnCloseListener();
+            listener.view = _radioGroup;
+            _searchView.SetOnCloseListener(listener);
+
             _cardStack.Adapter = _cardAdapter;
         }
 
