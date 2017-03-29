@@ -2,6 +2,7 @@
 
 app.controller('SignupController', ['$scope', '$http', 'dataService', '$state', function ($scope, $http, dataService, $state) {
     $scope.passConfirmation = false;
+    $scope.userTaken = false;
     $scope.location = { lat: '', lng: '' };
     $scope.user = { streetnumber: '', streetname: '', postal: '', city: '', province: '', country: '' };
     $scope.addressIsValid = true;
@@ -27,7 +28,7 @@ app.controller('SignupController', ['$scope', '$http', 'dataService', '$state', 
                 $state.go("login");
             },
             function (err) {
-                Alert("Please verify your values");
+                $scope.userTaken = true;
             });
         }
         else {

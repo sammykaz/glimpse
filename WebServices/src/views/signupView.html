@@ -69,6 +69,7 @@
                                         <p ng-show="userForm.$invalid" class="form-control-feedback">Some fields are missing</p>
                                         <p ng-show="passConfirmation" class="error-warning">Password does not match Password</p>
                                         <p ng-hide="addressIsValid" class="error-warning">The Address entered is invalid</p>
+                                        <p ng-show="userTaken" class="error-warning">This email already exists</p>
                                     </div>
                                     <div class="col-sm-12 padding-zero">
                                         <a ui-sref="login" class="login-new-account">Back to login</a>
