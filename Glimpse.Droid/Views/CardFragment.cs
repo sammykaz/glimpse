@@ -39,8 +39,8 @@ namespace Glimpse.Droid.Views
         private BindableProgress _bindableProgress;
         private LocalPromotionRepository _localPromotionRepository;
         private SearchView _searchView;
-        private Button _likeButton;
-        private Button _dislikeButton;
+        private ImageButton _likeButton;
+        private ImageButton _dislikeButton;
         private CardSwipeListener _cardSwipeListener;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -93,8 +93,8 @@ namespace Glimpse.Droid.Views
 
 
             //Subscribing to events
-            _likeButton = view.FindViewById<Button>(Resource.Id.btnLike);
-            _dislikeButton = view.FindViewById<Button>(Resource.Id.btnDislike);
+            _likeButton = view.FindViewById<ImageButton>(Resource.Id.btnLike);
+            _dislikeButton = view.FindViewById<ImageButton>(Resource.Id.btnDislike);
             _likeButton.Click += LikeButton_Click;      
             _dislikeButton.Click += DislikeButton_Click;
             _cardSwipeListener.OnCardSwipeActionEvent += _cardSwipeListener_OnCardSwipeActionEvent;
