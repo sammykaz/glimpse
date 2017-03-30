@@ -60,19 +60,26 @@ namespace Glimpse.Droid.Activities
 
         protected override void OnCreate(Bundle savedInstanceState)
         { 
+            //TODO
+            //
+            //When "Take a Glimpse" is clicked -> The authentication must be bypassed to initialize the drawerLayout
+            //
+            //ShowViewModel should send a parameter to be verified as "Buyer"
             base.OnCreate(savedInstanceState);
             if (CheckAuthenticationStatus())
             {
-                RunOnUiThread(() => {
+                RunOnUiThread(() =>
+                {
+
                     _fragmentManager = FragmentManager;
 
                     SetContentView(Resource.Layout.MainView);
                     mainActivity = this;
 
- 
+
 
                     _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-                    _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int) GravityFlags.Start);
+                    _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int)GravityFlags.Start);
                     _drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout, Resource.String.drawer_open, Resource.String.drawer_close);
                     _drawerToggle.DrawerClosed += _drawerToggle_DrawerClosed;
                     _drawerToggle.DrawerOpened += _drawerToggle_DrawerOpened;
@@ -82,7 +89,6 @@ namespace Glimpse.Droid.Activities
                     ViewModel.ShowMenu();
                     ViewModel.ShowViewPager();
                 });
-
             }
         } 
     
