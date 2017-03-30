@@ -14,11 +14,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             local:MvxBind="Query Query"
-            android:id="@+id/searchview" />
+            android:id="@+id/liked_searchview" />
         <MvxRadioGroup
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
+            android:visibility="gone"
             android:orientation="horizontal"
             android:id="@+id/filter_radiogroup"
             local:MvxItemTemplate="@layout/item_radio"
@@ -38,12 +39,13 @@
                 android:layout_weight="1" />
             <Button
                 android:layout_width="20dp"
-                android:layout_height="wrap_content"                
+                android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:background="@null"
                 android:text="My Liked Deals"
                 android:layout_marginTop="-5dip"
-    android:layout_marginBottom="-5dip"
+                android:layout_marginBottom="-5dip"
+                android:focusable="false"
                 android:textStyle="bold"
                 android:textSize="10dp"
                 android:clickable="false"
@@ -61,6 +63,7 @@
             android:id="@+id/listView_LikedItems"
             local:MvxBind="ItemsSource PromotionList;ItemClick ViewTileDetails"
             local:MvxItemTemplate="@layout/promotionanddistancetemplate"
+            android:focusable="true"
             android:layout_width="fill_parent" />
     </LinearLayout>
 </MvvmCross.Droid.Support.V4.MvxSwipeRefreshLayout>

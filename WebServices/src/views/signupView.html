@@ -1,16 +1,11 @@
 <div class="landing-background animated fadeIn container">
     <div class="col-sm-12 bkg-white">
-        <div class="col-sm-6">
-            <div class="padding-zero" style="margin-left:130px">
-                <div class="landing-pic"></div>
-            </div>
-        </div>
-        <div class="col-sm-6">
+        <div class="col-sm-10 offset-sm-1">
             <div class="signup-h col-sm-12">
                 <div class="signup-form">
                     <div class="col-sm-10 offset-sm-1 form-top">
                         <div class="col-sm-8">
-                            <h3 class="signup-title glimpse-color">Sign up</h3>
+                            <div class="landing-pic" style="width: 40px; height:40px; margin-top:0px;"></div><h3 class="signup-title glimpse-color">Sign up</h3>
                             <p class="signup-desc">Fill in the form below to get a vendor account:</p>
                         </div>
                         <div class="col-sm-4">
@@ -41,25 +36,27 @@
                                     </div>
                                 </div>
                                 <div class="input-group login-userinput col-sm-12">
-                                    <span class="fa fa-map-marker signup-cat-icons icon-signup"></span>
-                                    <div class="input-form-padding col-sm-12">
+                                    <span class="fa fa-map-marker signup-cat-icons icon-signup col-sm-12" style="padding-left:3px;"></span>
+                                    <div class="input-form-padding col-sm-6" style="padding-right:5px !important;">
                                         <input id="txtUser" type="text" class="form-control" placeholder="Country" name="country" ng-model="user.country"  ng-class="{ 'input-has-error' : userForm.country.$valid && !userForm.country.$pristine}" required>
                                     </div>
-                                    <div class="input-form-padding col-sm-12">
+                                    <div class="input-form-padding col-sm-6">
                                         <input id="txtUser" type="text" class="form-control" placeholder="Province" name="province" ng-model="user.province"  ng-class="{ 'input-has-error' : userForm.province.$invalid && !userForm.province.$pristine}" required>
                                     </div>
-                                    <div class="input-form-padding col-sm-12">
-                                        <input id="txtUser" type="text" class="form-control" placeholder="City" name="city" ng-model="user.city" ng-class="{ 'input-has-error' : userForm.city.$invalid && !userForm.city.$pristine}" required>
-                                    </div>
-                                    <div class="input-form-padding col-sm-12">
+                                    
+                                    <div class="input-form-padding col-sm-6" style="padding-right:5px !important;">
                                         <input id="txtUser" type="text" class="form-control" placeholder="Postal Code" name="postal" ng-model="user.postal" required ng-class="{ 'input-has-error' : userForm.postal.$invalid && !userForm.postal.$pristine}">
                                     </div>
-                                    <div class="input-form-padding col-sm-12">
-                                        <input id="txtUser" type="text" class="form-control" placeholder="Street Name" name="streetname" ng-model="user.streetname" ng-class="{ 'input-has-error' : userForm.streetname.$invalid && !userForm.streetname.$pristine}" required>
+                                    <div class="input-form-padding col-sm-6">
+                                        <input id="txtUser" type="text" class="form-control" placeholder="City" name="city" ng-model="user.city" ng-class="{ 'input-has-error' : userForm.city.$invalid && !userForm.city.$pristine}" required>
                                     </div>
-                                    <div class="input-form-padding col-sm-12">
+                                    <div class="input-form-padding col-sm-6" style="padding-right:5px !important;">
                                         <input id="txtUser" type="text" class="form-control" placeholder="Street Number" name="streetnumber" ng-model="user.streetnumber" ng-class="{ 'input-has-error' : userForm.streetnumber.$invalid && !userForm.streetnumber.$pristine}" required>
                                     </div>
+                                    <div class="input-form-padding col-sm-6">
+                                        <input id="txtUser" type="text" class="form-control" placeholder="Street Name" name="streetname" ng-model="user.streetname" ng-class="{ 'input-has-error' : userForm.streetname.$invalid && !userForm.streetname.$pristine}" required>
+                                    </div>
+                                    
                                 </div>
                                 <div class="input-group login-userinput col-sm-12">
                                     <span class="fa fa-phone signup-cat-icons icon-signup"></span>

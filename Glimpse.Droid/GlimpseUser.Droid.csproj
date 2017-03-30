@@ -377,6 +377,7 @@
     <Compile Include="Bootstrap\SqlitePluginBootstrap.cs" />
     <Compile Include="Bootstrap\WebBrowserPluginBootstrap.cs" />
     <Compile Include="Controls\CustomCardView.cs" />
+    <Compile Include="Controls\Listener\MySearchViewOnCloseListener.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Extensions\ActivityExtensions.cs" />
     <Compile Include="Extensions\MonoTypeExtensions.cs" />
@@ -399,10 +400,11 @@
     <Compile Include="Views\DatePickerFragment.cs" />
     <Compile Include="Views\LikedPromotionsFragment.cs" />
     <Compile Include="Views\LoginFragment.cs" />
+    <Compile Include="Views\LoginSettingsFragment.cs" />
     <Compile Include="Views\MenuFragment.cs" />
     <Compile Include="Views\PromotionDialogFragment.cs" />
     <Compile Include="Views\MapFragment.cs" />
-    <Compile Include="Views\TileDetailsFragment.cs" />
+    <Compile Include="Views\PromoDetailsFragment.cs" />
     <Compile Include="Views\ViewPagerFragment.cs" />
     <Compile Include="Views\CardFragment.cs" />
     <Compile Include="Views\SettingsFragment.cs" />
@@ -537,7 +539,7 @@
     <AndroidResource Include="Resources\layout\PromotionDialogView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\TileDetailsView.axml">
+    <AndroidResource Include="Resources\layout\PromoDetailsView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ImageSwipeLayout.axml">
@@ -572,6 +574,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\rounded_shape_button.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\like_button_selector.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\dislike_button_selector.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\customroundedbutton.axml">
@@ -691,6 +699,22 @@
     <AndroidResource Include="Resources\drawable-xhdpi\glimpse_splash.png" />
     <AndroidResource Include="Resources\drawable\glimpse_splash.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_map_black_36dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\like_button.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\like_button.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\like_button.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\like_button.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\pressed_dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\pressed_like_button.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\pressed_like_button.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\pressed_dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\pressed_like_button.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\pressed_dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\pressed_like_button.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\pressed_dislike_button.png" />
     <AndroidResource Include="Resources\drawable\Logo.PNG" />
     <AndroidResource Include="Resources\drawable\Logo_transparent.png" />
   </ItemGroup>
