@@ -562,6 +562,12 @@
     <AndroidResource Include="Resources\drawable\rounded_shape_button.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\like_button_selector.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\dislike_button_selector.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -676,6 +682,22 @@
     <AndroidResource Include="Resources\drawable-xhdpi\glimpse_splash.png" />
     <AndroidResource Include="Resources\drawable\glimpse_splash.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_map_black_36dp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\like_button.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\like_button.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\like_button.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\like_button.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\pressed_dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\pressed_like_button.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\pressed_like_button.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\pressed_dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\pressed_like_button.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\pressed_dislike_button.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\pressed_like_button.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\pressed_dislike_button.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
