@@ -69,7 +69,7 @@ namespace Glimpse.Droid.Controls.Listener
         public void TopCardTapped()
         {
             PromotionWithLocation promotionWithLocation = (PromotionWithLocation)_cardStack.Adapter.GetItem(_cardStack.CurrIndex);
-            _cardViewModel.ShowDetailPage(Convert.ToString(promotionWithLocation.PromotionId), promotionWithLocation.Title, Convert.ToString(promotionWithLocation.Duration),promotionWithLocation.Description);
+            _cardViewModel.ShowDetailPage(promotionWithLocation);
         }
 
        //for some reason discarding the card by swiping returns index+1.therefore this is my current solution for thios issue.
