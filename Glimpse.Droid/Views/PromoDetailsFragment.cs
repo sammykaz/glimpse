@@ -58,8 +58,8 @@ namespace Glimpse.Droid.Views
             collapsingToolbar.Title = promotionName; 
             */
             await LoadImageList();
-           // SetupViewPagerAndAdapter();
-            //SetupDotsControl();
+            SetupViewPagerAndAdapter();
+            SetupDotsControl();
 
 
            
@@ -91,7 +91,7 @@ namespace Glimpse.Droid.Views
             pr.Hide();
         }
 
-       /* public void SetupViewPagerAndAdapter()
+       public void SetupViewPagerAndAdapter()
         {
             _ImageResources = new List<Bitmap> ();
             foreach (byte[] image in _byteImages)
@@ -124,7 +124,7 @@ namespace Glimpse.Droid.Views
                 }
                 _dots[0].SetImageDrawable(Resources.GetDrawable(Resource.Drawable.selecteditem_dot));
             }
-        } */
+        } 
         private async void  LoadImagesIfNeeded()
         {
             //Create a progress dialog for loading

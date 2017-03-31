@@ -17,15 +17,25 @@
             android:layout_height="match_parent"
             local:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:fitsSystemWindows="true">
-            <Mvx.MvxImageView
-                android:id="@+id/coverlayoutdetail"
+                android:layout_marginTop="5dp"
+                android:id="@+id/imagesViewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="?attr/actionBarSize"
-                android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                local:layout_collapseMode="parallax"
-                local:MvxBind="Bitmap ByteArrayImage(PromotionImage)" />
+                android:gravity="center" />            
+              <RelativeLayout
+                android:id="@+id/dotsRelativeLayout"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/imagesViewPager"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+                <LinearLayout
+                    android:id="@+id/viewPagerCountDots"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:orientation="horizontal" />
+            </RelativeLayout>          
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
     <android.support.v4.widget.NestedScrollView
