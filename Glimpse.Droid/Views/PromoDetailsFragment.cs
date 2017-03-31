@@ -48,21 +48,25 @@ namespace Glimpse.Droid.Views
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as MainActivity).SetCustomTitle("Details");
 
-/*            SupportToolbar toolbar = View.FindViewById<SupportToolbar>(Resource.Id.toolbar);
-            (this.Activity as AppCompatActivity).SetSupportActionBar(toolbar);
-            (this.Activity as AppCompatActivity).SupportActionBar.SetDisplayHomeAsUpEnabled(true); 
-            
-            string promotionName = ViewModel.PromotionTitle;
+            /*            SupportToolbar toolbar = View.FindViewById<SupportToolbar>(Resource.Id.toolbar);
+                        (this.Activity as AppCompatActivity).SetSupportActionBar(toolbar);
+                        (this.Activity as AppCompatActivity).SupportActionBar.SetDisplayHomeAsUpEnabled(true); 
 
-            CollapsingToolbarLayout collapsingToolbar = View.FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
-            collapsingToolbar.Title = promotionName; 
-            */
+                        string promotionName = ViewModel.PromotionTitle;
+
+                        CollapsingToolbarLayout collapsingToolbar = View.FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
+                        collapsingToolbar.Title = promotionName; 
+                        */
+            AppBarLayout appbarlayout = View.FindViewById<AppBarLayout>(Resource.Id.app_bar_layout);
+            appbarlayout.LayoutParameters.Height = Resources.DisplayMetrics.WidthPixels;
             await LoadImageList();
             SetupViewPagerAndAdapter();
             SetupDotsControl();
 
 
            
+
+
         }
 
         public override async void OnStart()
