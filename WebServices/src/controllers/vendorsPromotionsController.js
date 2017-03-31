@@ -168,6 +168,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.showImageWarning = false;
     $scope.isResetEnable = false;
     $scope.isSilderFilterEnable = false;
+    $scope.isAddImageBtn = true;
     $scope.previewImage = promotionDetails.PromotionImageURL ? "https://glimpseimages.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';
     var imageUrl = promotionDetails.PromotionImageURL ? "https://glimpseimages.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';
 
@@ -411,6 +412,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         if (!!$scope.picFile) {
             imageFile = $scope.picFile;
             $scope.removeImage();
+            $scope.isAddImageBtn = true;
             resetSliderFilter();
             //$scope.isSilderFilterEnable = true;
             $scope.previewImage = imageFile;
@@ -961,6 +963,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.saveImage = function () {
         getImageData().then(function (imageBased64) {
             addSlide(imageBased64);
+            $scope.isAddImageBtn = false;
         });
     }
 

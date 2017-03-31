@@ -82,7 +82,7 @@
                         <input type="file" ngf-select ng-model="picFile" accept="image/*" class="btn btn-primary">
                     </div>
                     <div class="pull-right" style="margin-top:10px;">
-                        <button class="btn btn-danger" ng-click="saveImage()" ng-show="previewImage" type="button">Add Image to Promotion</button>
+                        <button class="btn btn-danger" ng-click="saveImage()" ng-show="previewImage && isAddImageBtn" type="button">Add Image to Promotion</button>
                         <button class="btn btn-danger" ng-click="cropImage()" ng-show="!saveCrop && previewImage" type="button">Crop</button>
                         <button class="btn btn-danger" ng-click="doneCrop()" ng-show="saveCrop" type="button">Save Crop</button>
                         <button class="btn btn-danger" ng-click="cancelCrop()" ng-show="saveCrop" type="button">Cancel Crop</button>
