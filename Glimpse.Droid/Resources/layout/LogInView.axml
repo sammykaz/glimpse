@@ -8,7 +8,7 @@
     android:background="@android:color/white"
     android:id="@+id/linearLayout3">
     <TextView
-        android:text="Welcome to Glimpse"
+        local:MvxLang="Text WelcomeMsg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -18,7 +18,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginBottom="10dp" />
     <TextView
-        android:text="Tap below to take a Glimpse of Deals Nearby!"
+        local:MvxLang="Text WelcomeMsgInstructions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtTapToGlimpse"
@@ -28,6 +28,7 @@
         android:layout_marginBottom="10dp" />
     <ImageButton
         android:src="@drawable/logo"
+        local:MvxBind="Click GoToMainView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnTakeGlimpse"
@@ -75,7 +76,7 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp" />
-      <TextView
+        <TextView
             local:MvxLang="Text MerchantLabel"
             android:id="@+id/txtMerchant"
             android:textColor="@color/black"

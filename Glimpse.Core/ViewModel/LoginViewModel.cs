@@ -33,7 +33,7 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(() =>
                 {
-                    ShowViewModel<MainViewModel>();
+                ShowViewModel<MainViewModel>(new { glimpseMode = true });
                 });
             }
         }
