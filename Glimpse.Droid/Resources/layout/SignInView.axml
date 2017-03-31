@@ -65,17 +65,19 @@
         android:layout_height="wrap_content">
         <Button
             android:id="@+id/btnSignIn"
-            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="30dp"
-            android:textSize="15dp"
-            android:textColor="#fff"
-            android:textStyle="bold"
+            android:textSize="12dp"
             local:MvxLang="Text SignInButton"
             android:layout_centerInParent="true"
             style="@style/AppTheme.RoundedCornerMaterialButton"
-            local:MvxBind="Click SignInCommand" />
+            local:MvxBind="Click SignInCommand"
+            android:textColor="@color/glimpseWhite"
+            android:background="@drawable/rounded_shape_button_v2"
+            android:layout_width="wrap_content"
+            android:text="Sign In"
+            android:minWidth="100dp" />
     </RelativeLayout>
     <TextView
         android:layout_marginTop="20dp"

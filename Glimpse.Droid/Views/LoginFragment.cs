@@ -38,8 +38,24 @@ namespace Glimpse.Droid.Views
             (this.Activity as LoginActivity).SetCustomTitle("Login");
 
             TextView welcomeLabel = view.FindViewById<TextView>(Resource.Id.lblWelcomeGlimpse);
-            Typeface tf = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Light.otf");
-            welcomeLabel.SetTypeface(tf, TypefaceStyle.Normal);
+            Typeface tf0 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Light.otf");
+            welcomeLabel.SetTypeface(tf0, TypefaceStyle.Normal);
+
+            TextView txtMerchant = view.FindViewById<TextView>(Resource.Id.txtMerchant);
+            Typeface tf4 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Heavy.otf");
+            txtMerchant.SetTypeface(tf0, TypefaceStyle.Normal);
+
+            Button btnLanguage = view.FindViewById<Button>(Resource.Id.btnLanguage);
+            Typeface tf1 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Heavy.otf");
+            btnLanguage.SetTypeface(tf1, TypefaceStyle.Normal);
+
+            Button btnSignIn = view.FindViewById<Button>(Resource.Id.btnSignIn);
+            Typeface tf2 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Heavy.otf");
+            btnSignIn.SetTypeface(tf2, TypefaceStyle.Normal);
+
+            Button btnSignUp = view.FindViewById<Button>(Resource.Id.btnSignUpVendor);
+            Typeface tf3 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Heavy.otf");
+            btnSignUp.SetTypeface(tf3, TypefaceStyle.Normal);
         }
     }
 }
