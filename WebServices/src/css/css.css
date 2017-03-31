@@ -166,7 +166,7 @@ label:hover input[type="radio"] ~ i.fa {color: #2FD4AD;}
 .bkg-orange{background-color: #f0ac3f;}
 .analytics-solo-info{font-size: 50px; padding-left: 10px;}
 .analytics-chart-icon{padding-top: 20px !important; font-size: 40px !important;}
-.chart-title{padding: .75rem; vertical-align: top; vertical-align: bottom; border-bottom: 2px solid #eceeef; font-weight: 400; background: #4C8577; color:white;}
+.chart-title{padding: .75rem; vertical-align: top; vertical-align: bottom; border-bottom: 2px solid #eceeef; font-weight: 400; background: #373a3c; color:white;}
 .chart-x-axis-dark-gray{color: #373a3c !important; text-align: center !important; font-size: 20px;}
 .chart-x-axis-teal{color: #33C9DC !important; text-align: center !important; font-size: 20px;}
 .chart-x-axis-red{color:  rgb(244,67,54) !important; text-align: center !important; font-size: 20px;}
@@ -211,10 +211,10 @@ label:hover input[type="radio"] ~ i.fa {color: #2FD4AD;}
 .btn-outline-glimpse{color: #2FD4AD; background-image: none; background-color: transparent; border: 1px solid #2FD4AD !important;}
 .btn-outline-glimpse:hover{color: white; background-color:#2FD4AD}
 .table-row:hover{background: #fafafa;}
-.table-pages{color: #4C8577 !important; border: 1px solid #4C8577 !important; cursor: pointer;}
-.table-pages:hover{color: white !important; border: 1px solid #4C8577 !important; background: #4C8577 !important;}
-.table-anal-pages{color: #4C8577 !important; border: 1px solid #4C8577 !important; cursor: pointer;}
-.table-anal-pages:hover{color: white !important; border: 1px solid #4C8577 !important; background: #71c7b2 !important;}
+.table-pages{color: #2FD4AD !important; border: 1px solid #2FD4AD !important; cursor: pointer;}
+.table-pages:hover{color: white !important; border: 1px solid #2FD4AD !important; background: #2FD4AD !important;}
+.table-anal-pages{color: #4C8577 !important; cursor: pointer;}
+.table-anal-pages:hover{color: white !important; border: 1px solid #2FD4AD !important; background: #2FD4AD !important;}
 .fade.ng-hide {
   opacity: 0;
 }
