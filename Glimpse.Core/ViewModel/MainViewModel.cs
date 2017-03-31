@@ -11,22 +11,24 @@ namespace Glimpse.Core.ViewModel
 {
     public class MainViewModel : MvxViewModel, IMainViewModel
     {
-
-        private Lazy<ViewPagerViewModel> viewPager; 
-
+        private Lazy<ViewPagerViewModel> viewPager;
+        private bool glimpseMode = false;
 
         public MainViewModel()
         {
             viewPager = new Lazy<ViewPagerViewModel>(Mvx.IocConstruct<ViewPagerViewModel>);
         }
 
-      
-
+       public void Init(bool glimpseMode)
+        {
+            this.glimpseMode = glimpseMode;
+        }
 
         public void ShowMenu()
         {
             ShowViewModel<MenuViewModel>();
         }
+
         public void ShowViewPager()
 
         {
@@ -39,5 +41,10 @@ namespace Glimpse.Core.ViewModel
             ShowViewModel<PromoDetailsViewModel>();
         }
 
+        public bool GlimpseMode
+        {
+            get { return glimpseMode; }
+            set { glimpseMode = value; }
+        }
     }
 }

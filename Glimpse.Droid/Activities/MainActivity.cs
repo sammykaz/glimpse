@@ -28,13 +28,13 @@ using MvvmCross.Core.ViewModels;
 
 namespace Glimpse.Droid.Activities
 {
-    [Activity(Label = "Main Activity", 
-        LaunchMode = LaunchMode.SingleTop, 
-        ScreenOrientation = ScreenOrientation.Portrait, 
+    [Activity(Label = "Main Activity",
+        LaunchMode = LaunchMode.SingleTop,
+        ScreenOrientation = ScreenOrientation.Portrait,
         Name = "glimpse.droid.activities.MainActivity")]
     public class MainActivity : MvxCachingFragmentCompatActivity<MainViewModel>
     {
-       
+
 
         private DrawerLayout _drawerLayout;
         private MvxActionBarDrawerToggle _drawerToggle;
@@ -51,7 +51,7 @@ namespace Glimpse.Droid.Activities
             set { base.ViewModel = value; }
         }
 
-    
+
 
         public static MainActivity getInstance()
         {
@@ -59,20 +59,24 @@ namespace Glimpse.Droid.Activities
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
-        { 
+        {
+            /*
+             * Glimpse Mode is true when a buyer activates it by "Taking a Glimpse", requiring no accounts 
+                bypassing the authentication.
+            */
+
             base.OnCreate(savedInstanceState);
-            if (CheckAuthenticationStatus())
+            if (CheckAuthenticationStatus() || ViewModel.GlimpseMode)
             {
-                RunOnUiThread(() => {
+                RunOnUiThread(() =>
+                {
                     _fragmentManager = FragmentManager;
 
                     SetContentView(Resource.Layout.MainView);
                     mainActivity = this;
 
- 
-
                     _drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-                    _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int) GravityFlags.Start);
+                    _drawerLayout.SetDrawerShadow(Resource.Drawable.drawer_shadow_light, (int)GravityFlags.Start);
                     _drawerToggle = new MvxActionBarDrawerToggle(this, _drawerLayout, Resource.String.drawer_open, Resource.String.drawer_close);
                     _drawerToggle.DrawerClosed += _drawerToggle_DrawerClosed;
                     _drawerToggle.DrawerOpened += _drawerToggle_DrawerOpened;
@@ -82,10 +86,10 @@ namespace Glimpse.Droid.Activities
                     ViewModel.ShowMenu();
                     ViewModel.ShowViewPager();
                 });
-
             }
-        } 
-    
+
+        }
+
 
         private void _drawerToggle_DrawerOpened(object sender, ActionBarDrawerEventArgs e)
         {
@@ -98,18 +102,18 @@ namespace Glimpse.Droid.Activities
         }
 
 
-        
-   /*     public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo, Android.Support.V4.App.FragmentTransaction transaction)
-        {
-            var currentFrag = SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MvxFragment;
 
-            if (currentFrag != null && fragmentInfo.ViewModelType != typeof(MenuViewModel) 
-                && currentFrag.FindAssociatedViewModelType() != fragmentInfo.ViewModelType)
-                fragmentInfo.AddToBackStack = true;
-            base.OnBeforeFragmentChanging(fragmentInfo, transaction);
-        }
+        /*     public override void OnBeforeFragmentChanging(IMvxCachedFragmentInfo fragmentInfo, Android.Support.V4.App.FragmentTransaction transaction)
+             {
+                 var currentFrag = SupportFragmentManager.FindFragmentById(Resource.Id.content_frame) as MvxFragment;
 
-    */
+                 if (currentFrag != null && fragmentInfo.ViewModelType != typeof(MenuViewModel) 
+                     && currentFrag.FindAssociatedViewModelType() != fragmentInfo.ViewModelType)
+                     fragmentInfo.AddToBackStack = true;
+                 base.OnBeforeFragmentChanging(fragmentInfo, transaction);
+             }
+
+         */
         internal void CloseDrawerMenu()
         {
             _drawerLayout.CloseDrawers();
@@ -129,7 +133,7 @@ namespace Glimpse.Droid.Activities
             return base.OnOptionsItemSelected(item);
         }
 
-        
+
 
         protected override void OnPostCreate(Bundle savedInstanceState)
         {
@@ -177,9 +181,9 @@ namespace Glimpse.Droid.Activities
         public override void OnBackPressed()
         {
             if (onBackPressedListener != null)
-            onBackPressedListener.doBack();
-        else
-            base.OnBackPressed();
+                onBackPressedListener.doBack();
+            else
+                base.OnBackPressed();
         }
 
         protected override void OnDestroy()

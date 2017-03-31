@@ -186,6 +186,9 @@
   <data name="LoginSettingsViewModel.SelectLanguageMsg" xml:space="preserve">
     <value>Select the language for the app</value>
   </data>
+  <data name="LoginViewModel.MerchantLabel" xml:space="preserve">
+    <value>MERCHANTS</value>
+  </data>
   <data name="LoginViewModel.NoAccountMsg" xml:space="preserve">
     <value>Don't have an account yet?</value>
   </data>
@@ -199,10 +202,13 @@
     <value>Take A Glimpse</value>
   </data>
   <data name="LoginViewModel.VendorSignUpButton" xml:space="preserve">
-    <value>Sign Up as a Vendor</value>
+    <value>Register</value>
   </data>
   <data name="LoginViewModel.WelcomeMsg" xml:space="preserve">
     <value>Welcome To Glimpse</value>
+  </data>
+  <data name="LoginViewModel.WelcomeMsgInstructions" xml:space="preserve">
+    <value>Tap below to Glimpse Nearby Deals!</value>
   </data>
   <data name="MenuViewModel.Logout" xml:space="preserve">
     <value>Logout</value>
@@ -250,7 +256,7 @@
     <value>Authenticating...</value>
   </data>
   <data name="SignInViewModel.SignInButton" xml:space="preserve">
-    <value>Sing in</value>
+    <value>Sign In</value>
   </data>
   <data name="VendorSignUpViewModel.BusinessPhoneNumberHint" xml:space="preserve">
     <value>Business Phone Number</value>

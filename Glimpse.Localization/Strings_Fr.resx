@@ -186,6 +186,9 @@
   <data name="LoginSettingsViewModel.SelectLanguageMsg" xml:space="preserve">
     <value>Sélectionnez la langue de l'application</value>
   </data>
+  <data name="LoginViewModel.MerchantLabel" xml:space="preserve">
+    <value>MARCHAND</value>
+  </data>
   <data name="LoginViewModel.NoAccountMsg" xml:space="preserve">
     <value>Pas de compte?</value>
   </data>
@@ -199,10 +202,13 @@
     <value>Faites un Apeçu</value>
   </data>
   <data name="LoginViewModel.VendorSignUpButton" xml:space="preserve">
-    <value>Inscrivez-vous comme fournisseur</value>
+    <value>Inscription</value>
   </data>
   <data name="LoginViewModel.WelcomeMsg" xml:space="preserve">
-    <value>Bienvenu a Glimpse</value>
+    <value>Bienvenu à Glimpse</value>
+  </data>
+  <data name="LoginViewModel.WelcomeMsgInstructions" xml:space="preserve">
+    <value>Appuyez ci-dessous pour decouvrir les offres à proximité!</value>
   </data>
   <data name="MenuViewModel.Logout" xml:space="preserve">
     <value>Se déconnecter</value>

@@ -27,13 +27,13 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public MvxCommand ShowMap
+        public MvxCommand GoToMainView
         {
             get
             {
                 return new MvxCommand(() =>
                 {
-                    ShowViewModel<MapViewModel>(new {index = 0});
+                ShowViewModel<MainViewModel>(new { glimpseMode = true });
                 });
             }
         }
@@ -46,7 +46,7 @@ namespace Glimpse.Core.ViewModel
                 {
                     ShowViewModel<SignInViewModel>(new { index = 0 });
                 });
-             }
+            }
         }
 
         public MvxCommand ShowSettings
