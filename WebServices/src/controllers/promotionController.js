@@ -2,6 +2,7 @@
 
 app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibModal', function ($scope, dataService, $state, $uibModal) {
     $scope.data = "";
+    
 
     dataService.GetAuthorizeData().then(function (data) {
         console.log("Authorized");
