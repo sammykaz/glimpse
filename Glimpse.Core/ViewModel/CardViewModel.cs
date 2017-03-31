@@ -249,14 +249,18 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public void ShowDetailPage(string promotionId, string promotionTitle, string promotionDuration, string promotionDescription )
+        public void ShowDetailPage(PromotionWithLocation promo)
         {
             var desc = new Dictionary<string, string> {
-                        {"PromotionID", promotionId},
-                        {"PromotionTitle", promotionTitle},
-                        {"PromotionDuration", promotionDuration},
-                        {"PromotionDescription", promotionDescription},
-            };
+                        {"PromotionID", Convert.ToString(promo.PromotionId)},
+                        {"PromotionTitle", promo.Title},
+                        {"PromotionDuration", Convert.ToString(promo.Duration)},
+                        {"PromotionDescription", promo.Description},
+                        {"ImageURL", promo.ImageURL },
+                        {"Category", promo.Category.ToString()},
+                        {"StartDate", promo.PromotionStartDate.Ticks.ToString()},
+                        {"EndDate", promo.PromotionEndDate.Ticks.ToString() }
+                    };
 
             ShowViewModel<PromoDetailsViewModel>(desc);
         }
