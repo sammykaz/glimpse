@@ -332,6 +332,15 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tap below to Glimpse Nearby Deals!.
+        /// </summary>
+        public static string LoginViewModel_WelcomeMsgInstructions {
+            get {
+                return ResourceManager.GetString("LoginViewModel.WelcomeMsgInstructions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logout.
         /// </summary>
         public static string MenuViewModel_Logout {

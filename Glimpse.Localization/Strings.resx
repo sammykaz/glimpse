@@ -207,6 +207,9 @@
   <data name="LoginViewModel.WelcomeMsg" xml:space="preserve">
     <value>Welcome To Glimpse</value>
   </data>
+  <data name="LoginViewModel.WelcomeMsgInstructions" xml:space="preserve">
+    <value>Tap below to Glimpse Nearby Deals!</value>
+  </data>
   <data name="MenuViewModel.Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
