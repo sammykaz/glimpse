@@ -164,7 +164,7 @@ namespace Glimpse.Core.ViewModel
         {
             Random random = new Random();
             int randomNumber = random.Next(0, 500);
-            string categorie="";
+            string categorie=_category;
             if (Glimpse.Core.Services.General.Settings.Language == "Français")
             {
                 switch (_category)
