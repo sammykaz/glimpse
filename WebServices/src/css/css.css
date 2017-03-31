@@ -17,7 +17,21 @@ body {
    font-size:11px !important;
    font-weight: 200 !important;    
 } 
-
+.cover-picture-city{
+    background: url("cover_city1.jpg");
+    width: 100% !important;
+    height: 100%;
+    will-change: transform, top;
+    top: 0px;
+    left: 0;
+    position:absolute !important;
+    background-size: cover !important;
+    background-position: 50% 50% !important;
+    z-index: 0;
+    transition: 0.3s linear;
+    -webkit-transition: 0.3s linear;
+    -moz-transition: 0.3s linear;
+}
 .goog-te-gadget{
    color: gray !important;
    font-size:11px !important;
@@ -121,7 +135,15 @@ body {
 .hide{display : none !important}
 .clickable{cursor: pointer;}
 .chart-padding{padding-bottom: 35px;}
-.search-categories{background: #fcfcfc; color: #707070; padding: 0.46428571em; border-radius: 6px; border: 1px solid #ececec; font-weight:200 !important;}
+.search-categories{background: white; color: black; padding: 0.46428571em; border-radius: 6px; border: 1px solid #ccc; font-weight:200 !important; transition: 0.3s ease;}
+.search-categories:hover{border-color:#2FD4AD; transition: 0.3s ease;  color:#2FD4AD;}
+.search-categories:focus {border-color:#2FD4AD !important; transition: 0.3s ease;color:#2FD4AD;}
+.my-dropdown{-webkit-transition: 0.3s ease; -moz-transition: 0.3s ease; display: inline-block !important; padding: 0.92857143em 1.85714286em !important; border-radius: 6px !important; border: 1px solid #ccc; !important; color: gray !important;}
+.my-dropdown:hover{background:white !important; border-color:#2FD4AD !important; transition: 0.3s ease;color:#2FD4AD !important;}
+.my-dropdown:focus{background:white !important; border-color:#2FD4AD !important; transition: 0.3s ease;color:#2FD4AD !important;}
+.my-dp-item{cursor:pointer;}
+.my-dp-item:hover{border-color:#2FD4AD !important; transition: 0.3s ease;color:#2FD4AD !important;}
+input:focus {outline:none;}
 .search-div{padding-top: 20px; font-size: 20px;}
 .filter-label{color: white; font-size: 1em; font-weight: 500; padding-top: 20px}
 label input[type="radio"] ~ i.fa.fa-circle-o{color: #c8c8c8; display: inline;}
@@ -196,6 +218,7 @@ label:hover input[type="radio"] ~ i.fa {color: #2FD4AD;}
 .fade.ng-hide {
   opacity: 0;
 }
+
 
 .fade.ng-hide-remove,
 .fade.ng-hide-add {

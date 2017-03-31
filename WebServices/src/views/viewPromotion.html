@@ -1,12 +1,46 @@
 <div class="animated fadeIn">
 
-    <div class="promotion-border col-sm-12">
-        <div class="col-sm-12 promotion-list filter-table">
-            
-            <div class="col-sm-12"></div>
+    <div class="promotion-border col-sm-12 padding-zero">
+        <div class="col-sm-12" style="height:600px;">
+            <div class="col-sm-12 cover-picture-city">
+                <div class="col-sm-12" style="margin-top:120px;">
+                    <div class="col-sm-12">
+                        <h1 style="text-align:center; font-weight:200; color:white;">Searching for a specific promotion?</h1>
+                    </div>
+                    <div class="col-sm-12" style="margin-top:50px;">
+                        <p style="margin-bottom: 20px; font-size: 20px; font-weight: 300; line-height: 1.4; color:white; text-align:center;">Find my title name or by category</p>
+                    </div>
+                    <div class="col-sm-8 offset-sm-2" style="border-radius: 6px; background: #fff; margin-top:40px; padding:33px;">
+                        <div class="">
+                            <div class="col-sm-3">
+                                <button type="button" class="btn btn-secondary dropdown-toggle my-dropdown col-sm-12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Categories
+                                </button>
+                                <div class="dropdown-menu col-sm-12" style="left:auto !important; min-width:9rem; width:154px; border-color:#2FD4AD !important;">
+                                    <a class="dropdown-item my-dp-item" ng-click="selectVal = 0">Footwear</a>
+                                    <a class="dropdown-item my-dp-item" ng-click="selectVal = 1">Electronics</a>
+                                    <a class="dropdown-item my-dp-item" ng-click="selectVal = 2">Jewellery</a>
+                                    <a class="dropdown-item my-dp-item" ng-click="selectVal = 3">Restaurants</a>
+                                    <a class="dropdown-item my-dp-item" ng-click="selectVal = 4">Services</a>
+                                    <a class="dropdown-item my-dp-item" ng-click="selectVal = 5">Apparel</a>
+                                    <a class="dropdown-item my-dp-item" ng-click="selectVal = ''">All</a>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <input class="search-categories col-sm-12" type="text" ng-model="searchPromotionText" placeholder="Search" style="height:50px; width:100%"> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--<div class="col-sm-12 promotion-list filter-table">
+           
             <div class="col-sm-12 search-div">
                 <input class="col-sm-12 search-categories" type="text" ng-model="searchPromotionText" placeholder="Search">
             </div>
+            
             <div class="col-sm-12 filter-label">
                 <div class="col-sm-12">Filter Promotions by Categories </div>
                 <div class="btn-group col-sm-12" >
@@ -33,9 +67,9 @@
                     </label>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-sm-12">
+        </div>-->
+
+    <div class="container">
         <div class="col-sm-12 promotion-list promotion-table">
             <div class="col-sm-12 padding-zero promotion-background">
                 <div class="col-sm-3 promotion-height animation" ng-click="showImage(promotion)" ng-repeat="(key, promotion) in promotions | reverse | filter:searchPromotionText | filter:{Category: selectVal}" ng-animate="'animate'">
