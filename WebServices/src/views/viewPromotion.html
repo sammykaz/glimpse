@@ -12,10 +12,10 @@
                     <div class="col-sm-8 offset-sm-2" style="border-radius: 6px; background: #fff; margin-top:40px; padding:33px;">
                         <div class="">
                             <div class="col-sm-3">
-                                <button type="button" class="btn btn-secondary dropdown-toggle my-dropdown col-sm-12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button type="button" class="btn btn-secondary dropdown-toggle my-dropdown col-sm-12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="white-space: nowrap; overflow: hidden !important; text-overflow: ellipsis;">
                                     Categories
                                 </button>
-                                <div class="dropdown-menu col-sm-12" style="left:auto !important; min-width:9rem; width:154px; border-color:#2FD4AD !important;">
+                                <div class="dropdown-menu col-sm-12" style="left:auto !important; width:90%; border-color:#2FD4AD !important;">
                                     <a class="dropdown-item my-dp-item" ng-click="selectVal = 0">Footwear</a>
                                     <a class="dropdown-item my-dp-item" ng-click="selectVal = 1">Electronics</a>
                                     <a class="dropdown-item my-dp-item" ng-click="selectVal = 2">Jewellery</a>
@@ -25,7 +25,7 @@
                                     <a class="dropdown-item my-dp-item" ng-click="selectVal = ''">All</a>
                                 </div>
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-9" style="padding-left:0px;">
                                 <input class="search-categories col-sm-12" type="text" ng-model="searchPromotionText" placeholder="Search" style="height:50px; width:100%"> 
                             </div>
                         </div>
