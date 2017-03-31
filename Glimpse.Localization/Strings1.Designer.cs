@@ -269,6 +269,15 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MERCHANTS.
+        /// </summary>
+        public static string LoginViewModel_MerchantLabel {
+            get {
+                return ResourceManager.GetString("LoginViewModel.MerchantLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Don&apos;t have an account yet?.
         /// </summary>
         public static string LoginViewModel_NoAccountMsg {
@@ -305,7 +314,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign Up as a Vendor.
+        ///   Looks up a localized string similar to Register.
         /// </summary>
         public static string LoginViewModel_VendorSignUpButton {
             get {
@@ -458,7 +467,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sing in.
+        ///   Looks up a localized string similar to Sign In.
         /// </summary>
         public static string SignInViewModel_SignInButton {
             get {
