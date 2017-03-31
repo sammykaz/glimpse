@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/white">
+  
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="650px"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         android:fitsSystemWindows="true">
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
@@ -17,60 +17,41 @@
             android:layout_height="match_parent"
             local:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:fitsSystemWindows="true">
-            <android.support.v4.view.ViewPager
-                android:layout_marginTop="5dp"
-                android:id="@+id/imagesViewPager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center" />            
-              <RelativeLayout
-                android:id="@+id/dotsRelativeLayout"
-                android:layout_width="match_parent"
-                android:layout_below="@+id/imagesViewPager"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
-                <LinearLayout
-                    android:id="@+id/viewPagerCountDots"
+ 
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/imagesViewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:orientation="horizontal" />
-            </RelativeLayout>          
+                    android:layout_height="match_parent" />
+            
         </android.support.design.widget.CollapsingToolbarLayout>
+
     </android.support.design.widget.AppBarLayout>
-    <android.support.v4.widget.NestedScrollView
+
+  <RelativeLayout
+      android:id="@+id/dotsRelativeLayout"
+      android:layout_width="match_parent"
+      android:layout_below="@+id/imagesViewPager"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="5dp">
+    <LinearLayout
+        android:id="@+id/viewPagerCountDots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="horizontal" />
+  </RelativeLayout>
+  <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         local:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingTop="24dp">
-        <!--
-            <android.support.v4.view.ViewPager
-                android:layout_marginTop="5dp"
-                android:id="@+id/imagesViewPager"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:gravity="center" />            
-              <RelativeLayout
-                android:id="@+id/dotsRelativeLayout"
-                android:layout_width="match_parent"
-                android:layout_below="@+id/imagesViewPager"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
-                <LinearLayout
-                    android:id="@+id/viewPagerCountDots"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:orientation="horizontal" />
-            </RelativeLayout>               
-          
-       -->
+    
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
