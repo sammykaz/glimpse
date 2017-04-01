@@ -591,6 +591,9 @@
     <AndroidResource Include="Resources\drawable\seperator.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\temp1.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -706,6 +709,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\pressed_dislike_button.png" />
     <AndroidResource Include="Resources\drawable\Logo.PNG" />
     <AndroidResource Include="Resources\drawable\Logo_transparent.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\maps_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
