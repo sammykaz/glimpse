@@ -177,6 +177,9 @@
   <data name="CreatePromotionViewModel.TitleHint" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="LikedPromotionsViewModel.LikedDeals" xml:space="preserve">
+    <value>My Liked Deals</value>
+  </data>
   <data name="LikedPromotionsViewModel.SeeMap" xml:space="preserve">
     <value>See Map</value>
   </data>

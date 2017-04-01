@@ -121,6 +121,7 @@ namespace Glimpse.Droid.Views
             }
         }
 
+
         private async Task<byte[]> GetImageSelection(ImageView view, Intent data)
         {
             Android.Net.Uri uri = data.Data;
@@ -132,10 +133,9 @@ namespace Glimpse.Droid.Views
             var stream = new MemoryStream();
             b.Compress(Bitmap.CompressFormat.Png, 100, stream);
 
-            //Adjust any images uploaded by vendor to approx 500x500 resolution
-            Bitmap bitmapToDisplay = await ImageProcessing.DecodeBitmapFromStream(Activity.ApplicationContext, data.Data, 500, 500);
-
-            view.SetImageBitmap(bitmapToDisplay);
+            //Adjust any images uploaded by vendor to approx 1000x1000 resolution
+            //Bitmap bitmapToDisplay = await ImageProcessing.DecodeBitmapFromStream(Activity.ApplicationContext, data.Data, 1000, 1000);
+            //view.SetImageBitmap(bitmapToDisplay);
 
             var viewModel = (CreatePromotionPart2ViewModel)ViewModel;
 

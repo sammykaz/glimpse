@@ -242,6 +242,15 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My Liked Deals.
+        /// </summary>
+        public static string LikedPromotionsViewModel_LikedDeals {
+            get {
+                return ResourceManager.GetString("LikedPromotionsViewModel.LikedDeals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to See Map.
         /// </summary>
         public static string LikedPromotionsViewModel_SeeMap {

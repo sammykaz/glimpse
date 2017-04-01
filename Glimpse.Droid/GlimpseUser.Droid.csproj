@@ -706,6 +706,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\pressed_dislike_button.png" />
     <AndroidResource Include="Resources\drawable\Logo.PNG" />
     <AndroidResource Include="Resources\drawable\Logo_transparent.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\maps_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
