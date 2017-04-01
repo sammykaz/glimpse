@@ -3,9 +3,8 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-   android:descendantFocusability="blocksDescendants">
-   
-    <com.makeramen.roundedimageview.RoundedImageView        
+    android:descendantFocusability="blocksDescendants">
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/promotion_picture"
         local:MvxBind="Bitmap ByteArrayImage(Item.Image)"
         android:scaleType="fitXY"
@@ -32,9 +31,8 @@
         android:textColor="#000000"
         android:gravity="left"
         local:MvxBind="Text Item.Title" />
-      
-     <TextView
-       android:textIsSelectable="false"
+    <TextView
+        android:textIsSelectable="false"
         android:textSize="14dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -48,7 +46,7 @@
         local:MvxBind="Text Item.CompanyName" />
     <ImageButton
         android:focusable="false"
-        android:clickable="false" 
+        android:clickable="false"
         android:focusableInTouchMode="false"
         android:id="@+id/seemapbutton"
         android:layout_alignParentRight="true"
