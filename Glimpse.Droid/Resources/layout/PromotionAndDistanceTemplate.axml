@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:descendantFocusability="blocksDescendants">
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/promotion_image"
         local:MvxBind="Bitmap ByteArrayImage(Item.Image)"
         android:layout_width="76dp"
@@ -16,7 +16,15 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginBottom="5dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="center"
+        local:riv_corner_radius="50dp"
+        local:riv_border_width="1dp"
+        local:riv_border_color="#333333"
+        local:riv_mutate_background="true"
+        local:riv_oval="true" />
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"

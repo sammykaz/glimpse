@@ -26,21 +26,24 @@
         android:layout_width="350dp"
         android:layout_height="350dp"
         android:layout_margin="-15dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="center"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:gravity="center">
-      <ImageButton
-          android:id="@+id/btnDislike"
+        <ImageButton
+            android:id="@+id/btnDislike"
             android:background="@drawable/dislike_button_selector"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="50dp" />
-      <ImageButton
-          android:id="@+id/btnLike"
+        <ImageButton
+            android:id="@+id/btnLike"
             android:background="@drawable/like_button_selector"
             android:layout_width="100dp"
             android:layout_height="100dp"
