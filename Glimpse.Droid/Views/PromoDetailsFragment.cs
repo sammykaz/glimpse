@@ -59,6 +59,8 @@ namespace Glimpse.Droid.Views
                         */
             AppBarLayout appbarlayout = View.FindViewById<AppBarLayout>(Resource.Id.app_bar_layout);
             appbarlayout.LayoutParameters.Height = Resources.DisplayMetrics.WidthPixels;
+            RelativeLayout relativelayout = View.FindViewById<RelativeLayout>(Resource.Id.dotsRelativeLayout);
+            ((CollapsingToolbarLayout.LayoutParams)relativelayout.LayoutParameters).SetMargins(0, Resources.DisplayMetrics.WidthPixels-50, 0, 0);
             await LoadImageList();
             SetupViewPagerAndAdapter();
             SetupDotsControl();
