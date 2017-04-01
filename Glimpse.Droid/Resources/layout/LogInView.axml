@@ -1,104 +1,134 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
-    android:weightSum="100"
-    android:minWidth="25px"
-    android:minHeight="25px"
-    android:gravity="top">
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:id="@+id/linearLayout3">
     <TextView
         local:MvxLang="Text WelcomeMsg"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
-        android:layout_weight="15"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@android:color/background_light"
-        android:textStyle="bold"
-        android:textSize="30dip"
-        android:id="@+id/textViewLogin" />
-    <Button
-        local:MvxLang="Text TakeAGlimpse"
+        android:gravity="center_horizontal"
+        android:textColor="@color/glimpseColor"
+        android:textSize="30dp"
+        android:id="@+id/lblWelcomeGlimpse"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp" />
+    <TextView
+        local:MvxLang="Text WelcomeMsgInstructions"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="25"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10.0dp"
-        android:textSize="17sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTapToGlimpse"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="12dp"
+        android:layout_marginBottom="10dp" />
+    <ImageButton
+        android:src="@drawable/logo"
+        local:MvxBind="Click GoToMainView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/btnTakeGlimpse"
-        android:background="@drawable/HomeButtonTakeGlimpse"
-        local:MvxBind="Click ShowMap" />
-    <TextView
-        local:MvxLang="Text OrMsg"
-        android:layout_width="match_parent"
-        android:layout_weight="5"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:textColor="@android:color/background_light"
-        android:textStyle="bold"
-        android:textSize="15dip"
-        android:id="@+id/textViewOr" />
-    <Button
-        local:MvxLang="Text SignInButton"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="15"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="10.0dp"
-        android:layout_marginBottom="10.0dp"
-        android:id="@+id/btnSignIn"
-        android:background="@drawable/HomeButtonSignIn"
-        local:MvxBind="Click ShowSignIn" />
-    <TextView
-        local:MvxLang="Text NoAccountMsg"
-        android:layout_width="match_parent"
-        android:layout_weight="5"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:textColor="@android:color/background_light"
-        android:textStyle="bold"
-        android:layout_marginTop="20.0dp"
-        android:textSize="10dip"
-        android:id="@+id/textViewOr" />
+        android:scaleType="matrix"
+        android:cropToPadding="true"
+        android:adjustViewBounds="true"
+        android:background="@drawable/customroundedbutton"
+        android:paddingRight="3dp"
+        android:paddingLeft="3dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1" />
     <Button
-        local:MvxBind="Click ShowVendorSignUp"
-        local:MvxLang="Text VendorSignUpButton"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
+        android:text="Language/Langue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="10.0dp"
-        android:layout_marginBottom="10.0dp"
-        android:id="@+id/btnSignUpVendor"
-        android:background="@drawable/HomeButtonVendorSignUp" />
-         <Button
-            android:text="Language/Langue"
-            local:MvxBind="Click ShowSettings"
-            android:layout_width="match_parent"
+        android:id="@+id/btnLanguage"
+        android:background="@drawable/rounded_shape_button_v2"
+        android:layout_gravity="center"
+        android:textSize="12dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        local:MvxBind="Click ShowSettings"
+        android:textColor="@color/white"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp">
+        <View
+            android:id="@+id/view2"
+            android:background="@color/black"
+            android:layout_height="1dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp" />
+        <TextView
+            local:MvxLang="Text MerchantLabel"
+            android:id="@+id/txtMerchant"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp" />
-    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:textSize="12dp" />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:id="@+id/view1"
+            android:background="@color/black"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_weight="15"
-        android:minWidth="25px"
-        android:minHeight="25px">
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/linearLayout2"
+        android:layout_marginBottom="20dp">
         <Button
-            android:text="I have an vendor Account"
-            android:layout_width="match_parent"
+            local:MvxLang="Text SignInButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:id="@+id/btnSignIn"
+            android:background="@drawable/rounded_shape_button_v2"
+            local:MvxBind="Click ShowSignIn"
+            android:text="Sign In"
+            android:textSize="12dp"
+            android:maxHeight="40dp"
+            android:textColor="@color/white"
+            android:layout_weight="1" />
+        <Button
+            local:MvxBind="Click ShowVendorSignUp"
+            local:MvxLang="Text VendorSignUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSignUpVendor"
+            android:background="@drawable/rounded_shape_button_v2"
+            android:text="Register"
+            android:maxHeight="40dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:id="@+id/btnVendorSignIn"
-            android:background="@android:color/background_dark" />
-    </RelativeLayout>
+            android:textSize="12dp"
+            android:paddingRight="7dp"
+            android:paddingLeft="7dp"
+            android:textColor="@color/white"
+            android:layout_weight="1" />
+    </LinearLayout>
 </LinearLayout>
