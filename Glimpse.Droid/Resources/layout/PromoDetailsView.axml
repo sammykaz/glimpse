@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/white">
-  <!--the height is set in the promodetailsfragment-->
+<!--the height is set in the promodetailsfragment-->
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
@@ -21,23 +21,22 @@
                 android:id="@+id/imagesViewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                 android:fitsSystemWindows="true"/>
-          <RelativeLayout
-    android:id="@+id/dotsRelativeLayout"
-    android:layout_width="match_parent"
-    android:layout_below="@+id/imagesViewPager"
-    android:layout_height="wrap_content">
-            <LinearLayout
-                android:id="@+id/viewPagerCountDots"
+                android:fitsSystemWindows="true" />
+            <RelativeLayout
+                android:id="@+id/dotsRelativeLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:gravity="center"
-                android:orientation="horizontal" />
-          </RelativeLayout>
+                android:layout_below="@+id/imagesViewPager"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/viewPagerCountDots"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:orientation="horizontal" />
+            </RelativeLayout>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
-
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
