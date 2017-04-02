@@ -5,6 +5,7 @@ using System.IO;
 using Glimpse.Core.Contracts.Services;
 using MvvmCross.Core.ViewModels;
 using Glimpse.Core.Services.General;
+using System.Text;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -136,7 +137,7 @@ namespace Glimpse.Core.ViewModel
                             PromotionStartDate = _promotionStartDate,
                             PromotionEndDate = _promotionEndDate,
                             PromotionImage = Bytes,
-                            PromotionImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"].Replace(" ", string.Empty) + "/" + "cover",
+                            PromotionImageURL = vendor.VendorId + "/" + removeSpecialChars(dataFromCreatePromotionPart1["PromotionTitle"]).Replace(" ", string.Empty) + "/" + "cover",
                             VendorId = vendor.VendorId,
                         };
 
@@ -156,7 +157,7 @@ namespace Glimpse.Core.ViewModel
                             {
                                 Image = promotionImage,
                                 PromotionId = promotions[promotions.Count - 1].PromotionId,
-                                ImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"].Replace(" ", string.Empty) + "/" + "image" + i
+                                ImageURL = vendor.VendorId + "/" + removeSpecialChars(dataFromCreatePromotionPart1["PromotionTitle"]).Replace(" ", string.Empty) + "/" + "image" + i
                             };
 
                             await _promotionImageDataService.StorePromotion(promotionImageInstance);
@@ -170,5 +171,25 @@ namespace Glimpse.Core.ViewModel
                 });
             }
         }
+
+
+        private readonly static string reservedCharacters = "!*'();:@&=+$,/?%#[]";
+        public static string removeSpecialChars(string value)
+        {
+            if (String.IsNullOrEmpty(value))
+                return String.Empty;
+
+            var sb = new StringBuilder();
+
+            foreach (char @char in value)
+            {
+                if (reservedCharacters.IndexOf(@char) == -1)
+                    sb.Append(@char);
+                else
+                    sb.AppendFormat("", (int)@char);
+            }
+            return sb.ToString();
+        }
+
     }
 }
