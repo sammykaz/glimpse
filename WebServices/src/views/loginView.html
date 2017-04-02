@@ -1,7 +1,7 @@
 <div class="landing-background animated fadeIn">
     <div class="col-sm-12" style="padding-left:0px;">
         <div class="col-sm-6" style="padding-left:0px;">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="4000">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="6000">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -36,34 +36,35 @@
                 </a>
             </div>
         </div>
-        <div class="login-form-padding col-sm-6">
-            <div class="col-sm-10 offset-sm-1 landing-title glimpse-color">
-                Glimpse
-            </div>
-            <div class="col-sm-10 offset-sm-1 landing-desc">
-                Glimpse offers a clean and contemporary look to suit a range of purposes from corporate, tech startup, marketing site to digital storefront.
-            </div>
-
-            <div>
-                <div class="panel panel-default login-form-panel col-sm-10 offset-sm-1">
-                    <div class="panel-body">
-                        <form>
-                            <div class="input-group login-userinput">
-                                <span class="input-group-addon login-icons"><span class="fa fa-user"></span></span>
-                                <input id="txtUser" type="text" class="form-control login-input-fields" name="username" placeholder="Email" ng-model="user.username">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon login-icons"><span class="fa fa-lock"></span></span>
-                                <input id="txtPassword" type="password" class="form-control login-input-fields" name="password" placeholder="Password" ng-model="user.password">
-                            </div>
-                            <div class="input-form-padding col-sm-12 has-danger" ng-show="incorrect">
-                                <p class="form-control-feedback">Incorrect username or password <br />Please Try Again Shortly</p>
-                            </div>
-                            <button class="btn btn-glimpse btn-block login-button" ng-click="login()" ng-disabled="preventLogin"><i class="fa fa-sign-in"></i> Login</button>
-                            <div class="col-sm-12">
-                                <a class="login-new-account pull-right" ui-sref="signup">Create new Account</a>
-                            </div>
-                        </form>
+        <div class="col-sm-6">
+            <div class="login-form-padding" style="width:600px; max-width: 100%; margin: 0px auto;">
+                <div class="col-sm-10 offset-sm-1 landing-title glimpse-color">
+                    Glimpse
+                </div>
+                <div class="col-sm-10 offset-sm-1 landing-desc">
+                    Glimpse offers a clean and contemporary look to suit a range of purposes from corporate, tech startup, marketing site to digital storefront.
+                </div>
+                <div>
+                    <div class="panel panel-default login-form-panel col-sm-10 offset-sm-1">
+                        <div class="panel-body">
+                            <form>
+                                <div class="input-group login-userinput">
+                                    <span class="input-group-addon login-icons"><span class="fa fa-user"></span></span>
+                                    <input id="txtUser" type="text" class="form-control login-input-fields" name="username" placeholder="Email" ng-model="user.username">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon login-icons"><span class="fa fa-lock"></span></span>
+                                    <input id="txtPassword" type="password" class="form-control login-input-fields" name="password" placeholder="Password" ng-model="user.password">
+                                </div>
+                                <div class="input-form-padding col-sm-12 has-danger" ng-show="incorrect">
+                                    <p class="form-control-feedback">Incorrect username or password <br />Please Try Again Shortly</p>
+                                </div>
+                                <button class="btn btn-glimpse btn-block login-button" ng-click="login()" ng-disabled="preventLogin"><i class="fa fa-sign-in"></i> Login</button>
+                                <div class="col-sm-12">
+                                    <a class="login-new-account pull-right" ui-sref="signup">Create new Account</a>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
