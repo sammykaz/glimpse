@@ -18,6 +18,7 @@ using System.IO;
 using static Android.Graphics.BitmapFactory;
 using Android.Database;
 using Android.Provider;
+using MvvmCross.Binding.BindingContext;
 
 namespace Glimpse.Droid.Views
 {
@@ -42,7 +43,7 @@ namespace Glimpse.Droid.Views
         private ImageView _imageViewImage1;
         private ImageView _imageViewImage2;
         private ImageView _imageViewImage3;
-
+        private BindableProgress _bindableProgress;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -55,7 +56,11 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as MainActivity).SetCustomTitle("Create Promotion");
-
+            _bindableProgress = new BindableProgress(this.Context);
+            _bindableProgress.Title = ViewModel.TextSource.GetText("Progress");
+            var set = this.CreateBindingSet<CreatePromotionPart2Fragment, CreatePromotionPart2ViewModel>();
+            set.Bind(_bindableProgress).For(p => p.Visible).To(vm => vm.IsBusy);
+            set.Apply();
 
             _startDateDisplay = view.FindViewById<TextView>(Resource.Id.start_date_display);
             _startDateDisplay.Text = DateTime.Now.ToLongDateString();
@@ -82,6 +87,8 @@ namespace Glimpse.Droid.Views
             _imageViewImage3 = view.FindViewById<ImageView>(Resource.Id.promotion_picture3);
             _imageViewImage3.Tag = PickRegularImage3;
             _imageViewImage3.Click += ButtonOnClick;
+
+
         }
 
         //Add Picture button
@@ -114,6 +121,7 @@ namespace Glimpse.Droid.Views
             }
         }
 
+
         private async Task<byte[]> GetImageSelection(ImageView view, Intent data)
         {
             Android.Net.Uri uri = data.Data;
@@ -125,10 +133,9 @@ namespace Glimpse.Droid.Views
             var stream = new MemoryStream();
             b.Compress(Bitmap.CompressFormat.Png, 100, stream);
 
-            //Adjust any images uploaded by vendor to approx 500x500 resolution
-            Bitmap bitmapToDisplay = await ImageProcessing.DecodeBitmapFromStream(Activity.ApplicationContext, data.Data, 500, 500);
-
-            view.SetImageBitmap(bitmapToDisplay);
+            //Adjust any images uploaded by vendor to approx 1000x1000 resolution
+            //Bitmap bitmapToDisplay = await ImageProcessing.DecodeBitmapFromStream(Activity.ApplicationContext, data.Data, 1000, 1000);
+            //view.SetImageBitmap(bitmapToDisplay);
 
             var viewModel = (CreatePromotionPart2ViewModel)ViewModel;
 

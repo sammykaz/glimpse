@@ -22,8 +22,8 @@ using Android.Support.Design.Widget;
 namespace Glimpse.Droid.Views
 {
     [MvxFragment(typeof(MainViewModel), Resource.Id.content_frame, true)]
-    [Register("glimpse.droid.views.TileDetailsFragment")]
-    public class TileDetailsFragment : MvxFragment<TileDetailsViewModel>, ViewPager.IOnPageChangeListener
+    [Register("glimpse.droid.views.PromoDetailsFragment")]
+    public class PromoDetailsFragment : MvxFragment<PromoDetailsViewModel>, ViewPager.IOnPageChangeListener
     { 
         protected View _view;
         private int _dotsCount;
@@ -40,7 +40,7 @@ namespace Glimpse.Droid.Views
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             base.OnCreateView(inflater, container, savedInstanceState);
-            return this.BindingInflate(Resource.Layout.TileDetailsView, null);
+            return this.BindingInflate(Resource.Layout.PromoDetailsView, null);
         }
 
         public override async void OnViewCreated(View view, Bundle savedInstanceState)
@@ -48,21 +48,27 @@ namespace Glimpse.Droid.Views
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as MainActivity).SetCustomTitle("Details");
 
-/*            SupportToolbar toolbar = View.FindViewById<SupportToolbar>(Resource.Id.toolbar);
-            (this.Activity as AppCompatActivity).SetSupportActionBar(toolbar);
-            (this.Activity as AppCompatActivity).SupportActionBar.SetDisplayHomeAsUpEnabled(true); 
-            
-            string promotionName = ViewModel.PromotionTitle;
+            /*            SupportToolbar toolbar = View.FindViewById<SupportToolbar>(Resource.Id.toolbar);
+                        (this.Activity as AppCompatActivity).SetSupportActionBar(toolbar);
+                        (this.Activity as AppCompatActivity).SupportActionBar.SetDisplayHomeAsUpEnabled(true); 
 
-            CollapsingToolbarLayout collapsingToolbar = View.FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
-            collapsingToolbar.Title = promotionName; 
-            */
+                        string promotionName = ViewModel.PromotionTitle;
+
+                        CollapsingToolbarLayout collapsingToolbar = View.FindViewById<CollapsingToolbarLayout>(Resource.Id.collapsing_toolbar);
+                        collapsingToolbar.Title = promotionName; 
+                        */
+            AppBarLayout appbarlayout = View.FindViewById<AppBarLayout>(Resource.Id.app_bar_layout);
+            appbarlayout.LayoutParameters.Height = Resources.DisplayMetrics.WidthPixels;
+            RelativeLayout relativelayout = View.FindViewById<RelativeLayout>(Resource.Id.dotsRelativeLayout);
+            ((CollapsingToolbarLayout.LayoutParams)relativelayout.LayoutParameters).SetMargins(0, Resources.DisplayMetrics.WidthPixels-50, 0, 0);
             await LoadImageList();
-           // SetupViewPagerAndAdapter();
-            //SetupDotsControl();
+            SetupViewPagerAndAdapter();
+            SetupDotsControl();
 
 
            
+
+
         }
 
         public override async void OnStart()
@@ -81,17 +87,17 @@ namespace Glimpse.Droid.Views
         {
             //Create a progress dialog for loading
             ProgressDialog pr = new ProgressDialog(this.Context);
-            pr.SetMessage("Loading Images");
+            pr.SetMessage(ViewModel.TextSource.GetText("Progress"));
             pr.SetCancelable(false);
 
-            var viewModel = (TileDetailsViewModel)ViewModel;
+            var viewModel = (PromoDetailsViewModel)ViewModel;
             pr.Show();
             //Get the images
             _byteImages = await viewModel.GetImageList();
             pr.Hide();
         }
 
-       /* public void SetupViewPagerAndAdapter()
+       public void SetupViewPagerAndAdapter()
         {
             _ImageResources = new List<Bitmap> ();
             foreach (byte[] image in _byteImages)
@@ -124,15 +130,15 @@ namespace Glimpse.Droid.Views
                 }
                 _dots[0].SetImageDrawable(Resources.GetDrawable(Resource.Drawable.selecteditem_dot));
             }
-        } */
+        } 
         private async void  LoadImagesIfNeeded()
         {
             //Create a progress dialog for loading
             ProgressDialog pr = new ProgressDialog(this.Context);
-            pr.SetMessage("Loading Images");
+            pr.SetMessage(ViewModel.TextSource.GetText("Progress"));
             pr.SetCancelable(false);
 
-            var viewModel = (TileDetailsViewModel)ViewModel;
+            var viewModel = (PromoDetailsViewModel)ViewModel;
             pr.Show();
             //Get the images
             _byteImages = await viewModel.GetImageList();

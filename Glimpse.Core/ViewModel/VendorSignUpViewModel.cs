@@ -170,25 +170,25 @@ namespace Glimpse.Core.ViewModel
                     IsBusy = true;
                     if (string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(CompanyName) || string.IsNullOrEmpty(Address) || string.IsNullOrEmpty(BusinessPhoneNumber) || string.IsNullOrEmpty(Password) || string.IsNullOrEmpty(ConfirmPassword))
                     {
-                        ErrorMessage = "Missing required field";
+                        ErrorMessage = TextSource.GetText("ErrorMissingFieldMsg");
                         IsBusy = false;
                     }
                     //Check email validation
                     else if (!ValidEmail)
                     {
-                        ErrorMessage = "Email is not valid";
+                        ErrorMessage = TextSource.GetText("ErrorEmailIsNotValidMsg");
                         IsBusy = false;
                     }
                     //Password validation
                     else if (!ValidPassword)
                     {
-                        ErrorMessage = "Passwords do not match";
+                        ErrorMessage = TextSource.GetText("ErrorPasswordMatchMsg");
                         IsBusy = false;
                     }                   
                     //Check if email exists in db
                     else if (await _vendorDataService.CheckIfVendorExists(Email))
                     {
-                        ErrorMessage = Email + " is already being used";
+                        ErrorMessage = Email + " "+ TextSource.GetText("ErrorEmailExistsMsg");
                         IsBusy = false;
                     }
                     else

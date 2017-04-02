@@ -5,6 +5,7 @@ using System.IO;
 using Glimpse.Core.Contracts.Services;
 using MvvmCross.Core.ViewModels;
 using Glimpse.Core.Services.General;
+using System.Text;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -75,65 +76,120 @@ namespace Glimpse.Core.ViewModel
             Bytes = memoryStream.ToArray();
         }
 
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                _errorMessage = value;
+                RaisePropertyChanged(() => ErrorMessage);
+            }
+        }
+
+
+        private bool _isBusy=false;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                _isBusy = value;
+                RaisePropertyChanged(() => IsBusy);
+            }
+        }
+
+
         public MvxCommand createPromotion
         {
             get
             {
                 return new MvxCommand(async () =>
                 {
-                    foreach (string key in dataFromCreatePromotionPart1.Keys)
+                    IsBusy = true;
+                    if (Bytes == null || PromotionEndDate.Year == 0001)
                     {
-                        if (dataFromCreatePromotionPart1[key] == "True")
-                            selectedCategory = (Categories) Enum.Parse(typeof(Categories), key, true);
+                        ErrorMessage = TextSource.GetText("ErrorMissingField");
+                        IsBusy = false;
                     }
-
-                    //Calculate DateTime span
-                    //TimeSpan promotionLength = _promotionEndDate - _promotionStartDate;
-
-                    if (!string.IsNullOrEmpty(Settings.Email))
+                    else
                     {
-                        vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
-                    }
-                    
-                    Promotion promotion = new Promotion()
-                    {
-                        Title = dataFromCreatePromotionPart1["PromotionTitle"],
-                        Description = dataFromCreatePromotionPart1["PromotionDescription"],
-                        Category = selectedCategory,
-                        PromotionStartDate = _promotionStartDate,
-                        PromotionEndDate = _promotionEndDate,
-                        PromotionImage = Bytes,
-                        PromotionImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"].Replace(" ", string.Empty) + "/" + "cover",
-                        VendorId = vendor.VendorId,
-                    };                  
 
-                    vendor.Promotions.Add(promotion);
-
-                    await _promotionDataService.StorePromotion(promotion);
-
-                    //this next line is not actually adding promotions, dont know why, works for all other
-                    //await _vendorDataService.EditVendor(vendor.VendorId, vendor);
-                    List<Promotion> promotions = await _promotionDataService.GetPromotions();
-
-                    //index for unique naming the promotion image
-                    int i = 1;
-                    foreach(byte[] promotionImage in PromotionImageList)
-                    {
-                        PromotionImage promotionImageInstance = new PromotionImage()
+                        foreach (string key in dataFromCreatePromotionPart1.Keys)
                         {
-                            Image = promotionImage,
-                            PromotionId = promotions[promotions.Count - 1].PromotionId,
-                            ImageURL = vendor.VendorId + "/" + dataFromCreatePromotionPart1["PromotionTitle"].Replace(" ", string.Empty) + "/" + "image" + i
+                            if (dataFromCreatePromotionPart1[key] == "True")
+                                selectedCategory = (Categories)Enum.Parse(typeof(Categories), key, true);
+                        }
+
+                        //Calculate DateTime span
+                        //TimeSpan promotionLength = _promotionEndDate - _promotionStartDate;
+
+                        if (!string.IsNullOrEmpty(Settings.Email))
+                        {
+                            vendor = await _vendorDataService.SearchVendorByEmail(Settings.Email);
+                        }
+
+                        Promotion promotion = new Promotion()
+                        {
+                            Title = dataFromCreatePromotionPart1["PromotionTitle"],
+                            Description = dataFromCreatePromotionPart1["PromotionDescription"],
+                            Category = selectedCategory,
+                            PromotionStartDate = _promotionStartDate,
+                            PromotionEndDate = _promotionEndDate,
+                            PromotionImage = Bytes,
+                            PromotionImageURL = vendor.VendorId + "/" + removeSpecialChars(dataFromCreatePromotionPart1["PromotionTitle"]).Replace(" ", string.Empty) + "/" + "cover",
+                            VendorId = vendor.VendorId,
                         };
 
-                        await _promotionImageDataService.StorePromotion(promotionImageInstance);
-                        i++;
-                    }
-                                        
-                    ShowViewModel<VendorProfilePageViewModel>(new { index = 0 });
+                        vendor.Promotions.Add(promotion);
 
+                        await _promotionDataService.StorePromotion(promotion);
+
+                        //this next line is not actually adding promotions, dont know why, works for all other
+                        //await _vendorDataService.EditVendor(vendor.VendorId, vendor);
+                        List<Promotion> promotions = await _promotionDataService.GetPromotions();
+
+                        //index for unique naming the promotion image
+                        int i = 1;
+                        foreach (byte[] promotionImage in PromotionImageList)
+                        {
+                            PromotionImage promotionImageInstance = new PromotionImage()
+                            {
+                                Image = promotionImage,
+                                PromotionId = promotions[promotions.Count - 1].PromotionId,
+                                ImageURL = vendor.VendorId + "/" + removeSpecialChars(dataFromCreatePromotionPart1["PromotionTitle"]).Replace(" ", string.Empty) + "/" + "image" + i
+                            };
+
+                            await _promotionImageDataService.StorePromotion(promotionImageInstance);
+                            i++;
+                        }
+                        Bytes = null;
+                        PromotionEndDate = new DateTime(0001, 1, 1);
+                        IsBusy = false;
+                        ShowViewModel<VendorProfilePageViewModel>(new { index = 0 });
+                    }
                 });
             }
         }
+
+
+        private readonly static string reservedCharacters = "!*'();:@&=+$,/?%#[]";
+        public static string removeSpecialChars(string value)
+        {
+            if (String.IsNullOrEmpty(value))
+                return String.Empty;
+
+            var sb = new StringBuilder();
+
+            foreach (char @char in value)
+            {
+                if (reservedCharacters.IndexOf(@char) == -1)
+                    sb.Append(@char);
+                else
+                    sb.AppendFormat("", (int)@char);
+            }
+            return sb.ToString();
+        }
+
     }
 }

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Glimpse.Core.ViewModel
 {
-    public class TileDetailsViewModel : BaseViewModel
+    public class PromoDetailsViewModel : BaseViewModel
     {
         private List<byte[]> _images;
         private readonly IPromotionImageDataService _promotionImageDataService;
@@ -27,7 +27,7 @@ namespace Glimpse.Core.ViewModel
         private DateTime _startDate;
         private DateTime _endDate;
 
-        public TileDetailsViewModel(IMvxMessenger messenger, IPromotionImageDataService promotionImageDataService)
+        public PromoDetailsViewModel(IMvxMessenger messenger, IPromotionImageDataService promotionImageDataService)
         {
             _promotionImageDataService = promotionImageDataService;
         }
@@ -164,10 +164,34 @@ namespace Glimpse.Core.ViewModel
         {
             Random random = new Random();
             int randomNumber = random.Next(0, 500);
-
+            string categorie=_category;
+            if (Glimpse.Core.Services.General.Settings.Language == "Français")
+            {
+                switch (_category)
+                {
+                    case "Footwear":
+                        categorie ="Chaussure";
+                        break;
+                    case "Electronics":
+                        categorie = "Électronique";
+                        break;
+                    case "Jewellery":
+                        categorie = "Bijoux";
+                        break;
+                    case "Restaurants":
+                        categorie = "Restaurants";
+                        break;
+                    case "Services":
+                        categorie = "Services";
+                        break;
+                    case "Apparel":
+                        categorie = "Vêtements";
+                        break;
+                }
+            }
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append(randomNumber);
-            stringBuilder.Append("+Bought \u2022 ").Append(_category).Append(" \u2022 ").Append(ConvertSecondsToMinutes(_promotionDuration));
+            stringBuilder.Append(TextSource.GetText("Bought")).Append(" \u2022 ").Append(categorie).Append(" \u2022 ").Append(ConvertSecondsToMinutes(_promotionDuration));
 
             return stringBuilder.ToString();            
         }

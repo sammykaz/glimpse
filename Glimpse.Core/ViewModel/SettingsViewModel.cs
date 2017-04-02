@@ -1,5 +1,9 @@
 ﻿using Glimpse.Core.Services.General;
+using Glimpse.Core.Utility;
+using Glimpse.Localization;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Localization;
+using MvvmCross.Platform;
 using MvvmCross.Plugins.Messenger;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,8 +44,44 @@ namespace Glimpse.Core.ViewModel
             }
             set
             {
-                _currentLanguage = value;
+                _currentLanguage = value;                              
                 RaisePropertyChanged(() => CurrentLanguage);
+                Settings.Language = _currentLanguage;
+                if (_currentLanguage == "Français")
+                {
+                    var re = Mvx.GetSingleton<IMvxTextProvider>();
+                    ((ResxTextProvider)re).ResourceManager = Strings_Fr.ResourceManager;
+                }
+                else if (_currentLanguage == "English")
+                {
+                    var re = Mvx.GetSingleton<IMvxTextProvider>();
+                    ((ResxTextProvider)re).ResourceManager = Strings.ResourceManager;
+                }
+                SelectLanguageMessage = TextSource.GetText("SelectLanguageMsg");
+               AboutMessage = TextSource.GetText("AboutContentMsg");
+               
+            }
+        }
+
+        private string _selectLanguageMessage;
+        public string SelectLanguageMessage
+        {
+            get { return _selectLanguageMessage; }
+            set
+            {
+                _selectLanguageMessage = value;
+                RaisePropertyChanged(() => SelectLanguageMessage);
+            }
+        }
+
+        private string _aboutMessage;
+        public string AboutMessage
+        {
+            get { return _aboutMessage; }
+            set
+            {
+                _aboutMessage = value;
+                RaisePropertyChanged(() => AboutMessage);
             }
         }
 
@@ -56,8 +96,10 @@ namespace Glimpse.Core.ViewModel
         {
             return Task.Run(() =>
             {
+                //adding the current language in the settings to the list of languages first
                 CurrentLanguage = Settings.Language;
                 Languages = new List<string> { CurrentLanguage };
+                // adding the remaining language
                 if (CurrentLanguage == "English")
                     _languages.Add("Français");
                 else if (CurrentLanguage == "Français")
@@ -74,7 +116,7 @@ namespace Glimpse.Core.ViewModel
             {
                 return new MvxCommand(async () =>
                 {
-                    Settings.Language = CurrentLanguage;
+                   
                 });
             }
         }
