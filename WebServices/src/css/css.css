@@ -218,8 +218,16 @@ label:hover input[type="radio"] ~ i.fa {color: #2FD4AD;}
 .fade.ng-hide {
   opacity: 0;
 }
-
-
+.carousel-img{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.carousel1{background-image: url("carousel1.jpeg");}
+.carousel2{background-image: url("carousel2.jpeg");}
+.carousel3{background-image: url("carousel3.jpeg");}
+.carousel4{background-image: url("carousel4.jpg");}
+.carousel5{background-image: url("carousel5.jpeg");}
 .fade.ng-hide-remove,
 .fade.ng-hide-add {
   display: block !important;
