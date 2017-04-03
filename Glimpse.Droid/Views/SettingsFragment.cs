@@ -24,6 +24,9 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as MainActivity).SetCustomTitle("Settings");
+            TextView settingsTextView1 = view.FindViewById<TextView>(Resource.Id.settingsTextView1);
+            Typeface tf0 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Light.otf");
+            settingsTextView1.SetTypeface(tf0, TypefaceStyle.Normal);
         }
     }
 }
