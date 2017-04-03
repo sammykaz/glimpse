@@ -44,7 +44,7 @@ namespace Glimpse.Core.ViewModel
                 IsSelected = false
             });
 
-            /*
+            
             MenuItems.Add(new MenuItem
             {
                 Title = TextSource.GetText("Promotions"),
@@ -52,7 +52,7 @@ namespace Glimpse.Core.ViewModel
                 Option = MenuOption.Logout,
                 IsSelected = false
             });
-            */
+            
 
             if (!string.IsNullOrEmpty(Settings.Email))
             {
