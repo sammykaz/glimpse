@@ -60,7 +60,7 @@ namespace Glimpse.Droid.Views
 
             _cardStack = (this.Activity as MainActivity).FindViewById<CardStack>(Resource.Id.card_stack);
             _cardStack.ContentResource = Resource.Layout.Card_Layout;
-            _cardAdapter = new CardAdapter(this.Context, Resource.Layout.Card_Layout);
+            _cardAdapter = new CardAdapter(this.Context, Resource.Layout.Card_Layout, this.Activity);
 
             //create binding for progress
             _bindableProgress = new BindableProgress(this.Context);

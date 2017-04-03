@@ -20,9 +20,11 @@ namespace Glimpse.Droid.Adapter
 {
     public class CardAdapter : CardStackAdapter
     {
+        Activity _activity; 
 
-        public CardAdapter(Context context, int resource) :base(context,resource)
+        public CardAdapter(Context context, int resource, Activity activity) :base(context,resource)
         {
+            _activity = activity;
         }
 
 
@@ -35,7 +37,8 @@ namespace Glimpse.Droid.Adapter
         {
             var pwl = (PromotionWithLocation)GetItem(position);
             var cardTitle = convertView.FindViewById<TextView>(Resource.Id.cardTitle);
-
+            Typeface tf0 = Typeface.CreateFromAsset(_activity.Assets, "Avenir-Light.otf");
+            cardTitle.SetTypeface(tf0, TypefaceStyle.Normal);
 
             var cardImage = convertView.FindViewById<ImageView>(Resource.Id.cardImage);
 
