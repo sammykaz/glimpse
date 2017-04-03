@@ -90,8 +90,8 @@
           
             <Mvx.MvxImageView
                 android:src="@drawable/plus"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                  android:layout_marginTop="5dp"
                 android:layout_gravity="center"
                 android:id="@+id/promotion_cover"
