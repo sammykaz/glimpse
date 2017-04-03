@@ -87,8 +87,14 @@ namespace Glimpse.Droid.Views
             _imageViewImage3 = view.FindViewById<ImageView>(Resource.Id.promotion_picture3);
             _imageViewImage3.Tag = PickRegularImage3;
             _imageViewImage3.Click += ButtonOnClick;
-
-
+            //msg 1
+            TextView createPromoChoosePic = view.FindViewById<TextView>(Resource.Id.createPromoChoosePic);
+            Typeface tf1 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Heavy.otf");
+            createPromoChoosePic.SetTypeface(tf1, TypefaceStyle.Normal);
+            //msg2
+            TextView createPromoChooseAdditionalPic = view.FindViewById<TextView>(Resource.Id.createPromoChooseAdditionalPic);
+            Typeface tf2 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Heavy.otf");
+            createPromoChooseAdditionalPic.SetTypeface(tf2, TypefaceStyle.Normal);
         }
 
         //Add Picture button
