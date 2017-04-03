@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -49,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
             android:orientation="vertical"
-            android:background="@color/extraLightGray">
+            android:background="@color/white">
             <Button
                 android:id="@+id/angry_btn"
                 android:text="Create Promotion"
@@ -64,7 +65,7 @@
                 android:layout_marginTop="50dp" />
             <LinearLayout
                 android:id="@+id/promotionbar"
-                android:background="@color/extraLightGray"
+                android:background="@color/white"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:background="@color/extraLightGray"
+                    android:background="@color/white"
                     android:textStyle="normal"
                     android:layout_alignParentRight="true"
                     local:MvxLang="Text MyPromotions"
@@ -102,7 +103,7 @@
             <Mvx.MvxListView
                 android:orientation="vertical"
                 android:layout_height="fill_parent"
-                android:background="@color/extraLightGray"
+                android:background="@color/white"
                 local:MvxBind="ItemsSource PromotionList"
                 local:MvxItemTemplate="@layout/promotionitemtemplate"
                 android:layout_width="fill_parent" />
