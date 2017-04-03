@@ -51,33 +51,39 @@ namespace Glimpse.Droid.Views
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as LoginActivity).SetCustomTitle("Vendor Sign Up");
 
+            //Set all fonts
+            Typeface tf0 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Light.otf");
+            Typeface tf1 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Heavy.otf");
+
             _addressTextView = (this.Activity as LoginActivity).FindViewById<TextView>(Resource.Id.txtAddress);
             _selectBuisinessLocationButton = (this.Activity as LoginActivity).FindViewById<Button>(Resource.Id.selectBusinessLocationButton);
             _selectBuisinessLocationButton.Click += OnSelectBuisinessLocationTapped;
 
             _email = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtEmail);
+            _email.SetTypeface(tf0, TypefaceStyle.Normal);
+
             _email.AfterTextChanged += _email_AfterTextChanged;
 
             _password = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtPassword);
+            _password.SetTypeface(tf0, TypefaceStyle.Normal);
             _password.AfterTextChanged += _confirmPassword_AfterTextChanged;
 
             _confirmPassword = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtConfirmPassword);
+            _confirmPassword.SetTypeface(tf0, TypefaceStyle.Normal);
             _confirmPassword.AfterTextChanged += _confirmPassword_AfterTextChanged;
 
             Button btnSignUp = view.FindViewById<Button>(Resource.Id.SignUpButton);
+             btnSignUp.SetTypeface(tf1, TypefaceStyle.Normal);
+
+            Button angry_btn = (this.Activity as LoginActivity).FindViewById<Button>(Resource.Id.add);
+
+            angry_btn.SetTypeface(tf1, TypefaceStyle.Normal);
 
 
-            //Set all fonts
-            Typeface tf0 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Light.otf");
-            Typeface tf1 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Heavy.otf");
-
-
-            btnSignUp.SetTypeface(tf1, TypefaceStyle.Normal);
+           
 
             _addressTextView.SetTypeface(tf0, TypefaceStyle.Normal);
             _selectBuisinessLocationButton.SetTypeface(tf0, TypefaceStyle.Normal);
-            _email.SetTypeface(tf0, TypefaceStyle.Normal);
-            _password.SetTypeface(tf0, TypefaceStyle.Normal);
 
 
             _bindableProgress = new BindableProgress(this.Context);
