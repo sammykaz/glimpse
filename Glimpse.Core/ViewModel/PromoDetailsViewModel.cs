@@ -155,7 +155,8 @@ namespace Glimpse.Core.ViewModel
         public async Task<List<byte[]>> GetImageList()
         {
             //getting images for promotion
-            _images = await _promotionImageDataService.GetImageListFromPromotionWithLocationId(_promotionId);           
+            _images = await _promotionImageDataService.GetImageListFromPromotionWithLocationId(_promotionId);
+            _images.Insert(0, _promotionImage);
             return _images;
         }
 
