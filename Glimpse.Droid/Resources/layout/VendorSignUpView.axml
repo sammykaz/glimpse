@@ -31,7 +31,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="5dp"
         android:id="@+id/txtInput2">
-        <EditText
+      <EditText
+        android:textStyle="normal"
             android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,7 +50,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="5dp"
         android:id="@+id/txtInput3">
-        <EditText
+      <EditText
+        android:textStyle="normal"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,7 +69,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="5dp"
         android:id="@+id/txtInput4">
-        <EditText
+      <EditText
+        android:textStyle="normal"
             android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -85,7 +88,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="5dp"
         android:id="@+id/txtInput5">
-        <EditText
+      <EditText
+        android:textStyle="normal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/txtBusinessPhoneNumber"
