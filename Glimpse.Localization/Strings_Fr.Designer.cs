@@ -494,6 +494,15 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mes promotions.
+        /// </summary>
+        public static string VendorProfilePageViewModel_MyPromotions {
+            get {
+                return ResourceManager.GetString("VendorProfilePageViewModel.MyPromotions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Numéro de téléphone de l&apos;entreprise.
         /// </summary>
         public static string VendorSignUpViewModel_BusinessPhoneNumberHint {

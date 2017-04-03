@@ -12,24 +12,7 @@
             android:layout_height="100dp"
             android:scaleType="centerCrop"
             android:layout_weight="100"
-            android:background="@android:color/background_dark" />
-        <ImageView
-            android:id="@+id/settings"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="16dp"
-            
-            android:layout_marginRight="10dp" />
-        <TextView
-            android:id="@+id/mainEdit"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textColor="#A3A3A3"
-            android:text=""
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="10dp" />
+            android:background="@color/glimpseColor" />
         <ImageButton
             android:id="@+id/user_profile_photo"
             android:layout_width="120dp"
@@ -46,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/header_cover_image"
-            android:background="#ebca0707"
+            android:background="@color/glimpseColor"
             android:elevation="4dp"
             android:paddingBottom="24dp">
             <TextView
@@ -58,72 +41,71 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="76dp"
                 android:textColor="#fff"
-                android:textSize="24sp"
-                android:textStyle="bold" />          
+                android:textSize="24dp"
+                android:textStyle="bold" />
         </RelativeLayout>
         <LinearLayout
-            android:id="@+id/promotionbar"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#66B266"
-            android:layout_below="@+id/profile_layout"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/edit"
-                android:layout_width="wrap_content"
+            android:layout_marginTop="200dp"
+            android:orientation="vertical"
+            android:background="@color/extraLightGray">
+            <Button
+                android:id="@+id/angry_btn"
+                android:text="Create Promotion"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp"
+                android:layout_width="270dp"
+                android:layout_height="60dp"
+                android:background="@drawable/rounded_shape_button_v2"
+                local:MvxBind="Click ShowCreatePromotionView"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="50dp" />
+            <LinearLayout
+                android:id="@+id/promotionbar"
+                android:background="@color/extraLightGray"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="4dp"
-                android:textSize="22sp"
-                android:textColor="#FF7619"
-                android:text="       "
-                android:layout_marginLeft="5dp" />
-            <TextView
-                android:id="@+id/promotions"
-                android:elevation="4dp"
-                android:textSize="22sp"
-                android:layout_toRightOf="@id/edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textColor="#fff"
-                android:textStyle="bold"
-                android:text="Promotions"
-                android:layout_alignParentRight="false"
-                android:layout_marginLeft="70dp" />
-            <ImageView
-                android:id="@+id/add"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_toRightOf="@id/promotions"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/plus"
-                android:layout_marginLeft="95dp"
-                local:MvxBind="Click ShowCreatePromotionView" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/promotionbar"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical">
+                android:layout_marginTop="5dp">
+                <View
+                    android:id="@+id/view5"
+                    android:background="@color/black"
+                    android:layout_height="1dp"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp" />
+                <TextView
+                    android:id="@+id/promotions"
+                    android:textSize="16dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:background="@color/extraLightGray"
+                    android:textStyle="normal"
+                    android:layout_alignParentRight="true"
+                    local:MvxLang="Text MyPromotions"
+                    android:text="My Promotions"
+                    android:layout_gravity="center" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:id="@+id/view6"
+                    android:background="@color/black"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center" />
+            </LinearLayout>
             <Mvx.MvxListView
                 android:orientation="vertical"
                 android:layout_height="fill_parent"
+                android:background="@color/extraLightGray"
                 local:MvxBind="ItemsSource PromotionList"
                 local:MvxItemTemplate="@layout/promotionitemtemplate"
                 android:layout_width="fill_parent" />
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_marginBottom="3dp"
-                android:layout_marginTop="3dp"
-                android:background="#fff"
-                android:clickable="true"
-                local:MvxBind="Click getPromotions"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:text="View promotions" />
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

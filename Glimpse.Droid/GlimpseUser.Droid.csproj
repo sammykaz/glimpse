@@ -506,11 +506,15 @@
     <AndroidResource Include="Resources\layout\MapView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\VendorProfilePageView.axml" />
+    <AndroidResource Include="Resources\layout\VendorProfilePageView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\BuyerProfilePageView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\profile_circular_border_imageview.axml" />
+    <AndroidResource Include="Resources\drawable\profile_circular_border_imageview.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidResource Include="Resources\layout\SignInView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -591,6 +595,9 @@
     <AndroidResource Include="Resources\drawable\seperator.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\buttonshape_create.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -651,9 +658,6 @@
     <AndroidResource Include="Resources\layout\LogInView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bk.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\edit_text_style.xml" />
