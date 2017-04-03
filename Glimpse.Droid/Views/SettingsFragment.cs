@@ -7,6 +7,8 @@ using MvvmCross.Droid.Support.V4;
 using Glimpse.Core.ViewModel;
 using Glimpse.Droid.Activities;
 using Glimpse.Droid.Extensions;
+using Android.Widget;
+using Android.Graphics;
 
 namespace Glimpse.Droid.Views
 {
