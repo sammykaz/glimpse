@@ -61,6 +61,7 @@ namespace Glimpse.Droid.Views
 
             _email = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtEmail);
             _email.SetTypeface(tf0, TypefaceStyle.Normal);
+
             _email.AfterTextChanged += _email_AfterTextChanged;
 
             _password = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtPassword);
@@ -72,13 +73,14 @@ namespace Glimpse.Droid.Views
             _confirmPassword.AfterTextChanged += _confirmPassword_AfterTextChanged;
 
             Button btnSignUp = view.FindViewById<Button>(Resource.Id.SignUpButton);
+             btnSignUp.SetTypeface(tf1, TypefaceStyle.Normal);
 
             Button angry_btn = (this.Activity as LoginActivity).FindViewById<Button>(Resource.Id.add);
 
             angry_btn.SetTypeface(tf1, TypefaceStyle.Normal);
 
 
-            btnSignUp.SetTypeface(tf1, TypefaceStyle.Normal);
+           
 
             _addressTextView.SetTypeface(tf0, TypefaceStyle.Normal);
             _selectBuisinessLocationButton.SetTypeface(tf0, TypefaceStyle.Normal);
