@@ -707,6 +707,8 @@
     <AndroidResource Include="Resources\drawable\Logo.PNG" />
     <AndroidResource Include="Resources\drawable\Logo_transparent.png" />
     <AndroidResource Include="Resources\drawable-hdpi\maps_icon.png" />
+    <AndroidResource Include="Resources\drawable\ic_playlist_add_check_grey_24px.xml" />
+    <AndroidResource Include="Resources\drawable\ic_playlist_add_check_green_24px.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
