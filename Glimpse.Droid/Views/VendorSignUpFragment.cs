@@ -22,6 +22,8 @@ using Android.Text;
 using Java.Lang;
 using Glimpse.Droid.Helpers;
 using MvvmCross.Binding.BindingContext;
+using Android.Graphics;
+using Android.Support.Design.Widget;
 
 namespace Glimpse.Droid.Views
 {
@@ -61,6 +63,22 @@ namespace Glimpse.Droid.Views
 
             _confirmPassword = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtConfirmPassword);
             _confirmPassword.AfterTextChanged += _confirmPassword_AfterTextChanged;
+
+            Button btnSignUp = view.FindViewById<Button>(Resource.Id.SignUpButton);
+
+
+            //Set all fonts
+            Typeface tf0 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Light.otf");
+            Typeface tf1 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Heavy.otf");
+
+
+            btnSignUp.SetTypeface(tf1, TypefaceStyle.Normal);
+
+            _addressTextView.SetTypeface(tf0, TypefaceStyle.Normal);
+            _selectBuisinessLocationButton.SetTypeface(tf0, TypefaceStyle.Normal);
+            _email.SetTypeface(tf0, TypefaceStyle.Normal);
+            _password.SetTypeface(tf0, TypefaceStyle.Normal);
+
 
             _bindableProgress = new BindableProgress(this.Context);
             _bindableProgress.Title = ViewModel.TextSource.GetText("Progress");
