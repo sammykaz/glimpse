@@ -93,6 +93,8 @@ namespace WebServices.Controllers
 
         // PUT: api/Vendors/5
         [ResponseType(typeof(void))]
+        [HttpPut]
+        [Route("api/Vendors/{id}")]
         public IHttpActionResult PutVendor(int id, Vendor vendor)
         {
             Log.Information("Attempting to update vendor: {@vendor} with id {@id}", vendor.CompanyName,id);
@@ -102,16 +104,17 @@ namespace WebServices.Controllers
                 return BadRequest(ModelState);
             }
 
-
             if (id != vendor.VendorId)
             {
                 Log.Error("Id: {@id} is the incorrect id for vendor id: {@vendor}", id, vendor.CompanyName);
                 return BadRequest();
             }
 
-
-            db.Entry(vendor).State = EntityState.Modified;
-
+            Vendor updateVendor = db.Vendors.FirstOrDefault(e => e.VendorId == (vendor.VendorId));
+            updateVendor.Email = vendor.Email;
+            updateVendor.Address = vendor.Address;
+            updateVendor.Telephone = vendor.Telephone;
+            updateVendor.Location = vendor.Location;
             try
             {
                 db.SaveChanges();

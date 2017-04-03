@@ -1,6 +1,7 @@
 ﻿'use strict';
 app.controller('analysisController', ['$scope', 'dataService', function ($scope, dataService) {
-
+    $scope.maxPage = 0;
+    $scope.currentPage = 1;
     $scope.data = [];
     $scope.totalSum = 0;
     $scope.todaySum = 0;
@@ -14,10 +15,25 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
     var promotionsquery = dataService.getAllPromotionFromSpecificVendor(localStorage.id).query();
     promotionsquery.$promise.then(function (data) {
         $scope.promotions = data;
+        $scope.maxPage = Math.ceil(data.length / 7);
         getPromotionClicks();
     }, function (error) {
         console.log("Error: Could not load promotions");
     })
+    $scope.getNumber = function (num) {
+        return new Array(num);
+    }
+    $scope.setCurrentPage = function (currentPage) {
+        $scope.currentPage = currentPage;
+    }
+    $scope.setCurrentPageToNext = function () {
+        if ($scope.currentPage + 1 <= $scope.maxPage)
+            $scope.currentPage++;
+    }
+    $scope.setCurrentPageToPrev = function () {
+        if ($scope.currentPage - 1 > 0)
+            $scope.currentPage--;
+    }
 
     var getPromotionClicks = function () {
         var promotionClicksquery = dataService.getPromotionClicks().query();
