@@ -261,6 +261,9 @@
   <data name="SignInViewModel.SignInButton" xml:space="preserve">
     <value>Se connecter</value>
   </data>
+  <data name="VendorProfilePageViewModel.MyPromotions" xml:space="preserve">
+    <value>Mes promotions</value>
+  </data>
   <data name="VendorSignUpViewModel.BusinessPhoneNumberHint" xml:space="preserve">
     <value>Numéro de téléphone de l'entreprise</value>
   </data>
