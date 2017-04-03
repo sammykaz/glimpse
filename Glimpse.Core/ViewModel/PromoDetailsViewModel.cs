@@ -214,7 +214,7 @@ namespace Glimpse.Core.ViewModel
        
         private string ConvertSecondsToMinutes(string value)
         {
-            TimeSpan timespan = TimeSpan.FromMinutes(Convert.ToInt32(value));
+            TimeSpan timespan = TimeSpan.FromSeconds(Convert.ToInt32(value));
             int totalMins = (int)timespan.TotalMinutes;
             string displayTime = Convert.ToString(totalMins);
 
