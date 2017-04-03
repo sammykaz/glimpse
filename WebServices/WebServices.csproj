@@ -374,6 +374,8 @@
     <Content Include="logs\logs--2017-03-04_06-16-50-PM.log" />
     <None Include="Properties\PublishProfiles\GlimpseMobile - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\GlimpseMobile - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\glimpseOfficial - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\glimpseOfficial - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseService - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseService - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseServices - FTP.pubxml" />
@@ -1268,6 +1270,12 @@
     <Content Include="src\css\animate.css" />
     <Content Include="src\css\bg.png" />
     <Content Include="src\css\blank.gif" />
+    <Content Include="src\css\carousel1.jpeg" />
+    <Content Include="src\css\carousel2.jpeg" />
+    <Content Include="src\css\carousel3.jpeg" />
+    <Content Include="src\css\carousel4.jpg" />
+    <Content Include="src\css\carousel5.jpeg" />
+    <Content Include="src\css\cover_city1.jpg" />
     <Content Include="src\css\cropper.css" />
     <Content Include="src\css\cropper.min.css" />
     <Content Include="src\css\css.css" />
