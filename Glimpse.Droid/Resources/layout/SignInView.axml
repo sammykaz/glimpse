@@ -80,7 +80,6 @@
             android:textColor="@color/glimpseWhite"
             android:background="@drawable/rounded_shape_button_v2"
             android:layout_width="wrap_content"
-            android:text="Sign In"
             android:minWidth="100dp" />
     </RelativeLayout>
     <TextView

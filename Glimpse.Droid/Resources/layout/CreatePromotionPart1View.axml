@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+            android:background="@android:color/white">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -66,6 +67,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
             android:gravity="top"
+            android:background="@android:color/white"
             android:layout_width="match_parent"
             android:layout_weight="50"
             android:weightSum="100"
@@ -134,12 +136,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ContinuePart1Button"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textColor="#fff"
-            android:textStyle="bold"
-            android:height="70dp"
+            android:textStyle="normal"
+            android:height="60dp"
             android:paddingTop="2dp"
-            android:background="@drawable/ButtonSignUpStyle"
+            android:background="@drawable/rounded_shape_button_v2"
             android:layout_centerHorizontal="true"
             local:MvxBind="Click ContinueCommand"
             android:layout_alignParentBottom="false"

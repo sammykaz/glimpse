@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"> 
-      <TextView
+        android:layout_height="match_parent">
+        <TextView
             android:id="@+id/ErrorMsg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,8 +33,16 @@
         </LinearLayout>
         <Button
             android:id="@+id/btnChangeStartDate"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:textSize="12dp"
+            android:layout_centerInParent="true"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
+            android:textColor="@color/glimpseWhite"
+            android:background="@drawable/rounded_shape_button_v2"
+            android:minWidth="100dp"
             local:MvxLang="Text ChangeDateMsg" />
         <LinearLayout
             android:orientation="horizontal"
@@ -57,6 +65,14 @@
             android:id="@+id/btnChangeEndDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:textSize="12dp"
+            android:layout_centerInParent="true"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
+            android:textColor="@color/glimpseWhite"
+            android:background="@drawable/rounded_shape_button_v2"
+            android:minWidth="100dp"
             local:MvxLang="Text ChangeDateMsg" />
         <LinearLayout
             android:orientation="vertical"
@@ -64,21 +80,27 @@
             android:layout_height="match_parent"
             android:background="@android:color/white">
             <TextView
+              android:id="@+id/createPromoChoosePic"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:textSize="20dp"
                 local:MvxLang="Text ChoosePicMsg" />
+          
             <Mvx.MvxImageView
                 android:src="@drawable/plus"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                 android:layout_marginTop="5dp"
                 android:layout_gravity="center"
                 android:id="@+id/promotion_cover"
                 local:MvxBind="Image Bytes,Converter=InMemoryImage" />
             <TextView
+               android:id="@+id/createPromoChooseAdditionalPic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:textSize="20dp"
                 local:MvxLang="Text ChooseAdditionalPicMsg" />
@@ -86,6 +108,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                 android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:background="@android:color/white">
                 <Mvx.MvxImageView
@@ -122,19 +145,15 @@
             android:weightSum="50" />
         <Button
             local:MvxLang="Text CreatePromoBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/ContinuePart2Button"
-            android:layout_marginTop="10dp"
-            android:textSize="20dp"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:height="70dp"
-            android:background="@drawable/ButtonSignUpStyle"
-            android:layout_centerHorizontal="true"
             local:MvxBind="Click createPromotion"
-            android:layout_alignParentBottom="false"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp" />
+            android:textColor="#FFFFFF"
+            android:textSize="16dp"
+            android:layout_width="270dp"
+            android:layout_height="60dp"
+            android:background="@drawable/rounded_shape_button_v2"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="50dp" />
     </LinearLayout>
 </ScrollView>
