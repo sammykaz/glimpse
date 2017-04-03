@@ -208,7 +208,7 @@
     <value>Inscription</value>
   </data>
   <data name="LoginViewModel.WelcomeMsg" xml:space="preserve">
-    <value>Bienvenu à Glimpse</value>
+    <value>Bienvenue à Glimpse</value>
   </data>
   <data name="LoginViewModel.WelcomeMsgInstructions" xml:space="preserve">
     <value>Appuyez ci-dessous pour decouvrir les offres à proximité!</value>

@@ -39,6 +39,8 @@
             android:layout_marginTop="25dp"
             android:paddingLeft="10dp"
             android:textColor="#707070"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
             local:MvxBind="Text Email, Mode=TwoWay" />
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
@@ -58,6 +60,8 @@
             android:layout_marginTop="25dp"
             android:paddingLeft="10dp"
             android:textColor="#707070"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
             local:MvxBind="Text Password, Mode=TwoWay" />
     </android.support.design.widget.TextInputLayout>
     <RelativeLayout

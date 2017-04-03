@@ -70,10 +70,11 @@ app.controller("mapController", ['$scope', 'dataService', '$q', '$uibModal', fun
 
 }]);
 app.controller('ShowPromotionController', ['$scope', '$uibModalInstance', 'promotionDetails', function ($scope, $uibModalInstance, promotionDetails) {
-    var Category = ["Footwear", "Electronics", "Jewellery", "Restaurants", "Services", "Apparel"];
+    //var Category = ["Footwear", "Electronics", "Jewellery", "Restaurants", "Services", "Apparel"];
 
     $scope.Title = promotionDetails.Title;
-    $scope.Category = Category[promotionDetails.Category];
+    //$scope.Category = Category[promotionDetails.Category];
+    $scope.Category = promotionDetails.Category;
     $scope.Description = promotionDetails.Description;
     $scope.PromotionStartDate = promotionDetails.PromotionStartDate;
     $scope.PromotionEndDate = promotionDetails.PromotionEndDate;

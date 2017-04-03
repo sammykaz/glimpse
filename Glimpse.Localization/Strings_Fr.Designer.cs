@@ -332,7 +332,7 @@ namespace Glimpse.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bienvenu à Glimpse.
+        ///   Looks up a localized string similar to Bienvenue à Glimpse.
         /// </summary>
         public static string LoginViewModel_WelcomeMsg {
             get {
