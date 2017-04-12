@@ -46,17 +46,21 @@ namespace Glimpse.Droid.UITests
             app.WaitForElement("cardImage");
 
             //Act
-            var initialCardStack = app.Query(x => x.Id("cardImage"));
+            var initialCardStack = app.Query("cardTitle").Select(x => x.Text).ToList() ;
+            var cardStackAfterSwipes = app.Query("cardTitle").Select(x => x.Text).ToList();
             app.SwipeRightToLeft();
+            cardStackAfterSwipes.RemoveAt(cardStackAfterSwipes.Count - 1);
             app.Screenshot("Swiping Top Card");
             app.SwipeRightToLeft();
+            cardStackAfterSwipes.RemoveAt(cardStackAfterSwipes.Count - 1);
             app.Screenshot("Second Top Card");
             app.SwipeLeftToRight();
+            cardStackAfterSwipes.RemoveAt(cardStackAfterSwipes.Count - 1);
             var initialInde = app.Query(x => x.Id("cardImage"));
-            var cardStackAfterSwipes = app.Query(x => x.Id("cardImage"));
+            
 
             //Assert
-            //Assert.IsTrue((initialCardStack.Length - 3) == cardStackAfterSwipes.Length);
+            Assert.IsTrue((initialCardStack.Count - 3) == cardStackAfterSwipes.Count);
 
 
         }
@@ -162,44 +166,34 @@ namespace Glimpse.Droid.UITests
 
             //Act
             app.WaitForElement("cardImage");
-            app.Tap(x => x.Text("Apparel"));
-            var cardContainsWord = app.Query("cardTitle").First(result => result.Text.ToLower().Contains("apparel"));
-            app.Tap(x => x.Text("All"));
             app.Tap(x => x.Id("search_button"));
             app.EnterText(x => x.Id("search_src_text"), "apparel");
-            cardContainsWord = app.Query("cardTitle").First(result => result.Text.ToLower().Contains("apparel"));
+            var cardContainsWord = app.Query("cardTitle").First(result => result.Text.ToLower().Contains("apparel"));
             app.SwipeLeftToRight();
-            app.Tap(x => x.Id("search_close_btn"));
-            app.ClearText(x => x.Id("search_src_text"));
             app.Tap(x => x.Class("AppCompatImageView").Index(1));
 
             //acting on like view 
             app.WaitForElement("promotionTitle");
-            app.Tap(x => x.Text("Apparel"));
-            var elementContainsWord = app.Query("promotionTitle").First(result => result.Text.ToLower().Contains("apparel"));
-            app.Tap(x => x.Text("All"));
             app.Tap(x => x.Id("search_button"));
             app.EnterText(x => x.Id("search_src_text"), "apparel");
-            elementContainsWord = app.Query("promotionTitle").First(result => result.Text.ToLower().Contains("apparel"));
-            app.Tap(x => x.Id("search_close_btn"));
-            app.ClearText(x => x.Id("search_src_text"));
+            var elementContainsWord = app.Query("promotionTitle").First(result => result.Text.ToLower().Contains("apparel"));
             app.Tap(x => x.Class("AppCompatImageView").Index(2));
 
             //acting on map view
             app.WaitForElement("map");
+            app.Tap(x => x.Id("search_button"));
             app.Screenshot("All promotions");
             app.Tap(x => x.Text("Apparel"));
             app.Screenshot("apparel promotions");
             app.Tap(x => x.Text("All"));
             app.Screenshot("All promotions2");
-            app.Tap(x => x.Id("search_button"));
             app.EnterText(x => x.Id("search_src_text"), "apparel");
             app.Screenshot("apparel promotions2");
             app.Tap(x => x.Id("search_close_btn"));
             app.ClearText(x => x.Id("search_src_text"));
 
             //assert for cardview and likeview
-            //Assert.IsTrue(cardContainsWord != null && elementContainsWord != null);
+            Assert.IsTrue(cardContainsWord != null && elementContainsWord != null);
 
 
         }
