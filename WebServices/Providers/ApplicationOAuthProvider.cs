@@ -23,7 +23,7 @@ namespace WebServices.Providers
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
-        private readonly string WebServiceUrl = "http://localhost:55709/api/vendors/";
+        private readonly string WebServiceUrl = "http://glimpseofficial.azurewebsites.net/api/vendors/";
         private Vendor currentVendor;
         //RestClient<Vendor> restClient = new RestClient<Vendor>();
 

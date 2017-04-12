@@ -12,7 +12,9 @@
 	<color name="lightGray">#CCCCCC</color>
 	<color name="transparent">#00000000</color>
   <color name="glimpseColor">#2FD4AD</color>
-  
+  <color name="glimpseGray">#FCFCFC</color>
+  <color name="glimpseWhite">#FFFFFF</color>
+  <color name="extraLightGray">#FAFAFA</color>
   <!--<color name="material_blue_500">#2196F3</color>
   <color name="material_blue_700">#1976D2</color>
   <color name="material_green_A200">#69F0AE</color>-->

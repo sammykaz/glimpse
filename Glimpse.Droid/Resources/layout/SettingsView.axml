@@ -3,19 +3,21 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
-            android:text="Select the language for the app"
+            local:MvxBind="Text SelectLanguageMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/settingsTextView1"
             android:textSize="17dp"
-            android:textColor="@color/primary"
-            android:layout_marginTop="10dp" />
+            android:textColor="@color/accent"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp" />
         <MvxSpinner
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -26,13 +28,6 @@
             android:textSize="40dp"
             android:id="@+id/settingsLanguageMvxSpinner"
             local:MvxBind="ItemsSource Languages, Mode=TwoWay; SelectedItem CurrentLanguage, Mode=TwoWay; HandleItemSelected SwitchLanguageCommand" />
-        <TextView
-            android:text="About Content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/settingsTextView2"
-            android:textSize="17dp"
-            android:textColor="@color/primary"
-            android:layout_marginTop="10dp" />
+
     </LinearLayout>
 </ScrollView>

@@ -374,6 +374,8 @@
     <Content Include="logs\logs--2017-03-04_06-16-50-PM.log" />
     <None Include="Properties\PublishProfiles\GlimpseMobile - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\GlimpseMobile - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\glimpseOfficial - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\glimpseOfficial - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseService - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseService - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseServices - FTP.pubxml" />
@@ -1268,9 +1270,16 @@
     <Content Include="src\css\animate.css" />
     <Content Include="src\css\bg.png" />
     <Content Include="src\css\blank.gif" />
+    <Content Include="src\css\carousel1.jpeg" />
+    <Content Include="src\css\carousel2.jpeg" />
+    <Content Include="src\css\carousel3.jpeg" />
+    <Content Include="src\css\carousel4.jpg" />
+    <Content Include="src\css\carousel5.jpeg" />
+    <Content Include="src\css\cover_city1.jpg" />
     <Content Include="src\css\cropper.css" />
     <Content Include="src\css\cropper.min.css" />
     <Content Include="src\css\css.css" />
+    <Content Include="src\css\glimpse-m.png" />
     <Content Include="src\css\glimpse.png" />
     <Content Include="src\css\landingpage1.jpg" />
     <Content Include="src\css\ng-img-crop.css" />
@@ -1306,7 +1315,9 @@
     <Content Include="TestScripts\ExpiredTest.js" />
     <Content Include="TestScripts\HomeControllerTest.js" />
     <Content Include="TestScripts\AnalysisTest.js" />
+    <Content Include="TestScripts\ImagePromoTest.js" />
     <Content Include="TestScripts\MapTest.js" />
+    <Content Include="TestScripts\ModalControllerTest.js" />
     <Content Include="TestScripts\ProfileTest.js" />
     <Content Include="TestScripts\PromoTest.js" />
     <Content Include="TestScripts\RePostTest.js" />
@@ -1404,11 +1415,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55709</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:8080/</IISUrl>
+          <IISUrl>http://localhost:55709/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -22,6 +22,8 @@ using Android.Text;
 using Java.Lang;
 using Glimpse.Droid.Helpers;
 using MvvmCross.Binding.BindingContext;
+using Android.Graphics;
+using Android.Support.Design.Widget;
 
 namespace Glimpse.Droid.Views
 {
@@ -49,21 +51,43 @@ namespace Glimpse.Droid.Views
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as LoginActivity).SetCustomTitle("Vendor Sign Up");
 
+            //Set all fonts
+            Typeface tf0 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Light.otf");
+            Typeface tf1 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Heavy.otf");
+
             _addressTextView = (this.Activity as LoginActivity).FindViewById<TextView>(Resource.Id.txtAddress);
             _selectBuisinessLocationButton = (this.Activity as LoginActivity).FindViewById<Button>(Resource.Id.selectBusinessLocationButton);
             _selectBuisinessLocationButton.Click += OnSelectBuisinessLocationTapped;
 
             _email = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtEmail);
+            _email.SetTypeface(tf0, TypefaceStyle.Normal);
+
             _email.AfterTextChanged += _email_AfterTextChanged;
 
             _password = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtPassword);
+            _password.SetTypeface(tf0, TypefaceStyle.Normal);
             _password.AfterTextChanged += _confirmPassword_AfterTextChanged;
 
             _confirmPassword = (this.Activity as LoginActivity).FindViewById<EditText>(Resource.Id.txtConfirmPassword);
+            _confirmPassword.SetTypeface(tf0, TypefaceStyle.Normal);
             _confirmPassword.AfterTextChanged += _confirmPassword_AfterTextChanged;
 
+            Button btnSignUp = view.FindViewById<Button>(Resource.Id.SignUpButton);
+             btnSignUp.SetTypeface(tf1, TypefaceStyle.Normal);
+
+            Button angry_btn = (this.Activity as LoginActivity).FindViewById<Button>(Resource.Id.add);
+
+            angry_btn.SetTypeface(tf1, TypefaceStyle.Normal);
+
+
+           
+
+            _addressTextView.SetTypeface(tf0, TypefaceStyle.Normal);
+            _selectBuisinessLocationButton.SetTypeface(tf0, TypefaceStyle.Normal);
+
+
             _bindableProgress = new BindableProgress(this.Context);
-            _bindableProgress.Title = "Sign up in progress...";
+            _bindableProgress.Title = ViewModel.TextSource.GetText("Progress");
             var set = this.CreateBindingSet<VendorSignUpFragment, VendorSignUpViewModel>();
             set.Bind(_bindableProgress) .For(p => p.Visible).To(vm => vm.IsBusy);
             set.Apply();            
@@ -75,7 +99,10 @@ namespace Glimpse.Droid.Views
         {
             if ((!string.IsNullOrEmpty(ViewModel.Email)) && !Patterns.EmailAddress.Matcher(ViewModel.Email).Matches())
             {
-                _email.Error = "Enter a valid email address";
+                if (Glimpse.Core.Services.General.Settings.Language == "Français")
+                    _email.Error = "Entrez un courriel valide";
+                else
+                    _email.Error = "Enter a valid email address";
                 ViewModel.ValidEmail = false;             
             }
             else
@@ -90,7 +117,10 @@ namespace Glimpse.Droid.Views
         {
             if ((!string.IsNullOrEmpty(ViewModel.Password))  && (!string.IsNullOrEmpty(ViewModel.ConfirmPassword)) && (!ViewModel.Password.Equals(ViewModel.ConfirmPassword)))
             {
-                _confirmPassword.Error = "Passwords do not match";
+                if (Glimpse.Core.Services.General.Settings.Language == "Français")
+                    _confirmPassword.Error = "Les mots de passe ne correspondent pas";
+                else
+                    _confirmPassword.Error = "Passwords do not match";
                 ViewModel.ValidPassword = false;
             }
             else

@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+            android:background="@android:color/white">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white">
+        <TextView
+            android:id="@+id/ErrorMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#ff0000"
+            local:MvxBind="Text ErrorMessage, Mode=TwoWay" />
         <EditText
             android:id="@+id/promotionTitle"
             android:layout_width="match_parent"
@@ -16,36 +24,35 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="25dp"
-            android:hint="Title"
+            local:MvxLang="Hint TitleHint"
             android:paddingLeft="10dp"
             android:textColor="@color/black"
             android:imeOptions="actionDone"
             android:singleLine="true"
             local:MvxBind="Text PromotionTitle, Mode=TwoWay" />
-      <EditText
-          android:background="@drawable/edit_text_style"
-          android:layout_below="@id/promotionTitle"
-          android:layout_width="match_parent"
-          android:id="@+id/promotionDescription"
-          android:layout_marginBottom="10dp"
-          android:layout_marginRight="20dp"
-          android:layout_weight="30"
-          android:imeOptions="actionDone"
-          android:layout_marginLeft="20dp"
-          android:paddingLeft="10dp"
-          android:hint="Description"
-          android:textColor="@color/black"
-          local:MvxBind="Text PromotionDescription, Mode=TwoWay"
-          android:inputType="textMultiLine"
-          android:lines="8"
-          android:minLines="6"
-          android:gravity="top|left"
-          android:maxLines="10"
-          android:layout_height="wrap_content"
-          android:scrollbars="vertical"
-            />
+        <EditText
+            android:background="@drawable/edit_text_style"
+            android:layout_below="@id/promotionTitle"
+            android:layout_width="match_parent"
+            android:id="@+id/promotionDescription"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="30"
+            android:imeOptions="actionDone"
+            android:layout_marginLeft="20dp"
+            android:paddingLeft="10dp"
+            local:MvxLang="Hint DescriptionHint"
+            android:textColor="@color/black"
+            local:MvxBind="Text PromotionDescription, Mode=TwoWay"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:minLines="6"
+            android:gravity="top|left"
+            android:maxLines="10"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" />
         <TextView
-            android:text="Categories"
+            local:MvxLang="Text CategoriesMsg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView1"
@@ -60,6 +67,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
             android:gravity="top"
+            android:background="@android:color/white"
             android:layout_width="match_parent"
             android:layout_weight="50"
             android:weightSum="100"
@@ -76,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
-                    android:text="Footwear"
+                    local:MvxLang="Text FootwearRadio"
                     local:MvxBind="Checked FootwearIsChecked" />
                 <RadioButton
                     android:id="@+id/checkbox_electronic"
@@ -84,21 +92,21 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
-                    android:text="Electronic"
+                    local:MvxLang="Text ElectronicsRadio"
                     local:MvxBind="Checked ElectronicIsChecked" />
                 <RadioButton
                     android:id="@+id/checkbox_jewellery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jewellery"
+                    local:MvxLang="Text JewelleryRadio"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
-                    local:MvxBind="Checked JewelleryIsChecked" />
+                    local:MvxBind="Checked JewlleryIsChecked" />
                 <RadioButton
                     android:id="@+id/checkbox_restaurants"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Restaurants"
+                    local:MvxLang="Text RestaurantsRadio"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
                     local:MvxBind="Checked RestaurantsIsChecked"
@@ -107,7 +115,7 @@
                     android:id="@+id/checkbox_services"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Services"
+                    local:MvxLang="Text ServicesRadio"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
                     local:MvxBind="Checked ServicesIsChecked"
@@ -117,23 +125,23 @@
                     android:id="@+id/checkbox_apparel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Apparel"
+                    local:MvxLang="Text ApparelRadio"
                     android:textColor="@color/black"
                     android:buttonTint="@color/black"
                     local:MvxBind="Checked ApparelIsChecked" />
             </RadioGroup>
         </LinearLayout>
         <Button
-            android:text="Continue"
+            local:MvxLang="Text ContinueBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/ContinuePart1Button"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:textColor="#fff"
-            android:textStyle="bold"
-            android:height="70dp"
+            android:textStyle="normal"
+            android:height="60dp"
             android:paddingTop="2dp"
-            android:background="@drawable/ButtonSignUpStyle"
+            android:background="@drawable/rounded_shape_button_v2"
             android:layout_centerHorizontal="true"
             local:MvxBind="Click ContinueCommand"
             android:layout_alignParentBottom="false"

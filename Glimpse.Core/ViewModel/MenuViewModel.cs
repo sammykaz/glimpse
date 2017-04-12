@@ -23,6 +23,7 @@ namespace Glimpse.Core.ViewModel
         private IVendorDataService _vendorDataService;
         private User _user;
         private Vendor _vendor;
+        private bool AccountOptions = false;
 
         public MenuViewModel(IMvxMessenger messenger, ILoginDataService loginDataService, IUserDataService userDataService, IVendorDataService vendorDataService) : base(messenger)
         {
@@ -30,34 +31,28 @@ namespace Glimpse.Core.ViewModel
             _loginDataService = loginDataService;
             _userDataService = userDataService;
             _vendorDataService = vendorDataService;
-            CreateMenuItems();
+            CreateMenuItems();  
         }
 
         private async void CreateMenuItems()
-        {
+        {   
             MenuItems.Add(new MenuItem
             {
-                Title = "Logout",
-                ViewModelType = typeof(LoginMainViewModel),
-                Option = MenuOption.Logout,
-                IsSelected = false
-            });
-
-            MenuItems.Add(new MenuItem
-            {
-                Title = "Settings",
+                Title = TextSource.GetText("Settings"),
                 ViewModelType = typeof(SettingsViewModel),
                 Option = MenuOption.Settings,
                 IsSelected = false
             });
 
+            
             MenuItems.Add(new MenuItem
             {
-                Title = "Map",
+                Title = TextSource.GetText("Promotions"),
                 ViewModelType = typeof(ViewPagerViewModel),
                 Option = MenuOption.Logout,
                 IsSelected = false
             });
+            
 
             if (!string.IsNullOrEmpty(Settings.Email))
             {
@@ -68,23 +63,21 @@ namespace Glimpse.Core.ViewModel
             {
                 MenuItems.Add(new MenuItem
                 {
-                    Title = "Vendor Profile",
+                    Title = TextSource.GetText("Profile"),
                     ViewModelType = typeof(VendorProfilePageViewModel),
                     Option = MenuOption.VendorProfile,
                     IsSelected = false
                 });
-            }
-            else
-            {
+
                 MenuItems.Add(new MenuItem
                 {
-                    Title = "Buyer Profile",
-                    ViewModelType = typeof(BuyerProfilePageViewModel),
-                    Option = MenuOption.BuyerProfile,
-                    IsSelected = true
+                    Title = TextSource.GetText("Logout"),
+                    ViewModelType = typeof(LoginMainViewModel),
+                    Option = MenuOption.Logout,
+                    IsSelected = false
                 });
             }
-
+           
         }
 
         private void OnMenuEntrySelect(MenuItem item)
