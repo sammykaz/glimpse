@@ -6,7 +6,8 @@ namespace Glimpse.Droid
 {
     [Activity(
         MainLauncher = true,
-        Label = "@string/ApplicationName", 
+        Label = "@string/ApplicationName",
+        Icon = "@drawable/Logo",
         Theme = "@style/Theme.Splash", NoHistory = true, 
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, 
         ScreenOrientation = ScreenOrientation.Portrait)]

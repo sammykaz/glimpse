@@ -107,13 +107,13 @@ namespace Glimpse.Core.ViewModel
                         else
                         {
                             IsBusy = false;
-                            ErrorMessage = "Incorrect email or password.";
+                            ErrorMessage = TextSource.GetText("IncorrectInputMsg");
                         }
                     }
                     else
                     {
                         IsBusy = false;
-                        ErrorMessage = "Missing required field.";                        
+                        ErrorMessage = TextSource.GetText("MissingField");                        
                     }
 
                 });

@@ -2,6 +2,7 @@
 
 app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibModal', function ($scope, dataService, $state, $uibModal) {
     $scope.data = "";
+    
 
     dataService.GetAuthorizeData().then(function (data) {
         console.log("Authorized");
@@ -12,7 +13,9 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
 
     var promotionsquery = dataService.getPromotions().query();
     promotionsquery.$promise.then(function (data) {
-        //debugger;
+        for (var i = 0; i < data.length; i++) {
+            data[i].PromotionImageURL = encodeURIComponent(data[i].PromotionImageURL)
+        }
         $scope.promotions = data;
     }, function (error) {
         console.log("Error: Could not load promotions");
@@ -46,6 +49,15 @@ app.controller('PromotionController', ['$scope', 'dataService', '$state', '$uibM
 
 app.controller('modalImageController', function ($scope, $timeout, dataService, promotionDetails) {
     
+    //var Category = ["Footwear", "Electronics", "Jewellery", "Restaurants", "Services", "Apparel"];
+    $scope.showArrows = false;
+    $scope.Title = promotionDetails.Title;
+    //$scope.Category = Category[promotionDetails.Category];
+    $scope.Category = promotionDetails.Category;
+    $scope.Description = promotionDetails.Description;
+    $scope.PromotionStartDate = promotionDetails.PromotionStartDate;
+    $scope.PromotionEndDate = promotionDetails.PromotionEndDate;
+
     $scope.promotionImageURL = promotionDetails.PromotionImageURL;
     $scope.promotionImages = [];
     $scope.images = [];
@@ -61,6 +73,8 @@ app.controller('modalImageController', function ($scope, $timeout, dataService, 
         for (var i = 0; i < $scope.promotionImages.length; i++) {
             $scope.images.push($scope.promotionImages[i].ImageURL);
         }
+        if ($scope.promotionImages.length > 1)
+            $scope.showArrows = true;
     }
     $scope.direction = 'left';
     $scope.currentIndex = 0;

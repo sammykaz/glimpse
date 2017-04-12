@@ -27,6 +27,7 @@ using static Android.Gms.Maps.GoogleMap;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform.Droid.WeakSubscription;
 using MvvmCross.Platform.WeakSubscription;
+using Glimpse.Droid.Controls.Listener;
 
 namespace Glimpse.Droid.Views
 {
@@ -45,6 +46,7 @@ namespace Glimpse.Droid.Views
         private List<PromotionWithLocation> activePromotions;
         private IAlgorithm clusterAlgorithm;
         private RadioGroup _radioGroup;
+        private SearchView _searchView;
 
 
         private Dictionary<int, PromotionItem> visibleMarkers = new Dictionary<int, PromotionItem>();
@@ -57,9 +59,27 @@ namespace Glimpse.Droid.Views
             var view = this.BindingInflate(Resource.Layout.MapView, null);
             _mapView = view.FindViewById<MapView>(Resource.Id.map);
             _mapView.OnCreate(savedInstanceState);
+
+           
             return view;
         }
 
+        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        {
+
+            _searchView = (SearchView)View.FindViewById(Resource.Id.map_searchview);
+            _radioGroup = (RadioGroup)View.FindViewById(Resource.Id.mapfilter_radiogroup);
+
+            _searchView.SearchClick += delegate
+            {
+                _radioGroup.Visibility = ViewStates.Visible;
+            };
+
+            //done this weird way because of issue clearing the focus of the search view
+            var listener = new MySearchViewOnCloseListener();
+            listener.view = _radioGroup;
+            _searchView.SetOnCloseListener(listener);
+        }
 
         public override void OnActivityCreated(Bundle p0)
         {
@@ -76,7 +96,11 @@ namespace Glimpse.Droid.Views
             {
                 clusterManager.ClearItems();
                 clusterList.Clear();
-                ShowPromotionsOnMap();
+                ShowPromotionsOnMap();               
+            }
+            else if(e.PropertyName == "Location")
+            {
+                ChangeMapFocus(ViewModel.Location.Lat, ViewModel.Location.Lng);
             }
         }
 
@@ -169,12 +193,11 @@ namespace Glimpse.Droid.Views
             network_enabled = locMgr.IsProviderEnabled(LocationManager.NetworkProvider);
 
             return gps_enabled || network_enabled;
-        }
+        }    
 
-
-        private void ViewModel_LocationUpdate(object sender, LocationChangedHandlerArgs e)
+        private void ChangeMapFocus(double lat, double lng)
         {
-            var latLng = new LatLng(e.Location.Lat, e.Location.Lng);
+            var latLng = new LatLng(lat, lng);
             var cameraUpdate = CameraUpdateFactory.NewLatLng(latLng);
             map.AnimateCamera(cameraUpdate);
         }
@@ -222,7 +245,6 @@ namespace Glimpse.Droid.Views
                 .To(vm => vm.UserCurrentLocation)
                 .WithConversion(new LatLngValueConverter(), null).TwoWay();
             set.Apply();
-            ViewModel.LocationUpdate += ViewModel_LocationUpdate;
 
             //map settings
             map.UiSettings.MapToolbarEnabled = true;

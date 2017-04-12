@@ -3,6 +3,7 @@ using MvvmCross.Localization;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 using Glimpse.Core.Utility;
+using Glimpse.Localization;
 
 namespace Glimpse.Core
 {
@@ -20,7 +21,10 @@ namespace Glimpse.Core
             CreatableTypes()
                 .EndingWith("Service")
                 .AsInterfaces()
-                .RegisterAsLazySingleton();       
+                .RegisterAsLazySingleton();
+
+            Mvx.RegisterSingleton<IMvxTextProvider>
+                (new ResxTextProvider(Strings.ResourceManager));     
 
             RegisterAppStart(new AppStart());
         }

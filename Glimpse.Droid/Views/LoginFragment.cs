@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -16,6 +15,7 @@ using Glimpse.Droid.Extensions;
 using MvvmCross.Binding.Droid.BindingContext;
 using MvvmCross.Droid.Shared.Attributes;
 using MvvmCross.Droid.Support.V4;
+using Android.Graphics;
 
 namespace Glimpse.Droid.Views
 {
@@ -36,6 +36,25 @@ namespace Glimpse.Droid.Views
         {
             base.OnViewCreated(view, savedInstanceState);
             (this.Activity as LoginActivity).SetCustomTitle("Login");
+
+
+            //Set fonts
+            TextView welcomeLabel = view.FindViewById<TextView>(Resource.Id.lblWelcomeGlimpse);
+            Typeface tf0 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Light.otf");
+            welcomeLabel.SetTypeface(tf0, TypefaceStyle.Normal);
+
+            TextView txtMerchant = view.FindViewById<TextView>(Resource.Id.txtMerchant); 
+            Button btnLanguage = view.FindViewById<Button>(Resource.Id.btnLanguage);
+
+            Typeface tf1 = Typeface.CreateFromAsset(this.Activity.Assets, "Avenir-Heavy.otf");
+            btnLanguage.SetTypeface(tf1, TypefaceStyle.Normal);
+            txtMerchant.SetTypeface(tf1, TypefaceStyle.Normal);
+
+            Button btnSignIn = view.FindViewById<Button>(Resource.Id.btnSignIn);
+            btnSignIn.SetTypeface(tf1, TypefaceStyle.Normal);
+
+            Button btnSignUp = view.FindViewById<Button>(Resource.Id.btnSignUpVendor);
+            btnSignUp.SetTypeface(tf1, TypefaceStyle.Normal);
         }
     }
 }

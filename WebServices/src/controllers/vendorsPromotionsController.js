@@ -1,7 +1,10 @@
 ﻿'use strict';
 
 app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state', '$uibModal', function ($scope, dataService, $state, $uibModal) {
-
+    $scope.editOn = false;
+    $scope.removeOn = false;
+    $scope.maxPage = 0;
+    $scope.currentPage = 1;
     dataService.GetAuthorizeData().then(function (data) {
         console.log("Authorized");
     }, function (error) {
@@ -13,9 +16,24 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
         var promotionsquery = dataService.getAllPromotionFromSpecificVendor(localStorage.id).query();
         promotionsquery.$promise.then(function (data) {
             $scope.mypromotions = data;
+            $scope.maxPage = Math.ceil(data.length / 7);
         }, function (error) {
             console.log("Error: Could not load promotions");
         })
+    }
+    $scope.getNumber = function (num) {
+        return new Array(num);
+    }
+    $scope.setCurrentPage = function (currentPage) {
+        $scope.currentPage = currentPage;
+    }
+    $scope.setCurrentPageToNext = function () {
+        if ($scope.currentPage + 1 <= $scope.maxPage)
+            $scope.currentPage++;
+    }
+    $scope.setCurrentPageToPrev = function () {
+        if ($scope.currentPage - 1 > 0)
+            $scope.currentPage--;
     }
     getVendorsPromotion();
     $scope.showCreatePromotion = function () {
@@ -34,6 +52,7 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
             console.log("Modal dismissed");
         });
     }
+
 
     $scope.editPromotion = function (promotion) {
         $uibModal.open({
@@ -56,17 +75,43 @@ app.controller('vendorsPromotionsController', ['$scope', 'dataService', '$state'
         });
     }
 
-    $scope.deletePromotion = function (promotion, index) {
-        dataService.deletePromotion().delete({
-            promotion: promotion.PromotionId
-        }).$promise.then(function () {
-            $scope.mypromotions.splice(index, 1);
+    $scope.turnEditOn = function () {
+        $scope.editOn = true;
+        $scope.removeOn = false;
+    }
+
+    $scope.turnRemoveOn = function () {
+        $scope.editOn = false;
+        $scope.removeOn = true;
+    }
+
+    $scope.turnOff = function () {
+        $scope.editOn = false;
+        $scope.removeOn = false;
+    }
+
+    $scope.removePromotion = function (promotion, index) {
+        $uibModal.open({
+            templateUrl: '/src/views/deletePromotionConfirmation.html',
+            controller: 'deletePromotionModalController',
+            size: 'lg',
+            scope: $scope
+        }).result.then(function (result) {
+            dataService.deletePromotion().delete({
+                promotion: promotion.PromotionId
+            }).$promise.then(function () {
+                $scope.mypromotions.splice(index, 1);
+            });
+        }, function () {
+            console.log("Modal dismissed");
         });
     }
 
     $scope.isPromotionExpired = function (promotionEndDate) {
         var currentDate = new Date();
         var promotionEndDate = new Date(promotionEndDate);
+        promotionEndDate.setHours(0, 0, 0, 0);
+        currentDate.setHours(0, 0, 0, 0);
         return currentDate.getTime() > promotionEndDate.getTime();
     }
 
@@ -123,6 +168,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.showImageWarning = false;
     $scope.isResetEnable = false;
     $scope.isSilderFilterEnable = false;
+    $scope.isAddImageBtn = true;
     $scope.previewImage = promotionDetails.PromotionImageURL ? "https://glimpseimages.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';
     var imageUrl = promotionDetails.PromotionImageURL ? "https://glimpseimages.blob.core.windows.net/imagestorage/" + promotionDetails.PromotionImageURL : '';
 
@@ -210,12 +256,15 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             $scope.showTitleWarning = false;
             $scope.showDescriptionWarning = true;
         }
-        else if ($scope.category == undefined) {
+        else if ($scope.category == undefined || $scope.category === "") {
             $scope.showDescriptionWarning = false;
+            $scope.showTitleWarning = false;
             $scope.showCategorynWarning = true;
         }
         else if ($scope.previewImage == null || $scope.previewImage.length == 0) {
             $scope.showCategorynWarning = false;
+            $scope.showDescriptionWarning = false;
+            $scope.showTitleWarning = false;
             $scope.showImageWarning = true;
         }
 
@@ -225,6 +274,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
             var edt = $scope.edt;
             var promotionTitleForPicture = $scope.promotionTitle.split(' ').join('');
             var PromotionImages = [];
+            sdt.setHours(0, 0, 0, 0);
+            edt.setHours(0, 0, 0, 0);
             var promotionData = {
                 RequestFromWeb : true,
                 title: $scope.promotionTitle,
@@ -302,7 +353,8 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
                 promotionData["Title"] = promotion["title"];
                 promotionData["Vendor"] = promotion["vendor"] || null;
                 promotionData["VendorId"] = promotion["vendorId"];
-
+                promotionData["PromotionEndDate"].setHours(0, 0, 0, 0);
+                promotionData["PromotionStartDate"].setHours(0, 0, 0, 0);
                 dataService.updatePromotion().update({
                     promotion: promotionId
                 }, promotionData).$promise.then(function () {
@@ -360,6 +412,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
         if (!!$scope.picFile) {
             imageFile = $scope.picFile;
             $scope.removeImage();
+            $scope.isAddImageBtn = true;
             resetSliderFilter();
             //$scope.isSilderFilterEnable = true;
             $scope.previewImage = imageFile;
@@ -910,6 +963,7 @@ app.controller('modalController', function ($scope, $uibModalInstance, Upload, $
     $scope.saveImage = function () {
         getImageData().then(function (imageBased64) {
             addSlide(imageBased64);
+            $scope.isAddImageBtn = false;
         });
     }
 
@@ -1159,4 +1213,15 @@ app.controller('changeDateModalController', function ($scope, $uibModalInstance,
         return '';
     }
 
+});
+
+app.controller('deletePromotionModalController', function ($scope, $uibModalInstance) {
+
+    $scope.confirm = function () {
+        $uibModalInstance.close('Confirmed');
+    }
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    }
 });

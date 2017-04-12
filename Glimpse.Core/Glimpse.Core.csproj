@@ -72,6 +72,7 @@
     <Compile Include="Converters\InMemoryImageConverter.cs" />
     <Compile Include="Converters\SecondsToMinuteValueConverter.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Helpers\LikedItemWrap.cs" />
     <Compile Include="Helpers\PropValue.cs" />
     <Compile Include="Helpers\LocationChangedHandlerArgs.cs" />
     <Compile Include="Helpers\Settings.cs" />
@@ -106,17 +107,20 @@
     <Compile Include="BlobClient\BlobClient.cs" />
     <Compile Include="Services\General\Cryptography.cs" />
     <Compile Include="Services\General\GoogleWebService.cs" />
+    <Compile Include="Services\General\Log.cs" />
     <Compile Include="Services\General\Settings.cs" />
     <Compile Include="Utility\MenuOption.cs" />
+    <Compile Include="Utility\ResxTextProvider.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BuyerProfilePageViewModel.cs" />
     <Compile Include="ViewModel\CreatePromotionPart2ViewModel.cs" />
     <Compile Include="ViewModel\LikedPromotionsViewModel.cs" />
+    <Compile Include="ViewModel\LoginSettingsViewModel.cs" />
     <Compile Include="ViewModel\PromotionDialogViewModel.cs" />
     <Compile Include="ViewModel\CreatePromotionViewModel.cs" />
     <Compile Include="ViewModel\LoginMainViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Compile Include="ViewModel\TileDetailsViewModel.cs" />
+    <Compile Include="ViewModel\PromoDetailsViewModel.cs" />
     <Compile Include="ViewModel\ViewPagerViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -154,6 +158,10 @@
     </Reference>
     <Reference Include="MvvmCross.Platform, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Platform.4.4.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.File, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.File.4.4.0\lib\portable-net45+win+wpa81+wp80\MvvmCross.Plugins.File.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MvvmCross.Plugins.Messenger, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -259,7 +267,12 @@
     <Folder Include="bin\Debug\" />
     <Folder Include="Messages\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Glimpse.Localization\Glimpse.Localization.csproj">
+      <Project>{d9032fc3-4f9d-4117-8ac1-c14c46b78a79}</Project>
+      <Name>Glimpse.Localization</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EBE2E3C9-3303-4D0B-B86F-24D5E74093DC}</ProjectGuid>
+    <ProjectGuid>{48E97A29-830A-427D-9C3A-4E72330F44B1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Glimpse.Droid.UITests</RootNamespace>
     <AssemblyName>Glimpse.Droid.UITests</AssemblyName>

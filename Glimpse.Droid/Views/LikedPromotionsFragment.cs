@@ -13,8 +13,10 @@ using Glimpse.Core.Model;
 using System.IO;
 using Glimpse.Core.Contracts.Repository;
 using Glimpse.Core.Repositories;
+using Glimpse.Droid.Controls.Listener;
 using SQLite.Net.Platform.XamarinAndroid;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Glimpse.Droid.Views
 {
@@ -41,27 +43,44 @@ namespace Glimpse.Droid.Views
             _swipeRefreshLayout = (MvxSwipeRefreshLayout)view.FindViewById(Resource.Id.refresher);
             _listView = (ListView)view.FindViewById(Resource.Id.listView_LikedItems);
             _listView.SetOnScrollListener(this);
-        }
 
-        public override async void OnResume()
+            _searchView = (SearchView)View.FindViewById(Resource.Id.liked_searchview);
+            _radioGroup = (RadioGroup)View.FindViewById(Resource.Id.filter_radiogroup);
+           
+            _searchView.SearchClick += delegate
+            {
+                _radioGroup.Visibility = ViewStates.Visible;
+            };
+
+            //done this weird way because of issue clearing the focus of the search view
+            var listener = new MySearchViewOnCloseListener();
+            listener.view = _radioGroup;           
+            _searchView.SetOnCloseListener(listener); 
+           
+        }
+      
+
+    public override async void OnResume()
         {
             base.OnResume();
 
              _radioGroup = (RadioGroup)View.FindViewById(Resource.Id.filter_radiogroup);
              _radioGroup.SetOnCheckedChangeListener(this);
-
-            _searchView = (SearchView)View.FindViewById(Resource.Id.searchview);           
-            _searchView.SetIconifiedByDefault(true);
+            
+            _searchView.SetIconifiedByDefault(true);           
 
         }
+
+
 
         public async void ReloadPromotions()
         {           
             _localPromotionRepository = new LocalPromotionRepository();
             var path = GetDbPath();
             await _localPromotionRepository.InitializeAsync(path, new SQLitePlatformAndroid());
-            ViewModel.PromotionList = await _localPromotionRepository.GetActivePromotions();
-            ViewModel.PromotionsStored = ViewModel.PromotionList;
+            List<PromotionWithLocation> activePromos = await _localPromotionRepository.GetActivePromotions();
+            ViewModel.PromotionList = ViewModel.PromotionWithLocationToLikedItemWrap(activePromos);
+            ViewModel.PromotionsStored = activePromos;
            
         }
 
@@ -78,6 +97,7 @@ namespace Glimpse.Droid.Views
             if (checkedId == 0)
             {
                 ViewModel.SelectedItem = null;
+                _searchView.Visibility = ViewStates.Visible;
             }
             else
             {
@@ -111,3 +131,5 @@ namespace Glimpse.Droid.Views
         }
     }
 }
+
+

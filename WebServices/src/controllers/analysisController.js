@@ -1,7 +1,10 @@
 ﻿'use strict';
 app.controller('analysisController', ['$scope', 'dataService', function ($scope, dataService) {
-
+    $scope.maxPage = 0;
+    $scope.currentPage = 1;
     $scope.data = [];
+    $scope.totalSum = 0;
+    $scope.todaySum = 0;
     $scope.dataHours = [];
     $scope.dataDays = [];
     $scope.totalClicked = [];
@@ -12,10 +15,25 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
     var promotionsquery = dataService.getAllPromotionFromSpecificVendor(localStorage.id).query();
     promotionsquery.$promise.then(function (data) {
         $scope.promotions = data;
+        $scope.maxPage = Math.ceil(data.length / 7);
         getPromotionClicks();
     }, function (error) {
         console.log("Error: Could not load promotions");
     })
+    $scope.getNumber = function (num) {
+        return new Array(num);
+    }
+    $scope.setCurrentPage = function (currentPage) {
+        $scope.currentPage = currentPage;
+    }
+    $scope.setCurrentPageToNext = function () {
+        if ($scope.currentPage + 1 <= $scope.maxPage)
+            $scope.currentPage++;
+    }
+    $scope.setCurrentPageToPrev = function () {
+        if ($scope.currentPage - 1 > 0)
+            $scope.currentPage--;
+    }
 
     var getPromotionClicks = function () {
         var promotionClicksquery = dataService.getPromotionClicks().query();
@@ -29,13 +47,13 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
     
     var getVendorPromotionsClicked = function () {
         angular.forEach($scope.promotions, function (element, index) {
-            angular.forEach($scope.promotionClicks, function(element1, index1){
+            angular.forEach($scope.promotionClicks, function (element1, index1) {
+                if (element.clicks == undefined) {
+                    element.clicks = 0;
+                }
                 if (element.PromotionId == element1.PromotionId) {
-                    if (element.clicks == undefined)
-                        element.clicks = 1;
-                    else {
-                        element.clicks++;
-                    }
+                    element.clicks++;
+                    $scope.totalSum++;
                     element1.title = element.Title;
                     $scope.vendorPromotionsClicked.push(element1);
                     var newDate = new Date(element1.Time);
@@ -86,6 +104,7 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
                             break;
                         case $scope.labels[6]:
                             $scope.data[indexSerie][6]++;
+                            $scope.todaySum++;
                             break;
                         default:
                             break;
@@ -122,7 +141,7 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
     };
     moment().format('MMMM Do YYYY, h:mm:ss a');
     moment().format('MMMM Do YYYY, h:mm:ss a')
-
+    $scope.colors = ['#72C02C', '#3498DB', '#717984', '#F1C40F'];
     $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }];
     $scope.chartLineDatesOptions = {
         scales: {
@@ -166,5 +185,7 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
         },
         legend: { display: true }
     };
+
+    var get
 
 }]);

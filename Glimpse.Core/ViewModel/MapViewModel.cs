@@ -40,7 +40,22 @@ namespace Glimpse.Core.ViewModel
         {
             base.Start();
             await ReloadDataAsync();
+        }     
+
+        private Location _location;
+        public Location Location
+        {
+            get
+            {               
+                return _location;
+            }
+            set
+            {
+                _location = value;
+                RaisePropertyChanged(() => Location);
+            }
         }
+
 
         protected override async Task InitializeAsync()
         {
@@ -89,19 +104,8 @@ namespace Glimpse.Core.ViewModel
             {
                 Lat = e.Position.Latitude,
                 Lng = e.Position.Longitude
-            };
-            OnLocationUpdate(UserCurrentLocation);
-        }
-
-
-         private void OnLocationUpdate(Location location)
-        {
-            if (LocationUpdate != null)
-            {
-                LocationChangedHandlerArgs args = new LocationChangedHandlerArgs(location);
-                LocationUpdate.Invoke(this, args);
-            }
-        }
+            };           
+        }    
 
         public int DefaulZoom
         {
@@ -163,10 +167,39 @@ namespace Glimpse.Core.ViewModel
             get
             {
                 List<string> allCategories = new List<string>();
-                allCategories.Add("All");
+                if (Glimpse.Core.Services.General.Settings.Language == "Français")
+                    allCategories.Add("Tout");
+                else
+                    allCategories.Add("All");
                 foreach (string name in Enum.GetNames(typeof(Categories)))
                 {
-                    allCategories.Add(name);
+                    if (Glimpse.Core.Services.General.Settings.Language == "Français")
+                    {
+                        switch (name)
+                        {
+                            case "Footwear":
+                                allCategories.Add("Chaussure");
+                                break;
+                            case "Electronics":
+                                allCategories.Add("Électronique");
+                                break;
+                            case "Jewellery":
+                                allCategories.Add("Bijoux");
+                                break;
+                            case "Restaurants":
+                                allCategories.Add("Restaurants");
+                                break;
+                            case "Services":
+                                allCategories.Add("Services");
+                                break;
+                            case "Apparel":
+                                allCategories.Add("Vêtements");
+                                break;
+                        }
+                    }
+
+                    else
+                        allCategories.Add(name);
                 };
                 return allCategories;
             }

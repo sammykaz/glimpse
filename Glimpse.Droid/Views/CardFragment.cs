@@ -39,8 +39,8 @@ namespace Glimpse.Droid.Views
         private BindableProgress _bindableProgress;
         private LocalPromotionRepository _localPromotionRepository;
         private SearchView _searchView;
-        private Button _likeButton;
-        private Button _dislikeButton;
+        private ImageButton _likeButton;
+        private ImageButton _dislikeButton;
         private CardSwipeListener _cardSwipeListener;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -60,11 +60,11 @@ namespace Glimpse.Droid.Views
 
             _cardStack = (this.Activity as MainActivity).FindViewById<CardStack>(Resource.Id.card_stack);
             _cardStack.ContentResource = Resource.Layout.Card_Layout;
-            _cardAdapter = new CardAdapter(this.Context, Resource.Layout.Card_Layout);
+            _cardAdapter = new CardAdapter(this.Context, Resource.Layout.Card_Layout, this.Activity);
 
             //create binding for progress
             _bindableProgress = new BindableProgress(this.Context);
-            _bindableProgress.Title = "Loading Promotions";
+            _bindableProgress.Title = ViewModel.TextSource.GetText("Progress");
             var set = this.CreateBindingSet<CardFragment, CardViewModel>();
             set.Bind(_bindableProgress).For(p => p.Visible).To(vm => vm.IsBusy);
             set.Apply();
@@ -93,13 +93,21 @@ namespace Glimpse.Droid.Views
 
 
             //Subscribing to events
-            _likeButton = view.FindViewById<Button>(Resource.Id.btnLike);
-            _dislikeButton = view.FindViewById<Button>(Resource.Id.btnDislike);
+            _likeButton = view.FindViewById<ImageButton>(Resource.Id.btnLike);
+            _dislikeButton = view.FindViewById<ImageButton>(Resource.Id.btnDislike);
             _likeButton.Click += LikeButton_Click;      
             _dislikeButton.Click += DislikeButton_Click;
             _cardSwipeListener.OnCardSwipeActionEvent += _cardSwipeListener_OnCardSwipeActionEvent;
+            _searchView.SearchClick += delegate
+            {
+                _radioGroup.Visibility = ViewStates.Visible;
+            };
 
-             
+            //done this weird way because of issue clearing the focus of the search view
+            var listener = new MySearchViewOnCloseListener();
+            listener.view = _radioGroup;
+            _searchView.SetOnCloseListener(listener);
+
             _cardStack.Adapter = _cardAdapter;
         }
 

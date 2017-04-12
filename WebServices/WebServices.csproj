@@ -290,14 +290,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612220544451_fluent.cs" />
-    <Compile Include="Migrations\201612220544451_fluent.Designer.cs">
-      <DependentUpon>201612220544451_fluent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612220657108_location.cs" />
-    <Compile Include="Migrations\201612220657108_location.Designer.cs">
-      <DependentUpon>201612220657108_location.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201612270323003_migration1.cs" />
     <Compile Include="Migrations\201612270323003_migration1.Designer.cs">
       <DependentUpon>201612270323003_migration1.cs</DependentUpon>
@@ -354,6 +346,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="bin\WebServices.dll" />
+    <Content Include="bin\WebServices.pdb" />
+    <Content Include="conf.js" />
     <Content Include="Content\angular-block-ui.css" />
     <Content Include="Content\angular-block-ui.min.css" />
     <Content Include="Content\bootstrap-flex.css" />
@@ -374,8 +369,13 @@
     <Content Include="Global.asax" />
     <Content Include="Gruntfile.js" />
     <Content Include="karma.conf.js" />
+    <Content Include="logs\logs--2017-03-04_05-22-30-PM.log" />
+    <Content Include="logs\logs--2017-03-04_06-02-01-PM.log" />
+    <Content Include="logs\logs--2017-03-04_06-16-50-PM.log" />
     <None Include="Properties\PublishProfiles\GlimpseMobile - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\GlimpseMobile - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\glimpseOfficial - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\glimpseOfficial - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseService - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseService - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\glimpseServices - FTP.pubxml" />
@@ -1248,11 +1248,15 @@
     <Content Include="Scripts\ng-file-upload-shim.min.js" />
     <Content Include="Scripts\ng-file-upload.js" />
     <Content Include="Scripts\ng-file-upload.min.js" />
+    <Content Include="Scripts\ng-img-crop.js" />
     <Content Include="Scripts\ng-map.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Index.cshtml" />
+    <Content Include="Scripts\rzslider.js" />
+    <Content Include="Scripts\rzslider.min.js" />
     <Content Include="Scripts\tether.min.js" />
+    <Content Include="Scripts\TweenMax.min.js" />
     <Content Include="Scripts\ui-cropper.js" />
     <Content Include="src\controllers\homeController.js" />
     <Content Include="src\controllers\loginController.js" />
@@ -1261,19 +1265,38 @@
     <Content Include="src\controllers\profileController.js" />
     <Content Include="src\controllers\promotionController.js" />
     <Content Include="src\controllers\signupController.js" />
+    <Content Include="src\controllers\vendorsPromotionsController.js" />
+    <Content Include="src\css\10721229.jpg" />
     <Content Include="src\css\animate.css" />
     <Content Include="src\css\bg.png" />
+    <Content Include="src\css\blank.gif" />
+    <Content Include="src\css\carousel1.jpeg" />
+    <Content Include="src\css\carousel2.jpeg" />
+    <Content Include="src\css\carousel3.jpeg" />
+    <Content Include="src\css\carousel4.jpg" />
+    <Content Include="src\css\carousel5.jpeg" />
+    <Content Include="src\css\cover_city1.jpg" />
     <Content Include="src\css\cropper.css" />
     <Content Include="src\css\cropper.min.css" />
     <Content Include="src\css\css.css" />
+    <Content Include="src\css\glimpse-m.png" />
+    <Content Include="src\css\glimpse.png" />
+    <Content Include="src\css\landingpage1.jpg" />
     <Content Include="src\css\ng-img-crop.css" />
+    <Content Include="src\css\paddle_next_999.png" />
+    <Content Include="src\css\paddle_next_fff.png" />
+    <Content Include="src\css\paddle_prev_999.png" />
+    <Content Include="src\css\paddle_prev_fff.png" />
     <Content Include="src\css\pbk.jpg" />
+    <Content Include="src\css\rzslider.min.css" />
+    <Content Include="src\css\slider.css" />
     <Content Include="src\css\ui-cropper.css" />
     <Content Include="src\css\wp.jpg" />
     <Content Include="src\services\authenticationService.js" />
     <Content Include="src\services\dataService.js" />
     <Content Include="src\services\userService.js" />
     <Content Include="src\views\createPromotion.html" />
+    <Content Include="src\views\deletePromotionConfirmation.html" />
     <Content Include="src\views\homeView.html" />
     <Content Include="src\views\imageFullSizeView.html" />
     <Content Include="src\views\loginView.html" />
@@ -1281,7 +1304,9 @@
     <Content Include="src\views\mapView.html" />
     <Content Include="src\views\analysisView.html" />
     <Content Include="src\views\profileView.html" />
+    <Content Include="src\views\showPromotion.html" />
     <Content Include="src\views\signupView.html" />
+    <Content Include="src\views\vendorsPromotionsView.html" />
     <Content Include="src\views\viewPromotion.html" />
     <Content Include="TestScripts\DefaultTest.js" />
     <Content Include="TestScripts\e2e\MapE2E.js" />
@@ -1290,11 +1315,14 @@
     <Content Include="TestScripts\ExpiredTest.js" />
     <Content Include="TestScripts\HomeControllerTest.js" />
     <Content Include="TestScripts\AnalysisTest.js" />
+    <Content Include="TestScripts\ImagePromoTest.js" />
     <Content Include="TestScripts\MapTest.js" />
+    <Content Include="TestScripts\ModalControllerTest.js" />
     <Content Include="TestScripts\ProfileTest.js" />
     <Content Include="TestScripts\PromoTest.js" />
     <Content Include="TestScripts\RePostTest.js" />
     <Content Include="TestScripts\SignUpTest.js" />
+    <Content Include="TestScripts\VendorPromotionControllerTest.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1317,14 +1345,14 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="test-results.testxml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\version.json" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".bin\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\HelpPage\Views\Help\DisplayTemplates\" />
     <Folder Include="Areas\HelpPage\Views\Shared\" />
     <Folder Include="Views\Home\" />
-    <Folder Include="Utility\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1341,12 +1369,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612220544451_fluent.resx">
-      <DependentUpon>201612220544451_fluent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612220657108_location.resx">
-      <DependentUpon>201612220657108_location.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612270323003_migration1.resx">
       <DependentUpon>201612270323003_migration1.cs</DependentUpon>
     </EmbeddedResource>
@@ -1393,11 +1415,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55709</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:8080/</IISUrl>
+          <IISUrl>http://localhost:55709/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

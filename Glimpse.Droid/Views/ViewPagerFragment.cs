@@ -25,8 +25,8 @@ namespace Glimpse.Droid.Views
         private CustomViewPager _viewPager;
         private TabLayout _tabLayout;
         private MvxViewPagerFragmentAdapter _adapter;
-        private int[] _tabIconsGrey = { Resource.Drawable.ic_thumbs_up_down_dark_grey, Resource.Drawable.ic_thumb_up_dark_grey, Resource.Drawable.ic_location_dark_grey };
-        private int[] _tabIconsGreen = { Resource.Drawable.ic_thumbs_up_down_green, Resource.Drawable.ic_thumb_up_green, Resource.Drawable.ic_location_green };
+        private int[] _tabIconsGrey = { Resource.Drawable.ic_thumbs_up_down_dark_grey, Resource.Drawable.ic_playlist_add_check_grey_24px, Resource.Drawable.ic_location_dark_grey };
+        private int[] _tabIconsGreen = { Resource.Drawable.ic_thumbs_up_down_green, Resource.Drawable.ic_playlist_add_check_green_24px, Resource.Drawable.ic_location_green };
 
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -70,6 +70,14 @@ namespace Glimpse.Droid.Views
             _tabLayout.GetTabAt(0).SetIcon(_tabIconsGreen[0]);
             _tabLayout.GetTabAt(1).SetIcon(_tabIconsGrey[1]);
             _tabLayout.GetTabAt(2).SetIcon(_tabIconsGrey[2]);
+
+            ViewModel.LikedPromotionsViewModel.LocationUpdate += LikedPromotionsViewModel_LocationUpdate;
+        }
+
+        private void LikedPromotionsViewModel_LocationUpdate(object sender, Core.Helpers.LocationChangedHandlerArgs e)
+        {
+            _viewPager.SetCurrentItem(2, true);
+            ViewModel.MapViewModel.Location = e.Location;
         }
 
         public void OnPageScrollStateChanged(int state)
@@ -103,6 +111,10 @@ namespace Glimpse.Droid.Views
             if (_viewPager.CurrentItem == 1 && _viewPager.IsShown)
             {
                 _viewPager.SetCurrentItem(0, true);
+            }
+           else if (_viewPager.CurrentItem == 2 && _viewPager.IsShown)
+            {
+                _viewPager.SetCurrentItem(1, true);
             }
             else
             {

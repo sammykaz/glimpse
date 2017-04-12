@@ -46,7 +46,7 @@ namespace Glimpse.Droid.UITests
             app.WaitForElement("cardImage");
 
             //Act
-            var initialCardStack = app.Query("cardTitle").Select(x => x.Text).ToList() ;
+            var initialCardStack = app.Query("cardTitle").Select(x => x.Text).ToList();
             var cardStackAfterSwipes = app.Query("cardTitle").Select(x => x.Text).ToList();
             app.SwipeRightToLeft();
             cardStackAfterSwipes.RemoveAt(cardStackAfterSwipes.Count - 1);
@@ -57,7 +57,7 @@ namespace Glimpse.Droid.UITests
             app.SwipeLeftToRight();
             cardStackAfterSwipes.RemoveAt(cardStackAfterSwipes.Count - 1);
             var initialInde = app.Query(x => x.Id("cardImage"));
-            
+
 
             //Assert
             Assert.IsTrue((initialCardStack.Count - 3) == cardStackAfterSwipes.Count);
@@ -224,13 +224,13 @@ namespace Glimpse.Droid.UITests
             app.Tap(x => x.Text("Electronics"));
             electronicdealsTitle = app.Query("cardTitle").Select(x => x.Text).ToList();
             promo1 = electronicdealsTitle[electronicdealsTitle.Count - 1];
-            app.SwipeLeftToRight();
+            app.Tap(x => x.Id("btnLike"));
             electronicdealsTitle.RemoveAt(electronicdealsTitle.Count - 1);
 
 
             //saving title of second promo
             promo2 = electronicdealsTitle[electronicdealsTitle.Count - 1];
-            app.SwipeLeftToRight();
+            app.Tap(x => x.Id("btnLike"));
             electronicdealsTitle.RemoveAt(electronicdealsTitle.Count - 1);
             app.Tap(x => x.Class("AppCompatImageView").Index(1));
 
@@ -253,6 +253,7 @@ namespace Glimpse.Droid.UITests
             Assert.IsTrue(promo2InLikedView);
 
         }
+
     }
 }
 

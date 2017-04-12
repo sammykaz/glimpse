@@ -3,7 +3,9 @@
 app.controller('HomeController', ['$scope', 'dataService', '$state', 'authenticationService', 'blockUI',function ($scope, dataService, $state, authenticationService, blockUI) {
 
     $scope.data = "";
-    
+    $(function () {
+        $.getScript("//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit");
+    });
     dataService.GetAuthorizeData().then(function (data) {
         localStorage.id = data;
         var vendor = dataService.getVendors().get({ vendor: localStorage.id });

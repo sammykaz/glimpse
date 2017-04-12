@@ -4,6 +4,9 @@ using MvvmCross.Core.ViewModels;
 using MvvmCross.Plugins.Messenger;
 using Glimpse.Core.Model.App;
 using Glimpse.Core.Utility;
+using Glimpse.Localization;
+using MvvmCross.Localization;
+using MvvmCross.Platform;
 
 namespace Glimpse.Core.ViewModel
 {
@@ -24,13 +27,13 @@ namespace Glimpse.Core.ViewModel
             }
         }
 
-        public MvxCommand ShowMap
+        public MvxCommand GoToMainView
         {
             get
             {
                 return new MvxCommand(() =>
                 {
-                    ShowViewModel<MapViewModel>(new {index = 0});
+                ShowViewModel<MainViewModel>(new { glimpseMode = true });
                 });
             }
         }
@@ -43,7 +46,18 @@ namespace Glimpse.Core.ViewModel
                 {
                     ShowViewModel<SignInViewModel>(new { index = 0 });
                 });
-             }
+            }
+        }
+
+        public MvxCommand ShowSettings
+        {
+            get
+            {
+                return new MvxCommand(() =>
+                {
+                    ShowViewModel<LoginSettingsViewModel>(new { index = 0 });
+                });
+            }
         }
     }
 }
