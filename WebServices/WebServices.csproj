@@ -290,13 +290,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612270323003_migration1.cs" />
-    <Compile Include="Migrations\201612270323003_migration1.Designer.cs">
-      <DependentUpon>201612270323003_migration1.cs</DependentUpon>
+    <Compile Include="Migrations\201612220544451_fluent.cs" />
+    <Compile Include="Migrations\201612220544451_fluent.Designer.cs">
+      <DependentUpon>201612220544451_fluent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612280012115_enum.cs" />
-    <Compile Include="Migrations\201612280012115_enum.Designer.cs">
-      <DependentUpon>201612280012115_enum.cs</DependentUpon>
+    <Compile Include="Migrations\201612220657108_location.cs" />
+    <Compile Include="Migrations\201612220657108_location.Designer.cs">
+      <DependentUpon>201612220657108_location.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201701042041527_seedingdata.cs" />
     <Compile Include="Migrations\201701042041527_seedingdata.Designer.cs">
@@ -321,6 +321,26 @@
     <Compile Include="Migrations\201701222305569_imagerework.cs" />
     <Compile Include="Migrations\201701222305569_imagerework.Designer.cs">
       <DependentUpon>201701222305569_imagerework.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702072147292_pendingerror.cs" />
+    <Compile Include="Migrations\201702072147292_pendingerror.Designer.cs">
+      <DependentUpon>201702072147292_pendingerror.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702072203396_seedingdataazure.cs" />
+    <Compile Include="Migrations\201702072203396_seedingdataazure.Designer.cs">
+      <DependentUpon>201702072203396_seedingdataazure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702072220347_seedingdataazure1.cs" />
+    <Compile Include="Migrations\201702072220347_seedingdataazure1.Designer.cs">
+      <DependentUpon>201702072220347_seedingdataazure1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702072231512_seedingdataazure2.cs" />
+    <Compile Include="Migrations\201702072231512_seedingdataazure2.Designer.cs">
+      <DependentUpon>201702072231512_seedingdataazure2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702072238251_seedingdataazure3.cs" />
+    <Compile Include="Migrations\201702072238251_seedingdataazure3.Designer.cs">
+      <DependentUpon>201702072238251_seedingdataazure3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Contexts\GlimpseDbContext.cs" />
@@ -1369,11 +1389,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612270323003_migration1.resx">
-      <DependentUpon>201612270323003_migration1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612220544451_fluent.resx">
+      <DependentUpon>201612220544451_fluent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612280012115_enum.resx">
-      <DependentUpon>201612280012115_enum.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612220657108_location.resx">
+      <DependentUpon>201612220657108_location.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701042041527_seedingdata.resx">
       <DependentUpon>201701042041527_seedingdata.cs</DependentUpon>
@@ -1392,6 +1412,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701222305569_imagerework.resx">
       <DependentUpon>201701222305569_imagerework.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702072147292_pendingerror.resx">
+      <DependentUpon>201702072147292_pendingerror.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702072203396_seedingdataazure.resx">
+      <DependentUpon>201702072203396_seedingdataazure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702072220347_seedingdataazure1.resx">
+      <DependentUpon>201702072220347_seedingdataazure1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702072231512_seedingdataazure2.resx">
+      <DependentUpon>201702072231512_seedingdataazure2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702072238251_seedingdataazure3.resx">
+      <DependentUpon>201702072238251_seedingdataazure3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
