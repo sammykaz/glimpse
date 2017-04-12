@@ -56,7 +56,6 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
                     $scope.totalSum++;
                     element1.title = element.Title;
                     $scope.vendorPromotionsClicked.push(element1);
-                    var newDate = new Date(element1.Time);
                 }
             })
         });
@@ -114,11 +113,6 @@ app.controller('analysisController', ['$scope', 'dataService', function ($scope,
             })
         })
 
-        angular.forEach($scope.data, function (element, index) {
-            angular.forEach(element, function (element1, index1) {
-                $scope.totalClicked[index] += element1;
-            })
-        })
     }
 
     var today = new Date();
